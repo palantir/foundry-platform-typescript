@@ -3,8 +3,12 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [
-    ["@osdk/foundry.*", "@osdk/foundry"],
-    ["@osdk/internal.foundry.*"]
+    [
+      "@osdk/foundry.*",
+      "@osdk/foundry",
+      "@osdk/internal.foundry",
+      "@osdk/internal.foundry.*"
+    ]
   ],
   "linked": [],
   "access": "restricted",
