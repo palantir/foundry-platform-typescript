@@ -1,5 +1,11 @@
 # @osdk/foundry.ontologies
 
+## 2.2.0-beta.1
+
+### Minor Changes
+
+- ca65018: Updating deps for platform sdk.
+
 ## 2.2.0-beta.0
 
 ### Minor Changes

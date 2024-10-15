@@ -1,5 +1,12 @@
 # @osdk/platform-sdk-generator
 
+## 0.6.0-beta.1
+
+### Minor Changes
+
+- bd00a28: Fix deps issue.
+- ca65018: Updating deps for platform sdk.
+
 ## 0.6.0-beta.0
 
 ### Minor Changes

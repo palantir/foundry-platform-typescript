@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.2.0-beta.1
+
+### Minor Changes
+
+- ca65018: Updating deps for platform sdk.
+
 ## 0.3.0-beta.0
 
 ### Minor Changes
