@@ -80,6 +80,8 @@
     "@osdk/foundry.connectivity": "0.0.0"
   },
   "changesets": [
-    "fifty-geckos-tan"
+    "fifty-geckos-tan",
+    "proud-bugs-provide",
+    "slimy-donkeys-swim"
   ]
 }
