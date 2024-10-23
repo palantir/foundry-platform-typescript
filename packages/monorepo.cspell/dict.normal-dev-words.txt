@@ -11,6 +11,7 @@ geofence
 Geolocatable
 geosearch
 groupable
+importmap
 inbetween
 isModifierable
 objs

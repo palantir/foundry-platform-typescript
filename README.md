@@ -6,7 +6,7 @@ The Foundry Platform SDK for Typescript is an SDK for the APIs listed in the [Fo
 
 The following is a complete, annotated example of a "hello, world" web app using the Platform SDK to greet users by name.
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -75,7 +75,7 @@ The following is a complete, annotated example of a "hello, world" web app using
 
 To run this example, do the following:
 
-1. Copy the above HTML into an editor and save it as (for exmaple) `~/Desktop/test-website/index.html`.
+1. Copy the above HTML into an editor and save it as (for example) `~/Desktop/test-website/index.html`.
 2. In Foundry, open the Developer Console and create a new third-party application for your web app.
 3. Copy your client ID and Foundry hostname into the spaces labeled `TODO` in the code.
 4. In terminal, run `cd ~/Desktop/test-website`.
