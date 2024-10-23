@@ -11,62 +11,67 @@ The following is a complete, annotated example of a "hello, world" web app using
 ```
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Hello world!</title>
-      <!-- Load dependencies from a CDN. In production, most developers use a dependency and build system like npm instead. -->
-      <script type="importmap">
-         {
-            "imports": {
-               "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.11/dist/vue.esm-browser.min.js",
-               "@osdk/client": "https://cdn.jsdelivr.net/npm/@osdk/client@2.0.4/+esm",
-               "@osdk/oauth": "https://cdn.jsdelivr.net/npm/@osdk/oauth@1.0.0/+esm",
-               "@osdk/foundry.admin": "https://cdn.jsdelivr.net/npm/@osdk/foundry.admin@2.1.0/+esm"
-            }
-         }
-      </script>
-   </head>
-   <body>
-      <h1>Hello world!</h1>
-      <!-- The contents of our vue app. -->
-      <div id="app">
-         <!-- Suspense handles the fact that Greeting is an async component, since it needs to wait on the network to load our name and greet us. -->
-         <Suspense>
-            <!-- Greeting is the main component of our app, defined below. -->
-            <Greeting />
-         </Suspense>
-      </div>
-      <script type="module">
-         import { createApp } from "vue"
-         // Create a standalone platform SDK client. Users can also use an OSDK client created with `createClient` if they have an Ontology SDK.
-         import { createPlatformClient } from "@osdk/client"
-         // Create a public OAuth2 client. OSDK clients and Platform SDK clients use the same auth client types.
-         import { createPublicOauthClient } from "@osdk/oauth"
-         // The admin endpoints, which include our getCurrentUser endpoint.
-         import { Users } from "@osdk/foundry.admin"
+  <head>
+    <title>Hello world!</title>
+    <!-- Load dependencies from a CDN. In production, most developers use a dependency and build
+         system like npm instead. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.11/dist/vue.esm-browser.min.js",
+          "@osdk/client": "https://cdn.jsdelivr.net/npm/@osdk/client@2.0.4/+esm",
+          "@osdk/oauth": "https://cdn.jsdelivr.net/npm/@osdk/oauth@1.0.0/+esm",
+          "@osdk/foundry.admin": "https://cdn.jsdelivr.net/npm/@osdk/foundry.admin@2.1.0/+esm"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Hello world!</h1>
+    <!-- The contents of our vue app. -->
+    <div id="app">
+      <!-- Suspense handles the fact that Greeting is an async component, since it needs to wait on
+           the network to load our name and greet us. -->
+      <Suspense>
+        <!-- Greeting is the main component of our app, defined below. -->
+        <Greeting />
+      </Suspense>
+    </div>
+    <script type="module">
+      import { createApp } from "vue"
+      // Create a standalone platform SDK client. Users can also use an OSDK client created with
+      // `createClient` if they have an Ontology SDK.
+      import { createPlatformClient } from "@osdk/client"
+      // Create a public OAuth2 client. OSDK clients and Platform SDK clients use the same auth
+      // client types.
+      import { createPublicOauthClient } from "@osdk/oauth"
+      // The admin endpoints, which include our getCurrentUser endpoint.
+      import { Users } from "@osdk/foundry.admin"
 
-         // The hostname of the Foundry instance you are developing against, like `https://foundry.example.com`.
-         const stack = "TODO";
-         // Your OAuth2 client ID from Developer Console.
-         const clientId = "TODO";
-         // The URL of your app (this HTML page).
-         const redirectUrl = "http://localhost:8000";
+      // The hostname of your Foundry instance, like `https://foundry.example.com`.
+      const stack = "TODO";
+      // Your OAuth2 client ID from Developer Console.
+      const clientId = "TODO";
+      // The URL of your app (this HTML page).
+      const redirectUrl = "http://localhost:8000";
 
-         const client = createPlatformClient(stack, createPublicOauthClient(clientId, stack, redirectUrl));
+      const auth = createPublicOauthClient(clientId, stack, redirectUrl);
+      const client = createPlatformClient(stack, auth);
 
-         createApp({})
-         .component('Greeting', {
-            // Use the Platform SDK to call the getCurrentUser endpoint with the client we created.
-            // Await the result before rendering the greeting template below.
-            async setup() {
-               return {
-                  user: await Users.getCurrent(client, { preview: true }),
-               }
-            },
-            template: `<p>Hello, <b>{{ user.givenName }}</b>!</p>`
-         })
-         .mount('#app');
-      </script>
-   </body>
+      createApp({})
+      .component('Greeting', {
+        // Use the Platform SDK to call the getCurrentUser endpoint with the client we created.
+        // Await the result before rendering the greeting template below.
+        async setup() {
+          return {
+            user: await Users.getCurrent(client, { preview: true }),
+          }
+        },
+        template: `<p>Hello, <b>{{ user.givenName }}</b>!</p>`
+      })
+      .mount('#app');
+    </script>
+  </body>
 </html>
 ```
 
