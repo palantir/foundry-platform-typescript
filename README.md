@@ -76,7 +76,7 @@ The following is a complete, annotated example of a "hello, world" web app using
 To run this example, do the following:
 
 1. Copy the above HTML into an editor and save it as (for example) `~/Desktop/test-website/index.html`.
-2. In Foundry, open the Developer Console and create a new third-party application for your web app.
+2. In Foundry, open the Developer Console and create a new third-party application for your web app. Set `http://localhost:8000` as a redirect URL.
 3. Copy your client ID and Foundry hostname into the spaces labeled `TODO` in the code.
 4. In terminal, run `cd ~/Desktop/test-website`.
 5. Start a web server to serve the file by running `python3 -m http.server` (or your preferred web server).
