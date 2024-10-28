@@ -47,9 +47,9 @@ The following is a complete, annotated example of a "hello, world" web app using
       import { Users } from "@osdk/foundry.admin"
 
       // The hostname of your Foundry instance, like `https://foundry.example.com`.
-      const stack = "TODO";
+      const stack = "<TODO: hostname of your Foundry instance, e.g. https://foundry.example.com>";
       // Your OAuth2 client ID from Developer Console.
-      const clientId = "TODO";
+      const clientId = "<TODO: OAuth2 client ID from the Developer Console overview page>";
       // The URL of your app (this HTML page).
       const redirectUrl = "http://localhost:8080";
 
