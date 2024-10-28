@@ -51,7 +51,7 @@ The following is a complete, annotated example of a "hello, world" web app using
       // Your OAuth2 client ID from Developer Console.
       const clientId = "TODO";
       // The URL of your app (this HTML page).
-      const redirectUrl = "http://localhost:8000";
+      const redirectUrl = "http://localhost:8080";
 
       const auth = createPublicOauthClient(clientId, stack, redirectUrl);
       const client = createPlatformClient(stack, auth);
@@ -76,11 +76,11 @@ The following is a complete, annotated example of a "hello, world" web app using
 To run this example, do the following:
 
 1. Copy the above HTML into an editor and save it as (for example) `~/Desktop/test-website/index.html`.
-2. In Foundry, open the Developer Console and create a new third-party application for your web app. Set `http://localhost:8000` as a redirect URL.
+2. In Foundry, open the Developer Console and create a new third-party application for your web app. Set `http://localhost:8080` as a redirect URL (do not include a path like `/auth/callback`).
 3. Copy your client ID and Foundry hostname into the spaces labeled `TODO` in the code.
 4. In terminal, run `cd ~/Desktop/test-website`.
-5. Start a web server to serve the file by running `python3 -m http.server` (or your preferred web server).
-6. Navigate to `http://localhost:8000` in your browser and authenticate your app with Foundry.
+5. Start a web server to serve the file by running `python3 -m http.server 8080` (or your preferred web server).
+6. Navigate to `http://localhost:8080` in your browser and authenticate your app with Foundry.
 7. Enjoy being greeted by name!
 
 ## Dev workflow
