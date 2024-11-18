@@ -6,6 +6,9 @@ set -eu
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 mkdir -p "${SCRIPT_DIR}/../tmp"
 
+echo "yq version: $(yq --version)"
+echo "yq which: $(which yq)"
+
 BUILD_DIR="${SCRIPT_DIR}/../tmp"
 DOWNLOAD_DIR="${BUILD_DIR}/api-gateway-bundle"
 EXTRACT_DIR="${BUILD_DIR}/api-gateway-ir"
@@ -15,7 +18,7 @@ MAVEN_CONJURE_ARTIFACT_ID="api-gateway-rosetta-bundle"
 MAVEN_REPO_PATH="${MAVEN_DIST_RELEASE}/$(echo "$MAVEN_CONJURE_GROUP_ID" | sed 's/\./\//g')/${MAVEN_CONJURE_ARTIFACT_ID}"
 
 API_GATEWAY_VERSION=$( wget -q -O - "${MAVEN_REPO_PATH}/maven-metadata.xml" | \
-    yq -p xml -r '.metadata.versioning.release' )
+    yq -p xml '.metadata.versioning.release' )
 
 echo "GATEWAY VERSION: ${API_GATEWAY_VERSION}"
 

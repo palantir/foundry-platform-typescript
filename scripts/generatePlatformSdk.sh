@@ -33,7 +33,7 @@ $CODE_GENERATOR generate --v2 --prefix foundry --inputFile "${OMNIAPI_IR_JSON}" 
 
 echo
 echo pnpm install to make align deps
-pnpm install --reporter=silent
+pnpm install 
 
 echo
 echo "Running mrl"
