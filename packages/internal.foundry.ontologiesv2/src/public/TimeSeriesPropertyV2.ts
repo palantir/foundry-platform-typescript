@@ -120,6 +120,7 @@ const _streamPoints: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      format?: _Core.StreamingOutputFormat | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -152,6 +153,7 @@ export function streamPoints(
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      format?: _Core.StreamingOutputFormat | undefined;
     },
   ]
 ): Promise<Response> {

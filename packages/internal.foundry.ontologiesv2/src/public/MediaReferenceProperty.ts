@@ -45,11 +45,11 @@ const _getMediaContent: $FoundryPlatformMethod<
 /**
  * Gets the content of a media item referenced by this property.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:mediasets-read`.
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read`.
  *
  * @beta
  *
- * Required Scopes: [api:ontologies-read, api:mediasets-read]
+ * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/media/{property}/content
  */
 export function getMediaContent(
@@ -87,11 +87,11 @@ const _getMediaMetadata: $FoundryPlatformMethod<
 /**
  * Gets metadata about the media item referenced by this property.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:mediasets-read`.
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read`.
  *
  * @alpha
  *
- * Required Scopes: [api:ontologies-read, api:mediasets-read]
+ * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/media/{property}/metadata
  */
 export function getMediaMetadata(
@@ -129,11 +129,11 @@ const _upload: $FoundryPlatformMethod<
  * Uploads a media item to the media set which backs the specified property.  The property must be backed by a single media set and branch, otherwise an error will be thrown.
  * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:mediasets-read api:mediasets-write`.
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:ontologies-write`.
  *
  * @beta
  *
- * Required Scopes: [api:ontologies-read, api:mediasets-read, api:mediasets-write]
+ * Required Scopes: [api:ontologies-read, api:ontologies-write]
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/media/{property}/upload
  */
 export function upload(

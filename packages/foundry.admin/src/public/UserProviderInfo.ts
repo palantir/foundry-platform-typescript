@@ -29,57 +29,55 @@ import type * as _Admin from "../_components.js";
 
 //
 
-const _list: $FoundryPlatformMethod<
-  ($queryParams?: {
-    pageSize?: _Core.PageSize | undefined;
-    pageToken?: _Core.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Admin.ListMarkingCategoriesResponse>
-> = [0, "/v2/admin/markingCategories", 2];
-
-/**
- * Maximum page size 100.
- *
- * @beta
- *
- * Required Scopes: [api:admin-read]
- * URL: /v2/admin/markingCategories
- */
-export function list(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $queryParams?: {
-      pageSize?: _Core.PageSize | undefined;
-      pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
-): Promise<_Admin.ListMarkingCategoriesResponse> {
-  return $foundryPlatformFetch($ctx, _list, ...args);
-}
-
 const _get: $FoundryPlatformMethod<
   (
-    markingCategoryId: _Admin.MarkingCategoryId,
+    userId: _Core.PrincipalId,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.MarkingCategory>
-> = [0, "/v2/admin/markingCategories/{0}", 2];
+  ) => Promise<_Admin.UserProviderInfo>
+> = [0, "/v2/admin/users/{0}/providerInfo", 2];
 
 /**
- * Get the MarkingCategory with the specified id.
+ * Get the UserProviderInfo.
  *
  * @beta
  *
  * Required Scopes: [api:admin-read]
- * URL: /v2/admin/markingCategories/{markingCategoryId}
+ * URL: /v2/admin/users/{userId}/providerInfo
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    markingCategoryId: _Admin.MarkingCategoryId,
+    userId: _Core.PrincipalId,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_Admin.MarkingCategory> {
+): Promise<_Admin.UserProviderInfo> {
   return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _replace: $FoundryPlatformMethod<
+  (
+    userId: _Core.PrincipalId,
+    $body: _Admin.ReplaceUserProviderInfoRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.UserProviderInfo>
+> = [2, "/v2/admin/users/{0}/providerInfo", 3];
+
+/**
+ * Replace the UserProviderInfo.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/users/{userId}/providerInfo
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    userId: _Core.PrincipalId,
+    $body: _Admin.ReplaceUserProviderInfoRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.UserProviderInfo> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
 }

@@ -85,6 +85,14 @@ export interface AwsAccessKey {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface BasicCredentials {
+  username: string;
+  password: EncryptedProperty;
+}
+
+/**
    * Cloud identities allow you to authenticate to
 cloud provider resources without the use of static credentials.
    *
@@ -182,6 +190,14 @@ export interface CreateConnectionRequestAwsAccessKey {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestBasicCredentials {
+  password: CreateConnectionRequestEncryptedProperty;
+  username: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface CreateConnectionRequestCloudIdentity {
@@ -200,6 +216,14 @@ export type CreateConnectionRequestConnectionConfiguration = {
  */
 export interface CreateConnectionRequestDirectConnectionRuntime {
   networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionRequestDuration {
+  unit: _Core.TimeUnit;
+  value: number;
 }
 
 /**
@@ -250,8 +274,50 @@ export type CreateConnectionRequestS3AuthenticationMode =
  * Log Safety: UNSAFE
  */
 export interface CreateConnectionRequestS3ConnectionConfiguration {
+  connectionTimeoutMillis?: string;
+  maxErrorRetry?: number;
   bucketUrl: string;
+  clientKmsConfiguration?: S3KmsConfiguration;
+  matchSubfolderExactly?: boolean;
+  stsRoleConfiguration?: StsRoleConfiguration;
+  s3Endpoint?: string;
+  socketTimeoutMillis?: string;
+  enableRequesterPays?: boolean;
+  s3EndpointSigningRegion?: Region;
+  region?: Region;
   authenticationMode?: S3AuthenticationMode;
+  proxyConfiguration?: S3ProxyConfiguration;
+  maxConnections?: number;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestS3KmsConfiguration {
+  kmsRegion?: Region;
+  kmsKey: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestS3ProxyConfiguration {
+  nonProxyHosts?: Array<string>;
+  protocol?: Protocol;
+  port: number;
+  credentials?: BasicCredentials;
+  host: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestStsRoleConfiguration {
+  stsEndpoint?: string;
+  roleArn: string;
+  roleSessionName: string;
+  externalId?: string;
+  roleSessionDuration?: _Core.Duration;
 }
 
 /**
@@ -616,6 +682,20 @@ export interface PostgreSqlImportConfig {
 }
 
 /**
+ * Protocol to establish a connection with another system.
+ *
+ * Log Safety: SAFE
+ */
+export type Protocol = "HTTP" | "HTTPS";
+
+/**
+ * The region of the external system.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Region = LooselyBrandedString<"Region">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ReplaceFileImportRequest {
@@ -654,13 +734,55 @@ implement the s3a protocol).
    */
 export interface S3ConnectionConfiguration {
   bucketUrl: string;
+  s3Endpoint?: string;
+  region?: Region;
   authenticationMode?: S3AuthenticationMode;
+  s3EndpointSigningRegion?: Region;
+  clientKmsConfiguration?: S3KmsConfiguration;
+  stsRoleConfiguration?: StsRoleConfiguration;
+  proxyConfiguration?: S3ProxyConfiguration;
+  maxConnections?: number;
+  connectionTimeoutMillis?: string;
+  socketTimeoutMillis?: string;
+  maxErrorRetry?: number;
+  matchSubfolderExactly?: boolean;
+  enableRequesterPays?: boolean;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface S3KmsConfiguration {
+  kmsKey: string;
+  kmsRegion?: Region;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface S3ProxyConfiguration {
+  host: string;
+  port: number;
+  nonProxyHosts?: Array<string>;
+  protocol?: Protocol;
+  credentials?: BasicCredentials;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export type SecretName = LooselyBrandedString<"SecretName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StsRoleConfiguration {
+  roleArn: string;
+  roleSessionName: string;
+  roleSessionDuration?: _Core.Duration;
+  externalId?: string;
+  stsEndpoint?: string;
+}
 
 /**
  * Log Safety: UNSAFE

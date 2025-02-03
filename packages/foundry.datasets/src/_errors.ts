@@ -365,6 +365,35 @@ export interface ReadTableDatasetPermissionDenied {
 }
 
 /**
+ * An error occurred while reading the table. Refer to the message for more details.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ReadTableError {
+  errorCode: "INTERNAL";
+  errorName: "ReadTableError";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    message: unknown;
+  };
+}
+
+/**
+ * The request to read the table timed out.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReadTableTimeout {
+  errorCode: "TIMEOUT";
+  errorName: "ReadTableTimeout";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+  };
+}
+
+/**
  * A schema could not be found for the given dataset and branch, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE

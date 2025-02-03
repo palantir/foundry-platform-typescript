@@ -29,6 +29,31 @@ import type * as _Admin from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _Admin.CreateMarkingRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.Marking>
+> = [1, "/v2/admin/markings", 3];
+
+/**
+ * Creates a new Marking.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/markings
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Admin.CreateMarkingRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.Marking> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     pageSize?: _Core.PageSize | undefined;
@@ -40,7 +65,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Maximum page size 100.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings
@@ -68,7 +93,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Marking with the specified id.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/{markingId}
@@ -96,7 +121,7 @@ const _getBatch: $FoundryPlatformMethod<
  *
  * The maximum batch size for this endpoint is 500.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/getBatch

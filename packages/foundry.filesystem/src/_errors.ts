@@ -87,6 +87,21 @@ export interface CreateFolderPermissionDenied {
 }
 
 /**
+ * The create project request would create a project with no principal being granted an owner-like role. As a result, there would be no user with administrative privileges over the project. A role is defined to be owner-like if it has the compass:edit-project operation. In the common case of the default role-set, this is just the compass:manage role.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateProjectNoOwnerLikeRoleGrant {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreateProjectNoOwnerLikeRoleGrant";
+  errorInstanceId: string;
+  parameters: {
+    grantedRoleIds: unknown;
+    roleSetOwnerLikeRoleIds: unknown;
+  };
+}
+
+/**
  * Could not create the Project.
  *
  * Log Safety: SAFE

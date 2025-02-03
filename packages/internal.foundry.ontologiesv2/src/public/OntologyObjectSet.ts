@@ -177,6 +177,7 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Core.LoadObjectSetV2ObjectsOrInterfacesResponse>
 > = [1, "/v2/ontologies/{0}/objectSets/loadObjectsOrInterfaces", 3];
@@ -211,6 +212,7 @@ export function loadObjectsOrInterfaces(
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Core.LoadObjectSetV2ObjectsOrInterfacesResponse> {

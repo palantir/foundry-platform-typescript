@@ -61,6 +61,49 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * Principals that are still preregistered do not have associated provider information.
+ *
+ * Log Safety: SAFE
+ */
+export interface CannotGetProviderInfoForPreregisteredPrincipal {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CannotGetProviderInfoForPreregisteredPrincipal";
+  errorInstanceId: string;
+  parameters: {
+    principalId: unknown;
+  };
+}
+
+/**
+ * Provider information for Principals that are still preregistered cannot be replaced.
+ *
+ * Log Safety: SAFE
+ */
+export interface CannotReplaceProviderInfoForPreregisteredPrincipal {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CannotReplaceProviderInfoForPreregisteredPrincipal";
+  errorInstanceId: string;
+  parameters: {
+    principalId: unknown;
+  };
+}
+
+/**
+ * Provider information for Principals in this Realm cannot be replaced.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CannotReplaceProviderInfoForPrincipalInProtectedRealm {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CannotReplaceProviderInfoForPrincipalInProtectedRealm";
+  errorInstanceId: string;
+  parameters: {
+    principalId: unknown;
+    realm: unknown;
+  };
+}
+
+/**
  * Could not create the Group.
  *
  * Log Safety: SAFE
@@ -68,6 +111,45 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 export interface CreateGroupPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateGroupPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * At least one ADMIN role assignment must be provided when creating a marking.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateMarkingMissingInitialAdminRole {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreateMarkingMissingInitialAdminRole";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * A marking with the same name already exists in the category.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateMarkingNameInCategoryAlreadyExists {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreateMarkingNameInCategoryAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    displayName: unknown;
+    categoryId: unknown;
+  };
+}
+
+/**
+ * Could not create the Marking.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateMarkingPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateMarkingPermissionDenied";
   errorInstanceId: string;
   parameters: {};
 }
@@ -139,6 +221,20 @@ export interface GetCurrentUserPermissionDenied {
 }
 
 /**
+ * The provided token does not have permission to view the provider information for the given group.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetGroupProviderInfoPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetGroupProviderInfoPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    groupId: unknown;
+  };
+}
+
+/**
  * You do not have permission to view the marking category.
  *
  * Log Safety: SAFE
@@ -195,6 +291,20 @@ export interface GetProfilePictureOfUserPermissionDenied {
 }
 
 /**
+ * The provided token does not have permission to view the provider information for the given user.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetUserProviderInfoPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetUserProviderInfoPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    userId: unknown;
+  };
+}
+
+/**
  * A group with this name already exists
  *
  * Log Safety: UNSAFE
@@ -216,6 +326,20 @@ export interface GroupNameAlreadyExists {
 export interface GroupNotFound {
   errorCode: "NOT_FOUND";
   errorName: "GroupNotFound";
+  errorInstanceId: string;
+  parameters: {
+    groupId: unknown;
+  };
+}
+
+/**
+ * The given GroupProviderInfo could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface GroupProviderInfoNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "GroupProviderInfoNotFound";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -249,6 +373,20 @@ export interface InvalidGroupOrganizations {
   errorName: "InvalidGroupOrganizations";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The provided hostname must be a valid domain name. The only allowed characters are letters, numbers, periods, and hyphens.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidHostName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidHostName";
+  errorInstanceId: string;
+  parameters: {
+    invalidHostName: unknown;
+  };
 }
 
 /**
@@ -336,7 +474,7 @@ export interface MarkingNotFound {
 }
 
 /**
- * An Organization with the given Organization RID could not be found
+ * The given Organization could not be found.
  *
  * Log Safety: SAFE
  */
@@ -345,7 +483,7 @@ export interface OrganizationNotFound {
   errorName: "OrganizationNotFound";
   errorInstanceId: string;
   parameters: {
-    organization: unknown;
+    organizationRid: unknown;
   };
 }
 
@@ -435,6 +573,48 @@ export interface RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed {
 }
 
 /**
+ * Could not replace the GroupProviderInfo.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceGroupProviderInfoPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceGroupProviderInfoPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    groupId: unknown;
+  };
+}
+
+/**
+ * Could not replace the Organization.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceOrganizationPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceOrganizationPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
+  };
+}
+
+/**
+ * Could not replace the UserProviderInfo.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceUserProviderInfoPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceUserProviderInfoPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    userId: unknown;
+  };
+}
+
+/**
  * Could not search the Group.
  *
  * Log Safety: SAFE
@@ -466,6 +646,20 @@ export interface SearchUsersPermissionDenied {
 export interface UserNotFound {
   errorCode: "NOT_FOUND";
   errorName: "UserNotFound";
+  errorInstanceId: string;
+  parameters: {
+    userId: unknown;
+  };
+}
+
+/**
+ * The given UserProviderInfo could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface UserProviderInfoNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "UserProviderInfoNotFound";
   errorInstanceId: string;
   parameters: {
     userId: unknown;

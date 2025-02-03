@@ -22,6 +22,7 @@ export type {
   AttributeValue,
   AttributeValues,
   CreateGroupRequest,
+  CreateMarkingRequest,
   Enrollment,
   EnrollmentName,
   GetGroupsBatchRequestElement,
@@ -36,6 +37,7 @@ export type {
   GroupMembership,
   GroupMembershipExpiration,
   GroupName,
+  GroupProviderInfo,
   GroupSearchFilter,
   Host,
   HostName,
@@ -59,15 +61,22 @@ export type {
   MarkingRoleAssignment,
   MarkingRoleUpdate,
   MarkingType,
+  Organization,
+  OrganizationName,
   PrincipalFilterType,
+  ProviderId,
   RemoveGroupMembersRequest,
   RemoveMarkingMembersRequest,
   RemoveMarkingRoleAssignmentsRequest,
+  ReplaceGroupProviderInfoRequest,
+  ReplaceOrganizationRequest,
+  ReplaceUserProviderInfoRequest,
   SearchGroupsRequest,
   SearchGroupsResponse,
   SearchUsersRequest,
   SearchUsersResponse,
   User,
+  UserProviderInfo,
   UserSearchFilter,
   UserUsername,
 } from "./_components.js";
@@ -75,20 +84,30 @@ export type {
   AddGroupMembersPermissionDenied,
   AddMarkingMembersPermissionDenied,
   AddMarkingRoleAssignmentsPermissionDenied,
+  CannotGetProviderInfoForPreregisteredPrincipal,
+  CannotReplaceProviderInfoForPreregisteredPrincipal,
+  CannotReplaceProviderInfoForPrincipalInProtectedRealm,
   CreateGroupPermissionDenied,
+  CreateMarkingMissingInitialAdminRole,
+  CreateMarkingNameInCategoryAlreadyExists,
+  CreateMarkingPermissionDenied,
   DeleteGroupPermissionDenied,
   DeleteUserPermissionDenied,
   EnrollmentNotFound,
   GetCurrentEnrollmentPermissionDenied,
   GetCurrentUserPermissionDenied,
+  GetGroupProviderInfoPermissionDenied,
   GetMarkingCategoryPermissionDenied,
   GetMarkingPermissionDenied,
   GetMarkingsUserPermissionDenied,
   GetProfilePictureOfUserPermissionDenied,
+  GetUserProviderInfoPermissionDenied,
   GroupNameAlreadyExists,
   GroupNotFound,
+  GroupProviderInfoNotFound,
   InvalidGroupMembershipExpiration,
   InvalidGroupOrganizations,
+  InvalidHostName,
   InvalidProfilePicture,
   ListHostsPermissionDenied,
   ListMarkingMembersPermissionDenied,
@@ -102,17 +121,24 @@ export type {
   RemoveMarkingMembersPermissionDenied,
   RemoveMarkingRoleAssignmentsPermissionDenied,
   RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed,
+  ReplaceGroupProviderInfoPermissionDenied,
+  ReplaceOrganizationPermissionDenied,
+  ReplaceUserProviderInfoPermissionDenied,
   SearchGroupsPermissionDenied,
   SearchUsersPermissionDenied,
   UserNotFound,
+  UserProviderInfoNotFound,
 } from "./_errors.js";
 export * as Enrollments from "./public/Enrollment.js";
 export * as Groups from "./public/Group.js";
 export * as GroupMembers from "./public/GroupMember.js";
 export * as GroupMemberships from "./public/GroupMembership.js";
+export * as GroupProviderInfos from "./public/GroupProviderInfo.js";
 export * as Hosts from "./public/Host.js";
 export * as Markings from "./public/Marking.js";
 export * as MarkingCategories from "./public/MarkingCategory.js";
 export * as MarkingMembers from "./public/MarkingMember.js";
 export * as MarkingRoleAssignments from "./public/MarkingRoleAssignment.js";
+export * as Organizations from "./public/Organization.js";
 export * as Users from "./public/User.js";
+export * as UserProviderInfos from "./public/UserProviderInfo.js";

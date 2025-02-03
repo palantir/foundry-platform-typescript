@@ -147,7 +147,7 @@ const _getMarkings: $FoundryPlatformMethod<
 /**
  * Retrieve Markings that the user is currently a member of.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/{userId}/getMarkings

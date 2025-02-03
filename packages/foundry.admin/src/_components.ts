@@ -70,6 +70,17 @@ export interface CreateGroupRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateMarkingRequest {
+  initialRoleAssignments: Array<MarkingRoleUpdate>;
+  initialMembers: Array<_Core.PrincipalId>;
+  name: MarkingName;
+  description?: string;
+  categoryId: MarkingCategoryId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface Enrollment {
   rid: _Core.EnrollmentRid;
   name: EnrollmentName;
@@ -172,20 +183,27 @@ export type GroupName = LooselyBrandedString<"GroupName">;
 /**
  * Log Safety: UNSAFE
  */
+export interface GroupProviderInfo {
+  providerId: ProviderId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface GroupSearchFilter {
   type: PrincipalFilterType;
   value: string;
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface Host {
   hostName: HostName;
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type HostName = LooselyBrandedString<"HostName">;
 
@@ -353,9 +371,32 @@ export interface MarkingRoleUpdate {
 export type MarkingType = "MANDATORY" | "CBAC";
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface Organization {
+  rid: _Core.OrganizationRid;
+  name: OrganizationName;
+  description?: string;
+  markingId: _Core.MarkingId;
+  host?: HostName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type OrganizationName = LooselyBrandedString<"OrganizationName">;
+
+/**
  * Log Safety: SAFE
  */
 export type PrincipalFilterType = "queryString";
+
+/**
+ * A value that uniquely identifies a User or Group in an external authentication provider. This value is determined by the external authentication provider and must be unique per Realm.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ProviderId = LooselyBrandedString<"ProviderId">;
 
 /**
  * Log Safety: SAFE
@@ -376,6 +417,29 @@ export interface RemoveMarkingMembersRequest {
  */
 export interface RemoveMarkingRoleAssignmentsRequest {
   roleAssignments: Array<MarkingRoleUpdate>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceGroupProviderInfoRequest {
+  providerId: ProviderId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceOrganizationRequest {
+  name: OrganizationName;
+  host?: HostName;
+  description?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceUserProviderInfoRequest {
+  providerId: ProviderId;
 }
 
 /**
@@ -424,6 +488,13 @@ export interface User {
   realm: _Core.Realm;
   organization?: _Core.OrganizationRid;
   attributes: Record<AttributeName, AttributeValues>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface UserProviderInfo {
+  providerId: ProviderId;
 }
 
 /**

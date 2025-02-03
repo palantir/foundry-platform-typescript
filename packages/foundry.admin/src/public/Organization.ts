@@ -29,57 +29,55 @@ import type * as _Admin from "../_components.js";
 
 //
 
-const _list: $FoundryPlatformMethod<
-  ($queryParams?: {
-    pageSize?: _Core.PageSize | undefined;
-    pageToken?: _Core.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Admin.ListMarkingCategoriesResponse>
-> = [0, "/v2/admin/markingCategories", 2];
-
-/**
- * Maximum page size 100.
- *
- * @beta
- *
- * Required Scopes: [api:admin-read]
- * URL: /v2/admin/markingCategories
- */
-export function list(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $queryParams?: {
-      pageSize?: _Core.PageSize | undefined;
-      pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
-): Promise<_Admin.ListMarkingCategoriesResponse> {
-  return $foundryPlatformFetch($ctx, _list, ...args);
-}
-
 const _get: $FoundryPlatformMethod<
   (
-    markingCategoryId: _Admin.MarkingCategoryId,
+    organizationRid: _Core.OrganizationRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.MarkingCategory>
-> = [0, "/v2/admin/markingCategories/{0}", 2];
+  ) => Promise<_Admin.Organization>
+> = [0, "/v2/admin/organizations/{0}", 2];
 
 /**
- * Get the MarkingCategory with the specified id.
+ * Get the Organization with the specified rid.
  *
  * @beta
  *
  * Required Scopes: [api:admin-read]
- * URL: /v2/admin/markingCategories/{markingCategoryId}
+ * URL: /v2/admin/organizations/{organizationRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    markingCategoryId: _Admin.MarkingCategoryId,
+    organizationRid: _Core.OrganizationRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_Admin.MarkingCategory> {
+): Promise<_Admin.Organization> {
   return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _replace: $FoundryPlatformMethod<
+  (
+    organizationRid: _Core.OrganizationRid,
+    $body: _Admin.ReplaceOrganizationRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.Organization>
+> = [2, "/v2/admin/organizations/{0}", 3];
+
+/**
+ * Replace the Organization with the specified rid.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/organizations/{organizationRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    organizationRid: _Core.OrganizationRid,
+    $body: _Admin.ReplaceOrganizationRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.Organization> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
 }
