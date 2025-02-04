@@ -34,9 +34,15 @@ export async function generatePlatformSdkV2(
   ir: ir.ApiSpec,
   outputDir: string,
   packagePrefix: string,
+  deprecatedIr?: ir.ApiSpec,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
-  const model = await Model.create(ir, { npmOrg, outputDir, packagePrefix });
+  const model = await Model.create(ir, {
+    npmOrg,
+    outputDir,
+    packagePrefix,
+    deprecatedIr,
+  });
 
   const componentsGenerated = new Map<Namespace, string[]>();
   const errorsGenerated = new Map<Namespace, string[]>();
@@ -92,7 +98,7 @@ export async function generatePlatformSdkV2(
 
     for (const comp of ns.components) {
       for (const rc of comp.referencedComponents) {
-        deps.add(rc.namespace);
+        if (!comp.isDeprecated) deps.add(rc.namespace);
       }
     }
 
@@ -160,6 +166,7 @@ export async function generateComponents(
     if (isIgnoredType(component.component)) {
       continue;
     }
+
     out += component.getDeclaration(ns.name);
     ret.push(component.name === "Record" ? "_Record" : component.name);
 

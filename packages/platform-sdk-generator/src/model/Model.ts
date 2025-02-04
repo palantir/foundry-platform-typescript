@@ -104,9 +104,7 @@ export class Model {
 
   getComponent(locator: ir.Locator): Component {
     const ret = this.#components.get(
-      `${
-        locator.namespaceName === "Ontologies" ? "Core" : locator.namespaceName
-      }.${locator.localName}`,
+      `${locator.namespaceName}.${locator.localName}`,
     );
     if (!ret) {
       throw new Error(
@@ -122,40 +120,22 @@ export class Model {
     outputDir: string;
     packagePrefix: string;
     npmOrg: string;
+    deprecatedIr?: ir.ApiSpec;
   }): Promise<Model> {
     const model = new Model(opts);
 
-    /**
-     * We are manually remapping all of the components(types)
-     * from the Ontologies namespace to the Core namespace
-     * so that packages don't have to depend on code in
-     * internal.foundry.ontologies that is present in
-     * internal.foundry.ontologiesv2 just to depend on types
-     * only present in the former.
-     */
-    await model.#addNamespace("Core");
-    await model.#addNamespace("Ontologies");
     for (const ns of ir.namespaces) {
       if (isIgnoredNamespace(ns.name)) continue;
 
-      if (ns.name !== "Core" && ns.name !== "Ontologies") {
-        await model.#addNamespace(ns.name);
-      }
+      await model.#addNamespace(ns.name);
 
       for (const c of ns.components) {
         if (isIgnoredType(c)) continue;
-        if (c.locator.namespaceName === "Ontologies") {
-          c.locator.namespaceName = "Core";
-        }
-
         model.#addComponent(c);
       }
 
       for (const e of ns.errors) {
         if (isIgnoredType(e)) continue;
-        if (e.locator.namespaceName === "Ontologies") {
-          e.locator.namespaceName = "Core";
-        }
         model.#addError(e);
       }
 
@@ -164,6 +144,18 @@ export class Model {
           continue;
         }
         model.addResource(ns, r);
+      }
+    }
+
+    if (opts.deprecatedIr != null) {
+      const deprecatedOntologiesComponents = opts.deprecatedIr.namespaces.find(
+        ns => ns.name === "Core",
+      );
+
+      for (const c of deprecatedOntologiesComponents?.components ?? []) {
+        if (isIgnoredType(c)) continue;
+        c.locator.namespaceName = "Core";
+        model.#addComponent(c, true);
       }
     }
 
@@ -185,11 +177,7 @@ export class Model {
   }
 
   async #addNamespace(nsName: string) {
-    const dir = `${this.#opts.packagePrefix}${
-      nsName === ""
-        ? ".core"
-        : `.${nsName.toLowerCase()}`
-    }`;
+    const dir = `${this.#opts.packagePrefix}${`.${nsName.toLowerCase()}`}`;
     const packagePath = path.join(this.#opts.outputDir, dir);
     const packageName = `${this.#opts.npmOrg}/${dir}`;
     this.#namespaces.set(nsName, {
@@ -202,10 +190,8 @@ export class Model {
     });
   }
 
-  #addComponent(c: ir.Component) {
-    const nsName = c.locator.namespaceName;
-
-    const ns = this.#namespaces.get(nsName);
+  #addComponent(c: ir.Component, isDeprecated = false) {
+    const ns = this.#namespaces.get(c.locator.namespaceName);
     if (!ns) {
       throw new Error(
         `Namespace not found for ${c.locator.namespaceName} in ${c.locator.localName}`,
@@ -218,8 +204,42 @@ export class Model {
       path.join(ns.paths.srcDir, `_components.ts`),
       ns.packageName,
       c,
+      isDeprecated,
     );
 
+    if (
+      this.#components.has(`${c.locator.namespaceName}.${c.locator.localName}`)
+    ) {
+      const existing = this.#components.get(
+        `${c.locator.namespaceName}.${c.locator.localName}`,
+      )!.component;
+      // console.log(
+      //   "Duplicate component",
+      //   c.locator.localName,
+      //   c,
+      // );
+      const replaceDocWithUndef = (k: any, v: any) => {
+        return k === "documentation" || k === "safety" ? undefined : v;
+      };
+      const existingStr = JSON.stringify(existing, replaceDocWithUndef);
+      const cStr = JSON.stringify(c, replaceDocWithUndef);
+
+      if (
+        existingStr !== cStr
+      ) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          "\nMismatched Component: ",
+          c.locator,
+          "\nExisting component: \n",
+          existingStr,
+          "\nNew component: \n",
+          cStr,
+        );
+      }
+
+      return;
+    }
     ns.components.push(component);
     this.#components.set(
       `${c.locator.namespaceName}.${c.locator.localName}`,
@@ -228,9 +248,7 @@ export class Model {
   }
 
   #addError(e: ir.Error) {
-    const nsName = (e.locator.namespaceName == null)
-      ? "Core"
-      : e.locator.namespaceName;
+    const nsName = e.locator.namespaceName;
     const ns = this.#namespaces.get(nsName);
     if (!ns) {
       throw new Error(

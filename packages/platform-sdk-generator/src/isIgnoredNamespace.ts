@@ -16,7 +16,6 @@
 
 export function isIgnoredNamespace(ns?: string): boolean {
   switch (ns) {
-    // case "Ontologies":
     case "Operations":
       return true;
   }
