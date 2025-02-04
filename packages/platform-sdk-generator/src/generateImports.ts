@@ -24,6 +24,7 @@ export function generateImports(
   referencedComponents: Set<Component>,
   namespaceMapping: Map<Namespace, string | typeof SKIP>,
 ): string {
+  const set = new Set();
   const groups = groupByAsMap(referencedComponents, "namespace");
   const imports = [...groups.entries()].filter(([ns]) =>
     namespaceMapping.get(ns) !== SKIP
@@ -32,6 +33,12 @@ export function generateImports(
       return `import type * as _${ns.name} from "${
         namespaceMapping.get(ns) as string ?? ns.packageName
       }";`;
+    }).filter((str) => {
+      if (set.has(str)) {
+        return false;
+      }
+      set.add(str);
+      return true;
     }).join("\n");
   return imports;
 }

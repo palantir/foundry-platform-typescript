@@ -34,9 +34,15 @@ export async function generatePlatformSdkV2(
   ir: ir.ApiSpec,
   outputDir: string,
   packagePrefix: string,
+  deprecatedIr?: ir.ApiSpec,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
-  const model = await Model.create(ir, { npmOrg, outputDir, packagePrefix });
+  const model = await Model.create(ir, {
+    npmOrg,
+    outputDir,
+    packagePrefix,
+    deprecatedIr,
+  });
 
   const componentsGenerated = new Map<Namespace, string[]>();
   const errorsGenerated = new Map<Namespace, string[]>();
@@ -62,6 +68,7 @@ export async function generatePlatformSdkV2(
   for (const ns of model.namespaces) {
     let nsIndexTsContents = `${copyright}\n`;
 
+    const set = new Set<string>();
     for (const r of ns.resources) {
       const resourceDirRelToSrc = "./" // path.join() will strip a single period w do it by hand
         + path.relative(
@@ -70,6 +77,11 @@ export async function generatePlatformSdkV2(
         ).split(path.sep).join("/");
 
       const resourceName = pluralize(r.component);
+      if (set.has(resourceName)) {
+        continue;
+      } else {
+        set.add(resourceName);
+      }
       if (componentsGenerated.get(ns)!.some(c => c === resourceName)) {
         throw new Error(
           `Even the duplicated components aren't unique: ${resourceName}`,
@@ -92,7 +104,7 @@ export async function generatePlatformSdkV2(
 
     for (const comp of ns.components) {
       for (const rc of comp.referencedComponents) {
-        deps.add(rc.namespace);
+        if (!comp.isDeprecated) deps.add(rc.namespace);
       }
     }
 
@@ -156,10 +168,15 @@ export async function generateComponents(
     `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
       `;
 
-  for (const component of ns.components) {
+  for (
+    const component of ns.components.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    )
+  ) {
     if (isIgnoredType(component.component)) {
       continue;
     }
+
     out += component.getDeclaration(ns.name);
     ret.push(component.name === "Record" ? "_Record" : component.name);
 

@@ -41,6 +41,7 @@ export interface Options {
   manifestFile: string;
   outputDir: string;
   prefix: string;
+  deprecatedFile?: string;
 }
 
 export class GenerateCommand implements CommandModule<{}, Options> {
@@ -71,6 +72,11 @@ export class GenerateCommand implements CommandModule<{}, Options> {
         describe: "The output directory for the generated code",
         type: "string",
         demandOption: true,
+      })
+      .option("deprecatedFile", {
+        describe:
+          "The location of the API IR that contains deprecated or legacy components no longer in the original IR",
+        type: "string",
       });
   }
 
@@ -94,7 +100,20 @@ export class GenerateCommand implements CommandModule<{}, Options> {
     );
 
     if (args.v2) {
-      const pkgDirs = await generatePlatformSdkV2(irSpec, output, args.prefix);
+      const deprecatedIr = args.deprecatedFile
+        ? await fs.readFile(`${args.deprecatedFile}`, {
+          encoding: "utf8",
+        })
+        : undefined;
+      const deprecatedIrSpec: ApiSpec | undefined = deprecatedIr
+        ? JSON.parse(deprecatedIr)
+        : undefined;
+      const pkgDirs = await generatePlatformSdkV2(
+        irSpec,
+        output,
+        args.prefix,
+        deprecatedIrSpec,
+      );
       for (const pkgDir of pkgDirs) {
         await updateSls(manifest, pkgDir);
       }
