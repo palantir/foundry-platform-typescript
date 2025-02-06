@@ -42,6 +42,7 @@ export interface Options {
   outputDir: string;
   prefix: string;
   deprecatedFile?: string;
+  endpointVersion: string;
 }
 
 export class GenerateCommand implements CommandModule<{}, Options> {
@@ -77,6 +78,12 @@ export class GenerateCommand implements CommandModule<{}, Options> {
         describe:
           "The location of the API IR that contains deprecated or legacy components no longer in the original IR",
         type: "string",
+      })
+      .option("endpointVersion", {
+        describe:
+          "The endpoint versions to generate with. Matches this version to the version listed for the namespace in the IR.",
+        type: "string",
+        demandOption: true,
       });
   }
 
@@ -112,6 +119,7 @@ export class GenerateCommand implements CommandModule<{}, Options> {
         irSpec,
         output,
         args.prefix,
+        args.endpointVersion,
         deprecatedIrSpec,
       );
       for (const pkgDir of pkgDirs) {
