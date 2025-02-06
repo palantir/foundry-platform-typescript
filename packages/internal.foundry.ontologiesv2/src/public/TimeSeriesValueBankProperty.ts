@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -30,15 +30,15 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 
 const _getLatestValue: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    propertyName: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    propertyName: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
-  ) => Promise<_Core.TimeseriesEntry | undefined>
+  ) => Promise<_Ontologies.TimeseriesEntry | undefined>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/latestValue", 2];
 
 /**
@@ -55,30 +55,30 @@ const _getLatestValue: $FoundryPlatformMethod<
 export function getLatestValue(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    propertyName: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    propertyName: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
-): Promise<_Core.TimeseriesEntry | undefined> {
+): Promise<_Ontologies.TimeseriesEntry | undefined> {
   return $foundryPlatformFetch($ctx, _getLatestValue, ...args);
 }
 
 const _streamValues: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    $body: _Core.StreamTimeSeriesValuesRequest,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    $body: _Ontologies.StreamTimeSeriesValuesRequest,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -103,14 +103,14 @@ const _streamValues: $FoundryPlatformMethod<
 export function streamValues(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    $body: _Core.StreamTimeSeriesValuesRequest,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    $body: _Ontologies.StreamTimeSeriesValuesRequest,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
 ): Promise<Response> {

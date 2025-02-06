@@ -19,6 +19,20 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * The user is not authorized to add a a group to the parent group required to create the project from template.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddGroupToParentGroupPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddGroupToParentGroupPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    parentGroupsWithoutPermission: unknown;
+  };
+}
+
+/**
  * Could not addMarkings the Resource.
  *
  * Log Safety: UNSAFE
@@ -87,6 +101,32 @@ export interface CreateFolderPermissionDenied {
 }
 
 /**
+ * The user is not authorized to create the group in the organization required to create the project from template.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateGroupPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateGroupPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    organizationsWithoutPermission: unknown;
+  };
+}
+
+/**
+ * Could not createFromTemplate the Project.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateProjectFromTemplatePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateProjectFromTemplatePermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The create project request would create a project with no principal being granted an owner-like role. As a result, there would be no user with administrative privileges over the project. A role is defined to be owner-like if it has the compass:edit-project operation. In the common case of the default role-set, this is just the compass:manage role.
  *
  * Log Safety: SAFE
@@ -109,6 +149,18 @@ export interface CreateProjectNoOwnerLikeRoleGrant {
 export interface CreateProjectPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateProjectPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The requested default roles are not in the role set of the space for the project template.
+ *
+ * Log Safety: SAFE
+ */
+export interface DefaultRolesNotInSpaceRoleSet {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DefaultRolesNotInSpaceRoleSet";
   errorInstanceId: string;
   parameters: {};
 }
@@ -196,6 +248,30 @@ export interface GetByPathPermissionDenied {
 }
 
 /**
+ * Either the user has not passed default roles for a template with suggested default roles, or has passed default roles for a template with fixed default roles.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidDefaultRoles {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDefaultRoles";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Either the user has not passed a value for a template with unset project description, or has passed a value for a template with fixed project description.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidDescription {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDescription";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The display name of a Resource should not be exactly . or .., contain a forward slash / or be
 too long.
    *
@@ -225,6 +301,32 @@ export interface InvalidFolder {
 }
 
 /**
+ * The project created from template would have either no organizations in a marked space, or an organization which is not on the space.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidOrganizationHierarchy {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidOrganizationHierarchy";
+  errorInstanceId: string;
+  parameters: {
+    organizationRids: unknown;
+  };
+}
+
+/**
+ * Either the user has not passed organizations for a template with suggested organizations, or has passed organization for a template with fixed organizations.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidOrganizations {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidOrganizations";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The given path is invalid.
 A valid path has all components separated by a single /.
    *
@@ -240,6 +342,20 @@ export interface InvalidPath {
 }
 
 /**
+ * The template requested for project creation contains principal IDs that do not exist.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidPrincipalIdsForGroupTemplate {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPrincipalIdsForGroupTemplate";
+  errorInstanceId: string;
+  parameters: {
+    invalidPrincipalIds: unknown;
+  };
+}
+
+/**
  * A roleId referenced in either default roles or role grants does not exist in the project role set for the space.
  *
  * Log Safety: SAFE
@@ -250,6 +366,36 @@ export interface InvalidRoleIds {
   errorInstanceId: string;
   parameters: {
     requestedRoleIds: unknown;
+  };
+}
+
+/**
+ * A variable referenced in the request to create project from template is not defined on the template.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidVariable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidVariable";
+  errorInstanceId: string;
+  parameters: {
+    templateVariableId: unknown;
+  };
+}
+
+/**
+ * The value passed in the request to create project from template for an enum type variable is not a valid option.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidVariableEnumOption {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidVariableEnumOption";
+  errorInstanceId: string;
+  parameters: {
+    variableId: unknown;
+    invalidOption: unknown;
+    validOptions: unknown;
   };
 }
 
@@ -277,6 +423,34 @@ export interface MissingDisplayName {
   errorName: "MissingDisplayName";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * A variable defined on the template requested for project creation does not have a value set in the request.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MissingVariableValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingVariableValue";
+  errorInstanceId: string;
+  parameters: {
+    templateVariableId: unknown;
+  };
+}
+
+/**
+ * The user is not authorized to apply at least one of the organization markings required to create the project from template.
+ *
+ * Log Safety: SAFE
+ */
+export interface NotAuthorizedToApplyOrganization {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "NotAuthorizedToApplyOrganization";
+  errorInstanceId: string;
+  parameters: {
+    organizationRids: unknown;
+  };
 }
 
 /**
@@ -395,6 +569,20 @@ export interface ProjectNotFound {
 }
 
 /**
+ * The project template RID referenced cannot be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ProjectTemplateNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ProjectTemplateNotFound";
+  errorInstanceId: string;
+  parameters: {
+    projectTemplateRid: unknown;
+  };
+}
+
+/**
  * Could not removeMarkings the Resource.
  *
  * Log Safety: UNSAFE
@@ -503,6 +691,34 @@ export interface SpaceNotFound {
   errorInstanceId: string;
   parameters: {
     spaceRid: unknown;
+  };
+}
+
+/**
+ * Creating the project from template would attempt to create new groups with names conflicting either with other new groups, or existing groups.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TemplateGroupNameConflict {
+  errorCode: "CONFLICT";
+  errorName: "TemplateGroupNameConflict";
+  errorInstanceId: string;
+  parameters: {
+    conflictingGroupNames: unknown;
+  };
+}
+
+/**
+ * Creating the project from template would attempt to create new markings with names conflicting either with other new markings, or existing markings.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TemplateMarkingNameConflict {
+  errorCode: "CONFLICT";
+  errorName: "TemplateMarkingNameConflict";
+  errorInstanceId: string;
+  parameters: {
+    conflictingMarkingNames: unknown;
   };
 }
 

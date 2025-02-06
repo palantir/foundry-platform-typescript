@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -29,7 +29,7 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 //
 
 const _list: $FoundryPlatformMethod<
-  () => Promise<_Core.ListOntologiesV2Response>
+  () => Promise<_Ontologies.ListOntologiesV2Response>
 > = [0, "/v2/ontologies"];
 
 /**
@@ -45,12 +45,12 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: []
-): Promise<_Core.ListOntologiesV2Response> {
+): Promise<_Ontologies.ListOntologiesV2Response> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
-  (ontology: _Core.OntologyIdentifier) => Promise<_Core.OntologyV2>
+  (ontology: _Ontologies.OntologyIdentifier) => Promise<_Ontologies.OntologyV2>
 > = [0, "/v2/ontologies/{0}"];
 
 /**
@@ -65,13 +65,15 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [ontology: _Core.OntologyIdentifier]
-): Promise<_Core.OntologyV2> {
+  ...args: [ontology: _Ontologies.OntologyIdentifier]
+): Promise<_Ontologies.OntologyV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
 const _getFullMetadata: $FoundryPlatformMethod<
-  (ontology: _Core.OntologyIdentifier) => Promise<_Core.OntologyFullMetadata>
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+  ) => Promise<_Ontologies.OntologyFullMetadata>
 > = [0, "/v2/ontologies/{0}/fullMetadata"];
 
 /**
@@ -84,7 +86,7 @@ const _getFullMetadata: $FoundryPlatformMethod<
  */
 export function getFullMetadata(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [ontology: _Core.OntologyIdentifier]
-): Promise<_Core.OntologyFullMetadata> {
+  ...args: [ontology: _Ontologies.OntologyIdentifier]
+): Promise<_Ontologies.OntologyFullMetadata> {
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);
 }

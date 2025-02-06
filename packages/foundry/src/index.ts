@@ -22,6 +22,7 @@ export * as Datasets from "@osdk/foundry.datasets";
 export * as Filesystem from "@osdk/foundry.filesystem";
 export * as Functions from "@osdk/foundry.functions";
 export * as Geo from "@osdk/foundry.geo";
+export * as MediaSets from "@osdk/foundry.mediasets";
 export * as Ontologies from "@osdk/foundry.ontologies";
 export * as Orchestration from "@osdk/foundry.orchestration";
 export * as PublicApis from "@osdk/foundry.publicapis";

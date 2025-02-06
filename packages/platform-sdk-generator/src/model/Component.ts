@@ -27,6 +27,7 @@ export class Component extends Type {
   component: ir.Component;
   model: Model;
   name: string;
+  isDeprecated: boolean;
 
   constructor(
     model: Model,
@@ -34,6 +35,7 @@ export class Component extends Type {
     packageLocalFilePath: string,
     externalImportSpecifier: string,
     component: ir.Component,
+    isDeprecated: boolean,
   ) {
     super();
     this.namespace = namespace;
@@ -42,6 +44,7 @@ export class Component extends Type {
     this.component = component;
     this.model = model;
     this.name = component.locator.localName;
+    this.isDeprecated = isDeprecated;
   }
 
   get referencedTypes(): Set<Type> {
@@ -66,7 +69,13 @@ export class Component extends Type {
     const isAlias = dt.type !== "object";
     let out = "";
     out += `
-  /** 
+  /** ${
+      this.isDeprecated
+        ? `\n* @deprecated Use \`${this.component.locator.localName}\` in the \`${
+          this.namespace.version === "v1" ? "internal." : ""
+        }foundry.ontologies\` package\n*`
+        : ""
+    } 
    * ${component.documentation.plainTextDescription ?? ""}
    * 
    * Log Safety: ${component.safety}

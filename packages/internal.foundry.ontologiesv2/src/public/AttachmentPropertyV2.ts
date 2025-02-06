@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -30,15 +30,15 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 
 const _getAttachment: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
-  ) => Promise<_Core.AttachmentMetadataResponse>
+  ) => Promise<_Ontologies.AttachmentMetadataResponse>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}", 2];
 
 /**
@@ -55,32 +55,32 @@ const _getAttachment: $FoundryPlatformMethod<
 export function getAttachment(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
-): Promise<_Core.AttachmentMetadataResponse> {
+): Promise<_Ontologies.AttachmentMetadataResponse> {
   return $foundryPlatformFetch($ctx, _getAttachment, ...args);
 }
 
 const _getAttachmentByRid: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    attachmentRid: _Core.AttachmentRid,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    attachmentRid: _Ontologies.AttachmentRid,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
-  ) => Promise<_Core.AttachmentV2>
+  ) => Promise<_Ontologies.AttachmentV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}/{4}", 2];
 
 /**
@@ -97,30 +97,30 @@ const _getAttachmentByRid: $FoundryPlatformMethod<
 export function getAttachmentByRid(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    attachmentRid: _Core.AttachmentRid,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    attachmentRid: _Ontologies.AttachmentRid,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
-): Promise<_Core.AttachmentV2> {
+): Promise<_Ontologies.AttachmentV2> {
   return $foundryPlatformFetch($ctx, _getAttachmentByRid, ...args);
 }
 
 const _readAttachment: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -145,14 +145,14 @@ const _readAttachment: $FoundryPlatformMethod<
 export function readAttachment(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
 ): Promise<Response> {
@@ -161,14 +161,14 @@ export function readAttachment(
 
 const _readAttachmentByRid: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    attachmentRid: _Core.AttachmentRid,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    attachmentRid: _Ontologies.AttachmentRid,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -195,15 +195,15 @@ const _readAttachmentByRid: $FoundryPlatformMethod<
 export function readAttachmentByRid(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    attachmentRid: _Core.AttachmentRid,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    attachmentRid: _Ontologies.AttachmentRid,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
 ): Promise<Response> {

@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -30,12 +31,12 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 
 const _list: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
+    ontology: _Ontologies.OntologyIdentifier,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
-  ) => Promise<_Core.ListQueryTypesResponseV2>
+  ) => Promise<_Ontologies.ListQueryTypesResponseV2>
 > = [0, "/v2/ontologies/{0}/queryTypes", 2];
 
 /**
@@ -54,22 +55,22 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
+    ontology: _Ontologies.OntologyIdentifier,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
   ]
-): Promise<_Core.ListQueryTypesResponseV2> {
+): Promise<_Ontologies.ListQueryTypesResponseV2> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    queryApiName: _Core.QueryApiName,
-  ) => Promise<_Core.QueryTypeV2>
+    ontology: _Ontologies.OntologyIdentifier,
+    queryApiName: _Ontologies.QueryApiName,
+  ) => Promise<_Ontologies.QueryTypeV2>
 > = [0, "/v2/ontologies/{0}/queryTypes/{1}"];
 
 /**
@@ -85,9 +86,9 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    queryApiName: _Core.QueryApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    queryApiName: _Ontologies.QueryApiName,
   ]
-): Promise<_Core.QueryTypeV2> {
+): Promise<_Ontologies.QueryTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

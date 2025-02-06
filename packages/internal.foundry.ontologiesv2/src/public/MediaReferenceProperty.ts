@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -30,13 +31,13 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 
 const _getMediaContent: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<Response>
@@ -55,14 +56,14 @@ const _getMediaContent: $FoundryPlatformMethod<
 export function getMediaContent(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -72,16 +73,16 @@ export function getMediaContent(
 
 const _getMediaMetadata: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
-  ) => Promise<_Core.MediaMetadata>
+  ) => Promise<_Ontologies.MediaMetadata>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/media/{3}/metadata", 2];
 
 /**
@@ -97,26 +98,26 @@ const _getMediaMetadata: $FoundryPlatformMethod<
 export function getMediaMetadata(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
-): Promise<_Core.MediaMetadata> {
+): Promise<_Ontologies.MediaMetadata> {
   return $foundryPlatformFetch($ctx, _getMediaMetadata, ...args);
 }
 
 const _upload: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    property: _Ontologies.PropertyApiName,
     $body: Blob,
     $queryParams?: {
       mediaItemPath?: _Core.MediaItemPath | undefined;
@@ -139,9 +140,9 @@ const _upload: $FoundryPlatformMethod<
 export function upload(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    property: _Ontologies.PropertyApiName,
     $body: Blob,
     $queryParams?: {
       mediaItemPath?: _Core.MediaItemPath | undefined;

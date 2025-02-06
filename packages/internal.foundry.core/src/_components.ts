@@ -21,6 +21,725 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Log Safety: SAFE
+ */
+export type ContentType = LooselyBrandedString<"ContentType">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface StringType {}
+
+/**
+   * The page token indicates where to start paging. This should be omitted from the first page's request.
+To fetch the next page, clients should take the value from the nextPageToken field of the previous response
+and use it to populate the pageToken field of the next request.
+   *
+   * Log Safety: UNSAFE
+   */
+export type PageToken = LooselyBrandedString<"PageToken">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ByteType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FloatType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterLongType {}
+
+/**
+ * The Foundry user who last updated this resource
+ *
+ * Log Safety: SAFE
+ */
+export type UpdatedBy = UserId;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TimeseriesType {
+  itemType?: TimeSeriesItemType;
+}
+
+/**
+ * The release status of the entity.
+ *
+ * Log Safety: SAFE
+ */
+export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
+
+/**
+   * The media type of the file or attachment.
+Examples: application/json, application/pdf, application/octet-stream, image/jpeg
+   *
+   * Log Safety: SAFE
+   */
+export type MediaType = LooselyBrandedString<"MediaType">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type OrganizationRid = LooselyBrandedString<"OrganizationRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type TimeUnit =
+  | "MILLISECONDS"
+  | "SECONDS"
+  | "MINUTES"
+  | "HOURS"
+  | "DAYS"
+  | "WEEKS"
+  | "MONTHS"
+  | "YEARS";
+
+/**
+ * Enables the use of preview functionality.
+ *
+ * Log Safety: SAFE
+ */
+export type PreviewMode = boolean;
+
+/**
+ * A measurement of distance.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Distance {
+  value: number;
+  unit: DistanceUnit;
+}
+
+/**
+ * The Resource Identifier (RID) of a single View of a Media Set. A Media Set View is an independent collection of Media Items.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSetViewRid = LooselyBrandedString<"MediaSetViewRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StructFieldType {
+  subFields: Array<Field>;
+}
+
+/**
+ * The Foundry user who created this resource
+ *
+ * Log Safety: SAFE
+ */
+export type CreatedBy = PrincipalId;
+
+/**
+ * The unique resource identifier (RID) of a multipass group.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GroupRid = LooselyBrandedString<"GroupRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ShortType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaSetViewItem {
+  mediaSetRid: MediaSetRid;
+  mediaSetViewRid: MediaSetViewRid;
+  mediaItemRid: MediaItemRid;
+}
+
+/**
+ * The name of a File within Foundry. Examples: my-file.txt, my-file.jpg, dataframe.snappy.parquet.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Filename = LooselyBrandedString<"Filename">;
+
+/**
+ * The ID of a security marking.
+ *
+ * Log Safety: SAFE
+ */
+export type MarkingId = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaReferenceType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DecimalType {
+  precision?: number;
+  scale?: number;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LocalFilePath {}
+
+/**
+ * Specifies the ordering direction (can be either ASC or DESC)
+ *
+ * Log Safety: SAFE
+ */
+export type OrderByDirection = "ASC" | "DESC";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeotimeSeriesReferenceType {}
+
+/**
+ * The page size to use for the endpoint.
+ *
+ * Log Safety: SAFE
+ */
+export type PageSize = number;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface UnsupportedType {
+  unsupportedType: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterEnumType {
+  values: Array<string>;
+}
+
+/**
+ * The ID of a Foundry Group or User.
+ *
+ * Log Safety: SAFE
+ */
+export type PrincipalId = LooselyBrandedString<"PrincipalId">;
+
+/**
+   * Configuration for change data capture which resolves the latest state of the dataset based on new full rows
+being pushed to the stream. For example, if a value for a row is updated, it is only sufficient to publish
+the entire new state of that row to the stream.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FullRowChangeDataCaptureConfiguration {
+  deletionFieldName: FieldName;
+  orderingFieldName: FieldName;
+}
+
+/**
+ * The Resource Identifier (RID) of a Media Set in Foundry.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
+
+/**
+   * Configuration for utilizing the stream as a change data capture (CDC) dataset. To configure CDC on a stream, at
+least one key needs to be provided.
+For more information on CDC in
+Foundry, see the Change Data Capture user documentation.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ChangeDataCaptureConfiguration = {
+  type: "fullRow";
+} & FullRowChangeDataCaptureConfiguration;
+
+/**
+   * A user-specified identifier for a media item within a media set.
+Paths must be less than 256 characters long.
+If multiple items are written to the same media set at the same path, then when retrieving by path the media
+item which was written last is returned.
+   *
+   * Log Safety: UNSAFE
+   */
+export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaSetViewItemWrapper {
+  mediaSetViewItem: MediaSetViewItem;
+}
+
+/**
+ * The representation of a media reference.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MediaReference {
+  mimeType: MediaType;
+  reference: Reference;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FieldName = LooselyBrandedString<"FieldName">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeoShapeType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterRidType {}
+
+/**
+ * A union of the types supported by media reference properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItemWrapper;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface BooleanType {}
+
+/**
+ * A model provided by Language Model Service.
+ *
+ * Log Safety: SAFE
+ */
+export interface LmsEmbeddingModel {
+  value: LmsEmbeddingModelValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MapFieldType {
+  keySchema: FieldSchema;
+  valueSchema: FieldSchema;
+}
+
+/**
+   * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.
+The default roles in Foundry are: Owner, Editor, Viewer, and Discoverer. See more about
+roles in the user documentation.
+   *
+   * Log Safety: SAFE
+   */
+export type RoleId = LooselyBrandedString<"RoleId">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterStringType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface IntegerType {}
+
+/**
+ * The format of an archive file.
+ *
+ * Log Safety: SAFE
+ */
+export type ArchiveFileFormat = "ZIP";
+
+/**
+ * The total number of items across all pages.
+ *
+ * Log Safety: SAFE
+ */
+export type TotalCount = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterUuidType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export type LmsEmbeddingModelValue =
+  | "OPENAI_TEXT_EMBEDDING_ADA_002"
+  | "TEXT_EMBEDDING_3_SMALL"
+  | "SNOWFLAKE_ARCTIC_EMBED_M"
+  | "INSTRUCTOR_LARGE"
+  | "BGE_BASE_EN_V1_5";
+
+/**
+ * The time at which the resource was most recently updated.
+ *
+ * Log Safety: SAFE
+ */
+export type UpdatedTime = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export type FolderRid = LooselyBrandedString<"FolderRid">;
+
+/**
+ * The display name of a multipass group.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GroupName = LooselyBrandedString<"GroupName">;
+
+/**
+ * The time at which the resource was created.
+ *
+ * Log Safety: SAFE
+ */
+export type CreatedTime = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MarkingType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterBinaryType {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type EmbeddingModel =
+  | ({ type: "lms" } & LmsEmbeddingModel)
+  | ({ type: "foundryLiveDeployment" } & FoundryLiveDeployment);
+
+/**
+ * The name of a field in a Struct.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StructFieldName = LooselyBrandedString<"StructFieldName">;
+
+/**
+ * The Resource Identifier (RID) of an individual Media Item within a Media Set in Foundry.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaItemRid = LooselyBrandedString<"MediaItemRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DateType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export type EnrollmentRid = LooselyBrandedString<"EnrollmentRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDoubleType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface BinaryType {}
+
+/**
+ * A union of the types supported by time series properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TimeSeriesItemType =
+  | ({ type: "string" } & StringType)
+  | ({ type: "double" } & DoubleType);
+
+/**
+ * A measurement of duration.
+ *
+ * Log Safety: SAFE
+ */
+export interface Duration {
+  value: number;
+  unit: TimeUnit;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDateTimeType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilesystemResource {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FilterType =
+  | ({ type: "dateTime" } & FilterDateTimeType)
+  | ({ type: "date" } & FilterDateType)
+  | ({ type: "boolean" } & FilterBooleanType)
+  | ({ type: "string" } & FilterStringType)
+  | ({ type: "double" } & FilterDoubleType)
+  | ({ type: "binary" } & FilterBinaryType)
+  | ({ type: "integer" } & FilterIntegerType)
+  | ({ type: "float" } & FilterFloatType)
+  | ({ type: "rid" } & FilterRidType)
+  | ({ type: "uuid" } & FilterUuidType)
+  | ({ type: "enum" } & FilterEnumType)
+  | ({ type: "long" } & FilterLongType);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeoPointType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CipherTextType {
+  defaultCipherChannel?: string;
+}
+
+/**
+   * The vector similarity function to support approximate nearest neighbors search. Will result in an index
+specific for the function.
+   *
+   * Log Safety: SAFE
+   */
+export interface VectorSimilarityFunction {
+  value?: VectorSimilarityFunctionValue;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface NullType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterFloatType {}
+
+/**
+ * The size of the file or attachment in bytes.
+ *
+ * Log Safety: SAFE
+ */
+export type SizeBytes = string;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type CustomMetadata = Record<string, any>;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LongType {}
+
+/**
+ * The specification of the type of a Foundry schema field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldSchema {
+  nullable: boolean;
+  customMetadata?: CustomMetadata;
+  dataType: FieldDataType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterIntegerType {}
+
+/**
+   * A field in a Foundry schema. For more information on supported data types, see the
+supported field types user documentation.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface Field {
+  name: FieldName;
+  schema: FieldSchema;
+}
+
+/**
+ * Represents a fixed size vector of floats. These can be used for vector similarity searches.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface VectorType {
+  dimension: number;
+  supportsSearchWith: Array<VectorSimilarityFunction>;
+  embeddingModel?: EmbeddingModel;
+}
+
+/**
+ * The display name of the entity.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DisplayName = LooselyBrandedString<"DisplayName">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface TimestampType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export type DistanceUnit =
+  | "MILLIMETERS"
+  | "CENTIMETERS"
+  | "METERS"
+  | "KILOMETERS"
+  | "INCHES"
+  | "FEET"
+  | "YARDS"
+  | "MILES"
+  | "NAUTICAL_MILES";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface AnyType {}
+
+/**
+   * Identifies which Realm a User or Group is a member of.
+The palantir-internal-realm is used for Users or Groups that are created in Foundry by administrators and not associated with any SSO provider.
+   *
+   * Log Safety: UNSAFE
+   */
+export type Realm = LooselyBrandedString<"Realm">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDateType {}
+
+/**
+ * The path to a File within Foundry. Examples: my-file.txt, path/to/my-file.jpg, dataframe.snappy.parquet.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FilePath = LooselyBrandedString<"FilePath">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FieldDataType =
+  | ({ type: "struct" } & StructFieldType)
+  | ({ type: "date" } & DateType)
+  | ({ type: "string" } & StringType)
+  | ({ type: "byte" } & ByteType)
+  | ({ type: "double" } & DoubleType)
+  | ({ type: "integer" } & IntegerType)
+  | ({ type: "float" } & FloatType)
+  | ({ type: "long" } & LongType)
+  | ({ type: "boolean" } & BooleanType)
+  | ({ type: "array" } & ArrayFieldType)
+  | ({ type: "binary" } & BinaryType)
+  | ({ type: "short" } & ShortType)
+  | ({ type: "decimal" } & DecimalType)
+  | ({ type: "map" } & MapFieldType)
+  | ({ type: "timestamp" } & TimestampType);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface AttachmentType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterBooleanType {}
+
+/**
+ * A string representation of a java.time.ZoneId
+ *
+ * Log Safety: SAFE
+ */
+export type ZoneId = LooselyBrandedString<"ZoneId">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ArrayFieldType {
+  itemsSchema: FieldSchema;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type VectorSimilarityFunctionValue =
+  | "COSINE_SIMILARITY"
+  | "DOT_PRODUCT"
+  | "EUCLIDEAN_DISTANCE";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface FoundryLiveDeployment {
+  rid?: string;
+  inputParamName?: string;
+  outputParamName?: string;
+}
+
+/**
+ * The schema for a Foundry stream. Records pushed to this stream must match this schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StreamSchema {
+  fields: Array<Field>;
+  keyFieldNames?: Array<FieldName>;
+  changeDataCapture?: ChangeDataCaptureConfiguration;
+}
+
+/**
+ * A Foundry User ID.
+ *
+ * Log Safety: SAFE
+ */
+export type UserId = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DoubleType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export type ContentLength = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export type PrincipalType = "USER" | "GROUP";
+
+/**
+ * @deprecated Use `ListInterfaceTypesResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListInterfaceTypesResponse {
@@ -29,11 +748,15 @@ export interface ListInterfaceTypesResponse {
 }
 
 /**
+ * @deprecated Use `Query` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type Query = LooselyBrandedString<"Query">;
 
 /**
+ * @deprecated Use `ExecuteQueryResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ExecuteQueryResponse {
@@ -41,6 +764,8 @@ export interface ExecuteQueryResponse {
 }
 
 /**
+* @deprecated Use `SelectedPropertyApiName` in the `foundry.ontologies` package
+*
    * By default, anytime an object is requested, every property belonging to that object is returned.
 The response can be filtered to only include certain properties using the properties query parameter.
 Properties to include can be specified in one of two ways.
@@ -61,6 +786,8 @@ export type SelectedPropertyApiName = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `SearchJsonQuery` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type SearchJsonQuery =
@@ -80,6 +807,8 @@ export type SearchJsonQuery =
   | ({ type: "lte" } & LteQuery);
 
 /**
+ * @deprecated Use `BoundingBoxValue` in the `foundry.ontologies` package
+ *
  * The top left and bottom right coordinate points that make up the bounding box.
  *
  * Log Safety: UNSAFE
@@ -90,6 +819,8 @@ export interface BoundingBoxValue {
 }
 
 /**
+ * @deprecated Use `DeleteInterfaceObjectRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface DeleteInterfaceObjectRule {
@@ -97,6 +828,8 @@ export interface DeleteInterfaceObjectRule {
 }
 
 /**
+* @deprecated Use `LteQueryV2` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field is less than or equal to a value. Allows you to specify a property to
 query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -109,11 +842,24 @@ export interface LteQueryV2 {
 }
 
 /**
+ * @deprecated Use `ObjectPrimaryKey` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type ObjectPrimaryKey = Record<PropertyApiName, PropertyValue>;
 
 /**
+ * @deprecated Use `BatchApplyActionResponseV2` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BatchApplyActionResponseV2 {
+  edits?: ActionResults;
+}
+
+/**
+ * @deprecated Use `DeleteLinkRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface DeleteLinkRule {
@@ -124,13 +870,8 @@ export interface DeleteLinkRule {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface BatchApplyActionResponseV2 {
-  edits?: ActionResults;
-}
-
-/**
+ * @deprecated Use `AggregateObjectSetRequestV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectSetRequestV2 {
@@ -141,6 +882,8 @@ export interface AggregateObjectSetRequestV2 {
 }
 
 /**
+ * @deprecated Use `CenterPoint` in the `foundry.ontologies` package
+ *
  * The coordinate point to use as the center of the distance query.
  *
  * Log Safety: UNSAFE
@@ -151,6 +894,8 @@ export interface CenterPoint {
 }
 
 /**
+ * @deprecated Use `QueryTypeV2` in the `foundry.ontologies` package
+ *
  * Represents a query type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -166,6 +911,8 @@ export interface QueryTypeV2 {
 }
 
 /**
+ * @deprecated Use `ParameterEvaluationResult` in the `foundry.ontologies` package
+ *
  * Represents the validity of a parameter against the configured constraints.
  *
  * Log Safety: UNSAFE
@@ -177,6 +924,8 @@ export interface ParameterEvaluationResult {
 }
 
 /**
+* @deprecated Use `GteQueryV2` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field is greater than or equal to a value. Allows you to specify a property
 to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -189,6 +938,8 @@ export interface GteQueryV2 {
 }
 
 /**
+ * @deprecated Use `ListLinkedObjectsResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListLinkedObjectsResponse {
@@ -197,6 +948,18 @@ export interface ListLinkedObjectsResponse {
 }
 
 /**
+* @deprecated Use `AggregationObjectTypeGrouping` in the `foundry.ontologies` package
+*
+   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
+multiple object types, such as when aggregating over an interface type.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationObjectTypeGrouping {}
+
+/**
+ * @deprecated Use `GeotimeSeriesValue` in the `foundry.ontologies` package
+ *
  * The underlying data values pointed to by a GeotimeSeriesReference.
  *
  * Log Safety: UNSAFE
@@ -207,19 +970,15 @@ export interface GeotimeSeriesValue {
 }
 
 /**
-   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
-multiple object types, such as when aggregating over an interface type.
-   *
-   * Log Safety: SAFE
-   */
-export interface AggregationObjectTypeGrouping {}
-
-/**
+ * @deprecated Use `ActionMode` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type ActionMode = "ASYNC" | "RUN" | "VALIDATE";
 
 /**
+* @deprecated Use `AggregationDurationGroupingV2` in the `foundry.ontologies` package
+*
    * Divides objects into groups according to an interval. Note that this grouping applies only on date and timestamp types.
 When grouping by YEARS, QUARTERS, MONTHS, or WEEKS, the value must be set to 1.
    *
@@ -232,6 +991,8 @@ export interface AggregationDurationGroupingV2 {
 }
 
 /**
+ * @deprecated Use `ApproximateDistinctAggregationV2` in the `foundry.ontologies` package
+ *
  * Computes an approximate number of distinct values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -243,11 +1004,15 @@ export interface ApproximateDistinctAggregationV2 {
 }
 
 /**
+ * @deprecated Use `OrderByDirection` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type OrderByDirection = "ASC" | "DESC";
 
 /**
+ * @deprecated Use `AbsoluteTimeRange` in the `foundry.ontologies` package
+ *
  * ISO 8601 timestamps forming a range for a time series query. Start is inclusive and end is exclusive.
  *
  * Log Safety: UNSAFE
@@ -258,6 +1023,8 @@ export interface AbsoluteTimeRange {
 }
 
 /**
+ * @deprecated Use `TimeseriesTemplateVersion` in the `foundry.ontologies` package
+ *
  * The version corresponding to a codex template.
  *
  * Log Safety: UNSAFE
@@ -267,6 +1034,8 @@ export type TimeseriesTemplateVersion = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `ValidateActionRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ValidateActionRequest {
@@ -274,6 +1043,8 @@ export interface ValidateActionRequest {
 }
 
 /**
+ * @deprecated Use `AggregationMetricResultV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregationMetricResultV2 {
@@ -282,6 +1053,8 @@ export interface AggregationMetricResultV2 {
 }
 
 /**
+ * @deprecated Use `OrQueryV2` in the `foundry.ontologies` package
+ *
  * Returns objects where at least 1 query is satisfied.
  *
  * Log Safety: UNSAFE
@@ -291,6 +1064,8 @@ export interface OrQueryV2 {
 }
 
 /**
+ * @deprecated Use `AsyncApplyActionRequestV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AsyncApplyActionRequestV2 {
@@ -298,6 +1073,8 @@ export interface AsyncApplyActionRequestV2 {
 }
 
 /**
+ * @deprecated Use `StructFieldApiName` in the `foundry.ontologies` package
+ *
  * The name of a struct field in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -305,6 +1082,8 @@ export interface AsyncApplyActionRequestV2 {
 export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
 
 /**
+ * @deprecated Use `OntologyFullMetadata` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyFullMetadata {
@@ -317,6 +1096,8 @@ export interface OntologyFullMetadata {
 }
 
 /**
+ * @deprecated Use `TimeseriesEntry` in the `foundry.ontologies` package
+ *
  * A time and value pair.
  *
  * Log Safety: UNSAFE
@@ -327,6 +1108,8 @@ export interface TimeseriesEntry {
 }
 
 /**
+ * @deprecated Use `LoadObjectSetRequestV2` in the `foundry.ontologies` package
+ *
  * Represents the API POST body when loading an ObjectSet.
  *
  * Log Safety: UNSAFE
@@ -341,13 +1124,8 @@ export interface LoadObjectSetRequestV2 {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface QueryArrayType {
-  subType: QueryDataType;
-}
-
-/**
+ * @deprecated Use `StreamTimeSeriesPointsResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface StreamTimeSeriesPointsResponse {
@@ -355,6 +1133,17 @@ export interface StreamTimeSeriesPointsResponse {
 }
 
 /**
+ * @deprecated Use `QueryArrayType` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryArrayType {
+  subType: QueryDataType;
+}
+
+/**
+ * @deprecated Use `AggregationExactGrouping` in the `foundry.ontologies` package
+ *
  * Divides objects into groups according to an exact value.
  *
  * Log Safety: UNSAFE
@@ -365,6 +1154,8 @@ export interface AggregationExactGrouping {
 }
 
 /**
+ * @deprecated Use `SearchObjectsRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SearchObjectsRequest {
@@ -376,6 +1167,8 @@ export interface SearchObjectsRequest {
 }
 
 /**
+ * @deprecated Use `OneOfConstraint` in the `foundry.ontologies` package
+ *
  * The parameter has a manually predefined set of options.
  *
  * Log Safety: UNSAFE
@@ -386,6 +1179,8 @@ export interface OneOfConstraint {
 }
 
 /**
+ * @deprecated Use `ObjectEdit` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type ObjectEdit =
@@ -394,6 +1189,8 @@ export type ObjectEdit =
   | ({ type: "addLink" } & AddLink);
 
 /**
+ * @deprecated Use `DerivedPropertyDefinition` in the `foundry.ontologies` package
+ *
  * Definition of a derived property.
  *
  * Log Safety: UNSAFE
@@ -403,6 +1200,8 @@ export type DerivedPropertyDefinition = {
 } & SelectedPropertyDefinition;
 
 /**
+* @deprecated Use `AggregationDurationGrouping` in the `foundry.ontologies` package
+*
    * Divides objects into groups according to an interval. Note that this grouping applies only on date types.
 The interval uses the ISO 8601 notation. For example, "PT1H2M34S" represents a duration of 3754 seconds.
    *
@@ -414,6 +1213,8 @@ export interface AggregationDurationGrouping {
 }
 
 /**
+ * @deprecated Use `ObjectTypeEdits` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectTypeEdits {
@@ -421,6 +1222,8 @@ export interface ObjectTypeEdits {
 }
 
 /**
+ * @deprecated Use `OntologyObjectType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyObjectType {
@@ -429,6 +1232,8 @@ export interface OntologyObjectType {
 }
 
 /**
+ * @deprecated Use `OntologyObjectV2` in the `foundry.ontologies` package
+ *
  * Represents an object in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -436,6 +1241,8 @@ export interface OntologyObjectType {
 export type OntologyObjectV2 = Record<PropertyApiName, PropertyValue>;
 
 /**
+ * @deprecated Use `SearchObjectsResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SearchObjectsResponseV2 {
@@ -445,6 +1252,8 @@ export interface SearchObjectsResponseV2 {
 }
 
 /**
+ * @deprecated Use `Parameter` in the `foundry.ontologies` package
+ *
  * Details about a parameter of an action or query.
  *
  * Log Safety: UNSAFE
@@ -457,6 +1266,8 @@ export interface Parameter {
 }
 
 /**
+ * @deprecated Use `ObjectSetIntersectionType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetIntersectionType {
@@ -464,6 +1275,8 @@ export interface ObjectSetIntersectionType {
 }
 
 /**
+ * @deprecated Use `GeotimeSeriesId` in the `foundry.ontologies` package
+ *
  * The unique id of a geotime series (track) associated with a GTSR.
  *
  * Log Safety: UNSAFE
@@ -471,6 +1284,8 @@ export interface ObjectSetIntersectionType {
 export type GeotimeSeriesId = LooselyBrandedString<"GeotimeSeriesId">;
 
 /**
+ * @deprecated Use `OntologyInterfaceObjectType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyInterfaceObjectType {
@@ -478,6 +1293,8 @@ export interface OntologyInterfaceObjectType {
 }
 
 /**
+ * @deprecated Use `AsyncApplyActionRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AsyncApplyActionRequest {
@@ -485,6 +1302,8 @@ export interface AsyncApplyActionRequest {
 }
 
 /**
+ * @deprecated Use `MinAggregationV2` in the `foundry.ontologies` package
+ *
  * Computes the minimum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -496,6 +1315,27 @@ export interface MinAggregationV2 {
 }
 
 /**
+ * @deprecated Use `AddObject` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddObject {
+  primaryKey: PropertyValue;
+  objectType: ObjectTypeApiName;
+}
+
+/**
+ * @deprecated Use `SelectedPropertyCountAggregation` in the `foundry.ontologies` package
+ *
+ * Computes the total count of objects.
+ *
+ * Log Safety: SAFE
+ */
+export interface SelectedPropertyCountAggregation {}
+
+/**
+ * @deprecated Use `Attachment` in the `foundry.ontologies` package
+ *
  * The representation of an attachment.
  *
  * Log Safety: UNSAFE
@@ -508,6 +1348,8 @@ export interface Attachment {
 }
 
 /**
+ * @deprecated Use `OntologyStructField` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyStructField {
@@ -517,21 +1359,8 @@ export interface OntologyStructField {
 }
 
 /**
- * Computes the total count of objects.
- *
- * Log Safety: SAFE
- */
-export interface SelectedPropertyCountAggregation {}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface AddObject {
-  primaryKey: PropertyValue;
-  objectType: ObjectTypeApiName;
-}
-
-/**
+* @deprecated Use `InQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field equals any of the provided values. Allows you to
 specify a property to query on by a variety of means. Either field or propertyIdentifier must be supplied,
 but not both.
@@ -545,6 +1374,8 @@ export interface InQuery {
 }
 
 /**
+ * @deprecated Use `QueryAggregationRangeSubType` in the `foundry.ontologies` package
+ *
  * A union of all the types supported by query aggregation ranges.
  *
  * Log Safety: UNSAFE
@@ -556,6 +1387,8 @@ export type QueryAggregationRangeSubType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
+ * @deprecated Use `LoadObjectSetV2MultipleObjectTypesRequest` in the `foundry.ontologies` package
+ *
  * Represents the API POST body when loading an ObjectSet. Used on the /loadObjectsMultipleObjectTypes endpoint only.
  *
  * Log Safety: UNSAFE
@@ -570,6 +1403,8 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
 }
 
 /**
+ * @deprecated Use `ApplyActionRequestOptions` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface ApplyActionRequestOptions {
@@ -578,6 +1413,17 @@ export interface ApplyActionRequestOptions {
 }
 
 /**
+ * @deprecated Use `Duration` in the `foundry.ontologies` package
+ *
+ * An ISO 8601 formatted duration.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Duration = LooselyBrandedString<"Duration">;
+
+/**
+* @deprecated Use `PropertyApiName` in the `foundry.ontologies` package
+*
    * The name of the property in the API. To find the API name for your property, use the Get object type
 endpoint or check the Ontology Manager.
    *
@@ -586,11 +1432,15 @@ endpoint or check the Ontology Manager.
 export type PropertyApiName = LooselyBrandedString<"PropertyApiName">;
 
 /**
+ * @deprecated Use `AggregationGroupValueV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type AggregationGroupValueV2 = any;
 
 /**
+ * @deprecated Use `ObjectSetUnionType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetUnionType {
@@ -598,6 +1448,8 @@ export interface ObjectSetUnionType {
 }
 
 /**
+ * @deprecated Use `ObjectTypeVisibility` in the `foundry.ontologies` package
+ *
  * The suggested visibility of the object type.
  *
  * Log Safety: SAFE
@@ -605,6 +1457,8 @@ export interface ObjectSetUnionType {
 export type ObjectTypeVisibility = "NORMAL" | "PROMINENT" | "HIDDEN";
 
 /**
+ * @deprecated Use `ListAttachmentsResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListAttachmentsResponseV2 {
@@ -613,13 +1467,8 @@ export interface ListAttachmentsResponseV2 {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface ObjectSetReferenceType {
-  reference: string;
-}
-
-/**
+ * @deprecated Use `ListObjectsResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListObjectsResponseV2 {
@@ -629,6 +1478,31 @@ export interface ListObjectsResponseV2 {
 }
 
 /**
+ * @deprecated Use `ObjectSetReferenceType` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export interface ObjectSetReferenceType {
+  reference: ObjectSetRid;
+}
+
+/**
+ * @deprecated Use `ApproximatePercentileAggregationV2` in the `foundry.ontologies` package
+ *
+ * Computes the approximate percentile value for the provided field. Requires Object Storage V2.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ApproximatePercentileAggregationV2 {
+  field: PropertyApiName;
+  name?: AggregationMetricName;
+  approximatePercentile: number;
+  direction?: OrderByDirection;
+}
+
+/**
+* @deprecated Use `PropertyFilter` in the `foundry.ontologies` package
+*
    * Represents a filter used on properties.
 Endpoints that accept this supports optional parameters that have the form:
 properties.{propertyApiName}.{propertyFilter}={propertyValueEscapedString} to filter the returned objects.
@@ -658,18 +1532,8 @@ This filter is supported on all property types.
 export type PropertyFilter = LooselyBrandedString<"PropertyFilter">;
 
 /**
- * Computes the approximate percentile value for the provided field. Requires Object Storage V2.
+ * @deprecated Use `Icon` in the `foundry.ontologies` package
  *
- * Log Safety: UNSAFE
- */
-export interface ApproximatePercentileAggregationV2 {
-  field: PropertyApiName;
-  name?: AggregationMetricName;
-  approximatePercentile: number;
-  direction?: OrderByDirection;
-}
-
-/**
  * A union currently only consisting of the BlueprintIcon (more icon types may be added in the future).
  *
  * Log Safety: UNSAFE
@@ -677,6 +1541,8 @@ export interface ApproximatePercentileAggregationV2 {
 export type Icon = { type: "blueprint" } & BlueprintIcon;
 
 /**
+ * @deprecated Use `AggregateObjectsResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsResponseV2 {
@@ -686,6 +1552,8 @@ export interface AggregateObjectsResponseV2 {
 }
 
 /**
+* @deprecated Use `ContainsAllTermsInOrderPrefixLastTerm` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains all of the terms in the order provided,
 but they do have to be adjacent to each other.
 The last term can be a partial prefix match. Allows you to specify a property to query on
@@ -700,6 +1568,8 @@ export interface ContainsAllTermsInOrderPrefixLastTerm {
 }
 
 /**
+ * @deprecated Use `SubscriptionClosureCause` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type SubscriptionClosureCause =
@@ -707,6 +1577,8 @@ export type SubscriptionClosureCause =
   | ({ type: "error" } & Error);
 
 /**
+ * @deprecated Use `DerivedPropertyApiName` in the `foundry.ontologies` package
+ *
  * The name of the derived property that will be returned.
  *
  * Log Safety: UNSAFE
@@ -716,6 +1588,8 @@ export type DerivedPropertyApiName = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `AggregationFixedWidthGrouping` in the `foundry.ontologies` package
+ *
  * Divides objects into groups with the specified width.
  *
  * Log Safety: UNSAFE
@@ -726,6 +1600,8 @@ export interface AggregationFixedWidthGrouping {
 }
 
 /**
+ * @deprecated Use `Ontology` in the `foundry.ontologies` package
+ *
  * Metadata about an Ontology.
  *
  * Log Safety: UNSAFE
@@ -738,6 +1614,8 @@ export interface Ontology {
 }
 
 /**
+* @deprecated Use `SharedPropertyTypeApiName` in the `foundry.ontologies` package
+*
    * The name of the shared property type in the API in lowerCamelCase format. To find the API name for your
 shared property type, use the List shared property types endpoint or check the Ontology Manager.
    *
@@ -748,6 +1626,8 @@ export type SharedPropertyTypeApiName = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `QueryAggregationRangeType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface QueryAggregationRangeType {
@@ -755,17 +1635,8 @@ export interface QueryAggregationRangeType {
 }
 
 /**
- * Computes the average value for the provided field.
+ * @deprecated Use `PropertyV2` in the `foundry.ontologies` package
  *
- * Log Safety: UNSAFE
- */
-export interface AvgAggregationV2 {
-  field: PropertyApiName;
-  name?: AggregationMetricName;
-  direction?: OrderByDirection;
-}
-
-/**
  * Details about some property of an object.
  *
  * Log Safety: UNSAFE
@@ -780,6 +1651,8 @@ export interface PropertyV2 {
 }
 
 /**
+ * @deprecated Use `OntologyV2` in the `foundry.ontologies` package
+ *
  * Metadata about an Ontology.
  *
  * Log Safety: UNSAFE
@@ -792,6 +1665,30 @@ export interface OntologyV2 {
 }
 
 /**
+ * @deprecated Use `AvgAggregationV2` in the `foundry.ontologies` package
+ *
+ * Computes the average value for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AvgAggregationV2 {
+  field: PropertyApiName;
+  name?: AggregationMetricName;
+  direction?: OrderByDirection;
+}
+
+/**
+ * @deprecated Use `InterfaceLinkTypeRid` in the `foundry.ontologies` package
+ *
+ * The unique resource identifier of an interface link type, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
+
+/**
+* @deprecated Use `GtQueryV2` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field is greater than a value. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -804,27 +1701,15 @@ export interface GtQueryV2 {
 }
 
 /**
- * The unique resource identifier of an interface link type, useful for interacting with other Foundry APIs.
+ * @deprecated Use `RelativeTimeRelation` in the `foundry.ontologies` package
  *
- * Log Safety: SAFE
- */
-export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
-
-/**
  * Log Safety: SAFE
  */
 export type RelativeTimeRelation = "BEFORE" | "AFTER";
 
 /**
- * Returns objects where the query is not satisfied.
- *
- * Log Safety: UNSAFE
- */
-export interface NotQuery {
-  value: SearchJsonQuery;
-}
-
-/**
+* @deprecated Use `ContainsQueryV2` in the `foundry.ontologies` package
+*
    * Returns objects where the specified array contains a value. Allows you to specify a property to query on by a
 variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -837,13 +1722,19 @@ export interface ContainsQueryV2 {
 }
 
 /**
- * A reference to an Ontology object property with the form properties.{propertyApiName}.
+ * @deprecated Use `NotQuery` in the `foundry.ontologies` package
+ *
+ * Returns objects where the query is not satisfied.
  *
  * Log Safety: UNSAFE
  */
-export type FieldNameV1 = LooselyBrandedString<"FieldNameV1">;
+export interface NotQuery {
+  value: SearchJsonQuery;
+}
 
 /**
+ * @deprecated Use `AggregationRangesGrouping` in the `foundry.ontologies` package
+ *
  * Divides objects into groups according to specified ranges.
  *
  * Log Safety: UNSAFE
@@ -854,6 +1745,17 @@ export interface AggregationRangesGrouping {
 }
 
 /**
+ * @deprecated Use `FieldNameV1` in the `foundry.ontologies` package
+ *
+ * A reference to an Ontology object property with the form properties.{propertyApiName}.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FieldNameV1 = LooselyBrandedString<"FieldNameV1">;
+
+/**
+ * @deprecated Use `QueryUnionType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface QueryUnionType {
@@ -861,6 +1763,8 @@ export interface QueryUnionType {
 }
 
 /**
+* @deprecated Use `EqualsQueryV2` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field is equal to a value. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -873,6 +1777,8 @@ export interface EqualsQueryV2 {
 }
 
 /**
+* @deprecated Use `AllTermsQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
    *
@@ -885,6 +1791,8 @@ export interface AllTermsQuery {
 }
 
 /**
+ * @deprecated Use `ActionTypeV2` in the `foundry.ontologies` package
+ *
  * Represents an action type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -900,6 +1808,8 @@ export interface ActionTypeV2 {
 }
 
 /**
+ * @deprecated Use `ExactDistinctAggregationV2` in the `foundry.ontologies` package
+ *
  * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation. Requires Object Storage V2.
  *
  * Log Safety: UNSAFE
@@ -911,6 +1821,8 @@ export interface ExactDistinctAggregationV2 {
 }
 
 /**
+* @deprecated Use `ActionTypeApiName` in the `foundry.ontologies` package
+*
    * The name of the action type in the API. To find the API name for your Action Type, use the List action types
 endpoint or check the Ontology Manager.
    *
@@ -919,6 +1831,19 @@ endpoint or check the Ontology Manager.
 export type ActionTypeApiName = LooselyBrandedString<"ActionTypeApiName">;
 
 /**
+ * @deprecated Use `SelectedPropertyExactDistinctAggregation` in the `foundry.ontologies` package
+ *
+ * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyExactDistinctAggregation {
+  selectedPropertyApiName: PropertyApiName;
+}
+
+/**
+ * @deprecated Use `AggregationRange` in the `foundry.ontologies` package
+ *
  * Specifies a date range from an inclusive start date to an exclusive end date.
  *
  * Log Safety: UNSAFE
@@ -931,15 +1856,8 @@ export interface AggregationRange {
 }
 
 /**
- * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation.
+ * @deprecated Use `ObjectTypeV2` in the `foundry.ontologies` package
  *
- * Log Safety: UNSAFE
- */
-export interface SelectedPropertyExactDistinctAggregation {
-  selectedPropertyApiName: PropertyApiName;
-}
-
-/**
  * Represents an object type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -959,11 +1877,15 @@ export interface ObjectTypeV2 {
 }
 
 /**
+ * @deprecated Use `TimeSeriesPropertyV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type TimeSeriesPropertyV2 = LooselyBrandedString<"TimeSeriesPropertyV2">;
 
 /**
+ * @deprecated Use `StreamMessage` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type StreamMessage =
@@ -973,6 +1895,8 @@ export type StreamMessage =
   | ({ type: "subscribeResponses" } & ObjectSetSubscribeResponses);
 
 /**
+* @deprecated Use `DoubleVector` in the `foundry.ontologies` package
+*
    * The vector to search with. The vector must be of the same dimension as the vectors stored in the provided
 propertyIdentifier.
    *
@@ -983,6 +1907,8 @@ export interface DoubleVector {
 }
 
 /**
+* @deprecated Use `LinkTypeApiName` in the `foundry.ontologies` package
+*
    * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager
 application.
    *
@@ -991,13 +1917,8 @@ application.
 export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
 
 /**
- * The unique resource identifier of an attachment.
+ * @deprecated Use `StructType` in the `foundry.ontologies` package
  *
- * Log Safety: SAFE
- */
-export type AttachmentRid = LooselyBrandedString<"AttachmentRid">;
-
-/**
  * Log Safety: UNSAFE
  */
 export interface StructType {
@@ -1005,6 +1926,17 @@ export interface StructType {
 }
 
 /**
+ * @deprecated Use `AttachmentRid` in the `foundry.ontologies` package
+ *
+ * The unique resource identifier of an attachment.
+ *
+ * Log Safety: SAFE
+ */
+export type AttachmentRid = LooselyBrandedString<"AttachmentRid">;
+
+/**
+ * @deprecated Use `SearchOrderByV2` in the `foundry.ontologies` package
+ *
  * Specifies the ordering of search results by a field and an ordering direction or by relevance if scores are required in a nearestNeighbors query. By default orderType is set to fields.
  *
  * Log Safety: UNSAFE
@@ -1015,6 +1947,8 @@ export interface SearchOrderByV2 {
 }
 
 /**
+ * @deprecated Use `QueryThreeDimensionalAggregation` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface QueryThreeDimensionalAggregation {
@@ -1022,6 +1956,8 @@ export interface QueryThreeDimensionalAggregation {
 }
 
 /**
+ * @deprecated Use `RangeConstraint` in the `foundry.ontologies` package
+ *
  * The parameter value must be within the defined range.
  *
  * Log Safety: UNSAFE
@@ -1034,6 +1970,8 @@ export interface RangeConstraint {
 }
 
 /**
+ * @deprecated Use `OntologyObjectSetType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyObjectSetType {
@@ -1042,6 +1980,8 @@ export interface OntologyObjectSetType {
 }
 
 /**
+* @deprecated Use `ObjectSetStreamSubscribeRequests` in the `foundry.ontologies` package
+*
    * The list of object sets that should be subscribed to. A client can stop subscribing to an object set
 by removing the request from subsequent ObjectSetStreamSubscribeRequests.
    *
@@ -1053,11 +1993,15 @@ export interface ObjectSetStreamSubscribeRequests {
 }
 
 /**
+ * @deprecated Use `CenterPointTypes` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type CenterPointTypes = { type: "Point" } & _Geo.GeoPoint;
 
 /**
+ * @deprecated Use `InterfaceToObjectTypeMappings` in the `foundry.ontologies` package
+ *
  * Map from object type to the interface-to-object-type mapping for that object type.
  *
  * Log Safety: UNSAFE
@@ -1068,20 +2012,15 @@ export type InterfaceToObjectTypeMappings = Record<
 >;
 
 /**
+ * @deprecated Use `SearchOrderByType` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type SearchOrderByType = "fields" | "relevance";
 
 /**
- * Log Safety: UNSAFE
- */
-export interface ListObjectsResponse {
-  nextPageToken?: PageToken;
-  data: Array<OntologyObject>;
-  totalCount: TotalCount;
-}
-
-/**
+ * @deprecated Use `SelectedPropertyOperation` in the `foundry.ontologies` package
+ *
  * Operation on a selected property, can be an aggregation function or retrieval of a single selected property
  *
  * Log Safety: UNSAFE
@@ -1104,30 +2043,26 @@ export type SelectedPropertyOperation =
   | ({ type: "collectSet" } & SelectedPropertyCollectSetAggregation);
 
 /**
+ * @deprecated Use `ListObjectsResponse` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListObjectsResponse {
+  nextPageToken?: PageToken;
+  data: Array<OntologyObject>;
+  totalCount: TotalCount;
+}
+
+/**
+ * @deprecated Use `ObjectSetRid` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
 
 /**
- * Log Safety: UNSAFE
- */
-export interface CreateLinkRule {
-  linkTypeApiNameAtoB: LinkTypeApiName;
-  linkTypeApiNameBtoA: LinkTypeApiName;
-  aSideObjectTypeApiName: ObjectTypeApiName;
-  bSideObjectTypeApiName: ObjectTypeApiName;
-}
-
-/**
- * Computes an approximate number of distinct values for the provided field.
+ * @deprecated Use `LinkTypeSideV2` in the `foundry.ontologies` package
  *
- * Log Safety: UNSAFE
- */
-export interface SelectedPropertyApproximateDistinctAggregation {
-  selectedPropertyApiName: PropertyApiName;
-}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface LinkTypeSideV2 {
@@ -1141,6 +2076,31 @@ export interface LinkTypeSideV2 {
 }
 
 /**
+ * @deprecated Use `SelectedPropertyApproximateDistinctAggregation` in the `foundry.ontologies` package
+ *
+ * Computes an approximate number of distinct values for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyApproximateDistinctAggregation {
+  selectedPropertyApiName: PropertyApiName;
+}
+
+/**
+ * @deprecated Use `CreateLinkRule` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateLinkRule {
+  linkTypeApiNameAtoB: LinkTypeApiName;
+  linkTypeApiNameBtoA: LinkTypeApiName;
+  aSideObjectTypeApiName: ObjectTypeApiName;
+  bSideObjectTypeApiName: ObjectTypeApiName;
+}
+
+/**
+ * @deprecated Use `ActionParameterType` in the `foundry.ontologies` package
+ *
  * A union of all the types supported by Ontology Action parameters.
  *
  * Log Safety: UNSAFE
@@ -1164,6 +2124,8 @@ export type ActionParameterType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
+ * @deprecated Use `AggregationGroupBy` in the `foundry.ontologies` package
+ *
  * Specifies a grouping for aggregation results.
  *
  * Log Safety: UNSAFE
@@ -1175,6 +2137,8 @@ export type AggregationGroupBy =
   | ({ type: "exact" } & AggregationExactGrouping);
 
 /**
+ * @deprecated Use `MaxAggregationV2` in the `foundry.ontologies` package
+ *
  * Computes the maximum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -1186,19 +2150,25 @@ export interface MaxAggregationV2 {
 }
 
 /**
+ * @deprecated Use `MethodObjectSet` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type MethodObjectSet = ObjectSet;
 
 /**
+* @deprecated Use `OntologyRid` in the `foundry.ontologies` package
+*
    * The unique Resource Identifier (RID) of the Ontology. To look up your Ontology RID, please use the
-List ontologies endpoint or check the Ontology Manager.
+List Ontologies endpoint or check the Ontology Manager.
    *
    * Log Safety: SAFE
    */
 export type OntologyRid = LooselyBrandedString<"OntologyRid">;
 
 /**
+ * @deprecated Use `PropertyIdentifier` in the `foundry.ontologies` package
+ *
  * An identifier used to select properties or struct fields.
  *
  * Log Safety: UNSAFE
@@ -1208,6 +2178,8 @@ export type PropertyIdentifier =
   | ({ type: "structField" } & StructFieldSelector);
 
 /**
+ * @deprecated Use `AggregationRangesGroupingV2` in the `foundry.ontologies` package
+ *
  * Divides objects into groups according to specified ranges.
  *
  * Log Safety: UNSAFE
@@ -1218,6 +2190,8 @@ export interface AggregationRangesGroupingV2 {
 }
 
 /**
+ * @deprecated Use `ValidateActionResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ValidateActionResponse {
@@ -1227,6 +2201,8 @@ export interface ValidateActionResponse {
 }
 
 /**
+ * @deprecated Use `QueryStructField` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface QueryStructField {
@@ -1235,6 +2211,8 @@ export interface QueryStructField {
 }
 
 /**
+ * @deprecated Use `ThreeDimensionalAggregation` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ThreeDimensionalAggregation {
@@ -1243,6 +2221,8 @@ export interface ThreeDimensionalAggregation {
 }
 
 /**
+ * @deprecated Use `OntologyObject` in the `foundry.ontologies` package
+ *
  * Represents an object in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -1253,6 +2233,8 @@ export interface OntologyObject {
 }
 
 /**
+ * @deprecated Use `ObjectType` in the `foundry.ontologies` package
+ *
  * Represents an object type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -1269,6 +2251,8 @@ export interface ObjectType {
 }
 
 /**
+ * @deprecated Use `CreateTemporaryObjectSetResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface CreateTemporaryObjectSetResponseV2 {
@@ -1276,6 +2260,8 @@ export interface CreateTemporaryObjectSetResponseV2 {
 }
 
 /**
+* @deprecated Use `NearestNeighborsQuery` in the `foundry.ontologies` package
+*
    * Queries support either a vector matching the embedding model defined on the property, or text that is
 automatically embedded.
    *
@@ -1286,6 +2272,8 @@ export type NearestNeighborsQuery =
   | ({ type: "text" } & NearestNeighborsQueryText);
 
 /**
+ * @deprecated Use `SearchJsonQueryV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type SearchJsonQueryV2 =
@@ -1316,6 +2304,8 @@ export type SearchJsonQueryV2 =
   | ({ type: "startsWith" } & StartsWithQuery);
 
 /**
+ * @deprecated Use `Property` in the `foundry.ontologies` package
+ *
  * Details about some property of an object.
  *
  * Log Safety: UNSAFE
@@ -1327,6 +2317,8 @@ export interface Property {
 }
 
 /**
+* @deprecated Use `LoadObjectSetV2MultipleObjectTypesResponse` in the `foundry.ontologies` package
+*
    * Represents the API response when loading an ObjectSet. An interfaceToObjectTypeMappings field is
 optionally returned if the type scope of the returned object set includes any interfaces. The "type scope"
 of an object set refers to whether objects contain all their properties (object-type type scope) or just the
@@ -1348,6 +2340,8 @@ export interface LoadObjectSetV2MultipleObjectTypesResponse {
 }
 
 /**
+* @deprecated Use `WithinDistanceOfQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains a point within the distance provided of the center point.
 Allows you to specify a property to query on by a variety of means. Either field or propertyIdentifier
 must be supplied, but not both.
@@ -1361,6 +2355,8 @@ export interface WithinDistanceOfQuery {
 }
 
 /**
+ * @deprecated Use `SearchObjectsRequestV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SearchObjectsRequestV2 {
@@ -1373,19 +2369,15 @@ export interface SearchObjectsRequestV2 {
 }
 
 /**
+ * @deprecated Use `OntologyApiName` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type OntologyApiName = LooselyBrandedString<"OntologyApiName">;
 
 /**
-   * Represents the value of a property filter. For instance, false is the FilterValue in
-properties.{propertyApiName}.isNull=false.
-   *
-   * Log Safety: UNSAFE
-   */
-export type FilterValue = LooselyBrandedString<"FilterValue">;
-
-/**
+ * @deprecated Use `AttachmentMetadataResponse` in the `foundry.ontologies` package
+ *
  * The attachment metadata response
  *
  * Log Safety: UNSAFE
@@ -1395,6 +2387,18 @@ export type AttachmentMetadataResponse =
   | ({ type: "multiple" } & ListAttachmentsResponseV2);
 
 /**
+* @deprecated Use `FilterValue` in the `foundry.ontologies` package
+*
+   * Represents the value of a property filter. For instance, false is the FilterValue in
+properties.{propertyApiName}.isNull=false.
+   *
+   * Log Safety: UNSAFE
+   */
+export type FilterValue = LooselyBrandedString<"FilterValue">;
+
+/**
+ * @deprecated Use `LoadObjectSetV2ObjectsOrInterfacesRequest` in the `foundry.ontologies` package
+ *
  * Represents the API POST body when loading an ObjectSet. Used on the /loadObjectsOrInterfaces endpoint only.
  *
  * Log Safety: UNSAFE
@@ -1409,6 +2413,8 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
 }
 
 /**
+ * @deprecated Use `ListActionTypesResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListActionTypesResponseV2 {
@@ -1417,11 +2423,15 @@ export interface ListActionTypesResponseV2 {
 }
 
 /**
+ * @deprecated Use `LinkTypeSideCardinality` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type LinkTypeSideCardinality = "ONE" | "MANY";
 
 /**
+* @deprecated Use `FunctionVersion` in the `foundry.ontologies` package
+*
    * The version of the given Function, written <major>.<minor>.<patch>-<tag>, where -<tag> is optional.
 Examples: 1.2.3, 1.2.3-rc1.
    *
@@ -1430,6 +2440,8 @@ Examples: 1.2.3, 1.2.3-rc1.
 export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 
 /**
+ * @deprecated Use `RefreshObjectSet` in the `foundry.ontologies` package
+ *
  * The list of updated Foundry Objects cannot be provided. The object set must be refreshed using Object Set Service.
  *
  * Log Safety: UNSAFE
@@ -1440,6 +2452,8 @@ export interface RefreshObjectSet {
 }
 
 /**
+ * @deprecated Use `InterfaceLinkTypeLinkedEntityApiName` in the `foundry.ontologies` package
+ *
  * A reference to the linked entity. This can either be an object or an interface type.
  *
  * Log Safety: UNSAFE
@@ -1449,6 +2463,8 @@ export type InterfaceLinkTypeLinkedEntityApiName =
   | ({ type: "interfaceTypeApiName" } & LinkedInterfaceTypeApiName);
 
 /**
+ * @deprecated Use `BatchApplyActionRequestOptions` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface BatchApplyActionRequestOptions {
@@ -1456,6 +2472,8 @@ export interface BatchApplyActionRequestOptions {
 }
 
 /**
+ * @deprecated Use `OntologyMapType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyMapType {
@@ -1464,6 +2482,8 @@ export interface OntologyMapType {
 }
 
 /**
+* @deprecated Use `ParameterId` in the `foundry.ontologies` package
+*
    * The unique identifier of the parameter. Parameters are used as inputs when an action or query is applied.
 Parameters can be viewed and managed in the Ontology Manager.
    *
@@ -1472,11 +2492,15 @@ Parameters can be viewed and managed in the Ontology Manager.
 export type ParameterId = LooselyBrandedString<"ParameterId">;
 
 /**
+ * @deprecated Use `PropertyTypeVisibility` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type PropertyTypeVisibility = "NORMAL" | "PROMINENT" | "HIDDEN";
 
 /**
+ * @deprecated Use `InterfaceType` in the `foundry.ontologies` package
+ *
  * Represents an interface type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -1496,6 +2520,15 @@ export interface InterfaceType {
 }
 
 /**
+ * @deprecated Use `OntologyInterface` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export type OntologyInterface = LooselyBrandedString<"OntologyInterface">;
+
+/**
+ * @deprecated Use `ActionRid` in the `foundry.ontologies` package
+ *
  * The unique resource identifier for an action.
  *
  * Log Safety: SAFE
@@ -1503,11 +2536,8 @@ export interface InterfaceType {
 export type ActionRid = LooselyBrandedString<"ActionRid">;
 
 /**
- * Log Safety: UNSAFE
- */
-export type OntologyInterface = LooselyBrandedString<"OntologyInterface">;
-
-/**
+* @deprecated Use `DeprecatedPropertyTypeStatus` in the `foundry.ontologies` package
+*
    * This status indicates that the PropertyType is reaching the end of its life and will be removed as per the
 deadline specified.
    *
@@ -1520,6 +2550,8 @@ export interface DeprecatedPropertyTypeStatus {
 }
 
 /**
+ * @deprecated Use `ListQueryTypesResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListQueryTypesResponseV2 {
@@ -1528,6 +2560,8 @@ export interface ListQueryTypesResponseV2 {
 }
 
 /**
+ * @deprecated Use `ObjectUpdate` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectUpdate {
@@ -1536,6 +2570,15 @@ export interface ObjectUpdate {
 }
 
 /**
+ * @deprecated Use `SdkPackageName` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export type SdkPackageName = LooselyBrandedString<"SdkPackageName">;
+
+/**
+* @deprecated Use `ObjectTypeApiName` in the `foundry.ontologies` package
+*
    * The name of the object type in the API in camelCase format. To find the API name for your Object Type, use the
 List object types endpoint or check the Ontology Manager.
    *
@@ -1544,11 +2587,8 @@ List object types endpoint or check the Ontology Manager.
 export type ObjectTypeApiName = LooselyBrandedString<"ObjectTypeApiName">;
 
 /**
- * Log Safety: UNSAFE
- */
-export type SdkPackageName = LooselyBrandedString<"SdkPackageName">;
-
-/**
+ * @deprecated Use `LinkSideObject` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface LinkSideObject {
@@ -1557,6 +2597,8 @@ export interface LinkSideObject {
 }
 
 /**
+ * @deprecated Use `ListObjectTypesV2Response` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListObjectTypesV2Response {
@@ -1565,6 +2607,8 @@ export interface ListObjectTypesV2Response {
 }
 
 /**
+ * @deprecated Use `InterfaceLinkTypeApiName` in the `foundry.ontologies` package
+ *
  * A string indicating the API name to use for the interface link.
  *
  * Log Safety: UNSAFE
@@ -1574,6 +2618,8 @@ export type InterfaceLinkTypeApiName = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `AggregateObjectsResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsResponse {
@@ -1583,6 +2629,8 @@ export interface AggregateObjectsResponse {
 }
 
 /**
+* @deprecated Use `SubmissionCriteriaEvaluation` in the `foundry.ontologies` package
+*
    * Contains the status of the submission criteria.
 Submission criteria are the prerequisites that need to be satisfied before an Action can be applied.
 These are configured in the Ontology Manager.
@@ -1595,6 +2643,8 @@ export interface SubmissionCriteriaEvaluation {
 }
 
 /**
+ * @deprecated Use `SumAggregationV2` in the `foundry.ontologies` package
+ *
  * Computes the sum of values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -1606,11 +2656,22 @@ export interface SumAggregationV2 {
 }
 
 /**
+ * @deprecated Use `OntologyObjectSet` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type OntologyObjectSet = LooselyBrandedString<"OntologyObjectSet">;
 
 /**
+ * @deprecated Use `ApplyActionMode` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export type ApplyActionMode = "VALIDATE_ONLY" | "VALIDATE_AND_EXECUTE";
+
+/**
+ * @deprecated Use `CreateInterfaceObjectRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface CreateInterfaceObjectRule {
@@ -1618,11 +2679,8 @@ export interface CreateInterfaceObjectRule {
 }
 
 /**
- * Log Safety: SAFE
- */
-export type ApplyActionMode = "VALIDATE_ONLY" | "VALIDATE_AND_EXECUTE";
-
-/**
+ * @deprecated Use `ObjectSetStaticType` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface ObjectSetStaticType {
@@ -1630,6 +2688,8 @@ export interface ObjectSetStaticType {
 }
 
 /**
+ * @deprecated Use `DeleteObjectRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface DeleteObjectRule {
@@ -1637,6 +2697,8 @@ export interface DeleteObjectRule {
 }
 
 /**
+ * @deprecated Use `PropertyApiNameSelector` in the `foundry.ontologies` package
+ *
  * A property api name that references properties to query on.
  *
  * Log Safety: UNSAFE
@@ -1646,6 +2708,8 @@ export interface PropertyApiNameSelector {
 }
 
 /**
+ * @deprecated Use `GtQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified field is greater than a value.
  *
  * Log Safety: UNSAFE
@@ -1656,6 +2720,8 @@ export interface GtQuery {
 }
 
 /**
+ * @deprecated Use `ObjectPropertyType` in the `foundry.ontologies` package
+ *
  * A union of all the types supported by Ontology Object properties.
  *
  * Log Safety: UNSAFE
@@ -1685,6 +2751,8 @@ export type ObjectPropertyType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
+ * @deprecated Use `TimeseriesSyncRid` in the `foundry.ontologies` package
+ *
  * The RID identifying a time series sync.
  *
  * Log Safety: SAFE
@@ -1692,6 +2760,8 @@ export type ObjectPropertyType =
 export type TimeseriesSyncRid = LooselyBrandedString<"TimeseriesSyncRid">;
 
 /**
+ * @deprecated Use `ActionParameterV2` in the `foundry.ontologies` package
+ *
  * Details about a parameter of an action.
  *
  * Log Safety: UNSAFE
@@ -1703,6 +2773,8 @@ export interface ActionParameterV2 {
 }
 
 /**
+ * @deprecated Use `InterfaceToObjectTypeMapping` in the `foundry.ontologies` package
+ *
  * Represents an implementation of an interface (the mapping of interface property to local property).
  *
  * Log Safety: UNSAFE
@@ -1713,6 +2785,8 @@ export type InterfaceToObjectTypeMapping = Record<
 >;
 
 /**
+* @deprecated Use `StreamingOutputFormat` in the `foundry.ontologies` package
+*
    * Which format to serialize the binary stream in.
 ARROW is more efficient for streaming a large sized response.
    *
@@ -1721,6 +2795,8 @@ ARROW is more efficient for streaming a large sized response.
 export type StreamingOutputFormat = "JSON" | "ARROW";
 
 /**
+ * @deprecated Use `SearchOrdering` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SearchOrdering {
@@ -1729,6 +2805,8 @@ export interface SearchOrdering {
 }
 
 /**
+* @deprecated Use `StringLengthConstraint` in the `foundry.ontologies` package
+*
    * The parameter value must have a length within the defined range.
 This range is always inclusive.
    *
@@ -1742,6 +2820,8 @@ export interface StringLengthConstraint {
 }
 
 /**
+* @deprecated Use `SelectedPropertyCollectSetAggregation` in the `foundry.ontologies` package
+*
    * Lists all distinct values of a property up to the specified limit. The maximum supported limit is 100.
 NOTE: A separate cardinality / exactCardinality aggregation should be used to determine the total count of
 values, to account for a possible truncation of the returned set.
@@ -1756,6 +2836,8 @@ export interface SelectedPropertyCollectSetAggregation {
 }
 
 /**
+ * @deprecated Use `QueryApiName` in the `foundry.ontologies` package
+ *
  * The name of the Query in the API.
  *
  * Log Safety: UNSAFE
@@ -1763,13 +2845,8 @@ export interface SelectedPropertyCollectSetAggregation {
 export type QueryApiName = LooselyBrandedString<"QueryApiName">;
 
 /**
- * Log Safety: UNSAFE
- */
-export interface QueryTwoDimensionalAggregation {
-  groups: Array<QueryAggregation>;
-}
-
-/**
+ * @deprecated Use `PhraseQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified field contains the provided value as a substring.
  *
  * Log Safety: UNSAFE
@@ -1780,6 +2857,17 @@ export interface PhraseQuery {
 }
 
 /**
+ * @deprecated Use `QueryTwoDimensionalAggregation` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryTwoDimensionalAggregation {
+  groups: Array<QueryAggregation>;
+}
+
+/**
+* @deprecated Use `ValueType` in the `foundry.ontologies` package
+*
    * A string indicating the type of each data value. Note that these types can be nested, for example an array of
 structs.
 | Type                | JSON value                                                                                                        |
@@ -1808,6 +2896,19 @@ structs.
 export type ValueType = LooselyBrandedString<"ValueType">;
 
 /**
+ * @deprecated Use `LinkedInterfaceTypeApiName` in the `foundry.ontologies` package
+ *
+ * A reference to the linked interface type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LinkedInterfaceTypeApiName {
+  apiName: InterfaceTypeApiName;
+}
+
+/**
+ * @deprecated Use `ApproximateDistinctAggregation` in the `foundry.ontologies` package
+ *
  * Computes an approximate number of distinct values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -1818,15 +2919,8 @@ export interface ApproximateDistinctAggregation {
 }
 
 /**
- * A reference to the linked interface type.
+ * @deprecated Use `SharedPropertyType` in the `foundry.ontologies` package
  *
- * Log Safety: UNSAFE
- */
-export interface LinkedInterfaceTypeApiName {
-  apiName: InterfaceTypeApiName;
-}
-
-/**
  * A property type that can be shared across object types.
  *
  * Log Safety: UNSAFE
@@ -1840,6 +2934,8 @@ export interface SharedPropertyType {
 }
 
 /**
+ * @deprecated Use `Error` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface Error {
@@ -1848,13 +2944,8 @@ export interface Error {
 }
 
 /**
- * The parameter value must be the primary key of an object found within an object set.
+ * @deprecated Use `AndQueryV2` in the `foundry.ontologies` package
  *
- * Log Safety: SAFE
- */
-export interface ObjectQueryResultConstraint {}
-
-/**
  * Returns objects where every query is satisfied.
  *
  * Log Safety: UNSAFE
@@ -1864,6 +2955,17 @@ export interface AndQueryV2 {
 }
 
 /**
+ * @deprecated Use `ObjectQueryResultConstraint` in the `foundry.ontologies` package
+ *
+ * The parameter value must be the primary key of an object found within an object set.
+ *
+ * Log Safety: SAFE
+ */
+export interface ObjectQueryResultConstraint {}
+
+/**
+ * @deprecated Use `ListOutgoingLinkTypesResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListOutgoingLinkTypesResponseV2 {
@@ -1872,6 +2974,8 @@ export interface ListOutgoingLinkTypesResponseV2 {
 }
 
 /**
+ * @deprecated Use `ModifyObject` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ModifyObject {
@@ -1880,6 +2984,8 @@ export interface ModifyObject {
 }
 
 /**
+ * @deprecated Use `RelativeTimeRange` in the `foundry.ontologies` package
+ *
  * A relative time range for a time series query.
  *
  * Log Safety: UNSAFE
@@ -1890,6 +2996,8 @@ export interface RelativeTimeRange {
 }
 
 /**
+ * @deprecated Use `SyncApplyActionResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SyncApplyActionResponseV2 {
@@ -1898,6 +3006,8 @@ export interface SyncApplyActionResponseV2 {
 }
 
 /**
+ * @deprecated Use `Fuzzy` in the `foundry.ontologies` package
+ *
  * Setting fuzzy to true allows approximate matching in search queries that support it.
  *
  * Log Safety: SAFE
@@ -1905,6 +3015,8 @@ export interface SyncApplyActionResponseV2 {
 export type Fuzzy = boolean;
 
 /**
+ * @deprecated Use `AggregationMetricName` in the `foundry.ontologies` package
+ *
  * A user-specified alias for an aggregation metric name.
  *
  * Log Safety: UNSAFE
@@ -1914,6 +3026,8 @@ export type AggregationMetricName = LooselyBrandedString<
 >;
 
 /**
+* @deprecated Use `ObjectSetAsTypeType` in the `foundry.ontologies` package
+*
    * Casts an object set to a specified object type or interface type API name. Any object whose object type does
 not match the object type provided or implement the interface type provided will be dropped from the resulting
 object set. This is currently unsupported and an exception will be thrown if used.
@@ -1926,6 +3040,8 @@ export interface ObjectSetAsTypeType {
 }
 
 /**
+* @deprecated Use `LtQueryV2` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field is less than a value. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -1938,6 +3054,8 @@ export interface LtQueryV2 {
 }
 
 /**
+ * @deprecated Use `QueryAggregationRange` in the `foundry.ontologies` package
+ *
  * Specifies a range from an inclusive start value to an exclusive end value.
  *
  * Log Safety: UNSAFE
@@ -1948,6 +3066,8 @@ export interface QueryAggregationRange {
 }
 
 /**
+ * @deprecated Use `CustomTypeId` in the `foundry.ontologies` package
+ *
  * A UUID representing a custom type in a given Function.
  *
  * Log Safety: SAFE
@@ -1955,6 +3075,8 @@ export interface QueryAggregationRange {
 export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 
 /**
+ * @deprecated Use `MinAggregation` in the `foundry.ontologies` package
+ *
  * Computes the minimum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -1965,6 +3087,8 @@ export interface MinAggregation {
 }
 
 /**
+ * @deprecated Use `ModifyInterfaceObjectRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ModifyInterfaceObjectRule {
@@ -1972,6 +3096,8 @@ export interface ModifyInterfaceObjectRule {
 }
 
 /**
+ * @deprecated Use `QueryStructType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface QueryStructType {
@@ -1979,6 +3105,8 @@ export interface QueryStructType {
 }
 
 /**
+ * @deprecated Use `DerivedTimeSeriesProperty` in the `foundry.ontologies` package
+ *
  * The representation of a time series property backed by a derived time series calculated with a formula.
  *
  * Log Safety: UNSAFE
@@ -1989,11 +3117,31 @@ export interface DerivedTimeSeriesProperty {
 }
 
 /**
+ * @deprecated Use `TimeUnit` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export type TimeUnit =
+  | "MILLISECONDS"
+  | "SECONDS"
+  | "MINUTES"
+  | "HOURS"
+  | "DAYS"
+  | "WEEKS"
+  | "MONTHS"
+  | "YEARS"
+  | "QUARTERS";
+
+/**
+ * @deprecated Use `PropertyTypeRid` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type PropertyTypeRid = LooselyBrandedString<"PropertyTypeRid">;
 
 /**
+* @deprecated Use `PropertyValue` in the `foundry.ontologies` package
+*
    * Represents the value of a property in the following format.
 | Type            | JSON encoding                                               | Example                                                                                            |
 |---------------- |-------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
@@ -2024,6 +3172,8 @@ Note that for backwards compatibility, the Boolean, Byte, Double, Float, Integer
 export type PropertyValue = any;
 
 /**
+ * @deprecated Use `StreamTimeSeriesPointsRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface StreamTimeSeriesPointsRequest {
@@ -2031,6 +3181,8 @@ export interface StreamTimeSeriesPointsRequest {
 }
 
 /**
+ * @deprecated Use `ObjectSet` in the `foundry.ontologies` package
+ *
  * Represents the definition of an ObjectSet in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -2052,6 +3204,8 @@ export type ObjectSet =
   | ({ type: "base" } & ObjectSetBaseType);
 
 /**
+ * @deprecated Use `SubscriptionError` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SubscriptionError {
@@ -2059,6 +3213,8 @@ export interface SubscriptionError {
 }
 
 /**
+ * @deprecated Use `ObjectSetUpdates` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetUpdates {
@@ -2067,6 +3223,18 @@ export interface ObjectSetUpdates {
 }
 
 /**
+ * @deprecated Use `Arg` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Arg {
+  name: string;
+  value: string;
+}
+
+/**
+ * @deprecated Use `AggregateObjectsRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsRequest {
@@ -2076,24 +3244,29 @@ export interface AggregateObjectsRequest {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface Arg {
-  name: string;
-  value: string;
-}
-
-/**
+ * @deprecated Use `ApplyActionResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface ApplyActionResponse {}
 
 /**
+ * @deprecated Use `BatchApplyActionResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface BatchApplyActionResponse {}
 
 /**
+ * @deprecated Use `AsyncApplyActionOperationV2` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export type AsyncApplyActionOperationV2 = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationV2"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsyncV2","resultType":{"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationResponseV2"}},"stageType":{"locator":{"namespaceName":"Core","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
+
+/**
+ * @deprecated Use `AggregateObjectsRequestV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsRequestV2 {
@@ -2104,11 +3277,8 @@ export interface AggregateObjectsRequestV2 {
 }
 
 /**
- * Log Safety: SAFE
- */
-export type AsyncApplyActionOperationV2 = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationV2"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsyncV2","resultType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncApplyActionOperationResponseV2"}},"stageType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
-
-/**
+ * @deprecated Use `IsNullQuery` in the `foundry.ontologies` package
+ *
  * Returns objects based on the existence of the specified field.
  *
  * Log Safety: UNSAFE
@@ -2119,6 +3289,8 @@ export interface IsNullQuery {
 }
 
 /**
+ * @deprecated Use `MediaReferenceProperty` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type MediaReferenceProperty = LooselyBrandedString<
@@ -2126,6 +3298,8 @@ export type MediaReferenceProperty = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `RelativeTime` in the `foundry.ontologies` package
+ *
  * A relative time, such as "3 days before" or "2 hours after" the current moment.
  *
  * Log Safety: UNSAFE
@@ -2137,6 +3311,8 @@ export interface RelativeTime {
 }
 
 /**
+ * @deprecated Use `SelectedPropertySumAggregation` in the `foundry.ontologies` package
+ *
  * Computes the sum of values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2146,6 +3322,8 @@ export interface SelectedPropertySumAggregation {
 }
 
 /**
+ * @deprecated Use `QueryAggregationValueType` in the `foundry.ontologies` package
+ *
  * A union of all the types supported by query aggregation keys.
  *
  * Log Safety: UNSAFE
@@ -2156,6 +3334,8 @@ export type QueryAggregationValueType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
+ * @deprecated Use `PropertyValueEscapedString` in the `foundry.ontologies` package
+ *
  * Represents the value of a property in string format. This is used in URL parameters.
  *
  * Log Safety: UNSAFE
@@ -2165,6 +3345,8 @@ export type PropertyValueEscapedString = LooselyBrandedString<
 >;
 
 /**
+* @deprecated Use `DoesNotIntersectBoundingBoxQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field does not intersect the bounding box provided. Allows you to specify a
 property to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not
 both.
@@ -2178,6 +3360,8 @@ export interface DoesNotIntersectBoundingBoxQuery {
 }
 
 /**
+ * @deprecated Use `CreateTemporaryObjectSetRequestV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface CreateTemporaryObjectSetRequestV2 {
@@ -2185,6 +3369,8 @@ export interface CreateTemporaryObjectSetRequestV2 {
 }
 
 /**
+ * @deprecated Use `ObjectEdits` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectEdits {
@@ -2197,6 +3383,8 @@ export interface ObjectEdits {
 }
 
 /**
+ * @deprecated Use `ReasonType` in the `foundry.ontologies` package
+ *
  * Represents the reason a subscription was closed.
  *
  * Log Safety: SAFE
@@ -2204,6 +3392,8 @@ export interface ObjectEdits {
 export type ReasonType = "USER_CLOSED" | "CHANNEL_CLOSED";
 
 /**
+ * @deprecated Use `GroupMemberConstraint` in the `foundry.ontologies` package
+ *
  * The parameter value must be the user id of a member belonging to at least one of the groups defined by the constraint.
  *
  * Log Safety: SAFE
@@ -2211,6 +3401,8 @@ export type ReasonType = "USER_CLOSED" | "CHANNEL_CLOSED";
 export interface GroupMemberConstraint {}
 
 /**
+ * @deprecated Use `ObjectSetSubscribeResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type ObjectSetSubscribeResponse =
@@ -2219,6 +3411,8 @@ export type ObjectSetSubscribeResponse =
   | ({ type: "error" } & SubscriptionError);
 
 /**
+ * @deprecated Use `QueryAggregationKeyType` in the `foundry.ontologies` package
+ *
  * A union of all the types supported by query aggregation keys.
  *
  * Log Safety: UNSAFE
@@ -2233,6 +3427,8 @@ export type QueryAggregationKeyType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
+ * @deprecated Use `AggregationGroupByV2` in the `foundry.ontologies` package
+ *
  * Specifies a grouping for aggregation results.
  *
  * Log Safety: UNSAFE
@@ -2244,15 +3440,8 @@ export type AggregationGroupByV2 =
   | ({ type: "exact" } & AggregationExactGroupingV2);
 
 /**
- * Log Safety: UNSAFE
- */
-export interface SearchObjectsResponse {
-  data: Array<OntologyObject>;
-  nextPageToken?: PageToken;
-  totalCount: TotalCount;
-}
-
-/**
+ * @deprecated Use `LoadObjectSetResponseV2` in the `foundry.ontologies` package
+ *
  * Represents the API response when loading an ObjectSet.
  *
  * Log Safety: UNSAFE
@@ -2264,6 +3453,19 @@ export interface LoadObjectSetResponseV2 {
 }
 
 /**
+ * @deprecated Use `SearchObjectsResponse` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchObjectsResponse {
+  data: Array<OntologyObject>;
+  nextPageToken?: PageToken;
+  totalCount: TotalCount;
+}
+
+/**
+ * @deprecated Use `AttachmentProperty` in the `foundry.ontologies` package
+ *
  * The representation of an attachment as a data type.
  *
  * Log Safety: SAFE
@@ -2273,6 +3475,8 @@ export interface AttachmentProperty {
 }
 
 /**
+* @deprecated Use `PropertyId` in the `foundry.ontologies` package
+*
    * The immutable ID of a property. Property IDs are only used to identify properties in the Ontology Manager
 application and assign them API names. In every other case, API names should be used instead of property IDs.
    *
@@ -2281,6 +3485,8 @@ application and assign them API names. In every other case, API names should be 
 export type PropertyId = LooselyBrandedString<"PropertyId">;
 
 /**
+ * @deprecated Use `BatchApplyActionRequestItem` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface BatchApplyActionRequestItem {
@@ -2288,6 +3494,8 @@ export interface BatchApplyActionRequestItem {
 }
 
 /**
+ * @deprecated Use `ParameterOption` in the `foundry.ontologies` package
+ *
  * A possible value for the parameter. This is defined in the Ontology Manager by Actions admins.
  *
  * Log Safety: UNSAFE
@@ -2298,6 +3506,8 @@ export interface ParameterOption {
 }
 
 /**
+ * @deprecated Use `OntologySetType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologySetType {
@@ -2305,6 +3515,8 @@ export interface OntologySetType {
 }
 
 /**
+ * @deprecated Use `CountAggregation` in the `foundry.ontologies` package
+ *
  * Computes the total count of objects.
  *
  * Log Safety: UNSAFE
@@ -2314,6 +3526,15 @@ export interface CountAggregation {
 }
 
 /**
+ * @deprecated Use `PolygonValue` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export type PolygonValue = { type: "Polygon" } & _Geo.Polygon;
+
+/**
+ * @deprecated Use `GteQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified field is greater than or equal to a value.
  *
  * Log Safety: UNSAFE
@@ -2324,11 +3545,8 @@ export interface GteQuery {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export type PolygonValue = { type: "Polygon" } & _Geo.Polygon;
-
-/**
+ * @deprecated Use `RelativeTimeSeriesTimeUnit` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type RelativeTimeSeriesTimeUnit =
@@ -2342,6 +3560,8 @@ export type RelativeTimeSeriesTimeUnit =
   | "YEARS";
 
 /**
+* @deprecated Use `DataValue` in the `foundry.ontologies` package
+*
    * Represents the value of data in the following format. Note that these values can be nested, for example an array of structs.
 | Type                                | JSON encoding                                         | Example                                                                                                                                                       |
 |-------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2375,6 +3595,8 @@ export type RelativeTimeSeriesTimeUnit =
 export type DataValue = any;
 
 /**
+ * @deprecated Use `OntologyDataType` in the `foundry.ontologies` package
+ *
  * A union of all the primitive types used by Palantir's Ontology-based products.
  *
  * Log Safety: UNSAFE
@@ -2404,6 +3626,8 @@ export type OntologyDataType =
   | ({ type: "object" } & OntologyObjectType);
 
 /**
+ * @deprecated Use `QualifiedTimeseriesProperty` in the `foundry.ontologies` package
+ *
  * The representation of a time series property backed by multiple time series syncs.
  *
  * Log Safety: UNSAFE
@@ -2414,6 +3638,8 @@ export interface QualifiedTimeseriesProperty {
 }
 
 /**
+ * @deprecated Use `SelectedPropertyMinAggregation` in the `foundry.ontologies` package
+ *
  * Computes the minimum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2423,6 +3649,8 @@ export interface SelectedPropertyMinAggregation {
 }
 
 /**
+ * @deprecated Use `FunctionRid` in the `foundry.ontologies` package
+ *
  * The unique resource identifier of a Function, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
@@ -2430,6 +3658,8 @@ export interface SelectedPropertyMinAggregation {
 export type FunctionRid = LooselyBrandedString<"FunctionRid">;
 
 /**
+ * @deprecated Use `BlueprintIcon` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface BlueprintIcon {
@@ -2438,6 +3668,8 @@ export interface BlueprintIcon {
 }
 
 /**
+ * @deprecated Use `OntologyObjectArrayType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyObjectArrayType {
@@ -2445,6 +3677,8 @@ export interface OntologyObjectArrayType {
 }
 
 /**
+* @deprecated Use `IntersectsBoundingBoxQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field intersects the bounding box provided. Allows you to specify a property
 to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -2457,13 +3691,8 @@ export interface IntersectsBoundingBoxQuery {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface SubscriptionSuccess {
-  id: SubscriptionId;
-}
-
-/**
+ * @deprecated Use `AggregateObjectsResponseItemV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsResponseItemV2 {
@@ -2472,6 +3701,17 @@ export interface AggregateObjectsResponseItemV2 {
 }
 
 /**
+ * @deprecated Use `SubscriptionSuccess` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export interface SubscriptionSuccess {
+  id: SubscriptionId;
+}
+
+/**
+ * @deprecated Use `AggregationGroupKeyV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type AggregationGroupKeyV2 = LooselyBrandedString<
@@ -2479,6 +3719,8 @@ export type AggregationGroupKeyV2 = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `AddLink` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AddLink {
@@ -2489,6 +3731,8 @@ export interface AddLink {
 }
 
 /**
+ * @deprecated Use `ListObjectTypesResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListObjectTypesResponse {
@@ -2497,6 +3741,8 @@ export interface ListObjectTypesResponse {
 }
 
 /**
+* @deprecated Use `LoadObjectSetV2ObjectsOrInterfacesResponse` in the `foundry.ontologies` package
+*
    * Represents the API response when loading an ObjectSet. Objects in the returned set can either have properties
 defined by an interface that the objects belong to or properties defined by the object type of the object.
    *
@@ -2509,6 +3755,8 @@ export interface LoadObjectSetV2ObjectsOrInterfacesResponse {
 }
 
 /**
+ * @deprecated Use `TimeRange` in the `foundry.ontologies` package
+ *
  * An absolute or relative range for a time series query.
  *
  * Log Safety: UNSAFE
@@ -2518,6 +3766,8 @@ export type TimeRange =
   | ({ type: "relative" } & RelativeTimeRange);
 
 /**
+ * @deprecated Use `ObjectPropertyValueConstraint` in the `foundry.ontologies` package
+ *
  * The parameter value must be a property value of an object found within an object set.
  *
  * Log Safety: SAFE
@@ -2525,6 +3775,8 @@ export type TimeRange =
 export interface ObjectPropertyValueConstraint {}
 
 /**
+ * @deprecated Use `SumAggregation` in the `foundry.ontologies` package
+ *
  * Computes the sum of values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2535,6 +3787,8 @@ export interface SumAggregation {
 }
 
 /**
+* @deprecated Use `InterfaceLinkTypeCardinality` in the `foundry.ontologies` package
+*
    * The cardinality of the link in the given direction. Cardinality can be "ONE", meaning an object can
 link to zero or one other objects, or "MANY", meaning an object can link to any number of other objects.
    *
@@ -2543,6 +3797,8 @@ link to zero or one other objects, or "MANY", meaning an object can link to any 
 export type InterfaceLinkTypeCardinality = "ONE" | "MANY";
 
 /**
+ * @deprecated Use `TwoDimensionalAggregation` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface TwoDimensionalAggregation {
@@ -2551,6 +3807,8 @@ export interface TwoDimensionalAggregation {
 }
 
 /**
+ * @deprecated Use `OntologyArrayType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyArrayType {
@@ -2558,11 +3816,15 @@ export interface OntologyArrayType {
 }
 
 /**
+ * @deprecated Use `Action` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type Action = LooselyBrandedString<"Action">;
 
 /**
+ * @deprecated Use `ExecuteQueryRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ExecuteQueryRequest {
@@ -2570,6 +3832,8 @@ export interface ExecuteQueryRequest {
 }
 
 /**
+ * @deprecated Use `OrQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where at least 1 query is satisfied.
  *
  * Log Safety: UNSAFE
@@ -2579,15 +3843,8 @@ export interface OrQuery {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface ObjectSetStreamSubscribeRequest {
-  objectSet: ObjectSet;
-  propertySet: Array<SelectedPropertyApiName>;
-  referenceSet: Array<SelectedPropertyApiName>;
-}
-
-/**
+ * @deprecated Use `SelectedPropertyMaxAggregation` in the `foundry.ontologies` package
+ *
  * Computes the maximum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2597,6 +3854,19 @@ export interface SelectedPropertyMaxAggregation {
 }
 
 /**
+ * @deprecated Use `ObjectSetStreamSubscribeRequest` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetStreamSubscribeRequest {
+  objectSet: ObjectSet;
+  propertySet: Array<SelectedPropertyApiName>;
+  referenceSet: Array<SelectedPropertyApiName>;
+}
+
+/**
+ * @deprecated Use `PrimaryKeyValue` in the `foundry.ontologies` package
+ *
  * Represents the primary key value that is used as a unique identifier for an object.
  *
  * Log Safety: UNSAFE
@@ -2604,6 +3874,8 @@ export interface SelectedPropertyMaxAggregation {
 export type PrimaryKeyValue = any;
 
 /**
+ * @deprecated Use `QueryAggregation` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface QueryAggregation {
@@ -2612,6 +3884,8 @@ export interface QueryAggregation {
 }
 
 /**
+ * @deprecated Use `MaxAggregation` in the `foundry.ontologies` package
+ *
  * Computes the maximum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2622,6 +3896,8 @@ export interface MaxAggregation {
 }
 
 /**
+ * @deprecated Use `CountAggregationV2` in the `foundry.ontologies` package
+ *
  * Computes the total count of objects.
  *
  * Log Safety: UNSAFE
@@ -2632,6 +3908,8 @@ export interface CountAggregationV2 {
 }
 
 /**
+ * @deprecated Use `ObjectSetInterfaceBaseType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetInterfaceBaseType {
@@ -2639,6 +3917,8 @@ export interface ObjectSetInterfaceBaseType {
 }
 
 /**
+ * @deprecated Use `QuerySetType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface QuerySetType {
@@ -2646,6 +3926,8 @@ export interface QuerySetType {
 }
 
 /**
+* @deprecated Use `ObjectState` in the `foundry.ontologies` package
+*
    * Represents the state of the object within the object set. ADDED_OR_UPDATED indicates that the object was
 added to the set or the object has updated and was previously in the set. REMOVED indicates that the object
 was removed from the set due to the object being deleted or the object no longer meets the object set
@@ -2656,6 +3938,8 @@ definition.
 export type ObjectState = "ADDED_OR_UPDATED" | "REMOVED";
 
 /**
+ * @deprecated Use `GeotimeSeriesIntegrationRid` in the `foundry.ontologies` package
+ *
  * The unique resource identifier of a geotime integration.
  *
  * Log Safety: SAFE
@@ -2665,6 +3949,8 @@ export type GeotimeSeriesIntegrationRid = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `QueryOutputV2` in the `foundry.ontologies` package
+ *
  * Details about the output of a query.
  *
  * Log Safety: UNSAFE
@@ -2675,6 +3961,8 @@ export interface QueryOutputV2 {
 }
 
 /**
+* @deprecated Use `ObjectSetAsBaseObjectTypesType` in the `foundry.ontologies` package
+*
    * Casts the objects in the object set to their base type and thus ensures objects are returned with all of their
 properties in the resulting object set, not just the properties that implement interface properties. This is
 currently unsupported and an exception will be thrown if used.
@@ -2686,6 +3974,8 @@ export interface ObjectSetAsBaseObjectTypesType {
 }
 
 /**
+ * @deprecated Use `ObjectSetSubtractType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetSubtractType {
@@ -2693,6 +3983,8 @@ export interface ObjectSetSubtractType {
 }
 
 /**
+* @deprecated Use `GetSelectedPropertyOperation` in the `foundry.ontologies` package
+*
    * Gets a single value of a property. Throws if the target object set is on the MANY side of the link and could
 explode the cardinality.
 Use collectList or collectSet which will return a list of values in that case.
@@ -2704,6 +3996,8 @@ export interface GetSelectedPropertyOperation {
 }
 
 /**
+ * @deprecated Use `AggregationOrderBy` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregationOrderBy {
@@ -2711,6 +4005,8 @@ export interface AggregationOrderBy {
 }
 
 /**
+ * @deprecated Use `AggregationV2` in the `foundry.ontologies` package
+ *
  * Specifies an aggregation function.
  *
  * Log Safety: UNSAFE
@@ -2726,6 +4022,8 @@ export type AggregationV2 =
   | ({ type: "exactDistinct" } & ExactDistinctAggregationV2);
 
 /**
+ * @deprecated Use `ApplyActionRequestV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ApplyActionRequestV2 {
@@ -2734,6 +4032,8 @@ export interface ApplyActionRequestV2 {
 }
 
 /**
+* @deprecated Use `ContainsAnyTermQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains any of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -2748,6 +4048,8 @@ export interface ContainsAnyTermQuery {
 }
 
 /**
+ * @deprecated Use `GeotimeSeriesProperty` in the `foundry.ontologies` package
+ *
  * The representation of a geotime series integration as a data type.
  *
  * Log Safety: UNSAFE
@@ -2758,6 +4060,8 @@ export interface GeotimeSeriesProperty {
 }
 
 /**
+ * @deprecated Use `OntologyIdentifier` in the `foundry.ontologies` package
+ *
  * Either an ontology rid or an ontology api name.
  *
  * Log Safety: UNSAFE
@@ -2765,6 +4069,8 @@ export interface GeotimeSeriesProperty {
 export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
 
 /**
+ * @deprecated Use `AggregationAccuracyRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type AggregationAccuracyRequest =
@@ -2772,6 +4078,8 @@ export type AggregationAccuracyRequest =
   | "ALLOW_APPROXIMATE";
 
 /**
+ * @deprecated Use `LtQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified field is less than a value.
  *
  * Log Safety: UNSAFE
@@ -2782,16 +4090,22 @@ export interface LtQuery {
 }
 
 /**
+ * @deprecated Use `AggregationGroupValue` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type AggregationGroupValue = any;
 
 /**
+ * @deprecated Use `LinkedObjectV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type LinkedObjectV2 = LooselyBrandedString<"LinkedObjectV2">;
 
 /**
+ * @deprecated Use `SearchObjectsForInterfaceRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SearchObjectsForInterfaceRequest {
@@ -2810,6 +4124,8 @@ export interface SearchObjectsForInterfaceRequest {
 }
 
 /**
+ * @deprecated Use `SelectedPropertyApproximatePercentileAggregation` in the `foundry.ontologies` package
+ *
  * Computes the approximate percentile value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2820,6 +4136,8 @@ export interface SelectedPropertyApproximatePercentileAggregation {
 }
 
 /**
+ * @deprecated Use `StreamTimeSeriesValuesRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface StreamTimeSeriesValuesRequest {
@@ -2827,6 +4145,8 @@ export interface StreamTimeSeriesValuesRequest {
 }
 
 /**
+ * @deprecated Use `LogicRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type LogicRule =
@@ -2840,6 +4160,8 @@ export type LogicRule =
   | ({ type: "createLink" } & CreateLinkRule);
 
 /**
+ * @deprecated Use `StringRegexMatchConstraint` in the `foundry.ontologies` package
+ *
  * The parameter value must match a predefined regular expression.
  *
  * Log Safety: UNSAFE
@@ -2850,6 +4172,8 @@ export interface StringRegexMatchConstraint {
 }
 
 /**
+ * @deprecated Use `ActionResults` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type ActionResults =
@@ -2857,11 +4181,15 @@ export type ActionResults =
   | ({ type: "largeScaleEdits" } & ObjectTypeEdits);
 
 /**
+ * @deprecated Use `AggregationGroupKey` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type AggregationGroupKey = LooselyBrandedString<"AggregationGroupKey">;
 
 /**
+ * @deprecated Use `ValidationResult` in the `foundry.ontologies` package
+ *
  * Represents the state of a validation.
  *
  * Log Safety: SAFE
@@ -2869,6 +4197,8 @@ export type AggregationGroupKey = LooselyBrandedString<"AggregationGroupKey">;
 export type ValidationResult = "VALID" | "INVALID";
 
 /**
+ * @deprecated Use `ObjectTypeFullMetadata` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectTypeFullMetadata {
@@ -2883,11 +4213,15 @@ export interface ObjectTypeFullMetadata {
 }
 
 /**
+ * @deprecated Use `LinkTypeRid` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type LinkTypeRid = LooselyBrandedString<"LinkTypeRid">;
 
 /**
+ * @deprecated Use `AvgAggregation` in the `foundry.ontologies` package
+ *
  * Computes the average value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2898,6 +4232,8 @@ export interface AvgAggregation {
 }
 
 /**
+ * @deprecated Use `SearchOrderingV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface SearchOrderingV2 {
@@ -2906,6 +4242,8 @@ export interface SearchOrderingV2 {
 }
 
 /**
+ * @deprecated Use `AggregateObjectsResponseItem` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsResponseItem {
@@ -2914,6 +4252,8 @@ export interface AggregateObjectsResponseItem {
 }
 
 /**
+ * @deprecated Use `ValidateActionResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ValidateActionResponseV2 {
@@ -2923,6 +4263,8 @@ export interface ValidateActionResponseV2 {
 }
 
 /**
+ * @deprecated Use `ArtifactRepositoryRid` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type ArtifactRepositoryRid = LooselyBrandedString<
@@ -2930,6 +4272,8 @@ export type ArtifactRepositoryRid = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `StructFieldType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface StructFieldType {
@@ -2938,6 +4282,8 @@ export interface StructFieldType {
 }
 
 /**
+ * @deprecated Use `ObjectTypeInterfaceImplementation` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectTypeInterfaceImplementation {
@@ -2945,11 +4291,15 @@ export interface ObjectTypeInterfaceImplementation {
 }
 
 /**
+ * @deprecated Use `AsyncActionOperation` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
-export type AsyncActionOperation = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncActionOperation"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsync","resultType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncApplyActionResponse"}},"stageType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
+export type AsyncActionOperation = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncActionOperation"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsync","resultType":{"locator":{"namespaceName":"Core","localName":"AsyncApplyActionResponse"}},"stageType":{"locator":{"namespaceName":"Core","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
 
 /**
+ * @deprecated Use `RequestId` in the `foundry.ontologies` package
+ *
  * Unique request id
  *
  * Log Safety: SAFE
@@ -2957,6 +4307,8 @@ export type AsyncActionOperation = undefined; // {"locator":{"namespaceName":"Co
 export type RequestId = string;
 
 /**
+* @deprecated Use `StartsWithQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field starts with the provided value. Allows you to specify a property to
 query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -2969,6 +4321,8 @@ export interface StartsWithQuery {
 }
 
 /**
+ * @deprecated Use `AsyncApplyActionResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface AsyncApplyActionResponseV2 {
@@ -2976,6 +4330,8 @@ export interface AsyncApplyActionResponseV2 {
 }
 
 /**
+ * @deprecated Use `ObjectSetSearchAroundType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetSearchAroundType {
@@ -2984,6 +4340,8 @@ export interface ObjectSetSearchAroundType {
 }
 
 /**
+ * @deprecated Use `AggregationExactGroupingV2` in the `foundry.ontologies` package
+ *
  * Divides objects into groups according to an exact value.
  *
  * Log Safety: UNSAFE
@@ -2995,6 +4353,8 @@ export interface AggregationExactGroupingV2 {
 }
 
 /**
+ * @deprecated Use `ContainsQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified array contains a value.
  *
  * Log Safety: UNSAFE
@@ -3005,6 +4365,8 @@ export interface ContainsQuery {
 }
 
 /**
+* @deprecated Use `ObjectSetMethodInputType` in the `foundry.ontologies` package
+*
    * ObjectSet which is the root of a MethodObjectSet definition.
 This feature is experimental and not yet generally available.
    *
@@ -3013,6 +4375,8 @@ This feature is experimental and not yet generally available.
 export interface ObjectSetMethodInputType {}
 
 /**
+ * @deprecated Use `LteQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified field is less than or equal to a value.
  *
  * Log Safety: UNSAFE
@@ -3023,6 +4387,8 @@ export interface LteQuery {
 }
 
 /**
+ * @deprecated Use `AndQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where every query is satisfied.
  *
  * Log Safety: UNSAFE
@@ -3032,6 +4398,8 @@ export interface AndQuery {
 }
 
 /**
+ * @deprecated Use `CreateObjectRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface CreateObjectRule {
@@ -3039,11 +4407,8 @@ export interface CreateObjectRule {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface OntologyObjectTypeReferenceType {}
-
-/**
+ * @deprecated Use `ListLinkedObjectsResponseV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListLinkedObjectsResponseV2 {
@@ -3052,6 +4417,15 @@ export interface ListLinkedObjectsResponseV2 {
 }
 
 /**
+ * @deprecated Use `OntologyObjectTypeReferenceType` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export interface OntologyObjectTypeReferenceType {}
+
+/**
+ * @deprecated Use `QosError` in the `foundry.ontologies` package
+ *
  * An error indicating that the subscribe request should be attempted on a different node.
  *
  * Log Safety: SAFE
@@ -3059,6 +4433,8 @@ export interface ListLinkedObjectsResponseV2 {
 export interface QosError {}
 
 /**
+ * @deprecated Use `SeriesId` in the `foundry.ontologies` package
+ *
  * The unique codex id of a time series.
  *
  * Log Safety: UNSAFE
@@ -3066,13 +4442,8 @@ export interface QosError {}
 export type SeriesId = LooselyBrandedString<"SeriesId">;
 
 /**
- * Log Safety: UNSAFE
- */
-export type ObjectSetUpdate =
-  | ({ type: "reference" } & ReferenceUpdate)
-  | ({ type: "object" } & ObjectUpdate);
-
-/**
+ * @deprecated Use `PropertyTypeStatus` in the `foundry.ontologies` package
+ *
  * The status to indicate whether the PropertyType is either Experimental, Active, Deprecated, or Example.
  *
  * Log Safety: UNSAFE
@@ -3084,6 +4455,31 @@ export type PropertyTypeStatus =
   | ({ type: "example" } & ExamplePropertyTypeStatus);
 
 /**
+ * @deprecated Use `ObjectSetUpdate` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export type ObjectSetUpdate =
+  | ({ type: "reference" } & ReferenceUpdate)
+  | ({ type: "object" } & ObjectUpdate);
+
+/**
+ * @deprecated Use `AttachmentV2` in the `foundry.ontologies` package
+ *
+ * The representation of an attachment.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AttachmentV2 {
+  rid: AttachmentRid;
+  filename: Filename;
+  sizeBytes: SizeBytes;
+  mediaType: MediaType;
+}
+
+/**
+* @deprecated Use `ReferenceUpdate` in the `foundry.ontologies` package
+*
    * The updated data value associated with an object instance's external reference. The object instance
 is uniquely identified by an object type and a primary key. Note that the value of the property
 field returns a dereferenced value rather than the reference itself.
@@ -3098,18 +4494,8 @@ export interface ReferenceUpdate {
 }
 
 /**
- * The representation of an attachment.
+ * @deprecated Use `Aggregation` in the `foundry.ontologies` package
  *
- * Log Safety: UNSAFE
- */
-export interface AttachmentV2 {
-  rid: AttachmentRid;
-  filename: Filename;
-  sizeBytes: SizeBytes;
-  mediaType: MediaType;
-}
-
-/**
  * Specifies an aggregation function.
  *
  * Log Safety: UNSAFE
@@ -3123,6 +4509,8 @@ export type Aggregation =
   | ({ type: "sum" } & SumAggregation);
 
 /**
+ * @deprecated Use `SelectedPropertyDefinition` in the `foundry.ontologies` package
+ *
  * Definition for a selected property over a MethodObjectSet.
  *
  * Log Safety: UNSAFE
@@ -3133,6 +4521,8 @@ export interface SelectedPropertyDefinition {
 }
 
 /**
+ * @deprecated Use `SubscriptionId` in the `foundry.ontologies` package
+ *
  * A unique identifier used to associate subscription requests with responses.
  *
  * Log Safety: SAFE
@@ -3140,6 +4530,8 @@ export interface SelectedPropertyDefinition {
 export type SubscriptionId = string;
 
 /**
+ * @deprecated Use `TimeSeriesPoint` in the `foundry.ontologies` package
+ *
  * A time and value pair.
  *
  * Log Safety: UNSAFE
@@ -3150,6 +4542,8 @@ export interface TimeSeriesPoint {
 }
 
 /**
+* @deprecated Use `WithinPolygonQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains a point within the polygon provided. Allows you to specify a
 property to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not
 both.
@@ -3163,11 +4557,8 @@ export interface WithinPolygonQuery {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface AsyncApplyActionResponse {}
-
-/**
+* @deprecated Use `DoesNotIntersectPolygonQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field does not intersect the polygon provided. Allows you to specify a
 property to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not
 both.
@@ -3181,6 +4572,15 @@ export interface DoesNotIntersectPolygonQuery {
 }
 
 /**
+ * @deprecated Use `AsyncApplyActionResponse` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export interface AsyncApplyActionResponse {}
+
+/**
+* @deprecated Use `OrderBy` in the `foundry.ontologies` package
+*
    * A command representing the list of properties to order by. Properties should be delimited by commas and
 prefixed by p or properties. The format expected format is
 orderBy=properties.{property}:{sortDirection},properties.{property}:{sortDirection}...
@@ -3195,6 +4595,8 @@ You may also use the shorthand p instead of properties such as orderBy=p.lastNam
 export type OrderBy = LooselyBrandedString<"OrderBy">;
 
 /**
+* @deprecated Use `ObjectSetWithPropertiesType` in the `foundry.ontologies` package
+*
    * ObjectSet which returns objects with additional derived properties.
 This feature is experimental and not yet generally available.
    *
@@ -3206,6 +4608,8 @@ export interface ObjectSetWithPropertiesType {
 }
 
 /**
+* @deprecated Use `IntersectsPolygonQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field intersects the polygon provided. Allows you to specify a property to
 query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -3218,6 +4622,8 @@ export interface IntersectsPolygonQuery {
 }
 
 /**
+ * @deprecated Use `NotQueryV2` in the `foundry.ontologies` package
+ *
  * Returns objects where the query is not satisfied.
  *
  * Log Safety: UNSAFE
@@ -3227,6 +4633,8 @@ export interface NotQueryV2 {
 }
 
 /**
+ * @deprecated Use `ObjectSetBaseType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetBaseType {
@@ -3234,6 +4642,8 @@ export interface ObjectSetBaseType {
 }
 
 /**
+ * @deprecated Use `ListOntologiesResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListOntologiesResponse {
@@ -3241,6 +4651,18 @@ export interface ListOntologiesResponse {
 }
 
 /**
+ * @deprecated Use `BatchApplyActionRequestV2` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BatchApplyActionRequestV2 {
+  options?: BatchApplyActionRequestOptions;
+  requests: Array<BatchApplyActionRequestItem>;
+}
+
+/**
+ * @deprecated Use `NearestNeighborsQueryText` in the `foundry.ontologies` package
+ *
  * Automatically embed the text in a vector using the embedding model configured for the given propertyIdentifier.
  *
  * Log Safety: UNSAFE
@@ -3250,14 +4672,8 @@ export interface NearestNeighborsQueryText {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface BatchApplyActionRequestV2 {
-  options?: BatchApplyActionRequestOptions;
-  requests: Array<BatchApplyActionRequestItem>;
-}
-
-/**
+ * @deprecated Use `ListActionTypesResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListActionTypesResponse {
@@ -3266,6 +4682,8 @@ export interface ListActionTypesResponse {
 }
 
 /**
+ * @deprecated Use `QueryParameterV2` in the `foundry.ontologies` package
+ *
  * Details about a parameter of a query.
  *
  * Log Safety: UNSAFE
@@ -3276,11 +4694,8 @@ export interface QueryParameterV2 {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
-
-/**
+ * @deprecated Use `AggregationRangeV2` in the `foundry.ontologies` package
+ *
  * Specifies a range from an inclusive start value to an exclusive end value.
  *
  * Log Safety: UNSAFE
@@ -3291,6 +4706,15 @@ export interface AggregationRangeV2 {
 }
 
 /**
+ * @deprecated Use `WithinBoundingBoxPoint` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
+
+/**
+ * @deprecated Use `SelectedPropertyAvgAggregation` in the `foundry.ontologies` package
+ *
  * Computes the average value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -3300,15 +4724,8 @@ export interface SelectedPropertyAvgAggregation {
 }
 
 /**
- * Specifies the ordering of search results by a field and an ordering direction.
+ * @deprecated Use `TimeseriesTemplateRid` in the `foundry.ontologies` package
  *
- * Log Safety: UNSAFE
- */
-export interface SearchOrderBy {
-  fields: Array<SearchOrdering>;
-}
-
-/**
  * The RID identifying a time series codex template that resolves to a derived series.
  *
  * Log Safety: SAFE
@@ -3318,11 +4735,26 @@ export type TimeseriesTemplateRid = LooselyBrandedString<
 >;
 
 /**
+ * @deprecated Use `SearchOrderBy` in the `foundry.ontologies` package
+ *
+ * Specifies the ordering of search results by a field and an ordering direction.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchOrderBy {
+  fields: Array<SearchOrdering>;
+}
+
+/**
+ * @deprecated Use `ErrorName` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type ErrorName = LooselyBrandedString<"ErrorName">;
 
 /**
+ * @deprecated Use `OntologyStructType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface OntologyStructType {
@@ -3330,6 +4762,15 @@ export interface OntologyStructType {
 }
 
 /**
+ * @deprecated Use `ReturnEditsMode` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export type ReturnEditsMode = "ALL" | "NONE";
+
+/**
+ * @deprecated Use `ActionType` in the `foundry.ontologies` package
+ *
  * Represents an action type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -3345,11 +4786,8 @@ export interface ActionType {
 }
 
 /**
- * Log Safety: SAFE
- */
-export type ReturnEditsMode = "ALL" | "NONE";
-
-/**
+ * @deprecated Use `ReferenceValue` in the `foundry.ontologies` package
+ *
  * Resolved data values pointed to by a reference.
  *
  * Log Safety: UNSAFE
@@ -3359,6 +4797,8 @@ export type ReferenceValue = {
 } & GeotimeSeriesValue;
 
 /**
+ * @deprecated Use `ObjectRid` in the `foundry.ontologies` package
+ *
  * The unique resource identifier of an object, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
@@ -3366,6 +4806,8 @@ export type ReferenceValue = {
 export type ObjectRid = LooselyBrandedString<"ObjectRid">;
 
 /**
+* @deprecated Use `StructFieldSelector` in the `foundry.ontologies` package
+*
    * A combination of a struct property api name and a struct field api name. This is used to select struct fields
 to query on. Note that you can still select struct properties with only a 'PropertyApiNameSelector'; the queries
 will then become 'OR' queries across the fields of the struct property.
@@ -3378,6 +4820,8 @@ export interface StructFieldSelector {
 }
 
 /**
+ * @deprecated Use `NestedQueryAggregation` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface NestedQueryAggregation {
@@ -3386,6 +4830,17 @@ export interface NestedQueryAggregation {
 }
 
 /**
+ * @deprecated Use `FuzzyV2` in the `foundry.ontologies` package
+ *
+ * Setting fuzzy to true allows approximate matching in search queries that support it.
+ *
+ * Log Safety: SAFE
+ */
+export type FuzzyV2 = boolean;
+
+/**
+ * @deprecated Use `ArraySizeConstraint` in the `foundry.ontologies` package
+ *
  * The parameter expects an array of values and the size of the array must fall within the defined range.
  *
  * Log Safety: UNSAFE
@@ -3398,13 +4853,8 @@ export interface ArraySizeConstraint {
 }
 
 /**
- * Setting fuzzy to true allows approximate matching in search queries that support it.
+ * @deprecated Use `CountObjectsResponseV2` in the `foundry.ontologies` package
  *
- * Log Safety: SAFE
- */
-export type FuzzyV2 = boolean;
-
-/**
  * Log Safety: UNSAFE
  */
 export interface CountObjectsResponseV2 {
@@ -3412,6 +4862,8 @@ export interface CountObjectsResponseV2 {
 }
 
 /**
+ * @deprecated Use `AggregationMetricResult` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface AggregationMetricResult {
@@ -3420,6 +4872,8 @@ export interface AggregationMetricResult {
 }
 
 /**
+ * @deprecated Use `EqualsQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified field is equal to a value.
  *
  * Log Safety: UNSAFE
@@ -3430,6 +4884,8 @@ export interface EqualsQuery {
 }
 
 /**
+* @deprecated Use `ContainsAllTermsInOrderQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains all of the terms in the order provided,
 but they do have to be adjacent to each other. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -3443,6 +4899,8 @@ export interface ContainsAllTermsInOrderQuery {
 }
 
 /**
+ * @deprecated Use `StreamTimeSeriesValuesResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface StreamTimeSeriesValuesResponse {
@@ -3450,6 +4908,15 @@ export interface StreamTimeSeriesValuesResponse {
 }
 
 /**
+ * @deprecated Use `AsyncApplyActionOperationResponseV2` in the `foundry.ontologies` package
+ *
+ * Log Safety: SAFE
+ */
+export interface AsyncApplyActionOperationResponseV2 {}
+
+/**
+* @deprecated Use `ContainsAllTermsQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -3464,11 +4931,18 @@ export interface ContainsAllTermsQuery {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface AsyncApplyActionOperationResponseV2 {}
+* @deprecated Use `ExamplePropertyTypeStatus` in the `foundry.ontologies` package
+*
+   * This status indicates that the PropertyType is an example. It is backed by notional data that should not be
+used for actual workflows, but can be used to test those workflows.
+   *
+   * Log Safety: SAFE
+   */
+export interface ExamplePropertyTypeStatus {}
 
 /**
+ * @deprecated Use `QueryDataType` in the `foundry.ontologies` package
+ *
  * A union of all the types supported by Ontology Query parameters or outputs.
  *
  * Log Safety: UNSAFE
@@ -3495,14 +4969,8 @@ export type QueryDataType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
-   * This status indicates that the PropertyType is an example. It is backed by notional data that should not be
-used for actual workflows, but can be used to test those workflows.
-   *
-   * Log Safety: SAFE
-   */
-export interface ExamplePropertyTypeStatus {}
-
-/**
+ * @deprecated Use `AggregationFixedWidthGroupingV2` in the `foundry.ontologies` package
+ *
  * Divides objects into groups with the specified width.
  *
  * Log Safety: UNSAFE
@@ -3513,6 +4981,8 @@ export interface AggregationFixedWidthGroupingV2 {
 }
 
 /**
+ * @deprecated Use `ObjectSetFilterType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ObjectSetFilterType {
@@ -3521,6 +4991,8 @@ export interface ObjectSetFilterType {
 }
 
 /**
+ * @deprecated Use `ListOutgoingLinkTypesResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListOutgoingLinkTypesResponse {
@@ -3529,6 +5001,8 @@ export interface ListOutgoingLinkTypesResponse {
 }
 
 /**
+ * @deprecated Use `BatchApplyActionRequest` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface BatchApplyActionRequest {
@@ -3536,6 +5010,8 @@ export interface BatchApplyActionRequest {
 }
 
 /**
+ * @deprecated Use `ExperimentalPropertyTypeStatus` in the `foundry.ontologies` package
+ *
  * This status indicates that the PropertyType is in development.
  *
  * Log Safety: SAFE
@@ -3543,18 +5019,8 @@ export interface BatchApplyActionRequest {
 export interface ExperimentalPropertyTypeStatus {}
 
 /**
- * Log Safety: SAFE
- */
-export type AsyncActionStatus =
-  | "RUNNING_SUBMISSION_CHECKS"
-  | "EXECUTING_WRITE_BACK_WEBHOOK"
-  | "COMPUTING_ONTOLOGY_EDITS"
-  | "COMPUTING_FUNCTION"
-  | "WRITING_ONTOLOGY_EDITS"
-  | "EXECUTING_SIDE_EFFECT_WEBHOOK"
-  | "SENDING_NOTIFICATIONS";
-
-/**
+* @deprecated Use `IsNullQueryV2` in the `foundry.ontologies` package
+*
    * Returns objects based on the existence of the specified field. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
    *
@@ -3567,13 +5033,22 @@ export interface IsNullQueryV2 {
 }
 
 /**
- * The unique resource identifier of an action type, useful for interacting with other Foundry APIs.
+ * @deprecated Use `AsyncActionStatus` in the `foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
-export type ActionTypeRid = LooselyBrandedString<"ActionTypeRid">;
+export type AsyncActionStatus =
+  | "RUNNING_SUBMISSION_CHECKS"
+  | "EXECUTING_WRITE_BACK_WEBHOOK"
+  | "COMPUTING_ONTOLOGY_EDITS"
+  | "COMPUTING_FUNCTION"
+  | "WRITING_ONTOLOGY_EDITS"
+  | "EXECUTING_SIDE_EFFECT_WEBHOOK"
+  | "SENDING_NOTIFICATIONS";
 
 /**
+* @deprecated Use `SelectedPropertyCollectListAggregation` in the `foundry.ontologies` package
+*
    * Lists all values of a property up to the specified limit. The maximum supported limit is 100, by default.
 NOTE: A separate count aggregation should be used to determine the total count of values, to account for
 a possible truncation of the returned list.
@@ -3588,6 +5063,17 @@ export interface SelectedPropertyCollectListAggregation {
 }
 
 /**
+ * @deprecated Use `ActionTypeRid` in the `foundry.ontologies` package
+ *
+ * The unique resource identifier of an action type, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionTypeRid = LooselyBrandedString<"ActionTypeRid">;
+
+/**
+ * @deprecated Use `QueryType` in the `foundry.ontologies` package
+ *
  * Represents a query type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -3603,16 +5089,8 @@ export interface QueryType {
 }
 
 /**
- * Returns a response for every request in the same order. Duplicate requests will be assigned the same SubscriberId.
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetSubscribeResponses {
-  responses: Array<ObjectSetSubscribeResponse>;
-  id: RequestId;
-}
-
-/**
+* @deprecated Use `WithinBoundingBoxQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains a point within the bounding box provided. Allows you to
 specify a property to query on by a variety of means. Either field or propertyIdentifier must be supplied,
 but not both.
@@ -3626,6 +5104,20 @@ export interface WithinBoundingBoxQuery {
 }
 
 /**
+ * @deprecated Use `ObjectSetSubscribeResponses` in the `foundry.ontologies` package
+ *
+ * Returns a response for every request in the same order. Duplicate requests will be assigned the same SubscriberId.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetSubscribeResponses {
+  responses: Array<ObjectSetSubscribeResponse>;
+  id: RequestId;
+}
+
+/**
+* @deprecated Use `AnyTermQuery` in the `foundry.ontologies` package
+*
    * Returns objects where the specified field contains any of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
    *
@@ -3638,6 +5130,8 @@ export interface AnyTermQuery {
 }
 
 /**
+ * @deprecated Use `LinkedObjectTypeApiName` in the `foundry.ontologies` package
+ *
  * A reference to the linked object type.
  *
  * Log Safety: UNSAFE
@@ -3647,6 +5141,8 @@ export interface LinkedObjectTypeApiName {
 }
 
 /**
+* @deprecated Use `ObjectSetNearestNeighborsType` in the `foundry.ontologies` package
+*
    * ObjectSet containing the top numNeighbors objects with propertyIdentifier nearest to the input vector or
 text. This can only be performed on a property with type vector that has been configured to be searched with
 approximate nearest neighbors using a similarity function configured in the Ontology.
@@ -3667,6 +5163,8 @@ export interface ObjectSetNearestNeighborsType {
 }
 
 /**
+ * @deprecated Use `SubscriptionClosed` in the `foundry.ontologies` package
+ *
  * The subscription has been closed due to an irrecoverable error during its lifecycle.
  *
  * Log Safety: UNSAFE
@@ -3677,6 +5175,8 @@ export interface SubscriptionClosed {
 }
 
 /**
+* @deprecated Use `InterfaceLinkType` in the `foundry.ontologies` package
+*
    * A link type constraint defined at the interface level where the implementation of the links is provided
 by the implementing object types.
    *
@@ -3693,6 +5193,8 @@ export interface InterfaceLinkType {
 }
 
 /**
+ * @deprecated Use `Reason` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface Reason {
@@ -3700,16 +5202,22 @@ export interface Reason {
 }
 
 /**
+ * @deprecated Use `AggregationAccuracy` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export type AggregationAccuracy = "ACCURATE" | "APPROXIMATE";
 
 /**
+ * @deprecated Use `AttachmentPropertyV2` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type AttachmentPropertyV2 = LooselyBrandedString<"AttachmentPropertyV2">;
 
 /**
+ * @deprecated Use `ListQueryTypesResponse` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListQueryTypesResponse {
@@ -3718,6 +5226,17 @@ export interface ListQueryTypesResponse {
 }
 
 /**
+ * @deprecated Use `InterfaceTypeRid` in the `foundry.ontologies` package
+ *
+ * The unique resource identifier of an interface, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type InterfaceTypeRid = LooselyBrandedString<"InterfaceTypeRid">;
+
+/**
+ * @deprecated Use `LinkTypeSide` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface LinkTypeSide {
@@ -3730,13 +5249,8 @@ export interface LinkTypeSide {
 }
 
 /**
- * The unique resource identifier of an interface, useful for interacting with other Foundry APIs.
- *
- * Log Safety: SAFE
- */
-export type InterfaceTypeRid = LooselyBrandedString<"InterfaceTypeRid">;
-
-/**
+* @deprecated Use `UnevaluableConstraint` in the `foundry.ontologies` package
+*
    * The parameter cannot be evaluated because it depends on another parameter or object set that can't be evaluated.
 This can happen when a parameter's allowed values are defined by another parameter that is missing or invalid.
    *
@@ -3745,6 +5259,8 @@ This can happen when a parameter's allowed values are defined by another paramet
 export interface UnevaluableConstraint {}
 
 /**
+ * @deprecated Use `QueryRuntimeErrorParameter` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export type QueryRuntimeErrorParameter = LooselyBrandedString<
@@ -3752,6 +5268,8 @@ export type QueryRuntimeErrorParameter = LooselyBrandedString<
 >;
 
 /**
+* @deprecated Use `ParameterEvaluatedConstraint` in the `foundry.ontologies` package
+*
    * A constraint that an action parameter value must satisfy in order to be considered valid.
 Constraints can be configured on action parameters in the Ontology Manager.
 Applicable constraints are determined dynamically based on parameter inputs.
@@ -3783,6 +5301,17 @@ export type ParameterEvaluatedConstraint =
   | ({ type: "unevaluable" } & UnevaluableConstraint);
 
 /**
+ * @deprecated Use `TimeSeriesValueBankProperty` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export type TimeSeriesValueBankProperty = LooselyBrandedString<
+  "TimeSeriesValueBankProperty"
+>;
+
+/**
+* @deprecated Use `InterfaceTypeApiName` in the `foundry.ontologies` package
+*
    * The name of the interface type in the API in UpperCamelCase format. To find the API name for your interface
 type, use the List interface types endpoint or check the Ontology Manager.
    *
@@ -3791,13 +5320,8 @@ type, use the List interface types endpoint or check the Ontology Manager.
 export type InterfaceTypeApiName = LooselyBrandedString<"InterfaceTypeApiName">;
 
 /**
- * Log Safety: UNSAFE
- */
-export type TimeSeriesValueBankProperty = LooselyBrandedString<
-  "TimeSeriesValueBankProperty"
->;
-
-/**
+ * @deprecated Use `ListOntologiesV2Response` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ListOntologiesV2Response {
@@ -3805,6 +5329,8 @@ export interface ListOntologiesV2Response {
 }
 
 /**
+* @deprecated Use `ActivePropertyTypeStatus` in the `foundry.ontologies` package
+*
    * This status indicates that the PropertyType will not change on short notice and should thus be safe to use in
 user facing workflows.
    *
@@ -3813,6 +5339,8 @@ user facing workflows.
 export interface ActivePropertyTypeStatus {}
 
 /**
+ * @deprecated Use `ActionParameterArrayType` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ActionParameterArrayType {
@@ -3820,13 +5348,8 @@ export interface ActionParameterArrayType {
 }
 
 /**
- * The unique resource identifier of an object type, useful for interacting with other Foundry APIs.
+ * @deprecated Use `SharedPropertyTypeRid` in the `foundry.ontologies` package
  *
- * Log Safety: SAFE
- */
-export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
-
-/**
  * The unique resource identifier of an shared property type, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
@@ -3836,13 +5359,17 @@ export type SharedPropertyTypeRid = LooselyBrandedString<
 >;
 
 /**
- * Log Safety: UNSAFE
+ * @deprecated Use `ObjectTypeRid` in the `foundry.ontologies` package
+ *
+ * The unique resource identifier of an object type, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
  */
-export interface ApplyActionRequest {
-  parameters: Record<ParameterId, DataValue | undefined>;
-}
+export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 
 /**
+ * @deprecated Use `PrefixQuery` in the `foundry.ontologies` package
+ *
  * Returns objects where the specified field starts with the provided value.
  *
  * Log Safety: UNSAFE
@@ -3853,6 +5380,17 @@ export interface PrefixQuery {
 }
 
 /**
+ * @deprecated Use `ApplyActionRequest` in the `foundry.ontologies` package
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ApplyActionRequest {
+  parameters: Record<ParameterId, DataValue | undefined>;
+}
+
+/**
+ * @deprecated Use `MediaMetadata` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface MediaMetadata {
@@ -3862,445 +5400,10 @@ export interface MediaMetadata {
 }
 
 /**
+ * @deprecated Use `ModifyObjectRule` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface ModifyObjectRule {
   objectTypeApiName: ObjectTypeApiName;
 }
-
-/**
- * Log Safety: SAFE
- */
-export interface ByteType {}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface TimeseriesType {
-  itemType?: TimeSeriesItemType;
-}
-
-/**
- * The Resource Identifier (RID) of a single View of a Media Set. A Media Set View is an independent collection of Media Items.
- *
- * Log Safety: SAFE
- */
-export type MediaSetViewRid = LooselyBrandedString<"MediaSetViewRid">;
-
-/**
- * The page size to use for the endpoint.
- *
- * Log Safety: SAFE
- */
-export type PageSize = number;
-
-/**
- * Log Safety: SAFE
- */
-export interface UnsupportedType {
-  unsupportedType: string;
-}
-
-/**
- * The Resource Identifier (RID) of a Media Set in Foundry.
- *
- * Log Safety: SAFE
- */
-export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
-
-/**
-   * A user-specified identifier for a media item within a media set.
-Paths must be less than 256 characters long.
-If multiple items are written to the same media set at the same path, then when retrieving by path the media
-item which was written last is returned.
-   *
-   * Log Safety: UNSAFE
-   */
-export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
-
-/**
- * Log Safety: SAFE
- */
-export interface GeoShapeType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface MarkingType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface BinaryType {}
-
-/**
- * An ISO 8601 formatted duration.
- *
- * Log Safety: UNSAFE
- */
-export type Duration = LooselyBrandedString<"Duration">;
-
-/**
- * Log Safety: SAFE
- */
-export interface FilesystemResource {}
-
-/**
- * Represents a fixed size vector of floats. These can be used for vector similarity searches.
- *
- * Log Safety: UNSAFE
- */
-export interface VectorType {
-  dimension: number;
-  supportsSearchWith: Array<VectorSimilarityFunction>;
-  embeddingModel?: EmbeddingModel;
-}
-
-/**
- * Log Safety: SAFE
- */
-export interface TimestampType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface AttachmentType {}
-
-/**
- * Log Safety: SAFE
- */
-export type VectorSimilarityFunctionValue =
-  | "COSINE_SIMILARITY"
-  | "DOT_PRODUCT"
-  | "EUCLIDEAN_DISTANCE";
-
-/**
- * Log Safety: UNSAFE
- */
-export interface FoundryLiveDeployment {
-  rid?: string;
-  inputParamName?: string;
-  outputParamName?: string;
-}
-
-/**
- * The release status of the entity.
- *
- * Log Safety: SAFE
- */
-export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
-
-/**
- * A measurement of distance.
- *
- * Log Safety: UNSAFE
- */
-export interface Distance {
-  value: number;
-  unit: DistanceUnit;
-}
-
-/**
- * Log Safety: SAFE
- */
-export interface MediaSetViewItem {
-  mediaSetRid: MediaSetRid;
-  mediaSetViewRid: MediaSetViewRid;
-  mediaItemRid: MediaItemRid;
-}
-
-/**
- * Log Safety: SAFE
- */
-export interface MediaReferenceType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface BooleanType {}
-
-/**
- * The Resource Identifier (RID) of an individual Media Item within a Media Set in Foundry.
- *
- * Log Safety: SAFE
- */
-export type MediaItemRid = LooselyBrandedString<"MediaItemRid">;
-
-/**
- * A union of the types supported by time series properties.
- *
- * Log Safety: UNSAFE
- */
-export type TimeSeriesItemType =
-  | ({ type: "string" } & StringType)
-  | ({ type: "double" } & DoubleType);
-
-/**
- * Log Safety: SAFE
- */
-export interface GeoPointType {}
-
-/**
- * Log Safety: SAFE
- */
-export type DistanceUnit =
-  | "MILLIMETERS"
-  | "CENTIMETERS"
-  | "METERS"
-  | "KILOMETERS"
-  | "INCHES"
-  | "FEET"
-  | "YARDS"
-  | "MILES"
-  | "NAUTICAL_MILES";
-
-/**
- * A Foundry User ID.
- *
- * Log Safety: SAFE
- */
-export type UserId = string;
-
-/**
- * Log Safety: SAFE
- */
-export interface StringType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FloatType {}
-
-/**
- * Log Safety: SAFE
- */
-export type TimeUnit =
-  | "MILLISECONDS"
-  | "SECONDS"
-  | "MINUTES"
-  | "HOURS"
-  | "DAYS"
-  | "WEEKS"
-  | "MONTHS"
-  | "YEARS"
-  | "QUARTERS";
-
-/**
-   * The media type of the file or attachment.
-Examples: application/json, application/pdf, application/octet-stream, image/jpeg
-   *
-   * Log Safety: SAFE
-   */
-export type MediaType = LooselyBrandedString<"MediaType">;
-
-/**
- * The name of a File within Foundry. Examples: my-file.txt, my-file.jpg, dataframe.snappy.parquet.
- *
- * Log Safety: UNSAFE
- */
-export type Filename = LooselyBrandedString<"Filename">;
-
-/**
- * Log Safety: SAFE
- */
-export interface LocalFilePath {}
-
-/**
- * Log Safety: SAFE
- */
-export interface GeotimeSeriesReferenceType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface MediaSetViewItemWrapper {
-  mediaSetViewItem: MediaSetViewItem;
-}
-
-/**
- * A model provided by Language Model Service.
- *
- * Log Safety: SAFE
- */
-export interface LmsEmbeddingModel {
-  value: LmsEmbeddingModelValue;
-}
-
-/**
- * Log Safety: SAFE
- */
-export interface IntegerType {}
-
-/**
- * Log Safety: UNSAFE
- */
-export type EmbeddingModel =
-  | ({ type: "lms" } & LmsEmbeddingModel)
-  | ({ type: "foundryLiveDeployment" } & FoundryLiveDeployment);
-
-/**
- * Log Safety: SAFE
- */
-export interface DateType {}
-
-/**
- * Log Safety: SAFE
- */
-export type ContentType = LooselyBrandedString<"ContentType">;
-
-/**
-   * The page token indicates where to start paging. This should be omitted from the first page's request.
-To fetch the next page, clients should take the value from the nextPageToken field of the previous response
-and use it to populate the pageToken field of the next request.
-   *
-   * Log Safety: UNSAFE
-   */
-export type PageToken = LooselyBrandedString<"PageToken">;
-
-/**
- * Enables the use of preview functionality.
- *
- * Log Safety: SAFE
- */
-export type PreviewMode = boolean;
-
-/**
- * Log Safety: SAFE
- */
-export interface ShortType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface DecimalType {
-  precision?: number;
-  scale?: number;
-}
-
-/**
- * The representation of a media reference.
- *
- * Log Safety: UNSAFE
- */
-export interface MediaReference {
-  mimeType: MediaType;
-  reference: Reference;
-}
-
-/**
- * A union of the types supported by media reference properties.
- *
- * Log Safety: UNSAFE
- */
-export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItemWrapper;
-
-/**
- * The format of an archive file.
- *
- * Log Safety: SAFE
- */
-export type ArchiveFileFormat = "ZIP";
-
-/**
- * The total number of items across all pages.
- *
- * Log Safety: SAFE
- */
-export type TotalCount = string;
-
-/**
- * Log Safety: SAFE
- */
-export type LmsEmbeddingModelValue =
-  | "OPENAI_TEXT_EMBEDDING_ADA_002"
-  | "TEXT_EMBEDDING_3_SMALL"
-  | "SNOWFLAKE_ARCTIC_EMBED_M"
-  | "INSTRUCTOR_LARGE"
-  | "BGE_BASE_EN_V1_5";
-
-/**
- * The time at which the resource was most recently updated.
- *
- * Log Safety: SAFE
- */
-export type UpdatedTime = LooselyBrandedString<"UpdatedTime">;
-
-/**
- * Log Safety: SAFE
- */
-export type FolderRid = LooselyBrandedString<"FolderRid">;
-
-/**
- * The time at which the resource was created.
- *
- * Log Safety: SAFE
- */
-export type CreatedTime = LooselyBrandedString<"CreatedTime">;
-
-/**
- * The name of a field in a Struct.
- *
- * Log Safety: UNSAFE
- */
-export type StructFieldName = LooselyBrandedString<"StructFieldName">;
-
-/**
- * Log Safety: SAFE
- */
-export interface CipherTextType {}
-
-/**
-   * The vector similarity function to support approximate nearest neighbors search. Will result in an index
-specific for the function.
-   *
-   * Log Safety: SAFE
-   */
-export interface VectorSimilarityFunction {
-  value?: VectorSimilarityFunctionValue;
-}
-
-/**
- * Log Safety: SAFE
- */
-export interface NullType {}
-
-/**
- * The size of the file or attachment in bytes.
- *
- * Log Safety: SAFE
- */
-export type SizeBytes = string;
-
-/**
- * Log Safety: SAFE
- */
-export interface LongType {}
-
-/**
- * The display name of the entity.
- *
- * Log Safety: UNSAFE
- */
-export type DisplayName = LooselyBrandedString<"DisplayName">;
-
-/**
- * Log Safety: SAFE
- */
-export interface AnyType {}
-
-/**
- * The path to a File within Foundry. Examples: my-file.txt, path/to/my-file.jpg, dataframe.snappy.parquet.
- *
- * Log Safety: UNSAFE
- */
-export type FilePath = LooselyBrandedString<"FilePath">;
-
-/**
- * Log Safety: SAFE
- */
-export interface DoubleType {}
-
-/**
- * Log Safety: SAFE
- */
-export type ContentLength = string;

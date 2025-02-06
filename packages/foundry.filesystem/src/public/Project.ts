@@ -80,6 +80,31 @@ export function create(
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
+const _createFromTemplate: $FoundryPlatformMethod<
+  (
+    $body: _Filesystem.CreateProjectFromTemplateRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.Project>
+> = [1, "/v2/filesystem/projects/createFromTemplate", 3];
+
+/**
+ * Creates a project from a project template.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/projects/createFromTemplate
+ */
+export function createFromTemplate(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Filesystem.CreateProjectFromTemplateRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.Project> {
+  return $foundryPlatformFetch($ctx, _createFromTemplate, ...args);
+}
+
 const _addOrganizations: $FoundryPlatformMethod<
   (
     projectRid: _Filesystem.ProjectRid,

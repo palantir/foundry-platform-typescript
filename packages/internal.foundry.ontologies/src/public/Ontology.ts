@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/internal.foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -25,11 +24,12 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
+import type * as _Ontologies from "../_components.js";
 
 //
 
 const _list: $FoundryPlatformMethod<
-  () => Promise<_Core.ListOntologiesResponse>
+  () => Promise<_Ontologies.ListOntologiesResponse>
 > = [0, "/v1/ontologies"];
 
 /**
@@ -45,12 +45,12 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: []
-): Promise<_Core.ListOntologiesResponse> {
+): Promise<_Ontologies.ListOntologiesResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
-  (ontologyRid: _Core.OntologyRid) => Promise<_Core.Ontology>
+  (ontologyRid: _Ontologies.OntologyRid) => Promise<_Ontologies.Ontology>
 > = [0, "/v1/ontologies/{0}"];
 
 /**
@@ -65,7 +65,7 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [ontologyRid: _Core.OntologyRid]
-): Promise<_Core.Ontology> {
+  ...args: [ontologyRid: _Ontologies.OntologyRid]
+): Promise<_Ontologies.Ontology> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

@@ -19,68 +19,31 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * The submitted batch request was too large.
+ * The provided page token is invalid.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export interface BatchRequestSizeExceededLimit {
+export interface InvalidPageToken {
   errorCode: "INVALID_ARGUMENT";
-  errorName: "BatchRequestSizeExceededLimit";
+  errorName: "InvalidPageToken";
   errorInstanceId: string;
   parameters: {
-    MaximumBatchSize: unknown;
-    ProvidedBatchSize: unknown;
+    pageToken: unknown;
   };
 }
 
 /**
- * Getting the root folder as a resource is not supported.
+ * The requested folder could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
  */
-export interface GetRootFolderNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "GetRootFolderNotSupported";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
- * Getting a space as a resource is not supported.
- *
- * Log Safety: SAFE
- */
-export interface GetSpaceResourceNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "GetSpaceResourceNotSupported";
+export interface FolderNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "FolderNotFound";
   errorInstanceId: string;
   parameters: {
-    spaceRid: unknown;
+    folderRid: unknown;
   };
-}
-
-/**
- * The provided AND filter should have at least one sub-filter.
- *
- * Log Safety: SAFE
- */
-export interface InvalidAndFilter {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidAndFilter";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
- * The change data capture configuration is invalid.
- *
- * Log Safety: SAFE
- */
-export interface InvalidChangeDataCaptureConfiguration {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidChangeDataCaptureConfiguration";
-  errorInstanceId: string;
-  parameters: {};
 }
 
 /**
@@ -115,57 +78,16 @@ export interface InvalidFilterValue {
 }
 
 /**
- * The provided OR filter should have at least one sub-filter.
+ * The time zone is invalid.
  *
  * Log Safety: SAFE
  */
-export interface InvalidOrFilter {
+export interface InvalidTimeZone {
   errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidOrFilter";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
- * The provided page size was zero or negative. Page sizes must be greater than zero.
- *
- * Log Safety: SAFE
- */
-export interface InvalidPageSize {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidPageSize";
+  errorName: "InvalidTimeZone";
   errorInstanceId: string;
   parameters: {
-    pageSize: unknown;
-  };
-}
-
-/**
- * The provided page token is invalid.
- *
- * Log Safety: UNSAFE
- */
-export interface InvalidPageToken {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidPageToken";
-  errorInstanceId: string;
-  parameters: {
-    pageToken: unknown;
-  };
-}
-
-/**
- * The given parameters are individually valid but cannot be used in the given combination.
- *
- * Log Safety: SAFE
- */
-export interface InvalidParameterCombination {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidParameterCombination";
-  errorInstanceId: string;
-  parameters: {
-    validCombinations: unknown;
-    providedParameters: unknown;
+    timeZone: unknown;
   };
 }
 
@@ -185,16 +107,120 @@ export interface InvalidSchema {
 }
 
 /**
- * The time zone is invalid.
+   * This feature is only supported in preview mode. Please use preview=true in the query
+parameters to call this endpoint.
+   *
+   * Log Safety: SAFE
+   */
+export interface ApiFeaturePreviewUsageOnly {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ApiFeaturePreviewUsageOnly";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The submitted batch request was too large.
  *
  * Log Safety: SAFE
  */
-export interface InvalidTimeZone {
+export interface BatchRequestSizeExceededLimit {
   errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidTimeZone";
+  errorName: "BatchRequestSizeExceededLimit";
   errorInstanceId: string;
   parameters: {
-    timeZone: unknown;
+    MaximumBatchSize: unknown;
+    ProvidedBatchSize: unknown;
+  };
+}
+
+/**
+ * The change data capture configuration is invalid.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidChangeDataCaptureConfiguration {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidChangeDataCaptureConfiguration";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The requested schema could not be converted into a stream schema.
+ *
+ * Log Safety: SAFE
+ */
+export interface SchemaIsNotStreamSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SchemaIsNotStreamSchema";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The provided OR filter should have at least one sub-filter.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidOrFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidOrFilter";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The given parameters are individually valid but cannot be used in the given combination.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidParameterCombination {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidParameterCombination";
+  errorInstanceId: string;
+  parameters: {
+    validCombinations: unknown;
+    providedParameters: unknown;
+  };
+}
+
+/**
+ * The provided AND filter should have at least one sub-filter.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidAndFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidAndFilter";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * You are not allowed to use Palantir APIs.
+ *
+ * Log Safety: SAFE
+ */
+export interface ApiUsageDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ApiUsageDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * An unknown distance unit was provided.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnknownDistanceUnit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnknownDistanceUnit";
+  errorInstanceId: string;
+  parameters: {
+    unknownUnit: unknown;
+    knownUnits: unknown;
   };
 }
 
@@ -211,28 +237,27 @@ export interface MissingBatchRequest {
 }
 
 /**
- * The provided resource name is already in use by another resource in the same folder.
+ * The provided page size was zero or negative. Page sizes must be greater than zero.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
-export interface ResourceNameAlreadyExists {
-  errorCode: "CONFLICT";
-  errorName: "ResourceNameAlreadyExists";
+export interface InvalidPageSize {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPageSize";
   errorInstanceId: string;
   parameters: {
-    parentFolderRid: unknown;
-    displayName: unknown;
+    pageSize: unknown;
   };
 }
 
 /**
- * The requested schema could not be converted into a stream schema.
+ * A post body is required for this endpoint, but was not found in the request.
  *
  * Log Safety: SAFE
  */
-export interface SchemaIsNotStreamSchema {
+export interface MissingPostBody {
   errorCode: "INVALID_ARGUMENT";
-  errorName: "SchemaIsNotStreamSchema";
+  errorName: "MissingPostBody";
   errorInstanceId: string;
   parameters: {};
 }

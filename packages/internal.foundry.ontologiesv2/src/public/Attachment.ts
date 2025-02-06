@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -33,7 +34,7 @@ const _upload: $FoundryPlatformMethod<
     $body: Blob,
     $queryParams: { filename: _Core.Filename },
     $headerParams?: { "Content-Type"?: _Core.ContentType },
-  ) => Promise<_Core.AttachmentV2>
+  ) => Promise<_Ontologies.AttachmentV2>
 > = [1, "/v2/ontologies/attachments/upload", 7, "*/*"];
 
 /**
@@ -58,7 +59,7 @@ export function upload(
     $queryParams: { filename: _Core.Filename },
     $headerParams?: { "Content-Type"?: _Core.ContentType },
   ]
-): Promise<_Core.AttachmentV2> {
+): Promise<_Ontologies.AttachmentV2> {
   const headerParams = {
     ...args[2],
     "Content-Type": args[2]?.["Content-Type"] ?? args[0].type,
@@ -69,7 +70,7 @@ export function upload(
 }
 
 const _read: $FoundryPlatformMethod<
-  (attachmentRid: _Core.AttachmentRid) => Promise<Response>
+  (attachmentRid: _Ontologies.AttachmentRid) => Promise<Response>
 > = [0, "/v2/ontologies/attachments/{0}/content", , , "*/*"];
 
 /**
@@ -85,13 +86,15 @@ const _read: $FoundryPlatformMethod<
  */
 export function read(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [attachmentRid: _Core.AttachmentRid]
+  ...args: [attachmentRid: _Ontologies.AttachmentRid]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _read, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
-  (attachmentRid: _Core.AttachmentRid) => Promise<_Core.AttachmentV2>
+  (
+    attachmentRid: _Ontologies.AttachmentRid,
+  ) => Promise<_Ontologies.AttachmentV2>
 > = [0, "/v2/ontologies/attachments/{0}"];
 
 /**
@@ -107,7 +110,7 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [attachmentRid: _Core.AttachmentRid]
-): Promise<_Core.AttachmentV2> {
+  ...args: [attachmentRid: _Ontologies.AttachmentRid]
+): Promise<_Ontologies.AttachmentV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
