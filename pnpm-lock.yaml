@@ -221,6 +221,9 @@ importers:
       '@osdk/foundry.functions':
         specifier: workspace:*
         version: link:../foundry.functions
+      '@osdk/foundry.ontologies':
+        specifier: workspace:*
+        version: link:../foundry.ontologies
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -393,6 +396,12 @@ importers:
 
   packages/foundry.ontologies:
     dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
+      '@osdk/foundry.geo':
+        specifier: workspace:*
+        version: link:../foundry.geo
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -637,6 +646,9 @@ importers:
       '@osdk/internal.foundry.core':
         specifier: workspace:*
         version: link:../internal.foundry.core
+      '@osdk/internal.foundry.geo':
+        specifier: workspace:*
+        version: link:../internal.foundry.geo
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -659,6 +671,9 @@ importers:
       '@osdk/internal.foundry.core':
         specifier: workspace:*
         version: link:../internal.foundry.core
+      '@osdk/internal.foundry.ontologies':
+        specifier: workspace:*
+        version: link:../internal.foundry.ontologies
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

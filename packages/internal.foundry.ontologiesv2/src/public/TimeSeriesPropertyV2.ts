@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -30,15 +30,15 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 
 const _getFirstPoint: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
-  ) => Promise<_Core.TimeSeriesPoint | undefined>
+  ) => Promise<_Ontologies.TimeSeriesPoint | undefined>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/firstPoint", 2];
 
 /**
@@ -55,31 +55,31 @@ const _getFirstPoint: $FoundryPlatformMethod<
 export function getFirstPoint(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
-): Promise<_Core.TimeSeriesPoint | undefined> {
+): Promise<_Ontologies.TimeSeriesPoint | undefined> {
   return $foundryPlatformFetch($ctx, _getFirstPoint, ...args);
 }
 
 const _getLastPoint: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
-  ) => Promise<_Core.TimeSeriesPoint | undefined>
+  ) => Promise<_Ontologies.TimeSeriesPoint | undefined>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/lastPoint", 2];
 
 /**
@@ -96,31 +96,31 @@ const _getLastPoint: $FoundryPlatformMethod<
 export function getLastPoint(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
     },
   ]
-): Promise<_Core.TimeSeriesPoint | undefined> {
+): Promise<_Ontologies.TimeSeriesPoint | undefined> {
   return $foundryPlatformFetch($ctx, _getLastPoint, ...args);
 }
 
 const _streamPoints: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    $body: _Core.StreamTimeSeriesPointsRequest,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    $body: _Ontologies.StreamTimeSeriesPointsRequest,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
-      format?: _Core.StreamingOutputFormat | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
+      format?: _Ontologies.StreamingOutputFormat | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -145,15 +145,15 @@ const _streamPoints: $FoundryPlatformMethod<
 export function streamPoints(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    objectType: _Core.ObjectTypeApiName,
-    primaryKey: _Core.PropertyValueEscapedString,
-    property: _Core.PropertyApiName,
-    $body: _Core.StreamTimeSeriesPointsRequest,
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    property: _Ontologies.PropertyApiName,
+    $body: _Ontologies.StreamTimeSeriesPointsRequest,
     $queryParams?: {
-      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
-      packageName?: _Core.SdkPackageName | undefined;
-      format?: _Core.StreamingOutputFormat | undefined;
+      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
+      packageName?: _Ontologies.SdkPackageName | undefined;
+      format?: _Ontologies.StreamingOutputFormat | undefined;
     },
   ]
 ): Promise<Response> {

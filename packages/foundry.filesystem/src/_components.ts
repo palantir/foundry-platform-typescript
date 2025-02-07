@@ -63,6 +63,20 @@ export interface CreateFolderRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateProjectFromTemplateRequest {
+  templateRid: ProjectTemplateRid;
+  variableValues: Record<
+    ProjectTemplateVariableId,
+    ProjectTemplateVariableValue
+  >;
+  defaultRoles?: Array<_Core.RoleId>;
+  organizationRids?: Array<_Core.OrganizationRid>;
+  projectDescription?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateProjectRequest {
   displayName: ResourceDisplayName;
   description?: string;
@@ -216,6 +230,31 @@ export interface Project {
  * Log Safety: SAFE
  */
 export type ProjectRid = LooselyBrandedString<"ProjectRid">;
+
+/**
+ * The unique resource identifier (RID) of a project template.
+ *
+ * Log Safety: SAFE
+ */
+export type ProjectTemplateRid = LooselyBrandedString<"ProjectTemplateRid">;
+
+/**
+ * An identifier for a variable used in a project template.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ProjectTemplateVariableId = LooselyBrandedString<
+  "ProjectTemplateVariableId"
+>;
+
+/**
+ * The value assigned to a variable used in a project template.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ProjectTemplateVariableValue = LooselyBrandedString<
+  "ProjectTemplateVariableValue"
+>;
 
 /**
  * Log Safety: SAFE

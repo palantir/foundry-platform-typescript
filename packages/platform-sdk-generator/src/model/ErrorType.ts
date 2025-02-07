@@ -29,6 +29,7 @@ export class ErrorType extends Type {
   spec: ir.Error;
   model: Model;
   name: string;
+  isDeprecated: boolean;
 
   constructor(
     model: Model,
@@ -36,6 +37,7 @@ export class ErrorType extends Type {
     packageLocalFilePath: string,
     externalImportSpecifier: string,
     spec: ir.Error,
+    isDeprecated: boolean,
   ) {
     super();
     this.namespace = namespace;
@@ -44,6 +46,7 @@ export class ErrorType extends Type {
     this.spec = spec;
     this.model = model;
     this.name = spec.locator.localName;
+    this.isDeprecated = isDeprecated;
   }
 
   get referencedComponents(): Component[] {
@@ -84,7 +87,13 @@ export class ErrorType extends Type {
 
     let out = "";
     out += `
-  /** 
+  /** ${
+      this.isDeprecated
+        ? `\n* @deprecated Use \`${this.name}\` in the \`${
+          this.namespace.version === "v1" ? "internal." : ""
+        }foundry.ontologies\` package\n*`
+        : ""
+    } 
    * ${error.documentation.plainTextDescription ?? ""}
    * 
    * Log Safety: ${safety}

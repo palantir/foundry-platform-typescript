@@ -20,6 +20,7 @@ import type { Resource } from "./Resource.js";
 
 export interface Namespace {
   name: string;
+  version: string;
   resources: Resource[];
   components: Component[];
   errors: Error[];

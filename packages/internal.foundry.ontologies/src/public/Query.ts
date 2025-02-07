@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/internal.foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -25,15 +24,16 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
+import type * as _Ontologies from "../_components.js";
 
 //
 
 const _execute: $FoundryPlatformMethod<
   (
-    ontologyRid: _Core.OntologyRid,
-    queryApiName: _Core.QueryApiName,
-    $body: _Core.ExecuteQueryRequest,
-  ) => Promise<_Core.ExecuteQueryResponse>
+    ontologyRid: _Ontologies.OntologyRid,
+    queryApiName: _Ontologies.QueryApiName,
+    $body: _Ontologies.ExecuteQueryRequest,
+  ) => Promise<_Ontologies.ExecuteQueryResponse>
 > = [1, "/v1/ontologies/{0}/queries/{1}/execute", 1];
 
 /**
@@ -49,10 +49,10 @@ const _execute: $FoundryPlatformMethod<
 export function execute(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontologyRid: _Core.OntologyRid,
-    queryApiName: _Core.QueryApiName,
-    $body: _Core.ExecuteQueryRequest,
+    ontologyRid: _Ontologies.OntologyRid,
+    queryApiName: _Ontologies.QueryApiName,
+    $body: _Ontologies.ExecuteQueryRequest,
   ]
-): Promise<_Core.ExecuteQueryResponse> {
+): Promise<_Ontologies.ExecuteQueryResponse> {
   return $foundryPlatformFetch($ctx, _execute, ...args);
 }

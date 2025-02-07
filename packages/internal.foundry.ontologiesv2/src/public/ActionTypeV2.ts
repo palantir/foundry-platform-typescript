@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Ontologies from "@osdk/internal.foundry.ontologies";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -30,12 +31,12 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 
 const _list: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
+    ontology: _Ontologies.OntologyIdentifier,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
-  ) => Promise<_Core.ListActionTypesResponseV2>
+  ) => Promise<_Ontologies.ListActionTypesResponseV2>
 > = [0, "/v2/ontologies/{0}/actionTypes", 2];
 
 /**
@@ -54,22 +55,22 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
+    ontology: _Ontologies.OntologyIdentifier,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
   ]
-): Promise<_Core.ListActionTypesResponseV2> {
+): Promise<_Ontologies.ListActionTypesResponseV2> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
   (
-    ontology: _Core.OntologyIdentifier,
-    actionType: _Core.ActionTypeApiName,
-  ) => Promise<_Core.ActionTypeV2>
+    ontology: _Ontologies.OntologyIdentifier,
+    actionType: _Ontologies.ActionTypeApiName,
+  ) => Promise<_Ontologies.ActionTypeV2>
 > = [0, "/v2/ontologies/{0}/actionTypes/{1}"];
 
 /**
@@ -85,9 +86,9 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontology: _Core.OntologyIdentifier,
-    actionType: _Core.ActionTypeApiName,
+    ontology: _Ontologies.OntologyIdentifier,
+    actionType: _Ontologies.ActionTypeApiName,
   ]
-): Promise<_Core.ActionTypeV2> {
+): Promise<_Ontologies.ActionTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

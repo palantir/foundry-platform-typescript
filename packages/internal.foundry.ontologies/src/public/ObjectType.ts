@@ -25,17 +25,18 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
+import type * as _Ontologies from "../_components.js";
 
 //
 
 const _list: $FoundryPlatformMethod<
   (
-    ontologyRid: _Core.OntologyRid,
+    ontologyRid: _Ontologies.OntologyRid,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
-  ) => Promise<_Core.ListObjectTypesResponse>
+  ) => Promise<_Ontologies.ListObjectTypesResponse>
 > = [0, "/v1/ontologies/{0}/objectTypes", 2];
 
 /**
@@ -55,22 +56,22 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontologyRid: _Core.OntologyRid,
+    ontologyRid: _Ontologies.OntologyRid,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
   ]
-): Promise<_Core.ListObjectTypesResponse> {
+): Promise<_Ontologies.ListObjectTypesResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
   (
-    ontologyRid: _Core.OntologyRid,
-    objectType: _Core.ObjectTypeApiName,
-  ) => Promise<_Core.ObjectType>
+    ontologyRid: _Ontologies.OntologyRid,
+    objectType: _Ontologies.ObjectTypeApiName,
+  ) => Promise<_Ontologies.ObjectType>
 > = [0, "/v1/ontologies/{0}/objectTypes/{1}"];
 
 /**
@@ -85,20 +86,23 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [ontologyRid: _Core.OntologyRid, objectType: _Core.ObjectTypeApiName]
-): Promise<_Core.ObjectType> {
+  ...args: [
+    ontologyRid: _Ontologies.OntologyRid,
+    objectType: _Ontologies.ObjectTypeApiName,
+  ]
+): Promise<_Ontologies.ObjectType> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
 const _listOutgoingLinkTypes: $FoundryPlatformMethod<
   (
-    ontologyRid: _Core.OntologyRid,
-    objectType: _Core.ObjectTypeApiName,
+    ontologyRid: _Ontologies.OntologyRid,
+    objectType: _Ontologies.ObjectTypeApiName,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
-  ) => Promise<_Core.ListOutgoingLinkTypesResponse>
+  ) => Promise<_Ontologies.ListOutgoingLinkTypesResponse>
 > = [0, "/v1/ontologies/{0}/objectTypes/{1}/outgoingLinkTypes", 2];
 
 /**
@@ -115,24 +119,24 @@ const _listOutgoingLinkTypes: $FoundryPlatformMethod<
 export function listOutgoingLinkTypes(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontologyRid: _Core.OntologyRid,
-    objectType: _Core.ObjectTypeApiName,
+    ontologyRid: _Ontologies.OntologyRid,
+    objectType: _Ontologies.ObjectTypeApiName,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
   ]
-): Promise<_Core.ListOutgoingLinkTypesResponse> {
+): Promise<_Ontologies.ListOutgoingLinkTypesResponse> {
   return $foundryPlatformFetch($ctx, _listOutgoingLinkTypes, ...args);
 }
 
 const _getOutgoingLinkType: $FoundryPlatformMethod<
   (
-    ontologyRid: _Core.OntologyRid,
-    objectType: _Core.ObjectTypeApiName,
-    linkType: _Core.LinkTypeApiName,
-  ) => Promise<_Core.LinkTypeSide>
+    ontologyRid: _Ontologies.OntologyRid,
+    objectType: _Ontologies.ObjectTypeApiName,
+    linkType: _Ontologies.LinkTypeApiName,
+  ) => Promise<_Ontologies.LinkTypeSide>
 > = [0, "/v1/ontologies/{0}/objectTypes/{1}/outgoingLinkTypes/{2}"];
 
 /**
@@ -149,10 +153,10 @@ const _getOutgoingLinkType: $FoundryPlatformMethod<
 export function getOutgoingLinkType(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontologyRid: _Core.OntologyRid,
-    objectType: _Core.ObjectTypeApiName,
-    linkType: _Core.LinkTypeApiName,
+    ontologyRid: _Ontologies.OntologyRid,
+    objectType: _Ontologies.ObjectTypeApiName,
+    linkType: _Ontologies.LinkTypeApiName,
   ]
-): Promise<_Core.LinkTypeSide> {
+): Promise<_Ontologies.LinkTypeSide> {
   return $foundryPlatformFetch($ctx, _getOutgoingLinkType, ...args);
 }

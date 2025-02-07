@@ -25,17 +25,18 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
+import type * as _Ontologies from "../_components.js";
 
 //
 
 const _list: $FoundryPlatformMethod<
   (
-    ontologyRid: _Core.OntologyRid,
+    ontologyRid: _Ontologies.OntologyRid,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
-  ) => Promise<_Core.ListQueryTypesResponse>
+  ) => Promise<_Ontologies.ListQueryTypesResponse>
 > = [0, "/v1/ontologies/{0}/queryTypes", 2];
 
 /**
@@ -54,22 +55,22 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    ontologyRid: _Core.OntologyRid,
+    ontologyRid: _Ontologies.OntologyRid,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
   ]
-): Promise<_Core.ListQueryTypesResponse> {
+): Promise<_Ontologies.ListQueryTypesResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
   (
-    ontologyRid: _Core.OntologyRid,
-    queryApiName: _Core.QueryApiName,
-  ) => Promise<_Core.QueryType>
+    ontologyRid: _Ontologies.OntologyRid,
+    queryApiName: _Ontologies.QueryApiName,
+  ) => Promise<_Ontologies.QueryType>
 > = [0, "/v1/ontologies/{0}/queryTypes/{1}"];
 
 /**
@@ -84,7 +85,10 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [ontologyRid: _Core.OntologyRid, queryApiName: _Core.QueryApiName]
-): Promise<_Core.QueryType> {
+  ...args: [
+    ontologyRid: _Ontologies.OntologyRid,
+    queryApiName: _Ontologies.QueryApiName,
+  ]
+): Promise<_Ontologies.QueryType> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
