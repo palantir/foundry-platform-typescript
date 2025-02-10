@@ -7,7 +7,10 @@
       "@osdk/foundry.*",
       "@osdk/foundry",
       "@osdk/internal.foundry",
-      "@osdk/internal.foundry.*"
+      "@osdk/internal.foundry.core",
+      "@osdk/internal.foundry.datasets",
+      "@osdk/internal.foundry.geo",
+      "@osdk/internal.foundry.ontologies"
     ]
   ],
   "linked": [],
