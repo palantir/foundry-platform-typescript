@@ -26,7 +26,6 @@ length 2*n where n is the number of dimensions represented in the
 contained geometries, with all axes of the most southwesterly point
 followed by all axes of the more northeasterly point. The axes order
 of a bbox follows the axes order of geometries.
-See https://datatracker.ietf.org/doc/html/rfc7946#section-5.
    *
    * Log Safety: UNSAFE
    */
@@ -38,8 +37,92 @@ export type BBox = Array<Coordinate>;
 export type Coordinate = number;
 
 /**
- * See https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.2 for more information.
+ * GeoJSon 'Feature' object
  *
+ * Log Safety: UNSAFE
+ */
+export interface Feature {
+  geometry?: Geometry;
+  properties: Record<FeaturePropertyKey, any>;
+  id?: any;
+  bbox?: BBox;
+}
+
+/**
+ * GeoJSon 'FeatureCollection' object
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FeatureCollection {
+  features: Array<FeatureCollectionTypes>;
+  bbox?: BBox;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FeatureCollectionTypes = { type: "Feature" } & Feature;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FeaturePropertyKey = LooselyBrandedString<"FeaturePropertyKey">;
+
+/**
+   * GeoJSon object
+The coordinate reference system for all GeoJSON coordinates is a
+geographic coordinate reference system, using the World Geodetic System
+1984 (WGS 84) datum, with longitude and latitude units of decimal
+degrees.
+This is equivalent to the coordinate reference system identified by the
+Open Geospatial Consortium (OGC) URN
+An OPTIONAL third-position element SHALL be the height in meters above
+or below the WGS 84 reference ellipsoid.
+In the absence of elevation values, applications sensitive to height or
+depth SHOULD interpret positions as being at local ground or sea level.
+   *
+   * Log Safety: UNSAFE
+   */
+export type GeoJsonObject =
+  | ({ type: "MultiPoint" } & MultiPoint)
+  | ({ type: "GeometryCollection" } & GeometryCollection)
+  | ({ type: "MultiLineString" } & MultiLineString)
+  | ({ type: "FeatureCollection" } & FeatureCollection)
+  | ({ type: "LineString" } & LineString)
+  | ({ type: "MultiPolygon" } & MultiPolygon)
+  | ({ type: "Point" } & GeoPoint)
+  | ({ type: "Polygon" } & Polygon)
+  | ({ type: "Feature" } & Feature);
+
+/**
+ * Abstract type for all GeoJSon object except Feature and FeatureCollection
+ *
+ * Log Safety: UNSAFE
+ */
+export type Geometry =
+  | ({ type: "MultiPoint" } & MultiPoint)
+  | ({ type: "GeometryCollection" } & GeometryCollection)
+  | ({ type: "MultiLineString" } & MultiLineString)
+  | ({ type: "LineString" } & LineString)
+  | ({ type: "MultiPolygon" } & MultiPolygon)
+  | ({ type: "Point" } & GeoPoint)
+  | ({ type: "Polygon" } & Polygon);
+
+/**
+   * GeoJSon geometry collection
+GeometryCollections composed of a single part or a number of parts of a
+single type SHOULD be avoided when that single part or a single object
+of multipart type (MultiPoint, MultiLineString, or MultiPolygon) could
+be used instead.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface GeometryCollection {
+  geometries: Array<Geometry>;
+  bbox?: BBox;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface GeoPoint {
@@ -56,15 +139,51 @@ a surface.
 A linear ring MUST follow the right-hand rule with respect to the area
 it bounds, i.e., exterior rings are counterclockwise, and holes are
 clockwise.
-See https://tools.ietf.org/html/rfc7946#section-3.1.6.
    *
    * Log Safety: UNSAFE
    */
 export type LinearRing = Array<Position>;
 
 /**
- * See https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.6
+ * Log Safety: UNSAFE
+ */
+export interface LineString {
+  coordinates?: LineStringCoordinates;
+  bbox?: BBox;
+}
+
+/**
+ * GeoJSon fundamental geometry construct, array of two or more positions.
  *
+ * Log Safety: UNSAFE
+ */
+export type LineStringCoordinates = Array<Position>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MultiLineString {
+  coordinates: Array<LineStringCoordinates>;
+  bbox?: BBox;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MultiPoint {
+  coordinates: Array<Position>;
+  bbox?: BBox;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MultiPolygon {
+  coordinates: Array<Array<LinearRing>>;
+  bbox?: BBox;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Polygon {

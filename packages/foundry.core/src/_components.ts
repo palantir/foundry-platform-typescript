@@ -32,6 +32,11 @@ export interface AndQueryV2 {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AnyType {}
+
+/**
  * The format of an archive file.
  *
  * Log Safety: SAFE
@@ -225,8 +230,8 @@ export interface DateType {}
  * Log Safety: SAFE
  */
 export interface DecimalType {
-  scale?: number;
   precision?: number;
+  scale?: number;
 }
 
 /**
@@ -302,6 +307,13 @@ export interface Duration {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type EmbeddingModel =
+  | ({ type: "lms" } & LmsEmbeddingModel)
+  | ({ type: "foundryLiveDeployment" } & FoundryLiveDeployment);
+
+/**
  * Log Safety: SAFE
  */
 export type EnrollmentRid = LooselyBrandedString<"EnrollmentRid">;
@@ -367,11 +379,23 @@ export interface FieldSchema {
 }
 
 /**
- * The path to a File within Foundry.
+ * The name of a File within Foundry. Examples: my-file.txt, my-file.jpg, dataframe.snappy.parquet.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Filename = LooselyBrandedString<"Filename">;
+
+/**
+ * The path to a File within Foundry. Examples: my-file.txt, path/to/my-file.jpg, dataframe.snappy.parquet.
  *
  * Log Safety: UNSAFE
  */
 export type FilePath = LooselyBrandedString<"FilePath">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilesystemResource {}
 
 /**
  * Log Safety: SAFE
@@ -458,6 +482,20 @@ export interface FilterUuidType {}
 export interface FloatType {}
 
 /**
+ * Log Safety: SAFE
+ */
+export type FolderRid = LooselyBrandedString<"FolderRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface FoundryLiveDeployment {
+  rid?: string;
+  inputParamName?: string;
+  outputParamName?: string;
+}
+
+/**
    * Configuration for change data capture which resolves the latest state of the dataset based on new full rows
 being pushed to the stream. For example, if a value for a row is updated, it is only sufficient to publish
 the entire new state of that row to the stream.
@@ -477,6 +515,21 @@ export interface FullRowChangeDataCaptureConfiguration {
  * Log Safety: SAFE
  */
 export type FuzzyV2 = boolean;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeoPointType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeoShapeType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeotimeSeriesReferenceType {}
 
 /**
  * The display name of a multipass group.
@@ -585,6 +638,30 @@ export interface IsNullQueryV2 {
 export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
 
 /**
+ * A model provided by Language Model Service.
+ *
+ * Log Safety: SAFE
+ */
+export interface LmsEmbeddingModel {
+  value: LmsEmbeddingModelValue;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type LmsEmbeddingModelValue =
+  | "OPENAI_TEXT_EMBEDDING_ADA_002"
+  | "TEXT_EMBEDDING_3_SMALL"
+  | "SNOWFLAKE_ARCTIC_EMBED_M"
+  | "INSTRUCTOR_LARGE"
+  | "BGE_BASE_EN_V1_5";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LocalFilePath {}
+
+/**
  * Log Safety: SAFE
  */
 export interface LongType {}
@@ -631,11 +708,79 @@ export interface MapFieldType {
 export type MarkingId = string;
 
 /**
- * The Resource Identifier (RID) of a Media Set
+ * Log Safety: SAFE
+ */
+export interface MarkingType {}
+
+/**
+   * A user-specified identifier for a media item within a media set.
+Paths must be less than 256 characters long.
+If multiple items are written to the same media set at the same path, then when retrieving by path the media
+item which was written last is returned.
+   *
+   * Log Safety: UNSAFE
+   */
+export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
+
+/**
+ * The Resource Identifier (RID) of an individual Media Item within a Media Set in Foundry.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaItemRid = LooselyBrandedString<"MediaItemRid">;
+
+/**
+ * The representation of a media reference.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MediaReference {
+  mimeType: MediaType;
+  reference: Reference;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaReferenceType {}
+
+/**
+ * The Resource Identifier (RID) of a Media Set in Foundry.
  *
  * Log Safety: SAFE
  */
 export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaSetViewItem {
+  mediaSetRid: MediaSetRid;
+  mediaSetViewRid: MediaSetViewRid;
+  mediaItemRid: MediaItemRid;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaSetViewItemWrapper {
+  mediaSetViewItem: MediaSetViewItem;
+}
+
+/**
+ * The Resource Identifier (RID) of a single View of a Media Set. A Media Set View is an independent collection of Media Items.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSetViewRid = LooselyBrandedString<"MediaSetViewRid">;
+
+/**
+   * The media type of the file or attachment.
+Examples: application/json, application/pdf, application/octet-stream, image/jpeg
+   *
+   * Log Safety: SAFE
+   */
+export type MediaType = LooselyBrandedString<"MediaType">;
 
 /**
  * @deprecated Use `NotQueryV2` in the `foundry.ontologies` package
@@ -980,6 +1125,13 @@ The palantir-internal-realm is used for Users or Groups that are created in Foun
 export type Realm = LooselyBrandedString<"Realm">;
 
 /**
+ * A union of the types supported by media reference properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItemWrapper;
+
+/**
  * The release status of the entity.
  *
  * Log Safety: SAFE
@@ -1078,6 +1230,13 @@ export interface StringType {}
 export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
 
 /**
+ * The name of a field in a Struct.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StructFieldName = LooselyBrandedString<"StructFieldName">;
+
+/**
 * @deprecated Use `StructFieldSelector` in the `foundry.ontologies` package
 *
    * A combination of a struct property api name and a struct field api name. This is used to select struct fields
@@ -1099,6 +1258,22 @@ export interface StructFieldType {
 }
 
 /**
+ * A union of the types supported by time series properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TimeSeriesItemType =
+  | ({ type: "string" } & StringType)
+  | ({ type: "double" } & DoubleType);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TimeseriesType {
+  itemType?: TimeSeriesItemType;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface TimestampType {}
@@ -1115,6 +1290,13 @@ export type TimeUnit =
   | "WEEKS"
   | "MONTHS"
   | "YEARS";
+
+/**
+ * The total number of items across all pages.
+ *
+ * Log Safety: SAFE
+ */
+export type TotalCount = string;
 
 /**
  * Log Safety: SAFE
@@ -1143,6 +1325,35 @@ export type UpdatedTime = string;
  * Log Safety: SAFE
  */
 export type UserId = string;
+
+/**
+   * The vector similarity function to support approximate nearest neighbors search. Will result in an index
+specific for the function.
+   *
+   * Log Safety: SAFE
+   */
+export interface VectorSimilarityFunction {
+  value?: VectorSimilarityFunctionValue;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type VectorSimilarityFunctionValue =
+  | "COSINE_SIMILARITY"
+  | "DOT_PRODUCT"
+  | "EUCLIDEAN_DISTANCE";
+
+/**
+ * Represents a fixed size vector of floats. These can be used for vector similarity searches.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface VectorType {
+  dimension: number;
+  supportsSearchWith: Array<VectorSimilarityFunction>;
+  embeddingModel?: EmbeddingModel;
+}
 
 /**
  * @deprecated Use `WithinBoundingBoxPoint` in the `foundry.ontologies` package

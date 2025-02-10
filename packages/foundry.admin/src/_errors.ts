@@ -61,34 +61,6 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 }
 
 /**
- * Principals that are still preregistered do not have associated provider information.
- *
- * Log Safety: SAFE
- */
-export interface CannotGetProviderInfoForPreregisteredPrincipal {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "CannotGetProviderInfoForPreregisteredPrincipal";
-  errorInstanceId: string;
-  parameters: {
-    principalId: unknown;
-  };
-}
-
-/**
- * Provider information for Principals that are still preregistered cannot be replaced.
- *
- * Log Safety: SAFE
- */
-export interface CannotReplaceProviderInfoForPreregisteredPrincipal {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "CannotReplaceProviderInfoForPreregisteredPrincipal";
-  errorInstanceId: string;
-  parameters: {
-    principalId: unknown;
-  };
-}
-
-/**
  * Provider information for Principals in this Realm cannot be replaced.
  *
  * Log Safety: UNSAFE

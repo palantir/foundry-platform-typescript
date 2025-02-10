@@ -248,6 +248,32 @@ export interface GetByPathPermissionDenied {
 }
 
 /**
+ * Getting the root folder as a resource is not supported.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetRootFolderNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "GetRootFolderNotSupported";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Getting a space as a resource is not supported.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetSpaceResourceNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "GetSpaceResourceNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    spaceRid: unknown;
+  };
+}
+
+/**
  * Either the user has not passed default roles for a template with suggested default roles, or has passed default roles for a template with fixed default roles.
  *
  * Log Safety: SAFE
@@ -621,6 +647,21 @@ export interface RemoveResourceRolesPermissionDenied {
   errorInstanceId: string;
   parameters: {
     resourceRid: unknown;
+  };
+}
+
+/**
+ * The provided resource name is already in use by another resource in the same folder.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ResourceNameAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "ResourceNameAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    parentFolderRid: unknown;
+    displayName: unknown;
   };
 }
 

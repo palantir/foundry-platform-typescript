@@ -21,7 +21,7 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * @deprecated Use `AbsoluteTimeRange` in the `foundry.ontologies` package
+ * @deprecated Use `AbsoluteTimeRange` in the `internal.foundry.ontologies` package
  *
  * ISO 8601 timestamps forming a range for a time series query. Start is inclusive and end is exclusive.
  *
@@ -33,21 +33,21 @@ export interface AbsoluteTimeRange {
 }
 
 /**
- * @deprecated Use `Action` in the `foundry.ontologies` package
+ * @deprecated Use `Action` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type Action = LooselyBrandedString<"Action">;
 
 /**
- * @deprecated Use `ActionMode` in the `foundry.ontologies` package
+ * @deprecated Use `ActionMode` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type ActionMode = "ASYNC" | "RUN" | "VALIDATE";
 
 /**
- * @deprecated Use `ActionParameterArrayType` in the `foundry.ontologies` package
+ * @deprecated Use `ActionParameterArrayType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -56,7 +56,7 @@ export interface ActionParameterArrayType {
 }
 
 /**
- * @deprecated Use `ActionParameterType` in the `foundry.ontologies` package
+ * @deprecated Use `ActionParameterType` in the `internal.foundry.ontologies` package
  *
  * A union of all the types supported by Ontology Action parameters.
  *
@@ -81,7 +81,7 @@ export type ActionParameterType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
- * @deprecated Use `ActionParameterV2` in the `foundry.ontologies` package
+ * @deprecated Use `ActionParameterV2` in the `internal.foundry.ontologies` package
  *
  * Details about a parameter of an action.
  *
@@ -94,7 +94,7 @@ export interface ActionParameterV2 {
 }
 
 /**
- * @deprecated Use `ActionResults` in the `foundry.ontologies` package
+ * @deprecated Use `ActionResults` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -103,7 +103,7 @@ export type ActionResults =
   | ({ type: "largeScaleEdits" } & ObjectTypeEdits);
 
 /**
- * @deprecated Use `ActionRid` in the `foundry.ontologies` package
+ * @deprecated Use `ActionRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier for an action.
  *
@@ -112,7 +112,7 @@ export type ActionResults =
 export type ActionRid = LooselyBrandedString<"ActionRid">;
 
 /**
- * @deprecated Use `ActionType` in the `foundry.ontologies` package
+ * @deprecated Use `ActionType` in the `internal.foundry.ontologies` package
  *
  * Represents an action type in the Ontology.
  *
@@ -129,7 +129,7 @@ export interface ActionType {
 }
 
 /**
-* @deprecated Use `ActionTypeApiName` in the `foundry.ontologies` package
+* @deprecated Use `ActionTypeApiName` in the `internal.foundry.ontologies` package
 *
    * The name of the action type in the API. To find the API name for your Action Type, use the List action types
 endpoint or check the Ontology Manager.
@@ -139,7 +139,7 @@ endpoint or check the Ontology Manager.
 export type ActionTypeApiName = LooselyBrandedString<"ActionTypeApiName">;
 
 /**
- * @deprecated Use `ActionTypeRid` in the `foundry.ontologies` package
+ * @deprecated Use `ActionTypeRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of an action type, useful for interacting with other Foundry APIs.
  *
@@ -148,7 +148,7 @@ export type ActionTypeApiName = LooselyBrandedString<"ActionTypeApiName">;
 export type ActionTypeRid = LooselyBrandedString<"ActionTypeRid">;
 
 /**
- * @deprecated Use `ActionTypeV2` in the `foundry.ontologies` package
+ * @deprecated Use `ActionTypeV2` in the `internal.foundry.ontologies` package
  *
  * Represents an action type in the Ontology.
  *
@@ -165,7 +165,7 @@ export interface ActionTypeV2 {
 }
 
 /**
-* @deprecated Use `ActivePropertyTypeStatus` in the `foundry.ontologies` package
+* @deprecated Use `ActivePropertyTypeStatus` in the `internal.foundry.ontologies` package
 *
    * This status indicates that the PropertyType will not change on short notice and should thus be safe to use in
 user facing workflows.
@@ -175,7 +175,7 @@ user facing workflows.
 export interface ActivePropertyTypeStatus {}
 
 /**
- * @deprecated Use `AddLink` in the `foundry.ontologies` package
+ * @deprecated Use `AddLink` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -187,7 +187,7 @@ export interface AddLink {
 }
 
 /**
- * @deprecated Use `AddObject` in the `foundry.ontologies` package
+ * @deprecated Use `AddObject` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -197,7 +197,7 @@ export interface AddObject {
 }
 
 /**
- * @deprecated Use `AggregateObjectSetRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregateObjectSetRequestV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -209,7 +209,7 @@ export interface AggregateObjectSetRequestV2 {
 }
 
 /**
- * @deprecated Use `AggregateObjectsRequest` in the `foundry.ontologies` package
+ * @deprecated Use `AggregateObjectsRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -220,7 +220,7 @@ export interface AggregateObjectsRequest {
 }
 
 /**
- * @deprecated Use `AggregateObjectsRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregateObjectsRequestV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -232,7 +232,7 @@ export interface AggregateObjectsRequestV2 {
 }
 
 /**
- * @deprecated Use `AggregateObjectsResponse` in the `foundry.ontologies` package
+ * @deprecated Use `AggregateObjectsResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -243,7 +243,7 @@ export interface AggregateObjectsResponse {
 }
 
 /**
- * @deprecated Use `AggregateObjectsResponseItem` in the `foundry.ontologies` package
+ * @deprecated Use `AggregateObjectsResponseItem` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -253,7 +253,7 @@ export interface AggregateObjectsResponseItem {
 }
 
 /**
- * @deprecated Use `AggregateObjectsResponseItemV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregateObjectsResponseItemV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -263,7 +263,7 @@ export interface AggregateObjectsResponseItemV2 {
 }
 
 /**
- * @deprecated Use `AggregateObjectsResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregateObjectsResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -274,7 +274,7 @@ export interface AggregateObjectsResponseV2 {
 }
 
 /**
- * @deprecated Use `Aggregation` in the `foundry.ontologies` package
+ * @deprecated Use `Aggregation` in the `internal.foundry.ontologies` package
  *
  * Specifies an aggregation function.
  *
@@ -289,14 +289,14 @@ export type Aggregation =
   | ({ type: "sum" } & SumAggregation);
 
 /**
- * @deprecated Use `AggregationAccuracy` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationAccuracy` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type AggregationAccuracy = "ACCURATE" | "APPROXIMATE";
 
 /**
- * @deprecated Use `AggregationAccuracyRequest` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationAccuracyRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -305,7 +305,7 @@ export type AggregationAccuracyRequest =
   | "ALLOW_APPROXIMATE";
 
 /**
-* @deprecated Use `AggregationDurationGrouping` in the `foundry.ontologies` package
+* @deprecated Use `AggregationDurationGrouping` in the `internal.foundry.ontologies` package
 *
    * Divides objects into groups according to an interval. Note that this grouping applies only on date types.
 The interval uses the ISO 8601 notation. For example, "PT1H2M34S" represents a duration of 3754 seconds.
@@ -318,7 +318,7 @@ export interface AggregationDurationGrouping {
 }
 
 /**
-* @deprecated Use `AggregationDurationGroupingV2` in the `foundry.ontologies` package
+* @deprecated Use `AggregationDurationGroupingV2` in the `internal.foundry.ontologies` package
 *
    * Divides objects into groups according to an interval. Note that this grouping applies only on date and timestamp types.
 When grouping by YEARS, QUARTERS, MONTHS, or WEEKS, the value must be set to 1.
@@ -332,7 +332,7 @@ export interface AggregationDurationGroupingV2 {
 }
 
 /**
- * @deprecated Use `AggregationExactGrouping` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationExactGrouping` in the `internal.foundry.ontologies` package
  *
  * Divides objects into groups according to an exact value.
  *
@@ -344,7 +344,7 @@ export interface AggregationExactGrouping {
 }
 
 /**
- * @deprecated Use `AggregationExactGroupingV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationExactGroupingV2` in the `internal.foundry.ontologies` package
  *
  * Divides objects into groups according to an exact value.
  *
@@ -357,7 +357,7 @@ export interface AggregationExactGroupingV2 {
 }
 
 /**
- * @deprecated Use `AggregationFixedWidthGrouping` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationFixedWidthGrouping` in the `internal.foundry.ontologies` package
  *
  * Divides objects into groups with the specified width.
  *
@@ -369,7 +369,7 @@ export interface AggregationFixedWidthGrouping {
 }
 
 /**
- * @deprecated Use `AggregationFixedWidthGroupingV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationFixedWidthGroupingV2` in the `internal.foundry.ontologies` package
  *
  * Divides objects into groups with the specified width.
  *
@@ -381,7 +381,7 @@ export interface AggregationFixedWidthGroupingV2 {
 }
 
 /**
- * @deprecated Use `AggregationGroupBy` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationGroupBy` in the `internal.foundry.ontologies` package
  *
  * Specifies a grouping for aggregation results.
  *
@@ -394,7 +394,7 @@ export type AggregationGroupBy =
   | ({ type: "exact" } & AggregationExactGrouping);
 
 /**
- * @deprecated Use `AggregationGroupByV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationGroupByV2` in the `internal.foundry.ontologies` package
  *
  * Specifies a grouping for aggregation results.
  *
@@ -407,14 +407,14 @@ export type AggregationGroupByV2 =
   | ({ type: "exact" } & AggregationExactGroupingV2);
 
 /**
- * @deprecated Use `AggregationGroupKey` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationGroupKey` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type AggregationGroupKey = LooselyBrandedString<"AggregationGroupKey">;
 
 /**
- * @deprecated Use `AggregationGroupKeyV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationGroupKeyV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -423,21 +423,21 @@ export type AggregationGroupKeyV2 = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `AggregationGroupValue` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationGroupValue` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type AggregationGroupValue = any;
 
 /**
- * @deprecated Use `AggregationGroupValueV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationGroupValueV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type AggregationGroupValueV2 = any;
 
 /**
- * @deprecated Use `AggregationMetricName` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationMetricName` in the `internal.foundry.ontologies` package
  *
  * A user-specified alias for an aggregation metric name.
  *
@@ -448,7 +448,7 @@ export type AggregationMetricName = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `AggregationMetricResult` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationMetricResult` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -458,7 +458,7 @@ export interface AggregationMetricResult {
 }
 
 /**
- * @deprecated Use `AggregationMetricResultV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationMetricResultV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -468,7 +468,7 @@ export interface AggregationMetricResultV2 {
 }
 
 /**
-* @deprecated Use `AggregationObjectTypeGrouping` in the `foundry.ontologies` package
+* @deprecated Use `AggregationObjectTypeGrouping` in the `internal.foundry.ontologies` package
 *
    * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
 multiple object types, such as when aggregating over an interface type.
@@ -478,7 +478,7 @@ multiple object types, such as when aggregating over an interface type.
 export interface AggregationObjectTypeGrouping {}
 
 /**
- * @deprecated Use `AggregationOrderBy` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationOrderBy` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -487,7 +487,7 @@ export interface AggregationOrderBy {
 }
 
 /**
- * @deprecated Use `AggregationRange` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationRange` in the `internal.foundry.ontologies` package
  *
  * Specifies a date range from an inclusive start date to an exclusive end date.
  *
@@ -501,7 +501,7 @@ export interface AggregationRange {
 }
 
 /**
- * @deprecated Use `AggregationRangesGrouping` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationRangesGrouping` in the `internal.foundry.ontologies` package
  *
  * Divides objects into groups according to specified ranges.
  *
@@ -513,7 +513,7 @@ export interface AggregationRangesGrouping {
 }
 
 /**
- * @deprecated Use `AggregationRangesGroupingV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationRangesGroupingV2` in the `internal.foundry.ontologies` package
  *
  * Divides objects into groups according to specified ranges.
  *
@@ -525,7 +525,7 @@ export interface AggregationRangesGroupingV2 {
 }
 
 /**
- * @deprecated Use `AggregationRangeV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationRangeV2` in the `internal.foundry.ontologies` package
  *
  * Specifies a range from an inclusive start value to an exclusive end value.
  *
@@ -537,7 +537,7 @@ export interface AggregationRangeV2 {
 }
 
 /**
- * @deprecated Use `AggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `AggregationV2` in the `internal.foundry.ontologies` package
  *
  * Specifies an aggregation function.
  *
@@ -554,7 +554,7 @@ export type AggregationV2 =
   | ({ type: "exactDistinct" } & ExactDistinctAggregationV2);
 
 /**
-* @deprecated Use `AllTermsQuery` in the `foundry.ontologies` package
+* @deprecated Use `AllTermsQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
@@ -568,7 +568,7 @@ export interface AllTermsQuery {
 }
 
 /**
- * @deprecated Use `AndQuery` in the `foundry.ontologies` package
+ * @deprecated Use `AndQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where every query is satisfied.
  *
@@ -579,7 +579,7 @@ export interface AndQuery {
 }
 
 /**
- * @deprecated Use `AndQueryV2` in the `foundry.ontologies` package
+ * @deprecated Use `AndQueryV2` in the `internal.foundry.ontologies` package
  *
  * Returns objects where every query is satisfied.
  *
@@ -590,7 +590,7 @@ export interface AndQueryV2 {
 }
 
 /**
-* @deprecated Use `AnyTermQuery` in the `foundry.ontologies` package
+* @deprecated Use `AnyTermQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains any of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
@@ -609,14 +609,14 @@ export interface AnyTermQuery {
 export interface AnyType {}
 
 /**
- * @deprecated Use `ApplyActionMode` in the `foundry.ontologies` package
+ * @deprecated Use `ApplyActionMode` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type ApplyActionMode = "VALIDATE_ONLY" | "VALIDATE_AND_EXECUTE";
 
 /**
- * @deprecated Use `ApplyActionRequest` in the `foundry.ontologies` package
+ * @deprecated Use `ApplyActionRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -625,7 +625,7 @@ export interface ApplyActionRequest {
 }
 
 /**
- * @deprecated Use `ApplyActionRequestOptions` in the `foundry.ontologies` package
+ * @deprecated Use `ApplyActionRequestOptions` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -635,7 +635,7 @@ export interface ApplyActionRequestOptions {
 }
 
 /**
- * @deprecated Use `ApplyActionRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `ApplyActionRequestV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -645,14 +645,14 @@ export interface ApplyActionRequestV2 {
 }
 
 /**
- * @deprecated Use `ApplyActionResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ApplyActionResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export interface ApplyActionResponse {}
 
 /**
- * @deprecated Use `ApproximateDistinctAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `ApproximateDistinctAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes an approximate number of distinct values for the provided field.
  *
@@ -664,7 +664,7 @@ export interface ApproximateDistinctAggregation {
 }
 
 /**
- * @deprecated Use `ApproximateDistinctAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `ApproximateDistinctAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes an approximate number of distinct values for the provided field.
  *
@@ -677,7 +677,7 @@ export interface ApproximateDistinctAggregationV2 {
 }
 
 /**
- * @deprecated Use `ApproximatePercentileAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `ApproximatePercentileAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes the approximate percentile value for the provided field. Requires Object Storage V2.
  *
@@ -698,7 +698,7 @@ export interface ApproximatePercentileAggregationV2 {
 export type ArchiveFileFormat = "ZIP";
 
 /**
- * @deprecated Use `Arg` in the `foundry.ontologies` package
+ * @deprecated Use `Arg` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -708,7 +708,7 @@ export interface Arg {
 }
 
 /**
- * @deprecated Use `ArraySizeConstraint` in the `foundry.ontologies` package
+ * @deprecated Use `ArraySizeConstraint` in the `internal.foundry.ontologies` package
  *
  * The parameter expects an array of values and the size of the array must fall within the defined range.
  *
@@ -722,7 +722,7 @@ export interface ArraySizeConstraint {
 }
 
 /**
- * @deprecated Use `ArtifactRepositoryRid` in the `foundry.ontologies` package
+ * @deprecated Use `ArtifactRepositoryRid` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -731,14 +731,14 @@ export type ArtifactRepositoryRid = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `AsyncActionOperation` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncActionOperation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type AsyncActionOperation = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncActionOperation"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsync","resultType":{"locator":{"namespaceName":"Core","localName":"AsyncApplyActionResponse"}},"stageType":{"locator":{"namespaceName":"Core","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
 
 /**
- * @deprecated Use `AsyncActionStatus` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncActionStatus` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -752,21 +752,21 @@ export type AsyncActionStatus =
   | "SENDING_NOTIFICATIONS";
 
 /**
- * @deprecated Use `AsyncApplyActionOperationResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncApplyActionOperationResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export interface AsyncApplyActionOperationResponseV2 {}
 
 /**
- * @deprecated Use `AsyncApplyActionOperationV2` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncApplyActionOperationV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type AsyncApplyActionOperationV2 = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationV2"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsyncV2","resultType":{"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationResponseV2"}},"stageType":{"locator":{"namespaceName":"Core","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
 
 /**
- * @deprecated Use `AsyncApplyActionRequest` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncApplyActionRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -775,7 +775,7 @@ export interface AsyncApplyActionRequest {
 }
 
 /**
- * @deprecated Use `AsyncApplyActionRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncApplyActionRequestV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -784,14 +784,14 @@ export interface AsyncApplyActionRequestV2 {
 }
 
 /**
- * @deprecated Use `AsyncApplyActionResponse` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncApplyActionResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export interface AsyncApplyActionResponse {}
 
 /**
- * @deprecated Use `AsyncApplyActionResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `AsyncApplyActionResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -800,7 +800,7 @@ export interface AsyncApplyActionResponseV2 {
 }
 
 /**
- * @deprecated Use `Attachment` in the `foundry.ontologies` package
+ * @deprecated Use `Attachment` in the `internal.foundry.ontologies` package
  *
  * The representation of an attachment.
  *
@@ -814,7 +814,7 @@ export interface Attachment {
 }
 
 /**
- * @deprecated Use `AttachmentMetadataResponse` in the `foundry.ontologies` package
+ * @deprecated Use `AttachmentMetadataResponse` in the `internal.foundry.ontologies` package
  *
  * The attachment metadata response
  *
@@ -825,7 +825,7 @@ export type AttachmentMetadataResponse =
   | ({ type: "multiple" } & ListAttachmentsResponseV2);
 
 /**
- * @deprecated Use `AttachmentProperty` in the `foundry.ontologies` package
+ * @deprecated Use `AttachmentProperty` in the `internal.foundry.ontologies` package
  *
  * The representation of an attachment as a data type.
  *
@@ -836,14 +836,14 @@ export interface AttachmentProperty {
 }
 
 /**
- * @deprecated Use `AttachmentPropertyV2` in the `foundry.ontologies` package
+ * @deprecated Use `AttachmentPropertyV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type AttachmentPropertyV2 = LooselyBrandedString<"AttachmentPropertyV2">;
 
 /**
- * @deprecated Use `AttachmentRid` in the `foundry.ontologies` package
+ * @deprecated Use `AttachmentRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of an attachment.
  *
@@ -857,7 +857,7 @@ export type AttachmentRid = LooselyBrandedString<"AttachmentRid">;
 export interface AttachmentType {}
 
 /**
- * @deprecated Use `AttachmentV2` in the `foundry.ontologies` package
+ * @deprecated Use `AttachmentV2` in the `internal.foundry.ontologies` package
  *
  * The representation of an attachment.
  *
@@ -871,7 +871,7 @@ export interface AttachmentV2 {
 }
 
 /**
- * @deprecated Use `AvgAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `AvgAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the average value for the provided field.
  *
@@ -883,7 +883,7 @@ export interface AvgAggregation {
 }
 
 /**
- * @deprecated Use `AvgAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `AvgAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes the average value for the provided field.
  *
@@ -896,7 +896,7 @@ export interface AvgAggregationV2 {
 }
 
 /**
- * @deprecated Use `BatchApplyActionRequest` in the `foundry.ontologies` package
+ * @deprecated Use `BatchApplyActionRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -905,7 +905,7 @@ export interface BatchApplyActionRequest {
 }
 
 /**
- * @deprecated Use `BatchApplyActionRequestItem` in the `foundry.ontologies` package
+ * @deprecated Use `BatchApplyActionRequestItem` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -914,7 +914,7 @@ export interface BatchApplyActionRequestItem {
 }
 
 /**
- * @deprecated Use `BatchApplyActionRequestOptions` in the `foundry.ontologies` package
+ * @deprecated Use `BatchApplyActionRequestOptions` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -923,7 +923,7 @@ export interface BatchApplyActionRequestOptions {
 }
 
 /**
- * @deprecated Use `BatchApplyActionRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `BatchApplyActionRequestV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -933,14 +933,14 @@ export interface BatchApplyActionRequestV2 {
 }
 
 /**
- * @deprecated Use `BatchApplyActionResponse` in the `foundry.ontologies` package
+ * @deprecated Use `BatchApplyActionResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export interface BatchApplyActionResponse {}
 
 /**
- * @deprecated Use `BatchApplyActionResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `BatchApplyActionResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -954,7 +954,7 @@ export interface BatchApplyActionResponseV2 {
 export interface BinaryType {}
 
 /**
- * @deprecated Use `BlueprintIcon` in the `foundry.ontologies` package
+ * @deprecated Use `BlueprintIcon` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -969,7 +969,7 @@ export interface BlueprintIcon {
 export interface BooleanType {}
 
 /**
- * @deprecated Use `BoundingBoxValue` in the `foundry.ontologies` package
+ * @deprecated Use `BoundingBoxValue` in the `internal.foundry.ontologies` package
  *
  * The top left and bottom right coordinate points that make up the bounding box.
  *
@@ -986,7 +986,7 @@ export interface BoundingBoxValue {
 export interface ByteType {}
 
 /**
- * @deprecated Use `CenterPoint` in the `foundry.ontologies` package
+ * @deprecated Use `CenterPoint` in the `internal.foundry.ontologies` package
  *
  * The coordinate point to use as the center of the distance query.
  *
@@ -998,7 +998,7 @@ export interface CenterPoint {
 }
 
 /**
- * @deprecated Use `CenterPointTypes` in the `foundry.ontologies` package
+ * @deprecated Use `CenterPointTypes` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1012,7 +1012,7 @@ export interface CipherTextType {
 }
 
 /**
-* @deprecated Use `ContainsAllTermsInOrderPrefixLastTerm` in the `foundry.ontologies` package
+* @deprecated Use `ContainsAllTermsInOrderPrefixLastTerm` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains all of the terms in the order provided,
 but they do have to be adjacent to each other.
@@ -1028,7 +1028,7 @@ export interface ContainsAllTermsInOrderPrefixLastTerm {
 }
 
 /**
-* @deprecated Use `ContainsAllTermsInOrderQuery` in the `foundry.ontologies` package
+* @deprecated Use `ContainsAllTermsInOrderQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains all of the terms in the order provided,
 but they do have to be adjacent to each other. Allows you to specify a property to query on
@@ -1043,7 +1043,7 @@ export interface ContainsAllTermsInOrderQuery {
 }
 
 /**
-* @deprecated Use `ContainsAllTermsQuery` in the `foundry.ontologies` package
+* @deprecated Use `ContainsAllTermsQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching. Allows you to specify a property to query on
@@ -1059,7 +1059,7 @@ export interface ContainsAllTermsQuery {
 }
 
 /**
-* @deprecated Use `ContainsAnyTermQuery` in the `foundry.ontologies` package
+* @deprecated Use `ContainsAnyTermQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains any of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching. Allows you to specify a property to query on
@@ -1075,7 +1075,7 @@ export interface ContainsAnyTermQuery {
 }
 
 /**
- * @deprecated Use `ContainsQuery` in the `foundry.ontologies` package
+ * @deprecated Use `ContainsQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified array contains a value.
  *
@@ -1087,7 +1087,7 @@ export interface ContainsQuery {
 }
 
 /**
-* @deprecated Use `ContainsQueryV2` in the `foundry.ontologies` package
+* @deprecated Use `ContainsQueryV2` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified array contains a value. Allows you to specify a property to query on by a
 variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -1111,7 +1111,7 @@ export type ContentLength = string;
 export type ContentType = LooselyBrandedString<"ContentType">;
 
 /**
- * @deprecated Use `CountAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `CountAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the total count of objects.
  *
@@ -1122,7 +1122,7 @@ export interface CountAggregation {
 }
 
 /**
- * @deprecated Use `CountAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `CountAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes the total count of objects.
  *
@@ -1134,7 +1134,7 @@ export interface CountAggregationV2 {
 }
 
 /**
- * @deprecated Use `CountObjectsResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `CountObjectsResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1150,7 +1150,7 @@ export interface CountObjectsResponseV2 {
 export type CreatedTime = LooselyBrandedString<"CreatedTime">;
 
 /**
- * @deprecated Use `CreateInterfaceObjectRule` in the `foundry.ontologies` package
+ * @deprecated Use `CreateInterfaceObjectRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1159,7 +1159,7 @@ export interface CreateInterfaceObjectRule {
 }
 
 /**
- * @deprecated Use `CreateLinkRule` in the `foundry.ontologies` package
+ * @deprecated Use `CreateLinkRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1171,7 +1171,7 @@ export interface CreateLinkRule {
 }
 
 /**
- * @deprecated Use `CreateObjectRule` in the `foundry.ontologies` package
+ * @deprecated Use `CreateObjectRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1180,7 +1180,7 @@ export interface CreateObjectRule {
 }
 
 /**
- * @deprecated Use `CreateTemporaryObjectSetRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `CreateTemporaryObjectSetRequestV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1189,7 +1189,7 @@ export interface CreateTemporaryObjectSetRequestV2 {
 }
 
 /**
- * @deprecated Use `CreateTemporaryObjectSetResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `CreateTemporaryObjectSetResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -1198,7 +1198,7 @@ export interface CreateTemporaryObjectSetResponseV2 {
 }
 
 /**
- * @deprecated Use `CustomTypeId` in the `foundry.ontologies` package
+ * @deprecated Use `CustomTypeId` in the `internal.foundry.ontologies` package
  *
  * A UUID representing a custom type in a given Function.
  *
@@ -1207,7 +1207,7 @@ export interface CreateTemporaryObjectSetResponseV2 {
 export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 
 /**
-* @deprecated Use `DataValue` in the `foundry.ontologies` package
+* @deprecated Use `DataValue` in the `internal.foundry.ontologies` package
 *
    * Represents the value of data in the following format. Note that these values can be nested, for example an array of structs.
 | Type                                | JSON encoding                                         | Example                                                                                                                                                       |
@@ -1255,7 +1255,7 @@ export interface DecimalType {
 }
 
 /**
- * @deprecated Use `DeleteInterfaceObjectRule` in the `foundry.ontologies` package
+ * @deprecated Use `DeleteInterfaceObjectRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1264,7 +1264,7 @@ export interface DeleteInterfaceObjectRule {
 }
 
 /**
- * @deprecated Use `DeleteLinkRule` in the `foundry.ontologies` package
+ * @deprecated Use `DeleteLinkRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1276,7 +1276,7 @@ export interface DeleteLinkRule {
 }
 
 /**
- * @deprecated Use `DeleteObjectRule` in the `foundry.ontologies` package
+ * @deprecated Use `DeleteObjectRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1285,7 +1285,7 @@ export interface DeleteObjectRule {
 }
 
 /**
-* @deprecated Use `DeprecatedPropertyTypeStatus` in the `foundry.ontologies` package
+* @deprecated Use `DeprecatedPropertyTypeStatus` in the `internal.foundry.ontologies` package
 *
    * This status indicates that the PropertyType is reaching the end of its life and will be removed as per the
 deadline specified.
@@ -1299,7 +1299,7 @@ export interface DeprecatedPropertyTypeStatus {
 }
 
 /**
- * @deprecated Use `DerivedPropertyApiName` in the `foundry.ontologies` package
+ * @deprecated Use `DerivedPropertyApiName` in the `internal.foundry.ontologies` package
  *
  * The name of the derived property that will be returned.
  *
@@ -1310,7 +1310,7 @@ export type DerivedPropertyApiName = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `DerivedPropertyDefinition` in the `foundry.ontologies` package
+ * @deprecated Use `DerivedPropertyDefinition` in the `internal.foundry.ontologies` package
  *
  * Definition of a derived property.
  *
@@ -1321,7 +1321,7 @@ export type DerivedPropertyDefinition = {
 } & SelectedPropertyDefinition;
 
 /**
- * @deprecated Use `DerivedTimeSeriesProperty` in the `foundry.ontologies` package
+ * @deprecated Use `DerivedTimeSeriesProperty` in the `internal.foundry.ontologies` package
  *
  * The representation of a time series property backed by a derived time series calculated with a formula.
  *
@@ -1364,7 +1364,7 @@ export type DistanceUnit =
   | "NAUTICAL_MILES";
 
 /**
-* @deprecated Use `DoesNotIntersectBoundingBoxQuery` in the `foundry.ontologies` package
+* @deprecated Use `DoesNotIntersectBoundingBoxQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field does not intersect the bounding box provided. Allows you to specify a
 property to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not
@@ -1379,7 +1379,7 @@ export interface DoesNotIntersectBoundingBoxQuery {
 }
 
 /**
-* @deprecated Use `DoesNotIntersectPolygonQuery` in the `foundry.ontologies` package
+* @deprecated Use `DoesNotIntersectPolygonQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field does not intersect the polygon provided. Allows you to specify a
 property to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not
@@ -1399,7 +1399,7 @@ export interface DoesNotIntersectPolygonQuery {
 export interface DoubleType {}
 
 /**
-* @deprecated Use `DoubleVector` in the `foundry.ontologies` package
+* @deprecated Use `DoubleVector` in the `internal.foundry.ontologies` package
 *
    * The vector to search with. The vector must be of the same dimension as the vectors stored in the provided
 propertyIdentifier.
@@ -1411,7 +1411,7 @@ export interface DoubleVector {
 }
 
 /**
- * @deprecated Use `Duration` in the `foundry.ontologies` package
+ * @deprecated Use `Duration` in the `internal.foundry.ontologies` package
  *
  * An ISO 8601 formatted duration.
  *
@@ -1427,7 +1427,7 @@ export type EmbeddingModel =
   | ({ type: "foundryLiveDeployment" } & FoundryLiveDeployment);
 
 /**
- * @deprecated Use `EqualsQuery` in the `foundry.ontologies` package
+ * @deprecated Use `EqualsQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified field is equal to a value.
  *
@@ -1439,7 +1439,7 @@ export interface EqualsQuery {
 }
 
 /**
-* @deprecated Use `EqualsQueryV2` in the `foundry.ontologies` package
+* @deprecated Use `EqualsQueryV2` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field is equal to a value. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -1453,7 +1453,7 @@ export interface EqualsQueryV2 {
 }
 
 /**
- * @deprecated Use `Error` in the `foundry.ontologies` package
+ * @deprecated Use `Error` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1463,14 +1463,14 @@ export interface Error {
 }
 
 /**
- * @deprecated Use `ErrorName` in the `foundry.ontologies` package
+ * @deprecated Use `ErrorName` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type ErrorName = LooselyBrandedString<"ErrorName">;
 
 /**
- * @deprecated Use `ExactDistinctAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `ExactDistinctAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation. Requires Object Storage V2.
  *
@@ -1483,7 +1483,7 @@ export interface ExactDistinctAggregationV2 {
 }
 
 /**
-* @deprecated Use `ExamplePropertyTypeStatus` in the `foundry.ontologies` package
+* @deprecated Use `ExamplePropertyTypeStatus` in the `internal.foundry.ontologies` package
 *
    * This status indicates that the PropertyType is an example. It is backed by notional data that should not be
 used for actual workflows, but can be used to test those workflows.
@@ -1493,7 +1493,7 @@ used for actual workflows, but can be used to test those workflows.
 export interface ExamplePropertyTypeStatus {}
 
 /**
- * @deprecated Use `ExecuteQueryRequest` in the `foundry.ontologies` package
+ * @deprecated Use `ExecuteQueryRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1502,7 +1502,7 @@ export interface ExecuteQueryRequest {
 }
 
 /**
- * @deprecated Use `ExecuteQueryResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ExecuteQueryResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1511,7 +1511,7 @@ export interface ExecuteQueryResponse {
 }
 
 /**
- * @deprecated Use `ExperimentalPropertyTypeStatus` in the `foundry.ontologies` package
+ * @deprecated Use `ExperimentalPropertyTypeStatus` in the `internal.foundry.ontologies` package
  *
  * This status indicates that the PropertyType is in development.
  *
@@ -1520,7 +1520,7 @@ export interface ExecuteQueryResponse {
 export interface ExperimentalPropertyTypeStatus {}
 
 /**
- * @deprecated Use `FieldNameV1` in the `foundry.ontologies` package
+ * @deprecated Use `FieldNameV1` in the `internal.foundry.ontologies` package
  *
  * A reference to an Ontology object property with the form properties.{propertyApiName}.
  *
@@ -1548,7 +1548,7 @@ export type FilePath = LooselyBrandedString<"FilePath">;
 export interface FilesystemResource {}
 
 /**
-* @deprecated Use `FilterValue` in the `foundry.ontologies` package
+* @deprecated Use `FilterValue` in the `internal.foundry.ontologies` package
 *
    * Represents the value of a property filter. For instance, false is the FilterValue in
 properties.{propertyApiName}.isNull=false.
@@ -1577,7 +1577,7 @@ export interface FoundryLiveDeployment {
 }
 
 /**
- * @deprecated Use `FunctionRid` in the `foundry.ontologies` package
+ * @deprecated Use `FunctionRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of a Function, useful for interacting with other Foundry APIs.
  *
@@ -1586,7 +1586,7 @@ export interface FoundryLiveDeployment {
 export type FunctionRid = LooselyBrandedString<"FunctionRid">;
 
 /**
-* @deprecated Use `FunctionVersion` in the `foundry.ontologies` package
+* @deprecated Use `FunctionVersion` in the `internal.foundry.ontologies` package
 *
    * The version of the given Function, written <major>.<minor>.<patch>-<tag>, where -<tag> is optional.
 Examples: 1.2.3, 1.2.3-rc1.
@@ -1596,7 +1596,7 @@ Examples: 1.2.3, 1.2.3-rc1.
 export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 
 /**
- * @deprecated Use `Fuzzy` in the `foundry.ontologies` package
+ * @deprecated Use `Fuzzy` in the `internal.foundry.ontologies` package
  *
  * Setting fuzzy to true allows approximate matching in search queries that support it.
  *
@@ -1605,7 +1605,7 @@ export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 export type Fuzzy = boolean;
 
 /**
- * @deprecated Use `FuzzyV2` in the `foundry.ontologies` package
+ * @deprecated Use `FuzzyV2` in the `internal.foundry.ontologies` package
  *
  * Setting fuzzy to true allows approximate matching in search queries that support it.
  *
@@ -1624,7 +1624,7 @@ export interface GeoPointType {}
 export interface GeoShapeType {}
 
 /**
- * @deprecated Use `GeotimeSeriesId` in the `foundry.ontologies` package
+ * @deprecated Use `GeotimeSeriesId` in the `internal.foundry.ontologies` package
  *
  * The unique id of a geotime series (track) associated with a GTSR.
  *
@@ -1633,7 +1633,7 @@ export interface GeoShapeType {}
 export type GeotimeSeriesId = LooselyBrandedString<"GeotimeSeriesId">;
 
 /**
- * @deprecated Use `GeotimeSeriesIntegrationRid` in the `foundry.ontologies` package
+ * @deprecated Use `GeotimeSeriesIntegrationRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of a geotime integration.
  *
@@ -1644,7 +1644,7 @@ export type GeotimeSeriesIntegrationRid = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `GeotimeSeriesProperty` in the `foundry.ontologies` package
+ * @deprecated Use `GeotimeSeriesProperty` in the `internal.foundry.ontologies` package
  *
  * The representation of a geotime series integration as a data type.
  *
@@ -1661,7 +1661,7 @@ export interface GeotimeSeriesProperty {
 export interface GeotimeSeriesReferenceType {}
 
 /**
- * @deprecated Use `GeotimeSeriesValue` in the `foundry.ontologies` package
+ * @deprecated Use `GeotimeSeriesValue` in the `internal.foundry.ontologies` package
  *
  * The underlying data values pointed to by a GeotimeSeriesReference.
  *
@@ -1673,7 +1673,7 @@ export interface GeotimeSeriesValue {
 }
 
 /**
-* @deprecated Use `GetSelectedPropertyOperation` in the `foundry.ontologies` package
+* @deprecated Use `GetSelectedPropertyOperation` in the `internal.foundry.ontologies` package
 *
    * Gets a single value of a property. Throws if the target object set is on the MANY side of the link and could
 explode the cardinality.
@@ -1686,7 +1686,7 @@ export interface GetSelectedPropertyOperation {
 }
 
 /**
- * @deprecated Use `GroupMemberConstraint` in the `foundry.ontologies` package
+ * @deprecated Use `GroupMemberConstraint` in the `internal.foundry.ontologies` package
  *
  * The parameter value must be the user id of a member belonging to at least one of the groups defined by the constraint.
  *
@@ -1695,7 +1695,7 @@ export interface GetSelectedPropertyOperation {
 export interface GroupMemberConstraint {}
 
 /**
- * @deprecated Use `GteQuery` in the `foundry.ontologies` package
+ * @deprecated Use `GteQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified field is greater than or equal to a value.
  *
@@ -1707,7 +1707,7 @@ export interface GteQuery {
 }
 
 /**
-* @deprecated Use `GteQueryV2` in the `foundry.ontologies` package
+* @deprecated Use `GteQueryV2` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field is greater than or equal to a value. Allows you to specify a property
 to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -1721,7 +1721,7 @@ export interface GteQueryV2 {
 }
 
 /**
- * @deprecated Use `GtQuery` in the `foundry.ontologies` package
+ * @deprecated Use `GtQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified field is greater than a value.
  *
@@ -1733,7 +1733,7 @@ export interface GtQuery {
 }
 
 /**
-* @deprecated Use `GtQueryV2` in the `foundry.ontologies` package
+* @deprecated Use `GtQueryV2` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field is greater than a value. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -1747,7 +1747,7 @@ export interface GtQueryV2 {
 }
 
 /**
- * @deprecated Use `Icon` in the `foundry.ontologies` package
+ * @deprecated Use `Icon` in the `internal.foundry.ontologies` package
  *
  * A union currently only consisting of the BlueprintIcon (more icon types may be added in the future).
  *
@@ -1756,7 +1756,7 @@ export interface GtQueryV2 {
 export type Icon = { type: "blueprint" } & BlueprintIcon;
 
 /**
-* @deprecated Use `InQuery` in the `foundry.ontologies` package
+* @deprecated Use `InQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field equals any of the provided values. Allows you to
 specify a property to query on by a variety of means. Either field or propertyIdentifier must be supplied,
@@ -1776,7 +1776,7 @@ export interface InQuery {
 export interface IntegerType {}
 
 /**
-* @deprecated Use `InterfaceLinkType` in the `foundry.ontologies` package
+* @deprecated Use `InterfaceLinkType` in the `internal.foundry.ontologies` package
 *
    * A link type constraint defined at the interface level where the implementation of the links is provided
 by the implementing object types.
@@ -1794,7 +1794,7 @@ export interface InterfaceLinkType {
 }
 
 /**
- * @deprecated Use `InterfaceLinkTypeApiName` in the `foundry.ontologies` package
+ * @deprecated Use `InterfaceLinkTypeApiName` in the `internal.foundry.ontologies` package
  *
  * A string indicating the API name to use for the interface link.
  *
@@ -1805,7 +1805,7 @@ export type InterfaceLinkTypeApiName = LooselyBrandedString<
 >;
 
 /**
-* @deprecated Use `InterfaceLinkTypeCardinality` in the `foundry.ontologies` package
+* @deprecated Use `InterfaceLinkTypeCardinality` in the `internal.foundry.ontologies` package
 *
    * The cardinality of the link in the given direction. Cardinality can be "ONE", meaning an object can
 link to zero or one other objects, or "MANY", meaning an object can link to any number of other objects.
@@ -1815,7 +1815,7 @@ link to zero or one other objects, or "MANY", meaning an object can link to any 
 export type InterfaceLinkTypeCardinality = "ONE" | "MANY";
 
 /**
- * @deprecated Use `InterfaceLinkTypeLinkedEntityApiName` in the `foundry.ontologies` package
+ * @deprecated Use `InterfaceLinkTypeLinkedEntityApiName` in the `internal.foundry.ontologies` package
  *
  * A reference to the linked entity. This can either be an object or an interface type.
  *
@@ -1826,7 +1826,7 @@ export type InterfaceLinkTypeLinkedEntityApiName =
   | ({ type: "interfaceTypeApiName" } & LinkedInterfaceTypeApiName);
 
 /**
- * @deprecated Use `InterfaceLinkTypeRid` in the `foundry.ontologies` package
+ * @deprecated Use `InterfaceLinkTypeRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of an interface link type, useful for interacting with other Foundry APIs.
  *
@@ -1835,7 +1835,7 @@ export type InterfaceLinkTypeLinkedEntityApiName =
 export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
 
 /**
- * @deprecated Use `InterfaceToObjectTypeMapping` in the `foundry.ontologies` package
+ * @deprecated Use `InterfaceToObjectTypeMapping` in the `internal.foundry.ontologies` package
  *
  * Represents an implementation of an interface (the mapping of interface property to local property).
  *
@@ -1847,7 +1847,7 @@ export type InterfaceToObjectTypeMapping = Record<
 >;
 
 /**
- * @deprecated Use `InterfaceToObjectTypeMappings` in the `foundry.ontologies` package
+ * @deprecated Use `InterfaceToObjectTypeMappings` in the `internal.foundry.ontologies` package
  *
  * Map from object type to the interface-to-object-type mapping for that object type.
  *
@@ -1859,7 +1859,7 @@ export type InterfaceToObjectTypeMappings = Record<
 >;
 
 /**
- * @deprecated Use `InterfaceType` in the `foundry.ontologies` package
+ * @deprecated Use `InterfaceType` in the `internal.foundry.ontologies` package
  *
  * Represents an interface type in the Ontology.
  *
@@ -1880,7 +1880,7 @@ export interface InterfaceType {
 }
 
 /**
-* @deprecated Use `InterfaceTypeApiName` in the `foundry.ontologies` package
+* @deprecated Use `InterfaceTypeApiName` in the `internal.foundry.ontologies` package
 *
    * The name of the interface type in the API in UpperCamelCase format. To find the API name for your interface
 type, use the List interface types endpoint or check the Ontology Manager.
@@ -1890,7 +1890,7 @@ type, use the List interface types endpoint or check the Ontology Manager.
 export type InterfaceTypeApiName = LooselyBrandedString<"InterfaceTypeApiName">;
 
 /**
- * @deprecated Use `InterfaceTypeRid` in the `foundry.ontologies` package
+ * @deprecated Use `InterfaceTypeRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of an interface, useful for interacting with other Foundry APIs.
  *
@@ -1899,7 +1899,7 @@ export type InterfaceTypeApiName = LooselyBrandedString<"InterfaceTypeApiName">;
 export type InterfaceTypeRid = LooselyBrandedString<"InterfaceTypeRid">;
 
 /**
-* @deprecated Use `IntersectsBoundingBoxQuery` in the `foundry.ontologies` package
+* @deprecated Use `IntersectsBoundingBoxQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field intersects the bounding box provided. Allows you to specify a property
 to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -1913,7 +1913,7 @@ export interface IntersectsBoundingBoxQuery {
 }
 
 /**
-* @deprecated Use `IntersectsPolygonQuery` in the `foundry.ontologies` package
+* @deprecated Use `IntersectsPolygonQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field intersects the polygon provided. Allows you to specify a property to
 query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -1927,7 +1927,7 @@ export interface IntersectsPolygonQuery {
 }
 
 /**
- * @deprecated Use `IsNullQuery` in the `foundry.ontologies` package
+ * @deprecated Use `IsNullQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects based on the existence of the specified field.
  *
@@ -1939,7 +1939,7 @@ export interface IsNullQuery {
 }
 
 /**
-* @deprecated Use `IsNullQueryV2` in the `foundry.ontologies` package
+* @deprecated Use `IsNullQueryV2` in the `internal.foundry.ontologies` package
 *
    * Returns objects based on the existence of the specified field. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -1953,7 +1953,7 @@ export interface IsNullQueryV2 {
 }
 
 /**
- * @deprecated Use `LinkedInterfaceTypeApiName` in the `foundry.ontologies` package
+ * @deprecated Use `LinkedInterfaceTypeApiName` in the `internal.foundry.ontologies` package
  *
  * A reference to the linked interface type.
  *
@@ -1964,7 +1964,7 @@ export interface LinkedInterfaceTypeApiName {
 }
 
 /**
- * @deprecated Use `LinkedObjectTypeApiName` in the `foundry.ontologies` package
+ * @deprecated Use `LinkedObjectTypeApiName` in the `internal.foundry.ontologies` package
  *
  * A reference to the linked object type.
  *
@@ -1975,14 +1975,14 @@ export interface LinkedObjectTypeApiName {
 }
 
 /**
- * @deprecated Use `LinkedObjectV2` in the `foundry.ontologies` package
+ * @deprecated Use `LinkedObjectV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type LinkedObjectV2 = LooselyBrandedString<"LinkedObjectV2">;
 
 /**
- * @deprecated Use `LinkSideObject` in the `foundry.ontologies` package
+ * @deprecated Use `LinkSideObject` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -1992,7 +1992,7 @@ export interface LinkSideObject {
 }
 
 /**
-* @deprecated Use `LinkTypeApiName` in the `foundry.ontologies` package
+* @deprecated Use `LinkTypeApiName` in the `internal.foundry.ontologies` package
 *
    * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager
 application.
@@ -2002,14 +2002,14 @@ application.
 export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
 
 /**
- * @deprecated Use `LinkTypeRid` in the `foundry.ontologies` package
+ * @deprecated Use `LinkTypeRid` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type LinkTypeRid = LooselyBrandedString<"LinkTypeRid">;
 
 /**
- * @deprecated Use `LinkTypeSide` in the `foundry.ontologies` package
+ * @deprecated Use `LinkTypeSide` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2023,14 +2023,14 @@ export interface LinkTypeSide {
 }
 
 /**
- * @deprecated Use `LinkTypeSideCardinality` in the `foundry.ontologies` package
+ * @deprecated Use `LinkTypeSideCardinality` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type LinkTypeSideCardinality = "ONE" | "MANY";
 
 /**
- * @deprecated Use `LinkTypeSideV2` in the `foundry.ontologies` package
+ * @deprecated Use `LinkTypeSideV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2045,7 +2045,7 @@ export interface LinkTypeSideV2 {
 }
 
 /**
- * @deprecated Use `ListActionTypesResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListActionTypesResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2055,7 +2055,7 @@ export interface ListActionTypesResponse {
 }
 
 /**
- * @deprecated Use `ListActionTypesResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `ListActionTypesResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2065,7 +2065,7 @@ export interface ListActionTypesResponseV2 {
 }
 
 /**
- * @deprecated Use `ListAttachmentsResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `ListAttachmentsResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2075,7 +2075,7 @@ export interface ListAttachmentsResponseV2 {
 }
 
 /**
- * @deprecated Use `ListInterfaceTypesResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListInterfaceTypesResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2085,7 +2085,7 @@ export interface ListInterfaceTypesResponse {
 }
 
 /**
- * @deprecated Use `ListLinkedObjectsResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListLinkedObjectsResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2095,7 +2095,7 @@ export interface ListLinkedObjectsResponse {
 }
 
 /**
- * @deprecated Use `ListLinkedObjectsResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `ListLinkedObjectsResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2105,7 +2105,7 @@ export interface ListLinkedObjectsResponseV2 {
 }
 
 /**
- * @deprecated Use `ListObjectsResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListObjectsResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2116,7 +2116,7 @@ export interface ListObjectsResponse {
 }
 
 /**
- * @deprecated Use `ListObjectsResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `ListObjectsResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2127,7 +2127,7 @@ export interface ListObjectsResponseV2 {
 }
 
 /**
- * @deprecated Use `ListObjectTypesResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListObjectTypesResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2137,7 +2137,7 @@ export interface ListObjectTypesResponse {
 }
 
 /**
- * @deprecated Use `ListObjectTypesV2Response` in the `foundry.ontologies` package
+ * @deprecated Use `ListObjectTypesV2Response` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2147,7 +2147,7 @@ export interface ListObjectTypesV2Response {
 }
 
 /**
- * @deprecated Use `ListOntologiesResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListOntologiesResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2156,7 +2156,7 @@ export interface ListOntologiesResponse {
 }
 
 /**
- * @deprecated Use `ListOntologiesV2Response` in the `foundry.ontologies` package
+ * @deprecated Use `ListOntologiesV2Response` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2165,7 +2165,7 @@ export interface ListOntologiesV2Response {
 }
 
 /**
- * @deprecated Use `ListOutgoingLinkTypesResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListOutgoingLinkTypesResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2175,7 +2175,7 @@ export interface ListOutgoingLinkTypesResponse {
 }
 
 /**
- * @deprecated Use `ListOutgoingLinkTypesResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `ListOutgoingLinkTypesResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2185,7 +2185,7 @@ export interface ListOutgoingLinkTypesResponseV2 {
 }
 
 /**
- * @deprecated Use `ListQueryTypesResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListQueryTypesResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2195,7 +2195,7 @@ export interface ListQueryTypesResponse {
 }
 
 /**
- * @deprecated Use `ListQueryTypesResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `ListQueryTypesResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2224,7 +2224,7 @@ export type LmsEmbeddingModelValue =
   | "BGE_BASE_EN_V1_5";
 
 /**
- * @deprecated Use `LoadObjectSetRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `LoadObjectSetRequestV2` in the `internal.foundry.ontologies` package
  *
  * Represents the API POST body when loading an ObjectSet.
  *
@@ -2240,7 +2240,7 @@ export interface LoadObjectSetRequestV2 {
 }
 
 /**
- * @deprecated Use `LoadObjectSetResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `LoadObjectSetResponseV2` in the `internal.foundry.ontologies` package
  *
  * Represents the API response when loading an ObjectSet.
  *
@@ -2253,7 +2253,7 @@ export interface LoadObjectSetResponseV2 {
 }
 
 /**
- * @deprecated Use `LoadObjectSetV2MultipleObjectTypesRequest` in the `foundry.ontologies` package
+ * @deprecated Use `LoadObjectSetV2MultipleObjectTypesRequest` in the `internal.foundry.ontologies` package
  *
  * Represents the API POST body when loading an ObjectSet. Used on the /loadObjectsMultipleObjectTypes endpoint only.
  *
@@ -2269,7 +2269,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
 }
 
 /**
-* @deprecated Use `LoadObjectSetV2MultipleObjectTypesResponse` in the `foundry.ontologies` package
+* @deprecated Use `LoadObjectSetV2MultipleObjectTypesResponse` in the `internal.foundry.ontologies` package
 *
    * Represents the API response when loading an ObjectSet. An interfaceToObjectTypeMappings field is
 optionally returned if the type scope of the returned object set includes any interfaces. The "type scope"
@@ -2292,7 +2292,7 @@ export interface LoadObjectSetV2MultipleObjectTypesResponse {
 }
 
 /**
- * @deprecated Use `LoadObjectSetV2ObjectsOrInterfacesRequest` in the `foundry.ontologies` package
+ * @deprecated Use `LoadObjectSetV2ObjectsOrInterfacesRequest` in the `internal.foundry.ontologies` package
  *
  * Represents the API POST body when loading an ObjectSet. Used on the /loadObjectsOrInterfaces endpoint only.
  *
@@ -2308,7 +2308,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
 }
 
 /**
-* @deprecated Use `LoadObjectSetV2ObjectsOrInterfacesResponse` in the `foundry.ontologies` package
+* @deprecated Use `LoadObjectSetV2ObjectsOrInterfacesResponse` in the `internal.foundry.ontologies` package
 *
    * Represents the API response when loading an ObjectSet. Objects in the returned set can either have properties
 defined by an interface that the objects belong to or properties defined by the object type of the object.
@@ -2327,7 +2327,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesResponse {
 export interface LocalFilePath {}
 
 /**
- * @deprecated Use `LogicRule` in the `foundry.ontologies` package
+ * @deprecated Use `LogicRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2347,7 +2347,7 @@ export type LogicRule =
 export interface LongType {}
 
 /**
- * @deprecated Use `LteQuery` in the `foundry.ontologies` package
+ * @deprecated Use `LteQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified field is less than or equal to a value.
  *
@@ -2359,7 +2359,7 @@ export interface LteQuery {
 }
 
 /**
-* @deprecated Use `LteQueryV2` in the `foundry.ontologies` package
+* @deprecated Use `LteQueryV2` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field is less than or equal to a value. Allows you to specify a property to
 query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -2373,7 +2373,7 @@ export interface LteQueryV2 {
 }
 
 /**
- * @deprecated Use `LtQuery` in the `foundry.ontologies` package
+ * @deprecated Use `LtQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified field is less than a value.
  *
@@ -2385,7 +2385,7 @@ export interface LtQuery {
 }
 
 /**
-* @deprecated Use `LtQueryV2` in the `foundry.ontologies` package
+* @deprecated Use `LtQueryV2` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field is less than a value. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -2404,7 +2404,7 @@ export interface LtQueryV2 {
 export interface MarkingType {}
 
 /**
- * @deprecated Use `MaxAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `MaxAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the maximum value for the provided field.
  *
@@ -2416,7 +2416,7 @@ export interface MaxAggregation {
 }
 
 /**
- * @deprecated Use `MaxAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `MaxAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes the maximum value for the provided field.
  *
@@ -2446,7 +2446,7 @@ export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
 export type MediaItemRid = LooselyBrandedString<"MediaItemRid">;
 
 /**
- * @deprecated Use `MediaMetadata` in the `foundry.ontologies` package
+ * @deprecated Use `MediaMetadata` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2467,7 +2467,7 @@ export interface MediaReference {
 }
 
 /**
- * @deprecated Use `MediaReferenceProperty` in the `foundry.ontologies` package
+ * @deprecated Use `MediaReferenceProperty` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2519,14 +2519,14 @@ Examples: application/json, application/pdf, application/octet-stream, image/jpe
 export type MediaType = LooselyBrandedString<"MediaType">;
 
 /**
- * @deprecated Use `MethodObjectSet` in the `foundry.ontologies` package
+ * @deprecated Use `MethodObjectSet` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type MethodObjectSet = ObjectSet;
 
 /**
- * @deprecated Use `MinAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `MinAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the minimum value for the provided field.
  *
@@ -2538,7 +2538,7 @@ export interface MinAggregation {
 }
 
 /**
- * @deprecated Use `MinAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `MinAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes the minimum value for the provided field.
  *
@@ -2551,7 +2551,7 @@ export interface MinAggregationV2 {
 }
 
 /**
- * @deprecated Use `ModifyInterfaceObjectRule` in the `foundry.ontologies` package
+ * @deprecated Use `ModifyInterfaceObjectRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2560,7 +2560,7 @@ export interface ModifyInterfaceObjectRule {
 }
 
 /**
- * @deprecated Use `ModifyObject` in the `foundry.ontologies` package
+ * @deprecated Use `ModifyObject` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2570,7 +2570,7 @@ export interface ModifyObject {
 }
 
 /**
- * @deprecated Use `ModifyObjectRule` in the `foundry.ontologies` package
+ * @deprecated Use `ModifyObjectRule` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2579,7 +2579,7 @@ export interface ModifyObjectRule {
 }
 
 /**
-* @deprecated Use `NearestNeighborsQuery` in the `foundry.ontologies` package
+* @deprecated Use `NearestNeighborsQuery` in the `internal.foundry.ontologies` package
 *
    * Queries support either a vector matching the embedding model defined on the property, or text that is
 automatically embedded.
@@ -2591,7 +2591,7 @@ export type NearestNeighborsQuery =
   | ({ type: "text" } & NearestNeighborsQueryText);
 
 /**
- * @deprecated Use `NearestNeighborsQueryText` in the `foundry.ontologies` package
+ * @deprecated Use `NearestNeighborsQueryText` in the `internal.foundry.ontologies` package
  *
  * Automatically embed the text in a vector using the embedding model configured for the given propertyIdentifier.
  *
@@ -2602,7 +2602,7 @@ export interface NearestNeighborsQueryText {
 }
 
 /**
- * @deprecated Use `NestedQueryAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `NestedQueryAggregation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2612,7 +2612,7 @@ export interface NestedQueryAggregation {
 }
 
 /**
- * @deprecated Use `NotQuery` in the `foundry.ontologies` package
+ * @deprecated Use `NotQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the query is not satisfied.
  *
@@ -2623,7 +2623,7 @@ export interface NotQuery {
 }
 
 /**
- * @deprecated Use `NotQueryV2` in the `foundry.ontologies` package
+ * @deprecated Use `NotQueryV2` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the query is not satisfied.
  *
@@ -2639,7 +2639,7 @@ export interface NotQueryV2 {
 export interface NullType {}
 
 /**
- * @deprecated Use `ObjectEdit` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectEdit` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2649,7 +2649,7 @@ export type ObjectEdit =
   | ({ type: "addLink" } & AddLink);
 
 /**
- * @deprecated Use `ObjectEdits` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectEdits` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2663,14 +2663,14 @@ export interface ObjectEdits {
 }
 
 /**
- * @deprecated Use `ObjectPrimaryKey` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectPrimaryKey` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type ObjectPrimaryKey = Record<PropertyApiName, PropertyValue>;
 
 /**
- * @deprecated Use `ObjectPropertyType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectPropertyType` in the `internal.foundry.ontologies` package
  *
  * A union of all the types supported by Ontology Object properties.
  *
@@ -2701,7 +2701,7 @@ export type ObjectPropertyType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
- * @deprecated Use `ObjectPropertyValueConstraint` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectPropertyValueConstraint` in the `internal.foundry.ontologies` package
  *
  * The parameter value must be a property value of an object found within an object set.
  *
@@ -2710,7 +2710,7 @@ export type ObjectPropertyType =
 export interface ObjectPropertyValueConstraint {}
 
 /**
- * @deprecated Use `ObjectQueryResultConstraint` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectQueryResultConstraint` in the `internal.foundry.ontologies` package
  *
  * The parameter value must be the primary key of an object found within an object set.
  *
@@ -2719,7 +2719,7 @@ export interface ObjectPropertyValueConstraint {}
 export interface ObjectQueryResultConstraint {}
 
 /**
- * @deprecated Use `ObjectRid` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of an object, useful for interacting with other Foundry APIs.
  *
@@ -2728,7 +2728,7 @@ export interface ObjectQueryResultConstraint {}
 export type ObjectRid = LooselyBrandedString<"ObjectRid">;
 
 /**
- * @deprecated Use `ObjectSet` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSet` in the `internal.foundry.ontologies` package
  *
  * Represents the definition of an ObjectSet in the Ontology.
  *
@@ -2751,7 +2751,7 @@ export type ObjectSet =
   | ({ type: "base" } & ObjectSetBaseType);
 
 /**
-* @deprecated Use `ObjectSetAsBaseObjectTypesType` in the `foundry.ontologies` package
+* @deprecated Use `ObjectSetAsBaseObjectTypesType` in the `internal.foundry.ontologies` package
 *
    * Casts the objects in the object set to their base type and thus ensures objects are returned with all of their
 properties in the resulting object set, not just the properties that implement interface properties. This is
@@ -2764,7 +2764,7 @@ export interface ObjectSetAsBaseObjectTypesType {
 }
 
 /**
-* @deprecated Use `ObjectSetAsTypeType` in the `foundry.ontologies` package
+* @deprecated Use `ObjectSetAsTypeType` in the `internal.foundry.ontologies` package
 *
    * Casts an object set to a specified object type or interface type API name. Any object whose object type does
 not match the object type provided or implement the interface type provided will be dropped from the resulting
@@ -2778,7 +2778,7 @@ export interface ObjectSetAsTypeType {
 }
 
 /**
- * @deprecated Use `ObjectSetBaseType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetBaseType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2787,7 +2787,7 @@ export interface ObjectSetBaseType {
 }
 
 /**
- * @deprecated Use `ObjectSetFilterType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetFilterType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2797,7 +2797,7 @@ export interface ObjectSetFilterType {
 }
 
 /**
- * @deprecated Use `ObjectSetInterfaceBaseType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetInterfaceBaseType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2806,7 +2806,7 @@ export interface ObjectSetInterfaceBaseType {
 }
 
 /**
- * @deprecated Use `ObjectSetIntersectionType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetIntersectionType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2815,7 +2815,7 @@ export interface ObjectSetIntersectionType {
 }
 
 /**
-* @deprecated Use `ObjectSetMethodInputType` in the `foundry.ontologies` package
+* @deprecated Use `ObjectSetMethodInputType` in the `internal.foundry.ontologies` package
 *
    * ObjectSet which is the root of a MethodObjectSet definition.
 This feature is experimental and not yet generally available.
@@ -2825,7 +2825,7 @@ This feature is experimental and not yet generally available.
 export interface ObjectSetMethodInputType {}
 
 /**
-* @deprecated Use `ObjectSetNearestNeighborsType` in the `foundry.ontologies` package
+* @deprecated Use `ObjectSetNearestNeighborsType` in the `internal.foundry.ontologies` package
 *
    * ObjectSet containing the top numNeighbors objects with propertyIdentifier nearest to the input vector or
 text. This can only be performed on a property with type vector that has been configured to be searched with
@@ -2847,7 +2847,7 @@ export interface ObjectSetNearestNeighborsType {
 }
 
 /**
- * @deprecated Use `ObjectSetReferenceType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetReferenceType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -2856,14 +2856,14 @@ export interface ObjectSetReferenceType {
 }
 
 /**
- * @deprecated Use `ObjectSetRid` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetRid` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
 
 /**
- * @deprecated Use `ObjectSetSearchAroundType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetSearchAroundType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2873,7 +2873,7 @@ export interface ObjectSetSearchAroundType {
 }
 
 /**
- * @deprecated Use `ObjectSetStaticType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetStaticType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -2882,7 +2882,7 @@ export interface ObjectSetStaticType {
 }
 
 /**
- * @deprecated Use `ObjectSetStreamSubscribeRequest` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetStreamSubscribeRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2893,7 +2893,7 @@ export interface ObjectSetStreamSubscribeRequest {
 }
 
 /**
-* @deprecated Use `ObjectSetStreamSubscribeRequests` in the `foundry.ontologies` package
+* @deprecated Use `ObjectSetStreamSubscribeRequests` in the `internal.foundry.ontologies` package
 *
    * The list of object sets that should be subscribed to. A client can stop subscribing to an object set
 by removing the request from subsequent ObjectSetStreamSubscribeRequests.
@@ -2906,7 +2906,7 @@ export interface ObjectSetStreamSubscribeRequests {
 }
 
 /**
- * @deprecated Use `ObjectSetSubscribeResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetSubscribeResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2916,7 +2916,7 @@ export type ObjectSetSubscribeResponse =
   | ({ type: "error" } & SubscriptionError);
 
 /**
- * @deprecated Use `ObjectSetSubscribeResponses` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetSubscribeResponses` in the `internal.foundry.ontologies` package
  *
  * Returns a response for every request in the same order. Duplicate requests will be assigned the same SubscriberId.
  *
@@ -2928,7 +2928,7 @@ export interface ObjectSetSubscribeResponses {
 }
 
 /**
- * @deprecated Use `ObjectSetSubtractType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetSubtractType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2937,7 +2937,7 @@ export interface ObjectSetSubtractType {
 }
 
 /**
- * @deprecated Use `ObjectSetUnionType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetUnionType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2946,7 +2946,7 @@ export interface ObjectSetUnionType {
 }
 
 /**
- * @deprecated Use `ObjectSetUpdate` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetUpdate` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2955,7 +2955,7 @@ export type ObjectSetUpdate =
   | ({ type: "object" } & ObjectUpdate);
 
 /**
- * @deprecated Use `ObjectSetUpdates` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectSetUpdates` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -2965,7 +2965,7 @@ export interface ObjectSetUpdates {
 }
 
 /**
-* @deprecated Use `ObjectSetWithPropertiesType` in the `foundry.ontologies` package
+* @deprecated Use `ObjectSetWithPropertiesType` in the `internal.foundry.ontologies` package
 *
    * ObjectSet which returns objects with additional derived properties.
 This feature is experimental and not yet generally available.
@@ -2978,7 +2978,7 @@ export interface ObjectSetWithPropertiesType {
 }
 
 /**
-* @deprecated Use `ObjectState` in the `foundry.ontologies` package
+* @deprecated Use `ObjectState` in the `internal.foundry.ontologies` package
 *
    * Represents the state of the object within the object set. ADDED_OR_UPDATED indicates that the object was
 added to the set or the object has updated and was previously in the set. REMOVED indicates that the object
@@ -2990,7 +2990,7 @@ definition.
 export type ObjectState = "ADDED_OR_UPDATED" | "REMOVED";
 
 /**
- * @deprecated Use `ObjectType` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectType` in the `internal.foundry.ontologies` package
  *
  * Represents an object type in the Ontology.
  *
@@ -3008,7 +3008,7 @@ export interface ObjectType {
 }
 
 /**
-* @deprecated Use `ObjectTypeApiName` in the `foundry.ontologies` package
+* @deprecated Use `ObjectTypeApiName` in the `internal.foundry.ontologies` package
 *
    * The name of the object type in the API in camelCase format. To find the API name for your Object Type, use the
 List object types endpoint or check the Ontology Manager.
@@ -3018,7 +3018,7 @@ List object types endpoint or check the Ontology Manager.
 export type ObjectTypeApiName = LooselyBrandedString<"ObjectTypeApiName">;
 
 /**
- * @deprecated Use `ObjectTypeEdits` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectTypeEdits` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3027,7 +3027,7 @@ export interface ObjectTypeEdits {
 }
 
 /**
- * @deprecated Use `ObjectTypeFullMetadata` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectTypeFullMetadata` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3043,7 +3043,7 @@ export interface ObjectTypeFullMetadata {
 }
 
 /**
- * @deprecated Use `ObjectTypeInterfaceImplementation` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectTypeInterfaceImplementation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3052,7 +3052,7 @@ export interface ObjectTypeInterfaceImplementation {
 }
 
 /**
- * @deprecated Use `ObjectTypeRid` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectTypeRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of an object type, useful for interacting with other Foundry APIs.
  *
@@ -3061,7 +3061,7 @@ export interface ObjectTypeInterfaceImplementation {
 export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 
 /**
- * @deprecated Use `ObjectTypeV2` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectTypeV2` in the `internal.foundry.ontologies` package
  *
  * Represents an object type in the Ontology.
  *
@@ -3082,7 +3082,7 @@ export interface ObjectTypeV2 {
 }
 
 /**
- * @deprecated Use `ObjectTypeVisibility` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectTypeVisibility` in the `internal.foundry.ontologies` package
  *
  * The suggested visibility of the object type.
  *
@@ -3091,7 +3091,7 @@ export interface ObjectTypeV2 {
 export type ObjectTypeVisibility = "NORMAL" | "PROMINENT" | "HIDDEN";
 
 /**
- * @deprecated Use `ObjectUpdate` in the `foundry.ontologies` package
+ * @deprecated Use `ObjectUpdate` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3101,7 +3101,7 @@ export interface ObjectUpdate {
 }
 
 /**
- * @deprecated Use `OneOfConstraint` in the `foundry.ontologies` package
+ * @deprecated Use `OneOfConstraint` in the `internal.foundry.ontologies` package
  *
  * The parameter has a manually predefined set of options.
  *
@@ -3113,7 +3113,7 @@ export interface OneOfConstraint {
 }
 
 /**
- * @deprecated Use `Ontology` in the `foundry.ontologies` package
+ * @deprecated Use `Ontology` in the `internal.foundry.ontologies` package
  *
  * Metadata about an Ontology.
  *
@@ -3127,14 +3127,14 @@ export interface Ontology {
 }
 
 /**
- * @deprecated Use `OntologyApiName` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyApiName` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type OntologyApiName = LooselyBrandedString<"OntologyApiName">;
 
 /**
- * @deprecated Use `OntologyArrayType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyArrayType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3143,7 +3143,7 @@ export interface OntologyArrayType {
 }
 
 /**
- * @deprecated Use `OntologyDataType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyDataType` in the `internal.foundry.ontologies` package
  *
  * A union of all the primitive types used by Palantir's Ontology-based products.
  *
@@ -3174,7 +3174,7 @@ export type OntologyDataType =
   | ({ type: "object" } & OntologyObjectType);
 
 /**
- * @deprecated Use `OntologyFullMetadata` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyFullMetadata` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3188,7 +3188,7 @@ export interface OntologyFullMetadata {
 }
 
 /**
- * @deprecated Use `OntologyIdentifier` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyIdentifier` in the `internal.foundry.ontologies` package
  *
  * Either an ontology rid or an ontology api name.
  *
@@ -3197,14 +3197,14 @@ export interface OntologyFullMetadata {
 export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
 
 /**
- * @deprecated Use `OntologyInterface` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyInterface` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type OntologyInterface = LooselyBrandedString<"OntologyInterface">;
 
 /**
- * @deprecated Use `OntologyInterfaceObjectType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyInterfaceObjectType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3213,7 +3213,7 @@ export interface OntologyInterfaceObjectType {
 }
 
 /**
- * @deprecated Use `OntologyMapType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyMapType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3223,7 +3223,7 @@ export interface OntologyMapType {
 }
 
 /**
- * @deprecated Use `OntologyObject` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyObject` in the `internal.foundry.ontologies` package
  *
  * Represents an object in the Ontology.
  *
@@ -3235,7 +3235,7 @@ export interface OntologyObject {
 }
 
 /**
- * @deprecated Use `OntologyObjectArrayType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyObjectArrayType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3244,14 +3244,14 @@ export interface OntologyObjectArrayType {
 }
 
 /**
- * @deprecated Use `OntologyObjectSet` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyObjectSet` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type OntologyObjectSet = LooselyBrandedString<"OntologyObjectSet">;
 
 /**
- * @deprecated Use `OntologyObjectSetType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyObjectSetType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3261,7 +3261,7 @@ export interface OntologyObjectSetType {
 }
 
 /**
- * @deprecated Use `OntologyObjectType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyObjectType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3271,14 +3271,14 @@ export interface OntologyObjectType {
 }
 
 /**
- * @deprecated Use `OntologyObjectTypeReferenceType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyObjectTypeReferenceType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export interface OntologyObjectTypeReferenceType {}
 
 /**
- * @deprecated Use `OntologyObjectV2` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyObjectV2` in the `internal.foundry.ontologies` package
  *
  * Represents an object in the Ontology.
  *
@@ -3287,7 +3287,7 @@ export interface OntologyObjectTypeReferenceType {}
 export type OntologyObjectV2 = Record<PropertyApiName, PropertyValue>;
 
 /**
-* @deprecated Use `OntologyRid` in the `foundry.ontologies` package
+* @deprecated Use `OntologyRid` in the `internal.foundry.ontologies` package
 *
    * The unique Resource Identifier (RID) of the Ontology. To look up your Ontology RID, please use the
 List ontologies endpoint or check the Ontology Manager.
@@ -3297,7 +3297,7 @@ List ontologies endpoint or check the Ontology Manager.
 export type OntologyRid = LooselyBrandedString<"OntologyRid">;
 
 /**
- * @deprecated Use `OntologySetType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologySetType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3306,7 +3306,7 @@ export interface OntologySetType {
 }
 
 /**
- * @deprecated Use `OntologyStructField` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyStructField` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3317,7 +3317,7 @@ export interface OntologyStructField {
 }
 
 /**
- * @deprecated Use `OntologyStructType` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyStructType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3326,7 +3326,7 @@ export interface OntologyStructType {
 }
 
 /**
- * @deprecated Use `OntologyV2` in the `foundry.ontologies` package
+ * @deprecated Use `OntologyV2` in the `internal.foundry.ontologies` package
  *
  * Metadata about an Ontology.
  *
@@ -3340,7 +3340,7 @@ export interface OntologyV2 {
 }
 
 /**
-* @deprecated Use `OrderBy` in the `foundry.ontologies` package
+* @deprecated Use `OrderBy` in the `internal.foundry.ontologies` package
 *
    * A command representing the list of properties to order by. Properties should be delimited by commas and
 prefixed by p or properties. The format expected format is
@@ -3356,14 +3356,14 @@ You may also use the shorthand p instead of properties such as orderBy=p.lastNam
 export type OrderBy = LooselyBrandedString<"OrderBy">;
 
 /**
- * @deprecated Use `OrderByDirection` in the `foundry.ontologies` package
+ * @deprecated Use `OrderByDirection` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type OrderByDirection = "ASC" | "DESC";
 
 /**
- * @deprecated Use `OrQuery` in the `foundry.ontologies` package
+ * @deprecated Use `OrQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where at least 1 query is satisfied.
  *
@@ -3374,7 +3374,7 @@ export interface OrQuery {
 }
 
 /**
- * @deprecated Use `OrQueryV2` in the `foundry.ontologies` package
+ * @deprecated Use `OrQueryV2` in the `internal.foundry.ontologies` package
  *
  * Returns objects where at least 1 query is satisfied.
  *
@@ -3401,7 +3401,7 @@ and use it to populate the pageToken field of the next request.
 export type PageToken = LooselyBrandedString<"PageToken">;
 
 /**
- * @deprecated Use `Parameter` in the `foundry.ontologies` package
+ * @deprecated Use `Parameter` in the `internal.foundry.ontologies` package
  *
  * Details about a parameter of an action or query.
  *
@@ -3415,7 +3415,7 @@ export interface Parameter {
 }
 
 /**
-* @deprecated Use `ParameterEvaluatedConstraint` in the `foundry.ontologies` package
+* @deprecated Use `ParameterEvaluatedConstraint` in the `internal.foundry.ontologies` package
 *
    * A constraint that an action parameter value must satisfy in order to be considered valid.
 Constraints can be configured on action parameters in the Ontology Manager.
@@ -3448,7 +3448,7 @@ export type ParameterEvaluatedConstraint =
   | ({ type: "unevaluable" } & UnevaluableConstraint);
 
 /**
- * @deprecated Use `ParameterEvaluationResult` in the `foundry.ontologies` package
+ * @deprecated Use `ParameterEvaluationResult` in the `internal.foundry.ontologies` package
  *
  * Represents the validity of a parameter against the configured constraints.
  *
@@ -3461,7 +3461,7 @@ export interface ParameterEvaluationResult {
 }
 
 /**
-* @deprecated Use `ParameterId` in the `foundry.ontologies` package
+* @deprecated Use `ParameterId` in the `internal.foundry.ontologies` package
 *
    * The unique identifier of the parameter. Parameters are used as inputs when an action or query is applied.
 Parameters can be viewed and managed in the Ontology Manager.
@@ -3471,7 +3471,7 @@ Parameters can be viewed and managed in the Ontology Manager.
 export type ParameterId = LooselyBrandedString<"ParameterId">;
 
 /**
- * @deprecated Use `ParameterOption` in the `foundry.ontologies` package
+ * @deprecated Use `ParameterOption` in the `internal.foundry.ontologies` package
  *
  * A possible value for the parameter. This is defined in the Ontology Manager by Actions admins.
  *
@@ -3483,7 +3483,7 @@ export interface ParameterOption {
 }
 
 /**
- * @deprecated Use `PhraseQuery` in the `foundry.ontologies` package
+ * @deprecated Use `PhraseQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified field contains the provided value as a substring.
  *
@@ -3495,14 +3495,14 @@ export interface PhraseQuery {
 }
 
 /**
- * @deprecated Use `PolygonValue` in the `foundry.ontologies` package
+ * @deprecated Use `PolygonValue` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type PolygonValue = { type: "Polygon" } & _Geo.Polygon;
 
 /**
- * @deprecated Use `PrefixQuery` in the `foundry.ontologies` package
+ * @deprecated Use `PrefixQuery` in the `internal.foundry.ontologies` package
  *
  * Returns objects where the specified field starts with the provided value.
  *
@@ -3521,7 +3521,7 @@ export interface PrefixQuery {
 export type PreviewMode = boolean;
 
 /**
- * @deprecated Use `PrimaryKeyValue` in the `foundry.ontologies` package
+ * @deprecated Use `PrimaryKeyValue` in the `internal.foundry.ontologies` package
  *
  * Represents the primary key value that is used as a unique identifier for an object.
  *
@@ -3530,7 +3530,7 @@ export type PreviewMode = boolean;
 export type PrimaryKeyValue = any;
 
 /**
- * @deprecated Use `Property` in the `foundry.ontologies` package
+ * @deprecated Use `Property` in the `internal.foundry.ontologies` package
  *
  * Details about some property of an object.
  *
@@ -3543,7 +3543,7 @@ export interface Property {
 }
 
 /**
-* @deprecated Use `PropertyApiName` in the `foundry.ontologies` package
+* @deprecated Use `PropertyApiName` in the `internal.foundry.ontologies` package
 *
    * The name of the property in the API. To find the API name for your property, use the Get object type
 endpoint or check the Ontology Manager.
@@ -3553,7 +3553,7 @@ endpoint or check the Ontology Manager.
 export type PropertyApiName = LooselyBrandedString<"PropertyApiName">;
 
 /**
- * @deprecated Use `PropertyApiNameSelector` in the `foundry.ontologies` package
+ * @deprecated Use `PropertyApiNameSelector` in the `internal.foundry.ontologies` package
  *
  * A property api name that references properties to query on.
  *
@@ -3564,7 +3564,7 @@ export interface PropertyApiNameSelector {
 }
 
 /**
-* @deprecated Use `PropertyFilter` in the `foundry.ontologies` package
+* @deprecated Use `PropertyFilter` in the `internal.foundry.ontologies` package
 *
    * Represents a filter used on properties.
 Endpoints that accept this supports optional parameters that have the form:
@@ -3595,7 +3595,7 @@ This filter is supported on all property types.
 export type PropertyFilter = LooselyBrandedString<"PropertyFilter">;
 
 /**
-* @deprecated Use `PropertyId` in the `foundry.ontologies` package
+* @deprecated Use `PropertyId` in the `internal.foundry.ontologies` package
 *
    * The immutable ID of a property. Property IDs are only used to identify properties in the Ontology Manager
 application and assign them API names. In every other case, API names should be used instead of property IDs.
@@ -3605,7 +3605,7 @@ application and assign them API names. In every other case, API names should be 
 export type PropertyId = LooselyBrandedString<"PropertyId">;
 
 /**
- * @deprecated Use `PropertyIdentifier` in the `foundry.ontologies` package
+ * @deprecated Use `PropertyIdentifier` in the `internal.foundry.ontologies` package
  *
  * An identifier used to select properties or struct fields.
  *
@@ -3616,14 +3616,14 @@ export type PropertyIdentifier =
   | ({ type: "structField" } & StructFieldSelector);
 
 /**
- * @deprecated Use `PropertyTypeRid` in the `foundry.ontologies` package
+ * @deprecated Use `PropertyTypeRid` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type PropertyTypeRid = LooselyBrandedString<"PropertyTypeRid">;
 
 /**
- * @deprecated Use `PropertyTypeStatus` in the `foundry.ontologies` package
+ * @deprecated Use `PropertyTypeStatus` in the `internal.foundry.ontologies` package
  *
  * The status to indicate whether the PropertyType is either Experimental, Active, Deprecated, or Example.
  *
@@ -3636,14 +3636,14 @@ export type PropertyTypeStatus =
   | ({ type: "example" } & ExamplePropertyTypeStatus);
 
 /**
- * @deprecated Use `PropertyTypeVisibility` in the `foundry.ontologies` package
+ * @deprecated Use `PropertyTypeVisibility` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type PropertyTypeVisibility = "NORMAL" | "PROMINENT" | "HIDDEN";
 
 /**
- * @deprecated Use `PropertyV2` in the `foundry.ontologies` package
+ * @deprecated Use `PropertyV2` in the `internal.foundry.ontologies` package
  *
  * Details about some property of an object.
  *
@@ -3659,7 +3659,7 @@ export interface PropertyV2 {
 }
 
 /**
-* @deprecated Use `PropertyValue` in the `foundry.ontologies` package
+* @deprecated Use `PropertyValue` in the `internal.foundry.ontologies` package
 *
    * Represents the value of a property in the following format.
 | Type            | JSON encoding                                               | Example                                                                                            |
@@ -3691,7 +3691,7 @@ Note that for backwards compatibility, the Boolean, Byte, Double, Float, Integer
 export type PropertyValue = any;
 
 /**
- * @deprecated Use `PropertyValueEscapedString` in the `foundry.ontologies` package
+ * @deprecated Use `PropertyValueEscapedString` in the `internal.foundry.ontologies` package
  *
  * Represents the value of a property in string format. This is used in URL parameters.
  *
@@ -3702,7 +3702,7 @@ export type PropertyValueEscapedString = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `QosError` in the `foundry.ontologies` package
+ * @deprecated Use `QosError` in the `internal.foundry.ontologies` package
  *
  * An error indicating that the subscribe request should be attempted on a different node.
  *
@@ -3711,7 +3711,7 @@ export type PropertyValueEscapedString = LooselyBrandedString<
 export interface QosError {}
 
 /**
- * @deprecated Use `QualifiedTimeseriesProperty` in the `foundry.ontologies` package
+ * @deprecated Use `QualifiedTimeseriesProperty` in the `internal.foundry.ontologies` package
  *
  * The representation of a time series property backed by multiple time series syncs.
  *
@@ -3723,14 +3723,14 @@ export interface QualifiedTimeseriesProperty {
 }
 
 /**
- * @deprecated Use `Query` in the `foundry.ontologies` package
+ * @deprecated Use `Query` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type Query = LooselyBrandedString<"Query">;
 
 /**
- * @deprecated Use `QueryAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `QueryAggregation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3740,7 +3740,7 @@ export interface QueryAggregation {
 }
 
 /**
- * @deprecated Use `QueryAggregationKeyType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryAggregationKeyType` in the `internal.foundry.ontologies` package
  *
  * A union of all the types supported by query aggregation keys.
  *
@@ -3756,7 +3756,7 @@ export type QueryAggregationKeyType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
- * @deprecated Use `QueryAggregationRange` in the `foundry.ontologies` package
+ * @deprecated Use `QueryAggregationRange` in the `internal.foundry.ontologies` package
  *
  * Specifies a range from an inclusive start value to an exclusive end value.
  *
@@ -3768,7 +3768,7 @@ export interface QueryAggregationRange {
 }
 
 /**
- * @deprecated Use `QueryAggregationRangeSubType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryAggregationRangeSubType` in the `internal.foundry.ontologies` package
  *
  * A union of all the types supported by query aggregation ranges.
  *
@@ -3781,7 +3781,7 @@ export type QueryAggregationRangeSubType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
- * @deprecated Use `QueryAggregationRangeType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryAggregationRangeType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3790,7 +3790,7 @@ export interface QueryAggregationRangeType {
 }
 
 /**
- * @deprecated Use `QueryAggregationValueType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryAggregationValueType` in the `internal.foundry.ontologies` package
  *
  * A union of all the types supported by query aggregation keys.
  *
@@ -3802,7 +3802,7 @@ export type QueryAggregationValueType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
- * @deprecated Use `QueryApiName` in the `foundry.ontologies` package
+ * @deprecated Use `QueryApiName` in the `internal.foundry.ontologies` package
  *
  * The name of the Query in the API.
  *
@@ -3811,7 +3811,7 @@ export type QueryAggregationValueType =
 export type QueryApiName = LooselyBrandedString<"QueryApiName">;
 
 /**
- * @deprecated Use `QueryArrayType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryArrayType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3820,7 +3820,7 @@ export interface QueryArrayType {
 }
 
 /**
- * @deprecated Use `QueryDataType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryDataType` in the `internal.foundry.ontologies` package
  *
  * A union of all the types supported by Ontology Query parameters or outputs.
  *
@@ -3848,7 +3848,7 @@ export type QueryDataType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
- * @deprecated Use `QueryOutputV2` in the `foundry.ontologies` package
+ * @deprecated Use `QueryOutputV2` in the `internal.foundry.ontologies` package
  *
  * Details about the output of a query.
  *
@@ -3860,7 +3860,7 @@ export interface QueryOutputV2 {
 }
 
 /**
- * @deprecated Use `QueryParameterV2` in the `foundry.ontologies` package
+ * @deprecated Use `QueryParameterV2` in the `internal.foundry.ontologies` package
  *
  * Details about a parameter of a query.
  *
@@ -3872,7 +3872,7 @@ export interface QueryParameterV2 {
 }
 
 /**
- * @deprecated Use `QueryRuntimeErrorParameter` in the `foundry.ontologies` package
+ * @deprecated Use `QueryRuntimeErrorParameter` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3881,7 +3881,7 @@ export type QueryRuntimeErrorParameter = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `QuerySetType` in the `foundry.ontologies` package
+ * @deprecated Use `QuerySetType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3890,7 +3890,7 @@ export interface QuerySetType {
 }
 
 /**
- * @deprecated Use `QueryStructField` in the `foundry.ontologies` package
+ * @deprecated Use `QueryStructField` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3900,7 +3900,7 @@ export interface QueryStructField {
 }
 
 /**
- * @deprecated Use `QueryStructType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryStructType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3909,7 +3909,7 @@ export interface QueryStructType {
 }
 
 /**
- * @deprecated Use `QueryThreeDimensionalAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `QueryThreeDimensionalAggregation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3918,7 +3918,7 @@ export interface QueryThreeDimensionalAggregation {
 }
 
 /**
- * @deprecated Use `QueryTwoDimensionalAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `QueryTwoDimensionalAggregation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3927,7 +3927,7 @@ export interface QueryTwoDimensionalAggregation {
 }
 
 /**
- * @deprecated Use `QueryType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryType` in the `internal.foundry.ontologies` package
  *
  * Represents a query type in the Ontology.
  *
@@ -3944,7 +3944,7 @@ export interface QueryType {
 }
 
 /**
- * @deprecated Use `QueryTypeV2` in the `foundry.ontologies` package
+ * @deprecated Use `QueryTypeV2` in the `internal.foundry.ontologies` package
  *
  * Represents a query type in the Ontology.
  *
@@ -3961,7 +3961,7 @@ export interface QueryTypeV2 {
 }
 
 /**
- * @deprecated Use `QueryUnionType` in the `foundry.ontologies` package
+ * @deprecated Use `QueryUnionType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -3970,7 +3970,7 @@ export interface QueryUnionType {
 }
 
 /**
- * @deprecated Use `RangeConstraint` in the `foundry.ontologies` package
+ * @deprecated Use `RangeConstraint` in the `internal.foundry.ontologies` package
  *
  * The parameter value must be within the defined range.
  *
@@ -3984,7 +3984,7 @@ export interface RangeConstraint {
 }
 
 /**
- * @deprecated Use `Reason` in the `foundry.ontologies` package
+ * @deprecated Use `Reason` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -3993,7 +3993,7 @@ export interface Reason {
 }
 
 /**
- * @deprecated Use `ReasonType` in the `foundry.ontologies` package
+ * @deprecated Use `ReasonType` in the `internal.foundry.ontologies` package
  *
  * Represents the reason a subscription was closed.
  *
@@ -4009,7 +4009,7 @@ export type ReasonType = "USER_CLOSED" | "CHANNEL_CLOSED";
 export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItemWrapper;
 
 /**
-* @deprecated Use `ReferenceUpdate` in the `foundry.ontologies` package
+* @deprecated Use `ReferenceUpdate` in the `internal.foundry.ontologies` package
 *
    * The updated data value associated with an object instance's external reference. The object instance
 is uniquely identified by an object type and a primary key. Note that the value of the property
@@ -4025,7 +4025,7 @@ export interface ReferenceUpdate {
 }
 
 /**
- * @deprecated Use `ReferenceValue` in the `foundry.ontologies` package
+ * @deprecated Use `ReferenceValue` in the `internal.foundry.ontologies` package
  *
  * Resolved data values pointed to by a reference.
  *
@@ -4036,7 +4036,7 @@ export type ReferenceValue = {
 } & GeotimeSeriesValue;
 
 /**
- * @deprecated Use `RefreshObjectSet` in the `foundry.ontologies` package
+ * @deprecated Use `RefreshObjectSet` in the `internal.foundry.ontologies` package
  *
  * The list of updated Foundry Objects cannot be provided. The object set must be refreshed using Object Set Service.
  *
@@ -4048,7 +4048,7 @@ export interface RefreshObjectSet {
 }
 
 /**
- * @deprecated Use `RelativeTime` in the `foundry.ontologies` package
+ * @deprecated Use `RelativeTime` in the `internal.foundry.ontologies` package
  *
  * A relative time, such as "3 days before" or "2 hours after" the current moment.
  *
@@ -4061,7 +4061,7 @@ export interface RelativeTime {
 }
 
 /**
- * @deprecated Use `RelativeTimeRange` in the `foundry.ontologies` package
+ * @deprecated Use `RelativeTimeRange` in the `internal.foundry.ontologies` package
  *
  * A relative time range for a time series query.
  *
@@ -4073,14 +4073,14 @@ export interface RelativeTimeRange {
 }
 
 /**
- * @deprecated Use `RelativeTimeRelation` in the `foundry.ontologies` package
+ * @deprecated Use `RelativeTimeRelation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type RelativeTimeRelation = "BEFORE" | "AFTER";
 
 /**
- * @deprecated Use `RelativeTimeSeriesTimeUnit` in the `foundry.ontologies` package
+ * @deprecated Use `RelativeTimeSeriesTimeUnit` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -4102,7 +4102,7 @@ export type RelativeTimeSeriesTimeUnit =
 export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
 
 /**
- * @deprecated Use `RequestId` in the `foundry.ontologies` package
+ * @deprecated Use `RequestId` in the `internal.foundry.ontologies` package
  *
  * Unique request id
  *
@@ -4111,21 +4111,21 @@ export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
 export type RequestId = string;
 
 /**
- * @deprecated Use `ReturnEditsMode` in the `foundry.ontologies` package
+ * @deprecated Use `ReturnEditsMode` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type ReturnEditsMode = "ALL" | "NONE";
 
 /**
- * @deprecated Use `SdkPackageName` in the `foundry.ontologies` package
+ * @deprecated Use `SdkPackageName` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type SdkPackageName = LooselyBrandedString<"SdkPackageName">;
 
 /**
- * @deprecated Use `SearchJsonQuery` in the `foundry.ontologies` package
+ * @deprecated Use `SearchJsonQuery` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4146,7 +4146,7 @@ export type SearchJsonQuery =
   | ({ type: "lte" } & LteQuery);
 
 /**
- * @deprecated Use `SearchJsonQueryV2` in the `foundry.ontologies` package
+ * @deprecated Use `SearchJsonQueryV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4178,7 +4178,7 @@ export type SearchJsonQueryV2 =
   | ({ type: "startsWith" } & StartsWithQuery);
 
 /**
- * @deprecated Use `SearchObjectsForInterfaceRequest` in the `foundry.ontologies` package
+ * @deprecated Use `SearchObjectsForInterfaceRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4198,7 +4198,7 @@ export interface SearchObjectsForInterfaceRequest {
 }
 
 /**
- * @deprecated Use `SearchObjectsRequest` in the `foundry.ontologies` package
+ * @deprecated Use `SearchObjectsRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4211,7 +4211,7 @@ export interface SearchObjectsRequest {
 }
 
 /**
- * @deprecated Use `SearchObjectsRequestV2` in the `foundry.ontologies` package
+ * @deprecated Use `SearchObjectsRequestV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4225,7 +4225,7 @@ export interface SearchObjectsRequestV2 {
 }
 
 /**
- * @deprecated Use `SearchObjectsResponse` in the `foundry.ontologies` package
+ * @deprecated Use `SearchObjectsResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4236,7 +4236,7 @@ export interface SearchObjectsResponse {
 }
 
 /**
- * @deprecated Use `SearchObjectsResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `SearchObjectsResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4247,7 +4247,7 @@ export interface SearchObjectsResponseV2 {
 }
 
 /**
- * @deprecated Use `SearchOrderBy` in the `foundry.ontologies` package
+ * @deprecated Use `SearchOrderBy` in the `internal.foundry.ontologies` package
  *
  * Specifies the ordering of search results by a field and an ordering direction.
  *
@@ -4258,14 +4258,14 @@ export interface SearchOrderBy {
 }
 
 /**
- * @deprecated Use `SearchOrderByType` in the `foundry.ontologies` package
+ * @deprecated Use `SearchOrderByType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
 export type SearchOrderByType = "fields" | "relevance";
 
 /**
- * @deprecated Use `SearchOrderByV2` in the `foundry.ontologies` package
+ * @deprecated Use `SearchOrderByV2` in the `internal.foundry.ontologies` package
  *
  * Specifies the ordering of search results by a field and an ordering direction or by relevance if scores are required in a nearestNeighbors query. By default orderType is set to fields.
  *
@@ -4277,7 +4277,7 @@ export interface SearchOrderByV2 {
 }
 
 /**
- * @deprecated Use `SearchOrdering` in the `foundry.ontologies` package
+ * @deprecated Use `SearchOrdering` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4287,7 +4287,7 @@ export interface SearchOrdering {
 }
 
 /**
- * @deprecated Use `SearchOrderingV2` in the `foundry.ontologies` package
+ * @deprecated Use `SearchOrderingV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4297,7 +4297,7 @@ export interface SearchOrderingV2 {
 }
 
 /**
-* @deprecated Use `SelectedPropertyApiName` in the `foundry.ontologies` package
+* @deprecated Use `SelectedPropertyApiName` in the `internal.foundry.ontologies` package
 *
    * By default, anytime an object is requested, every property belonging to that object is returned.
 The response can be filtered to only include certain properties using the properties query parameter.
@@ -4319,7 +4319,7 @@ export type SelectedPropertyApiName = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `SelectedPropertyApproximateDistinctAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyApproximateDistinctAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes an approximate number of distinct values for the provided field.
  *
@@ -4330,7 +4330,7 @@ export interface SelectedPropertyApproximateDistinctAggregation {
 }
 
 /**
- * @deprecated Use `SelectedPropertyApproximatePercentileAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyApproximatePercentileAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the approximate percentile value for the provided field.
  *
@@ -4342,7 +4342,7 @@ export interface SelectedPropertyApproximatePercentileAggregation {
 }
 
 /**
- * @deprecated Use `SelectedPropertyAvgAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyAvgAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the average value for the provided field.
  *
@@ -4353,7 +4353,7 @@ export interface SelectedPropertyAvgAggregation {
 }
 
 /**
-* @deprecated Use `SelectedPropertyCollectListAggregation` in the `foundry.ontologies` package
+* @deprecated Use `SelectedPropertyCollectListAggregation` in the `internal.foundry.ontologies` package
 *
    * Lists all values of a property up to the specified limit. The maximum supported limit is 100, by default.
 NOTE: A separate count aggregation should be used to determine the total count of values, to account for
@@ -4369,7 +4369,7 @@ export interface SelectedPropertyCollectListAggregation {
 }
 
 /**
-* @deprecated Use `SelectedPropertyCollectSetAggregation` in the `foundry.ontologies` package
+* @deprecated Use `SelectedPropertyCollectSetAggregation` in the `internal.foundry.ontologies` package
 *
    * Lists all distinct values of a property up to the specified limit. The maximum supported limit is 100.
 NOTE: A separate cardinality / exactCardinality aggregation should be used to determine the total count of
@@ -4385,7 +4385,7 @@ export interface SelectedPropertyCollectSetAggregation {
 }
 
 /**
- * @deprecated Use `SelectedPropertyCountAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyCountAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the total count of objects.
  *
@@ -4394,7 +4394,7 @@ export interface SelectedPropertyCollectSetAggregation {
 export interface SelectedPropertyCountAggregation {}
 
 /**
- * @deprecated Use `SelectedPropertyDefinition` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyDefinition` in the `internal.foundry.ontologies` package
  *
  * Definition for a selected property over a MethodObjectSet.
  *
@@ -4406,7 +4406,7 @@ export interface SelectedPropertyDefinition {
 }
 
 /**
- * @deprecated Use `SelectedPropertyExactDistinctAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyExactDistinctAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation.
  *
@@ -4417,7 +4417,7 @@ export interface SelectedPropertyExactDistinctAggregation {
 }
 
 /**
- * @deprecated Use `SelectedPropertyMaxAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyMaxAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the maximum value for the provided field.
  *
@@ -4428,7 +4428,7 @@ export interface SelectedPropertyMaxAggregation {
 }
 
 /**
- * @deprecated Use `SelectedPropertyMinAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyMinAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the minimum value for the provided field.
  *
@@ -4439,7 +4439,7 @@ export interface SelectedPropertyMinAggregation {
 }
 
 /**
- * @deprecated Use `SelectedPropertyOperation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertyOperation` in the `internal.foundry.ontologies` package
  *
  * Operation on a selected property, can be an aggregation function or retrieval of a single selected property
  *
@@ -4463,7 +4463,7 @@ export type SelectedPropertyOperation =
   | ({ type: "collectSet" } & SelectedPropertyCollectSetAggregation);
 
 /**
- * @deprecated Use `SelectedPropertySumAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SelectedPropertySumAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the sum of values for the provided field.
  *
@@ -4474,7 +4474,7 @@ export interface SelectedPropertySumAggregation {
 }
 
 /**
- * @deprecated Use `SeriesId` in the `foundry.ontologies` package
+ * @deprecated Use `SeriesId` in the `internal.foundry.ontologies` package
  *
  * The unique codex id of a time series.
  *
@@ -4483,7 +4483,7 @@ export interface SelectedPropertySumAggregation {
 export type SeriesId = LooselyBrandedString<"SeriesId">;
 
 /**
- * @deprecated Use `SharedPropertyType` in the `foundry.ontologies` package
+ * @deprecated Use `SharedPropertyType` in the `internal.foundry.ontologies` package
  *
  * A property type that can be shared across object types.
  *
@@ -4498,7 +4498,7 @@ export interface SharedPropertyType {
 }
 
 /**
-* @deprecated Use `SharedPropertyTypeApiName` in the `foundry.ontologies` package
+* @deprecated Use `SharedPropertyTypeApiName` in the `internal.foundry.ontologies` package
 *
    * The name of the shared property type in the API in lowerCamelCase format. To find the API name for your
 shared property type, use the List shared property types endpoint or check the Ontology Manager.
@@ -4510,7 +4510,7 @@ export type SharedPropertyTypeApiName = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `SharedPropertyTypeRid` in the `foundry.ontologies` package
+ * @deprecated Use `SharedPropertyTypeRid` in the `internal.foundry.ontologies` package
  *
  * The unique resource identifier of an shared property type, useful for interacting with other Foundry APIs.
  *
@@ -4533,7 +4533,7 @@ export interface ShortType {}
 export type SizeBytes = string;
 
 /**
-* @deprecated Use `StartsWithQuery` in the `foundry.ontologies` package
+* @deprecated Use `StartsWithQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field starts with the provided value. Allows you to specify a property to
 query on by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
@@ -4547,7 +4547,7 @@ export interface StartsWithQuery {
 }
 
 /**
-* @deprecated Use `StreamingOutputFormat` in the `foundry.ontologies` package
+* @deprecated Use `StreamingOutputFormat` in the `internal.foundry.ontologies` package
 *
    * Which format to serialize the binary stream in.
 ARROW is more efficient for streaming a large sized response.
@@ -4557,7 +4557,7 @@ ARROW is more efficient for streaming a large sized response.
 export type StreamingOutputFormat = "JSON" | "ARROW";
 
 /**
- * @deprecated Use `StreamMessage` in the `foundry.ontologies` package
+ * @deprecated Use `StreamMessage` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4568,7 +4568,7 @@ export type StreamMessage =
   | ({ type: "subscribeResponses" } & ObjectSetSubscribeResponses);
 
 /**
- * @deprecated Use `StreamTimeSeriesPointsRequest` in the `foundry.ontologies` package
+ * @deprecated Use `StreamTimeSeriesPointsRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4577,7 +4577,7 @@ export interface StreamTimeSeriesPointsRequest {
 }
 
 /**
- * @deprecated Use `StreamTimeSeriesPointsResponse` in the `foundry.ontologies` package
+ * @deprecated Use `StreamTimeSeriesPointsResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4586,7 +4586,7 @@ export interface StreamTimeSeriesPointsResponse {
 }
 
 /**
- * @deprecated Use `StreamTimeSeriesValuesRequest` in the `foundry.ontologies` package
+ * @deprecated Use `StreamTimeSeriesValuesRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4595,7 +4595,7 @@ export interface StreamTimeSeriesValuesRequest {
 }
 
 /**
- * @deprecated Use `StreamTimeSeriesValuesResponse` in the `foundry.ontologies` package
+ * @deprecated Use `StreamTimeSeriesValuesResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4604,7 +4604,7 @@ export interface StreamTimeSeriesValuesResponse {
 }
 
 /**
-* @deprecated Use `StringLengthConstraint` in the `foundry.ontologies` package
+* @deprecated Use `StringLengthConstraint` in the `internal.foundry.ontologies` package
 *
    * The parameter value must have a length within the defined range.
 This range is always inclusive.
@@ -4619,7 +4619,7 @@ export interface StringLengthConstraint {
 }
 
 /**
- * @deprecated Use `StringRegexMatchConstraint` in the `foundry.ontologies` package
+ * @deprecated Use `StringRegexMatchConstraint` in the `internal.foundry.ontologies` package
  *
  * The parameter value must match a predefined regular expression.
  *
@@ -4636,7 +4636,7 @@ export interface StringRegexMatchConstraint {
 export interface StringType {}
 
 /**
- * @deprecated Use `StructFieldApiName` in the `foundry.ontologies` package
+ * @deprecated Use `StructFieldApiName` in the `internal.foundry.ontologies` package
  *
  * The name of a struct field in the Ontology.
  *
@@ -4652,7 +4652,7 @@ export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
 export type StructFieldName = LooselyBrandedString<"StructFieldName">;
 
 /**
-* @deprecated Use `StructFieldSelector` in the `foundry.ontologies` package
+* @deprecated Use `StructFieldSelector` in the `internal.foundry.ontologies` package
 *
    * A combination of a struct property api name and a struct field api name. This is used to select struct fields
 to query on. Note that you can still select struct properties with only a 'PropertyApiNameSelector'; the queries
@@ -4666,7 +4666,7 @@ export interface StructFieldSelector {
 }
 
 /**
- * @deprecated Use `StructFieldType` in the `foundry.ontologies` package
+ * @deprecated Use `StructFieldType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4676,7 +4676,7 @@ export interface StructFieldType {
 }
 
 /**
- * @deprecated Use `StructType` in the `foundry.ontologies` package
+ * @deprecated Use `StructType` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4685,7 +4685,7 @@ export interface StructType {
 }
 
 /**
-* @deprecated Use `SubmissionCriteriaEvaluation` in the `foundry.ontologies` package
+* @deprecated Use `SubmissionCriteriaEvaluation` in the `internal.foundry.ontologies` package
 *
    * Contains the status of the submission criteria.
 Submission criteria are the prerequisites that need to be satisfied before an Action can be applied.
@@ -4699,7 +4699,7 @@ export interface SubmissionCriteriaEvaluation {
 }
 
 /**
- * @deprecated Use `SubscriptionClosed` in the `foundry.ontologies` package
+ * @deprecated Use `SubscriptionClosed` in the `internal.foundry.ontologies` package
  *
  * The subscription has been closed due to an irrecoverable error during its lifecycle.
  *
@@ -4711,7 +4711,7 @@ export interface SubscriptionClosed {
 }
 
 /**
- * @deprecated Use `SubscriptionClosureCause` in the `foundry.ontologies` package
+ * @deprecated Use `SubscriptionClosureCause` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4720,7 +4720,7 @@ export type SubscriptionClosureCause =
   | ({ type: "error" } & Error);
 
 /**
- * @deprecated Use `SubscriptionError` in the `foundry.ontologies` package
+ * @deprecated Use `SubscriptionError` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4729,7 +4729,7 @@ export interface SubscriptionError {
 }
 
 /**
- * @deprecated Use `SubscriptionId` in the `foundry.ontologies` package
+ * @deprecated Use `SubscriptionId` in the `internal.foundry.ontologies` package
  *
  * A unique identifier used to associate subscription requests with responses.
  *
@@ -4738,7 +4738,7 @@ export interface SubscriptionError {
 export type SubscriptionId = string;
 
 /**
- * @deprecated Use `SubscriptionSuccess` in the `foundry.ontologies` package
+ * @deprecated Use `SubscriptionSuccess` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -4747,7 +4747,7 @@ export interface SubscriptionSuccess {
 }
 
 /**
- * @deprecated Use `SumAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `SumAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the sum of values for the provided field.
  *
@@ -4759,7 +4759,7 @@ export interface SumAggregation {
 }
 
 /**
- * @deprecated Use `SumAggregationV2` in the `foundry.ontologies` package
+ * @deprecated Use `SumAggregationV2` in the `internal.foundry.ontologies` package
  *
  * Computes the sum of values for the provided field.
  *
@@ -4772,7 +4772,7 @@ export interface SumAggregationV2 {
 }
 
 /**
- * @deprecated Use `SyncApplyActionResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `SyncApplyActionResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4782,7 +4782,7 @@ export interface SyncApplyActionResponseV2 {
 }
 
 /**
- * @deprecated Use `ThreeDimensionalAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `ThreeDimensionalAggregation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4792,7 +4792,7 @@ export interface ThreeDimensionalAggregation {
 }
 
 /**
- * @deprecated Use `TimeRange` in the `foundry.ontologies` package
+ * @deprecated Use `TimeRange` in the `internal.foundry.ontologies` package
  *
  * An absolute or relative range for a time series query.
  *
@@ -4803,7 +4803,7 @@ export type TimeRange =
   | ({ type: "relative" } & RelativeTimeRange);
 
 /**
- * @deprecated Use `TimeseriesEntry` in the `foundry.ontologies` package
+ * @deprecated Use `TimeseriesEntry` in the `internal.foundry.ontologies` package
  *
  * A time and value pair.
  *
@@ -4824,7 +4824,7 @@ export type TimeSeriesItemType =
   | ({ type: "double" } & DoubleType);
 
 /**
- * @deprecated Use `TimeSeriesPoint` in the `foundry.ontologies` package
+ * @deprecated Use `TimeSeriesPoint` in the `internal.foundry.ontologies` package
  *
  * A time and value pair.
  *
@@ -4836,14 +4836,14 @@ export interface TimeSeriesPoint {
 }
 
 /**
- * @deprecated Use `TimeSeriesPropertyV2` in the `foundry.ontologies` package
+ * @deprecated Use `TimeSeriesPropertyV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type TimeSeriesPropertyV2 = LooselyBrandedString<"TimeSeriesPropertyV2">;
 
 /**
- * @deprecated Use `TimeseriesSyncRid` in the `foundry.ontologies` package
+ * @deprecated Use `TimeseriesSyncRid` in the `internal.foundry.ontologies` package
  *
  * The RID identifying a time series sync.
  *
@@ -4852,7 +4852,7 @@ export type TimeSeriesPropertyV2 = LooselyBrandedString<"TimeSeriesPropertyV2">;
 export type TimeseriesSyncRid = LooselyBrandedString<"TimeseriesSyncRid">;
 
 /**
- * @deprecated Use `TimeseriesTemplateRid` in the `foundry.ontologies` package
+ * @deprecated Use `TimeseriesTemplateRid` in the `internal.foundry.ontologies` package
  *
  * The RID identifying a time series codex template that resolves to a derived series.
  *
@@ -4863,7 +4863,7 @@ export type TimeseriesTemplateRid = LooselyBrandedString<
 >;
 
 /**
- * @deprecated Use `TimeseriesTemplateVersion` in the `foundry.ontologies` package
+ * @deprecated Use `TimeseriesTemplateVersion` in the `internal.foundry.ontologies` package
  *
  * The version corresponding to a codex template.
  *
@@ -4881,7 +4881,7 @@ export interface TimeseriesType {
 }
 
 /**
- * @deprecated Use `TimeSeriesValueBankProperty` in the `foundry.ontologies` package
+ * @deprecated Use `TimeSeriesValueBankProperty` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4895,7 +4895,7 @@ export type TimeSeriesValueBankProperty = LooselyBrandedString<
 export interface TimestampType {}
 
 /**
- * @deprecated Use `TimeUnit` in the `foundry.ontologies` package
+ * @deprecated Use `TimeUnit` in the `internal.foundry.ontologies` package
  *
  * Log Safety: SAFE
  */
@@ -4918,7 +4918,7 @@ export type TimeUnit =
 export type TotalCount = string;
 
 /**
- * @deprecated Use `TwoDimensionalAggregation` in the `foundry.ontologies` package
+ * @deprecated Use `TwoDimensionalAggregation` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4928,7 +4928,7 @@ export interface TwoDimensionalAggregation {
 }
 
 /**
-* @deprecated Use `UnevaluableConstraint` in the `foundry.ontologies` package
+* @deprecated Use `UnevaluableConstraint` in the `internal.foundry.ontologies` package
 *
    * The parameter cannot be evaluated because it depends on another parameter or object set that can't be evaluated.
 This can happen when a parameter's allowed values are defined by another parameter that is missing or invalid.
@@ -4959,7 +4959,7 @@ export type UpdatedTime = LooselyBrandedString<"UpdatedTime">;
 export type UserId = string;
 
 /**
- * @deprecated Use `ValidateActionRequest` in the `foundry.ontologies` package
+ * @deprecated Use `ValidateActionRequest` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4968,7 +4968,7 @@ export interface ValidateActionRequest {
 }
 
 /**
- * @deprecated Use `ValidateActionResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ValidateActionResponse` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4979,7 +4979,7 @@ export interface ValidateActionResponse {
 }
 
 /**
- * @deprecated Use `ValidateActionResponseV2` in the `foundry.ontologies` package
+ * @deprecated Use `ValidateActionResponseV2` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
@@ -4990,7 +4990,7 @@ export interface ValidateActionResponseV2 {
 }
 
 /**
- * @deprecated Use `ValidationResult` in the `foundry.ontologies` package
+ * @deprecated Use `ValidationResult` in the `internal.foundry.ontologies` package
  *
  * Represents the state of a validation.
  *
@@ -4999,7 +4999,7 @@ export interface ValidateActionResponseV2 {
 export type ValidationResult = "VALID" | "INVALID";
 
 /**
-* @deprecated Use `ValueType` in the `foundry.ontologies` package
+* @deprecated Use `ValueType` in the `internal.foundry.ontologies` package
 *
    * A string indicating the type of each data value. Note that these types can be nested, for example an array of
 structs.
@@ -5058,14 +5058,14 @@ export interface VectorType {
 }
 
 /**
- * @deprecated Use `WithinBoundingBoxPoint` in the `foundry.ontologies` package
+ * @deprecated Use `WithinBoundingBoxPoint` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
 export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
 
 /**
-* @deprecated Use `WithinBoundingBoxQuery` in the `foundry.ontologies` package
+* @deprecated Use `WithinBoundingBoxQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains a point within the bounding box provided. Allows you to
 specify a property to query on by a variety of means. Either field or propertyIdentifier must be supplied,
@@ -5080,7 +5080,7 @@ export interface WithinBoundingBoxQuery {
 }
 
 /**
-* @deprecated Use `WithinDistanceOfQuery` in the `foundry.ontologies` package
+* @deprecated Use `WithinDistanceOfQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains a point within the distance provided of the center point.
 Allows you to specify a property to query on by a variety of means. Either field or propertyIdentifier
@@ -5095,7 +5095,7 @@ export interface WithinDistanceOfQuery {
 }
 
 /**
-* @deprecated Use `WithinPolygonQuery` in the `foundry.ontologies` package
+* @deprecated Use `WithinPolygonQuery` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains a point within the polygon provided. Allows you to specify a
 property to query on by a variety of means. Either field or propertyIdentifier must be supplied, but not

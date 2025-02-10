@@ -22,7 +22,7 @@ PACKAGE_PATH="${SCRIPT_DIR}/../packages/internal.foundry"
 OUT_PATH="${SCRIPT_DIR}/../packages/"
 
 echo "Generating bindings for internal.foundry"
-#$CODE_GENERATOR generate --v2 --prefix "internal.foundry" --inputFile "${OPENAPI_IR_JSON}" --manifestFile "${OPENAPI_MANIFEST_YML}" --outputDir "${OUT_PATH}" --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" --endpointVersion "v1"
+$CODE_GENERATOR generate --v2 --prefix "internal.foundry" --inputFile "${OPENAPI_IR_JSON}" --manifestFile "${OPENAPI_MANIFEST_YML}" --outputDir "${OUT_PATH}" --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" --endpointVersion "v1"
 
 
 # Generate the API bindings for @oskd/foundry (omni v2)

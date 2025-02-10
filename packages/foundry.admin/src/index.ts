@@ -84,8 +84,6 @@ export type {
   AddGroupMembersPermissionDenied,
   AddMarkingMembersPermissionDenied,
   AddMarkingRoleAssignmentsPermissionDenied,
-  CannotGetProviderInfoForPreregisteredPrincipal,
-  CannotReplaceProviderInfoForPreregisteredPrincipal,
   CannotReplaceProviderInfoForPrincipalInProtectedRealm,
   CreateGroupPermissionDenied,
   CreateMarkingMissingInitialAdminRole,

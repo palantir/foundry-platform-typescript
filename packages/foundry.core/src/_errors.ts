@@ -19,6 +19,31 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * This feature is only supported in preview mode. Please use preview=true in the query
+parameters to call this endpoint.
+   *
+   * Log Safety: SAFE
+   */
+export interface ApiFeaturePreviewUsageOnly {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ApiFeaturePreviewUsageOnly";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * You are not allowed to use Palantir APIs.
+ *
+ * Log Safety: SAFE
+ */
+export interface ApiUsageDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ApiUsageDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The submitted batch request was too large.
  *
  * Log Safety: SAFE
@@ -34,28 +59,16 @@ export interface BatchRequestSizeExceededLimit {
 }
 
 /**
- * Getting the root folder as a resource is not supported.
+ * The requested folder could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
  */
-export interface GetRootFolderNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "GetRootFolderNotSupported";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
- * Getting a space as a resource is not supported.
- *
- * Log Safety: SAFE
- */
-export interface GetSpaceResourceNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "GetSpaceResourceNotSupported";
+export interface FolderNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "FolderNotFound";
   errorInstanceId: string;
   parameters: {
-    spaceRid: unknown;
+    folderRid: unknown;
   };
 }
 
@@ -211,6 +224,18 @@ export interface MissingBatchRequest {
 }
 
 /**
+ * A post body is required for this endpoint, but was not found in the request.
+ *
+ * Log Safety: SAFE
+ */
+export interface MissingPostBody {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingPostBody";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The provided resource name is already in use by another resource in the same folder.
  *
  * Log Safety: UNSAFE
@@ -221,7 +246,7 @@ export interface ResourceNameAlreadyExists {
   errorInstanceId: string;
   parameters: {
     parentFolderRid: unknown;
-    displayName: unknown;
+    resourceName: unknown;
   };
 }
 
@@ -235,4 +260,19 @@ export interface SchemaIsNotStreamSchema {
   errorName: "SchemaIsNotStreamSchema";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * An unknown distance unit was provided.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnknownDistanceUnit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnknownDistanceUnit";
+  errorInstanceId: string;
+  parameters: {
+    unknownUnit: unknown;
+    knownUnits: unknown;
+  };
 }
