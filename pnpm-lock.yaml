@@ -745,6 +745,25 @@ importers:
         specifier: ^8.3.0
         version: 8.3.0(@microsoft/api-extractor@7.47.0(@types/node@22.7.4))(jiti@1.21.6)(postcss@8.4.39)(typescript@5.5.4)(yaml@2.5.1)
 
+  packages/platform-docs-spec:
+    dependencies:
+      '@osdk/shared.client':
+        specifier: 1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: 1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/platform-sdk-generator:
     dependencies:
       find-up:

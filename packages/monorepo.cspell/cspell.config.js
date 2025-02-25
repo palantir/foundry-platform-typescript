@@ -84,6 +84,9 @@ const cspell = {
     // this is the conjure generated code that we won't keep forever
     "packages/client.unstable/src/generated/**",
 
+    // this is the API IR which can contain examples with words not in the dictionary
+    "packages/platform-docs-spec/src/spec.ts",
+
     "packages/e2e.test.foundry-sdk-generator/src/generatedNoCheck/**/*",
     "packages/create-app.template.*/src/generatedNoCheck/**/*",
     "CHANGELOG.md",
