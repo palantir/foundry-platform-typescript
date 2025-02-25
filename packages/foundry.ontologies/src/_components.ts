@@ -1381,6 +1381,21 @@ export type InterfaceLinkTypeLinkedEntityApiName =
 export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
 
 /**
+   * A shared property type with an additional field to indicate whether the property must be included on every
+object type that implements the interface, or whether it is optional.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InterfaceSharedPropertyType {
+  rid: SharedPropertyTypeRid;
+  apiName: SharedPropertyTypeApiName;
+  displayName: _Core.DisplayName;
+  description?: string;
+  dataType: ObjectPropertyType;
+  required: boolean;
+}
+
+/**
  * Represents an implementation of an interface (the mapping of interface property to local property).
  *
  * Log Safety: UNSAFE
@@ -1410,8 +1425,8 @@ export interface InterfaceType {
   apiName: InterfaceTypeApiName;
   displayName: _Core.DisplayName;
   description?: string;
-  properties: Record<SharedPropertyTypeApiName, SharedPropertyType>;
-  allProperties: Record<SharedPropertyTypeApiName, SharedPropertyType>;
+  properties: Record<SharedPropertyTypeApiName, InterfaceSharedPropertyType>;
+  allProperties: Record<SharedPropertyTypeApiName, InterfaceSharedPropertyType>;
   extendsInterfaces: Array<InterfaceTypeApiName>;
   allExtendsInterfaces: Array<InterfaceTypeApiName>;
   implementedByObjectTypes: Array<ObjectTypeApiName>;
