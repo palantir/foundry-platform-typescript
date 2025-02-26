@@ -23,6 +23,8 @@ import type { ApiSpec } from "./ir/index.js";
 
 const PACKAGE_NAME = "platform-docs-spec";
 
+const IGNORED_PLATFORM_VERSIONS = new Set(["v1"]);
+
 function generatePlatformDocsSpec(ir: ApiSpec): DocsSnippetsSpec {
   const spec: DocsSnippetsSpec = {
     version: 1,
@@ -30,6 +32,9 @@ function generatePlatformDocsSpec(ir: ApiSpec): DocsSnippetsSpec {
   };
 
   for (const namespace of ir.namespaces) {
+    if (IGNORED_PLATFORM_VERSIONS.has(namespace.version)) {
+      continue;
+    }
     for (const resource of namespace.resources) {
       for (const operation of resource.operations) {
         const snippetName =
