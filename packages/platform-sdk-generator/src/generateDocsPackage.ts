@@ -47,6 +47,9 @@ function generatePlatformDocsSpec(ir: ApiSpec): DocsSnippetsSpec {
           variables.requestBody = "required";
         }
         for (const parameter of operation.http.parameters) {
+          if (parameter.name === "requestBody") {
+            throw new Error(`Parameter name "requestBody" is reserved`);
+          }
           variables[parameter.name] = "required";
         }
         spec.snippets[snippetName] = { variables };
