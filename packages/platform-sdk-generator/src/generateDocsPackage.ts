@@ -68,8 +68,9 @@ export async function generateDocsPackage(
   await fs.writeFile(
     path.join(outputDir, "src", "generated", "ir.ts"),
     `${copyright}
-        
-        export const PLATFORM_API_IR: any = ${JSON.stringify(ir, null, 2)}`,
+        import type { ApiSpec } from "../ir/ApiSpec.js";
+
+        export const PLATFORM_API_IR: ApiSpec = ${JSON.stringify(ir, null, 2)}`,
   );
 
   await fs.writeFile(

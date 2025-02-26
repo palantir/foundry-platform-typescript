@@ -16,3 +16,4 @@
 
 export { PLATFORM_API_IR } from "./generated/ir.js";
 export { PLATFORM_API_DOCS_SPEC } from "./generated/spec.js";
+export * from "./ir/index.js";
