@@ -314,7 +314,7 @@ const BASE_PACKAGE_JSON = {
   "type": "module",
 };
 
-async function createPackageJson(outputDir: string, name: string) {
+export async function createPackageJson(outputDir: string, name: string) {
   await fs.writeFile(
     path.join(outputDir, "package.json"),
     JSON.stringify(

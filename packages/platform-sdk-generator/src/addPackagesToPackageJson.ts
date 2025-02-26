@@ -20,15 +20,18 @@ export async function addPackagesToPackageJson(
   packageJsonPath: string,
   packagesToAdd: string[],
   section: "dependencies" | "devDependencies" = "dependencies",
+  includeShared = true,
 ): Promise<void> {
   const packageJson = JSON.parse(await fs.readFile(packageJsonPath, "utf-8"));
   Object.assign(
     packageJson[section],
     Object.fromEntries(packagesToAdd.map(a => [a, "workspace:*"])),
   );
-  packageJson.dependencies["@osdk/shared.client"] = "1.0.1";
-  packageJson.dependencies["@osdk/shared.client2"] = "1.0.0";
-  packageJson.dependencies["@osdk/shared.net.platformapi"] = "workspace:~";
+  if (includeShared) {
+    packageJson.dependencies["@osdk/shared.client"] = "1.0.1";
+    packageJson.dependencies["@osdk/shared.client2"] = "1.0.0";
+    packageJson.dependencies["@osdk/shared.net.platformapi"] = "workspace:~";
+  }
   await fs.writeFile(
     packageJsonPath,
     JSON.stringify(packageJson, undefined, 2),
