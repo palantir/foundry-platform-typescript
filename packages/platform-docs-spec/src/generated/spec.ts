@@ -16,7 +16,7 @@
 
 import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
 
-export const PLATFORM_API_DOCS_SPEC: DocsSnippetsSpec = {
+export const PLATFORM_API_DOCS_SPEC = {
   "version": 1,
   "snippets": {
     "v2.Admin.User.deleteUser": {
@@ -1448,4 +1448,4 @@ export const PLATFORM_API_DOCS_SPEC: DocsSnippetsSpec = {
       },
     },
   },
-};
+} as const satisfies DocsSnippetsSpec;

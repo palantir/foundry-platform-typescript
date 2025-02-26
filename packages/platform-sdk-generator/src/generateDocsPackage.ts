@@ -79,13 +79,13 @@ export async function generateDocsPackage(
     
     import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
 
-    export const PLATFORM_API_DOCS_SPEC: DocsSnippetsSpec = ${
+    export const PLATFORM_API_DOCS_SPEC = ${
       JSON.stringify(
         generatePlatformDocsSpec(ir),
         null,
         2,
       )
-    }`,
+    } as const satisfies DocsSnippetsSpec;`,
   );
 
   return outputDir;
