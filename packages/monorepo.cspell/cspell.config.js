@@ -85,7 +85,7 @@ const cspell = {
     "packages/client.unstable/src/generated/**",
 
     // this is the API IR which can contain examples with words not in the dictionary
-    "packages/platform-docs-spec/src/ir.ts",
+    "packages/platform-docs-spec/src/generated/ir.ts",
 
     "packages/e2e.test.foundry-sdk-generator/src/generatedNoCheck/**/*",
     "packages/create-app.template.*/src/generatedNoCheck/**/*",

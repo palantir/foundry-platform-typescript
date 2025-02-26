@@ -19,7 +19,6 @@ import * as path from "node:path";
 import pluralizeWord from "pluralize";
 import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
-import { generateDocsPackage } from "./generateDocsPackage.js";
 import { generateImports, SKIP } from "./generateImports.js";
 import { writeResource2 } from "./generateResource2.js";
 import type * as ir from "./ir/index.js";
@@ -153,8 +152,6 @@ export async function generatePlatformSdkV2(
     path.join(megaInfo.srcDir, "index.ts"),
     rootIndexTsContents,
   );
-
-  await generateDocsPackage(ir, outputDir);
 
   return [
     primaryPackagePath,
@@ -314,7 +311,7 @@ const BASE_PACKAGE_JSON = {
   "type": "module",
 };
 
-export async function createPackageJson(outputDir: string, name: string) {
+async function createPackageJson(outputDir: string, name: string) {
   await fs.writeFile(
     path.join(outputDir, "package.json"),
     JSON.stringify(

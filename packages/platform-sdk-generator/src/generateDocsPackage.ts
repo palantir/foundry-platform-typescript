@@ -17,11 +17,8 @@
 import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
 import fs from "node:fs/promises";
 import * as path from "node:path";
-import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
-import { createPackageJson } from "./generatePlatformSdkv2.js";
 import type { ApiSpec } from "./ir/index.js";
-import { fileExists } from "./util/fileExists.js";
 
 const PACKAGE_NAME = "platform-docs-spec";
 
@@ -62,57 +59,33 @@ function generatePlatformDocsSpec(ir: ApiSpec): DocsSnippetsSpec {
   return spec;
 }
 
-export async function generateDocsPackage(ir: ApiSpec, packagesDir: string) {
+export async function generateDocsPackage(
+  ir: ApiSpec,
+  packagesDir: string,
+): Promise<string> {
   const outputDir = path.join(packagesDir, PACKAGE_NAME);
-  await ensurePackageSetup(outputDir, PACKAGE_NAME);
 
   await fs.writeFile(
-    path.join(outputDir, "src", "ir.ts"),
+    path.join(outputDir, "src", "generated", "ir.ts"),
     `${copyright}
         
         export const PLATFORM_API_IR: any = ${JSON.stringify(ir, null, 2)}`,
   );
 
   await fs.writeFile(
-    path.join(outputDir, "src", "spec.ts"),
+    path.join(outputDir, "src", "generated", "spec.ts"),
     `${copyright}
-
-        import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
     
-        export const PLATFORM_API_DOCS_SPEC = ${
-      JSON.stringify(generatePlatformDocsSpec(ir), null, 2)
-    } as const satisfies DocsSnippetsSpec;`,
+    import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
+
+    export const PLATFORM_API_DOCS_SPEC: DocsSnippetsSpec = ${
+      JSON.stringify(
+        generatePlatformDocsSpec(ir),
+        null,
+        2,
+      )
+    }`,
   );
 
-  await fs.writeFile(
-    path.join(outputDir, "src", "index.ts"),
-    `${copyright}
-        
-        export { PLATFORM_API_IR } from "./ir.js";
-        export { PLATFORM_API_DOCS_SPEC } from "./spec.js";`,
-  );
-}
-
-async function ensurePackageSetup(
-  packagePath: string,
-  packageName: string,
-): Promise<void> {
-  const srcDir = path.join(packagePath, "src");
-  const packageJsonPath = path.join(packagePath, "package.json");
-
-  await fs.mkdir(srcDir, { recursive: true });
-
-  if (!await fileExists(packageJsonPath)) {
-    await createPackageJson(
-      packagePath,
-      packageName,
-    );
-  }
-
-  await addPackagesToPackageJson(
-    packageJsonPath,
-    ["@osdk/docs-spec-core"],
-    "dependencies",
-    false,
-  );
+  return outputDir;
 }

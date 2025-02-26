@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export { PLATFORM_API_IR } from "./ir.js";
-export { PLATFORM_API_DOCS_SPEC } from "./spec.js";
+export { PLATFORM_API_IR } from "./generated/ir.js";
+export { PLATFORM_API_DOCS_SPEC } from "./generated/spec.js";

@@ -760,8 +760,11 @@ importers:
         specifier: workspace:*
         version: link:../docs-spec-core
     devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.5.4
         version: 5.5.4
 
   packages/platform-sdk-generator:

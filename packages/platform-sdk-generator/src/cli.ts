@@ -20,6 +20,7 @@ import { parse as parseYaml } from "yaml";
 import type { Arguments, Argv, CommandModule } from "yargs";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import { generateDocsPackage } from "./generateDocsPackage.js";
 import { generatePlatformSdkV2 } from "./generatePlatformSdkv2.js";
 import type { ApiSpec } from "./ir/index.js";
 import { updateSls } from "./updateSls.js";
@@ -115,13 +116,16 @@ export class GenerateCommand implements CommandModule<{}, Options> {
       const deprecatedIrSpec: ApiSpec | undefined = deprecatedIr
         ? JSON.parse(deprecatedIr)
         : undefined;
-      const pkgDirs = await generatePlatformSdkV2(
-        irSpec,
-        output,
-        args.prefix,
-        args.endpointVersion,
-        deprecatedIrSpec,
-      );
+      const pkgDirs = [
+        ...await generatePlatformSdkV2(
+          irSpec,
+          output,
+          args.prefix,
+          args.endpointVersion,
+          deprecatedIrSpec,
+        ),
+        await generateDocsPackage(irSpec, output),
+      ];
       for (const pkgDir of pkgDirs) {
         await updateSls(manifest, pkgDir);
       }
