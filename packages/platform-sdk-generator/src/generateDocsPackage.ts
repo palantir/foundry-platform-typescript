@@ -24,7 +24,8 @@ const PACKAGE_NAME = "platform-docs-spec";
 
 export async function generateDocsPackage(ir: ApiSpec, packagesDir: string) {
   const outputDir = path.join(packagesDir, PACKAGE_NAME);
-  await ensurePackageSetup(outputDir, PACKAGE_NAME, []);
+  // todo(amish): drop extraneous deps
+  await ensurePackageSetup(outputDir, PACKAGE_NAME, ["@osdk/docs-spec-core"]);
 
   await fs.writeFile(
     path.join(outputDir, "src", "spec.ts"),

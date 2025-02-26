@@ -133,6 +133,15 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@types/node@22.7.4)
 
+  packages/docs-spec-core:
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/foundry:
     dependencies:
       '@osdk/foundry.admin':
@@ -747,6 +756,9 @@ importers:
 
   packages/platform-docs-spec:
     dependencies:
+      '@osdk/docs-spec-core':
+        specifier: workspace:*
+        version: link:../docs-spec-core
       '@osdk/shared.client':
         specifier: 1.0.1
         version: 1.0.1
