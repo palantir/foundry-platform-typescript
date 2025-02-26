@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-import type * as ir from "../ir/index.js";
-import { addAll } from "../util/addAll.js";
+import type * as ir from "@osdk/platform-docs-spec";
 import type { Component } from "./Component.js";
 import type { Model } from "./Model.js";
 import type { Namespace } from "./Namespace.js";
@@ -142,6 +141,6 @@ type Params = Array<
     name: string;
     type: Type;
     safety: ir.Safety;
-    documentation: ir.Documentation;
+    documentation?: ir.Documentation;
   }
 >;

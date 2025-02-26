@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type { ApiSpec } from "@osdk/platform-docs-spec";
 import fs from "node:fs/promises";
 import * as process from "node:process";
 import { parse as parseYaml } from "yaml";
@@ -22,7 +23,6 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { generateDocsPackage } from "./generateDocsPackage.js";
 import { generatePlatformSdkV2 } from "./generatePlatformSdkv2.js";
-import type { ApiSpec } from "./ir/index.js";
 import { updateSls } from "./updateSls.js";
 
 export async function cli(

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+import type * as ir from "@osdk/platform-docs-spec";
 import { getCleanedUpJsdoc } from "./getCleanedUpJsdoc.js";
-import type * as ir from "./ir/index.js";
 import type { Operation } from "./model/Operation.js";
 
 export async function generateMethodJsdoc(

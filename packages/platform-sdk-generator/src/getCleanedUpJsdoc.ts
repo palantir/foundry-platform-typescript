@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
+import type { Documentation } from "@osdk/platform-docs-spec";
 import type { Root } from "mdast";
 import { remark } from "remark";
 import { visit } from "unist-util-visit";
-import type { Documentation } from "./ir/index.js";
 
 export async function getCleanedUpJsdoc(doc?: Documentation): Promise<string> {
   if (doc?.description?.includes("*/")) {

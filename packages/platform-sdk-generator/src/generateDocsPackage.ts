@@ -15,10 +15,10 @@
  */
 
 import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
+import type { ApiSpec } from "@osdk/platform-docs-spec";
 import fs from "node:fs/promises";
 import * as path from "node:path";
 import { copyright } from "./copyright.js";
-import type { ApiSpec } from "./ir/index.js";
 
 const PACKAGE_NAME = "platform-docs-spec";
 

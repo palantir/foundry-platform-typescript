@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type { ApiSpec } from "@osdk/platform-docs-spec";
 import fs from "node:fs/promises";
 import * as path from "node:path";
 import pluralizeWord from "pluralize";
@@ -21,7 +22,6 @@ import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
 import { generateImports, SKIP } from "./generateImports.js";
 import { writeResource2 } from "./generateResource2.js";
-import type * as ir from "./ir/index.js";
 import { isIgnoredType } from "./isIgnoredType.js";
 import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
@@ -31,11 +31,11 @@ import { fileExists } from "./util/fileExists.js";
 import { writeCode } from "./writeCode.js";
 
 export async function generatePlatformSdkV2(
-  ir: ir.ApiSpec,
+  ir: ApiSpec,
   outputDir: string,
   packagePrefix: string,
   endpointVersion: string,
-  deprecatedIr?: ir.ApiSpec,
+  deprecatedIr?: ApiSpec,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
   const model = await Model.create(ir, {

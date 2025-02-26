@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { PrimitiveType } from "./ir/index.js";
+import type { PrimitiveType } from "@osdk/platform-docs-spec";
 
 export function convertIrPrimitiveTypeToTsTypeReference(
   builtin: PrimitiveType,

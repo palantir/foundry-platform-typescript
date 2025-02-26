@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+import type * as ir from "@osdk/platform-docs-spec";
 import { convertIrPrimitiveTypeToTsTypeReference } from "../convertIrPrimitiveTypeToTsTypeReference.js";
-import type * as ir from "../ir/index.js";
 import { SimpleType } from "./Type.js";
 
 export class BuiltinType extends SimpleType {

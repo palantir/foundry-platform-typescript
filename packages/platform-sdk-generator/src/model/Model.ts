@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
+import type * as ir from "@osdk/platform-docs-spec";
 import * as path from "node:path";
 import { ensurePackageSetup } from "../generatePlatformSdkv2.js";
-import type * as ir from "../ir/index.js";
 import { isIgnoredNamespace } from "../isIgnoredNamespace.js";
 import { isIgnoredType } from "../isIgnoredType.js";
 import { mapObjectValues } from "../util/mapObjectValues.js";

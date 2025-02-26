@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type { Component } from "./Component.js";
 import type { Operation } from "./Operation.js";
 
 export interface Resource {

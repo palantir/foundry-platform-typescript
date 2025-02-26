@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
+import type * as ir from "@osdk/platform-docs-spec";
 import invariant from "tiny-invariant";
-import type * as ir from "../ir/index.js";
 import { quoteMimeTypeOrEmpty } from "../quoteMimeTypeOrEmpty.js";
 import { addAll } from "../util/addAll.js";
 import { groupByAsObject } from "../util/groupByAsObject.js";
 import { BinaryResponseType } from "./BinaryResponseType.js";
-import { BinaryType } from "./BinaryType.js";
 import type { Component } from "./Component.js";
 import type { Model } from "./Model.js";
 import { OptionalType } from "./OptionalType.js";
