@@ -778,6 +778,9 @@ importers:
 
   packages/platform-sdk-generator:
     dependencies:
+      '@osdk/docs-spec-core':
+        specifier: workspace:*
+        version: link:../docs-spec-core
       find-up:
         specifier: ^7.0.0
         version: 7.0.0

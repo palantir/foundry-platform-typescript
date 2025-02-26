@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
 import fs from "node:fs/promises";
 import * as path from "node:path";
 import { copyright } from "./copyright.js";
@@ -22,22 +23,63 @@ import type { ApiSpec } from "./ir/index.js";
 
 const PACKAGE_NAME = "platform-docs-spec";
 
+function generatePlatformDocsSpec(ir: ApiSpec): DocsSnippetsSpec {
+  const spec: DocsSnippetsSpec = {
+    version: 1,
+    snippets: {},
+  };
+
+  for (const namespace of ir.namespaces) {
+    for (const resource of namespace.resources) {
+      for (const operation of resource.operations) {
+        const snippetName =
+          `${namespace.version}.${resource.component.namespaceName}.${resource.component.localName}.${operation.name}`;
+        if (spec.snippets[snippetName] != null) {
+          throw new Error(`Duplicate snippet name: "${snippetName}"`);
+        }
+        const variables: Record<string, "required"> = {};
+        if (operation.http.requestBody != null) {
+          variables.requestBody = "required";
+        }
+        for (const parameter of operation.http.parameters) {
+          variables[parameter.name] = "required";
+        }
+        spec.snippets[snippetName] = { variables };
+      }
+    }
+  }
+
+  return spec;
+}
+
 export async function generateDocsPackage(ir: ApiSpec, packagesDir: string) {
   const outputDir = path.join(packagesDir, PACKAGE_NAME);
   // todo(amish): drop extraneous deps
   await ensurePackageSetup(outputDir, PACKAGE_NAME, ["@osdk/docs-spec-core"]);
 
   await fs.writeFile(
-    path.join(outputDir, "src", "spec.ts"),
+    path.join(outputDir, "src", "ir.ts"),
     `${copyright}
         
         export const PLATFORM_API_IR: any = ${JSON.stringify(ir, null, 2)}`,
   );
 
   await fs.writeFile(
+    path.join(outputDir, "src", "spec.ts"),
+    `${copyright}
+
+        import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
+    
+        export const PLATFORM_API_DOCS_SPEC = ${
+      JSON.stringify(generatePlatformDocsSpec(ir), null, 2)
+    } as const satisfies DocsSnippetsSpec;`,
+  );
+
+  await fs.writeFile(
     path.join(outputDir, "src", "index.ts"),
     `${copyright}
         
-        export { PLATFORM_API_IR } from "./spec.js";`,
+        export { PLATFORM_API_IR } from "./ir.js";
+        export { PLATFORM_API_DOCS_SPEC } from "./spec.js";`,
   );
 }
