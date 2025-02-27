@@ -21,15 +21,34 @@ OPENAPI_MANIFEST_YML="${SCRIPT_DIR}/../tmp/api-gateway-ir/manifest.yml"
 PACKAGE_PATH="${SCRIPT_DIR}/../packages/internal.foundry"
 OUT_PATH="${SCRIPT_DIR}/../packages/"
 
+# Whether to generate docs, sdks, or both
+# One of: docs, sdks, docs-and-sdks
+GENERATION_MODE="docs-and-sdks"
+
 echo "Generating bindings for internal.foundry"
-$CODE_GENERATOR generate --v2 --prefix "internal.foundry" --inputFile "${OPENAPI_IR_JSON}" --manifestFile "${OPENAPI_MANIFEST_YML}" --outputDir "${OUT_PATH}" --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" --endpointVersion "v1"
+$CODE_GENERATOR generate \
+    --v2 \
+    --prefix "internal.foundry" \
+    --inputFile "${OPENAPI_IR_JSON}" \
+    --manifestFile "${OPENAPI_MANIFEST_YML}" \
+    --outputDir "${OUT_PATH}" \
+    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
+    --endpointVersion "v1" \
+    --mode "sdks" # We don't generate docs based on the OpenAPI IR
 
-
-# Generate the API bindings for @oskd/foundry (omni v2)
+# Generate the API bindings for @osdk/foundry (omni v2)
 OMNIAPI_IR_JSON="${SCRIPT_DIR}/../tmp/api-gateway-ir/combined-ir.json"
 
 echo "Generating bindings"
-$CODE_GENERATOR generate --v2 --prefix foundry --inputFile "${OMNIAPI_IR_JSON}" --manifestFile "${OPENAPI_MANIFEST_YML}" --outputDir "${OUT_PATH}"  --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" --endpointVersion "v2"
+$CODE_GENERATOR generate \
+    --v2 \
+    --prefix "foundry" \
+    --inputFile "${OMNIAPI_IR_JSON}" \
+    --manifestFile "${OPENAPI_MANIFEST_YML}" \
+    --outputDir "${OUT_PATH}" \
+    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" \
+    --endpointVersion "v2" \
+    --mode "${GENERATION_MODE}"
 
 echo
 echo pnpm install to make align deps

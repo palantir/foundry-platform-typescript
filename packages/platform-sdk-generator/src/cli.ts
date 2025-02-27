@@ -44,6 +44,7 @@ export interface Options {
   prefix: string;
   deprecatedFile?: string;
   endpointVersion: string;
+  mode: "docs" | "docs-and-sdks" | "sdks";
 }
 
 export class GenerateCommand implements CommandModule<{}, Options> {
@@ -85,6 +86,13 @@ export class GenerateCommand implements CommandModule<{}, Options> {
           "The endpoint versions to generate with. Matches this version to the version listed for the namespace in the IR.",
         type: "string",
         demandOption: true,
+      })
+      .option("mode", {
+        describe:
+          "Whether to generate Platform SDKs, Platform SDK documentation specification, or both.",
+        type: "string",
+        choices: ["docs", "docs-and-sdks", "sdks"] as const,
+        demandOption: true,
       });
   }
 
@@ -117,14 +125,20 @@ export class GenerateCommand implements CommandModule<{}, Options> {
         ? JSON.parse(deprecatedIr)
         : undefined;
       const pkgDirs = [
-        ...await generatePlatformSdkV2(
-          irSpec,
-          output,
-          args.prefix,
-          args.endpointVersion,
-          deprecatedIrSpec,
-        ),
-        await generateDocsPackage(irSpec, output),
+        ...(args.mode === "docs-and-sdks"
+            || args.mode === "sdks"
+          ? await generatePlatformSdkV2(
+            irSpec,
+            output,
+            args.prefix,
+            args.endpointVersion,
+            deprecatedIrSpec,
+          )
+          : []),
+        ...(args.mode === "docs-and-sdks"
+            || args.mode === "docs"
+          ? [await generateDocsPackage(irSpec, output)]
+          : []),
       ];
       for (const pkgDir of pkgDirs) {
         await updateSls(manifest, pkgDir);
