@@ -14,7 +14,8 @@ MAVEN_CONJURE_GROUP_ID="com.palantir.foundry.api"
 MAVEN_CONJURE_ARTIFACT_ID="api-gateway-rosetta-bundle"
 MAVEN_REPO_PATH="${MAVEN_DIST_RELEASE}/$(echo "$MAVEN_CONJURE_GROUP_ID" | sed 's/\./\//g')/${MAVEN_CONJURE_ARTIFACT_ID}"
 
-API_GATEWAY_VERSION="1.1086.0"
+API_GATEWAY_VERSION=$( wget -q -O - "${MAVEN_REPO_PATH}/maven-metadata.xml" | \
+    yq -p xml -r '.metadata.versioning.release' )
 
 echo "GATEWAY VERSION: ${API_GATEWAY_VERSION}"
 
