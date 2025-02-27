@@ -59,7 +59,7 @@ type VariablesForSnippetConfig<
 // For implementers
 export interface BaseSnippet {
   title?: string;
-  status?: "status" | "public-beta";
+  status?: "ga" | "public-beta";
 }
 
 export type SdkSnippets<S extends DocsSnippetsSpec> = {

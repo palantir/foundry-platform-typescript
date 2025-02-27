@@ -163,7 +163,6 @@ export type {
   InterfaceLinkTypeCardinality,
   InterfaceLinkTypeLinkedEntityApiName,
   InterfaceLinkTypeRid,
-  InterfaceSharedPropertyType,
   InterfaceToObjectTypeMapping,
   InterfaceToObjectTypeMappings,
   InterfaceType,
