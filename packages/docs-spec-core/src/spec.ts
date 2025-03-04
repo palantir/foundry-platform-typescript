@@ -62,15 +62,29 @@ export interface BaseSnippet {
   status?: "ga" | "public-beta";
 }
 
+export type SdkSnippet = BaseSnippet & {
+  template: string;
+};
+
 export type SdkSnippets<S extends DocsSnippetsSpec> = {
   kind: "sdk";
   versions: {
     [version: string]: {
       snippets: {
-        [name in SnippetNames<S>]: Array<BaseSnippet & { template: string }>;
+        [name in SnippetNames<S>]: SdkSnippet[];
       };
     };
   };
+};
+
+export type ApiSnippet = BaseSnippet & {
+  endpoint: {
+    method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "WebSocket";
+    path: string;
+    headers: Record<string, string>;
+  };
+  body?: string;
+  response?: string;
 };
 
 export type ApiSnippets<S extends DocsSnippetsSpec> = {
@@ -78,17 +92,7 @@ export type ApiSnippets<S extends DocsSnippetsSpec> = {
   versions: {
     [version: string]: {
       snippets: {
-        [name in SnippetNames<S>]: Array<
-          BaseSnippet & {
-            endpoint: {
-              method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "WebSocket";
-              path: string;
-              headers: Record<string, string>;
-            };
-            body?: string;
-            response?: string;
-          }
-        >;
+        [name in SnippetNames<S>]: ApiSnippet[];
       };
     };
   };

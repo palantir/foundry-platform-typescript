@@ -15,9 +15,11 @@
  */
 
 export type {
+  ApiSnippet,
   ApiSnippets,
   DocsSnippets,
   DocsSnippetsSpec,
+  SdkSnippet,
   SdkSnippets,
   SnippetNames,
   SnippetVariables,
