@@ -67,7 +67,7 @@ export type SdkSnippets<S extends DocsSnippetsSpec> = {
   versions: {
     [version: string]: {
       snippets: {
-        [name in SnippetNames<S>]: BaseSnippet & { template: string };
+        [name in SnippetNames<S>]: Array<BaseSnippet & { template: string }>;
       };
     };
   };
@@ -78,15 +78,17 @@ export type ApiSnippets<S extends DocsSnippetsSpec> = {
   versions: {
     [version: string]: {
       snippets: {
-        [name in SnippetNames<S>]: BaseSnippet & {
-          endpoint: {
-            method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "WebSocket";
-            path: string;
-            headers: Record<string, string>;
-          };
-          body?: string;
-          response?: string;
-        };
+        [name in SnippetNames<S>]: Array<
+          BaseSnippet & {
+            endpoint: {
+              method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "WebSocket";
+              path: string;
+              headers: Record<string, string>;
+            };
+            body?: string;
+            response?: string;
+          }
+        >;
       };
     };
   };
