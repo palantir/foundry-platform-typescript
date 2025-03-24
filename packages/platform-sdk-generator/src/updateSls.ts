@@ -32,6 +32,7 @@ export interface Manifest {
 export async function updateSls(
   manifest: Manifest,
   output: string,
+  optional: boolean,
 ): Promise<void> {
   // the whole manifest shape is hand-jammed so lets have a quick sanity check to make sure we're ok
   if (manifest["manifest-version"] !== "1.0") {
@@ -69,7 +70,7 @@ export async function updateSls(
     const value = {
       minVersion: dep["minimum-version"],
       maxVersion: dep["maximum-version"],
-      optional: false,
+      optional,
     };
     dependencies[key] = value;
   }
