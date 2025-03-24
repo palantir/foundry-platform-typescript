@@ -23,7 +23,7 @@ OUT_PATH="${SCRIPT_DIR}/../packages/"
 
 # Whether to generate docs, sdks, or both
 # One of: docs, sdks, docs-and-sdks
-GENERATION_MODE="docs"
+GENERATION_MODE="docs-and-sdks"
 
 if [[ "$GENERATION_MODE" != "docs" ]]; then
     echo "Generating bindings for internal.foundry"
