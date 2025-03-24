@@ -124,24 +124,21 @@ export class GenerateCommand implements CommandModule<{}, Options> {
       const deprecatedIrSpec: ApiSpec | undefined = deprecatedIr
         ? JSON.parse(deprecatedIr)
         : undefined;
-      const pkgDirs = [
-        ...(args.mode === "docs-and-sdks"
-            || args.mode === "sdks"
-          ? await generatePlatformSdkV2(
-            irSpec,
-            output,
-            args.prefix,
-            args.endpointVersion,
-            deprecatedIrSpec,
-          )
-          : []),
-        ...(args.mode === "docs-and-sdks"
-            || args.mode === "docs"
-          ? [await generateDocsPackage(irSpec, output)]
-          : []),
-      ];
-      for (const pkgDir of pkgDirs) {
-        await updateSls(manifest, pkgDir);
+      if (args.mode === "docs-and-sdks" || args.mode === "sdks") {
+        const pkgDirs = await generatePlatformSdkV2(
+          irSpec,
+          output,
+          args.prefix,
+          args.endpointVersion,
+          deprecatedIrSpec,
+        );
+        for (const pkgDir of pkgDirs) {
+          await updateSls(manifest, pkgDir, false);
+        }
+      }
+      if (args.mode === "docs-and-sdks" || args.mode === "docs") {
+        const pkgDir = await generateDocsPackage(irSpec, output);
+        await updateSls(manifest, pkgDir, true);
       }
     } else {
       throw new Error("No longer supported");

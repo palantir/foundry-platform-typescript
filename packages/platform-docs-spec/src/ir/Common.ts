@@ -19,10 +19,10 @@ export type Safety = "SAFE" | "UNSAFE" | "DO_NOT_LOG";
 export interface Documentation {
   description?: string;
   plainTextDescription?: string;
-  example?: Example;
+  example?: Example[];
 }
 
-export type Example = Record<string, any> | any;
+export type Example = any;
 
 export interface Locator {
   localName: string;

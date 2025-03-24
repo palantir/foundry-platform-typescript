@@ -79,7 +79,7 @@ export interface ComponentRequestType {
   component: {
     mediaType: MediaType;
     type: ParameterValue;
-    example?: Example;
+    example?: Example[];
   };
 }
 
@@ -88,7 +88,7 @@ export interface ComponentResponseType {
   component: {
     mediaType: MediaType;
     type: ParameterValue;
-    example?: Example;
+    example?: Example[];
   };
 }
 

@@ -71,7 +71,7 @@ export type SdkSnippets<S extends DocsSnippetsSpec> = {
   versions: {
     [version: string]: {
       snippets: {
-        [name in SnippetNames<S>]: SdkSnippet[];
+        [name in SnippetNames<S>]?: SdkSnippet[];
       };
     };
   };
@@ -92,7 +92,7 @@ export type ApiSnippets<S extends DocsSnippetsSpec> = {
   versions: {
     [version: string]: {
       snippets: {
-        [name in SnippetNames<S>]: ApiSnippet[];
+        [name in SnippetNames<S>]?: ApiSnippet[];
       };
     };
   };

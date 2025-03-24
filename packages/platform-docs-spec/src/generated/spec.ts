@@ -805,7 +805,7 @@ export const PLATFORM_API_DOCS_SPEC = {
         "preview": "required",
       },
     },
-    "v2.Orchestration.Build.createBuilds": {
+    "v2.Orchestration.Build.createBuild": {
       "variables": {
         "requestBody": "required",
         "preview": "required",
@@ -823,9 +823,23 @@ export const PLATFORM_API_DOCS_SPEC = {
         "preview": "required",
       },
     },
+    "v2.Orchestration.Build.listJobsOfBuild": {
+      "variables": {
+        "buildRid": "required",
+        "pageSize": "required",
+        "pageToken": "required",
+        "preview": "required",
+      },
+    },
     "v2.Orchestration.Job.getJob": {
       "variables": {
         "jobRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Orchestration.Job.getJobsBatch": {
+      "variables": {
+        "requestBody": "required",
         "preview": "required",
       },
     },
@@ -889,6 +903,14 @@ export const PLATFORM_API_DOCS_SPEC = {
       },
     },
     "v2.MediaSets.MediaSet.readMediaItem": {
+      "variables": {
+        "ReadToken": "required",
+        "mediaSetRid": "required",
+        "mediaItemRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.MediaSets.MediaSet.readOriginalMediaItem": {
       "variables": {
         "ReadToken": "required",
         "mediaSetRid": "required",
@@ -1030,6 +1052,12 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {
         "ontology": "required",
         "actionType": "required",
+      },
+    },
+    "v2.Ontologies.ActionTypeV2.getActionTypeByRid": {
+      "variables": {
+        "ontology": "required",
+        "actionTypeRid": "required",
       },
     },
     "v2.Ontologies.ObjectTypeV2.listObjectTypesV2": {
@@ -1416,6 +1444,48 @@ export const PLATFORM_API_DOCS_SPEC = {
         "attachmentRid": "required",
       },
     },
+    "v2.Widgets.WidgetSet.getWidgetSet": {
+      "variables": {
+        "widgetSetRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Widgets.Release.deleteRelease": {
+      "variables": {
+        "widgetSetRid": "required",
+        "releaseVersion": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Widgets.Release.listReleases": {
+      "variables": {
+        "widgetSetRid": "required",
+        "pageSize": "required",
+        "pageToken": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Widgets.Release.getRelease": {
+      "variables": {
+        "widgetSetRid": "required",
+        "releaseVersion": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Widgets.Repository.getRepository": {
+      "variables": {
+        "repositoryRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Widgets.Repository.publishRelease": {
+      "variables": {
+        "requestBody": "required",
+        "repositoryRid": "required",
+        "repositoryVersion": "required",
+        "preview": "required",
+      },
+    },
     "v2.AipAgents.Agent.getAgent": {
       "variables": {
         "agentRid": "required",
@@ -1492,6 +1562,14 @@ export const PLATFORM_API_DOCS_SPEC = {
       },
     },
     "v2.AipAgents.Session.getRagContextForSession": {
+      "variables": {
+        "requestBody": "required",
+        "agentRid": "required",
+        "sessionRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.AipAgents.Session.updateSessionTitle": {
       "variables": {
         "requestBody": "required",
         "agentRid": "required",
