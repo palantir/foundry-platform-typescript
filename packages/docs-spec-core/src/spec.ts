@@ -57,9 +57,11 @@ type VariablesForSnippetConfig<
 > = S["snippets"][T]["variables"];
 
 // For implementers
+
 export interface BaseSnippet {
   title?: string;
   status?: "ga" | "public-beta";
+  computedVariables?: Record<string, string>;
 }
 
 export type SdkSnippet = BaseSnippet & {
@@ -75,6 +77,7 @@ export type SdkSnippets<S extends DocsSnippetsSpec> = {
       };
     };
   };
+  helpers?: Record<string, (...args: any[]) => string>;
 };
 
 export type ApiSnippet = BaseSnippet & {
@@ -96,6 +99,7 @@ export type ApiSnippets<S extends DocsSnippetsSpec> = {
       };
     };
   };
+  helpers?: Record<string, (...args: any[]) => string>;
 };
 
 export type DocsSnippets<S extends DocsSnippetsSpec> =
