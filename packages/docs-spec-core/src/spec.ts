@@ -61,7 +61,14 @@ type VariablesForSnippetConfig<
 export interface BaseSnippet {
   title?: string;
   status?: "ga" | "public-beta";
-  computedVariables?: Record<string, string>;
+  computedVariables?: {
+    [VariableName: string]: {
+      helper: string;
+      args: {
+        [ArgName: string]: string;
+      };
+    };
+  };
 }
 
 export type SdkSnippet = BaseSnippet & {
@@ -77,7 +84,7 @@ export type SdkSnippets<S extends DocsSnippetsSpec> = {
       };
     };
   };
-  helpers?: Record<string, (...args: any[]) => string>;
+  helpers?: Record<string, (args: Record<string, any>) => string>;
 };
 
 export type ApiSnippet = BaseSnippet & {
@@ -99,7 +106,7 @@ export type ApiSnippets<S extends DocsSnippetsSpec> = {
       };
     };
   };
-  helpers?: Record<string, (...args: any[]) => string>;
+  helpers?: Record<string, (args: Record<string, any>) => string>;
 };
 
 export type DocsSnippets<S extends DocsSnippetsSpec> =
