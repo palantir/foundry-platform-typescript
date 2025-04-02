@@ -41,17 +41,12 @@ function generatePlatformDocsSpec(ir: ApiSpec): DocsSnippetsSpec {
         if (spec.snippets[snippetName] != null) {
           throw new Error(`Duplicate snippet name: "${snippetName}"`);
         }
-        const variables: Record<string, "required"> = {};
-        if (operation.http.requestBody != null) {
-          variables.requestBody = "required";
-        }
         for (const parameter of operation.http.parameters) {
           if (parameter.name === "requestBody") {
             throw new Error(`Parameter name "requestBody" is reserved`);
           }
-          variables[parameter.name] = "required";
         }
-        spec.snippets[snippetName] = { variables };
+        spec.snippets[snippetName] = { variables: {} };
       }
     }
   }

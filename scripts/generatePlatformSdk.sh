@@ -23,18 +23,19 @@ OUT_PATH="${SCRIPT_DIR}/../packages/"
 
 # Whether to generate docs, sdks, or both
 # One of: docs, sdks, docs-and-sdks
-GENERATION_MODE="docs-and-sdks"
-
-echo "Generating bindings for internal.foundry"
-$CODE_GENERATOR generate \
-    --v2 \
-    --prefix "internal.foundry" \
-    --inputFile "${IR_JSON}" \
-    --manifestFile "${OPENAPI_MANIFEST_YML}" \
-    --outputDir "${OUT_PATH}" \
-    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
-    --endpointVersion "v1" \
-    --mode "sdks" # We don't generate docs based on the OpenAPI IR
+GENERATION_MODE="docs"
+if [[ "${GENERATION_MODE}" != "docs" ]]; then
+    echo "Generating bindings for internal.foundry"
+    $CODE_GENERATOR generate \
+        --v2 \
+        --prefix "internal.foundry" \
+        --inputFile "${IR_JSON}" \
+        --manifestFile "${OPENAPI_MANIFEST_YML}" \
+        --outputDir "${OUT_PATH}" \
+        --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
+        --endpointVersion "v1" \
+        --mode "sdks" # We don't generate docs based on the OpenAPI IR
+fi
 
 echo "Generating bindings"
 $CODE_GENERATOR generate \
