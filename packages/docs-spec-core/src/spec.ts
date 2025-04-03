@@ -61,7 +61,7 @@ type VariablesForSnippetConfig<
 export interface BaseSnippet {
   title?: string;
   status?: "ga" | "public-beta";
-  helpers?: string[];
+  computedVariables?: string[];
 }
 
 export type SdkSnippet = BaseSnippet & {
@@ -71,7 +71,7 @@ export type SdkSnippet = BaseSnippet & {
 // Distributive conditional type to extract keys from a union type
 type UnionKeys<T> = T extends Record<infer Keys, any> ? Keys : never;
 
-type HelpersType<S extends DocsSnippetsSpec> = Record<
+type ComputedVariablesType<S extends DocsSnippetsSpec> = Record<
   string,
   (
     args: Partial<
@@ -92,7 +92,7 @@ export type SdkSnippets<S extends DocsSnippetsSpec> = {
       };
     };
   };
-  helpers?: HelpersType<S>;
+  computedVariables?: ComputedVariablesType<S>;
 };
 
 export type ApiSnippet = BaseSnippet & {
@@ -114,7 +114,7 @@ export type ApiSnippets<S extends DocsSnippetsSpec> = {
       };
     };
   };
-  helpers?: HelpersType<S>;
+  computedVariables?: ComputedVariablesType<S>;
 };
 
 export type DocsSnippets<S extends DocsSnippetsSpec> =
