@@ -1,5 +1,11 @@
 # @osdk/docs-spec-core
 
+## 0.4.0
+
+### Minor Changes
+
+- 37b4958: Allow computed variable types to be any
+
 ## 0.3.0
 
 ### Minor Changes

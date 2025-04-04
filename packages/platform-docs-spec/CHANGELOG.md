@@ -1,5 +1,12 @@
 # @osdk/platform-docs-spec
 
+## 0.5.0
+
+### Patch Changes
+
+- Updated dependencies [37b4958]
+  - @osdk/docs-spec-core@0.4.0
+
 ## 0.4.0
 
 ### Minor Changes
