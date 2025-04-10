@@ -243,6 +243,21 @@ export interface AttachmentSizeExceededLimit {
 }
 
 /**
+   * The Cipher Channel was not found.
+It either does not exist, or you do not have permission to see it.
+   *
+   * Log Safety: SAFE
+   */
+export interface CipherChannelNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "CipherChannelNotFound";
+  errorInstanceId: string;
+  parameters: {
+    cipherChannel: unknown;
+  };
+}
+
+/**
    * Primary keys consisting of multiple properties are not supported by this API. If you need support for this,
 please reach out to Palantir Support.
    *
@@ -924,6 +939,22 @@ export interface MultiplePropertyValuesNotSupported {
 }
 
 /**
+   * The value intended for decryption with Cipher is not formatted correctly.
+It may already be a plaintext value and not require decryption.
+Ensure it is correctly formatted (CIPHERCIPHER).
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NotCipherFormatted {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "NotCipherFormatted";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+  };
+}
+
+/**
  * The object the user is attempting to create already exists.
  *
  * Log Safety: SAFE
@@ -1444,6 +1475,20 @@ export interface QueryTimeExceededLimit {
 }
 
 /**
+ * Unable to decrypt this CipherText because the available rate limits in Cipher licenses were reached.
+ *
+ * Log Safety: SAFE
+ */
+export interface RateLimitReached {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RateLimitReached";
+  errorInstanceId: string;
+  parameters: {
+    cipherChannel: unknown;
+  };
+}
+
+/**
  * The dimensions of the provided vector don't match the dimensions of the embedding model being queried.
  *
  * Log Safety: SAFE
@@ -1495,6 +1540,35 @@ export interface TooManyNearestNeighborsRequested {
   errorName: "TooManyNearestNeighborsRequested";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The provided token does not have permission to take a specific Cipher operation.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnauthorizedCipherOperation {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UnauthorizedCipherOperation";
+  errorInstanceId: string;
+  parameters: {
+    cipherChannel: unknown;
+  };
+}
+
+/**
+   * The value intended for decryption with Cipher cannot be decrypted.
+Ensure it is correctly formatted (CIPHER::CIPHER).
+   *
+   * Log Safety: UNSAFE
+   */
+export interface UndecryptableValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UndecryptableValue";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+  };
 }
 
 /**

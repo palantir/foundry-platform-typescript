@@ -110,6 +110,7 @@ export type {
   BoundingBoxValue,
   CenterPoint,
   CenterPointTypes,
+  CipherTextProperty,
   ContainsAllTermsInOrderPrefixLastTerm,
   ContainsAllTermsInOrderQuery,
   ContainsAllTermsQuery,
@@ -126,6 +127,7 @@ export type {
   CreateTemporaryObjectSetResponseV2,
   CustomTypeId,
   DataValue,
+  DecryptionResult,
   DeleteInterfaceObjectRule,
   DeleteLink,
   DeleteLinkRule,
@@ -312,6 +314,7 @@ export type {
   ParameterId,
   ParameterOption,
   PhraseQuery,
+  Plaintext,
   PolygonValue,
   PreciseDuration,
   PreciseTimeUnit,
@@ -463,6 +466,7 @@ export type {
   ApplyActionFailed,
   AttachmentNotFound,
   AttachmentSizeExceededLimit,
+  CipherChannelNotFound,
   CompositePrimaryKeyNotSupported,
   DerivedPropertyApiNamesNotUnique,
   DuplicateOrderBy,
@@ -509,6 +513,7 @@ export type {
   MissingParameter,
   MultipleGroupByOnFieldNotSupported,
   MultiplePropertyValuesNotSupported,
+  NotCipherFormatted,
   ObjectAlreadyExists,
   ObjectChanged,
   ObjectNotFound,
@@ -544,10 +549,13 @@ export type {
   QueryNotFound,
   QueryRuntimeError,
   QueryTimeExceededLimit,
+  RateLimitReached,
   SearchVectorDimensionsDiffer,
   SharedPropertiesNotFound,
   SharedPropertyTypeNotFound,
   TooManyNearestNeighborsRequested,
+  UnauthorizedCipherOperation,
+  UndecryptableValue,
   UnknownParameter,
   UnsupportedObjectSet,
   ViewObjectPermissionDenied,
@@ -556,6 +564,7 @@ export * as Actions from "./public/Action.js";
 export * as ActionTypesV2 from "./public/ActionTypeV2.js";
 export * as Attachments from "./public/Attachment.js";
 export * as AttachmentPropertiesV2 from "./public/AttachmentPropertyV2.js";
+export * as CipherTextProperties from "./public/CipherTextProperty.js";
 export * as LinkedObjectsV2 from "./public/LinkedObjectV2.js";
 export * as MediaReferenceProperties from "./public/MediaReferenceProperty.js";
 export * as ObjectTypesV2 from "./public/ObjectTypeV2.js";

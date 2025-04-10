@@ -19,56 +19,56 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * Could not cancel the Query.
+ * Could not cancel the SqlQuery.
  *
  * Log Safety: UNSAFE
  */
-export interface CancelQueryPermissionDenied {
+export interface CancelSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "CancelQueryPermissionDenied";
+  errorName: "CancelSqlQueryPermissionDenied";
   errorInstanceId: string;
   parameters: {
-    queryId: unknown;
+    sqlQueryId: unknown;
   };
 }
 
 /**
- * Could not execute the Query.
+ * Could not execute the SqlQuery.
  *
  * Log Safety: SAFE
  */
-export interface ExecuteQueryPermissionDenied {
+export interface ExecuteSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "ExecuteQueryPermissionDenied";
+  errorName: "ExecuteSqlQueryPermissionDenied";
   errorInstanceId: string;
   parameters: {};
 }
 
 /**
- * Could not getResults the Query.
+ * Could not getResults the SqlQuery.
  *
  * Log Safety: UNSAFE
  */
-export interface GetResultsPermissionDenied {
+export interface GetResultsSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "GetResultsPermissionDenied";
+  errorName: "GetResultsSqlQueryPermissionDenied";
   errorInstanceId: string;
   parameters: {
-    queryId: unknown;
+    sqlQueryId: unknown;
   };
 }
 
 /**
- * Could not getStatus the Query.
+ * Could not getStatus the SqlQuery.
  *
  * Log Safety: UNSAFE
  */
-export interface GetStatusPermissionDenied {
+export interface GetStatusSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "GetStatusPermissionDenied";
+  errorName: "GetStatusSqlQueryPermissionDenied";
   errorInstanceId: string;
   parameters: {
-    queryId: unknown;
+    sqlQueryId: unknown;
   };
 }
 

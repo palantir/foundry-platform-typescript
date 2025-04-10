@@ -16,19 +16,19 @@
 
 export type {
   CanceledQueryStatus,
-  ExecuteQueryRequest,
+  ExecuteSqlQueryRequest,
   FailedQueryStatus,
-  Query,
-  QueryId,
   QueryStatus,
   RunningQueryStatus,
+  SqlQuery,
+  SqlQueryId,
   SucceededQueryStatus,
 } from "./_components.js";
 export type {
-  CancelQueryPermissionDenied,
-  ExecuteQueryPermissionDenied,
-  GetResultsPermissionDenied,
-  GetStatusPermissionDenied,
+  CancelSqlQueryPermissionDenied,
+  ExecuteSqlQueryPermissionDenied,
+  GetResultsSqlQueryPermissionDenied,
+  GetStatusSqlQueryPermissionDenied,
   QueryCanceled,
   QueryFailed,
   QueryParseError,
@@ -36,4 +36,4 @@ export type {
   QueryRunning,
   ReadQueryInputsPermissionDenied,
 } from "./_errors.js";
-export * as Queries from "./public/Query.js";
+export * as SqlQueries from "./public/SqlQuery.js";

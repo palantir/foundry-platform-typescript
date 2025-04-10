@@ -76,6 +76,7 @@ export type {
   FoundryLiveDeployment,
   FullRowChangeDataCaptureConfiguration,
   FuzzyV2,
+  GeohashType,
   GeoPointType,
   GeoShapeType,
   GeotimeSeriesReferenceType,

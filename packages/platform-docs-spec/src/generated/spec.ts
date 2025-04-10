@@ -461,16 +461,16 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.Functions.VersionId.getVersionId": {
       "variables": {},
     },
-    "v2.SqlQueries.Query.executeQuery": {
+    "v2.SqlQueries.SqlQuery.executeSqlQuery": {
       "variables": {},
     },
-    "v2.SqlQueries.Query.getStatus": {
+    "v2.SqlQueries.SqlQuery.getStatusSqlQuery": {
       "variables": {},
     },
-    "v2.SqlQueries.Query.cancelQuery": {
+    "v2.SqlQueries.SqlQuery.cancelSqlQuery": {
       "variables": {},
     },
-    "v2.SqlQueries.Query.getResults": {
+    "v2.SqlQueries.SqlQuery.getResultsSqlQuery": {
       "variables": {},
     },
     "v2.Operations.AsyncOperation.getOperation": {
@@ -564,6 +564,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.Ontologies.TimeSeriesValueBankProperty.streamValues": {
+      "variables": {},
+    },
+    "v2.Ontologies.CipherTextProperty.decrypt": {
       "variables": {},
     },
     "v2.Ontologies.OntologyInterface.listInterfaceTypes": {

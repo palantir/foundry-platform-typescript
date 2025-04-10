@@ -103,6 +103,8 @@ const _load: $FoundryPlatformMethod<
  *
  * Note that null value properties will not be returned.
  *
+ * Vector properties will not be returned unless included in the `select` parameter.
+ *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
@@ -148,6 +150,8 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
  *
  * Note that null value properties will not be returned. In addition, property metadata (rid, apiName, and primaryKey)
  * will be prefixed with '$' instead of '\_\_' as is the case in `loadObjects`.
+ *
+ * Vector properties will not be returned unless included in the `select` parameter.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
@@ -197,6 +201,8 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
  *
  * Note that null value properties will not be returned. In addition, property metadata (rid, apiName, and primaryKey)
  * will be prefixed with '$' instead of '\_\_' as is the case in `/loadObjects`.
+ *
+ * Vector properties will not be returned unless included in the `select` parameter.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *

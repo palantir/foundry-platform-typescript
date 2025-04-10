@@ -526,6 +526,11 @@ export type FuzzyV2 = boolean;
 /**
  * Log Safety: SAFE
  */
+export interface GeohashType {}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface GeoPointType {}
 
 /**

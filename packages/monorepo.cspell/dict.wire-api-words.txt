@@ -30,3 +30,6 @@ schemamigrations
 SearchArounds
 typeclasses
 workstate
+CIPHERCIPHER
+Undecryptable
+ciphertexts

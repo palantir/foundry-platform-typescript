@@ -130,6 +130,7 @@ export interface Connection {
 export type ConnectionConfiguration =
   | ({ type: "s3" } & S3ConnectionConfiguration)
   | ({ type: "rest" } & RestConnectionConfiguration)
+  | ({ type: "snowflake" } & SnowflakeConnectionConfiguration)
   | ({ type: "jdbc" } & JdbcConnectionConfiguration);
 
 /**
@@ -207,6 +208,9 @@ export interface CreateConnectionRequestCloudIdentity {
 export type CreateConnectionRequestConnectionConfiguration =
   | ({ type: "s3" } & CreateConnectionRequestS3ConnectionConfiguration)
   | ({ type: "rest" } & CreateConnectionRequestRestConnectionConfiguration)
+  | ({
+    type: "snowflake";
+  } & CreateConnectionRequestSnowflakeConnectionConfiguration)
   | ({ type: "jdbc" } & CreateConnectionRequestJdbcConnectionConfiguration);
 
 /**
@@ -324,6 +328,42 @@ export interface CreateConnectionRequestSecretsWithPlaintextValues {
 /**
  * Log Safety: UNSAFE
  */
+export type CreateConnectionRequestSnowflakeAuthenticationMode =
+  | ({ type: "externalOauth" } & CreateConnectionRequestSnowflakeExternalOauth)
+  | ({
+    type: "keyPair";
+  } & CreateConnectionRequestSnowflakeKeyPairAuthentication)
+  | ({ type: "basic" } & CreateConnectionRequestBasicCredentials);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestSnowflakeConnectionConfiguration {
+  schema?: string;
+  database?: string;
+  role?: string;
+  accountIdentifier: string;
+  jdbcProperties: Record<string, string>;
+  warehouse?: string;
+  authenticationMode: CreateConnectionRequestSnowflakeAuthenticationMode;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionRequestSnowflakeExternalOauth {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestSnowflakeKeyPairAuthentication {
+  privateKey: CreateConnectionRequestEncryptedProperty;
+  user: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateConnectionRequestStsRoleConfiguration {
   stsEndpoint?: string;
   roleArn: string;
@@ -359,36 +399,89 @@ export interface CreateTableImportRequest {
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateTableImportRequestJdbcImportConfig {
-  query: string;
+export interface CreateTableImportRequestDateColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
 }
 
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateTableImportRequestMicrosoftAccessImportConfig {
-  query: string;
+export interface CreateTableImportRequestDecimalColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
 }
 
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateTableImportRequestMicrosoftSqlServerImportConfig {
-  query: string;
+export interface CreateTableImportRequestIntegerColumnInitialIncrementalState {
+  currentValue: number;
+  columnName: string;
 }
 
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateTableImportRequestOracleImportConfig {
-  query: string;
+export interface CreateTableImportRequestJdbcTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
 }
 
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateTableImportRequestPostgreSqlImportConfig {
-  query: string;
+export interface CreateTableImportRequestLongColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestMicrosoftAccessTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestMicrosoftSqlServerTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestOracleTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestPostgreSqlTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestSnowflakeTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestStringColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
 }
 
 /**
@@ -397,19 +490,82 @@ export interface CreateTableImportRequestPostgreSqlImportConfig {
  * Log Safety: UNSAFE
  */
 export type CreateTableImportRequestTableImportConfig =
-  | ({ type: "jdbcImportConfig" } & CreateTableImportRequestJdbcImportConfig)
+  | ({
+    type: "jdbcImportConfig";
+  } & CreateTableImportRequestJdbcTableImportConfig)
   | ({
     type: "microsoftSqlServerImportConfig";
-  } & CreateTableImportRequestMicrosoftSqlServerImportConfig)
+  } & CreateTableImportRequestMicrosoftSqlServerTableImportConfig)
   | ({
     type: "postgreSqlImportConfig";
-  } & CreateTableImportRequestPostgreSqlImportConfig)
+  } & CreateTableImportRequestPostgreSqlTableImportConfig)
   | ({
     type: "microsoftAccessImportConfig";
-  } & CreateTableImportRequestMicrosoftAccessImportConfig)
+  } & CreateTableImportRequestMicrosoftAccessTableImportConfig)
+  | ({
+    type: "snowflakeImportConfig";
+  } & CreateTableImportRequestSnowflakeTableImportConfig)
   | ({
     type: "oracleImportConfig";
-  } & CreateTableImportRequestOracleImportConfig);
+  } & CreateTableImportRequestOracleTableImportConfig);
+
+/**
+   * The incremental configuration for a table import enables append-style transactions from the same table without duplication of data.
+You must provide a monotonically increasing column such as a timestamp or id and an initial value for this column.
+An incremental table import will import rows where the value is greater than the largest already imported.
+You can use the '?' character to reference the incremental state value when constructing your query.
+Normally this would be used in a WHERE clause or similar filter applied in order to only sync data with an incremental column value
+larger than the previously observed maximum value stored in the incremental state.
+   *
+   * Log Safety: UNSAFE
+   */
+export type CreateTableImportRequestTableImportInitialIncrementalState =
+  | ({
+    type: "stringColumnInitialIncrementalState";
+  } & CreateTableImportRequestStringColumnInitialIncrementalState)
+  | ({
+    type: "dateColumnInitialIncrementalState";
+  } & CreateTableImportRequestDateColumnInitialIncrementalState)
+  | ({
+    type: "integerColumnInitialIncrementalState";
+  } & CreateTableImportRequestIntegerColumnInitialIncrementalState)
+  | ({
+    type: "timestampColumnInitialIncrementalState";
+  } & CreateTableImportRequestTimestampColumnInitialIncrementalState)
+  | ({
+    type: "longColumnInitialIncrementalState";
+  } & CreateTableImportRequestLongColumnInitialIncrementalState)
+  | ({
+    type: "decimalColumnInitialIncrementalState";
+  } & CreateTableImportRequestDecimalColumnInitialIncrementalState);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestTimestampColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
+}
+
+/**
+ * The state for an incremental table import using a column with a date type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DateColumnInitialIncrementalState {
+  columnName: string;
+  currentValue: string;
+}
+
+/**
+ * The state for an incremental table import using a column with a decimal data type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DecimalColumnInitialIncrementalState {
+  columnName: string;
+  currentValue: string;
+}
 
 /**
  * The domain that the connection is allowed to access.
@@ -614,6 +770,16 @@ export interface HeaderApiKey {
 }
 
 /**
+ * The state for an incremental table import using a numeric integer datatype.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface IntegerColumnInitialIncrementalState {
+  columnName: string;
+  currentValue: number;
+}
+
+/**
  * The configuration needed to connect to an external system using the JDBC protocol.
  *
  * Log Safety: UNSAFE
@@ -630,8 +796,9 @@ export interface JdbcConnectionConfiguration {
  *
  * Log Safety: UNSAFE
  */
-export interface JdbcImportConfig {
-  query: string;
+export interface JdbcTableImportConfig {
+  query: TableImportQuery;
+  initialIncrementalState?: TableImportInitialIncrementalState;
 }
 
 /**
@@ -651,12 +818,23 @@ export interface ListTableImportsResponse {
 }
 
 /**
+ * The state for an incremental table import using a column with a numeric long datatype.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LongColumnInitialIncrementalState {
+  columnName: string;
+  currentValue: string;
+}
+
+/**
  * The import configuration for a Microsoft Access connection.
  *
  * Log Safety: UNSAFE
  */
-export interface MicrosoftAccessImportConfig {
-  query: string;
+export interface MicrosoftAccessTableImportConfig {
+  query: TableImportQuery;
+  initialIncrementalState?: TableImportInitialIncrementalState;
 }
 
 /**
@@ -664,8 +842,9 @@ export interface MicrosoftAccessImportConfig {
  *
  * Log Safety: UNSAFE
  */
-export interface MicrosoftSqlServerImportConfig {
-  query: string;
+export interface MicrosoftSqlServerTableImportConfig {
+  query: TableImportQuery;
+  initialIncrementalState?: TableImportInitialIncrementalState;
 }
 
 /**
@@ -682,8 +861,9 @@ export type NetworkEgressPolicyRid = LooselyBrandedString<
  *
  * Log Safety: UNSAFE
  */
-export interface OracleImportConfig {
-  query: string;
+export interface OracleTableImportConfig {
+  query: TableImportQuery;
+  initialIncrementalState?: TableImportInitialIncrementalState;
 }
 
 /**
@@ -696,8 +876,9 @@ export type PlaintextValue = LooselyBrandedString<"PlaintextValue">;
  *
  * Log Safety: UNSAFE
  */
-export interface PostgreSqlImportConfig {
-  query: string;
+export interface PostgreSqlTableImportConfig {
+  query: TableImportQuery;
+  initialIncrementalState?: TableImportInitialIncrementalState;
 }
 
 /**
@@ -860,6 +1041,72 @@ export interface SecretsWithPlaintextValues {
 /**
  * Log Safety: UNSAFE
  */
+export type SnowflakeAuthenticationMode =
+  | ({ type: "externalOauth" } & SnowflakeExternalOauth)
+  | ({ type: "keyPair" } & SnowflakeKeyPairAuthentication)
+  | ({ type: "basic" } & BasicCredentials);
+
+/**
+ * The configuration needed to connect to a Snowflake database.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SnowflakeConnectionConfiguration {
+  accountIdentifier: string;
+  database?: string;
+  role?: string;
+  schema?: string;
+  warehouse?: string;
+  authenticationMode: SnowflakeAuthenticationMode;
+  jdbcProperties: Record<string, string>;
+}
+
+/**
+   * Use an External OAuth security integration to connect and authenticate to Snowflake.
+See https://docs.snowflake.com/en/user-guide/oauth-ext-custom
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SnowflakeExternalOauth {
+  audience: string;
+  issuerUrl: string;
+  subject: ConnectionRid;
+}
+
+/**
+   * Use a key-pair to connect and authenticate to Snowflake.
+See https://docs.snowflake.com/en/user-guide/key-pair-auth
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SnowflakeKeyPairAuthentication {
+  user: string;
+  privateKey: EncryptedProperty;
+}
+
+/**
+ * The table import configuration for a Snowflake connection.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SnowflakeTableImportConfig {
+  query: TableImportQuery;
+  initialIncrementalState?: TableImportInitialIncrementalState;
+}
+
+/**
+ * The state for an incremental table import using a column with a string data type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StringColumnInitialIncrementalState {
+  columnName: string;
+  currentValue: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface StsRoleConfiguration {
   roleArn: string;
   roleSessionName: string;
@@ -895,13 +1142,14 @@ export type TableImportAllowSchemaChanges = boolean;
  * Log Safety: UNSAFE
  */
 export type TableImportConfig =
-  | ({ type: "jdbcImportConfig" } & JdbcImportConfig)
+  | ({ type: "jdbcImportConfig" } & JdbcTableImportConfig)
   | ({
     type: "microsoftSqlServerImportConfig";
-  } & MicrosoftSqlServerImportConfig)
-  | ({ type: "postgreSqlImportConfig" } & PostgreSqlImportConfig)
-  | ({ type: "microsoftAccessImportConfig" } & MicrosoftAccessImportConfig)
-  | ({ type: "oracleImportConfig" } & OracleImportConfig);
+  } & MicrosoftSqlServerTableImportConfig)
+  | ({ type: "postgreSqlImportConfig" } & PostgreSqlTableImportConfig)
+  | ({ type: "microsoftAccessImportConfig" } & MicrosoftAccessTableImportConfig)
+  | ({ type: "snowflakeImportConfig" } & SnowflakeTableImportConfig)
+  | ({ type: "oracleImportConfig" } & OracleTableImportConfig);
 
 /**
  * Log Safety: UNSAFE
@@ -909,6 +1157,36 @@ export type TableImportConfig =
 export type TableImportDisplayName = LooselyBrandedString<
   "TableImportDisplayName"
 >;
+
+/**
+   * The incremental configuration for a table import enables append-style transactions from the same table without duplication of data.
+You must provide a monotonically increasing column such as a timestamp or id and an initial value for this column.
+An incremental table import will import rows where the value is greater than the largest already imported.
+You can use the '?' character to reference the incremental state value when constructing your query.
+Normally this would be used in a WHERE clause or similar filter applied in order to only sync data with an incremental column value
+larger than the previously observed maximum value stored in the incremental state.
+   *
+   * Log Safety: UNSAFE
+   */
+export type TableImportInitialIncrementalState =
+  | ({
+    type: "stringColumnInitialIncrementalState";
+  } & StringColumnInitialIncrementalState)
+  | ({
+    type: "dateColumnInitialIncrementalState";
+  } & DateColumnInitialIncrementalState)
+  | ({
+    type: "integerColumnInitialIncrementalState";
+  } & IntegerColumnInitialIncrementalState)
+  | ({
+    type: "timestampColumnInitialIncrementalState";
+  } & TimestampColumnInitialIncrementalState)
+  | ({
+    type: "longColumnInitialIncrementalState";
+  } & LongColumnInitialIncrementalState)
+  | ({
+    type: "decimalColumnInitialIncrementalState";
+  } & DecimalColumnInitialIncrementalState);
 
 /**
    * Import mode governs how data is read from an external system, and written into a Foundry dataset.
@@ -920,11 +1198,28 @@ APPEND: Purely additive and yields data from previous import executions in addit
 export type TableImportMode = "SNAPSHOT" | "APPEND";
 
 /**
+   * A single SQL query can be executed per sync, which should output a data table
+and avoid operations like invoking stored procedures.
+The query results are saved to the output dataset in Foundry.
+   *
+   * Log Safety: UNSAFE
+   */
+export type TableImportQuery = LooselyBrandedString<"TableImportQuery">;
+
+/**
  * The Resource Identifier (RID) of a TableImport (also known as a batch sync).
  *
  * Log Safety: SAFE
  */
 export type TableImportRid = LooselyBrandedString<"TableImportRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TimestampColumnInitialIncrementalState {
+  columnName: string;
+  currentValue: string;
+}
 
 /**
  * Log Safety: DO_NOT_LOG

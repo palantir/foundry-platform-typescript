@@ -55,8 +55,8 @@ export interface BatchRequestSizeExceededLimit {
   errorName: "BatchRequestSizeExceededLimit";
   errorInstanceId: string;
   parameters: {
-    MaximumBatchSize: unknown;
-    ProvidedBatchSize: unknown;
+    maximumBatchSize: unknown;
+    providedBatchSize: unknown;
   };
 }
 

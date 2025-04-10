@@ -168,6 +168,7 @@ export type {
   FunctionVersion,
   Fuzzy,
   FuzzyV2,
+  GeohashType,
   GeoPointType,
   GeoShapeType,
   GeotimeSeriesId,

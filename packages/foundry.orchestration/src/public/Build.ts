@@ -30,27 +30,20 @@ import type * as _Orchestration from "../_components.js";
 //
 
 const _get: $FoundryPlatformMethod<
-  (
-    buildRid: _Core.BuildRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Orchestration.Build>
-> = [0, "/v2/orchestration/builds/{0}", 2];
+  (buildRid: _Core.BuildRid) => Promise<_Orchestration.Build>
+> = [0, "/v2/orchestration/builds/{0}"];
 
 /**
  * Get the Build with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-read]
  * URL: /v2/orchestration/builds/{buildRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    buildRid: _Core.BuildRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [buildRid: _Core.BuildRid]
 ): Promise<_Orchestration.Build> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -58,75 +51,58 @@ export function get(
 const _getBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Orchestration.GetBuildsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Orchestration.GetBuildsBatchResponse>
-> = [1, "/v2/orchestration/builds/getBatch", 3];
+> = [1, "/v2/orchestration/builds/getBatch", 1];
 
 /**
  * Execute multiple get requests on Build.
  *
  * The maximum batch size for this endpoint is 100.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-read]
  * URL: /v2/orchestration/builds/getBatch
  */
 export function getBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: Array<_Orchestration.GetBuildsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: Array<_Orchestration.GetBuildsBatchRequestElement>]
 ): Promise<_Orchestration.GetBuildsBatchResponse> {
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
 
 const _create: $FoundryPlatformMethod<
-  (
-    $body: _Orchestration.CreateBuildRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Orchestration.Build>
-> = [1, "/v2/orchestration/builds/create", 3];
+  ($body: _Orchestration.CreateBuildRequest) => Promise<_Orchestration.Build>
+> = [1, "/v2/orchestration/builds/create", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-write]
  * URL: /v2/orchestration/builds/create
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Orchestration.CreateBuildRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Orchestration.CreateBuildRequest]
 ): Promise<_Orchestration.Build> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
 const _cancel: $FoundryPlatformMethod<
-  (
-    buildRid: _Core.BuildRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/orchestration/builds/{0}/cancel", 2];
+  (buildRid: _Core.BuildRid) => Promise<void>
+> = [1, "/v2/orchestration/builds/{0}/cancel"];
 
 /**
  * Request a cancellation for all unfinished jobs in a build. The build's status will not update immediately. This endpoint is asynchronous and a success response indicates that the cancellation request has been acknowledged and the build is expected to be canceled soon. If the build has already finished or finishes shortly after the request and before the cancellation, the build will not change.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-write]
  * URL: /v2/orchestration/builds/{buildRid}/cancel
  */
 export function cancel(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    buildRid: _Core.BuildRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [buildRid: _Core.BuildRid]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _cancel, ...args);
 }

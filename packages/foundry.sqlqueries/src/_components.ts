@@ -28,7 +28,7 @@ export interface CanceledQueryStatus {}
 /**
  * Log Safety: UNSAFE
  */
-export interface ExecuteQueryRequest {
+export interface ExecuteSqlQueryRequest {
   query: string;
   fallbackBranchIds?: Array<_Datasets.BranchName>;
 }
@@ -43,20 +43,6 @@ export interface FailedQueryStatus {
 /**
  * Log Safety: UNSAFE
  */
-export interface Query {
-  id: QueryId;
-}
-
-/**
- * The identifier of a Query.
- *
- * Log Safety: UNSAFE
- */
-export type QueryId = LooselyBrandedString<"QueryId">;
-
-/**
- * Log Safety: UNSAFE
- */
 export type QueryStatus =
   | ({ type: "running" } & RunningQueryStatus)
   | ({ type: "canceled" } & CanceledQueryStatus)
@@ -67,12 +53,26 @@ export type QueryStatus =
  * Log Safety: UNSAFE
  */
 export interface RunningQueryStatus {
-  queryId: QueryId;
+  queryId: SqlQueryId;
 }
 
 /**
  * Log Safety: UNSAFE
  */
+export interface SqlQuery {
+  id: SqlQueryId;
+}
+
+/**
+ * The identifier of a SQL Query.
+ *
+ * Log Safety: UNSAFE
+ */
+export type SqlQueryId = LooselyBrandedString<"SqlQueryId">;
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface SucceededQueryStatus {
-  queryId: QueryId;
+  queryId: SqlQueryId;
 }

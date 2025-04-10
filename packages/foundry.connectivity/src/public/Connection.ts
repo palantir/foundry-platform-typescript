@@ -72,7 +72,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Connection with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-connection-read]
  * URL: /v2/connectivity/connections/{connectionRid}
@@ -136,7 +136,7 @@ const _getConfiguration: $FoundryPlatformMethod<
  * Retrieves the ConnectionConfiguration of the [Connection](https://www.palantir.com/docs/foundry/data-connection/set-up-source/) itself.
  * This operation is intended for use when other Connection data is not required, providing a lighter-weight alternative to `getConnection` operation.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-connection-read]
  * URL: /v2/connectivity/connections/{connectionRid}/getConfiguration
