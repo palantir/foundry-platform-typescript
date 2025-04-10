@@ -40,8 +40,8 @@ importers:
         specifier: 0.5.0-beta.10
         version: 0.5.0-beta.10
       '@monorepolint/rules':
-        specifier: 0.5.0-beta.10
-        version: 0.5.0-beta.10
+        specifier: 0.5.0
+        version: 0.5.0
       '@osdk/monorepo.cspell':
         specifier: workspace:~
         version: link:packages/monorepo.cspell
@@ -1066,10 +1066,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/code-frame@7.24.2':
-    resolution: {integrity: sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/code-frame@7.24.7':
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
     engines: {node: '>=6.9.0'}
@@ -1156,10 +1152,6 @@ packages:
     resolution: {integrity: sha512-pO9KhhRcuUyGnJWwyEgnRJTSIZHiT+vMD0kPeD+so0l7mxkMT19g3pjY9GTnHySck/hDzq+dtW/4VgnMkippsQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/helper-validator-identifier@7.24.5':
-    resolution: {integrity: sha512-3q93SSKX2TWCG30M2G2kwaKeTYgEUp5Snjuj8qm729SObL6nbtUldAi37qbxkD5gg3xnBio+f9nqpSepGZMvxA==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/helper-validator-identifier@7.24.7':
     resolution: {integrity: sha512-rR+PBcQ1SMQDDyF6X0wxtG8QyLCgUB0eRAGguqRLfkCA87l7yAP7ehq8SNj96OOGTO8OBV70KhuFYcIkHXOg0w==}
     engines: {node: '>=6.9.0'}
@@ -1170,10 +1162,6 @@ packages:
 
   '@babel/helpers@7.24.8':
     resolution: {integrity: sha512-gV2265Nkcz7weJJfvDoAEVzC1e2OTDpkGbEsebse8koXUJUXPsCMi7sRo/+SPMuMZ9MtUPnGwITTnQnU5YjyaQ==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/highlight@7.24.2':
-    resolution: {integrity: sha512-Yac1ao4flkTxTteCDZLEvdxg2fZfz1v8M4QpaGypq/WPDqg3ijHYbDfs+LG5hvzSoqaSZ9/Z9lKSP3CjZjv+pA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/highlight@7.24.7':
@@ -1909,16 +1897,28 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
+  '@monorepolint/config@0.5.0':
+    resolution: {integrity: sha512-y3dMd1iGWPERZTVHUt4Ahmup/Z+qbGqXr+lLe2mGRnGlxZZudvjpEEKpRkgy6/DAKRSdIB8sg/ilL/pvAOjbEQ==}
+    engines: {node: '>=18'}
+
   '@monorepolint/config@0.5.0-beta.10':
     resolution: {integrity: sha512-ho0IVagHGsWeTE9Sr+S00M8zWMUYMenqxM1PW3+c49Q+rdO3Jyipap4H82zQKk2+PkYSK2e5WWrYoSs5GaKJig==}
+    engines: {node: '>=18'}
+
+  '@monorepolint/core@0.5.0':
+    resolution: {integrity: sha512-rKkfIIUEVofoS5AVHOM6VlYR8O5nUJC7OgbO2uQK0gTrUp9gg/046YLgC5M5TufWWGoFU2idnBjyqcXbobbk0w==}
     engines: {node: '>=18'}
 
   '@monorepolint/core@0.5.0-beta.10':
     resolution: {integrity: sha512-CxsA3vrdqGHkFrGwVQiwzIPnPYVzuPW1B06rhT8pocCjvETF3kihyKLt0AZjgB7CcWOCCx7MJlxnL7Rp+5/X/Q==}
     engines: {node: '>=18'}
 
-  '@monorepolint/rules@0.5.0-beta.10':
-    resolution: {integrity: sha512-bqFKq8Qf1IQBM6AuKPrx8fwSq/CZSYVtd5VKG7cMqAz/OGopGd+2NxhAGUll4xqLGUf9Eue1jWKaOaz4mp/0Sw==}
+  '@monorepolint/rules@0.5.0':
+    resolution: {integrity: sha512-/Jrm46TUG2VGV+xcE9VjSssvFRoCV8Dtzn5Okay+fDzj7C6rQ7Xzz92LO/XSxW7GYgEi3p5j3+fhvkqGA4zitg==}
+    engines: {node: '>=18'}
+
+  '@monorepolint/utils@0.5.0':
+    resolution: {integrity: sha512-KOLkGNLJ4oQSBUOIRvlCGi+lZfkEXS5kRt+8meR9jqxIgo0knTbBKAA9bCRPUSpx5UFZ7Z3JXKBArE05zSQpwA==}
     engines: {node: '>=18'}
 
   '@monorepolint/utils@0.5.0-beta.10':
@@ -5087,11 +5087,6 @@ snapshots:
       '@nicolo-ribaudo/chokidar-2': 2.1.8-no-fsevents.3
       chokidar: 3.6.0
 
-  '@babel/code-frame@7.24.2':
-    dependencies:
-      '@babel/highlight': 7.24.2
-      picocolors: 1.0.1
-
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
@@ -5226,8 +5221,6 @@ snapshots:
 
   '@babel/helper-string-parser@7.24.8': {}
 
-  '@babel/helper-validator-identifier@7.24.5': {}
-
   '@babel/helper-validator-identifier@7.24.7': {}
 
   '@babel/helper-validator-option@7.24.8': {}
@@ -5236,13 +5229,6 @@ snapshots:
     dependencies:
       '@babel/template': 7.24.7
       '@babel/types': 7.24.9
-
-  '@babel/highlight@7.24.2':
-    dependencies:
-      '@babel/helper-validator-identifier': 7.24.5
-      chalk: 2.4.2
-      js-tokens: 4.0.0
-      picocolors: 1.0.1
 
   '@babel/highlight@7.24.7':
     dependencies:
@@ -5988,9 +5974,22 @@ snapshots:
       tslib: 2.7.0
       yargs: 17.7.2
 
+  '@monorepolint/config@0.5.0':
+    dependencies:
+      '@monorepolint/utils': 0.5.0
+      chalk: 5.3.0
+      tslib: 2.7.0
+
   '@monorepolint/config@0.5.0-beta.10':
     dependencies:
       '@monorepolint/utils': 0.5.0-beta.10
+      chalk: 5.3.0
+      tslib: 2.7.0
+
+  '@monorepolint/core@0.5.0':
+    dependencies:
+      '@monorepolint/config': 0.5.0
+      '@monorepolint/utils': 0.5.0
       chalk: 5.3.0
       tslib: 2.7.0
 
@@ -6001,16 +6000,25 @@ snapshots:
       chalk: 5.3.0
       tslib: 2.7.0
 
-  '@monorepolint/rules@0.5.0-beta.10':
+  '@monorepolint/rules@0.5.0':
     dependencies:
-      '@monorepolint/config': 0.5.0-beta.10
-      '@monorepolint/core': 0.5.0-beta.10
-      '@monorepolint/utils': 0.5.0-beta.10
+      '@monorepolint/config': 0.5.0
+      '@monorepolint/core': 0.5.0
+      '@monorepolint/utils': 0.5.0
       globby: 14.0.1
       jest-diff: 29.7.0
       resolve-package-path: 4.0.3
       runtypes: 6.7.0
       semver: 7.6.3
+      tslib: 2.7.0
+
+  '@monorepolint/utils@0.5.0':
+    dependencies:
+      find-packages: 10.0.4
+      find-up: 7.0.0
+      glob: 10.3.12
+      micromatch: 4.0.8
+      read-yaml-file: 2.1.0
       tslib: 2.7.0
 
   '@monorepolint/utils@0.5.0-beta.10':
@@ -7655,7 +7663,7 @@ snapshots:
     dependencies:
       foreground-child: 3.1.1
       jackspeak: 2.3.6
-      minimatch: 9.0.4
+      minimatch: 9.0.5
       minipass: 7.0.4
       path-scurry: 1.10.2
 
@@ -7696,7 +7704,7 @@ snapshots:
     dependencies:
       '@sindresorhus/merge-streams': 2.3.0
       fast-glob: 3.3.2
-      ignore: 5.3.1
+      ignore: 5.3.2
       path-type: 5.0.0
       slash: 5.1.0
       unicorn-magic: 0.1.0
@@ -8485,7 +8493,7 @@ snapshots:
 
   parse-json@5.2.0:
     dependencies:
-      '@babel/code-frame': 7.24.2
+      '@babel/code-frame': 7.24.7
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
