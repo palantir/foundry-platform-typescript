@@ -19,668 +19,667 @@ import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
 export const PLATFORM_API_DOCS_SPEC = {
   "version": 1,
   "snippets": {
-    "v2.Admin.User.deleteUser": {
+    "v2.deleteUser": {
       "variables": {},
     },
-    "v2.Admin.User.listUsers": {
+    "v2.listUsers": {
       "variables": {},
     },
-    "v2.Admin.User.getUser": {
+    "v2.getUser": {
       "variables": {},
     },
-    "v2.Admin.User.getUsersBatch": {
+    "v2.getUsersBatch": {
       "variables": {},
     },
-    "v2.Admin.User.getCurrentUser": {
+    "v2.getCurrentUser": {
       "variables": {},
     },
-    "v2.Admin.User.getMarkingsUser": {
+    "v2.getMarkingsUser": {
       "variables": {},
     },
-    "v2.Admin.User.getProfilePictureOfUser": {
+    "v2.getProfilePictureOfUser": {
       "variables": {},
     },
-    "v2.Admin.User.searchUsers": {
+    "v2.searchUsers": {
       "variables": {},
     },
-    "v2.Admin.UserProviderInfo.getUserProviderInfo": {
+    "v2.getUserProviderInfo": {
       "variables": {},
     },
-    "v2.Admin.UserProviderInfo.replaceUserProviderInfo": {
+    "v2.replaceUserProviderInfo": {
       "variables": {},
     },
-    "v2.Admin.GroupMembership.listGroupMemberships": {
+    "v2.listGroupMemberships": {
       "variables": {},
     },
-    "v2.Admin.Group.createGroup": {
+    "v2.createGroup": {
       "variables": {},
     },
-    "v2.Admin.Group.deleteGroup": {
+    "v2.deleteGroup": {
       "variables": {},
     },
-    "v2.Admin.Group.listGroups": {
+    "v2.listGroups": {
       "variables": {},
     },
-    "v2.Admin.Group.getGroup": {
+    "v2.getGroup": {
       "variables": {},
     },
-    "v2.Admin.Group.getGroupsBatch": {
+    "v2.getGroupsBatch": {
       "variables": {},
     },
-    "v2.Admin.Group.searchGroups": {
+    "v2.searchGroups": {
       "variables": {},
     },
-    "v2.Admin.GroupProviderInfo.getGroupProviderInfo": {
+    "v2.getGroupProviderInfo": {
       "variables": {},
     },
-    "v2.Admin.GroupProviderInfo.replaceGroupProviderInfo": {
+    "v2.replaceGroupProviderInfo": {
       "variables": {},
     },
-    "v2.Admin.GroupMember.listGroupMembers": {
+    "v2.listGroupMembers": {
       "variables": {},
     },
-    "v2.Admin.GroupMember.addGroupMembers": {
+    "v2.addGroupMembers": {
       "variables": {},
     },
-    "v2.Admin.GroupMember.removeGroupMembers": {
+    "v2.removeGroupMembers": {
       "variables": {},
     },
-    "v2.Admin.MarkingCategory.listMarkingCategories": {
+    "v2.listMarkingCategories": {
       "variables": {},
     },
-    "v2.Admin.MarkingCategory.getMarkingCategory": {
+    "v2.getMarkingCategory": {
       "variables": {},
     },
-    "v2.Admin.Marking.createMarking": {
+    "v2.createMarking": {
       "variables": {},
     },
-    "v2.Admin.Marking.listMarkings": {
+    "v2.listMarkings": {
       "variables": {},
     },
-    "v2.Admin.Marking.getMarking": {
+    "v2.getMarking": {
       "variables": {},
     },
-    "v2.Admin.Marking.getMarkingsBatch": {
+    "v2.getMarkingsBatch": {
       "variables": {},
     },
-    "v2.Admin.MarkingMember.listMarkingMembers": {
+    "v2.listMarkingMembers": {
       "variables": {},
     },
-    "v2.Admin.MarkingMember.addMarkingMembers": {
+    "v2.addMarkingMembers": {
       "variables": {},
     },
-    "v2.Admin.MarkingMember.removeMarkingMembers": {
+    "v2.removeMarkingMembers": {
       "variables": {},
     },
-    "v2.Admin.MarkingRoleAssignment.listMarkingRoleAssignments": {
+    "v2.listMarkingRoleAssignments": {
       "variables": {},
     },
-    "v2.Admin.MarkingRoleAssignment.addMarkingRoleAssignments": {
+    "v2.addMarkingRoleAssignments": {
       "variables": {},
     },
-    "v2.Admin.MarkingRoleAssignment.removeMarkingRoleAssignments": {
+    "v2.removeMarkingRoleAssignments": {
       "variables": {},
     },
-    "v2.Admin.Enrollment.getEnrollment": {
+    "v2.getEnrollment": {
       "variables": {},
     },
-    "v2.Admin.Enrollment.getCurrentEnrollment": {
+    "v2.getCurrentEnrollment": {
       "variables": {},
     },
-    "v2.Admin.Host.listHosts": {
+    "v2.listHosts": {
       "variables": {},
     },
-    "v2.Admin.Organization.getOrganization": {
+    "v2.getOrganization": {
       "variables": {},
     },
-    "v2.Admin.Organization.replaceOrganization": {
+    "v2.replaceOrganization": {
       "variables": {},
     },
-    "v2.Admin.AuthenticationProvider.listAuthenticationProviders": {
+    "v2.listAuthenticationProviders": {
       "variables": {},
     },
-    "v2.Admin.AuthenticationProvider.getAuthenticationProvider": {
+    "v2.getAuthenticationProvider": {
       "variables": {},
     },
-    "v2.Admin.AuthenticationProvider.preregisterUser": {
+    "v2.preregisterUser": {
       "variables": {},
     },
-    "v2.Admin.AuthenticationProvider.preregisterGroup": {
+    "v2.preregisterGroup": {
       "variables": {},
     },
-    "v2.Datasets.Dataset.createDataset": {
+    "v2.createDataset": {
       "variables": {},
     },
-    "v2.Datasets.Dataset.getDataset": {
+    "v2.getDataset": {
       "variables": {},
     },
-    "v2.Datasets.Dataset.readTableDataset": {
+    "v2.readTableDataset": {
       "variables": {},
     },
-    "v2.Datasets.Branch.createBranch": {
+    "v2.createBranch": {
       "variables": {},
     },
-    "v2.Datasets.Branch.deleteBranch": {
+    "v2.deleteBranch": {
       "variables": {},
     },
-    "v2.Datasets.Branch.listBranches": {
+    "v2.listBranches": {
       "variables": {},
     },
-    "v2.Datasets.Branch.getBranch": {
+    "v2.getBranch": {
       "variables": {},
     },
-    "v2.Datasets.Transaction.createTransaction": {
+    "v2.createTransaction": {
       "variables": {},
     },
-    "v2.Datasets.Transaction.getTransaction": {
+    "v2.getTransaction": {
       "variables": {},
     },
-    "v2.Datasets.Transaction.commitTransaction": {
+    "v2.commitTransaction": {
       "variables": {},
     },
-    "v2.Datasets.Transaction.abortTransaction": {
+    "v2.abortTransaction": {
       "variables": {},
     },
-    "v2.Datasets.Transaction.buildTransaction": {
+    "v2.buildTransaction": {
       "variables": {},
     },
-    "v2.Datasets.Transaction.jobTransaction": {
+    "v2.jobTransaction": {
       "variables": {},
     },
-    "v2.Datasets.File.deleteFile": {
+    "v2.deleteFile": {
       "variables": {},
     },
-    "v2.Datasets.File.listFiles": {
+    "v2.listFiles": {
       "variables": {},
     },
-    "v2.Datasets.File.getFile": {
+    "v2.getFile": {
       "variables": {},
     },
-    "v2.Datasets.File.uploadFile": {
+    "v2.uploadFile": {
       "variables": {},
     },
-    "v2.Datasets.File.getFileContent": {
+    "v2.getFileContent": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.ThirdPartyApplication.getThirdPartyApplication":
-      {
-        "variables": {},
-      },
-    "v2.ThirdPartyApplications.Website.getWebsite": {
+    "v2.getThirdPartyApplication": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.Website.deployWebsite": {
+    "v2.getWebsite": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.Website.undeployWebsite": {
+    "v2.deployWebsite": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.Version.deleteVersion": {
+    "v2.undeployWebsite": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.Version.listVersions": {
+    "v2.deleteVersion": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.Version.getVersion": {
+    "v2.listVersions": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.Version.uploadVersion": {
+    "v2.getVersion": {
       "variables": {},
     },
-    "v2.ThirdPartyApplications.Version.uploadSnapshotVersion": {
+    "v2.uploadVersion": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.deleteResource": {
+    "v2.uploadSnapshotVersion": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.getResource": {
+    "v2.deleteResource": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.getByPath": {
+    "v2.getResource": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.restoreResource": {
+    "v2.getByPath": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.permanentlyDeleteResource": {
+    "v2.restoreResource": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.addMarkings": {
+    "v2.permanentlyDeleteResource": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.removeMarkings": {
+    "v2.addMarkings": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.getAccessRequirements": {
+    "v2.removeMarkings": {
       "variables": {},
     },
-    "v2.Filesystem.Resource.listMarkingsOfResource": {
+    "v2.getAccessRequirements": {
       "variables": {},
     },
-    "v2.Filesystem.ResourceRole.listResourceRoles": {
+    "v2.listMarkingsOfResource": {
       "variables": {},
     },
-    "v2.Filesystem.ResourceRole.addResourceRoles": {
+    "v2.listResourceRoles": {
       "variables": {},
     },
-    "v2.Filesystem.ResourceRole.removeResourceRoles": {
+    "v2.addResourceRoles": {
       "variables": {},
     },
-    "v2.Filesystem.Folder.createFolder": {
+    "v2.removeResourceRoles": {
       "variables": {},
     },
-    "v2.Filesystem.Folder.getFolder": {
+    "v2.createFolder": {
       "variables": {},
     },
-    "v2.Filesystem.Folder.listChildrenOfFolder": {
+    "v2.getFolder": {
       "variables": {},
     },
-    "v2.Filesystem.Project.getProject": {
+    "v2.listChildrenOfFolder": {
       "variables": {},
     },
-    "v2.Filesystem.Project.createProject": {
+    "v2.getProject": {
       "variables": {},
     },
-    "v2.Filesystem.Project.createProjectFromTemplate": {
+    "v2.createProject": {
       "variables": {},
     },
-    "v2.Filesystem.Project.addOrganizations": {
+    "v2.createProjectFromTemplate": {
       "variables": {},
     },
-    "v2.Filesystem.Project.removeOrganizations": {
+    "v2.addOrganizations": {
       "variables": {},
     },
-    "v2.Filesystem.Project.listOrganizationsOfProject": {
+    "v2.removeOrganizations": {
       "variables": {},
     },
-    "v2.Filesystem.Space.listSpaces": {
+    "v2.listOrganizationsOfProject": {
       "variables": {},
     },
-    "v2.Connectivity.Connection.createConnection": {
+    "v2.listSpaces": {
       "variables": {},
     },
-    "v2.Connectivity.Connection.getConnection": {
+    "v2.createConnection": {
       "variables": {},
     },
-    "v2.Connectivity.Connection.updateSecretsForConnection": {
+    "v2.getConnection": {
       "variables": {},
     },
-    "v2.Connectivity.Connection.getConfiguration": {
+    "v2.updateSecretsForConnection": {
       "variables": {},
     },
-    "v2.Connectivity.FileImport.createFileImport": {
+    "v2.getConfiguration": {
       "variables": {},
     },
-    "v2.Connectivity.FileImport.deleteFileImport": {
+    "v2.createFileImport": {
       "variables": {},
     },
-    "v2.Connectivity.FileImport.listFileImports": {
+    "v2.deleteFileImport": {
       "variables": {},
     },
-    "v2.Connectivity.FileImport.getFileImport": {
+    "v2.listFileImports": {
       "variables": {},
     },
-    "v2.Connectivity.FileImport.replaceFileImport": {
+    "v2.getFileImport": {
       "variables": {},
     },
-    "v2.Connectivity.FileImport.executeFileImport": {
+    "v2.replaceFileImport": {
       "variables": {},
     },
-    "v2.Connectivity.TableImport.createTableImport": {
+    "v2.executeFileImport": {
       "variables": {},
     },
-    "v2.Connectivity.TableImport.deleteTableImport": {
+    "v2.createTableImport": {
       "variables": {},
     },
-    "v2.Connectivity.TableImport.listTableImports": {
+    "v2.deleteTableImport": {
       "variables": {},
     },
-    "v2.Connectivity.TableImport.getTableImport": {
+    "v2.listTableImports": {
       "variables": {},
     },
-    "v2.Connectivity.TableImport.executeTableImport": {
+    "v2.getTableImport": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.createSchedule": {
+    "v2.executeTableImport": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.deleteSchedule": {
+    "v2.createSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.getSchedule": {
+    "v2.deleteSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.replaceSchedule": {
+    "v2.getSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.runSchedule": {
+    "v2.replaceSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.pauseSchedule": {
+    "v2.runSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.unpauseSchedule": {
+    "v2.pauseSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.Schedule.listRunsOfSchedule": {
+    "v2.unpauseSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.ScheduleVersion.getScheduleVersion": {
+    "v2.listRunsOfSchedule": {
       "variables": {},
     },
-    "v2.Orchestration.ScheduleVersion.getScheduleOfScheduleVersion": {
+    "v2.getScheduleVersion": {
       "variables": {},
     },
-    "v2.Orchestration.Build.getBuild": {
+    "v2.getScheduleOfScheduleVersion": {
       "variables": {},
     },
-    "v2.Orchestration.Build.getBuildsBatch": {
+    "v2.getBuild": {
       "variables": {},
     },
-    "v2.Orchestration.Build.createBuild": {
+    "v2.getBuildsBatch": {
       "variables": {},
     },
-    "v2.Orchestration.Build.cancelBuild": {
+    "v2.createBuild": {
       "variables": {},
     },
-    "v2.Orchestration.Build.searchBuilds": {
+    "v2.cancelBuild": {
       "variables": {},
     },
-    "v2.Orchestration.Build.listJobsOfBuild": {
+    "v2.searchBuilds": {
       "variables": {},
     },
-    "v2.Orchestration.Job.getJob": {
+    "v2.listJobsOfBuild": {
       "variables": {},
     },
-    "v2.Orchestration.Job.getJobsBatch": {
+    "v2.getJob": {
       "variables": {},
     },
-    "v2.DataHealth.Check.getCheck": {
+    "v2.getJobsBatch": {
       "variables": {},
     },
-    "v2.Streams.Dataset.createStreamingDataset": {
+    "v2.getCheck": {
       "variables": {},
     },
-    "v2.Streams.Stream.createStream": {
+    "v2.createStreamingDataset": {
       "variables": {},
     },
-    "v2.Streams.Stream.getStream": {
+    "v2.createStream": {
       "variables": {},
     },
-    "v2.Streams.Stream.publishRecordToStream": {
+    "v2.getStream": {
       "variables": {},
     },
-    "v2.Streams.Stream.publishRecordsToStream": {
+    "v2.publishRecordToStream": {
       "variables": {},
     },
-    "v2.Streams.Stream.publishBinaryRecordToStream": {
+    "v2.publishRecordsToStream": {
       "variables": {},
     },
-    "v2.Streams.Stream.resetStream": {
+    "v2.publishBinaryRecordToStream": {
       "variables": {},
     },
-    "v2.PublicApis.ApiDefinition.getApiDefinition": {
+    "v2.resetStream": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.readMediaItem": {
+    "v2.getApiDefinition": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.readOriginalMediaItem": {
+    "v2.readMediaItem": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.getMediaItemInfo": {
+    "v2.readOriginalMediaItem": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.getMediaItemReference": {
+    "v2.getMediaItemInfo": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.putMediaItem": {
+    "v2.getMediaItemReference": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.createMediaTransaction": {
+    "v2.putMediaItem": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.commitMediaTransaction": {
+    "v2.createMediaTransaction": {
       "variables": {},
     },
-    "v2.MediaSets.MediaSet.abortMediaTransaction": {
+    "v2.commitMediaTransaction": {
       "variables": {},
     },
-    "v2.Functions.Query.getQuery": {
+    "v2.abortMediaTransaction": {
       "variables": {},
     },
-    "v2.Functions.Query.getByRidQueries": {
+    "v2.getQuery": {
       "variables": {},
     },
-    "v2.Functions.Query.executeQuery": {
+    "v2.getByRidQueries": {
       "variables": {},
     },
-    "v2.Functions.ValueType.getValueType": {
+    "v2.executeQuery": {
       "variables": {},
     },
-    "v2.Functions.VersionId.getVersionId": {
+    "v2.getValueType": {
       "variables": {},
     },
-    "v2.SqlQueries.SqlQuery.executeSqlQuery": {
+    "v2.getVersionId": {
       "variables": {},
     },
-    "v2.SqlQueries.SqlQuery.getStatusSqlQuery": {
+    "v2.executeSqlQuery": {
       "variables": {},
     },
-    "v2.SqlQueries.SqlQuery.cancelSqlQuery": {
+    "v2.getStatusSqlQuery": {
       "variables": {},
     },
-    "v2.SqlQueries.SqlQuery.getResultsSqlQuery": {
+    "v2.cancelSqlQuery": {
       "variables": {},
     },
-    "v2.Operations.AsyncOperation.getOperation": {
+    "v2.getResultsSqlQuery": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyV2.listOntologiesV2": {
+    "v2.getOperation": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyV2.getOntologyV2": {
+    "v2.listOntologiesV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyV2.getOntologyFullMetadata": {
+    "v2.getOntologyV2": {
       "variables": {},
     },
-    "v2.Ontologies.ActionTypeV2.listActionTypesV2": {
+    "v2.getOntologyFullMetadata": {
       "variables": {},
     },
-    "v2.Ontologies.ActionTypeV2.getActionTypeV2": {
+    "v2.listActionTypesV2": {
       "variables": {},
     },
-    "v2.Ontologies.ActionTypeV2.getActionTypeByRid": {
+    "v2.getActionTypeV2": {
       "variables": {},
     },
-    "v2.Ontologies.ObjectTypeV2.listObjectTypesV2": {
+    "v2.getActionTypeByRid": {
       "variables": {},
     },
-    "v2.Ontologies.ObjectTypeV2.getObjectTypeV2": {
+    "v2.listObjectTypesV2": {
       "variables": {},
     },
-    "v2.Ontologies.ObjectTypeV2.getObjectTypeFullMetadata": {
+    "v2.getObjectTypeV2": {
       "variables": {},
     },
-    "v2.Ontologies.ObjectTypeV2.listOutgoingLinkTypesV2": {
+    "v2.getObjectTypeFullMetadata": {
       "variables": {},
     },
-    "v2.Ontologies.ObjectTypeV2.getOutgoingLinkTypeV2": {
+    "v2.listOutgoingLinkTypesV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectV2.listObjectsV2": {
+    "v2.getOutgoingLinkTypeV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectV2.getObjectV2": {
+    "v2.listObjectsV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectV2.countObjects": {
+    "v2.getObjectV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectV2.searchObjectsV2": {
+    "v2.countObjects": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectV2.aggregateObjectsV2": {
+    "v2.searchObjectsV2": {
       "variables": {},
     },
-    "v2.Ontologies.LinkedObjectV2.listLinkedObjectsV2": {
+    "v2.aggregateObjectsV2": {
       "variables": {},
     },
-    "v2.Ontologies.LinkedObjectV2.getLinkedObjectV2": {
+    "v2.listLinkedObjectsV2": {
       "variables": {},
     },
-    "v2.Ontologies.AttachmentPropertyV2.listPropertyAttachments": {
+    "v2.getLinkedObjectV2": {
       "variables": {},
     },
-    "v2.Ontologies.AttachmentPropertyV2.getAttachmentPropertyByRidV2": {
+    "v2.listPropertyAttachments": {
       "variables": {},
     },
-    "v2.Ontologies.AttachmentPropertyV2.getAttachmentPropertyContentV2": {
+    "v2.getAttachmentPropertyByRidV2": {
       "variables": {},
     },
-    "v2.Ontologies.AttachmentPropertyV2.getAttachmentPropertyContentByRidV2": {
+    "v2.getAttachmentPropertyContentV2": {
       "variables": {},
     },
-    "v2.Ontologies.MediaReferenceProperty.readMediaContent": {
+    "v2.getAttachmentPropertyContentByRidV2": {
       "variables": {},
     },
-    "v2.Ontologies.MediaReferenceProperty.getMediaMetadata": {
+    "v2.readMediaContent": {
       "variables": {},
     },
-    "v2.Ontologies.MediaReferenceProperty.uploadMediaContent": {
+    "v2.getMediaMetadata": {
       "variables": {},
     },
-    "v2.Ontologies.TimeSeriesPropertyV2.getFirstPoint": {
+    "v2.uploadMediaContent": {
       "variables": {},
     },
-    "v2.Ontologies.TimeSeriesPropertyV2.getLastPoint": {
+    "v2.getFirstPoint": {
       "variables": {},
     },
-    "v2.Ontologies.TimeSeriesPropertyV2.streamPoints": {
+    "v2.getLastPoint": {
       "variables": {},
     },
-    "v2.Ontologies.TimeSeriesValueBankProperty.getLatestValue": {
+    "v2.streamPoints": {
       "variables": {},
     },
-    "v2.Ontologies.TimeSeriesValueBankProperty.streamValues": {
+    "v2.getLatestValue": {
       "variables": {},
     },
-    "v2.Ontologies.CipherTextProperty.decrypt": {
+    "v2.streamValues": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyInterface.listInterfaceTypes": {
+    "v2.decrypt": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyInterface.getInterfaceType": {
+    "v2.listInterfaceTypes": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyInterface.searchObjectsForInterface": {
+    "v2.getInterfaceType": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyInterface.aggregateObjectsForInterface": {
+    "v2.searchObjectsForInterface": {
       "variables": {},
     },
-    "v2.Ontologies.Action.applyActionV2": {
+    "v2.aggregateObjectsForInterface": {
       "variables": {},
     },
-    "v2.Ontologies.Action.applyActionAsyncV2": {
+    "v2.applyActionV2": {
       "variables": {},
     },
-    "v2.Ontologies.Action.applyActionBatchV2": {
+    "v2.applyActionAsyncV2": {
       "variables": {},
     },
-    "v2.Ontologies.QueryType.listQueryTypesV2": {
+    "v2.applyActionBatchV2": {
       "variables": {},
     },
-    "v2.Ontologies.QueryType.getQueryTypeV2": {
+    "v2.listQueryTypesV2": {
       "variables": {},
     },
-    "v2.Ontologies.Query.executeQueryV2": {
+    "v2.getQueryTypeV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectSet.createTemporaryObjectSetV2": {
+    "v2.executeQueryV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectSet.getObjectSetV2": {
+    "v2.createTemporaryObjectSetV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectSet.loadObjectSetV2": {
+    "v2.getObjectSetV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectSet.loadObjectSetV2MultipleObjectTypes": {
+    "v2.loadObjectSetV2": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectSet.loadObjectSetV2ObjectsOrInterfaces": {
+    "v2.loadObjectSetV2MultipleObjectTypes": {
       "variables": {},
     },
-    "v2.Ontologies.OntologyObjectSet.aggregateObjectSetV2": {
+    "v2.loadObjectSetV2ObjectsOrInterfaces": {
       "variables": {},
     },
-    "v2.Ontologies.Attachment.uploadAttachmentV2": {
+    "v2.aggregateObjectSetV2": {
       "variables": {},
     },
-    "v2.Ontologies.Attachment.getAttachmentContentV2": {
+    "v2.uploadAttachmentV2": {
       "variables": {},
     },
-    "v2.Ontologies.Attachment.getAttachmentV2": {
+    "v2.getAttachmentContentV2": {
       "variables": {},
     },
-    "v2.Widgets.WidgetSet.getWidgetSet": {
+    "v2.getAttachmentV2": {
       "variables": {},
     },
-    "v2.Widgets.Release.deleteRelease": {
+    "v2.getWidgetSet": {
       "variables": {},
     },
-    "v2.Widgets.Release.listReleases": {
+    "v2.deleteRelease": {
       "variables": {},
     },
-    "v2.Widgets.Release.getRelease": {
+    "v2.listReleases": {
       "variables": {},
     },
-    "v2.Widgets.Repository.getRepository": {
+    "v2.getRelease": {
       "variables": {},
     },
-    "v2.Widgets.Repository.publishRelease": {
+    "v2.getRepository": {
       "variables": {},
     },
-    "v2.AipAgents.Agent.getAgent": {
+    "v2.publishRelease": {
       "variables": {},
     },
-    "v2.AipAgents.Agent.listSessionsForAgents": {
+    "v2.getAgent": {
       "variables": {},
     },
-    "v2.AipAgents.AgentVersion.listAgentVersions": {
+    "v2.listSessionsForAgents": {
       "variables": {},
     },
-    "v2.AipAgents.AgentVersion.getAgentVersion": {
+    "v2.listAgentVersions": {
       "variables": {},
     },
-    "v2.AipAgents.Session.createSession": {
+    "v2.getAgentVersion": {
       "variables": {},
     },
-    "v2.AipAgents.Session.listSessions": {
+    "v2.createSession": {
       "variables": {},
     },
-    "v2.AipAgents.Session.getSession": {
+    "v2.listSessions": {
       "variables": {},
     },
-    "v2.AipAgents.Session.blockingContinueSession": {
+    "v2.getSession": {
       "variables": {},
     },
-    "v2.AipAgents.Session.streamingContinueSession": {
+    "v2.blockingContinueSession": {
       "variables": {},
     },
-    "v2.AipAgents.Session.cancelSession": {
+    "v2.streamingContinueSession": {
       "variables": {},
     },
-    "v2.AipAgents.Session.getRagContextForSession": {
+    "v2.cancelSession": {
       "variables": {},
     },
-    "v2.AipAgents.Session.updateSessionTitle": {
+    "v2.getRagContextForSession": {
       "variables": {},
     },
-    "v2.AipAgents.Content.getContent": {
+    "v2.updateSessionTitle": {
+      "variables": {},
+    },
+    "v2.getContent": {
       "variables": {},
     },
   },

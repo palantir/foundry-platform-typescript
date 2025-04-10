@@ -36,8 +36,7 @@ function generatePlatformDocsSpec(ir: ApiSpec): DocsSnippetsSpec {
     }
     for (const resource of namespace.resources) {
       for (const operation of resource.operations) {
-        const snippetName =
-          `${namespace.version}.${resource.component.namespaceName}.${resource.component.localName}.${operation.name}`;
+        const snippetName = `${namespace.version}.${operation.name}`;
         if (spec.snippets[snippetName] != null) {
           throw new Error(`Duplicate snippet name: "${snippetName}"`);
         }
