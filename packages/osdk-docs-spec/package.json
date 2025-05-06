@@ -26,6 +26,9 @@
     "lint": "eslint . && dprint check  --config $(find-up dprint.json)",
     "transpile": "monorepo.tool.transpile"
   },
+  "dependencies": {
+    "@osdk/docs-spec-core": "workspace:*"
+  },
   "devDependencies": {
     "@osdk/monorepo.tsconfig": "workspace:~",
     "typescript": "^5.5.4"

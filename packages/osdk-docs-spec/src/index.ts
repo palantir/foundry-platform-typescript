@@ -14,4 +14,13 @@
  * limitations under the License.
  */
 
-export const foo = 3;
+export type {
+  ActionParameterSampleValuesIR,
+  ActionParameterSampleValueTypeIR,
+  FunctionSampleParametersIR,
+  FunctionSampleValueTypeIR,
+  PropertySampleIR,
+  PropertySampleValueTypeIR,
+} from "./commonIr.js";
+export type { OsdkSnippetName, VariablesForOsdkSnippet } from "./spec.js";
+export { OSDK_SNIPPETS_SPEC } from "./spec.js";

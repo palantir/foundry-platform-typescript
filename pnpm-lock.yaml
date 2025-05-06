@@ -842,6 +842,10 @@ importers:
         version: 8.3.0(@microsoft/api-extractor@7.47.0(@types/node@22.7.4))(jiti@1.21.6)(postcss@8.4.39)(typescript@5.5.4)(yaml@2.5.1)
 
   packages/osdk-docs-spec:
+    dependencies:
+      '@osdk/docs-spec-core':
+        specifier: workspace:*
+        version: link:../docs-spec-core
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
