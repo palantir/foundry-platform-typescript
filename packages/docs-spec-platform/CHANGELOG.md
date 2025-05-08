@@ -1,4 +1,4 @@
-# @osdk/platform-docs-spec
+# @osdk/docs-spec-platform
 
 ## 0.7.0
 

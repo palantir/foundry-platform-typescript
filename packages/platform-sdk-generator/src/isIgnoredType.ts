@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as ir from "@osdk/platform-docs-spec";
+import type * as ir from "@osdk/docs-spec-platform";
 import { isIgnoredNamespace } from "./isIgnoredNamespace.js";
 import type { ErrorType } from "./model/ErrorType.js";
 

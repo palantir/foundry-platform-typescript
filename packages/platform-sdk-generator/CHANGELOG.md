@@ -10,7 +10,7 @@
 ### Patch Changes
 
 - Updated dependencies [539c731]
-  - @osdk/platform-docs-spec@0.7.0
+  - @osdk/docs-spec-platform@0.7.0
 
 ## 0.16.0
 
@@ -23,7 +23,7 @@
 
 - Updated dependencies [98ec492]
 - Updated dependencies [d41a131]
-  - @osdk/platform-docs-spec@0.6.0
+  - @osdk/docs-spec-platform@0.6.0
   - @osdk/docs-spec-core@0.5.0
 
 ## 0.15.0
@@ -32,7 +32,7 @@
 
 - Updated dependencies [37b4958]
   - @osdk/docs-spec-core@0.4.0
-  - @osdk/platform-docs-spec@0.5.0
+  - @osdk/docs-spec-platform@0.5.0
 
 ## 0.14.0
 
@@ -45,7 +45,7 @@
 - Updated dependencies [0965559]
 - Updated dependencies [f355209]
 - Updated dependencies [38b4379]
-  - @osdk/platform-docs-spec@0.4.0
+  - @osdk/docs-spec-platform@0.4.0
   - @osdk/docs-spec-core@0.3.0
 
 ## 0.13.0
@@ -53,7 +53,7 @@
 ### Patch Changes
 
 - Updated dependencies [db7ee48]
-  - @osdk/platform-docs-spec@0.3.0
+  - @osdk/docs-spec-platform@0.3.0
 
 ## 0.12.0
 
@@ -62,7 +62,7 @@
 - Updated dependencies [1a50672]
 - Updated dependencies [45b549f]
   - @osdk/docs-spec-core@0.2.0
-  - @osdk/platform-docs-spec@0.2.0
+  - @osdk/docs-spec-platform@0.2.0
 
 ## 0.11.0
 
@@ -76,7 +76,7 @@
 - Updated dependencies [d7161f2]
 - Updated dependencies [cde3ab6]
   - @osdk/docs-spec-core@0.1.0
-  - @osdk/platform-docs-spec@0.1.0
+  - @osdk/docs-spec-platform@0.1.0
 
 ## 0.10.0
 

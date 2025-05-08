@@ -15,12 +15,12 @@
  */
 
 import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
-import type { ApiSpec } from "@osdk/platform-docs-spec";
+import type { ApiSpec } from "@osdk/docs-spec-platform";
 import fs from "node:fs/promises";
 import * as path from "node:path";
 import { copyright } from "./copyright.js";
 
-const PACKAGE_NAME = "platform-docs-spec";
+const PACKAGE_NAME = "docs-spec-platform";
 
 const IGNORED_PLATFORM_VERSIONS = new Set(["v1"]);
 

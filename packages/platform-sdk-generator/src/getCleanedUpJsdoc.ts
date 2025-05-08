@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { Documentation } from "@osdk/platform-docs-spec";
+import type { Documentation } from "@osdk/docs-spec-platform";
 import type { Root } from "mdast";
 import { remark } from "remark";
 import { visit } from "unist-util-visit";

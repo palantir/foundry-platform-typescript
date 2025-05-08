@@ -1,5 +1,5 @@
 ---
-"@osdk/osdk-docs-spec": patch
+"@osdk/docs-spec-sdk": patch
 ---
 
-Create @osdk/osdk-docs-spec
+Create @osdk/docs-spec-sdk

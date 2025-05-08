@@ -1,6 +1,6 @@
 {
-  "name": "@osdk/osdk-docs-spec",
-  "version": "0.0.0",
+  "name": "@osdk/docs-spec-platform",
+  "version": "0.7.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -47,5 +47,14 @@
   ],
   "module": "./build/esm/index.js",
   "types": "./build/esm/index.d.ts",
+  "sls": {
+    "dependencies": {
+      "com.palantir.foundry.api:api-gateway": {
+        "minVersion": "1.1150.0",
+        "maxVersion": "1.x.x",
+        "optional": false
+      }
+    }
+  },
   "type": "module"
 }

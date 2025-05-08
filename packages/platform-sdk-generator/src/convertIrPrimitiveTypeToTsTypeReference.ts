@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { PrimitiveType } from "@osdk/platform-docs-spec";
+import type { PrimitiveType } from "@osdk/docs-spec-platform";
 
 export function convertIrPrimitiveTypeToTsTypeReference(
   builtin: PrimitiveType,

@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@osdk/docs-spec-core": "workspace:*",
-    "@osdk/platform-docs-spec": "workspace:*",
+    "@osdk/docs-spec-platform": "workspace:*",
     "find-up": "^7.0.0",
     "prettier": "^3.2.5",
     "remark": "^15.0.1",

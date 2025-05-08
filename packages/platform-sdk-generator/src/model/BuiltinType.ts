@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as ir from "@osdk/platform-docs-spec";
+import type * as ir from "@osdk/docs-spec-platform";
 import { convertIrPrimitiveTypeToTsTypeReference } from "../convertIrPrimitiveTypeToTsTypeReference.js";
 import { SimpleType } from "./Type.js";
 

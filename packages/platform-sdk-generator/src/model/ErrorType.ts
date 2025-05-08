@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as ir from "@osdk/platform-docs-spec";
+import type * as ir from "@osdk/docs-spec-platform";
 import type { Component } from "./Component.js";
 import type { Model } from "./Model.js";
 import type { Namespace } from "./Namespace.js";

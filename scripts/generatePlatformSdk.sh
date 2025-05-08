@@ -61,7 +61,7 @@ echo
 echo "Fixing lint and formatting lines"
 pnpm exec -- \
     turbo run --output-logs=errors-only fix-lint \
-        --filter ./packages/platform-docs-spec \
+        --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
         --filter="./packages/foundry.*" \
@@ -71,7 +71,7 @@ echo
 echo "Checking for any remaining lint errors"
 pnpm exec -- \
     turbo run --output-logs=errors-only check \
-        --filter ./packages/platform-docs-spec \
+        --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
         --filter="./packages/foundry.*" \

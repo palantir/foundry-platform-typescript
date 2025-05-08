@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { ApiSpec } from "@osdk/platform-docs-spec";
+import type { ApiSpec } from "@osdk/docs-spec-platform";
 import fs from "node:fs/promises";
 import * as process from "node:process";
 import { parse as parseYaml } from "yaml";

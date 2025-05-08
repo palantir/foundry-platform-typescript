@@ -841,7 +841,7 @@ importers:
         specifier: ^8.3.0
         version: 8.3.0(@microsoft/api-extractor@7.47.0(@types/node@22.7.4))(jiti@1.21.6)(postcss@8.4.39)(typescript@5.5.4)(yaml@2.5.1)
 
-  packages/osdk-docs-spec:
+  packages/docs-spec-sdk:
     dependencies:
       '@osdk/docs-spec-core':
         specifier: workspace:*
@@ -854,7 +854,7 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
-  packages/platform-docs-spec:
+  packages/docs-spec-platform:
     dependencies:
       '@osdk/docs-spec-core':
         specifier: workspace:*
@@ -872,9 +872,9 @@ importers:
       '@osdk/docs-spec-core':
         specifier: workspace:*
         version: link:../docs-spec-core
-      '@osdk/platform-docs-spec':
+      '@osdk/docs-spec-platform':
         specifier: workspace:*
-        version: link:../platform-docs-spec
+        version: link:../docs-spec-platform
       find-up:
         specifier: ^7.0.0
         version: 7.0.0

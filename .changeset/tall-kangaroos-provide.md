@@ -11,7 +11,7 @@
 "@osdk/foundry.ontologies": patch
 "@osdk/foundry.publicapis": patch
 "@osdk/foundry.sqlqueries": patch
-"@osdk/platform-docs-spec": patch
+"@osdk/docs-spec-platform": patch
 "@osdk/foundry.aipagents": patch
 "@osdk/foundry.functions": patch
 "@osdk/foundry.mediasets": patch
