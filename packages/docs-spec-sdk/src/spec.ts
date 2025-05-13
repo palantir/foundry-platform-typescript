@@ -346,6 +346,13 @@ export const OSDK_SNIPPETS_SPEC = {
         packageName: "required",
       },
     },
+    containsTemplate: {
+      variables: {
+        ...ObjectTypeWithPropertyTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
     containsAllTermsInOrderTemplate: {
       variables: {
         ...ObjectTypeWithPropertyTemplateStrings,
@@ -664,6 +671,13 @@ export const OSDK_SNIPPETS_SPEC = {
     objectSetOperationsIntersect: {
       variables: {
         ...ObjectTypeTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
+    searchAround: {
+      variables: {
+        ...ObjectTypeWithLinkTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
       },
