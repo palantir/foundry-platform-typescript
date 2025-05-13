@@ -17,7 +17,6 @@
 import type * as _Connectivity from "@osdk/foundry.connectivity";
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Datasets from "@osdk/foundry.datasets";
-import type * as _Orchestration from "@osdk/foundry.orchestration";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -92,7 +91,7 @@ export interface DatasetSubject {
  * Log Safety: SAFE
  */
 export interface ScheduleSubject {
-  scheduleRid: _Orchestration.ScheduleRid;
+  scheduleRid: _Core.ScheduleRid;
 }
 
 /**

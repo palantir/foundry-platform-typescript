@@ -1184,6 +1184,13 @@ roles in the user documentation.
 export type RoleId = LooselyBrandedString<"RoleId">;
 
 /**
+ * The RID of a Schedule.
+ *
+ * Log Safety: SAFE
+ */
+export type ScheduleRid = LooselyBrandedString<"ScheduleRid">;
+
+/**
  * @deprecated Use `SearchJsonQueryV2` in the `foundry.ontologies` package
  *
  * Log Safety: UNSAFE

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -95,8 +96,9 @@ const _loadMetadata: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadOntologyMetadataRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.OntologyFullMetadata>
-> = [1, "/v2/ontologies/{0}/metadata", 1];
+> = [1, "/v2/ontologies/{0}/metadata", 3];
 
 /**
  * Load Ontology metadata for the requested object, link, action, query, and interface types.
@@ -111,6 +113,7 @@ export function loadMetadata(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadOntologyMetadataRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.OntologyFullMetadata> {
   return $foundryPlatformFetch($ctx, _loadMetadata, ...args);

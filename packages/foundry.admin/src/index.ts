@@ -36,6 +36,8 @@ export type {
   GetGroupsBatchResponse,
   GetMarkingsBatchRequestElement,
   GetMarkingsBatchResponse,
+  GetRolesBatchRequestElement,
+  GetRolesBatchResponse,
   GetUserMarkingsResponse,
   GetUsersBatchRequestElement,
   GetUsersBatchResponse,
@@ -82,6 +84,9 @@ export type {
   ReplaceGroupProviderInfoRequest,
   ReplaceOrganizationRequest,
   ReplaceUserProviderInfoRequest,
+  Role,
+  RoleDescription,
+  RoleDisplayName,
   SamlAuthenticationProtocol,
   SamlServiceProviderMetadata,
   SearchGroupsRequest,
@@ -138,6 +143,7 @@ export type {
   ReplaceGroupProviderInfoPermissionDenied,
   ReplaceOrganizationPermissionDenied,
   ReplaceUserProviderInfoPermissionDenied,
+  RoleNotFound,
   SearchGroupsPermissionDenied,
   SearchUsersPermissionDenied,
   UserNotFound,
@@ -155,5 +161,6 @@ export * as MarkingCategories from "./public/MarkingCategory.js";
 export * as MarkingMembers from "./public/MarkingMember.js";
 export * as MarkingRoleAssignments from "./public/MarkingRoleAssignment.js";
 export * as Organizations from "./public/Organization.js";
+export * as Roles from "./public/Role.js";
 export * as Users from "./public/User.js";
 export * as UserProviderInfos from "./public/UserProviderInfo.js";

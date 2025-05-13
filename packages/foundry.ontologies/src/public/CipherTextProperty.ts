@@ -43,7 +43,7 @@ const _decrypt: $FoundryPlatformMethod<
  * Third-party applications using this endpoint via OAuth2 must request the
  * following operation scopes: `api:ontologies-read api:ontologies-decrypt-ciphertext`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-decrypt-ciphertext]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/ciphertexts/{property}/decrypt

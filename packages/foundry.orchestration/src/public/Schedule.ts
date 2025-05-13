@@ -56,7 +56,7 @@ export function create(
 
 const _deleteSchedule: $FoundryPlatformMethod<
   (
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
 > = [3, "/v2/orchestration/schedules/{0}", 2];
@@ -72,7 +72,7 @@ const _deleteSchedule: $FoundryPlatformMethod<
 export function deleteSchedule(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -82,7 +82,7 @@ export function deleteSchedule(
 
 const _get: $FoundryPlatformMethod<
   (
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Orchestration.Schedule>
 > = [0, "/v2/orchestration/schedules/{0}", 2];
@@ -98,7 +98,7 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -108,7 +108,7 @@ export function get(
 
 const _replace: $FoundryPlatformMethod<
   (
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $body: _Orchestration.ReplaceScheduleRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Orchestration.Schedule>
@@ -125,7 +125,7 @@ const _replace: $FoundryPlatformMethod<
 export function replace(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $body: _Orchestration.ReplaceScheduleRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -135,7 +135,7 @@ export function replace(
 
 const _run: $FoundryPlatformMethod<
   (
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Orchestration.ScheduleRun>
 > = [1, "/v2/orchestration/schedules/{0}/run", 2];
@@ -149,7 +149,7 @@ const _run: $FoundryPlatformMethod<
 export function run(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -159,7 +159,7 @@ export function run(
 
 const _pause: $FoundryPlatformMethod<
   (
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
 > = [1, "/v2/orchestration/schedules/{0}/pause", 2];
@@ -173,7 +173,7 @@ const _pause: $FoundryPlatformMethod<
 export function pause(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -183,7 +183,7 @@ export function pause(
 
 const _unpause: $FoundryPlatformMethod<
   (
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
 > = [1, "/v2/orchestration/schedules/{0}/unpause", 2];
@@ -197,7 +197,7 @@ const _unpause: $FoundryPlatformMethod<
 export function unpause(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -207,7 +207,7 @@ export function unpause(
 
 const _runs: $FoundryPlatformMethod<
   (
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
@@ -227,7 +227,7 @@ const _runs: $FoundryPlatformMethod<
 export function runs(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    scheduleRid: _Orchestration.ScheduleRid,
+    scheduleRid: _Core.ScheduleRid,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;

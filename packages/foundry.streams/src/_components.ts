@@ -122,7 +122,7 @@ export interface PublishRecordToStreamRequest {
  *
  * Log Safety: DO_NOT_LOG
  */
-export type _Record = Record<string, any>;
+export type _Record = Record<string, any | undefined>;
 
 /**
  * Log Safety: UNSAFE

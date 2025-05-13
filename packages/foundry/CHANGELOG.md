@@ -1,5 +1,34 @@
 # @osdk/foundry
 
+## 2.20.0
+
+### Minor Changes
+
+- 5045ed3: "Regenerate Platform SDK's"
+- b0d931f: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [5045ed3]
+- Updated dependencies [b0d931f]
+  - @osdk/foundry.thirdpartyapplications@2.20.0
+  - @osdk/foundry.orchestration@2.20.0
+  - @osdk/foundry.connectivity@2.20.0
+  - @osdk/foundry.datahealth@2.20.0
+  - @osdk/foundry.filesystem@2.20.0
+  - @osdk/foundry.ontologies@2.20.0
+  - @osdk/foundry.publicapis@2.20.0
+  - @osdk/foundry.sqlqueries@2.20.0
+  - @osdk/foundry.aipagents@2.20.0
+  - @osdk/foundry.functions@2.20.0
+  - @osdk/foundry.mediasets@2.20.0
+  - @osdk/foundry.datasets@2.20.0
+  - @osdk/foundry.streams@2.20.0
+  - @osdk/foundry.widgets@2.20.0
+  - @osdk/foundry.admin@2.20.0
+  - @osdk/foundry.core@2.20.0
+  - @osdk/foundry.geo@2.20.0
+
 ## 2.19.0
 
 ### Minor Changes

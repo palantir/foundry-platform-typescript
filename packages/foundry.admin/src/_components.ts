@@ -179,6 +179,20 @@ export interface GetMarkingsBatchResponse {
 /**
  * Log Safety: SAFE
  */
+export interface GetRolesBatchRequestElement {
+  roleId: _Core.RoleId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetRolesBatchResponse {
+  data: Record<_Core.RoleId, Role>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface GetUserMarkingsResponse {
   view: Array<_Core.MarkingId>;
 }
@@ -530,6 +544,27 @@ export interface ReplaceOrganizationRequest {
 export interface ReplaceUserProviderInfoRequest {
   providerId: ProviderId;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface Role {
+  id: _Core.RoleId;
+  displayName: RoleDisplayName;
+  description: RoleDescription;
+  operations: Array<string>;
+  canAssigns: Array<_Core.RoleId>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type RoleDescription = LooselyBrandedString<"RoleDescription">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type RoleDisplayName = LooselyBrandedString<"RoleDisplayName">;
 
 /**
  * Log Safety: UNSAFE

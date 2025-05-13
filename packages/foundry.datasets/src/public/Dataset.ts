@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -64,6 +65,42 @@ export function get(
   ...args: [datasetRid: _Datasets.DatasetRid]
 ): Promise<_Datasets.Dataset> {
   return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _getSchedules: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Datasets.ListSchedulesResponse>
+> = [0, "/v2/datasets/{0}/getSchedules", 2];
+
+/**
+ * Get the RIDs of the Schedules that target the given Dataset
+ *
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-read, api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/getSchedules
+ */
+export function getSchedules(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Datasets.ListSchedulesResponse> {
+  return $foundryPlatformFetch($ctx, _getSchedules, ...args);
 }
 
 const _readTable: $FoundryPlatformMethod<

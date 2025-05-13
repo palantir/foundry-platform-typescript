@@ -47,4 +47,28 @@ export type ApiDefinitionRid = LooselyBrandedString<"ApiDefinitionRid">;
 /**
  * Log Safety: SAFE
  */
+export type ApiVersion = "v1" | "v2";
+
+/**
+ * Log Safety: SAFE
+ */
 export type IrVersion = "v1" | "v2";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OpenApiDefinition {
+  apiVersion: ApiVersion;
+  deprecated: OpenApiDefinitionDeprecated;
+  value: OpenApiDefinitionValue;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type OpenApiDefinitionDeprecated = boolean;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type OpenApiDefinitionValue = any;

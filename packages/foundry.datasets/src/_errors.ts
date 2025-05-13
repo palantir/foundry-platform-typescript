@@ -291,6 +291,20 @@ export interface FileNotFoundOnTransactionRange {
 }
 
 /**
+ * Could not getSchedules the Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetDatasetSchedulesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetDatasetSchedulesPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+  };
+}
+
+/**
  * Could not content the File.
  *
  * Log Safety: UNSAFE

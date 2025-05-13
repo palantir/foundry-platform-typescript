@@ -1,6 +1,6 @@
 {
-  "name": "@osdk/docs-spec-platform",
-  "version": "0.7.0",
+  "name": "@osdk/platform-docs-spec",
+  "version": "0.8.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1150.0",
+        "minVersion": "1.1157.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

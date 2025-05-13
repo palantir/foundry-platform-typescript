@@ -632,6 +632,20 @@ export interface ReplaceUserProviderInfoPermissionDenied {
 }
 
 /**
+ * The given Role could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface RoleNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "RoleNotFound";
+  errorInstanceId: string;
+  parameters: {
+    roleId: unknown;
+  };
+}
+
+/**
  * Could not search the Group.
  *
  * Log Safety: SAFE

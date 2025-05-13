@@ -148,10 +148,19 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.preregisterGroup": {
       "variables": {},
     },
+    "v2.getRole": {
+      "variables": {},
+    },
+    "v2.getRolesBatch": {
+      "variables": {},
+    },
     "v2.createDataset": {
       "variables": {},
     },
     "v2.getDataset": {
+      "variables": {},
+    },
+    "v2.getDatasetSchedules": {
       "variables": {},
     },
     "v2.readTableDataset": {
@@ -422,6 +431,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getApiDefinition": {
+      "variables": {},
+    },
+    "v2.getOpenApiDefinition": {
       "variables": {},
     },
     "v2.readMediaItem": {

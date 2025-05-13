@@ -88,7 +88,6 @@ export type {
   RetryCount,
   Schedule,
   SchedulePaused,
-  ScheduleRid,
   ScheduleRun,
   ScheduleRunError,
   ScheduleRunErrorName,

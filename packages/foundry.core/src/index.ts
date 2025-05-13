@@ -151,6 +151,7 @@ export type {
   Reference,
   ReleaseStatus,
   RoleId,
+  ScheduleRid,
   SearchJsonQueryV2,
   ShortType,
   SizeBytes,

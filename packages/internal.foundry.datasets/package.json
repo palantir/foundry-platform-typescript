@@ -1,6 +1,6 @@
 {
   "name": "@osdk/internal.foundry.datasets",
-  "version": "2.19.0",
+  "version": "2.20.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -53,7 +53,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1150.0",
+        "minVersion": "1.1157.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

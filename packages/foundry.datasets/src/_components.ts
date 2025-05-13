@@ -112,6 +112,14 @@ export interface ListFilesResponse {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface ListSchedulesResponse {
+  data: Array<_Core.ScheduleRid>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
  * Format for tabular dataset export.
  *
  * Log Safety: SAFE

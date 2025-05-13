@@ -31,3 +31,17 @@ export interface ApiDefinitionNotFound {
     apiDefinitionVersion: unknown;
   };
 }
+
+/**
+ * The given OpenApiDefinition could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface OpenApiDefinitionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "OpenApiDefinitionNotFound";
+  errorInstanceId: string;
+  parameters: {
+    openApiDefinitionApiVersion: unknown;
+  };
+}

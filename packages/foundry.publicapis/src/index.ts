@@ -19,7 +19,15 @@ export type {
   ApiDefinitionDeprecated,
   ApiDefinitionName,
   ApiDefinitionRid,
+  ApiVersion,
   IrVersion,
+  OpenApiDefinition,
+  OpenApiDefinitionDeprecated,
+  OpenApiDefinitionValue,
 } from "./_components.js";
-export type { ApiDefinitionNotFound } from "./_errors.js";
+export type {
+  ApiDefinitionNotFound,
+  OpenApiDefinitionNotFound,
+} from "./_errors.js";
 export * as ApiDefinitions from "./public/ApiDefinition.js";
+export * as OpenApiDefinitions from "./public/OpenApiDefinition.js";

@@ -236,7 +236,7 @@ export interface CreateScheduleRequestProjectScope {
  * Log Safety: SAFE
  */
 export interface CreateScheduleRequestScheduleSucceededTrigger {
-  scheduleRid: ScheduleRid;
+  scheduleRid: _Core.ScheduleRid;
 }
 
 /**
@@ -599,7 +599,7 @@ export interface ReplaceScheduleRequestProjectScope {
  * Log Safety: SAFE
  */
 export interface ReplaceScheduleRequestScheduleSucceededTrigger {
-  scheduleRid: ScheduleRid;
+  scheduleRid: _Core.ScheduleRid;
 }
 
 /**
@@ -667,7 +667,7 @@ export type RetryCount = number;
  * Log Safety: UNSAFE
  */
 export interface Schedule {
-  rid: ScheduleRid;
+  rid: _Core.ScheduleRid;
   displayName?: string;
   description?: string;
   currentVersionRid: ScheduleVersionRid;
@@ -687,18 +687,11 @@ export interface Schedule {
 export type SchedulePaused = boolean;
 
 /**
- * The Resource Identifier (RID) of a Schedule.
- *
- * Log Safety: SAFE
- */
-export type ScheduleRid = LooselyBrandedString<"ScheduleRid">;
-
-/**
  * Log Safety: UNSAFE
  */
 export interface ScheduleRun {
   rid: ScheduleRunRid;
-  scheduleRid: ScheduleRid;
+  scheduleRid: _Core.ScheduleRid;
   scheduleVersionRid: ScheduleVersionRid;
   createdTime: _Core.CreatedTime;
   createdBy?: _Core.CreatedBy;
@@ -768,7 +761,7 @@ successfully.
    * Log Safety: SAFE
    */
 export interface ScheduleSucceededTrigger {
-  scheduleRid: ScheduleRid;
+  scheduleRid: _Core.ScheduleRid;
 }
 
 /**
@@ -776,7 +769,7 @@ export interface ScheduleSucceededTrigger {
  */
 export interface ScheduleVersion {
   rid: ScheduleVersionRid;
-  scheduleRid: ScheduleRid;
+  scheduleRid: _Core.ScheduleRid;
   createdTime: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
   trigger?: Trigger;
