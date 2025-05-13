@@ -640,6 +640,34 @@ export const OSDK_SNIPPETS_SPEC = {
         linkName: "required",
       },
     },
+    objectSetOperationsGuide: {
+      variables: {
+        ...ObjectTypeTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
+    objectSetOperationsUnion: {
+      variables: {
+        ...ObjectTypeTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
+    objectSetOperationsSubtract: {
+      variables: {
+        ...ObjectTypeTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
+    objectSetOperationsIntersect: {
+      variables: {
+        ...ObjectTypeTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
   },
 } as const satisfies DocsSnippetsSpec;
 
