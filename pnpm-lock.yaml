@@ -998,8 +998,8 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
       package-json:
-        specifier: ^10.0.0
-        version: 10.0.0
+        specifier: ^10.0.1
+        version: 10.0.1
       pkg-versions:
         specifier: ^4.0.0
         version: 4.0.0
@@ -4107,8 +4107,8 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
 
-  package-json@10.0.0:
-    resolution: {integrity: sha512-w34pqp733w35nElGG6eH1OnDnHEWud4uxruQ2nKzY/Uy0uOJmWFdjDcAC+xAD4goVuBZStwaAEBS21BANv83HQ==}
+  package-json@10.0.1:
+    resolution: {integrity: sha512-ua1L4OgXSBdsu1FPb7F3tYH0F48a6kxvod4pLUlGY9COeJAJQNX/sNH2IiEmsxw7lqYiAwrdHMjz1FctOsyDQg==}
     engines: {node: '>=18'}
 
   parent-module@1.0.1:
@@ -8068,7 +8068,7 @@ snapshots:
 
   latest-version@9.0.0:
     dependencies:
-      package-json: 10.0.0
+      package-json: 10.0.1
 
   levn@0.4.1:
     dependencies:
@@ -8548,7 +8548,7 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  package-json@10.0.0:
+  package-json@10.0.1:
     dependencies:
       ky: 1.2.3
       registry-auth-token: 5.0.2
@@ -8630,7 +8630,7 @@ snapshots:
 
   pkg-versions@4.0.0:
     dependencies:
-      package-json: 10.0.0
+      package-json: 10.0.1
 
   possible-typed-array-names@1.0.0: {}
 
