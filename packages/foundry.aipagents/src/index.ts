@@ -97,7 +97,6 @@ export type {
   NoPublishedAgentVersion,
   ObjectTypeIdsNotFound,
   ObjectTypeRidsNotFound,
-  OntologyEntitiesNotFound,
   RateLimitExceeded,
   SessionExecutionFailed,
   SessionNotFound,
