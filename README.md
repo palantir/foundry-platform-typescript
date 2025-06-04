@@ -152,40 +152,42 @@ To run this example, do the following:
 
 ## Dev workflow
 
+Note: some of these workflows are internal to Palantir. It is not expected that external developers will be able to perform all of the below workflows.
+
 1. Fork the repo
 2. Create a branch
-3. `pnpm install`
-4. Start dev mode: `pnpm dev`
-5. Add your code
-6. Add a changeset
-
-   > 📘 Note
-   > **Follow semver rules here.**
+3. Palantir-internal developers only: copy `.envrc.sample` into `.envrc` and populate the variables
+4. Run `source .envrc` (if necessary)
+5. `pnpm install`
+6. Start dev mode: `pnpm dev`
+7. Add your code
+8. Add a changeset
    1. Assuming you've run `pnpm install`, run `changeset` (or `pnpm exec changeset`).
    2. The tool will split things into changed vs unchanged packages (which you may need if you decide to add changeset logs in a future PR for past features)
    3. Select the packages you want the changeset applied to using the arrow keys (up/down) and space-bar to "select" the package.
    4. Press enter to continue.
-   5. The CLI will go through a progression of asking you which packages you previously selected need a major bump? Then a minor bump? Patch bumps assumed for remaining packages changed. Arrows and space bar to select. Enter to continue (even if you selected nothing).
+   5. Select which packages need major/minor/patch bumps. Typically you should not select anything here and always use patch bumps. We will then bump the major and minor version separately as needed.
    6. Enter a change (or press enter on empty to open your editor.)
-
-   > Info
-   > Full docs on the `changesets` tool can be found at the [changesets/changesets github repo](https://github.com/changesets/changesets).
-7. If you're curious what the final build output might look like you can run `pnpm build` from root.
-8. Run all lint rules and tests with `pnpm check` from root.
+9. If you're curious what the final build output might look like you can run `pnpm build` from root.
+10. Run all lint rules and tests with `pnpm check` from root.
 
 ### Updating Platform SDKs
 
-Note: this workflow is internal to Palantir. It is not expected that external developers will perform this workflow.
+1. Follow the dev workflow above
+2. Run `scripts/getOpenApiIr.sh`
+3. Run `scripts/generatePlatformSdk.sh`
+4. Remember to add a changeset (following the instructions above)
+5. Commit and open a PR
+
+### Updating OSDK docs specification
 
 1. Follow the dev workflow above
-2. Copy `.envrc.sample` into `.envrc` and populate the variables
-3. Run `source .envrc` (if necessary)
-4. Run `scripts/getOpenApiIr.sh`
-4. Run `scripts/generatePlatformSdk.sh`
+2. Edit `packages/docs-spec-sdk/src/spec.ts`
+3. Remember to add a changeset (following the instructions above)
+4. Commit and open a PR
 
 ### Publishing a release
 
-Note: this workflow is internal to Palantir. It is not expected that external developers will perform this workflow.
-
-1. Run `scripts/createReleasePr.sh`
-2. Merge the PR (Github Actions will publish it)
+1. Follow the dev workflow above
+2. Run `scripts/createReleasePr.sh`
+3. Merge the PR (Github Actions will publish it)
