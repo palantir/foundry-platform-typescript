@@ -113,6 +113,7 @@ export interface BlockingContinueSessionRequest {
   userInput: UserTextInput;
   parameterInputs: Record<ParameterId, ParameterValue>;
   contextsOverride?: Array<InputContext>;
+  sessionTraceId?: SessionTraceId;
 }
 
 /**
@@ -142,6 +143,15 @@ export interface Content {
  */
 export interface CreateSessionRequest {
   agentVersion?: AgentVersionString;
+}
+
+/**
+ * The failed output of a tool call.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FailureToolCallOutput {
+  correctionMessage: string;
 }
 
 /**
@@ -284,6 +294,24 @@ export type ParameterValueUpdate =
   | ({ type: "objectSet" } & ObjectSetParameterValueUpdate);
 
 /**
+ * A Resource Identifier (RID) that was passed as input to a tool.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RidToolInputValue {
+  rid: string;
+}
+
+/**
+ * A Resource Identifier (RID) value that was returned from a tool.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RidToolOutputValue {
+  rid: string;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Session {
@@ -324,6 +352,7 @@ export interface SessionExchangeResult {
   parameterUpdates: Record<ParameterId, ParameterValueUpdate>;
   totalTokensUsed?: number;
   interruptedOutput: boolean;
+  sessionTraceId: SessionTraceId;
 }
 
 /**
@@ -349,11 +378,35 @@ export type SessionRid = LooselyBrandedString<"SessionRid">;
 /**
  * Log Safety: UNSAFE
  */
+export interface SessionTrace {
+  id: SessionTraceId;
+  status: SessionTraceStatus;
+  contexts?: SessionExchangeContexts;
+  toolCallGroups: Array<ToolCallGroup>;
+}
+
+/**
+   * The unique identifier for a trace. The trace lists the sequence of steps that an Agent took to arrive at an
+answer. For example, a trace may include steps such as context retrieval and tool calls.
+   *
+   * Log Safety: SAFE
+   */
+export type SessionTraceId = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export type SessionTraceStatus = "IN_PROGRESS" | "COMPLETE";
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface StreamingContinueSessionRequest {
   userInput: UserTextInput;
   parameterInputs: Record<ParameterId, ParameterValue>;
   contextsOverride?: Array<InputContext>;
   messageId?: MessageId;
+  sessionTraceId?: SessionTraceId;
 }
 
 /**
@@ -371,6 +424,134 @@ export interface StringParameter {
 export interface StringParameterValue {
   value: string;
 }
+
+/**
+ * A string value that was passed as input to a tool.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StringToolInputValue {
+  value: string;
+}
+
+/**
+ * A string value that was returned from a tool.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StringToolOutputValue {
+  value: string;
+}
+
+/**
+ * The successful output of a tool call.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SuccessToolCallOutput {
+  output: ToolOutputValue;
+}
+
+/**
+ * A tool call with its input and output.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ToolCall {
+  toolMetadata: ToolMetadata;
+  input: ToolCallInput;
+  output?: ToolCallOutput;
+}
+
+/**
+ * List of tool calls that were triggered at the same point in the trace for the agent response generation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ToolCallGroup {
+  toolCalls: Array<ToolCall>;
+}
+
+/**
+ * Input parameters for a tool call.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ToolCallInput {
+  thought?: string;
+  inputs: Record<ToolInputName, ToolInputValue>;
+}
+
+/**
+ * The output of a tool call.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ToolCallOutput =
+  | ({ type: "success" } & SuccessToolCallOutput)
+  | ({ type: "failure" } & FailureToolCallOutput);
+
+/**
+ * A message explaining why a tool call failed.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ToolCorrectionMessage = LooselyBrandedString<
+  "ToolCorrectionMessage"
+>;
+
+/**
+ * The name of a tool input parameter.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ToolInputName = LooselyBrandedString<"ToolInputName">;
+
+/**
+ * A tool input value, which can be either a string or a Resource Identifier (RID).
+ *
+ * Log Safety: UNSAFE
+ */
+export type ToolInputValue =
+  | ({ type: "string" } & StringToolInputValue)
+  | ({ type: "rid" } & RidToolInputValue);
+
+/**
+ * Details about the used tool.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ToolMetadata {
+  name: string;
+  type: ToolType;
+}
+
+/**
+ * The name of a tool.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ToolName = LooselyBrandedString<"ToolName">;
+
+/**
+ * A tool output value, which can be either a string or a Resource Identifier (RID).
+ *
+ * Log Safety: UNSAFE
+ */
+export type ToolOutputValue =
+  | ({ type: "string" } & StringToolOutputValue)
+  | ({ type: "rid" } & RidToolOutputValue);
+
+/**
+ * Log Safety: SAFE
+ */
+export type ToolType =
+  | "FUNCTION"
+  | "ACTION"
+  | "ONTOLOGY_SEMANTIC_SEARCH"
+  | "OBJECT_QUERY"
+  | "UPDATE_APPLICATION_VARIABLE"
+  | "REQUEST_CLARIFICATION";
 
 /**
  * Log Safety: UNSAFE

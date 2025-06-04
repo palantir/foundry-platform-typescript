@@ -31,36 +31,6 @@ export interface AdditionalSecretsMustBeSpecifiedAsPlaintextValueMap {
 }
 
 /**
- * Changing of branch name is not supported for imports.
- *
- * Log Safety: UNSAFE
- */
-export interface ChangingBranchNameNotSupportedForImports {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "ChangingBranchNameNotSupportedForImports";
-  errorInstanceId: string;
-  parameters: {
-    existingBranchName: unknown;
-    newBranchName: unknown;
-  };
-}
-
-/**
- * Changing of output dataset is not supported for imports.
- *
- * Log Safety: SAFE
- */
-export interface ChangingOutputDatasetNotSupportedForImports {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "ChangingOutputDatasetNotSupportedForImports";
-  errorInstanceId: string;
-  parameters: {
-    existingOutputDatasetRid: unknown;
-    newOutputDatasetRid: unknown;
-  };
-}
-
-/**
  * Details of the connection (such as which types of import it supports) could not be determined.
  *
  * Log Safety: UNSAFE

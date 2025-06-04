@@ -94,8 +94,8 @@ const _get: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     $queryParams: {
       select: Array<_Ontologies.SelectedPropertyApiName>;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
     },
   ) => Promise<_Ontologies.OntologyObjectV2>
@@ -120,8 +120,8 @@ export function get(
 
     $queryParams: {
       select: Array<_Ontologies.SelectedPropertyApiName>;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
     },
   ]

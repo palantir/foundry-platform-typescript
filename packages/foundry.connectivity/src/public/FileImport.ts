@@ -161,7 +161,7 @@ const _replace: $FoundryPlatformMethod<
 /**
  * Replace the FileImport with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-file-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}

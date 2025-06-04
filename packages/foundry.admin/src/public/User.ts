@@ -198,3 +198,32 @@ export function search(
 ): Promise<_Admin.SearchUsersResponse> {
   return $foundryPlatformFetch($ctx, _search, ...args);
 }
+
+const _revokeAllTokens: $FoundryPlatformMethod<
+  (
+    userId: _Core.PrincipalId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/admin/users/{0}/revokeAllTokens", 2];
+
+/**
+ * Revoke all active authentication tokens for the user including active browser sessions and long-lived
+ * development tokens. If the user has active sessions in a browser, this will force re-authentication.
+ *
+ * The caller must have permission to manage users for the target user's organization.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/users/{userId}/revokeAllTokens
+ */
+export function revokeAllTokens(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    userId: _Core.PrincipalId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _revokeAllTokens, ...args);
+}

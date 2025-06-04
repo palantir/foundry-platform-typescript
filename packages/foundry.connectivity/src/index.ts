@@ -153,8 +153,6 @@ export type {
 } from "./_components.js";
 export type {
   AdditionalSecretsMustBeSpecifiedAsPlaintextValueMap,
-  ChangingBranchNameNotSupportedForImports,
-  ChangingOutputDatasetNotSupportedForImports,
   ConnectionDetailsNotDetermined,
   ConnectionNotFound,
   ConnectionTypeNotSupported,

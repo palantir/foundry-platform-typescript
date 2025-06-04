@@ -37,9 +37,11 @@ const _execute: $FoundryPlatformMethod<
 > = [1, "/v2/sqlQueries/execute", 3];
 
 /**
- * Executes a new query. Only the user that invoked the query can operate on the query.
+ * Executes a new query. Only the user that invoked the query can operate on the query. The size of query
+ * results are limited by default to 1 million rows. Contact your Palantir representative to discuss limit
+ * increases.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:sql-queries-execute]
  * URL: /v2/sqlQueries/execute
@@ -64,7 +66,7 @@ const _getStatus: $FoundryPlatformMethod<
 /**
  * Gets the status of a query.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:sql-queries-read]
  * URL: /v2/sqlQueries/{sqlQueryId}/getStatus
@@ -90,7 +92,7 @@ const _cancel: $FoundryPlatformMethod<
 /**
  * Cancels a query. If the query is no longer running this is effectively a no-op.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:sql-queries-execute]
  * URL: /v2/sqlQueries/{sqlQueryId}/cancel
@@ -115,9 +117,9 @@ const _getResults: $FoundryPlatformMethod<
 
 /**
  * Gets the results of a query. This endpoint implements long polling and requests will time out after
- * one minute.
+ * one minute. They can be safely retried while the query is still running.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:sql-queries-read]
  * URL: /v2/sqlQueries/{sqlQueryId}/getResults

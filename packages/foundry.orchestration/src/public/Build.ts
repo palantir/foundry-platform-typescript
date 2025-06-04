@@ -138,7 +138,6 @@ const _jobs: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Orchestration.ListJobsOfBuildResponse>
 > = [0, "/v2/orchestration/builds/{0}/jobs", 2];
@@ -146,7 +145,7 @@ const _jobs: $FoundryPlatformMethod<
 /**
  * Get the Jobs in the Build.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-read]
  * URL: /v2/orchestration/builds/{buildRid}/jobs
@@ -159,7 +158,6 @@ export function jobs(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Orchestration.ListJobsOfBuildResponse> {

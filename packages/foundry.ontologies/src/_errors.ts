@@ -680,6 +680,24 @@ export interface InvalidPropertyValue {
 }
 
 /**
+   * The value of the query's output is invalid. This may be because the return value did not match the specified
+output type or constraints.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidQueryOutputValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidQueryOutputValue";
+  errorInstanceId: string;
+  parameters: {
+    outputDataType: unknown;
+    outputValue: unknown;
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
    * The value of the given parameter is invalid. See the documentation of DataValue for details on
 how parameters are represented.
    *
@@ -905,6 +923,102 @@ export interface MarketplaceQueryMappingNotFound {
     queryType: unknown;
     artifactRepository: unknown;
     packageName: unknown;
+  };
+}
+
+/**
+ * The given action could not be mapped to a Marketplace installation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceSdkActionMappingNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkActionMappingNotFound";
+  errorInstanceId: string;
+  parameters: {
+    actionType: unknown;
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
+  };
+}
+
+/**
+ * The given marketplace installation could not be found or the user does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface MarketplaceSdkInstallationNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkInstallationNotFound";
+  errorInstanceId: string;
+  parameters: {
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
+  };
+}
+
+/**
+ * The given link could not be mapped to a Marketplace installation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceSdkLinkMappingNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkLinkMappingNotFound";
+  errorInstanceId: string;
+  parameters: {
+    linkType: unknown;
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
+  };
+}
+
+/**
+ * The given object could not be mapped to a Marketplace installation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceSdkObjectMappingNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkObjectMappingNotFound";
+  errorInstanceId: string;
+  parameters: {
+    objectType: unknown;
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
+  };
+}
+
+/**
+ * The given property could not be mapped to a Marketplace installation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceSdkPropertyMappingNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkPropertyMappingNotFound";
+  errorInstanceId: string;
+  parameters: {
+    propertyType: unknown;
+    objectType: unknown;
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
+  };
+}
+
+/**
+ * The given query could not be mapped to a Marketplace installation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceSdkQueryMappingNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkQueryMappingNotFound";
+  errorInstanceId: string;
+  parameters: {
+    queryType: unknown;
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
   };
 }
 
@@ -1392,6 +1506,20 @@ export interface PropertyTypeNotFound {
   parameters: {
     objectTypeApiName: unknown;
     propertyApiName: unknown;
+  };
+}
+
+/**
+ * The requested property type RID is not found, or the client token does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyTypeRidNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "PropertyTypeRidNotFound";
+  errorInstanceId: string;
+  parameters: {
+    propertyTypeRid: unknown;
   };
 }
 

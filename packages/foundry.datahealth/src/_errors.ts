@@ -31,17 +31,3 @@ export interface CheckNotFound {
     checkRid: unknown;
   };
 }
-
-/**
- * The referenced check cannot be found.
- *
- * Log Safety: SAFE
- */
-export interface DataHealthCheckNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "DataHealthCheckNotFound";
-  errorInstanceId: string;
-  parameters: {
-    checkRid: unknown;
-  };
-}

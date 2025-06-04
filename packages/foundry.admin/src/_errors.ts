@@ -61,6 +61,20 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * Could not add the OrganizationRoleAssignment.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddOrganizationRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddOrganizationRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
+  };
+}
+
+/**
  * The given AuthenticationProvider could not be found.
  *
  * Log Safety: SAFE
@@ -391,6 +405,20 @@ export interface InvalidProfilePicture {
 }
 
 /**
+ * Could not listAvailableRoles the Organization.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListAvailableRolesOrganizationPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListAvailableRolesOrganizationPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
+  };
+}
+
+/**
  * You do not have permission to list hosts for this enrollment
  *
  * Log Safety: SAFE
@@ -429,6 +457,20 @@ export interface ListMarkingRoleAssignmentsPermissionDenied {
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
+  };
+}
+
+/**
+ * The provided token does not have permission to list assigned roles for this organization.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListOrganizationRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListOrganizationRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
   };
 }
 
@@ -590,6 +632,20 @@ export interface RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed {
 }
 
 /**
+ * Could not remove the OrganizationRoleAssignment.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveOrganizationRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveOrganizationRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
+  };
+}
+
+/**
  * Could not replace the GroupProviderInfo.
  *
  * Log Safety: SAFE
@@ -625,6 +681,20 @@ export interface ReplaceOrganizationPermissionDenied {
 export interface ReplaceUserProviderInfoPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceUserProviderInfoPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    userId: unknown;
+  };
+}
+
+/**
+ * Could not revokeAllTokens the User.
+ *
+ * Log Safety: SAFE
+ */
+export interface RevokeAllTokensUserPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RevokeAllTokensUserPermissionDenied";
   errorInstanceId: string;
   parameters: {
     userId: unknown;

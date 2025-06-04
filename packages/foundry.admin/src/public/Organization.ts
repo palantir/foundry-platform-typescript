@@ -81,3 +81,29 @@ export function replace(
 ): Promise<_Admin.Organization> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
 }
+
+const _listAvailableRoles: $FoundryPlatformMethod<
+  (
+    organizationRid: _Core.OrganizationRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.ListAvailableOrganizationRolesResponse>
+> = [0, "/v2/admin/organizations/{0}/listAvailableRoles", 2];
+
+/**
+ * List all roles that can be assigned to a principal for the given Organization.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:admin-read]
+ * URL: /v2/admin/organizations/{organizationRid}/listAvailableRoles
+ */
+export function listAvailableRoles(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    organizationRid: _Core.OrganizationRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.ListAvailableOrganizationRolesResponse> {
+  return $foundryPlatformFetch($ctx, _listAvailableRoles, ...args);
+}

@@ -161,7 +161,7 @@ const _replace: $FoundryPlatformMethod<
 /**
  * Replace the TableImport with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}

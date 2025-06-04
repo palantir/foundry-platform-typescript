@@ -72,6 +72,7 @@ export type {
 export type {
   ExecuteQueryPermissionDenied,
   GetByRidQueriesPermissionDenied,
+  InvalidQueryOutputValue,
   InvalidQueryParameterValue,
   MissingParameter,
   QueryEncounteredUserFacingError,

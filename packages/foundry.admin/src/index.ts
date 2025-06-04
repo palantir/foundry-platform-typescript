@@ -18,6 +18,7 @@ export type {
   AddGroupMembersRequest,
   AddMarkingMembersRequest,
   AddMarkingRoleAssignmentsRequest,
+  AddOrganizationRoleAssignmentsRequest,
   AttributeName,
   AttributeValue,
   AttributeValues,
@@ -51,6 +52,7 @@ export type {
   Host,
   HostName,
   ListAuthenticationProvidersResponse,
+  ListAvailableOrganizationRolesResponse,
   ListGroupMembershipsResponse,
   ListGroupMembersResponse,
   ListGroupsResponse,
@@ -59,6 +61,7 @@ export type {
   ListMarkingMembersResponse,
   ListMarkingRoleAssignmentsResponse,
   ListMarkingsResponse,
+  ListOrganizationRoleAssignmentsResponse,
   ListUsersResponse,
   Marking,
   MarkingCategory,
@@ -74,6 +77,7 @@ export type {
   OidcAuthenticationProtocol,
   Organization,
   OrganizationName,
+  OrganizationRoleAssignment,
   PreregisterGroupRequest,
   PreregisterUserRequest,
   PrincipalFilterType,
@@ -81,6 +85,7 @@ export type {
   RemoveGroupMembersRequest,
   RemoveMarkingMembersRequest,
   RemoveMarkingRoleAssignmentsRequest,
+  RemoveOrganizationRoleAssignmentsRequest,
   ReplaceGroupProviderInfoRequest,
   ReplaceOrganizationRequest,
   ReplaceUserProviderInfoRequest,
@@ -102,6 +107,7 @@ export type {
   AddGroupMembersPermissionDenied,
   AddMarkingMembersPermissionDenied,
   AddMarkingRoleAssignmentsPermissionDenied,
+  AddOrganizationRoleAssignmentsPermissionDenied,
   AuthenticationProviderNotFound,
   CannotReplaceProviderInfoForPrincipalInProtectedRealm,
   CreateGroupPermissionDenied,
@@ -126,9 +132,11 @@ export type {
   InvalidGroupOrganizations,
   InvalidHostName,
   InvalidProfilePicture,
+  ListAvailableRolesOrganizationPermissionDenied,
   ListHostsPermissionDenied,
   ListMarkingMembersPermissionDenied,
   ListMarkingRoleAssignmentsPermissionDenied,
+  ListOrganizationRoleAssignmentsPermissionDenied,
   MarkingCategoryNotFound,
   MarkingNotFound,
   OrganizationNotFound,
@@ -140,9 +148,11 @@ export type {
   RemoveMarkingMembersPermissionDenied,
   RemoveMarkingRoleAssignmentsPermissionDenied,
   RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed,
+  RemoveOrganizationRoleAssignmentsPermissionDenied,
   ReplaceGroupProviderInfoPermissionDenied,
   ReplaceOrganizationPermissionDenied,
   ReplaceUserProviderInfoPermissionDenied,
+  RevokeAllTokensUserPermissionDenied,
   RoleNotFound,
   SearchGroupsPermissionDenied,
   SearchUsersPermissionDenied,
@@ -161,6 +171,7 @@ export * as MarkingCategories from "./public/MarkingCategory.js";
 export * as MarkingMembers from "./public/MarkingMember.js";
 export * as MarkingRoleAssignments from "./public/MarkingRoleAssignment.js";
 export * as Organizations from "./public/Organization.js";
+export * as OrganizationRoleAssignments from "./public/OrganizationRoleAssignment.js";
 export * as Roles from "./public/Role.js";
 export * as Users from "./public/User.js";
 export * as UserProviderInfos from "./public/UserProviderInfo.js";

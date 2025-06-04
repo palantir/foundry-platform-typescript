@@ -45,6 +45,24 @@ export interface GetByRidQueriesPermissionDenied {
 }
 
 /**
+   * The value of the query's output is invalid. This may be because the return value did not match the specified
+output type or constraints.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidQueryOutputValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidQueryOutputValue";
+  errorInstanceId: string;
+  parameters: {
+    outputDataType: unknown;
+    outputValue: unknown;
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
    * The value of the given parameter is invalid. See the documentation of DataValue for details on
 how parameters are represented.
    *

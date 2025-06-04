@@ -55,27 +55,20 @@ export function create(
 }
 
 const _deleteSchedule: $FoundryPlatformMethod<
-  (
-    scheduleRid: _Core.ScheduleRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [3, "/v2/orchestration/schedules/{0}", 2];
+  (scheduleRid: _Core.ScheduleRid) => Promise<void>
+> = [3, "/v2/orchestration/schedules/{0}"];
 
 /**
  * Delete the Schedule with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-write]
  * URL: /v2/orchestration/schedules/{scheduleRid}
  */
 export function deleteSchedule(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    scheduleRid: _Core.ScheduleRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [scheduleRid: _Core.ScheduleRid]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteSchedule, ...args);
 }
@@ -134,73 +127,52 @@ export function replace(
 }
 
 const _run: $FoundryPlatformMethod<
-  (
-    scheduleRid: _Core.ScheduleRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Orchestration.ScheduleRun>
-> = [1, "/v2/orchestration/schedules/{0}/run", 2];
+  (scheduleRid: _Core.ScheduleRid) => Promise<_Orchestration.ScheduleRun>
+> = [1, "/v2/orchestration/schedules/{0}/run"];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-write]
  * URL: /v2/orchestration/schedules/{scheduleRid}/run
  */
 export function run(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    scheduleRid: _Core.ScheduleRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [scheduleRid: _Core.ScheduleRid]
 ): Promise<_Orchestration.ScheduleRun> {
   return $foundryPlatformFetch($ctx, _run, ...args);
 }
 
 const _pause: $FoundryPlatformMethod<
-  (
-    scheduleRid: _Core.ScheduleRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/orchestration/schedules/{0}/pause", 2];
+  (scheduleRid: _Core.ScheduleRid) => Promise<void>
+> = [1, "/v2/orchestration/schedules/{0}/pause"];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-write]
  * URL: /v2/orchestration/schedules/{scheduleRid}/pause
  */
 export function pause(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    scheduleRid: _Core.ScheduleRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [scheduleRid: _Core.ScheduleRid]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _pause, ...args);
 }
 
 const _unpause: $FoundryPlatformMethod<
-  (
-    scheduleRid: _Core.ScheduleRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/orchestration/schedules/{0}/unpause", 2];
+  (scheduleRid: _Core.ScheduleRid) => Promise<void>
+> = [1, "/v2/orchestration/schedules/{0}/unpause"];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-write]
  * URL: /v2/orchestration/schedules/{scheduleRid}/unpause
  */
 export function unpause(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    scheduleRid: _Core.ScheduleRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [scheduleRid: _Core.ScheduleRid]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _unpause, ...args);
 }
@@ -211,7 +183,6 @@ const _runs: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Orchestration.ListRunsOfScheduleResponse>
 > = [0, "/v2/orchestration/schedules/{0}/runs", 2];
@@ -219,7 +190,7 @@ const _runs: $FoundryPlatformMethod<
 /**
  * Get the most recent runs of a Schedule. If no page size is provided, a page size of 100 will be used.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-read]
  * URL: /v2/orchestration/schedules/{scheduleRid}/runs
@@ -232,7 +203,6 @@ export function runs(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Orchestration.ListRunsOfScheduleResponse> {

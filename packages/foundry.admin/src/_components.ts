@@ -43,6 +43,13 @@ export interface AddMarkingRoleAssignmentsRequest {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AddOrganizationRoleAssignmentsRequest {
+  roleAssignments: Array<_Core.RoleAssignmentUpdate>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type AttributeName = LooselyBrandedString<"AttributeName">;
@@ -288,6 +295,13 @@ export interface ListAuthenticationProvidersResponse {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListAvailableOrganizationRolesResponse {
+  data: Array<_Core.Role>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListGroupMembershipsResponse {
   data: Array<GroupMembership>;
   nextPageToken?: _Core.PageToken;
@@ -346,6 +360,14 @@ export interface ListMarkingRoleAssignmentsResponse {
  */
 export interface ListMarkingsResponse {
   data: Array<Marking>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListOrganizationRoleAssignmentsResponse {
+  data: Array<OrganizationRoleAssignment>;
   nextPageToken?: _Core.PageToken;
 }
 
@@ -470,6 +492,15 @@ export interface Organization {
 export type OrganizationName = LooselyBrandedString<"OrganizationName">;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface OrganizationRoleAssignment {
+  principalType: _Core.PrincipalType;
+  principalId: _Core.PrincipalId;
+  roleId: _Core.RoleId;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface PreregisterGroupRequest {
@@ -520,6 +551,13 @@ export interface RemoveMarkingMembersRequest {
  */
 export interface RemoveMarkingRoleAssignmentsRequest {
   roleAssignments: Array<MarkingRoleUpdate>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RemoveOrganizationRoleAssignmentsRequest {
+  roleAssignments: Array<_Core.RoleAssignmentUpdate>;
 }
 
 /**

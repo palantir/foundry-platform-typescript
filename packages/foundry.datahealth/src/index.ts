@@ -15,18 +15,20 @@
  */
 
 export type {
+  BuildStatusCheckConfig,
   Check,
   CheckConfig,
   CheckGroupRid,
+  CheckIntent,
   CheckRid,
   ColumnName,
   DataConnectionAgentSubject,
   DatasetSubject,
+  EscalationConfig,
+  JobStatusCheckConfig,
   ScheduleSubject,
   SeverityLevel,
   StatusCheckConfig,
-  StatusCheckType,
-  Subject,
 } from "./_components.js";
-export type { CheckNotFound, DataHealthCheckNotFound } from "./_errors.js";
+export type { CheckNotFound } from "./_errors.js";
 export * as Checks from "./public/Check.js";

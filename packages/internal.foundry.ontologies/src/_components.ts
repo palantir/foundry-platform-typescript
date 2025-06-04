@@ -2973,6 +2973,11 @@ export type PropertyIdentifier =
   | ({ type: "structField" } & StructFieldSelector);
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type PropertyTypeApiName = LooselyBrandedString<"PropertyTypeApiName">;
+
+/**
  * Log Safety: SAFE
  */
 export type PropertyTypeRid = LooselyBrandedString<"PropertyTypeRid">;
@@ -3393,6 +3398,16 @@ export interface RollingAggregateWindowPoints {
  * Log Safety: UNSAFE
  */
 export type SdkPackageName = LooselyBrandedString<"SdkPackageName">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type SdkPackageRid = LooselyBrandedString<"SdkPackageRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type SdkVersion = LooselyBrandedString<"SdkVersion">;
 
 /**
  * Log Safety: UNSAFE
@@ -3844,8 +3859,16 @@ export interface StructFieldSelector {
  */
 export interface StructFieldType {
   apiName: StructFieldApiName;
+  rid: StructFieldTypeRid;
   dataType: ObjectPropertyType;
 }
+
+/**
+ * The unique resource identifier of a struct field, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type StructFieldTypeRid = LooselyBrandedString<"StructFieldTypeRid">;
 
 /**
  * Log Safety: UNSAFE

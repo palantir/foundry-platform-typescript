@@ -1021,6 +1021,14 @@ export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
 
 /**
+   * An operation that can be performed on a resource. Operations are used to define the permissions that a Role has.
+Operations are typically in the format service:action, where service is related to the type of resource and action is the action being performed.
+   *
+   * Log Safety: SAFE
+   */
+export type Operation = LooselyBrandedString<"Operation">;
+
+/**
  * Log Safety: SAFE
  */
 export type OperationScope = LooselyBrandedString<"OperationScope">;
@@ -1175,6 +1183,34 @@ export type ReleaseStatus =
   | "DEPRECATED";
 
 /**
+ * A set of permissions that can be assigned to a principal for a specific resource type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Role {
+  id: RoleId;
+  roleSetId: RoleSetId;
+  name: string;
+  description: string;
+  isDefault: boolean;
+  type: RoleContext;
+  operations: Array<Operation>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RoleAssignmentUpdate {
+  roleId: RoleId;
+  principalId: PrincipalId;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type RoleContext = "ORGANIZATION";
+
+/**
    * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.
 The default roles in Foundry are: Owner, Editor, Viewer, and Discoverer. See more about
 roles in the user documentation.
@@ -1182,6 +1218,11 @@ roles in the user documentation.
    * Log Safety: SAFE
    */
 export type RoleId = LooselyBrandedString<"RoleId">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type RoleSetId = LooselyBrandedString<"RoleSetId">;
 
 /**
  * The RID of a Schedule.

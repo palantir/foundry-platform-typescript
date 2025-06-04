@@ -328,6 +328,25 @@ export interface ObjectTypeRidsNotFound {
 }
 
 /**
+   * Some ontology types are configured for use by the Agent but could not be found.
+The types either do not exist or the client token does not have access.
+Object types and their link types can be checked by listing available object/link types through the API, or searching in Ontology Manager.
+   *
+   * Log Safety: SAFE
+   */
+export interface OntologyEntitiesNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "OntologyEntitiesNotFound";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    objectTypeRids: unknown;
+    linkTypeRids: unknown;
+  };
+}
+
+/**
  * Failed to generate a response as the model rate limits were exceeded. Clients should wait and retry.
  *
  * Log Safety: UNSAFE
@@ -370,6 +389,38 @@ export interface SessionNotFound {
   errorName: "SessionNotFound";
   errorInstanceId: string;
   parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+  };
+}
+
+/**
+ * The provided trace ID already exists for the session and cannot be reused.
+ *
+ * Log Safety: SAFE
+ */
+export interface SessionTraceIdAlreadyExists {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SessionTraceIdAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    sessionTraceId: unknown;
+  };
+}
+
+/**
+ * The given SessionTrace could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface SessionTraceNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "SessionTraceNotFound";
+  errorInstanceId: string;
+  parameters: {
+    sessionTraceId: unknown;
     agentRid: unknown;
     sessionRid: unknown;
   };

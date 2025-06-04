@@ -172,3 +172,20 @@ To run this example, do the following:
    > Full docs on the `changesets` tool can be found at the [changesets/changesets github repo](https://github.com/changesets/changesets).
 7. If you're curious what the final build output might look like you can run `pnpm build` from root.
 8. Run all lint rules and tests with `pnpm check` from root.
+
+### Updating Platform SDKs
+
+Note: this workflow is internal to Palantir. It is not expected that external developers will perform this workflow.
+
+1. Follow the dev workflow above
+2. Copy `.envrc.sample` into `.envrc` and populate the variables
+3. Run `source .envrc` (if necessary)
+4. Run `scripts/getOpenApiIr.sh`
+4. Run `scripts/generatePlatformSdk.sh`
+
+### Publishing a release
+
+Note: this workflow is internal to Palantir. It is not expected that external developers will perform this workflow.
+
+1. Run `scripts/createReleasePr.sh`
+2. Merge the PR (Github Actions will publish it)

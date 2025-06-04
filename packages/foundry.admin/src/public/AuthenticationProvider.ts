@@ -102,7 +102,7 @@ const _preregisterUser: $FoundryPlatformMethod<
  *
  * @beta
  *
- * Required Scopes: []
+ * Required Scopes: [api:admin-write]
  * URL: /v2/admin/enrollments/{enrollmentRid}/authenticationProviders/{authenticationProviderRid}/preregisterUser
  */
 export function preregisterUser(
@@ -136,7 +136,7 @@ const _preregisterGroup: $FoundryPlatformMethod<
  *
  * @beta
  *
- * Required Scopes: []
+ * Required Scopes: [api:admin-write]
  * URL: /v2/admin/enrollments/{enrollmentRid}/authenticationProviders/{authenticationProviderRid}/preregisterGroup
  */
 export function preregisterGroup(

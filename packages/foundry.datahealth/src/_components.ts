@@ -23,28 +23,35 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Checks the status of the most recent build of the dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BuildStatusCheckConfig {
+  subject: DatasetSubject;
+  statusCheckConfig: StatusCheckConfig;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Check {
   rid: CheckRid;
   groups: Array<CheckGroupRid>;
-  subjects: Array<Subject>;
+  config: CheckConfig;
+  intent?: CheckIntent;
   createdBy?: _Core.CreatedBy;
-  createdTime?: _Core.CreatedTime;
-  config: Array<CheckConfig>;
+  updatedTime?: _Core.UpdatedTime;
 }
 
 /**
-   * Configuration of a check.
-STATUS: Checks whether the most recent build, job, or sync succeeded.
-TIME: Checks whether the duration of any activity surpasses the anticipated time.
-SIZE: Checks whether the size of each component of a resource aligns with expectations.
-CONTENT: Checks that the content of a resource aligns with expectations.
-SCHEMA: Checks that the schema of a resource aligns with expectations.
-   *
-   * Log Safety: UNSAFE
-   */
-export type CheckConfig = { type: "status" } & StatusCheckConfig;
+ * Configuration of a check.
+ *
+ * Log Safety: UNSAFE
+ */
+export type CheckConfig =
+  | ({ type: "jobStatus" } & JobStatusCheckConfig)
+  | ({ type: "buildStatus" } & BuildStatusCheckConfig);
 
 /**
  * The unique resource identifier (RID) of a CheckGroup.
@@ -52,6 +59,13 @@ export type CheckConfig = { type: "status" } & StatusCheckConfig;
  * Log Safety: SAFE
  */
 export type CheckGroupRid = LooselyBrandedString<"CheckGroupRid">;
+
+/**
+ * A note about why the Check was set up.
+ *
+ * Log Safety: UNSAFE
+ */
+export type CheckIntent = LooselyBrandedString<"CheckIntent">;
 
 /**
  * The unique resource identifier (RID) of a Check.
@@ -66,7 +80,7 @@ export type CheckRid = LooselyBrandedString<"CheckRid">;
 export type ColumnName = LooselyBrandedString<"ColumnName">;
 
 /**
- * A data connection agent resource type
+ * A data connection agent resource type.
  *
  * Log Safety: UNSAFE
  */
@@ -75,7 +89,7 @@ export interface DataConnectionAgentSubject {
 }
 
 /**
- * A dataset resource type
+ * A dataset resource type.
  *
  * Log Safety: UNSAFE
  */
@@ -86,7 +100,27 @@ export interface DatasetSubject {
 }
 
 /**
- * A schedule resource type
+ * The configuration for when the severity of the failing health check should be escalated to CRITICAL – after a given number of failures, possibly within a time interval.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface EscalationConfig {
+  failuresToCritical: number;
+  timeIntervalInSeconds?: string;
+}
+
+/**
+ * Checks the status of the most recent job run on the dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface JobStatusCheckConfig {
+  subject: DatasetSubject;
+  statusCheckConfig: StatusCheckConfig;
+}
+
+/**
+ * A schedule resource type.
  *
  * Log Safety: SAFE
  */
@@ -102,30 +136,9 @@ export interface ScheduleSubject {
 export type SeverityLevel = "LOW" | "MODERATE" | "CRITICAL";
 
 /**
- * A check on the status of a dataset build.
- *
  * Log Safety: UNSAFE
  */
 export interface StatusCheckConfig {
-  statusCheckType: StatusCheckType;
   severity: SeverityLevel;
-  failuresToCritical: number;
-  note?: string;
+  escalationConfig?: EscalationConfig;
 }
-
-/**
- * Different types of status checks
- *
- * Log Safety: SAFE
- */
-export type StatusCheckType = "BUILD" | "JOB";
-
-/**
- * The resource that the check is performed on.
- *
- * Log Safety: UNSAFE
- */
-export type Subject =
-  | ({ type: "Dataset" } & DatasetSubject)
-  | ({ type: "DataConnectionAgent" } & DataConnectionAgentSubject)
-  | ({ type: "Schedule" } & ScheduleSubject);

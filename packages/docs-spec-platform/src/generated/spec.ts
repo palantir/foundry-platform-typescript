@@ -43,6 +43,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.searchUsers": {
       "variables": {},
     },
+    "v2.revokeAllTokensUser": {
+      "variables": {},
+    },
     "v2.getUserProviderInfo": {
       "variables": {},
     },
@@ -134,6 +137,18 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.replaceOrganization": {
+      "variables": {},
+    },
+    "v2.listAvailableRolesOrganization": {
+      "variables": {},
+    },
+    "v2.listOrganizationRoleAssignments": {
+      "variables": {},
+    },
+    "v2.addOrganizationRoleAssignments": {
+      "variables": {},
+    },
+    "v2.removeOrganizationRoleAssignments": {
       "variables": {},
     },
     "v2.listAuthenticationProviders": {
@@ -716,6 +731,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getContent": {
+      "variables": {},
+    },
+    "v2.getSessionTrace": {
       "variables": {},
     },
   },

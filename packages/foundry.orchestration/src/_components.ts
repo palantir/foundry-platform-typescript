@@ -203,6 +203,11 @@ export interface CreateScheduleRequestManualTarget {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface CreateScheduleRequestManualTrigger {}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface CreateScheduleRequestMediaSetUpdatedTrigger {
@@ -269,7 +274,8 @@ export type CreateScheduleRequestTrigger =
     type: "scheduleSucceeded";
   } & CreateScheduleRequestScheduleSucceededTrigger)
   | ({ type: "mediaSetUpdated" } & CreateScheduleRequestMediaSetUpdatedTrigger)
-  | ({ type: "time" } & CreateScheduleRequestTimeTrigger);
+  | ({ type: "time" } & CreateScheduleRequestTimeTrigger)
+  | ({ type: "manual" } & CreateScheduleRequestManualTrigger);
 
 /**
  * Log Safety: SAFE
@@ -434,6 +440,13 @@ export interface ManualTarget {
 }
 
 /**
+ * Only trigger the Schedule manually. If placed in an AND or OR condition, this Trigger will be ignored.
+ *
+ * Log Safety: SAFE
+ */
+export interface ManualTrigger {}
+
+/**
    * Trigger whenever an update is made to a media set on the target
 branch. For transactional media sets, this happens when a transaction
 is committed. For non-transactional media sets, this event happens
@@ -459,7 +472,8 @@ export interface NewLogicTrigger {
 
 /**
    * Whether to receive a notification at the end of the build.
-The notification will be sent to the user that has performed the request.
+The notification will be sent to the user that has most recently edited the schedule.
+No notification will be sent if the schedule has scopeMode set to ProjectScope.
    *
    * Log Safety: SAFE
    */
@@ -566,6 +580,11 @@ export interface ReplaceScheduleRequestManualTarget {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ReplaceScheduleRequestManualTrigger {}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ReplaceScheduleRequestMediaSetUpdatedTrigger {
@@ -632,7 +651,8 @@ export type ReplaceScheduleRequestTrigger =
     type: "scheduleSucceeded";
   } & ReplaceScheduleRequestScheduleSucceededTrigger)
   | ({ type: "mediaSetUpdated" } & ReplaceScheduleRequestMediaSetUpdatedTrigger)
-  | ({ type: "time" } & ReplaceScheduleRequestTimeTrigger);
+  | ({ type: "time" } & ReplaceScheduleRequestTimeTrigger)
+  | ({ type: "manual" } & ReplaceScheduleRequestManualTrigger);
 
 /**
  * Log Safety: SAFE
@@ -941,7 +961,8 @@ export type Trigger =
   | ({ type: "datasetUpdated" } & DatasetUpdatedTrigger)
   | ({ type: "scheduleSucceeded" } & ScheduleSucceededTrigger)
   | ({ type: "mediaSetUpdated" } & MediaSetUpdatedTrigger)
-  | ({ type: "time" } & TimeTrigger);
+  | ({ type: "time" } & TimeTrigger)
+  | ({ type: "manual" } & ManualTrigger);
 
 /**
  * Target the specified datasets along with all upstream datasets except the ignored datasets.

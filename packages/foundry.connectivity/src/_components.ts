@@ -906,10 +906,8 @@ export type Region = LooselyBrandedString<"Region">;
  * Log Safety: UNSAFE
  */
 export interface ReplaceFileImportRequest {
-  datasetRid: _Datasets.DatasetRid;
   importMode: FileImportMode;
   displayName: FileImportDisplayName;
-  branchName?: _Datasets.BranchName;
   subfolder?: string;
   fileImportFilters: Array<FileImportFilter>;
 }
@@ -918,11 +916,9 @@ export interface ReplaceFileImportRequest {
  * Log Safety: UNSAFE
  */
 export interface ReplaceTableImportRequest {
-  datasetRid: _Datasets.DatasetRid;
   importMode: TableImportMode;
   displayName: TableImportDisplayName;
   allowSchemaChanges?: TableImportAllowSchemaChanges;
-  branchName?: _Datasets.BranchName;
   config: ReplaceTableImportRequestTableImportConfig;
 }
 
