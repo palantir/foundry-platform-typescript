@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.10.0
+
+### Minor Changes
+
+- f2c6b67: Downgrade platform SDK to only contain endpoints in stable version of API Gateway
+
 ## 0.9.0
 
 ### Minor Changes

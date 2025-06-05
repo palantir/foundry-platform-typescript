@@ -1,5 +1,17 @@
 # @osdk/foundry.ontologies
 
+## 2.22.0
+
+### Minor Changes
+
+- f2c6b67: Downgrade platform SDK to only contain endpoints in stable version of API Gateway
+
+### Patch Changes
+
+- Updated dependencies [f2c6b67]
+  - @osdk/foundry.core@2.22.0
+  - @osdk/foundry.geo@2.22.0
+
 ## 2.21.0
 
 ### Minor Changes
