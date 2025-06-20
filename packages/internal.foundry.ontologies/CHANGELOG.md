@@ -1,5 +1,17 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.24.0
+
+### Minor Changes
+
+- bf77097: Generate new Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [bf77097]
+  - @osdk/internal.foundry.core@2.24.0
+  - @osdk/internal.foundry.geo@2.24.0
+
 ## 2.23.0
 
 ### Minor Changes

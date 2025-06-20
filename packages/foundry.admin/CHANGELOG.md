@@ -1,5 +1,16 @@
 # @osdk/foundry.admin
 
+## 2.24.0
+
+### Minor Changes
+
+- bf77097: Generate new Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [bf77097]
+  - @osdk/foundry.core@2.24.0
+
 ## 2.23.0
 
 ### Minor Changes

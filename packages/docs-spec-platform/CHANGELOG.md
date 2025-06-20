@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.12.0
+
+### Minor Changes
+
+- bf77097: Generate new Platform SDKs
+
 ## 0.11.0
 
 ### Minor Changes
