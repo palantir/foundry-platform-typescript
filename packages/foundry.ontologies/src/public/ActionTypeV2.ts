@@ -70,8 +70,9 @@ const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     actionType: _Ontologies.ActionTypeApiName,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ) => Promise<_Ontologies.ActionTypeV2>
-> = [0, "/v2/ontologies/{0}/actionTypes/{1}"];
+> = [0, "/v2/ontologies/{0}/actionTypes/{1}", 2];
 
 /**
  * Gets a specific action type with the given API name.
@@ -88,6 +89,8 @@ export function get(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     actionType: _Ontologies.ActionTypeApiName,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ]
 ): Promise<_Ontologies.ActionTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -97,8 +100,9 @@ const _getByRid: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     actionTypeRid: _Ontologies.ActionTypeRid,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ) => Promise<_Ontologies.ActionTypeV2>
-> = [0, "/v2/ontologies/{0}/actionTypes/byRid/{1}"];
+> = [0, "/v2/ontologies/{0}/actionTypes/byRid/{1}", 2];
 
 /**
  * Gets a specific action type with the given RID.
@@ -115,6 +119,8 @@ export function getByRid(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     actionTypeRid: _Ontologies.ActionTypeRid,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ]
 ): Promise<_Ontologies.ActionTypeV2> {
   return $foundryPlatformFetch($ctx, _getByRid, ...args);

@@ -74,8 +74,9 @@ export function get(
 const _getFullMetadata: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ) => Promise<_Ontologies.OntologyFullMetadata>
-> = [0, "/v2/ontologies/{0}/fullMetadata"];
+> = [0, "/v2/ontologies/{0}/fullMetadata", 2];
 
 /**
  * Get the full Ontology metadata. This includes the objects, links, actions, queries, and interfaces.
@@ -87,7 +88,11 @@ const _getFullMetadata: $FoundryPlatformMethod<
  */
 export function getFullMetadata(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [ontology: _Ontologies.OntologyIdentifier]
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ]
 ): Promise<_Ontologies.OntologyFullMetadata> {
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);
 }
@@ -96,7 +101,10 @@ const _loadMetadata: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadOntologyMetadataRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ) => Promise<_Ontologies.OntologyFullMetadata>
 > = [1, "/v2/ontologies/{0}/metadata", 3];
 
@@ -113,7 +121,10 @@ export function loadMetadata(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadOntologyMetadataRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ]
 ): Promise<_Ontologies.OntologyFullMetadata> {
   return $foundryPlatformFetch($ctx, _loadMetadata, ...args);

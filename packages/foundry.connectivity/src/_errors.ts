@@ -343,6 +343,20 @@ export interface GetConfigurationPermissionDenied {
 }
 
 /**
+ * The hostname should not include a protocol (e.g., https://) or port number (e.g., :443).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface HostNameCannotHaveProtocolOrPort {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "HostNameCannotHaveProtocolOrPort";
+  errorInstanceId: string;
+  parameters: {
+    hostName: unknown;
+  };
+}
+
+/**
  * The parent folder for the specified connection could not be found.
  *
  * Log Safety: SAFE

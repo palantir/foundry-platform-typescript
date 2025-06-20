@@ -152,3 +152,42 @@ export function upload(
 ): Promise<_Core.MediaReference> {
   return $foundryPlatformFetch($ctx, _upload, ...args);
 }
+
+const _uploadMedia: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    actionType: _Ontologies.ActionTypeApiName,
+    $body: Blob,
+    $queryParams?: {
+      mediaItemPath?: _Core.MediaItemPath | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Core.MediaReference>
+> = [1, "/v2/ontologies/{0}/actions/{1}/media/upload", 3, "*/*"];
+
+/**
+ * Uploads a media item for use by the specified action. If the media item isn't persisted by the associated action within 1 hour, the item will be deleted.
+ *
+ * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
+ *
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:ontologies-write`.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read, api:ontologies-write]
+ * URL: /v2/ontologies/{ontology}/actions/{actionType}/media/upload
+ */
+export function uploadMedia(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    actionType: _Ontologies.ActionTypeApiName,
+    $body: Blob,
+    $queryParams?: {
+      mediaItemPath?: _Core.MediaItemPath | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Core.MediaReference> {
+  return $foundryPlatformFetch($ctx, _uploadMedia, ...args);
+}

@@ -131,6 +131,7 @@ export type ConnectionConfiguration =
   | ({ type: "s3" } & S3ConnectionConfiguration)
   | ({ type: "rest" } & RestConnectionConfiguration)
   | ({ type: "snowflake" } & SnowflakeConnectionConfiguration)
+  | ({ type: "databricks" } & DatabricksConnectionConfiguration)
   | ({ type: "jdbc" } & JdbcConnectionConfiguration);
 
 /**
@@ -211,7 +212,35 @@ export type CreateConnectionRequestConnectionConfiguration =
   | ({
     type: "snowflake";
   } & CreateConnectionRequestSnowflakeConnectionConfiguration)
+  | ({
+    type: "databricks";
+  } & CreateConnectionRequestDatabricksConnectionConfiguration)
   | ({ type: "jdbc" } & CreateConnectionRequestJdbcConnectionConfiguration);
+
+/**
+ * The method of authentication for connecting to an external Databricks system.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export type CreateConnectionRequestDatabricksAuthenticationMode =
+  | ({
+    type: "workflowIdentityFederation";
+  } & CreateConnectionRequestWorkflowIdentityFederation)
+  | ({ type: "oauthM2M" } & CreateConnectionRequestOauthMachineToMachineAuth)
+  | ({
+    type: "personalAccessToken";
+  } & CreateConnectionRequestPersonalAccessToken)
+  | ({ type: "basic" } & CreateConnectionRequestBasicCredentials);
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface CreateConnectionRequestDatabricksConnectionConfiguration {
+  hostName: string;
+  httpPath: string;
+  jdbcProperties: Record<string, string>;
+  authentication: CreateConnectionRequestDatabricksAuthenticationMode;
+}
 
 /**
  * Log Safety: SAFE
@@ -243,6 +272,21 @@ export interface CreateConnectionRequestJdbcConnectionConfiguration {
   driverClass: string;
   jdbcProperties: Record<string, string>;
   url: string;
+}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface CreateConnectionRequestOauthMachineToMachineAuth {
+  clientID: string;
+  clientSecret: CreateConnectionRequestEncryptedProperty;
+}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface CreateConnectionRequestPersonalAccessToken {
+  personalAccessToken: CreateConnectionRequestEncryptedProperty;
 }
 
 /**
@@ -375,6 +419,14 @@ export interface CreateConnectionRequestStsRoleConfiguration {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateConnectionRequestWorkflowIdentityFederation {
+  audience: string;
+  servicePrincipalApplicationId?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateFileImportRequest {
   datasetRid: _Datasets.DatasetRid;
   importMode: FileImportMode;
@@ -394,6 +446,14 @@ export interface CreateTableImportRequest {
   allowSchemaChanges?: TableImportAllowSchemaChanges;
   branchName?: _Datasets.BranchName;
   config: CreateTableImportRequestTableImportConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestDatabricksTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
 }
 
 /**
@@ -491,6 +551,9 @@ export interface CreateTableImportRequestStringColumnInitialIncrementalState {
  */
 export type CreateTableImportRequestTableImportConfig =
   | ({
+    type: "databricksImportConfig";
+  } & CreateTableImportRequestDatabricksTableImportConfig)
+  | ({
     type: "jdbcImportConfig";
   } & CreateTableImportRequestJdbcTableImportConfig)
   | ({
@@ -545,6 +608,41 @@ export type CreateTableImportRequestTableImportInitialIncrementalState =
 export interface CreateTableImportRequestTimestampColumnInitialIncrementalState {
   currentValue: string;
   columnName: string;
+}
+
+/**
+ * The method of authentication for connecting to an external Databricks system.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export type DatabricksAuthenticationMode =
+  | ({ type: "workflowIdentityFederation" } & WorkflowIdentityFederation)
+  | ({ type: "oauthM2M" } & OauthMachineToMachineAuth)
+  | ({ type: "personalAccessToken" } & PersonalAccessToken)
+  | ({ type: "basic" } & BasicCredentials);
+
+/**
+   * The configuration needed to connect to a Databricks external system.
+Refer to the official Databricks documentation
+for more information on how to obtain connection details for your system.
+   *
+   * Log Safety: DO_NOT_LOG
+   */
+export interface DatabricksConnectionConfiguration {
+  hostName: string;
+  httpPath: string;
+  authentication: DatabricksAuthenticationMode;
+  jdbcProperties: Record<string, string>;
+}
+
+/**
+ * The table import configuration for a Databricks connection.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DatabricksTableImportConfig {
+  query: TableImportQuery;
+  initialIncrementalState?: TableImportInitialIncrementalState;
 }
 
 /**
@@ -857,6 +955,18 @@ export type NetworkEgressPolicyRid = LooselyBrandedString<
 >;
 
 /**
+   * Authenticate as a service principal using OAuth. Create a service principal in Databricks and generate an OAuth secret to obtain a client ID and secret.
+Read the official Databricks documentation for more information about OAuth machine-to-machine
+authentication.
+   *
+   * Log Safety: DO_NOT_LOG
+   */
+export interface OauthMachineToMachineAuth {
+  clientID: string;
+  clientSecret: EncryptedProperty;
+}
+
+/**
  * The import configuration for an Oracle Database 21 connection.
  *
  * Log Safety: UNSAFE
@@ -864,6 +974,16 @@ export type NetworkEgressPolicyRid = LooselyBrandedString<
 export interface OracleTableImportConfig {
   query: TableImportQuery;
   initialIncrementalState?: TableImportInitialIncrementalState;
+}
+
+/**
+   * Authenticate as a user or service principal using a personal access token.
+Read the official Databricks documentation for information on generating a personal access token.
+   *
+   * Log Safety: DO_NOT_LOG
+   */
+export interface PersonalAccessToken {
+  personalAccessToken: EncryptedProperty;
 }
 
 /**
@@ -920,6 +1040,14 @@ export interface ReplaceTableImportRequest {
   displayName: TableImportDisplayName;
   allowSchemaChanges?: TableImportAllowSchemaChanges;
   config: ReplaceTableImportRequestTableImportConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestDatabricksTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
 }
 
 /**
@@ -1016,6 +1144,9 @@ export interface ReplaceTableImportRequestStringColumnInitialIncrementalState {
  * Log Safety: UNSAFE
  */
 export type ReplaceTableImportRequestTableImportConfig =
+  | ({
+    type: "databricksImportConfig";
+  } & ReplaceTableImportRequestDatabricksTableImportConfig)
   | ({
     type: "jdbcImportConfig";
   } & ReplaceTableImportRequestJdbcTableImportConfig)
@@ -1301,6 +1432,7 @@ export type TableImportAllowSchemaChanges = boolean;
  * Log Safety: UNSAFE
  */
 export type TableImportConfig =
+  | ({ type: "databricksImportConfig" } & DatabricksTableImportConfig)
   | ({ type: "jdbcImportConfig" } & JdbcTableImportConfig)
   | ({
     type: "microsoftSqlServerImportConfig";
@@ -1393,3 +1525,19 @@ export interface UpdateSecretsForConnectionRequest {
  * Log Safety: SAFE
  */
 export type UriScheme = "HTTP" | "HTTPS";
+
+/**
+   * Authenticate as a service principal using workload identity federation. This is the recommended way to connect to Databricks.
+Workload identity federation allows workloads running in Foundry to access Databricks APIs without the need for Databricks secrets.
+Refer to our OIDC documentation for an overview of how OpenID Connect is supported in Foundry.
+A service principal federation policy must exist in Databricks to allow Foundry to act as an identity provider.
+Refer to the official documentation for guidance.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface WorkflowIdentityFederation {
+  servicePrincipalApplicationId?: string;
+  issuerUrl: string;
+  audience: string;
+  subject: ConnectionRid;
+}

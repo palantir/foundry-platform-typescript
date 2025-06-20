@@ -163,6 +163,7 @@ export type {
   FilterValue,
   FloatType,
   FolderRid,
+  FoundryBranch,
   FoundryLiveDeployment,
   FunctionRid,
   FunctionVersion,

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -36,6 +37,7 @@ const _apply: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.SyncApplyActionResponseV2>
 > = [1, "/v2/ontologies/{0}/actions/{1}/apply", 3];
@@ -66,6 +68,7 @@ export function apply(
     $queryParams?: {
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.SyncApplyActionResponseV2> {
@@ -80,6 +83,7 @@ const _applyAsync: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.AsyncApplyActionResponseV2>
 > = [1, "/v2/ontologies/{0}/actions/{1}/applyAsync", 3];
@@ -110,6 +114,7 @@ export function applyAsync(
     $queryParams?: {
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.AsyncApplyActionResponseV2> {
@@ -124,6 +129,7 @@ const _applyBatch: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.BatchApplyActionResponseV2>
 > = [1, "/v2/ontologies/{0}/actions/{1}/applyBatch", 3];
@@ -156,6 +162,7 @@ export function applyBatch(
     $queryParams?: {
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.BatchApplyActionResponseV2> {
