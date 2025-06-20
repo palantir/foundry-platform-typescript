@@ -71,8 +71,9 @@ const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ) => Promise<_Ontologies.ObjectTypeV2>
-> = [0, "/v2/ontologies/{0}/objectTypes/{1}"];
+> = [0, "/v2/ontologies/{0}/objectTypes/{1}", 2];
 
 /**
  * Gets a specific object type with the given API name.
@@ -89,6 +90,8 @@ export function get(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ]
 ): Promise<_Ontologies.ObjectTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -98,7 +101,10 @@ const _getFullMetadata: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ) => Promise<_Ontologies.ObjectTypeFullMetadata>
 > = [0, "/v2/ontologies/{0}/objectTypes/{1}/fullMetadata", 2];
 
@@ -118,7 +124,10 @@ export function getFullMetadata(
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ]
 ): Promise<_Ontologies.ObjectTypeFullMetadata> {
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);
@@ -129,6 +138,7 @@ const _listOutgoingLinkTypes: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -153,6 +163,7 @@ export function listOutgoingLinkTypes(
     objectType: _Ontologies.ObjectTypeApiName,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -166,8 +177,9 @@ const _getOutgoingLinkType: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
     linkType: _Ontologies.LinkTypeApiName,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ) => Promise<_Ontologies.LinkTypeSideV2>
-> = [0, "/v2/ontologies/{0}/objectTypes/{1}/outgoingLinkTypes/{2}"];
+> = [0, "/v2/ontologies/{0}/objectTypes/{1}/outgoingLinkTypes/{2}", 2];
 
 /**
  * Get an outgoing link for an object type.
@@ -186,6 +198,8 @@ export function getOutgoingLinkType(
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
     linkType: _Ontologies.LinkTypeApiName,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ]
 ): Promise<_Ontologies.LinkTypeSideV2> {
   return $foundryPlatformFetch($ctx, _getOutgoingLinkType, ...args);

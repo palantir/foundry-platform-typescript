@@ -494,6 +494,13 @@ export interface FloatType {}
 export type FolderRid = LooselyBrandedString<"FolderRid">;
 
 /**
+ * The Foundry branch identifier, specifically its rid. Different identifier types may be used in the future as values.
+ *
+ * Log Safety: SAFE
+ */
+export type FoundryBranch = LooselyBrandedString<"FoundryBranch">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface FoundryLiveDeployment {

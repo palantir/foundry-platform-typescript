@@ -592,6 +592,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.uploadMediaContent": {
       "variables": {},
     },
+    "v2.uploadMedia": {
+      "variables": {},
+    },
     "v2.getFirstPoint": {
       "variables": {},
     },

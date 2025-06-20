@@ -77,7 +77,10 @@ const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ) => Promise<_Ontologies.InterfaceType>
 > = [0, "/v2/ontologies/{0}/interfaceTypes/{1}", 2];
 
@@ -102,7 +105,10 @@ export function get(
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ]
 ): Promise<_Ontologies.InterfaceType> {
   return $foundryPlatformFetch($ctx, _get, ...args);

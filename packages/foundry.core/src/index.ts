@@ -73,6 +73,7 @@ export type {
   FilterUuidType,
   FloatType,
   FolderRid,
+  FoundryBranch,
   FoundryLiveDeployment,
   FullRowChangeDataCaptureConfiguration,
   FuzzyV2,
