@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.24.0
+
+### Minor Changes
+
+- bf77097: Generate new Platform SDKs
+
 ## 2.23.0
 
 ### Minor Changes
