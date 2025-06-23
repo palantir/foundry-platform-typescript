@@ -106,6 +106,8 @@ export type ApiSnippet = BaseSnippet & {
     headers: Record<string, string>;
   };
   body?: string;
+  /** The option to use for the request body, e.g. "--data-raw" vs "--data-binary". Defaults to "raw". */
+  bodyOption?: "raw" | "binary";
   response?: string;
 };
 
