@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.4.0
+
+### Minor Changes
+
+- cbb2222: Stop attaching multiple headers for binary data
+
 ## 1.3.0
 
 ### Minor Changes

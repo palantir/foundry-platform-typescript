@@ -1,5 +1,15 @@
 # @osdk/foundry.orchestration
 
+## 2.25.0
+
+### Patch Changes
+
+- Updated dependencies [cbb2222]
+  - @osdk/shared.net.platformapi@1.4.0
+  - @osdk/foundry.core@2.25.0
+  - @osdk/foundry.datasets@2.25.0
+  - @osdk/foundry.filesystem@2.25.0
+
 ## 2.24.0
 
 ### Minor Changes
