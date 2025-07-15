@@ -1,5 +1,12 @@
 # @osdk/internal.foundry.geo
 
+## 2.25.0
+
+### Patch Changes
+
+- Updated dependencies [cbb2222]
+  - @osdk/shared.net.platformapi@1.4.0
+
 ## 2.24.0
 
 ### Minor Changes
