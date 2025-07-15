@@ -119,7 +119,11 @@ async function apiFetch(
   headersInit.set("Accept", responseMediaType ?? "application/json");
 
   Object.entries(headers || {}).forEach(([key, value]) => {
-    if (value != null) {
+    if (key === "Content-Type" && typeof value === "string") {
+      headersInit.set("Content-Type", value);
+    } else if (key === "Accept" && typeof value === "string") {
+      headersInit.set("Accept", value);
+    } else if (value != null) {
       headersInit.append(key, value.toString());
     }
   });
