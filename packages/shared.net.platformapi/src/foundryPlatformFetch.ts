@@ -118,8 +118,20 @@ async function apiFetch(
   headersInit.set("Content-Type", requestMediaType ?? "application/json");
   headersInit.set("Accept", responseMediaType ?? "application/json");
 
+  if (headers) {
+    const { "Content-Type": contentTypeHeader, Accept: acceptHeader } = headers;
+
+    if (typeof acceptHeader === "string") {
+      headersInit.set("Accept", acceptHeader);
+    }
+  }
+
   Object.entries(headers || {}).forEach(([key, value]) => {
-    if (value != null) {
+    if (key === "Content-Type" && typeof value === "string") {
+      headersInit.set("Content-Type", value);
+    } else if (key === "Accept" && typeof value === "string") {
+      headersInit.set("Accept", value);
+    } else if (value != null) {
       headersInit.append(key, value.toString());
     }
   });
