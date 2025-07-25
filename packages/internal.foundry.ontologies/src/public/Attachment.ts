@@ -44,9 +44,6 @@ const _upload: $FoundryPlatformMethod<
  * a biweekly basis.
  * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-write`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-write]
@@ -76,9 +73,6 @@ const _read: $FoundryPlatformMethod<
 /**
  * Get the content of an attachment.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -97,9 +91,6 @@ const _get: $FoundryPlatformMethod<
 
 /**
  * Get the metadata of an attachment.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *

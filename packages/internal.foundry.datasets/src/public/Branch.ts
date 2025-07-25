@@ -39,8 +39,6 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a branch on an existing dataset. A branch may optionally point to a (committed) transaction.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
- *
  * @public
  *
  * Required Scopes: [api:datasets-write]
@@ -66,8 +64,6 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get a Branch of a Dataset.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
- *
  * @public
  *
  * Required Scopes: [api:datasets-read]
@@ -89,8 +85,6 @@ const _deleteBranch: $FoundryPlatformMethod<
 
 /**
  * Deletes the Branch with the given BranchId.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
  *
  * @public
  *
@@ -116,8 +110,6 @@ const _list: $FoundryPlatformMethod<
 
 /**
  * Lists the Branches of a Dataset.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
  *
  * @public
  *

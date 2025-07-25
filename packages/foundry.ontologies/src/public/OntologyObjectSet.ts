@@ -39,9 +39,6 @@ const _createTemporary: $FoundryPlatformMethod<
 /**
  * Creates a temporary `ObjectSet` from the given definition. This `ObjectSet` expires after one hour.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-write`.
- *
  * @beta
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
@@ -67,8 +64,6 @@ const _get: $FoundryPlatformMethod<
 /**
  * Gets the definition of the `ObjectSet` with the given RID.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @alpha
  *
  * Required Scopes: []
@@ -91,6 +86,7 @@ const _load: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetResponseV2>
 > = [1, "/v2/ontologies/{0}/objectSets/loadObjects", 3];
@@ -105,8 +101,6 @@ const _load: $FoundryPlatformMethod<
  *
  * Vector properties will not be returned unless included in the `select` parameter.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -120,6 +114,7 @@ export function load(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.LoadObjectSetResponseV2> {
@@ -133,6 +128,7 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetV2MultipleObjectTypesResponse>
@@ -153,8 +149,6 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
  *
  * Vector properties will not be returned unless included in the `select` parameter.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @beta
  *
  * Required Scopes: [api:ontologies-read]
@@ -168,6 +162,7 @@ export function loadMultipleObjectTypes(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -182,6 +177,7 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetV2ObjectsOrInterfacesResponse>
@@ -204,8 +200,6 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
  *
  * Vector properties will not be returned unless included in the `select` parameter.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @beta
  *
  * Required Scopes: [api:ontologies-read]
@@ -219,6 +213,7 @@ export function loadObjectsOrInterfaces(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -233,14 +228,13 @@ const _aggregate: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.AggregateObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/objectSets/aggregate", 3];
 
 /**
  * Aggregates the ontology objects present in the `ObjectSet` from the provided object set definition.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -255,6 +249,7 @@ export function aggregate(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {

@@ -1012,6 +1012,13 @@ export interface CipherTextType {
 }
 
 /**
+ * A measurement of compute usage expressed in compute-seconds. For more information, please refer to the Usage types documentation.
+ *
+ * Log Safety: SAFE
+ */
+export type ComputeSeconds = number;
+
+/**
 * @deprecated Use `ContainsAllTermsInOrderPrefixLastTerm` in the `internal.foundry.ontologies` package
 *
    * Returns objects where the specified field contains all of the terms in the order provided,
@@ -1766,6 +1773,15 @@ export interface GtQueryV2 {
  * Log Safety: UNSAFE
  */
 export type Icon = { type: "blueprint" } & BlueprintIcon;
+
+/**
+   * Indicates whether the response should include compute usage details for the request. This feature is currently
+only available for OSDK applications.
+Note: Enabling this flag may slow down query performance and is not recommended for use in production.
+   *
+   * Log Safety: SAFE
+   */
+export type IncludeComputeUsage = boolean;
 
 /**
 * @deprecated Use `InQuery` in the `internal.foundry.ontologies` package

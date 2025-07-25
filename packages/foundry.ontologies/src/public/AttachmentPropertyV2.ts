@@ -35,17 +35,14 @@ const _getAttachment: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.AttachmentMetadataResponse>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}", 2];
 
 /**
  * Get the metadata of attachments parented to the given object.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -61,8 +58,8 @@ export function getAttachment(
     property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.AttachmentMetadataResponse> {
@@ -77,17 +74,14 @@ const _getAttachmentByRid: $FoundryPlatformMethod<
     property: _Ontologies.PropertyApiName,
     attachmentRid: _Ontologies.AttachmentRid,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.AttachmentV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}/{4}", 2];
 
 /**
  * Get the metadata of a particular attachment in an attachment list.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -104,8 +98,8 @@ export function getAttachmentByRid(
     attachmentRid: _Ontologies.AttachmentRid,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.AttachmentV2> {
@@ -119,8 +113,8 @@ const _readAttachment: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -133,9 +127,6 @@ const _readAttachment: $FoundryPlatformMethod<
 
 /**
  * Get the content of an attachment.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -151,8 +142,8 @@ export function readAttachment(
     property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<Response> {
@@ -167,8 +158,8 @@ const _readAttachmentByRid: $FoundryPlatformMethod<
     property: _Ontologies.PropertyApiName,
     attachmentRid: _Ontologies.AttachmentRid,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -183,9 +174,6 @@ const _readAttachmentByRid: $FoundryPlatformMethod<
  * Get the content of an attachment by its RID.
  *
  * The RID must exist in the attachment array of the property.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -202,8 +190,8 @@ export function readAttachmentByRid(
     attachmentRid: _Ontologies.AttachmentRid,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<Response> {

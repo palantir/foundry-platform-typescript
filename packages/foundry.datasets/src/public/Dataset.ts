@@ -144,3 +144,66 @@ export function readTable(
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _readTable, ...args);
 }
+
+const _getSchema: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      endTransactionRid?: _Datasets.TransactionRid | undefined;
+      versionId?: _Core.VersionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Datasets.GetDatasetSchemaResponse>
+> = [0, "/v2/datasets/{0}/getSchema", 2];
+
+/**
+ * Gets a dataset's schema. If no `endTransactionRid` is provided, the latest committed version will be used.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/getSchema
+ */
+export function getSchema(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      endTransactionRid?: _Datasets.TransactionRid | undefined;
+      versionId?: _Core.VersionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Datasets.GetDatasetSchemaResponse> {
+  return $foundryPlatformFetch($ctx, _getSchema, ...args);
+}
+
+const _putSchema: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    $body: _Datasets.PutDatasetSchemaRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Datasets.GetDatasetSchemaResponse>
+> = [2, "/v2/datasets/{0}/putSchema", 3];
+
+/**
+ * Adds a schema on an existing dataset using a PUT request.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:datasets-write]
+ * URL: /v2/datasets/{datasetRid}/putSchema
+ */
+export function putSchema(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+    $body: _Datasets.PutDatasetSchemaRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Datasets.GetDatasetSchemaResponse> {
+  return $foundryPlatformFetch($ctx, _putSchema, ...args);
+}

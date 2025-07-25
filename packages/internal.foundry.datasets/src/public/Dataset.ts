@@ -36,8 +36,6 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new Dataset. A default branch - `master` for most enrollments - will be created on the Dataset.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
- *
  * @public
  *
  * Required Scopes: [api:datasets-write]
@@ -56,8 +54,6 @@ const _get: $FoundryPlatformMethod<
 
 /**
  * Gets the Dataset with the given DatasetRid.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
  *
  * @public
  *
@@ -89,8 +85,6 @@ const _read: $FoundryPlatformMethod<
  * Gets the content of a dataset as a table in the specified format.
  *
  * This endpoint currently does not support views (Virtual datasets composed of other datasets).
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
  *
  * @public
  *

@@ -295,6 +295,14 @@ export interface RemoveResourceRolesRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface ReplaceProjectRequest {
+  displayName: ResourceDisplayName;
+  description?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface Resource {
   rid: ResourceRid;
   displayName: ResourceDisplayName;
@@ -397,6 +405,7 @@ export type ResourceType =
   | "LOGIC_FLOWS_CONNECTED_FLOW"
   | "MACHINERY_DOCUMENT"
   | "MAGRITTE_AGENT"
+  | "MAGRITTE_DRIVER"
   | "MAGRITTE_SOURCE"
   | "MARKETPLACE_BLOCK_SET_INSTALLATION"
   | "MARKETPLACE_BLOCK_SET_REPO"

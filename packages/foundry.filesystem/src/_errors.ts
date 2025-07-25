@@ -668,6 +668,20 @@ export interface RemoveResourceRolesPermissionDenied {
 }
 
 /**
+ * Could not replace the Project.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceProjectPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceProjectPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    projectRid: unknown;
+  };
+}
+
+/**
  * The provided resource name is already in use by another resource in the same folder.
  *
  * Log Safety: UNSAFE

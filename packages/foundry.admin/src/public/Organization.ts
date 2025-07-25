@@ -29,6 +29,31 @@ import type * as _Admin from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _Admin.CreateOrganizationRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.Organization>
+> = [1, "/v2/admin/organizations", 3];
+
+/**
+ * Creates a new Organization.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/organizations
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Admin.CreateOrganizationRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.Organization> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     organizationRid: _Core.OrganizationRid,

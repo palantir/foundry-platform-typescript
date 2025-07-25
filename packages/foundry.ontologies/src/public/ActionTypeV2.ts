@@ -33,6 +33,7 @@ const _list: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -45,8 +46,6 @@ const _list: $FoundryPlatformMethod<
  * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
  * results available, at least one result will be present in the response.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -58,6 +57,7 @@ export function list(
     ontology: _Ontologies.OntologyIdentifier,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -76,8 +76,6 @@ const _get: $FoundryPlatformMethod<
 
 /**
  * Gets a specific action type with the given API name.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -106,8 +104,6 @@ const _getByRid: $FoundryPlatformMethod<
 
 /**
  * Gets a specific action type with the given RID.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *

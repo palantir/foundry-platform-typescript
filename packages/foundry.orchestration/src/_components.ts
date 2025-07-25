@@ -363,6 +363,20 @@ export interface GetJobsBatchResponse {
 /**
  * Log Safety: SAFE
  */
+export interface GetSchedulesBatchRequestElement {
+  scheduleRid: _Core.ScheduleRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetSchedulesBatchResponse {
+  data: Record<_Core.ScheduleRid, Schedule>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface Job {
   rid: _Core.JobRid;
   buildRid: _Core.BuildRid;

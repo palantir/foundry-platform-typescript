@@ -88,6 +88,34 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _updateExportSettings: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: _Connectivity.UpdateExportSettingsForConnectionRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/connectivity/connections/{0}/updateExportSettings", 3];
+
+/**
+ * Updates the [export settings on the Connection.](https://www.palantir.com/docs/foundry/data-connection/export-overview/#enable-exports-for-source)
+ * Only users with Information Security Officer role can modify the export settings.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-connection-write]
+ * URL: /v2/connectivity/connections/{connectionRid}/updateExportSettings
+ */
+export function updateExportSettings(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: _Connectivity.UpdateExportSettingsForConnectionRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _updateExportSettings, ...args);
+}
+
 const _updateSecrets: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,

@@ -35,8 +35,8 @@ const _execute: $FoundryPlatformMethod<
     $body: _Ontologies.ExecuteQueryRequest,
     $queryParams?: {
       version?: _Ontologies.FunctionVersion | undefined;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.ExecuteQueryResponse>
 > = [1, "/v2/ontologies/{0}/queries/{1}/execute", 3];
@@ -45,9 +45,6 @@ const _execute: $FoundryPlatformMethod<
  * Executes a Query using the given parameters.
  *
  * Optional parameters do not need to be supplied.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -62,8 +59,8 @@ export function execute(
     $body: _Ontologies.ExecuteQueryRequest,
     $queryParams?: {
       version?: _Ontologies.FunctionVersion | undefined;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.ExecuteQueryResponse> {

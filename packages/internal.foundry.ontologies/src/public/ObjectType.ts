@@ -46,8 +46,6 @@ const _list: $FoundryPlatformMethod<
  * more results available, at least one result will be present in the
  * response.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -77,8 +75,6 @@ const _get: $FoundryPlatformMethod<
 /**
  * Gets a specific object type with the given API name.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -107,9 +103,6 @@ const _listOutgoingLinkTypes: $FoundryPlatformMethod<
 
 /**
  * List the outgoing links for an object type.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -141,9 +134,6 @@ const _getOutgoingLinkType: $FoundryPlatformMethod<
 
 /**
  * Get an outgoing link for an object type.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *

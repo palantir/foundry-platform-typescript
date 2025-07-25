@@ -28,6 +28,7 @@ export type {
   Connection,
   ConnectionConfiguration,
   ConnectionDisplayName,
+  ConnectionExportSettings,
   ConnectionRid,
   CreateConnectionRequest,
   CreateConnectionRequestAsPlaintextValue,
@@ -100,6 +101,7 @@ export type {
   HeaderApiKey,
   IntegerColumnInitialIncrementalState,
   JdbcConnectionConfiguration,
+  JdbcProperties,
   JdbcTableImportConfig,
   ListFileImportsResponse,
   ListTableImportsResponse,
@@ -160,6 +162,7 @@ export type {
   TableImportQuery,
   TableImportRid,
   TimestampColumnInitialIncrementalState,
+  UpdateExportSettingsForConnectionRequest,
   UpdateSecretsForConnectionRequest,
   UriScheme,
   WorkflowIdentityFederation,
@@ -198,6 +201,7 @@ export type {
   TableImportNotFound,
   TableImportNotSupportedForConnection,
   TableImportTypeNotSupported,
+  UpdateExportSettingsForConnectionPermissionDenied,
   UpdateSecretsForConnectionPermissionDenied,
 } from "./_errors.js";
 export * as Connections from "./public/Connection.js";

@@ -38,10 +38,11 @@ const _list: $FoundryPlatformMethod<
       pageToken?: _Core.PageToken | undefined;
       select: Array<_Ontologies.SelectedPropertyApiName>;
       orderBy?: _Ontologies.OrderBy | undefined;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.ListObjectsResponseV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}", 2];
@@ -61,8 +62,6 @@ const _list: $FoundryPlatformMethod<
  *
  * Note that null value properties will not be returned.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -79,10 +78,11 @@ export function list(
       pageToken?: _Core.PageToken | undefined;
       select: Array<_Ontologies.SelectedPropertyApiName>;
       orderBy?: _Ontologies.OrderBy | undefined;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.ListObjectsResponseV2> {
@@ -99,14 +99,13 @@ const _get: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.OntologyObjectV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}", 2];
 
 /**
  * Gets a specific object with the given primary key.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -125,6 +124,7 @@ export function get(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.OntologyObjectV2> {
@@ -136,16 +136,15 @@ const _count: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.CountObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/objects/{1}/count", 2];
 
 /**
  * Returns a count of the objects of the given object type.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @alpha
  *
@@ -159,8 +158,9 @@ export function count(
     objectType: _Ontologies.ObjectTypeApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.CountObjectsResponseV2> {
@@ -173,8 +173,9 @@ const _search: $FoundryPlatformMethod<
     objectType: _Ontologies.ObjectTypeApiName,
     $body: _Ontologies.SearchObjectsRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.SearchObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/objects/{1}/search", 3];
@@ -204,8 +205,6 @@ const _search: $FoundryPlatformMethod<
  * Queries can be at most three levels deep. By default, terms are separated by whitespace or punctuation (`?!,:;-[](){}'"~`). Periods (`.`) on their own are ignored.
  * Partial terms are not matched by terms filters except where explicitly noted.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -218,8 +217,9 @@ export function search(
     objectType: _Ontologies.ObjectTypeApiName,
     $body: _Ontologies.SearchObjectsRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.SearchObjectsResponseV2> {
@@ -232,16 +232,15 @@ const _aggregate: $FoundryPlatformMethod<
     objectType: _Ontologies.ObjectTypeApiName,
     $body: _Ontologies.AggregateObjectsRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.AggregateObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/objects/{1}/aggregate", 3];
 
 /**
  * Perform functions on object fields in the specified ontology and object type.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -255,8 +254,9 @@ export function aggregate(
     objectType: _Ontologies.ObjectTypeApiName,
     $body: _Ontologies.AggregateObjectsRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {

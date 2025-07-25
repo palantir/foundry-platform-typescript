@@ -33,6 +33,7 @@ const _list: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -46,8 +47,6 @@ const _list: $FoundryPlatformMethod<
  * more results available, at least one result will be present in the
  * response.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -59,6 +58,7 @@ export function list(
     ontology: _Ontologies.OntologyIdentifier,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -77,8 +77,6 @@ const _get: $FoundryPlatformMethod<
 
 /**
  * Gets a specific object type with the given API name.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -103,6 +101,8 @@ const _getFullMetadata: $FoundryPlatformMethod<
     objectType: _Ontologies.ObjectTypeApiName,
     $queryParams?: {
       preview?: _Core.PreviewMode | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.ObjectTypeFullMetadata>
@@ -110,8 +110,6 @@ const _getFullMetadata: $FoundryPlatformMethod<
 
 /**
  * Gets the full metadata for a specific object type with the given API name.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @alpha
  *
@@ -126,6 +124,8 @@ export function getFullMetadata(
 
     $queryParams?: {
       preview?: _Core.PreviewMode | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]
@@ -147,9 +147,6 @@ const _listOutgoingLinkTypes: $FoundryPlatformMethod<
 
 /**
  * List the outgoing links for an object type.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -183,9 +180,6 @@ const _getOutgoingLinkType: $FoundryPlatformMethod<
 
 /**
  * Get an outgoing link for an object type.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *

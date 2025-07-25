@@ -135,3 +135,30 @@ export function getBatch(
 ): Promise<_Admin.GetMarkingsBatchResponse> {
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
+
+const _replace: $FoundryPlatformMethod<
+  (
+    markingId: _Core.MarkingId,
+    $body: _Admin.ReplaceMarkingRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.Marking>
+> = [2, "/v2/admin/markings/{0}", 3];
+
+/**
+ * Replace the Marking with the specified id.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/markings/{markingId}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    markingId: _Core.MarkingId,
+    $body: _Admin.ReplaceMarkingRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.Marking> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}

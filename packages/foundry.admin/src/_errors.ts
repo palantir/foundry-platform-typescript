@@ -19,6 +19,20 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Could not add the EnrollmentRoleAssignment.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddEnrollmentRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddEnrollmentRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
+  };
+}
+
+/**
  * Could not add the GroupMember.
  *
  * Log Safety: SAFE
@@ -129,21 +143,6 @@ export interface CreateMarkingMissingInitialAdminRole {
 }
 
 /**
- * A marking with the same name already exists in the category.
- *
- * Log Safety: UNSAFE
- */
-export interface CreateMarkingNameInCategoryAlreadyExists {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "CreateMarkingNameInCategoryAlreadyExists";
-  errorInstanceId: string;
-  parameters: {
-    displayName: unknown;
-    categoryId: unknown;
-  };
-}
-
-/**
  * Could not create the Marking.
  *
  * Log Safety: SAFE
@@ -151,6 +150,30 @@ export interface CreateMarkingNameInCategoryAlreadyExists {
 export interface CreateMarkingPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateMarkingPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * At least one organization:administrator role grant must be provided when creating a organization.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateOrganizationMissingInitialAdminRole {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreateOrganizationMissingInitialAdminRole";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not create the Organization.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateOrganizationPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateOrganizationPermissionDenied";
   errorInstanceId: string;
   parameters: {};
 }
@@ -195,6 +218,18 @@ export interface EnrollmentNotFound {
   parameters: {
     enrollmentRid: unknown;
   };
+}
+
+/**
+ * One of the provided role IDs was not found.
+ *
+ * Log Safety: SAFE
+ */
+export interface EnrollmentRoleNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "EnrollmentRoleNotFound";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -306,6 +341,20 @@ export interface GetUserProviderInfoPermissionDenied {
 }
 
 /**
+ * The given GroupMembershipExpirationPolicy could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface GroupMembershipExpirationPolicyNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "GroupMembershipExpirationPolicyNotFound";
+  errorInstanceId: string;
+  parameters: {
+    groupId: unknown;
+  };
+}
+
+/**
  * A group with this name already exists
  *
  * Log Safety: UNSAFE
@@ -358,9 +407,9 @@ export interface InvalidGroupMembershipExpiration {
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
-    expirationProvided: unknown;
+    earliestExpiration: unknown;
     maximumDuration: unknown;
-    latestExpiration: unknown;
+    maximumValue: unknown;
   };
 }
 
@@ -415,6 +464,20 @@ export interface ListAvailableRolesOrganizationPermissionDenied {
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
+  };
+}
+
+/**
+ * The provided token does not have permission to list assigned roles for this enrollment.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListEnrollmentRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListEnrollmentRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
   };
 }
 
@@ -489,6 +552,33 @@ export interface MarkingCategoryNotFound {
 }
 
 /**
+ * A marking with the same name already exists in the category.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarkingNameInCategoryAlreadyExists {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MarkingNameInCategoryAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    displayName: unknown;
+    categoryId: unknown;
+  };
+}
+
+/**
+ * The marking name is empty.
+ *
+ * Log Safety: SAFE
+ */
+export interface MarkingNameIsEmpty {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MarkingNameIsEmpty";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The given Marking could not be found.
  *
  * Log Safety: SAFE
@@ -499,6 +589,20 @@ export interface MarkingNotFound {
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
+  };
+}
+
+/**
+ * An organization with the same name already exists.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OrganizationNameAlreadyExists {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OrganizationNameAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    displayName: unknown;
   };
 }
 
@@ -575,6 +679,20 @@ export interface ProfilePictureNotFound {
 }
 
 /**
+ * Could not remove the EnrollmentRoleAssignment.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveEnrollmentRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveEnrollmentRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
+  };
+}
+
+/**
  * Could not remove the GroupMember.
  *
  * Log Safety: SAFE
@@ -646,6 +764,20 @@ export interface RemoveOrganizationRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * Could not replace the GroupMembershipExpirationPolicy.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceGroupMembershipExpirationPolicyPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceGroupMembershipExpirationPolicyPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    groupId: unknown;
+  };
+}
+
+/**
  * Could not replace the GroupProviderInfo.
  *
  * Log Safety: SAFE
@@ -656,6 +788,20 @@ export interface ReplaceGroupProviderInfoPermissionDenied {
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
+  };
+}
+
+/**
+ * Could not replace the Marking.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceMarkingPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceMarkingPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
   };
 }
 

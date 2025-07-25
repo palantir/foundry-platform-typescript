@@ -23,6 +23,13 @@ export type LooselyBrandedString<T extends string> = string & {
 /**
  * Log Safety: SAFE
  */
+export interface AddEnrollmentRoleAssignmentsRequest {
+  roleAssignments: Array<_Core.RoleAssignmentUpdate>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface AddGroupMembersRequest {
   principalIds: Array<_Core.PrincipalId>;
   expiration?: GroupMembershipExpiration;
@@ -144,6 +151,17 @@ export interface CreateMarkingRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateOrganizationRequest {
+  administrators: Array<_Core.PrincipalId>;
+  enrollmentRid: _Core.EnrollmentRid;
+  name: OrganizationName;
+  host?: HostName;
+  description?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface Enrollment {
   rid: _Core.EnrollmentRid;
   name: EnrollmentName;
@@ -154,6 +172,15 @@ export interface Enrollment {
  * Log Safety: UNSAFE
  */
 export type EnrollmentName = LooselyBrandedString<"EnrollmentName">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface EnrollmentRoleAssignment {
+  principalType: _Core.PrincipalType;
+  principalId: _Core.PrincipalId;
+  roleId: _Core.RoleId;
+}
 
 /**
  * Log Safety: SAFE
@@ -251,6 +278,14 @@ export interface GroupMembership {
 export type GroupMembershipExpiration = string;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface GroupMembershipExpirationPolicy {
+  maximumValue?: GroupMembershipExpiration;
+  maximumDuration?: _Core.DurationSeconds;
+}
+
+/**
  * The name of the Group.
  *
  * Log Safety: UNSAFE
@@ -273,14 +308,14 @@ export interface GroupSearchFilter {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface Host {
   hostName: HostName;
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type HostName = LooselyBrandedString<"HostName">;
 
@@ -297,6 +332,14 @@ export interface ListAuthenticationProvidersResponse {
  */
 export interface ListAvailableOrganizationRolesResponse {
   data: Array<_Core.Role>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListEnrollmentRoleAssignmentsResponse {
+  data: Array<EnrollmentRoleAssignment>;
+  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -535,6 +578,13 @@ export type ProviderId = LooselyBrandedString<"ProviderId">;
 /**
  * Log Safety: SAFE
  */
+export interface RemoveEnrollmentRoleAssignmentsRequest {
+  roleAssignments: Array<_Core.RoleAssignmentUpdate>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface RemoveGroupMembersRequest {
   principalIds: Array<_Core.PrincipalId>;
 }
@@ -561,10 +611,26 @@ export interface RemoveOrganizationRoleAssignmentsRequest {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ReplaceGroupMembershipExpirationPolicyRequest {
+  maximumDuration?: _Core.DurationSeconds;
+  maximumValue?: GroupMembershipExpiration;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ReplaceGroupProviderInfoRequest {
   providerId: ProviderId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceMarkingRequest {
+  name: MarkingName;
+  description?: string;
 }
 
 /**
