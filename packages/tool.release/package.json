@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@actions/exec": "^1.1.1",
-    "@changesets/apply-release-plan": "^7.0.4",
+    "@changesets/apply-release-plan": "^7.0.12",
     "@changesets/assemble-release-plan": "^6.0.3",
     "@changesets/changelog-git": "^0.2.0",
     "@changesets/config": "^3.1.1",
