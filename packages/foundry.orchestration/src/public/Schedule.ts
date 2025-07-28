@@ -99,6 +99,34 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _getBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Orchestration.GetSchedulesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Orchestration.GetSchedulesBatchResponse>
+> = [1, "/v2/orchestration/schedules/getBatch", 3];
+
+/**
+ * Fetch multiple schedules in a single request. Schedules not found or inaccessible to the user will be
+ * omitted from the response.
+ *
+ * The maximum batch size for this endpoint is 1000.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-read]
+ * URL: /v2/orchestration/schedules/getBatch
+ */
+export function getBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Orchestration.GetSchedulesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Orchestration.GetSchedulesBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getBatch, ...args);
+}
+
 const _replace: $FoundryPlatformMethod<
   (
     scheduleRid: _Core.ScheduleRid,

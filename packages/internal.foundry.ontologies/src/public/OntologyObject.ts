@@ -60,8 +60,6 @@ const _list: $FoundryPlatformMethod<
  *
  * Note that null value properties will not be returned.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -95,8 +93,6 @@ const _get: $FoundryPlatformMethod<
 
 /**
  * Gets a specific object with the given primary key.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -149,8 +145,6 @@ const _listLinkedObjects: $FoundryPlatformMethod<
  *
  * Note that null value properties will not be returned.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -189,8 +183,6 @@ const _getLinkedObject: $FoundryPlatformMethod<
 /**
  * Get a specific linked object that originates from another object. If there is no link between the two objects,
  * LinkedObjectNotFound is thrown.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -244,8 +236,6 @@ const _search: $FoundryPlatformMethod<
  * Queries can be at most three levels deep. By default, terms are separated by whitespace or punctuation (`?!,:;-[](){}'"~`). Periods (`.`) on their own are ignored.
  * Partial terms are not matched by terms filters except where explicitly noted.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -272,8 +262,6 @@ const _aggregate: $FoundryPlatformMethod<
 
 /**
  * Perform functions on object fields in the specified ontology and object type.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *

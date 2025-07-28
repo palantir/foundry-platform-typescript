@@ -144,6 +144,19 @@ export interface ActionValidationFailed {
 }
 
 /**
+   * The given aggregation cannot be performed with the requested accuracy.
+Try allowing approximate results or adjust your aggregation request.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationAccuracyNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AggregationAccuracyNotSupported";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The number of groups in the aggregations grouping exceeded the allowed limit. This can typically be fixed by
 adjusting your query to reduce the number of groups created by your aggregation. For instance:
 
@@ -274,6 +287,18 @@ export interface CompositePrimaryKeyNotSupported {
 }
 
 /**
+ * Exact match groupBy clause cannot specify a default value and allow null values.
+ *
+ * Log Safety: SAFE
+ */
+export interface DefaultAndNullGroupsNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DefaultAndNullGroupsNotSupported";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * At least one of the requested derived property API names already exist on the object set.
  *
  * Log Safety: UNSAFE
@@ -384,6 +409,23 @@ export interface HighScaleComputationNotEnabled {
 }
 
 /**
+ * The requested interface link type is not found, or the client token does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfaceLinkTypeNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "InterfaceLinkTypeNotFound";
+  errorInstanceId: string;
+  parameters: {
+    interfaceTypeApiName: unknown;
+    interfaceTypeRid: unknown;
+    interfaceLinkTypeApiName: unknown;
+    interfaceLinkTypeRid: unknown;
+  };
+}
+
+/**
  * The requested interface type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -421,6 +463,18 @@ export interface InterfaceTypesNotFound {
 export interface InvalidAggregationOrdering {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAggregationOrdering";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Aggregation ordering cannot be applied for groupBy clauses that allow null values.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidAggregationOrderingWithNullValues {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidAggregationOrderingWithNullValues";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1748,6 +1802,21 @@ export interface UnsupportedObjectSet {
   errorName: "UnsupportedObjectSet";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The value type is not found, or the user does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ValueTypeNotFound";
+  errorInstanceId: string;
+  parameters: {
+    valueType: unknown;
+    rid: unknown;
+  };
 }
 
 /**

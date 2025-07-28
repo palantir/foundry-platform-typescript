@@ -68,8 +68,6 @@ const _list: $FoundryPlatformMethod<
  * `startTransactionRid` and `endTransactionRid`. This will include only files that were modified as part of that
  * Transaction.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
- *
  * @public
  *
  * Required Scopes: [api:datasets-read]
@@ -124,8 +122,6 @@ const _upload: $FoundryPlatformMethod<
  * To **upload a file on a manually opened transaction** specify the Transaction's resource identifier as
  * `transactionRid`. This is useful for uploading multiple files in a single transaction.
  * See [createTransaction](https://www.palantir.com/docs/foundry/api/datasets-resources/transactions/create-transaction/) to open a transaction.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
  *
  * @public
  *
@@ -184,8 +180,6 @@ const _get: $FoundryPlatformMethod<
  * To **get a file's metadata from a specific transaction** specify the Transaction's resource identifier as both the
  * `startTransactionRid` and `endTransactionRid`.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
- *
  * @public
  *
  * Required Scopes: [api:datasets-read]
@@ -233,8 +227,6 @@ const _deleteFile: $FoundryPlatformMethod<
  * as `transactionRid`. The transaction must be of type `DELETE`. This is useful for deleting multiple files in a
  * single transaction. See [createTransaction](https://www.palantir.com/docs/foundry/api/datasets-resources/transactions/create-transaction/) to
  * open a transaction.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
  *
  * @public
  *
@@ -292,8 +284,6 @@ const _read: $FoundryPlatformMethod<
  *
  * To **get a file's content from a specific transaction** specify the Transaction's resource identifier as both the
  * `startTransactionRid` and `endTransactionRid`.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
  *
  * @public
  *

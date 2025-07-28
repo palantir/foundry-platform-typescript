@@ -45,8 +45,6 @@ const _list: $FoundryPlatformMethod<
  * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
  * results available, at least one result will be present in the response.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -75,8 +73,6 @@ const _get: $FoundryPlatformMethod<
 
 /**
  * Gets a specific action type with the given API name.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *

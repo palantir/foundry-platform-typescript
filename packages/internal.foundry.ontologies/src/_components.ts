@@ -197,6 +197,7 @@ export interface AggregateObjectSetRequestV2 {
   objectSet: ObjectSet;
   groupBy: Array<AggregationGroupByV2>;
   accuracy?: AggregationAccuracyRequest;
+  includeComputeUsage?: _Core.IncludeComputeUsage;
 }
 
 /**
@@ -239,7 +240,7 @@ export interface AggregateObjectsResponseItem {
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsResponseItemV2 {
-  group: Record<AggregationGroupKeyV2, AggregationGroupValueV2>;
+  group: Record<AggregationGroupKeyV2, AggregationGroupValueV2 | undefined>;
   metrics: Array<AggregationMetricResultV2>;
 }
 
@@ -250,6 +251,7 @@ export interface AggregateObjectsResponseV2 {
   excludedItems?: number;
   accuracy: AggregationAccuracy;
   data: Array<AggregateObjectsResponseItemV2>;
+  computeUsage?: _Core.ComputeSeconds;
 }
 
 /**
@@ -327,6 +329,7 @@ export interface AggregationExactGroupingV2 {
   field: PropertyApiName;
   maxGroupCount?: number;
   defaultValue?: string;
+  includeNullValues?: boolean;
 }
 
 /**
@@ -604,6 +607,16 @@ export interface ApproximatePercentileAggregationV2 {
 export interface Arg {
   name: string;
   value: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ArrayConstraint {
+  minimumSize?: number;
+  maximumSize?: number;
+  uniqueValues: boolean;
+  valueConstraint?: ValueTypeConstraint;
 }
 
 /**
@@ -1050,7 +1063,7 @@ export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 | Null                                | null                                                  | null                                                                                                                                                        |
 | Object Set                          | string OR the object set definition                   | ri.object-set.main.versioned-object-set.h13274m8-23f5-431c-8aee-a4554157c57z                                                                                |
 | Ontology Object Reference           | JSON encoding of the object's primary key             | 10033123 or "EMP1234"                                                                                                                                     |
-| Ontology Interface Object Reference | JSON encoding of the object's api name and primary key| {"objectTypeApiName":"Employee", "primaryKeyValue":"EMP1234"}                                                                                               |
+| Ontology Interface Object Reference | JSON encoding of the object's API name and primary key| {"objectTypeApiName":"Employee", "primaryKeyValue":"EMP1234"}                                                                                               |
 | Ontology Object Type Reference      | string of the object type's api name                  | "Employee"                                                                                                                                                  |
 | Set                                 | array                                                 | ["alpha", "bravo", "charlie"]                                                                                                                               |
 | Short                               | number                                                | 8739                                                                                                                                                        |
@@ -1223,6 +1236,13 @@ export type Duration = LooselyBrandedString<"Duration">;
 export interface EntrySetType {
   keyType: QueryDataType;
   valueType: QueryDataType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface EnumConstraint {
+  options: Array<any>;
 }
 
 /**
@@ -1661,6 +1681,14 @@ export interface LeastPropertyExpression {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface LengthConstraint {
+  minimumLength?: number;
+  maximumLength?: number;
+}
+
+/**
  * A reference to the linked interface type.
  *
  * Log Safety: UNSAFE
@@ -1840,6 +1868,14 @@ export interface ListOntologiesV2Response {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListOutgoingInterfaceLinkTypesResponse {
+  nextPageToken?: _Core.PageToken;
+  data: Array<InterfaceLinkType>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListOutgoingLinkTypesResponse {
   nextPageToken?: _Core.PageToken;
   data: Array<LinkTypeSide>;
@@ -1882,6 +1918,7 @@ export interface LoadObjectSetRequestV2 {
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
   snapshot?: boolean;
+  includeComputeUsage?: _Core.IncludeComputeUsage;
 }
 
 /**
@@ -1893,6 +1930,7 @@ export interface LoadObjectSetResponseV2 {
   data: Array<OntologyObjectV2>;
   nextPageToken?: _Core.PageToken;
   totalCount: _Core.TotalCount;
+  computeUsage?: _Core.ComputeSeconds;
 }
 
 /**
@@ -2196,6 +2234,16 @@ export interface ObjectEdits {
   deletedObjectsCount: number;
   addedLinksCount: number;
   deletedLinksCount: number;
+}
+
+/**
+ * An object identifier containing an object type API name and primary key.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectLocator {
+  objectTypeApiName: ObjectTypeApiName;
+  primaryKeyValue: PrimaryKeyValue;
 }
 
 /**
@@ -2664,8 +2712,15 @@ export type OntologyInterface = LooselyBrandedString<"OntologyInterface">;
 /**
  * Log Safety: UNSAFE
  */
-export interface OntologyInterfaceObjectType {
+export interface OntologyInterfaceObjectSetType {
   interfaceTypeApiName: InterfaceTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OntologyInterfaceObjectType {
+  interfaceTypeApiName?: InterfaceTypeApiName;
 }
 
 /**
@@ -2767,6 +2822,20 @@ export interface OntologyV2 {
   displayName: _Core.DisplayName;
   description: string;
   rid: OntologyRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OntologyValueType {
+  apiName: ValueTypeApiName;
+  displayName: _Core.DisplayName;
+  description?: string;
+  rid: ValueTypeRid;
+  status?: ValueTypeStatus;
+  fieldType?: ObjectPropertyType;
+  version: string;
+  constraints: Array<ValueTypeConstraint>;
 }
 
 /**
@@ -3197,6 +3266,7 @@ export interface QueryArrayType {
  */
 export type QueryDataType =
   | ({ type: "date" } & _Core.DateType)
+  | ({ type: "interfaceObject" } & OntologyInterfaceObjectType)
   | ({ type: "struct" } & QueryStructType)
   | ({ type: "set" } & QuerySetType)
   | ({ type: "string" } & _Core.StringType)
@@ -3214,6 +3284,7 @@ export type QueryDataType =
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "objectSet" } & OntologyObjectSetType)
   | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
+  | ({ type: "interfaceObjectSet" } & OntologyInterfaceObjectSetType)
   | ({ type: "object" } & OntologyObjectType)
   | ({ type: "timestamp" } & _Core.TimestampType);
 
@@ -3332,6 +3403,14 @@ export interface RangeConstraint {
 /**
  * Log Safety: SAFE
  */
+export interface RangesConstraint {
+  minimumValue?: any;
+  maximumValue?: any;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface Reason {
   reason: ReasonType;
 }
@@ -3374,6 +3453,14 @@ export type ReferenceValue = {
 export interface RefreshObjectSet {
   id: SubscriptionId;
   objectType: ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RegexConstraint {
+  pattern: string;
+  partialMatch: boolean;
 }
 
 /**
@@ -3426,6 +3513,13 @@ export type RequestId = string;
  * Log Safety: SAFE
  */
 export type ReturnEditsMode = "ALL" | "ALL_V2_WITH_DELETIONS" | "NONE";
+
+/**
+ * The string must be a valid RID (Resource Identifier).
+ *
+ * Log Safety: SAFE
+ */
+export interface RidConstraint {}
 
 /**
  * Number of points in each window.
@@ -3878,14 +3972,23 @@ export interface StringRegexMatchConstraint {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface StructConstraint {
+  properties: Record<PropertyApiName, ValueTypeApiName>;
+}
+
+/**
  * Represents the validity of a singleton struct parameter.
  *
  * Log Safety: UNSAFE
  */
-export type StructEvaluatedConstraint = Record<
-  StructParameterFieldApiName,
-  StructFieldEvaluationResult
->;
+export interface StructEvaluatedConstraint {
+  structFields: Record<
+    StructParameterFieldApiName,
+    StructFieldEvaluationResult
+  >;
+}
 
 /**
  * The name of a struct field in the Ontology.
@@ -4246,6 +4349,13 @@ This can happen when a parameter's allowed values are defined by another paramet
 export interface UnevaluableConstraint {}
 
 /**
+ * The string must be a valid UUID (Universally Unique Identifier).
+ *
+ * Log Safety: SAFE
+ */
+export interface UuidConstraint {}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ValidateActionRequest {
@@ -4304,6 +4414,36 @@ structs.
    * Log Safety: SAFE
    */
 export type ValueType = LooselyBrandedString<"ValueType">;
+
+/**
+ * The name of the value type in the API in camelCase format.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeApiName = LooselyBrandedString<"ValueTypeApiName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeConstraint =
+  | ({ type: "struct" } & StructConstraint)
+  | ({ type: "regex" } & RegexConstraint)
+  | ({ type: "array" } & ArrayConstraint)
+  | ({ type: "length" } & LengthConstraint)
+  | ({ type: "range" } & RangesConstraint)
+  | ({ type: "rid" } & RidConstraint)
+  | ({ type: "uuid" } & UuidConstraint)
+  | ({ type: "enum" } & EnumConstraint);
+
+/**
+ * Log Safety: SAFE
+ */
+export type ValueTypeRid = LooselyBrandedString<"ValueTypeRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type ValueTypeStatus = "ACTIVE" | "DEPRECATED";
 
 /**
    * The name of the Query in the API and an optional version identifier separated by a colon.

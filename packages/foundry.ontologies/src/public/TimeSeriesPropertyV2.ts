@@ -44,9 +44,6 @@ const _getFirstPoint: $FoundryPlatformMethod<
 /**
  * Get the first point of a time series property.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -84,9 +81,6 @@ const _getLastPoint: $FoundryPlatformMethod<
 
 /**
  * Get the last point of a time series property.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
@@ -133,9 +127,6 @@ const _streamPoints: $FoundryPlatformMethod<
 
 /**
  * Stream all of the points of a time series property.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *

@@ -121,6 +121,7 @@ export interface Connection {
   rid: ConnectionRid;
   parentFolderRid: _Filesystem.FolderRid;
   displayName: ConnectionDisplayName;
+  exportSettings: ConnectionExportSettings;
   configuration: ConnectionConfiguration;
 }
 
@@ -142,6 +143,16 @@ export type ConnectionConfiguration =
 export type ConnectionDisplayName = LooselyBrandedString<
   "ConnectionDisplayName"
 >;
+
+/**
+ * The export settings of a Connection.
+ *
+ * Log Safety: SAFE
+ */
+export interface ConnectionExportSettings {
+  exportsEnabled: boolean;
+  exportEnabledWithoutMarkingsValidation: boolean;
+}
 
 /**
  * The Resource Identifier (RID) of a Connection (also known as a source).
@@ -238,7 +249,7 @@ export type CreateConnectionRequestDatabricksAuthenticationMode =
 export interface CreateConnectionRequestDatabricksConnectionConfiguration {
   hostName: string;
   httpPath: string;
-  jdbcProperties: Record<string, string>;
+  jdbcProperties: JdbcProperties;
   authentication: CreateConnectionRequestDatabricksAuthenticationMode;
 }
 
@@ -270,7 +281,7 @@ export type CreateConnectionRequestEncryptedProperty =
 export interface CreateConnectionRequestJdbcConnectionConfiguration {
   credentials?: BasicCredentials;
   driverClass: string;
-  jdbcProperties: Record<string, string>;
+  jdbcProperties: JdbcProperties;
   url: string;
 }
 
@@ -387,7 +398,7 @@ export interface CreateConnectionRequestSnowflakeConnectionConfiguration {
   database?: string;
   role?: string;
   accountIdentifier: string;
-  jdbcProperties: Record<string, string>;
+  jdbcProperties: JdbcProperties;
   warehouse?: string;
   authenticationMode: CreateConnectionRequestSnowflakeAuthenticationMode;
 }
@@ -632,7 +643,7 @@ export interface DatabricksConnectionConfiguration {
   hostName: string;
   httpPath: string;
   authentication: DatabricksAuthenticationMode;
-  jdbcProperties: Record<string, string>;
+  jdbcProperties: JdbcProperties;
 }
 
 /**
@@ -885,9 +896,19 @@ export interface IntegerColumnInitialIncrementalState {
 export interface JdbcConnectionConfiguration {
   url: string;
   driverClass: string;
-  jdbcProperties: Record<string, string>;
+  jdbcProperties: JdbcProperties;
   credentials?: BasicCredentials;
 }
+
+/**
+   * A map of properties passed
+to the JDBC driver to configure behavior. Refer to the documentation of your specific connection type for additional
+available JDBC properties to add to your connection configuration.
+This should only contain unencrypted properties, all values specified here are sent unencrypted to Foundry.
+   *
+   * Log Safety: UNSAFE
+   */
+export type JdbcProperties = Record<string, string>;
 
 /**
  * The import configuration for a custom JDBC connection.
@@ -1348,7 +1369,7 @@ export interface SnowflakeConnectionConfiguration {
   schema?: string;
   warehouse?: string;
   authenticationMode: SnowflakeAuthenticationMode;
-  jdbcProperties: Record<string, string>;
+  jdbcProperties: JdbcProperties;
 }
 
 /**
@@ -1510,6 +1531,13 @@ export type TableImportRid = LooselyBrandedString<"TableImportRid">;
 export interface TimestampColumnInitialIncrementalState {
   columnName: string;
   currentValue: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface UpdateExportSettingsForConnectionRequest {
+  exportSettings: ConnectionExportSettings;
 }
 
 /**

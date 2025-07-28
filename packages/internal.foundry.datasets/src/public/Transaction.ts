@@ -39,8 +39,6 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a Transaction on a Branch of a Dataset.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
- *
  * @public
  *
  * Required Scopes: [api:datasets-write]
@@ -66,8 +64,6 @@ const _get: $FoundryPlatformMethod<
 
 /**
  * Gets a Transaction of a Dataset.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-read`.
  *
  * @public
  *
@@ -95,8 +91,6 @@ const _commit: $FoundryPlatformMethod<
  * Commits an open Transaction. File modifications made on this Transaction are preserved and the Branch is
  * updated to point to the Transaction.
  *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
- *
  * @public
  *
  * Required Scopes: [api:datasets-write]
@@ -122,8 +116,6 @@ const _abort: $FoundryPlatformMethod<
 /**
  * Aborts an open Transaction. File modifications made on this Transaction are not preserved and the Branch is
  * not updated.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:datasets-write`.
  *
  * @public
  *

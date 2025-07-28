@@ -88,6 +88,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.removeGroupMembers": {
       "variables": {},
     },
+    "v2.getGroupMembershipExpirationPolicy": {
+      "variables": {},
+    },
+    "v2.replaceGroupMembershipExpirationPolicy": {
+      "variables": {},
+    },
     "v2.listMarkingCategories": {
       "variables": {},
     },
@@ -104,6 +110,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getMarkingsBatch": {
+      "variables": {},
+    },
+    "v2.replaceMarking": {
       "variables": {},
     },
     "v2.listMarkingMembers": {
@@ -130,7 +139,19 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getCurrentEnrollment": {
       "variables": {},
     },
+    "v2.listEnrollmentRoleAssignments": {
+      "variables": {},
+    },
+    "v2.addEnrollmentRoleAssignments": {
+      "variables": {},
+    },
+    "v2.removeEnrollmentRoleAssignments": {
+      "variables": {},
+    },
     "v2.listHosts": {
+      "variables": {},
+    },
+    "v2.createOrganization": {
       "variables": {},
     },
     "v2.getOrganization": {
@@ -181,6 +202,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.readTableDataset": {
       "variables": {},
     },
+    "v2.getDatasetSchema": {
+      "variables": {},
+    },
+    "v2.putDatasetSchema": {
+      "variables": {},
+    },
     "v2.createBranch": {
       "variables": {},
     },
@@ -224,6 +251,24 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getFileContent": {
+      "variables": {},
+    },
+    "v2.createView": {
+      "variables": {},
+    },
+    "v2.getView": {
+      "variables": {},
+    },
+    "v2.addBackingDatasets": {
+      "variables": {},
+    },
+    "v2.replaceBackingDatasets": {
+      "variables": {},
+    },
+    "v2.removeBackingDatasets": {
+      "variables": {},
+    },
+    "v2.addPrimaryKey": {
       "variables": {},
     },
     "v2.getThirdPartyApplication": {
@@ -301,6 +346,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getProject": {
       "variables": {},
     },
+    "v2.replaceProject": {
+      "variables": {},
+    },
     "v2.createProject": {
       "variables": {},
     },
@@ -323,6 +371,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getConnection": {
+      "variables": {},
+    },
+    "v2.updateExportSettingsForConnection": {
       "variables": {},
     },
     "v2.updateSecretsForConnection": {
@@ -374,6 +425,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getSchedule": {
+      "variables": {},
+    },
+    "v2.getSchedulesBatch": {
       "variables": {},
     },
     "v2.replaceSchedule": {
@@ -623,6 +677,12 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.aggregateObjectsForInterface": {
+      "variables": {},
+    },
+    "v2.listOutgoingInterfaceLinkTypes": {
+      "variables": {},
+    },
+    "v2.getOutgoingInterfaceLinkType": {
       "variables": {},
     },
     "v2.applyActionV2": {

@@ -116,8 +116,11 @@ const _getResults: $FoundryPlatformMethod<
 > = [0, "/v2/sqlQueries/{0}/getResults", 2, , "application/octet-stream"];
 
 /**
- * Gets the results of a query. This endpoint implements long polling and requests will time out after
- * one minute. They can be safely retried while the query is still running.
+ * Gets the results of a query. The results of the query are returned in the
+ * [Apache Arrow](https://arrow.apache.org/) format.
+ *
+ * This endpoint implements long polling and requests will time out after one minute. They can be safely
+ * retried while the query is still running.
  *
  * @beta
  *

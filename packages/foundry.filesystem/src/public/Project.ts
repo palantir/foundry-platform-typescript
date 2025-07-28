@@ -55,6 +55,33 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _replace: $FoundryPlatformMethod<
+  (
+    projectRid: _Filesystem.ProjectRid,
+    $body: _Filesystem.ReplaceProjectRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.Project>
+> = [2, "/v2/filesystem/projects/{0}", 3];
+
+/**
+ * Replace the Project with the specified rid.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/projects/{projectRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    projectRid: _Filesystem.ProjectRid,
+    $body: _Filesystem.ReplaceProjectRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.Project> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}
+
 const _create: $FoundryPlatformMethod<
   (
     $body: _Filesystem.CreateProjectRequest,

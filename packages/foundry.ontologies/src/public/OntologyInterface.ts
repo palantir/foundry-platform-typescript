@@ -33,6 +33,7 @@ const _list: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -41,17 +42,10 @@ const _list: $FoundryPlatformMethod<
 > = [0, "/v2/ontologies/{0}/interfaceTypes", 2];
 
 /**
- * :::callout{theme=warning title=Warning}
- * This endpoint is in preview and may be modified or removed at any time.
- * To use this endpoint, add `preview=true` to the request query parameters.
- * :::
- *
  * Lists the interface types for the given Ontology.
  *
  * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
  * results available, at least one result will be present in the response.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @beta
  *
@@ -64,6 +58,7 @@ export function list(
     ontology: _Ontologies.OntologyIdentifier,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -85,14 +80,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/ontologies/{0}/interfaceTypes/{1}", 2];
 
 /**
- * :::callout{theme=warning title=Warning}
- * This endpoint is in preview and may be modified or removed at any time.
- * To use this endpoint, add `preview=true` to the request query parameters.
- * :::
- *
  * Gets a specific interface type with the given API name.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @beta
  *
@@ -119,7 +107,10 @@ const _search: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
     $body: _Ontologies.SearchObjectsForInterfaceRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.SearchObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/interfaces/{1}/search", 3];
 
@@ -128,11 +119,6 @@ const _search: $FoundryPlatformMethod<
  * This endpoint will be removed once TS OSDK is updated to use `objectSets/loadObjects` with interface object
  * sets.
  * :::
- * :::callout{theme=warning title=Warning}
- * This endpoint is in preview and may be modified or removed at any time.
- * To use this endpoint, add `preview=true` to the request query parameters.
- * :::
- *
  * Search for objects in the specified ontology and interface type. Any properties specified in the "where" or
  * "orderBy" parameters must be shared property type API names defined on the interface. The following search
  * queries are supported:
@@ -172,7 +158,10 @@ export function search(
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
     $body: _Ontologies.SearchObjectsForInterfaceRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.SearchObjectsResponseV2> {
   return $foundryPlatformFetch($ctx, _search, ...args);
@@ -183,7 +172,10 @@ const _aggregate: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
     $body: _Ontologies.AggregateObjectsRequestV2,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.AggregateObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/interfaces/{1}/aggregate", 3];
 
@@ -192,15 +184,8 @@ const _aggregate: $FoundryPlatformMethod<
  * This endpoint will be removed once TS OSDK is updated to use `objectSets/aggregate` with interface object
  * sets.
  * :::
- * :::callout{theme=warning title=Warning}
- * This endpoint is in preview and may be modified or removed at any time.
- * To use this endpoint, add `preview=true` to the request query parameters.
- * :::
- *
  * Perform functions on object fields in the specified ontology and of the specified interface type. Any
  * properties specified in the query must be shared property type API names defined on the interface.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @alpha
  *
@@ -213,8 +198,69 @@ export function aggregate(
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
     $body: _Ontologies.AggregateObjectsRequestV2,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {
   return $foundryPlatformFetch($ctx, _aggregate, ...args);
+}
+
+const _listOutgoingInterfaceLinkTypes: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ) => Promise<_Ontologies.ListOutgoingInterfaceLinkTypesResponse>
+> = [0, "/v2/ontologies/{0}/interfaceTypes/{1}/outgoingLinkTypes", 2];
+
+/**
+ * List the outgoing interface link types for an interface type.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/interfaceTypes/{interfaceType}/outgoingLinkTypes
+ */
+export function listOutgoingInterfaceLinkTypes(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ]
+): Promise<_Ontologies.ListOutgoingInterfaceLinkTypesResponse> {
+  return $foundryPlatformFetch($ctx, _listOutgoingInterfaceLinkTypes, ...args);
+}
+
+const _getOutgoingInterfaceLinkType: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+    interfaceLinkType: _Ontologies.InterfaceLinkTypeApiName,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ) => Promise<_Ontologies.InterfaceLinkType>
+> = [0, "/v2/ontologies/{0}/interfaceTypes/{1}/outgoingLinkTypes/{2}", 2];
+
+/**
+ * Get an outgoing interface link type for an interface type.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/interfaceTypes/{interfaceType}/outgoingLinkTypes/{interfaceLinkType}
+ */
+export function getOutgoingInterfaceLinkType(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+    interfaceLinkType: _Ontologies.InterfaceLinkTypeApiName,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ]
+): Promise<_Ontologies.InterfaceLinkType> {
+  return $foundryPlatformFetch($ctx, _getOutgoingInterfaceLinkType, ...args);
 }

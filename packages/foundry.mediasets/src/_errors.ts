@@ -72,3 +72,17 @@ export interface MediaSetNotFound {
     mediaSetRid: unknown;
   };
 }
+
+/**
+ * The given media set requires paths but no path was provided.
+ *
+ * Log Safety: SAFE
+ */
+export interface MissingMediaItemPath {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingMediaItemPath";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+  };
+}

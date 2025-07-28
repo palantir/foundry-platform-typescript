@@ -35,8 +35,8 @@ const _apply: $FoundryPlatformMethod<
     action: _Ontologies.ActionTypeApiName,
     $body: _Ontologies.ApplyActionRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.SyncApplyActionResponseV2>
@@ -51,9 +51,6 @@ const _apply: $FoundryPlatformMethod<
  * Note that [parameter default values](https://www.palantir.com/docs/foundry/action-types/parameters-default-value/) are not currently supported by
  * this endpoint.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-write`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
@@ -66,8 +63,8 @@ export function apply(
     action: _Ontologies.ActionTypeApiName,
     $body: _Ontologies.ApplyActionRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]
@@ -81,8 +78,8 @@ const _applyAsync: $FoundryPlatformMethod<
     action: _Ontologies.ActionTypeApiName,
     $body: _Ontologies.AsyncApplyActionRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.AsyncApplyActionResponseV2>
@@ -97,9 +94,6 @@ const _applyAsync: $FoundryPlatformMethod<
  * Note that [parameter default values](https://www.palantir.com/docs/foundry/action-types/parameters-default-value/) are not currently supported by
  * this endpoint.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-write`.
- *
  * @alpha
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
@@ -112,8 +106,8 @@ export function applyAsync(
     action: _Ontologies.ActionTypeApiName,
     $body: _Ontologies.AsyncApplyActionRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]
@@ -127,8 +121,8 @@ const _applyBatch: $FoundryPlatformMethod<
     action: _Ontologies.ActionTypeApiName,
     $body: _Ontologies.BatchApplyActionRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.BatchApplyActionResponseV2>
@@ -145,9 +139,6 @@ const _applyBatch: $FoundryPlatformMethod<
  *
  * Note that [notifications](https://www.palantir.com/docs/foundry/action-types/notifications/) are not currently supported by this endpoint.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-write`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
@@ -160,8 +151,8 @@ export function applyBatch(
     action: _Ontologies.ActionTypeApiName,
     $body: _Ontologies.BatchApplyActionRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]

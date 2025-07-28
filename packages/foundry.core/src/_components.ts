@@ -128,6 +128,13 @@ export interface CipherTextType {
 }
 
 /**
+ * A measurement of compute usage expressed in compute-seconds. For more information, please refer to the Usage types documentation.
+ *
+ * Log Safety: SAFE
+ */
+export type ComputeSeconds = number;
+
+/**
 * @deprecated Use `ContainsAllTermsInOrderPrefixLastTerm` in the `foundry.ontologies` package
 *
    * Returns objects where the specified field contains all of the terms in the order provided,
@@ -229,6 +236,34 @@ export type CreatedTime = string;
 export type CustomMetadata = Record<string, any>;
 
 /**
+ * A field in a Foundry dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DatasetFieldSchema {
+  type: string;
+  name: FieldName;
+  nullable: boolean;
+  userDefinedTypeClass?: string;
+  customMetadata?: CustomMetadata;
+  arraySubtype?: DatasetFieldSchema;
+  precision?: number;
+  scale?: number;
+  mapKeyType?: DatasetFieldSchema;
+  mapValueType?: DatasetFieldSchema;
+  subSchemas?: Array<DatasetFieldSchema>;
+}
+
+/**
+ * The schema for a Foundry dataset. Files uploaded to this dataset must match this schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DatasetSchema {
+  fieldSchemaList: Array<DatasetFieldSchema>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface DateType {}
@@ -312,6 +347,13 @@ export interface Duration {
   value: number;
   unit: TimeUnit;
 }
+
+/**
+ * A duration of time measured in seconds.
+ *
+ * Log Safety: SAFE
+ */
+export type DurationSeconds = string;
 
 /**
  * Log Safety: UNSAFE
@@ -589,6 +631,15 @@ export interface GtQueryV2 {
   propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
+
+/**
+   * Indicates whether the response should include compute usage details for the request. This feature is currently
+only available for OSDK applications.
+Note: Enabling this flag may slow down query performance and is not recommended for use in production.
+   *
+   * Log Safety: SAFE
+   */
+export type IncludeComputeUsage = boolean;
 
 /**
  * @deprecated Use `InQuery` in the `foundry.ontologies` package
@@ -1445,6 +1496,13 @@ export interface VectorType {
   supportsSearchWith: Array<VectorSimilarityFunction>;
   embeddingModel?: EmbeddingModel;
 }
+
+/**
+ * The version identifier of a dataset schema.
+ *
+ * Log Safety: SAFE
+ */
+export type VersionId = string;
 
 /**
  * @deprecated Use `WithinBoundingBoxPoint` in the `foundry.ontologies` package

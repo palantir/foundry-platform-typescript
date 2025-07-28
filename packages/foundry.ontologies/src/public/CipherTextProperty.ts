@@ -40,12 +40,9 @@ const _decrypt: $FoundryPlatformMethod<
 /**
  * Decrypt the value of a ciphertext property.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-decrypt-ciphertext`.
- *
  * @beta
  *
- * Required Scopes: [api:ontologies-read, api:ontologies-decrypt-ciphertext]
+ * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/ciphertexts/{property}/decrypt
  */
 export function decrypt(

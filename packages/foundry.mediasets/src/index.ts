@@ -31,5 +31,6 @@ export type {
   GetMediaItemRidByPathPermissionDenied,
   MediaItemNotFound,
   MediaSetNotFound,
+  MissingMediaItemPath,
 } from "./_errors.js";
 export * as MediaSets from "./public/MediaSet.js";

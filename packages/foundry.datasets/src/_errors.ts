@@ -34,6 +34,34 @@ export interface AbortTransactionPermissionDenied {
 }
 
 /**
+ * Could not addBackingDatasets the View.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddBackingDatasetsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddBackingDatasetsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    viewDatasetRid: unknown;
+  };
+}
+
+/**
+ * Could not addPrimaryKey the View.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddPrimaryKeyPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddPrimaryKeyPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    viewDatasetRid: unknown;
+  };
+}
+
+/**
  * The branch cannot be created because a branch with that name already exists.
  *
  * Log Safety: UNSAFE
@@ -153,6 +181,18 @@ export interface CreateTransactionPermissionDenied {
 }
 
 /**
+ * Could not create the View.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateViewPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateViewPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested dataset could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
@@ -177,6 +217,23 @@ export interface DatasetReadNotSupported {
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
+  };
+}
+
+/**
+   * The requested dataset view could not be found. A dataset view represents the effective file contents of a dataset
+for a branch at a point in time, calculated from transactions (SNAPSHOT, APPEND, UPDATE, DELETE). The view may not
+exist if the dataset has no transactions, contains no files, the branch is not valid, or the client token does not have access to it.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface DatasetViewNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "DatasetViewNotFound";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    branch: unknown;
   };
 }
 
@@ -305,6 +362,20 @@ export interface GetDatasetSchedulesPermissionDenied {
 }
 
 /**
+ * Could not getSchema the Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetDatasetSchemaPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetDatasetSchemaPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+  };
+}
+
+/**
  * Could not content the File.
  *
  * Log Safety: UNSAFE
@@ -317,6 +388,19 @@ export interface GetFileContentPermissionDenied {
     datasetRid: unknown;
     filePath: unknown;
   };
+}
+
+/**
+   * One or more backing datasets do not live in the same project as the view. Either move the input datasets to
+the same project as the view or add them as project references.
+   *
+   * Log Safety: SAFE
+   */
+export interface InputBackingDatasetNotInOutputViewProject {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InputBackingDatasetNotInOutputViewProject";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -350,6 +434,18 @@ export interface InvalidTransactionType {
 }
 
 /**
+ * Either you do not have access to one or more of the backing datasets or it does not exist.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidViewBackingDataset {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidViewBackingDataset";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not job the Transaction.
  *
  * Log Safety: SAFE
@@ -376,6 +472,20 @@ export interface OpenTransactionAlreadyExists {
   parameters: {
     datasetRid: unknown;
     branchName: unknown;
+  };
+}
+
+/**
+ * Could not putSchema the Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export interface PutDatasetSchemaPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "PutDatasetSchemaPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
   };
 }
 
@@ -449,6 +559,34 @@ export interface ReadTableTimeout {
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
+  };
+}
+
+/**
+ * Could not removeBackingDatasets the View.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveBackingDatasetsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveBackingDatasetsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    viewDatasetRid: unknown;
+  };
+}
+
+/**
+ * Could not replaceBackingDatasets the View.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceBackingDatasetsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceBackingDatasetsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    viewDatasetRid: unknown;
   };
 }
 
@@ -529,4 +667,70 @@ export interface UploadFilePermissionDenied {
     transactionRid: unknown;
     path: unknown;
   };
+}
+
+/**
+ * Failed to delete dataset following View creation failure.
+ *
+ * Log Safety: SAFE
+ */
+export interface ViewDatasetCleanupFailed {
+  errorCode: "INTERNAL";
+  errorName: "ViewDatasetCleanupFailed";
+  errorInstanceId: string;
+  parameters: {
+    viewDatasetRid: unknown;
+  };
+}
+
+/**
+   * The requested View could not be found. Either the view does not exist, the branch is not valid or the
+client token does not have access to it.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ViewNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ViewNotFound";
+  errorInstanceId: string;
+  parameters: {
+    viewDatasetRid: unknown;
+    branch: unknown;
+  };
+}
+
+/**
+ * A primary key already exits.
+ *
+ * Log Safety: SAFE
+ */
+export interface ViewPrimaryKeyCannotBeModified {
+  errorCode: "CONFLICT";
+  errorName: "ViewPrimaryKeyCannotBeModified";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * No columns were provided as part of the primary key
+ *
+ * Log Safety: SAFE
+ */
+export interface ViewPrimaryKeyMustContainAtLeastOneColumn {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ViewPrimaryKeyMustContainAtLeastOneColumn";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Cannot add a primary key to a View that does not have any backing datasets.
+ *
+ * Log Safety: SAFE
+ */
+export interface ViewPrimaryKeyRequiresBackingDatasets {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ViewPrimaryKeyRequiresBackingDatasets";
+  errorInstanceId: string;
+  parameters: {};
 }

@@ -24,6 +24,22 @@ export type LooselyBrandedString<T extends string> = string & {
 /**
  * Log Safety: UNSAFE
  */
+export interface AddBackingDatasetsRequest {
+  branch?: BranchName;
+  backingDatasets: Array<ViewBackingDataset>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AddPrimaryKeyRequest {
+  branch?: BranchName;
+  primaryKey: ViewPrimaryKey;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface Branch {
   name: BranchName;
   transactionRid?: TransactionRid;
@@ -57,6 +73,17 @@ export interface CreateDatasetRequest {
  */
 export interface CreateTransactionRequest {
   transactionType: TransactionType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateViewRequest {
+  parentFolderRid: _Filesystem.FolderRid;
+  viewName: DatasetName;
+  backingDatasets: Array<ViewBackingDataset>;
+  branch?: BranchName;
+  primaryKey?: ViewPrimaryKey;
 }
 
 /**
@@ -96,6 +123,23 @@ export interface File {
 export type FileUpdatedTime = string;
 
 /**
+ * The unique resource identifier (RID) of a Folder.
+ *
+ * Log Safety: SAFE
+ */
+export type FolderRid = LooselyBrandedString<"FolderRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetDatasetSchemaResponse {
+  branchName: BranchName;
+  endTransactionRid: TransactionRid;
+  schema: _Core.DatasetSchema;
+  versionId: _Core.VersionId;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ListBranchesResponse {
@@ -117,6 +161,64 @@ export interface ListFilesResponse {
 export interface ListSchedulesResponse {
   data: Array<_Core.ScheduleRid>;
   nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Picks the row with the highest value of a list of columns, compared in order.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PrimaryKeyLatestWinsResolutionStrategy {
+  columns: Array<string>;
+}
+
+/**
+ * Duplicate primary key values may exist within the dataset – resolution required.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PrimaryKeyResolutionDuplicate {
+  deletionColumn?: string;
+  resolutionStrategy: PrimaryKeyResolutionStrategy;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type PrimaryKeyResolutionStrategy = {
+  type: "latestWins";
+} & PrimaryKeyLatestWinsResolutionStrategy;
+
+/**
+ * Primary key values are unique within the dataset – no conflicts.
+ *
+ * Log Safety: SAFE
+ */
+export interface PrimaryKeyResolutionUnique {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface PutDatasetSchemaRequest {
+  branchName?: BranchName;
+  endTransactionRid?: TransactionRid;
+  schema: _Core.DatasetSchema;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface RemoveBackingDatasetsRequest {
+  branch?: BranchName;
+  backingDatasets: Array<ViewBackingDataset>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceBackingDatasetsRequest {
+  branch?: BranchName;
+  backingDatasets: Array<ViewBackingDataset>;
 }
 
 /**
@@ -164,3 +266,45 @@ export type TransactionStatus = "ABORTED" | "COMMITTED" | "OPEN";
  * Log Safety: SAFE
  */
 export type TransactionType = "APPEND" | "UPDATE" | "SNAPSHOT" | "DELETE";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface View {
+  viewName: DatasetName;
+  datasetRid: DatasetRid;
+  parentFolderRid: _Filesystem.FolderRid;
+  branch?: BranchName;
+  backingDatasets: Array<ViewBackingDataset>;
+  primaryKey?: ViewPrimaryKey;
+}
+
+/**
+ * One of the Datasets backing a View.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ViewBackingDataset {
+  branch: BranchName;
+  datasetRid: DatasetRid;
+}
+
+/**
+   * The primary key of the dataset. Primary keys are treated as guarantees provided by the creator of the
+dataset.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ViewPrimaryKey {
+  columns: Array<string>;
+  resolution: ViewPrimaryKeyResolution;
+}
+
+/**
+ * Specifies how primary key conflicts are resolved within the view.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ViewPrimaryKeyResolution =
+  | ({ type: "unique" } & PrimaryKeyResolutionUnique)
+  | ({ type: "duplicate" } & PrimaryKeyResolutionDuplicate);

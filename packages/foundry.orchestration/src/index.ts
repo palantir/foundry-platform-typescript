@@ -53,6 +53,8 @@ export type {
   GetBuildsBatchResponse,
   GetJobsBatchRequestElement,
   GetJobsBatchResponse,
+  GetSchedulesBatchRequestElement,
+  GetSchedulesBatchResponse,
   Job,
   JobOutput,
   JobStartedTime,

@@ -488,6 +488,20 @@ export interface TableImportTypeNotSupported {
 }
 
 /**
+ * Could not updateExportSettings the Connection.
+ *
+ * Log Safety: SAFE
+ */
+export interface UpdateExportSettingsForConnectionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UpdateExportSettingsForConnectionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
  * Could not update secrets for the Connection.
  *
  * Log Safety: SAFE

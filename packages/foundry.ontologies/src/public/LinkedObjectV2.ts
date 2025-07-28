@@ -44,6 +44,7 @@ const _listLinkedObjects: $FoundryPlatformMethod<
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.ListLinkedObjectsResponseV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/links/{3}", 2];
@@ -62,8 +63,6 @@ const _listLinkedObjects: $FoundryPlatformMethod<
  * in the response.
  *
  * Note that null value properties will not be returned.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -87,6 +86,7 @@ export function listLinkedObjects(
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.ListLinkedObjectsResponseV2> {
@@ -105,6 +105,7 @@ const _getLinkedObject: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.OntologyObjectV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/links/{3}/{4}", 2];
@@ -113,8 +114,6 @@ const _getLinkedObject: $FoundryPlatformMethod<
  * Get a specific linked object that originates from another object.
  *
  * If there is no link between the two objects, `LinkedObjectNotFound` is thrown.
- *
- * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *
  * @public
  *
@@ -135,6 +134,7 @@ export function getLinkedObject(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.OntologyObjectV2> {

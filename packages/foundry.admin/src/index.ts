@@ -15,6 +15,7 @@
  */
 
 export type {
+  AddEnrollmentRoleAssignmentsRequest,
   AddGroupMembersRequest,
   AddMarkingMembersRequest,
   AddMarkingRoleAssignmentsRequest,
@@ -31,8 +32,10 @@ export type {
   CertificateUsageType,
   CreateGroupRequest,
   CreateMarkingRequest,
+  CreateOrganizationRequest,
   Enrollment,
   EnrollmentName,
+  EnrollmentRoleAssignment,
   GetGroupsBatchRequestElement,
   GetGroupsBatchResponse,
   GetMarkingsBatchRequestElement,
@@ -46,6 +49,7 @@ export type {
   GroupMember,
   GroupMembership,
   GroupMembershipExpiration,
+  GroupMembershipExpirationPolicy,
   GroupName,
   GroupProviderInfo,
   GroupSearchFilter,
@@ -53,6 +57,7 @@ export type {
   HostName,
   ListAuthenticationProvidersResponse,
   ListAvailableOrganizationRolesResponse,
+  ListEnrollmentRoleAssignmentsResponse,
   ListGroupMembershipsResponse,
   ListGroupMembersResponse,
   ListGroupsResponse,
@@ -82,11 +87,14 @@ export type {
   PreregisterUserRequest,
   PrincipalFilterType,
   ProviderId,
+  RemoveEnrollmentRoleAssignmentsRequest,
   RemoveGroupMembersRequest,
   RemoveMarkingMembersRequest,
   RemoveMarkingRoleAssignmentsRequest,
   RemoveOrganizationRoleAssignmentsRequest,
+  ReplaceGroupMembershipExpirationPolicyRequest,
   ReplaceGroupProviderInfoRequest,
+  ReplaceMarkingRequest,
   ReplaceOrganizationRequest,
   ReplaceUserProviderInfoRequest,
   Role,
@@ -104,6 +112,7 @@ export type {
   UserUsername,
 } from "./_components.js";
 export type {
+  AddEnrollmentRoleAssignmentsPermissionDenied,
   AddGroupMembersPermissionDenied,
   AddMarkingMembersPermissionDenied,
   AddMarkingRoleAssignmentsPermissionDenied,
@@ -112,11 +121,13 @@ export type {
   CannotReplaceProviderInfoForPrincipalInProtectedRealm,
   CreateGroupPermissionDenied,
   CreateMarkingMissingInitialAdminRole,
-  CreateMarkingNameInCategoryAlreadyExists,
   CreateMarkingPermissionDenied,
+  CreateOrganizationMissingInitialAdminRole,
+  CreateOrganizationPermissionDenied,
   DeleteGroupPermissionDenied,
   DeleteUserPermissionDenied,
   EnrollmentNotFound,
+  EnrollmentRoleNotFound,
   GetCurrentEnrollmentPermissionDenied,
   GetCurrentUserPermissionDenied,
   GetGroupProviderInfoPermissionDenied,
@@ -125,6 +136,7 @@ export type {
   GetMarkingsUserPermissionDenied,
   GetProfilePictureOfUserPermissionDenied,
   GetUserProviderInfoPermissionDenied,
+  GroupMembershipExpirationPolicyNotFound,
   GroupNameAlreadyExists,
   GroupNotFound,
   GroupProviderInfoNotFound,
@@ -133,23 +145,30 @@ export type {
   InvalidHostName,
   InvalidProfilePicture,
   ListAvailableRolesOrganizationPermissionDenied,
+  ListEnrollmentRoleAssignmentsPermissionDenied,
   ListHostsPermissionDenied,
   ListMarkingMembersPermissionDenied,
   ListMarkingRoleAssignmentsPermissionDenied,
   ListOrganizationRoleAssignmentsPermissionDenied,
   MarkingCategoryNotFound,
+  MarkingNameInCategoryAlreadyExists,
+  MarkingNameIsEmpty,
   MarkingNotFound,
+  OrganizationNameAlreadyExists,
   OrganizationNotFound,
   PreregisterGroupPermissionDenied,
   PreregisterUserPermissionDenied,
   PrincipalNotFound,
   ProfilePictureNotFound,
+  RemoveEnrollmentRoleAssignmentsPermissionDenied,
   RemoveGroupMembersPermissionDenied,
   RemoveMarkingMembersPermissionDenied,
   RemoveMarkingRoleAssignmentsPermissionDenied,
   RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed,
   RemoveOrganizationRoleAssignmentsPermissionDenied,
+  ReplaceGroupMembershipExpirationPolicyPermissionDenied,
   ReplaceGroupProviderInfoPermissionDenied,
+  ReplaceMarkingPermissionDenied,
   ReplaceOrganizationPermissionDenied,
   ReplaceUserProviderInfoPermissionDenied,
   RevokeAllTokensUserPermissionDenied,
@@ -161,9 +180,11 @@ export type {
 } from "./_errors.js";
 export * as AuthenticationProviders from "./public/AuthenticationProvider.js";
 export * as Enrollments from "./public/Enrollment.js";
+export * as EnrollmentRoleAssignments from "./public/EnrollmentRoleAssignment.js";
 export * as Groups from "./public/Group.js";
 export * as GroupMembers from "./public/GroupMember.js";
 export * as GroupMemberships from "./public/GroupMembership.js";
+export * as GroupMembershipExpirationPolicies from "./public/GroupMembershipExpirationPolicy.js";
 export * as GroupProviderInfos from "./public/GroupProviderInfo.js";
 export * as Hosts from "./public/Host.js";
 export * as Markings from "./public/Marking.js";

@@ -46,9 +46,6 @@ const _apply: $FoundryPlatformMethod<
  * Note that [parameter default values](https://www.palantir.com/docs/foundry/action-types/parameters-default-value/) are not currently supported by
  * this endpoint.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-write`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
@@ -84,9 +81,6 @@ const _applyBatch: $FoundryPlatformMethod<
  * Note that [parameter default values](https://www.palantir.com/docs/foundry/action-types/parameters-default-value/) and
  * [notifications](https://www.palantir.com/docs/foundry/action-types/notifications/) are not currently supported by this endpoint.
  *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-write`.
- *
  * @public
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
@@ -120,9 +114,6 @@ const _applyAsync: $FoundryPlatformMethod<
  *
  * Note that [parameter default values](https://www.palantir.com/docs/foundry/action-types/parameters-default-value/) are not currently
  * supported by this endpoint.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read api:ontologies-write`.
  *
  * @alpha
  *
@@ -185,9 +176,6 @@ const _validate: $FoundryPlatformMethod<
  * For example, the uniqueness of a primary key or the existence of a user ID will not be checked.
  * Note that [parameter default values](https://www.palantir.com/docs/foundry/action-types/parameters-default-value/) are not currently supported by
  * this endpoint. Unspecified parameters will be given a default value of `null`.
- *
- * Third-party applications using this endpoint via OAuth2 must request the
- * following operation scopes: `api:ontologies-read`.
  *
  * @public
  *
