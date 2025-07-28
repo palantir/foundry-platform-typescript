@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.13.0
+
+### Minor Changes
+
+- 8260ef7: Regenerate platform SDKs
+
 ## 0.12.0
 
 ### Minor Changes
