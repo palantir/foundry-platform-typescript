@@ -22,7 +22,7 @@ export function isIgnoredNamespace(ns?: string): boolean {
       return true;
     case "Gaia":
       return true;
-    case "MapRendering"
+    case "MapRendering":
       return true;
   }
   return false;
