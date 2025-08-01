@@ -18,6 +18,12 @@ export function isIgnoredNamespace(ns?: string): boolean {
   switch (ns) {
     case "Operations":
       return true;
+    case "TargetWorkbench":
+      return true;
+    case "Gaia":
+      return true;
+    case "MapRendering"
+      return true;
   }
   return false;
 }
