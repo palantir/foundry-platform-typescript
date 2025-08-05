@@ -348,6 +348,21 @@ export interface FileNotFoundOnTransactionRange {
 }
 
 /**
+ * Could not transactions the Branch.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetBranchTransactionHistoryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetBranchTransactionHistoryPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    branchName: unknown;
+  };
+}
+
+/**
  * Could not getSchedules the Dataset.
  *
  * Log Safety: SAFE

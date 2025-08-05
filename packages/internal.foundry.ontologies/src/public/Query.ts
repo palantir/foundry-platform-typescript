@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/internal.foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -33,8 +34,12 @@ const _execute: $FoundryPlatformMethod<
     ontologyRid: _Ontologies.OntologyRid,
     queryApiName: _Ontologies.QueryApiName,
     $body: _Ontologies.ExecuteQueryRequest,
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.ExecuteQueryResponse>
-> = [1, "/v1/ontologies/{0}/queries/{1}/execute", 1];
+> = [1, "/v1/ontologies/{0}/queries/{1}/execute", 5];
 
 /**
  * Executes a Query using the given parameters. Optional parameters do not need to be supplied.
@@ -50,6 +55,11 @@ export function execute(
     ontologyRid: _Ontologies.OntologyRid,
     queryApiName: _Ontologies.QueryApiName,
     $body: _Ontologies.ExecuteQueryRequest,
+
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Ontologies.ExecuteQueryResponse> {
   return $foundryPlatformFetch($ctx, _execute, ...args);

@@ -87,6 +87,20 @@ export interface CreateProjectRequest {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CreateSpaceRequest {
+  enrollmentRid: _Core.EnrollmentRid;
+  usageAccountRid?: UsageAccountRid;
+  fileSystemId?: FileSystemId;
+  displayName: ResourceDisplayName;
+  organizations: Array<_Core.OrganizationRid>;
+  description?: string;
+  deletionPolicyOrganizations: Array<_Core.OrganizationRid>;
+  defaultRoleSetId?: _Core.RoleSetId;
+}
+
+/**
  * A principal representing all users of the platform.
  *
  * Log Safety: SAFE
@@ -303,6 +317,16 @@ export interface ReplaceProjectRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface ReplaceSpaceRequest {
+  usageAccountRid?: UsageAccountRid;
+  displayName: ResourceDisplayName;
+  description?: string;
+  defaultRoleSetId?: _Core.RoleSetId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface Resource {
   rid: ResourceRid;
   displayName: ResourceDisplayName;
@@ -449,9 +473,11 @@ export interface Space {
   displayName: ResourceDisplayName;
   description?: string;
   path: ResourcePath;
-  fileSystemId?: FileSystemId;
-  usageAccountRid?: UsageAccountRid;
+  fileSystemId: FileSystemId;
+  usageAccountRid: UsageAccountRid;
   organizations: Array<_Core.OrganizationRid>;
+  deletionPolicyOrganizations: Array<_Core.OrganizationRid>;
+  defaultRoleSetId: _Core.RoleSetId;
 }
 
 /**

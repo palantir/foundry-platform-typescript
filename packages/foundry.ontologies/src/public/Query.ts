@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -38,8 +39,12 @@ const _execute: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.ExecuteQueryResponse>
-> = [1, "/v2/ontologies/{0}/queries/{1}/execute", 3];
+> = [1, "/v2/ontologies/{0}/queries/{1}/execute", 7];
 
 /**
  * Executes a Query using the given parameters.
@@ -61,6 +66,10 @@ export function execute(
       version?: _Ontologies.FunctionVersion | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
     },
   ]
 ): Promise<_Ontologies.ExecuteQueryResponse> {

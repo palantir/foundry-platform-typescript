@@ -378,6 +378,20 @@ export interface FolderNotFound {
 }
 
 /**
+ * The requested foundry branch could not be found, or the client token does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface FoundryBranchNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "FoundryBranchNotFound";
+  errorInstanceId: string;
+  parameters: {
+    branch: unknown;
+  };
+}
+
+/**
 * @deprecated Use `FunctionEncounteredUserFacingError` in the `internal.foundry.ontologies` package
 *
    * The authored function failed to execute because of a user induced error. The message argument

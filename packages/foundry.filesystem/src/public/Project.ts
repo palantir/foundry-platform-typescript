@@ -30,27 +30,20 @@ import type * as _Filesystem from "../_components.js";
 //
 
 const _get: $FoundryPlatformMethod<
-  (
-    projectRid: _Filesystem.ProjectRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Filesystem.Project>
-> = [0, "/v2/filesystem/projects/{0}", 2];
+  (projectRid: _Filesystem.ProjectRid) => Promise<_Filesystem.Project>
+> = [0, "/v2/filesystem/projects/{0}"];
 
 /**
  * Get the Project with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/projects/{projectRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    projectRid: _Filesystem.ProjectRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [projectRid: _Filesystem.ProjectRid]
 ): Promise<_Filesystem.Project> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

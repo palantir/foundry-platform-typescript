@@ -91,8 +91,12 @@ const _execute: $FoundryPlatformMethod<
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.ExecuteQueryRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Functions.ExecuteQueryResponse>
-> = [1, "/v2/functions/queries/{0}/execute", 3];
+> = [1, "/v2/functions/queries/{0}/execute", 7];
 
 /**
  * Executes a Query using the given parameters. By default, this executes the latest version of the query.
@@ -110,6 +114,10 @@ export function execute(
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.ExecuteQueryRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Functions.ExecuteQueryResponse> {
   return $foundryPlatformFetch($ctx, _execute, ...args);

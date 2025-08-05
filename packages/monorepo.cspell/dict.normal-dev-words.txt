@@ -24,6 +24,8 @@ retryable
 rsort
 semver
 streamutils
+traceparent
+tracestate
 tsdoc
 typecheck
 typemapping

@@ -75,6 +75,20 @@ export interface FolderNotFound {
 }
 
 /**
+ * The requested foundry branch could not be found, or the client token does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface FoundryBranchNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "FoundryBranchNotFound";
+  errorInstanceId: string;
+  parameters: {
+    branch: unknown;
+  };
+}
+
+/**
  * The provided AND filter should have at least one sub-filter.
  *
  * Log Safety: SAFE

@@ -30,7 +30,9 @@ export type {
   ActionTypeV2,
   ActivePropertyTypeStatus,
   AddLink,
+  AddLinkEdit,
   AddObject,
+  AddObjectEdit,
   AddPropertyExpression,
   AggregateObjectSetRequestV2,
   AggregateObjectsRequest,
@@ -133,8 +135,10 @@ export type {
   DecryptionResult,
   DeleteInterfaceObjectRule,
   DeleteLink,
+  DeleteLinkEdit,
   DeleteLinkRule,
   DeleteObject,
+  DeleteObjectEdit,
   DeleteObjectRule,
   DeprecatedPropertyTypeStatus,
   DerivedPropertyApiName,
@@ -216,6 +220,7 @@ export type {
   ListObjectTypesV2Response,
   ListOntologiesResponse,
   ListOntologiesV2Response,
+  ListOntologyValueTypesResponse,
   ListOutgoingInterfaceLinkTypesResponse,
   ListOutgoingLinkTypesResponse,
   ListOutgoingLinkTypesResponseV2,
@@ -242,6 +247,7 @@ export type {
   MinAggregationV2,
   ModifyInterfaceObjectRule,
   ModifyObject,
+  ModifyObjectEdit,
   ModifyObjectRule,
   MultiplyPropertyExpression,
   NearestNeighborsQuery,
@@ -314,6 +320,8 @@ export type {
   OntologySetType,
   OntologyStructField,
   OntologyStructType,
+  OntologyTransaction,
+  OntologyTransactionRid,
   OntologyV2,
   OntologyValueType,
   OrderBy,
@@ -328,6 +336,8 @@ export type {
   PhraseQuery,
   Plaintext,
   PolygonValue,
+  PostTransactionEditsRequest,
+  PostTransactionEditsResponse,
   PreciseDuration,
   PreciseTimeUnit,
   PrefixQuery,
@@ -462,6 +472,7 @@ export type {
   TimeSeriesValueBankProperty,
   TimeSeriesWindowType,
   TimeUnit,
+  TransactionEdit,
   TwoDimensionalAggregation,
   UnevaluableConstraint,
   UuidConstraint,
@@ -471,9 +482,18 @@ export type {
   ValidationResult,
   ValueType,
   ValueTypeApiName,
+  ValueTypeArrayType,
   ValueTypeConstraint,
+  ValueTypeDecimalType,
+  ValueTypeFieldType,
+  ValueTypeMapType,
+  ValueTypeOptionalType,
+  ValueTypeReferenceType,
   ValueTypeRid,
   ValueTypeStatus,
+  ValueTypeStructField,
+  ValueTypeStructType,
+  ValueTypeUnionType,
   VersionedQueryTypeApiName,
   WithinBoundingBoxPoint,
   WithinBoundingBoxQuery,
@@ -615,7 +635,9 @@ export * as ObjectTypesV2 from "./public/ObjectTypeV2.js";
 export * as OntologyInterfaces from "./public/OntologyInterface.js";
 export * as OntologyObjectSets from "./public/OntologyObjectSet.js";
 export * as OntologyObjectsV2 from "./public/OntologyObjectV2.js";
+export * as OntologyTransactions from "./public/OntologyTransaction.js";
 export * as OntologiesV2 from "./public/OntologyV2.js";
+export * as OntologyValueTypes from "./public/OntologyValueType.js";
 export * as Queries from "./public/Query.js";
 export * as QueryTypes from "./public/QueryType.js";
 export * as TimeSeriesPropertiesV2 from "./public/TimeSeriesPropertyV2.js";

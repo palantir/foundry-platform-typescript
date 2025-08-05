@@ -129,3 +129,39 @@ export function get(
 ): Promise<_Datasets.Branch> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _transactions: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    branchName: _Datasets.BranchName,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Datasets.ListTransactionsResponse>
+> = [0, "/v2/datasets/{0}/branches/{1}/transactions", 2];
+
+/**
+ * Get the Transaction history for the given Dataset
+ *
+ * @beta
+ *
+ * Required Scopes: [api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/branches/{branchName}/transactions
+ */
+export function transactions(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+    branchName: _Datasets.BranchName,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Datasets.ListTransactionsResponse> {
+  return $foundryPlatformFetch($ctx, _transactions, ...args);
+}

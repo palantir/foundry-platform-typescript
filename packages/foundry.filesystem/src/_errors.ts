@@ -154,6 +154,18 @@ export interface CreateProjectPermissionDenied {
 }
 
 /**
+ * Could not create the Space.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateSpacePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateSpacePermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested default roles are not in the role set of the space for the project template.
  *
  * Log Safety: SAFE
@@ -176,6 +188,34 @@ export interface DeleteResourcePermissionDenied {
   errorInstanceId: string;
   parameters: {
     resourceRid: unknown;
+  };
+}
+
+/**
+ * Could not delete the Space.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeleteSpacePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DeleteSpacePermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    spaceRid: unknown;
+  };
+}
+
+/**
+ * An enrollment was not found for the user.
+ *
+ * Log Safety: SAFE
+ */
+export interface EnrollmentNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "EnrollmentNotFound";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
   };
 }
 
@@ -682,6 +722,32 @@ export interface ReplaceProjectPermissionDenied {
 }
 
 /**
+ * Could not replace the Space.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceSpacePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceSpacePermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    spaceRid: unknown;
+  };
+}
+
+/**
+ * The spaceRid provided is for a reserved space in Foundry which cannot be replaced.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReservedSpaceCannotBeReplaced {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ReservedSpaceCannotBeReplaced";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The provided resource name is already in use by another resource in the same folder.
  *
  * Log Safety: UNSAFE
@@ -753,7 +819,71 @@ export interface RestoreResourcePermissionDenied {
 }
 
 /**
- * The referenced space cannot be found.
+ * The role set provided in the request to create or replace a space could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface RoleSetNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "RoleSetNotFound";
+  errorInstanceId: string;
+  parameters: {
+    roleSetRid: unknown;
+  };
+}
+
+/**
+ * An internal error occurred when trying to create or replace the space.
+ *
+ * Log Safety: SAFE
+ */
+export interface SpaceInternalError {
+  errorCode: "INTERNAL";
+  errorName: "SpaceInternalError";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * An invalid argument was provided in the request to create or replace a space.
+ *
+ * Log Safety: SAFE
+ */
+export interface SpaceInvalidArgument {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SpaceInvalidArgument";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The provided space name is invalid. It may be a reserved name or contain invalid characters.
+ *
+ * Log Safety: SAFE
+ */
+export interface SpaceNameInvalid {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SpaceNameInvalid";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The space cannot be deleted because it contains resources.
+ *
+ * Log Safety: SAFE
+ */
+export interface SpaceNotEmpty {
+  errorCode: "INTERNAL";
+  errorName: "SpaceNotEmpty";
+  errorInstanceId: string;
+  parameters: {
+    spaceRid: unknown;
+  };
+}
+
+/**
+ * The given Space could not be found.
  *
  * Log Safety: SAFE
  */

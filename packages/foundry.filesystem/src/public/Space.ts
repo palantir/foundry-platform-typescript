@@ -29,6 +29,57 @@ import type * as _Filesystem from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _Filesystem.CreateSpaceRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.Space>
+> = [1, "/v2/filesystem/spaces", 3];
+
+/**
+ * Creates a new Space.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/spaces
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Filesystem.CreateSpaceRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.Space> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
+const _deleteSpace: $FoundryPlatformMethod<
+  (
+    spaceRid: _Filesystem.SpaceRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [3, "/v2/filesystem/spaces/{0}", 2];
+
+/**
+ * Delete the space. This will only work if the Space is empty, meaning any Projects or Resources have been deleted first.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/spaces/{spaceRid}
+ */
+export function deleteSpace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    spaceRid: _Filesystem.SpaceRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _deleteSpace, ...args);
+}
+
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     pageSize?: _Core.PageSize | undefined;
@@ -58,4 +109,57 @@ export function list(
   ]
 ): Promise<_Filesystem.ListSpacesResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
+}
+
+const _get: $FoundryPlatformMethod<
+  (
+    spaceRid: _Filesystem.SpaceRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.Space>
+> = [0, "/v2/filesystem/spaces/{0}", 2];
+
+/**
+ * Get the Space with the specified rid.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/spaces/{spaceRid}
+ */
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    spaceRid: _Filesystem.SpaceRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.Space> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _replace: $FoundryPlatformMethod<
+  (
+    spaceRid: _Filesystem.SpaceRid,
+    $body: _Filesystem.ReplaceSpaceRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.Space>
+> = [2, "/v2/filesystem/spaces/{0}", 3];
+
+/**
+ * Replace the Space with the specified rid.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/spaces/{spaceRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    spaceRid: _Filesystem.SpaceRid,
+    $body: _Filesystem.ReplaceSpaceRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.Space> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
 }
