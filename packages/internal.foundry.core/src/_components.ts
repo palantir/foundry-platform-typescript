@@ -981,6 +981,15 @@ export interface BoundingBoxValue {
 }
 
 /**
+ * Metadata about a Foundry branch.
+ *
+ * Log Safety: SAFE
+ */
+export interface BranchMetadata {
+  rid: FoundryBranch;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface ByteType {}
@@ -4961,6 +4970,20 @@ export type TimeUnit =
  * Log Safety: SAFE
  */
 export type TotalCount = string;
+
+/**
+ * The W3C Trace Context traceparent header value used to propagate distributed tracing information for Foundry telemetry. See https://www.w3.org/TR/trace-context/#traceparent-header for more details. Note the 16 byte trace ID encoded in the header must be derived from a time based uuid to be used within Foundry.
+ *
+ * Log Safety: SAFE
+ */
+export type TraceParent = LooselyBrandedString<"TraceParent">;
+
+/**
+ * The W3C Trace Context tracestate header value, which is used to propagate vendor specific distributed tracing information for Foundry telemetry. See https://www.w3.org/TR/trace-context/#tracestate-header for more details.
+ *
+ * Log Safety: SAFE
+ */
+export type TraceState = LooselyBrandedString<"TraceState">;
 
 /**
  * @deprecated Use `TwoDimensionalAggregation` in the `internal.foundry.ontologies` package

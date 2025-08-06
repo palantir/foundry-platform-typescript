@@ -164,6 +164,22 @@ export interface ListSchedulesResponse {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface ListTransactionsOfDatasetResponse {
+  data: Array<Transaction>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListTransactionsResponse {
+  data: Array<Transaction>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
  * Picks the row with the highest value of a list of columns, compared in order.
  *
  * Log Safety: UNSAFE

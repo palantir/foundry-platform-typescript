@@ -175,9 +175,28 @@ export interface AddLink {
 /**
  * Log Safety: UNSAFE
  */
+export interface AddLinkEdit {
+  objectType: ObjectTypeApiName;
+  primaryKey: PrimaryKeyValue;
+  linkType: LinkTypeApiName;
+  linkedObjectPrimaryKey: PrimaryKeyValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface AddObject {
   primaryKey: PropertyValue;
   objectType: ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AddObjectEdit {
+  objectType: ObjectTypeApiName;
+  primaryKey: PropertyValue;
+  properties: Record<PropertyApiName, DataValue>;
 }
 
 /**
@@ -1106,6 +1125,16 @@ export interface DeleteLink {
 /**
  * Log Safety: UNSAFE
  */
+export interface DeleteLinkEdit {
+  objectType: ObjectTypeApiName;
+  primaryKey: PrimaryKeyValue;
+  linkType: LinkTypeApiName;
+  linkedObjectPrimaryKey: PrimaryKeyValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface DeleteLinkRule {
   linkTypeApiNameAtoB: LinkTypeApiName;
   linkTypeApiNameBtoA: LinkTypeApiName;
@@ -1119,6 +1148,14 @@ export interface DeleteLinkRule {
 export interface DeleteObject {
   primaryKey: PropertyValue;
   objectType: ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DeleteObjectEdit {
+  objectType: ObjectTypeApiName;
+  primaryKey: PropertyValue;
 }
 
 /**
@@ -1868,6 +1905,13 @@ export interface ListOntologiesV2Response {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListOntologyValueTypesResponse {
+  data: Array<OntologyValueType>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListOutgoingInterfaceLinkTypesResponse {
   nextPageToken?: _Core.PageToken;
   data: Array<InterfaceLinkType>;
@@ -1946,6 +1990,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
   snapshot?: boolean;
+  includeComputeUsage?: _Core.IncludeComputeUsage;
 }
 
 /**
@@ -1967,6 +2012,7 @@ export interface LoadObjectSetV2MultipleObjectTypesResponse {
     InterfaceTypeApiName,
     InterfaceToObjectTypeMappings
   >;
+  computeUsage?: _Core.ComputeSeconds;
 }
 
 /**
@@ -2142,6 +2188,15 @@ export interface ModifyInterfaceObjectRule {
 export interface ModifyObject {
   primaryKey: PropertyValue;
   objectType: ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ModifyObjectEdit {
+  objectType: ObjectTypeApiName;
+  primaryKey: PropertyValue;
+  properties: Record<PropertyApiName, DataValue>;
 }
 
 /**
@@ -2702,6 +2757,7 @@ export interface OntologyFullMetadata {
   queryTypes: Record<VersionedQueryTypeApiName, QueryTypeV2>;
   interfaceTypes: Record<InterfaceTypeApiName, InterfaceType>;
   sharedPropertyTypes: Record<SharedPropertyTypeApiName, SharedPropertyType>;
+  branch?: _Core.BranchMetadata;
 }
 
 /**
@@ -2820,6 +2876,20 @@ export interface OntologyStructType {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type OntologyTransaction = LooselyBrandedString<"OntologyTransaction">;
+
+/**
+ * The RID identifying a transaction.
+ *
+ * Log Safety: SAFE
+ */
+export type OntologyTransactionRid = LooselyBrandedString<
+  "OntologyTransactionRid"
+>;
+
+/**
  * Metadata about an Ontology.
  *
  * Log Safety: UNSAFE
@@ -2840,7 +2910,7 @@ export interface OntologyValueType {
   description?: string;
   rid: ValueTypeRid;
   status?: ValueTypeStatus;
-  fieldType?: ObjectPropertyType;
+  fieldType: ValueTypeFieldType;
   version: string;
   constraints: Array<ValueTypeConstraint>;
 }
@@ -2975,6 +3045,20 @@ export type Plaintext = LooselyBrandedString<"Plaintext">;
  * Log Safety: UNSAFE
  */
 export type PolygonValue = { type: "Polygon" } & _Geo.Polygon;
+
+/**
+ * The request payload for staging edits to a transaction.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PostTransactionEditsRequest {
+  edits: Array<TransactionEdit>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface PostTransactionEditsResponse {}
 
 /**
  * A measurement of duration.
@@ -4342,6 +4426,16 @@ export type TimeUnit =
 /**
  * Log Safety: UNSAFE
  */
+export type TransactionEdit =
+  | ({ type: "modifyObject" } & ModifyObjectEdit)
+  | ({ type: "deleteObject" } & DeleteObjectEdit)
+  | ({ type: "addObject" } & AddObjectEdit)
+  | ({ type: "removeLink" } & DeleteLinkEdit)
+  | ({ type: "addLink" } & AddLinkEdit);
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface TwoDimensionalAggregation {
   keyType: QueryAggregationKeyType;
   valueType: QueryAggregationValueType;
@@ -4432,6 +4526,13 @@ export type ValueTypeApiName = LooselyBrandedString<"ValueTypeApiName">;
 /**
  * Log Safety: UNSAFE
  */
+export interface ValueTypeArrayType {
+  subType?: ValueTypeFieldType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export type ValueTypeConstraint =
   | ({ type: "struct" } & StructConstraint)
   | ({ type: "regex" } & RegexConstraint)
@@ -4445,12 +4546,82 @@ export type ValueTypeConstraint =
 /**
  * Log Safety: SAFE
  */
+export interface ValueTypeDecimalType {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeFieldType =
+  | ({ type: "date" } & _Core.DateType)
+  | ({ type: "struct" } & ValueTypeStructType)
+  | ({ type: "string" } & _Core.StringType)
+  | ({ type: "byte" } & _Core.ByteType)
+  | ({ type: "double" } & _Core.DoubleType)
+  | ({ type: "optional" } & ValueTypeOptionalType)
+  | ({ type: "integer" } & _Core.IntegerType)
+  | ({ type: "union" } & ValueTypeUnionType)
+  | ({ type: "float" } & _Core.FloatType)
+  | ({ type: "long" } & _Core.LongType)
+  | ({ type: "reference" } & ValueTypeReferenceType)
+  | ({ type: "boolean" } & _Core.BooleanType)
+  | ({ type: "array" } & ValueTypeArrayType)
+  | ({ type: "binary" } & _Core.BinaryType)
+  | ({ type: "short" } & _Core.ShortType)
+  | ({ type: "decimal" } & ValueTypeDecimalType)
+  | ({ type: "map" } & ValueTypeMapType)
+  | ({ type: "timestamp" } & _Core.TimestampType);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeMapType {
+  keyType?: ValueTypeFieldType;
+  valueType?: ValueTypeFieldType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeOptionalType {
+  wrappedType?: ValueTypeFieldType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeReferenceType {}
+
+/**
+ * Log Safety: SAFE
+ */
 export type ValueTypeRid = LooselyBrandedString<"ValueTypeRid">;
 
 /**
  * Log Safety: SAFE
  */
 export type ValueTypeStatus = "ACTIVE" | "DEPRECATED";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeStructField {
+  name?: _Core.StructFieldName;
+  fieldType?: ValueTypeFieldType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeStructType {
+  fields: Array<ValueTypeStructField>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeUnionType {
+  memberTypes: Array<ValueTypeFieldType>;
+}
 
 /**
    * The name of the Query in the API and an optional version identifier separated by a colon.

@@ -208,6 +208,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.putDatasetSchema": {
       "variables": {},
     },
+    "v2.listTransactionsOfDataset": {
+      "variables": {},
+    },
     "v2.createBranch": {
       "variables": {},
     },
@@ -218,6 +221,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getBranch": {
+      "variables": {},
+    },
+    "v2.getBranchTransactionHistory": {
       "variables": {},
     },
     "v2.createTransaction": {
@@ -364,7 +370,19 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.listOrganizationsOfProject": {
       "variables": {},
     },
+    "v2.createSpace": {
+      "variables": {},
+    },
+    "v2.deleteSpace": {
+      "variables": {},
+    },
     "v2.listSpaces": {
+      "variables": {},
+    },
+    "v2.getSpace": {
+      "variables": {},
+    },
+    "v2.replaceSpace": {
       "variables": {},
     },
     "v2.createConnection": {
@@ -553,6 +571,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getVersionId": {
       "variables": {},
     },
+    "v2.listLogFiles": {
+      "variables": {},
+    },
+    "v2.getLogFileContent": {
+      "variables": {},
+    },
     "v2.executeSqlQuery": {
       "variables": {},
     },
@@ -728,6 +752,15 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getAttachmentV2": {
+      "variables": {},
+    },
+    "v2.getOntologyValueType": {
+      "variables": {},
+    },
+    "v2.listOntologyValueTypes": {
+      "variables": {},
+    },
+    "v2.ontologyTransactionPostEdits": {
       "variables": {},
     },
     "v2.getWidgetSet": {

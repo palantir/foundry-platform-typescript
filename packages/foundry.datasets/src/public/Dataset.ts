@@ -207,3 +207,37 @@ export function putSchema(
 ): Promise<_Datasets.GetDatasetSchemaResponse> {
   return $foundryPlatformFetch($ctx, _putSchema, ...args);
 }
+
+const _transactions: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Datasets.ListTransactionsOfDatasetResponse>
+> = [0, "/v2/datasets/{0}/transactions", 2];
+
+/**
+ * Get the Transaction history for the given Dataset
+ *
+ * @beta
+ *
+ * Required Scopes: [api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/transactions
+ */
+export function transactions(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Datasets.ListTransactionsOfDatasetResponse> {
+  return $foundryPlatformFetch($ctx, _transactions, ...args);
+}
