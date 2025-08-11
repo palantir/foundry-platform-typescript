@@ -48,6 +48,8 @@ export async function generatePlatformSdkV2(
   const componentsGenerated = new Map<Namespace, string[]>();
   const errorsGenerated = new Map<Namespace, string[]>();
 
+  const prefix = packagePrefix;
+
   // We need to make sure the components are all populated before we generate the resources
   for (const ns of model.namespaces) {
     ns.components.sort((a, b) =>
@@ -56,8 +58,11 @@ export async function generatePlatformSdkV2(
     ns.errors.sort((a, b) =>
       a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
     );
-    componentsGenerated.set(ns, await generateComponents(ns, ns.paths.srcDir));
-    errorsGenerated.set(ns, await generateErrors(ns, ns.paths.srcDir));
+    componentsGenerated.set(
+      ns,
+      await generateComponents(ns, ns.paths.srcDir, prefix),
+    );
+    errorsGenerated.set(ns, await generateErrors(ns, ns.paths.srcDir, prefix));
   }
 
   // Now we can generate the resources
@@ -161,6 +166,7 @@ export async function generatePlatformSdkV2(
 export async function generateComponents(
   ns: Namespace,
   outputDir: string,
+  prefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -170,7 +176,7 @@ export async function generateComponents(
       `;
 
   for (const component of ns.components) {
-    if (isIgnoredType(component.component)) {
+    if (isIgnoredType(component.component, prefix)) {
       continue;
     }
     out += component.getDeclaration(ns.name);
@@ -196,6 +202,7 @@ export async function generateComponents(
 export async function generateErrors(
   ns: Namespace,
   outputDir: string,
+  prefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -205,7 +212,7 @@ export async function generateErrors(
       `;
 
   for (const error of ns.errors) {
-    if (isIgnoredType(error.spec)) {
+    if (isIgnoredType(error.spec, prefix)) {
       continue;
     }
     out += error.getDeclaration(ns.name);
