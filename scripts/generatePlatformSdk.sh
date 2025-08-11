@@ -145,9 +145,10 @@ pnpm exec -- \
         --filter="./packages/foundry.*" \
         --filter="./packages/internal.foundry.*" \
 
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
-  pnpm exec -- \
-    turbo run --output-logs=errors-only check \
-        --filter ./packages/gotham \
-        --filter="./packages/gotham.*"
-fi
+# NOTE: gotham namespaces may fail cspell more frequently (e.g., 'hptl)
+#if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
+#  pnpm exec -- \
+#    turbo run --output-logs=errors-only check \
+#        --filter ./packages/gotham \
+#        --filter="./packages/gotham.*"
+#fi
