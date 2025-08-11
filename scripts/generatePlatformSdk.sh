@@ -33,11 +33,11 @@ OUT_PATH="${SCRIPT_DIR}/../packages/"
 
 # Parse args
 parse_args() {
-    NAMESPACE="foundry"
+    PREFIX="foundry"
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            --namespace)
-                NAMESPACE="$2"
+            --prefix)
+                PREFIX="$2"
                 shift 2
                 ;;
             --help)
@@ -61,16 +61,16 @@ GENERATION_MODE="docs-and-sdks"
 
 # Build filter patterns based on namespace selection
 FILTERS=""
-if [[ "${NAMESPACE}" == "all" || "${NAMESPACE}" == "foundry" ]]; then
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
     FILTERS+=" --filter ./packages/foundry --filter ./packages/internal.foundry --filter=\"./packages/foundry.*\" --filter=\"./packages/internal.foundry.*\""
 fi
-if [[ "${NAMESPACE}" == "all" || "${NAMESPACE}" == "gotham" ]]; then
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
     FILTERS+=" --filter ./packages/gotham --filter=\"./packages/gotham.*\""
 fi
 
 
 if [[ "${GENERATION_MODE}" != "docs" ]]; then
-  if [[ "${NAMESPACE}" == "all" || "${NAMESPACE}" == "foundry" ]]; then
+  if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
     echo "Generating bindings for internal.foundry"
     $CODE_GENERATOR generate \
         --v2 \
@@ -84,7 +84,7 @@ if [[ "${GENERATION_MODE}" != "docs" ]]; then
   fi
 fi
 
-if [[ "${NAMESPACE}" == "all" || "${NAMESPACE}" == "foundry" ]]; then
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
   echo "Generating foundry bindings"
   $CODE_GENERATOR generate \
       --v2 \
@@ -97,7 +97,7 @@ if [[ "${NAMESPACE}" == "all" || "${NAMESPACE}" == "foundry" ]]; then
       --mode "${GENERATION_MODE}"
 fi
 
-if [[ "${NAMESPACE}" == "all" || "${NAMESPACE}" == "gotham" ]]; then
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
   echo "Generating gotham bindings"
   $CODE_GENERATOR generate \
       --v2 \
