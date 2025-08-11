@@ -14,16 +14,32 @@
  * limitations under the License.
  */
 
-export function isIgnoredNamespace(ns?: string): boolean {
-  switch (ns) {
-    case "Operations":
-      return true;
-    case "TargetWorkbench":
-      return true;
-    case "Gaia":
-      return true;
-    case "MapRendering":
-      return true;
+export function isIgnoredNamespace(
+  ns?: string,
+  packagePrefix: string = "foundry",
+): boolean {
+  const isFoundryIgnored = () => {
+    switch (ns) {
+      case "Operations":
+        return true;
+      case "TargetWorkbench":
+        return true;
+      case "Gaia":
+        return true;
+      case "MapRendering":
+        return true;
+    }
+    return false;
+  };
+
+  if (packagePrefix === "all") {
+    return false;
   }
-  return false;
+
+  if (packagePrefix === "gotham") {
+    return !isFoundryIgnored();
+  }
+
+  // Default behavior is foundry-only
+  return isFoundryIgnored();
 }
