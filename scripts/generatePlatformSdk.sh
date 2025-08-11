@@ -38,7 +38,7 @@ if [[ "${GENERATION_MODE}" != "docs" ]]; then
         --mode "sdks" # We don't generate docs based on the OpenAPI IR
 fi
 
-echo "Generating bindings"
+echo "Generating foundry bindings"
 $CODE_GENERATOR generate \
     --v2 \
     --prefix "foundry" \
@@ -46,6 +46,17 @@ $CODE_GENERATOR generate \
     --manifestFile "${OPENAPI_MANIFEST_YML}" \
     --outputDir "${OUT_PATH}" \
     --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" \
+    --endpointVersion "v2" \
+    --mode "${GENERATION_MODE}"
+
+echo "Generating gotham bindings"
+$CODE_GENERATOR generate \
+    --v2 \
+    --prefix "gotham" \
+    --inputFile "${IR_JSON}" \
+    --manifestFile "${OPENAPI_MANIFEST_YML}" \
+    --outputDir "${OUT_PATH}" \
+    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/gotham.core/core.json" \
     --endpointVersion "v2" \
     --mode "${GENERATION_MODE}"
 
@@ -64,8 +75,10 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
+        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
-        --filter="./packages/internal.foundry.*"
+        --filter="./packages/internal.foundry.*" \
+        --filter="./packages/gotham.*"
 
 echo
 echo "Checking for any remaining lint errors"
@@ -74,5 +87,7 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
+        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
-        --filter="./packages/internal.foundry.*"
+        --filter="./packages/internal.foundry.*" \
+        --filter="./packages/gotham.*"
