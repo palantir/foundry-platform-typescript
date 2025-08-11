@@ -18,10 +18,14 @@ export function isIgnoredNamespace(
   ns?: string,
   packagePrefix: string = "foundry",
 ): boolean {
+  // Always ignored
+  switch (ns) {
+    case "Operations":
+      return true;
+  }
+
   const isFoundryIgnored = () => {
     switch (ns) {
-      case "Operations":
-        return true;
       case "TargetWorkbench":
         return true;
       case "Gaia":
