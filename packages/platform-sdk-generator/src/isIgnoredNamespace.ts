@@ -22,6 +22,8 @@ export function isIgnoredNamespace(
   switch (ns) {
     case "Operations":
       return true;
+    case "Core":
+      return false;
   }
 
   const isFoundryIgnored = () => {
