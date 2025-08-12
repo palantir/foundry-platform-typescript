@@ -20,7 +20,7 @@ import type { ErrorType } from "./model/ErrorType.js";
 
 export function isIgnoredType(
   component: ir.Component | ir.Error,
-  packagePrefix: string = "foundry",
+  packagePrefix: string,
 ): boolean {
   return isIgnoredNamespace(component.locator.namespaceName, packagePrefix);
 }

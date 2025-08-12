@@ -16,7 +16,7 @@
 
 export function isIgnoredNamespace(
   ns?: string,
-  packagePrefix: string = "foundry",
+  packagePrefix: string,
 ): boolean {
   // Always ignored
   switch (ns) {
