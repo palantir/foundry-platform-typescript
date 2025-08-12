@@ -24,8 +24,10 @@ const alwaysIgnore = new Set(["Operations"]);
 
 export function isIgnoredNamespace(
   ns?: string,
-  packagePrefix: string,
+  packagePrefix?: string,
 ): boolean {
+  if (!ns || !packagePrefix) return true;
+
   if (alwaysIgnore.has(ns)) {
     return true;
   }
@@ -35,7 +37,7 @@ export function isIgnoredNamespace(
 
   const isGotham = packagePrefix === "gotham";
 
-  return (isGotham === !gothamNamespace.has(ns));
+  return (isGotham === !gothamNamespaces.has(ns));
   //     if (isGotham && gothamNamespace.has(ns)) {
   //         return false;
   //         }
