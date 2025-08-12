@@ -135,7 +135,5 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
-        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
         --filter="./packages/internal.foundry.*" \
-        --filter="./packages/gotham.*"
