@@ -14,38 +14,13 @@
  * limitations under the License.
  */
 
-export function isGothamNamespace(
-  ns?: string,
+import type * as ir from "@osdk/docs-spec-platform";
+import { isIgnoredNamespace } from "./isIgnoredNamespace.js";
+import type { ErrorType } from "./model/ErrorType.js";
+
+export function isIgnoredType(
+  component: ir.Component | ir.Error,
   packagePrefix: string,
 ): boolean {
-  // Always ignored
-  switch (ns) {
-    case "Operations":
-      return true;
-    case "Core":
-      return false;
-  }
-
-  const isFoundryIgnored = () => {
-    switch (ns) {
-      case "TargetWorkbench":
-        return true;
-      case "Gaia":
-        return true;
-      case "MapRendering":
-        return true;
-    }
-    return false;
-  };
-
-  if (packagePrefix === "all") {
-    return false;
-  }
-
-  if (packagePrefix === "gotham") {
-    return !isFoundryIgnored();
-  }
-
-  // Default behavior is foundry-only
-  return isFoundryIgnored();
+  return isIgnoredNamespace(component.locator.namespaceName, packagePrefix);
 }
