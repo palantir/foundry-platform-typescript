@@ -14,38 +14,28 @@
  * limitations under the License.
  */
 
+const gothamNamespaces = new Set([
+  "TargetWorkbench",
+  "Gaia",
+  "MapRendering",
+]); /* gotham-only */
+const neverIgnore = new Set(["Core"]);
+const alwaysIgnore = new Set(["Operations"]);
+
 export function isIgnoredNamespace(
   ns?: string,
-  packagePrefix: string = "foundry",
+  packagePrefix?: string,
 ): boolean {
-  // Always ignored
-  switch (ns) {
-    case "Operations":
-      return true;
-    case "Core":
-      return false;
+  if (!ns || !packagePrefix) return true;
+
+  if (alwaysIgnore.has(ns)) {
+    return true;
   }
-
-  const isFoundryIgnored = () => {
-    switch (ns) {
-      case "TargetWorkbench":
-        return true;
-      case "Gaia":
-        return true;
-      case "MapRendering":
-        return true;
-    }
-    return false;
-  };
-
-  if (packagePrefix === "all") {
+  if (neverIgnore.has(ns)) {
     return false;
   }
 
-  if (packagePrefix === "gotham") {
-    return !isFoundryIgnored();
-  }
+  const isGotham = packagePrefix === "gotham";
 
-  // Default behavior is foundry-only
-  return isFoundryIgnored();
+  return (isGotham === !gothamNamespaces.has(ns));
 }

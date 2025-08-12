@@ -48,7 +48,7 @@ export async function generatePlatformSdkV2(
   const componentsGenerated = new Map<Namespace, string[]>();
   const errorsGenerated = new Map<Namespace, string[]>();
 
-  const prefix = packagePrefix;
+  const platformName = packagePrefix;
 
   // We need to make sure the components are all populated before we generate the resources
   for (const ns of model.namespaces) {
@@ -60,9 +60,12 @@ export async function generatePlatformSdkV2(
     );
     componentsGenerated.set(
       ns,
-      await generateComponents(ns, ns.paths.srcDir, prefix),
+      await generateComponents(ns, ns.paths.srcDir, platformName),
     );
-    errorsGenerated.set(ns, await generateErrors(ns, ns.paths.srcDir, prefix));
+    errorsGenerated.set(
+      ns,
+      await generateErrors(ns, ns.paths.srcDir, platformName),
+    );
   }
 
   // Now we can generate the resources
@@ -166,7 +169,7 @@ export async function generatePlatformSdkV2(
 export async function generateComponents(
   ns: Namespace,
   outputDir: string,
-  prefix: string = "foundry",
+  platformName: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -176,7 +179,7 @@ export async function generateComponents(
       `;
 
   for (const component of ns.components) {
-    if (isIgnoredType(component.component, prefix)) {
+    if (isIgnoredType(component.component, platformName)) {
       continue;
     }
     out += component.getDeclaration(ns.name);
@@ -202,7 +205,7 @@ export async function generateComponents(
 export async function generateErrors(
   ns: Namespace,
   outputDir: string,
-  prefix: string = "foundry",
+  platformName: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -212,7 +215,7 @@ export async function generateErrors(
       `;
 
   for (const error of ns.errors) {
-    if (isIgnoredType(error.spec, prefix)) {
+    if (isIgnoredType(error.spec, platformName)) {
       continue;
     }
     out += error.getDeclaration(ns.name);

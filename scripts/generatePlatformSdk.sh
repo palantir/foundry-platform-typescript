@@ -84,30 +84,28 @@ if [[ "${GENERATION_MODE}" != "docs" ]]; then
   fi
 fi
 
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
-  echo "Generating foundry bindings"
+run_generator() {
+  local packagePrefix=$1
+  local deprecated_file=$2
+
+  echo "Generating ${packagePrefix} bindings"
   $CODE_GENERATOR generate \
       --v2 \
-      --prefix "foundry" \
+      --prefix "${packagePrefix}" \
       --inputFile "${IR_JSON}" \
       --manifestFile "${OPENAPI_MANIFEST_YML}" \
       --outputDir "${OUT_PATH}" \
-      --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" \
+      --deprecatedFile "${deprecated_file}" \
       --endpointVersion "v2" \
       --mode "${GENERATION_MODE}"
+}
+
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
+  run_generator "foundry" "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
 fi
 
 if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
-  echo "Generating gotham bindings"
-  $CODE_GENERATOR generate \
-      --v2 \
-      --prefix "gotham" \
-      --inputFile "${IR_JSON}" \
-      --manifestFile "${OPENAPI_MANIFEST_YML}" \
-      --outputDir "${OUT_PATH}" \
-      --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/gotham.core/core.json" \
-      --endpointVersion "v2" \
-      --mode "${GENERATION_MODE}"
+  run_generator "gotham" "${SCRIPT_DIR}/../packages/deprecated/gotham.core/core.json"
 fi
 
 echo
@@ -125,15 +123,10 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
+        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
         --filter="./packages/internal.foundry.*" \
-
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
-  pnpm exec -- \
-      turbo run --output-logs=errors-only fix-lint \
-          --filter ./packages/gotham \
-          --filter="./packages/gotham.*"
-fi
+        --filter="./packages/gotham.*"
 
 echo
 echo "Checking for any remaining lint errors"
