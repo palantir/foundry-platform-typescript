@@ -125,15 +125,10 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
+        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
         --filter="./packages/internal.foundry.*" \
-
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
-  pnpm exec -- \
-      turbo run --output-logs=errors-only fix-lint \
-          --filter ./packages/gotham \
-          --filter="./packages/gotham.*"
-fi
+        --filter="./packages/gotham.*"
 
 echo
 echo "Checking for any remaining lint errors"
@@ -142,5 +137,7 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
+        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
         --filter="./packages/internal.foundry.*" \
+        --filter="./packages/gotham.*"
