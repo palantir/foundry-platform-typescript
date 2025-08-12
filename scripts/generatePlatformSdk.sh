@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
+print_help() {
+    cat <<EOF
+Usage: $(basename "$0") [OPTIONS]
+
+Options:
+  --namespace NAMESPACE         Generate SDKs for specific class only (foundry|gotham|all). Default: foundry.
+  --help                        Show this help message and exit.
+EOF
+}
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source "$SCRIPT_DIR/checkCommand.sh"
@@ -21,11 +31,46 @@ OPENAPI_MANIFEST_YML="${SCRIPT_DIR}/../tmp/api-gateway-ir/manifest.yml"
 PACKAGE_PATH="${SCRIPT_DIR}/../packages/internal.foundry"
 OUT_PATH="${SCRIPT_DIR}/../packages/"
 
+# Parse args
+parse_args() {
+    PREFIX="foundry"
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --prefix)
+                PREFIX="$2"
+                shift 2
+                ;;
+            --help)
+                print_help
+                exit 0
+                ;;
+            *)
+                echo "Unknown option: $1"
+                print_help
+                exit 1
+                ;;
+        esac
+    done
+}
+
+parse_args "$@"
+
 # Whether to generate docs, sdks, or both
 # One of: docs, sdks, docs-and-sdks
 GENERATION_MODE="docs-and-sdks"
 
+# Build filter patterns based on namespace selection
+FILTERS=""
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
+    FILTERS+=" --filter ./packages/foundry --filter ./packages/internal.foundry --filter=\"./packages/foundry.*\" --filter=\"./packages/internal.foundry.*\""
+fi
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
+    FILTERS+=" --filter ./packages/gotham --filter=\"./packages/gotham.*\""
+fi
+
+
 if [[ "${GENERATION_MODE}" != "docs" ]]; then
+  if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
     echo "Generating bindings for internal.foundry"
     $CODE_GENERATOR generate \
         --v2 \
@@ -36,18 +81,32 @@ if [[ "${GENERATION_MODE}" != "docs" ]]; then
         --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
         --endpointVersion "v1" \
         --mode "sdks" # We don't generate docs based on the OpenAPI IR
+  fi
 fi
 
-echo "Generating bindings"
-$CODE_GENERATOR generate \
-    --v2 \
-    --prefix "foundry" \
-    --inputFile "${IR_JSON}" \
-    --manifestFile "${OPENAPI_MANIFEST_YML}" \
-    --outputDir "${OUT_PATH}" \
-    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" \
-    --endpointVersion "v2" \
-    --mode "${GENERATION_MODE}"
+run_generator() {
+  local packagePrefix=$1
+  local deprecated_file=$2
+
+  echo "Generating ${packagePrefix} bindings"
+  $CODE_GENERATOR generate \
+      --v2 \
+      --prefix "${packagePrefix}" \
+      --inputFile "${IR_JSON}" \
+      --manifestFile "${OPENAPI_MANIFEST_YML}" \
+      --outputDir "${OUT_PATH}" \
+      --deprecatedFile "${deprecated_file}" \
+      --endpointVersion "v2" \
+      --mode "${GENERATION_MODE}"
+}
+
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
+  run_generator "foundry" "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
+fi
+
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
+  run_generator "gotham" "${SCRIPT_DIR}/../packages/deprecated/gotham.core/core.json"
+fi
 
 echo
 echo pnpm install to make align deps
@@ -64,8 +123,10 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
+        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
-        --filter="./packages/internal.foundry.*"
+        --filter="./packages/internal.foundry.*" \
+        --filter="./packages/gotham.*"
 
 echo
 echo "Checking for any remaining lint errors"
@@ -75,4 +136,4 @@ pnpm exec -- \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
         --filter="./packages/foundry.*" \
-        --filter="./packages/internal.foundry.*"
+        --filter="./packages/internal.foundry.*" \

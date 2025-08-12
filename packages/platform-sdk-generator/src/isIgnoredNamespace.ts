@@ -14,16 +14,28 @@
  * limitations under the License.
  */
 
-export function isIgnoredNamespace(ns?: string): boolean {
-  switch (ns) {
-    case "Operations":
-      return true;
-    case "TargetWorkbench":
-      return true;
-    case "Gaia":
-      return true;
-    case "MapRendering":
-      return true;
+const gothamNamespaces = new Set([
+  "TargetWorkbench",
+  "Gaia",
+  "MapRendering",
+]); /* gotham-only */
+const neverIgnore = new Set(["Core"]);
+const alwaysIgnore = new Set(["Operations"]);
+
+export function isIgnoredNamespace(
+  ns?: string,
+  packagePrefix?: string,
+): boolean {
+  if (!ns || !packagePrefix) return true;
+
+  if (alwaysIgnore.has(ns)) {
+    return true;
   }
-  return false;
+  if (neverIgnore.has(ns)) {
+    return false;
+  }
+
+  const isGotham = packagePrefix === "gotham";
+
+  return (isGotham === !gothamNamespaces.has(ns));
 }

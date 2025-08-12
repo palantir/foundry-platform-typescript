@@ -21,6 +21,16 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface ArrayConstraint {
+  minimumSize?: number;
+  maximumSize?: number;
+  uniqueValues: boolean;
+  valueConstraint?: ValueTypeConstraint;
+}
+
+/**
    * Represents the value of data in the following format. Note that these values can be nested, for example an array of structs.
 | Type                        | JSON encoding                                         | Example                                                                       |
 |-----------------------------|-------------------------------------------------------|-------------------------------------------------------------------------------|
@@ -47,6 +57,13 @@ export type LooselyBrandedString<T extends string> = string & {
    * Log Safety: UNSAFE
    */
 export type DataValue = any;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface EnumConstraint {
+  options: Array<any>;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -84,6 +101,14 @@ export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 export interface GetByRidQueriesRequest {
   rid: FunctionRid;
   version?: FunctionVersion;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LengthConstraint {
+  minimumLength?: number;
+  maximumLength?: number;
 }
 
 /**
@@ -235,6 +260,39 @@ export interface QueryUnionType {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface RangesConstraint {
+  minimumValue?: any;
+  maximumValue?: any;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RegexConstraint {
+  pattern: string;
+  partialMatch: boolean;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RidConstraint {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StructConstraint {
+  fields: Record<StructFieldApiName, ValueTypeApiName>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
+
+/**
  * The name of a field in a Struct.
  *
  * Log Safety: UNSAFE
@@ -258,6 +316,11 @@ export interface TwoDimensionalAggregation {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface UuidConstraint {}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ValueType {
@@ -268,6 +331,7 @@ export interface ValueType {
   displayName: _Core.DisplayName;
   description?: ValueTypeDescription;
   baseType?: ValueTypeDataType;
+  constraints: Array<ValueTypeConstraint>;
 }
 
 /**
@@ -276,6 +340,19 @@ export interface ValueType {
  * Log Safety: UNSAFE
  */
 export type ValueTypeApiName = LooselyBrandedString<"ValueTypeApiName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeConstraint =
+  | ({ type: "struct" } & StructConstraint)
+  | ({ type: "regex" } & RegexConstraint)
+  | ({ type: "array" } & ArrayConstraint)
+  | ({ type: "length" } & LengthConstraint)
+  | ({ type: "range" } & RangesConstraint)
+  | ({ type: "rid" } & RidConstraint)
+  | ({ type: "uuid" } & UuidConstraint)
+  | ({ type: "enum" } & EnumConstraint);
 
 /**
  * The underlying base type of a value type.
@@ -470,4 +547,5 @@ export interface VersionId {
   displayName: _Core.DisplayName;
   description?: ValueTypeDescription;
   baseType?: ValueTypeDataType;
+  constraints: Array<ValueTypeConstraint>;
 }

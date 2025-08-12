@@ -529,6 +529,18 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getOpenApiDefinition": {
       "variables": {},
     },
+    "v2.createTargetBoard": {
+      "variables": {},
+    },
+    "v2.deleteTargetBoard": {
+      "variables": {},
+    },
+    "v2.modifyTargetBoard": {
+      "variables": {},
+    },
+    "v2.loadTargetBoard": {
+      "variables": {},
+    },
     "v2.readMediaItem": {
       "variables": {},
     },

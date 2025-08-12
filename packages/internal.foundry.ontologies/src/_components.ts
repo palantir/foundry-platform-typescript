@@ -1605,6 +1605,7 @@ export interface InterfaceSharedPropertyType {
   displayName: _Core.DisplayName;
   description?: string;
   dataType: ObjectPropertyType;
+  valueTypeApiName?: ValueTypeApiName;
   required: boolean;
 }
 
@@ -2751,6 +2752,7 @@ export interface OntologyFullMetadata {
   interfaceTypes: Record<InterfaceTypeApiName, InterfaceType>;
   sharedPropertyTypes: Record<SharedPropertyTypeApiName, SharedPropertyType>;
   branch?: _Core.BranchMetadata;
+  valueTypes: Record<ValueTypeApiName, OntologyValueType>;
 }
 
 /**
@@ -3205,6 +3207,7 @@ export interface PropertyV2 {
   rid: PropertyTypeRid;
   status?: PropertyTypeStatus;
   visibility?: PropertyTypeVisibility;
+  valueTypeApiName?: ValueTypeApiName;
 }
 
 /**
@@ -3952,6 +3955,7 @@ export interface SharedPropertyType {
   displayName: _Core.DisplayName;
   description?: string;
   dataType: ObjectPropertyType;
+  valueTypeApiName?: ValueTypeApiName;
 }
 
 /**
