@@ -38,16 +38,4 @@ export function isIgnoredNamespace(
   const isGotham = packagePrefix === "gotham";
 
   return (isGotham === !gothamNamespaces.has(ns));
-  //     if (isGotham && gothamNamespace.has(ns)) {
-  //         return false;
-  //         }
-  //     if (isGotham && !gothamNamespace.has(ns)) {
-  //         return true;
-  //         }
-  //     if (!isGotham && !gothamNamespace.has(ns)) {
-  //         return false;
-  //         }
-  //     if (!isGotham && gothamNamespace.has(ns)) {
-  //         return true;
-  //         }
 }
