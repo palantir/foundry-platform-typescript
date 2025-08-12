@@ -68,25 +68,10 @@ if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
     FILTERS+=" --filter ./packages/gotham --filter=\"./packages/gotham.*\""
 fi
 
-
-if [[ "${GENERATION_MODE}" != "docs" ]]; then
-  if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
-    echo "Generating bindings for internal.foundry"
-    $CODE_GENERATOR generate \
-        --v2 \
-        --prefix "internal.foundry" \
-        --inputFile "${IR_JSON}" \
-        --manifestFile "${OPENAPI_MANIFEST_YML}" \
-        --outputDir "${OUT_PATH}" \
-        --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
-        --endpointVersion "v1" \
-        --mode "sdks" # We don't generate docs based on the OpenAPI IR
-  fi
-fi
-
 run_generator() {
   local packagePrefix=$1
   local deprecated_file=$2
+  local generation_mode=${3:-$GENERATION_MODE}
 
   echo "Generating ${packagePrefix} bindings"
   $CODE_GENERATOR generate \
@@ -97,8 +82,14 @@ run_generator() {
       --outputDir "${OUT_PATH}" \
       --deprecatedFile "${deprecated_file}" \
       --endpointVersion "v2" \
-      --mode "${GENERATION_MODE}"
+      --mode "${generation_mode}"
 }
+
+if [[ "${GENERATION_MODE}" != "docs" ]]; then
+  if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
+    run_generator "internal.foundry" "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" "sdks"
+  fi
+fi
 
 if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
   run_generator "foundry" "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
