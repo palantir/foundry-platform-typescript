@@ -159,17 +159,16 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
 3. Palantir-internal developers only: copy `.envrc.sample` into `.envrc` and populate the variables
 4. Run `source .envrc` (if necessary)
 5. `pnpm install`
-6. Start dev mode: `pnpm dev`
-7. Add your code
-8. Add a changeset
+6. Add your code
+7. Add a changeset
    1. Assuming you've run `pnpm install`, run `changeset` (or `pnpm exec changeset`).
    2. The tool will split things into changed vs unchanged packages (which you may need if you decide to add changeset logs in a future PR for past features)
    3. Select the packages you want the changeset applied to using the arrow keys (up/down) and space-bar to "select" the package.
    4. Press enter to continue.
    5. Select which packages need major/minor/patch bumps. Typically you should not select anything here and always use patch bumps. We will then bump the major and minor version separately as needed.
    6. Enter a change (or press enter on empty to open your editor.)
-9. If you're curious what the final build output might look like you can run `pnpm build` from root.
-10. Run all lint rules and tests with `pnpm check` from root.
+8. If you're curious what the final build output might look like you can run `pnpm build` from root.
+9. Run all lint rules and tests with `pnpm check` from root.
 
 ### Updating Platform SDKs
 
