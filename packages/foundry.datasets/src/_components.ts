@@ -87,6 +87,13 @@ export interface CreateViewRequest {
 }
 
 /**
+ * The dataframe reader used for reading the dataset schema.
+ *
+ * Log Safety: SAFE
+ */
+export type DataframeReader = "AVRO" | "CSV" | "PARQUET" | "DATASOURCE";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Dataset {
@@ -217,6 +224,7 @@ export interface PrimaryKeyResolutionUnique {}
  */
 export interface PutDatasetSchemaRequest {
   branchName?: BranchName;
+  dataframeReader?: DataframeReader;
   endTransactionRid?: TransactionRid;
   schema: _Core.DatasetSchema;
 }
