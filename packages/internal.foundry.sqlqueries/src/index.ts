@@ -14,29 +14,26 @@
  * limitations under the License.
  */
 
-const gothamNamespaces = new Set([
-  "TargetWorkbench",
-  "Gaia",
-  "MapRendering",
-  "Geojson",
-]); /* gotham-only */
-const neverIgnore = new Set(["Core"]);
-const alwaysIgnore = new Set(["Operations"]);
-
-export function isIgnoredNamespace(
-  ns?: string,
-  packagePrefix?: string,
-): boolean {
-  if (!ns || !packagePrefix) return true;
-
-  if (alwaysIgnore.has(ns)) {
-    return true;
-  }
-  if (neverIgnore.has(ns)) {
-    return false;
-  }
-
-  const isGotham = packagePrefix === "gotham";
-
-  return (isGotham === !gothamNamespaces.has(ns));
-}
+export type {
+  CanceledQueryStatus,
+  ExecuteSqlQueryRequest,
+  FailedQueryStatus,
+  QueryStatus,
+  RunningQueryStatus,
+  SqlQuery,
+  SqlQueryId,
+  SucceededQueryStatus,
+} from "./_components.js";
+export type {
+  CancelSqlQueryPermissionDenied,
+  ExecuteSqlQueryPermissionDenied,
+  GetResultsSqlQueryPermissionDenied,
+  GetStatusSqlQueryPermissionDenied,
+  QueryCanceled,
+  QueryFailed,
+  QueryParseError,
+  QueryPermissionDenied,
+  QueryRunning,
+  ReadQueryInputsPermissionDenied,
+} from "./_errors.js";
+export * as SqlQueries from "./public/SqlQuery.js";

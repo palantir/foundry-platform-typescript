@@ -14,29 +14,30 @@
  * limitations under the License.
  */
 
-const gothamNamespaces = new Set([
-  "TargetWorkbench",
-  "Gaia",
-  "MapRendering",
-  "Geojson",
-]); /* gotham-only */
-const neverIgnore = new Set(["Core"]);
-const alwaysIgnore = new Set(["Operations"]);
+import type * as _Core from "@osdk/internal.foundry.core";
 
-export function isIgnoredNamespace(
-  ns?: string,
-  packagePrefix?: string,
-): boolean {
-  if (!ns || !packagePrefix) return true;
+export type LooselyBrandedString<T extends string> = string & {
+  __LOOSE_BRAND?: T;
+};
 
-  if (alwaysIgnore.has(ns)) {
-    return true;
-  }
-  if (neverIgnore.has(ns)) {
-    return false;
-  }
+/**
+ * The ID of an audit log file
+ *
+ * Log Safety: SAFE
+ */
+export type FileId = LooselyBrandedString<"FileId">;
 
-  const isGotham = packagePrefix === "gotham";
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListLogFilesResponse {
+  data: Array<LogFile>;
+  nextPageToken?: _Core.PageToken;
+}
 
-  return (isGotham === !gothamNamespaces.has(ns));
+/**
+ * Log Safety: SAFE
+ */
+export interface LogFile {
+  id: FileId;
 }

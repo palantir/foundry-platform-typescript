@@ -14,29 +14,29 @@
  * limitations under the License.
  */
 
-const gothamNamespaces = new Set([
-  "TargetWorkbench",
-  "Gaia",
-  "MapRendering",
-  "Geojson",
-]); /* gotham-only */
-const neverIgnore = new Set(["Core"]);
-const alwaysIgnore = new Set(["Operations"]);
-
-export function isIgnoredNamespace(
-  ns?: string,
-  packagePrefix?: string,
-): boolean {
-  if (!ns || !packagePrefix) return true;
-
-  if (alwaysIgnore.has(ns)) {
-    return true;
-  }
-  if (neverIgnore.has(ns)) {
-    return false;
-  }
-
-  const isGotham = packagePrefix === "gotham";
-
-  return (isGotham === !gothamNamespaces.has(ns));
-}
+export type {
+  BranchName,
+  BuildStatusCheckConfig,
+  Check,
+  CheckConfig,
+  CheckGroupRid,
+  CheckIntent,
+  CheckRid,
+  ColumnName,
+  CreateCheckRequest,
+  DataConnectionAgentSubject,
+  DatasetRid,
+  DatasetSubject,
+  EscalationConfig,
+  JobStatusCheckConfig,
+  ScheduleSubject,
+  SeverityLevel,
+  StatusCheckConfig,
+} from "./_components.js";
+export type {
+  CheckAlreadyExists,
+  CheckNotFound,
+  CreateCheckPermissionDenied,
+  DeleteCheckPermissionDenied,
+} from "./_errors.js";
+export * as Checks from "./public/Check.js";

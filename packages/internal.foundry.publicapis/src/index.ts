@@ -14,29 +14,20 @@
  * limitations under the License.
  */
 
-const gothamNamespaces = new Set([
-  "TargetWorkbench",
-  "Gaia",
-  "MapRendering",
-  "Geojson",
-]); /* gotham-only */
-const neverIgnore = new Set(["Core"]);
-const alwaysIgnore = new Set(["Operations"]);
-
-export function isIgnoredNamespace(
-  ns?: string,
-  packagePrefix?: string,
-): boolean {
-  if (!ns || !packagePrefix) return true;
-
-  if (alwaysIgnore.has(ns)) {
-    return true;
-  }
-  if (neverIgnore.has(ns)) {
-    return false;
-  }
-
-  const isGotham = packagePrefix === "gotham";
-
-  return (isGotham === !gothamNamespaces.has(ns));
-}
+export type {
+  ApiDefinition,
+  ApiDefinitionDeprecated,
+  ApiDefinitionName,
+  ApiDefinitionRid,
+  ApiVersion,
+  IrVersion,
+  OpenApiDefinition,
+  OpenApiDefinitionDeprecated,
+  OpenApiDefinitionValue,
+} from "./_components.js";
+export type {
+  ApiDefinitionNotFound,
+  OpenApiDefinitionNotFound,
+} from "./_errors.js";
+export * as ApiDefinitions from "./public/ApiDefinition.js";
+export * as OpenApiDefinitions from "./public/OpenApiDefinition.js";
