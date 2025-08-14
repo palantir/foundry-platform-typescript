@@ -1,5 +1,19 @@
 # @osdk/foundry.connectivity
 
+## 2.27.0
+
+### Minor Changes
+
+- 07f10f2: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [07f10f2]
+  - @osdk/foundry.orchestration@2.27.0
+  - @osdk/foundry.filesystem@2.27.0
+  - @osdk/foundry.datasets@2.27.0
+  - @osdk/foundry.core@2.27.0
+
 ## 2.26.0
 
 ### Minor Changes
