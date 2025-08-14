@@ -37,6 +37,7 @@
     "@osdk/foundry.filesystem": "workspace:*",
     "@osdk/foundry.functions": "workspace:*",
     "@osdk/foundry.geo": "workspace:*",
+    "@osdk/foundry.geojson": "workspace:*",
     "@osdk/foundry.mediasets": "workspace:*",
     "@osdk/foundry.ontologies": "workspace:*",
     "@osdk/foundry.orchestration": "workspace:*",
@@ -70,7 +71,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1251.0",
+        "minVersion": "1.1260.0",
         "maxVersion": "1.x.x",
         "optional": false
       }
