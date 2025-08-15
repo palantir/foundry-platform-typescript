@@ -31,33 +31,10 @@ OPENAPI_MANIFEST_YML="${SCRIPT_DIR}/../tmp/api-gateway-ir/manifest.yml"
 PACKAGE_PATH="${SCRIPT_DIR}/../packages/internal.foundry"
 OUT_PATH="${SCRIPT_DIR}/../packages/"
 
-# Parse args
-parse_args() {
-    PREFIX="foundry"
-    while [[ $# -gt 0 ]]; do
-        case "$1" in
-            --prefix)
-                PREFIX="$2"
-                shift 2
-                ;;
-            --help)
-                print_help
-                exit 0
-                ;;
-            *)
-                echo "Unknown option: $1"
-                print_help
-                exit 1
-                ;;
-        esac
-    done
-}
-
-parse_args "$@"
-
 # Whether to generate docs, sdks, or both
 # One of: docs, sdks, docs-and-sdks
 GENERATION_MODE="docs-and-sdks"
+PREFIX="all"
 
 # Build filter patterns based on namespace selection
 FILTERS=""

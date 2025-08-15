@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43925b42-8778-4000-909c-0ff34ef4e318" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/packages/platform-sdk-generator/src/isIgnoredNamespace.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/platform-sdk-generator/src/isIgnoredNamespace.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generatePlatformSdk.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generatePlatformSdk.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
