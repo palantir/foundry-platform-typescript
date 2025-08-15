@@ -18,8 +18,9 @@ const gothamNamespaces = new Set([
   "TargetWorkbench",
   "Gaia",
   "MapRendering",
+  "Geojson",
 ]); /* gotham-only */
-const neverIgnore = new Set(["Core", "Geojson"]);
+const neverIgnore = new Set(["Core"]);
 const alwaysIgnore = new Set(["Operations"]);
 
 export function isIgnoredNamespace(
