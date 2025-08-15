@@ -48,7 +48,6 @@ run_generator() {
       --inputFile "${IR_JSON}" \
       --manifestFile "${OPENAPI_MANIFEST_YML}" \
       --outputDir "${OUT_PATH}" \
-      --deprecatedFile "${deprecated_file}" \
       --endpointVersion "v2" \
       --mode "${generation_mode}"
 }
