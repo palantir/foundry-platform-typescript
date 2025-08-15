@@ -36,15 +36,6 @@ OUT_PATH="${SCRIPT_DIR}/../packages/"
 GENERATION_MODE="docs-and-sdks"
 PREFIX="all"
 
-# Build filter patterns based on namespace selection
-FILTERS=""
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
-    FILTERS+=" --filter ./packages/foundry --filter ./packages/internal.foundry --filter=\"./packages/foundry.*\" --filter=\"./packages/internal.foundry.*\""
-fi
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
-    FILTERS+=" --filter ./packages/gotham --filter=\"./packages/gotham.*\""
-fi
-
 run_generator() {
   local packagePrefix=$1
   local deprecated_file=$2
@@ -103,5 +94,7 @@ pnpm exec -- \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
         --filter ./packages/internal.foundry \
+        --filter ./packages/gotham \
         --filter="./packages/foundry.*" \
         --filter="./packages/internal.foundry.*" \
+        --filter="./packages/gotham.*"
