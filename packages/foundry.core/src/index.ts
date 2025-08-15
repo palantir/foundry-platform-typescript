@@ -89,6 +89,7 @@ export type {
   GeoPointType,
   GeoShapeType,
   GeotimeSeriesReferenceType,
+  GroupId,
   GroupName,
   GroupRid,
   GteQueryV2,
