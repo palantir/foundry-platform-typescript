@@ -1,6 +1,6 @@
 # foundry-platform-typescript
 
-The Foundry Platform SDK for Typescript is an SDK for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/). Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
+The Foundry Platform SDK for Typescript is an SDK for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/). Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry) or [`@osdk/gotham.{namespace}`](...). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
 
 ## Using the Platform SDKs
 
@@ -11,11 +11,17 @@ You can install the package for a specific namespace.
 ```bash
 npm install @osdk/foundry.{namespace}
 ```
+```bash
+npm install @osdk/gotham.{namespace}
+```
 
-Alternatively, you can install all API namespaces from a single package.
+Alternatively, you can install all API namespaces for either the Gotham and Foundry platforms as a single package.
 
 ```bash
 npm install @osdk/foundry
+```
+```bash
+npm install @osdk/gotham
 ```
 
 ### Creating the Client
