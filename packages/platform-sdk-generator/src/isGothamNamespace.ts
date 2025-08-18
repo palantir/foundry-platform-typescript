@@ -14,29 +14,18 @@
  * limitations under the License.
  */
 
-const gothamNamespaces = new Set([
-  "TargetWorkbench",
-  "Gaia",
-  "MapRendering",
-  "Geojson",
-]); /* gotham-only */
-const neverIgnore = new Set(["Core"]);
-const alwaysIgnore = new Set(["Operations"]);
-
-export function isIgnoredNamespace(
+export function isGothamNamespace(
   ns?: string,
-  packagePrefix?: string,
 ): boolean {
-  if (!ns || !packagePrefix) return true;
+  if (!ns) return true;
 
-  if (alwaysIgnore.has(ns)) {
-    return true;
-  }
-  if (neverIgnore.has(ns)) {
-    return false;
-  }
+  const gothamNamespaces = new Set([
+    "TargetWorkbench",
+    "Gaia",
+    "MapRendering",
+    "Geojson",
+    "GothamCore",
+  ]); /* gotham-only */
 
-  const isGotham = packagePrefix === "gotham";
-
-  return (isGotham === !gothamNamespaces.has(ns));
+  return gothamNamespaces.has(ns);
 }

@@ -15,12 +15,11 @@
  */
 
 import type * as ir from "@osdk/docs-spec-platform";
-import { isIgnoredNamespace } from "./isIgnoredNamespace.js";
+import { isGothamNamespace } from "./isGothamNamespace.js";
 import type { ErrorType } from "./model/ErrorType.js";
 
-export function isIgnoredType(
+export function isGothamType(
   component: ir.Component | ir.Error,
-  packagePrefix: string,
 ): boolean {
-  return isIgnoredNamespace(component.locator.namespaceName, packagePrefix);
+  return isGothamNamespace(component.locator.namespaceName);
 }
