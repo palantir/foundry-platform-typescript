@@ -191,6 +191,19 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
 3. Remember to add a changeset (following the instructions above)
 4. Commit and open a PR
 
+### Adding a new Gotham SDK
+If you are generating a new Gotham SDK for the first time, you must add it to the namespace mapping in `isGothamNamespace.ts`:
+```js
+  const gothamNamespaces = new Set([
+    "TargetWorkbench",
+    "Gaia",
+    "MapRendering",
+    "Geojson",
+    "GothamCore",
+    {yourGothamNamespace}
+  ]); /* gotham-only */
+```
+
 ### Publishing a release
 
 1. Follow the dev workflow above
