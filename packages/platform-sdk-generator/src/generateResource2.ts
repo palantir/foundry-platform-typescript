@@ -18,6 +18,7 @@ import { copyright } from "./copyright.js";
 import { generateImports } from "./generateImports.js";
 import { generateMethodJsdoc } from "./generateMethodJsdoc.js";
 import { HTTP_VERB_MAP } from "./HTTP_VERB_MAP.js";
+import { isGothamNamespace } from "./isGothamNamespace.js";
 import { BinaryType } from "./model/BinaryType.js";
 import type { Component } from "./model/Component.js";
 import type { Model } from "./model/Model.js";
@@ -37,13 +38,16 @@ export async function writeResource2(
 ): Promise<void> {
   const { out, referencedTypes } = await generateMethods(resource, model);
 
+  const prefix = isGothamNamespace(ns) ? "" : "foundry";
+  const prefixCapitalized = isGothamNamespace(ns) ? "" : "Foundry";
+
   return writeCode(
     filePath,
     `${copyright}\n\n
         import type { SharedClient as $OldClient, SharedClientContext as $OldClientContext,  } from "@osdk/shared.client";
         import type { SharedClient as $Client, SharedClientContext as $ClientContext,  } from "@osdk/shared.client2";
-        import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-        import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
+        import type { FoundryPlatformMethod as $${prefixCapitalized}PlatformMethod } from "@osdk/shared.net.platformapi";
+        import { foundryPlatformFetch as $${prefix}PlatformFetch } from "@osdk/shared.net.platformapi";
         ${
       generateImports(referencedTypes, new Map([[ns, "../_components.js"]]))
     }
@@ -85,7 +89,7 @@ async function generateMethods(resource: Resource, model: Model) {
       method.parametersByType.PATH != null,
     );
     out += `
-     const _${methodName}: $FoundryPlatformMethod<(${parameters}) => ${returnType}> = ${
+     const _${methodName}: $${prefixCapitalized}PlatformMethod<(${parameters}) => ${returnType}> = ${
       generateOperationArray(method, model)
     };
 
@@ -97,7 +101,7 @@ async function generateMethods(resource: Resource, model: Model) {
       shouldFillBlobHeaders
         ? blobHeaders.autofill
         : ""
-    }return $foundryPlatformFetch($ctx, _${methodName}, ${
+    }return $${prefix}PlatformFetch($ctx, _${methodName}, ${
       shouldFillBlobHeaders ? blobHeaders.returnArgs : "...args"
     }); }
 
