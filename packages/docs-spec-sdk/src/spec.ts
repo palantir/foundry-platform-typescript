@@ -647,6 +647,22 @@ export const OSDK_SNIPPETS_SPEC = {
         linkName: "required",
       },
     },
+    derivedPropertyNumericExpression: {
+      variables: {
+        ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+        linkName: "required",
+      },
+    },
+    derivedPropertyDatetime: {
+      variables: {
+        ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+        linkName: "required",
+      },
+    },
     objectSetOperationsGuide: {
       variables: {
         ...ObjectTypeTemplateStrings,
