@@ -21,7 +21,7 @@ import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
 import { generateImports, SKIP } from "./generateImports.js";
 import { writeResource2 } from "./generateResource2.js";
-import { isIgnoredType } from "./isIgnoredType.js";
+import { isGothamType } from "./isGothamType.js";
 import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
@@ -177,7 +177,7 @@ export async function generateComponents(
       `;
 
   for (const component of ns.components) {
-    if (isIgnoredType(component.component, packagePrefix)) {
+    if (isGotham === !isGothamType(component.component)) {
       continue;
     }
     out += component.getDeclaration(ns.name);
@@ -213,7 +213,7 @@ export async function generateErrors(
       `;
 
   for (const error of ns.errors) {
-    if (isIgnoredType(error.spec, packagePrefix)) {
+    if (isGotham === !isGothamType(error.spec)) {
       continue;
     }
     out += error.getDeclaration(ns.name);
