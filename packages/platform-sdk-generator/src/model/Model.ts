@@ -128,7 +128,9 @@ export class Model {
     const isGotham = (opts["packagePrefix"] ?? "foundry") === "gotham";
 
     for (const ns of ir.namespaces) {
-      if (isGotham !== isIgnoredNamespace(ns.name)) continue;
+      if (isGotham !== isIgnoredNamespace(ns.name) && ns.name !== "Core") {
+        continue;
+      }
       if (
         ns.version !== opts.endpointVersion
       ) continue;
@@ -136,7 +138,9 @@ export class Model {
       await model.#addNamespace(ns.name, ns);
 
       for (const c of ns.components) {
-        if (isGotham !== isIgnoredType(c)) continue;
+        if (
+          isGotham !== isIgnoredType(c) && c.locator.localName !== "PreviewMode"
+        ) continue;
         model.#addComponent(c);
       }
 
