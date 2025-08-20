@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.3.0
+
+### Minor Changes
+
+- a86e1ab: Add documentation for OSDK RDP expressions
+
 ## 0.2.0
 
 ### Minor Changes
