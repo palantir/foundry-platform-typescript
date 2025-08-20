@@ -16,7 +16,7 @@
 
 export function isIgnoredNamespace(ns?: string): boolean {
   switch (ns) {
-    case "Operations":
+    case "GothamCore":
       return true;
     case "TargetWorkbench":
       return true;
