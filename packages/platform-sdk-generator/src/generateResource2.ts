@@ -36,19 +36,19 @@ export async function writeResource2(
   filePath: string,
   model: Model,
 ): Promise<void> {
-  const { out, referencedTypes } = await generateMethods(
-    resource,
-    model,
-    platformFetch,
-    platformMethod,
-  );
-
   const platformFetch = (isIgnoredNamespace(ns.toString()) === true)
     ? "platformFetch"
     : "foundryPlatformFetch";
   const platformMethod = (isIgnoredNamespace(ns.toString()) === true)
     ? "PlatformMethod"
     : "FoundryPlatformMethod";
+
+  const { out, referencedTypes } = await generateMethods(
+    resource,
+    model,
+    platformFetch,
+    platformMethod,
+  );
 
   return writeCode(
     filePath,
