@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export function isIgnoredNamespace(ns?: string): boolean {
+export function isGothamNamespace(ns?: string): boolean {
   switch (ns) {
     case "GothamCore":
       return true;
