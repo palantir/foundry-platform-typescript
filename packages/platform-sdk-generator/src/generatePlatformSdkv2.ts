@@ -56,8 +56,14 @@ export async function generatePlatformSdkV2(
     ns.errors.sort((a, b) =>
       a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
     );
-    componentsGenerated.set(ns, await generateComponents(ns, ns.paths.srcDir));
-    errorsGenerated.set(ns, await generateErrors(ns, ns.paths.srcDir));
+    componentsGenerated.set(
+      ns,
+      await generateComponents(ns, ns.paths.srcDir, packagePrefix),
+    );
+    errorsGenerated.set(
+      ns,
+      await generateErrors(ns, ns.paths.srcDir, packagePrefix),
+    );
   }
 
   // Now we can generate the resources
@@ -161,6 +167,7 @@ export async function generatePlatformSdkV2(
 export async function generateComponents(
   ns: Namespace,
   outputDir: string,
+  packagePrefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -169,8 +176,10 @@ export async function generateComponents(
     `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
       `;
 
+  const isGotham = packagePrefix === "gotham";
+
   for (const component of ns.components) {
-    if (isIgnoredType(component.component)) {
+    if (isGotham !== isIgnoredType(component.component)) {
       continue;
     }
     out += component.getDeclaration(ns.name);
@@ -196,6 +205,7 @@ export async function generateComponents(
 export async function generateErrors(
   ns: Namespace,
   outputDir: string,
+  packagePrefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -204,8 +214,10 @@ export async function generateErrors(
     `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
       `;
 
+  const isGotham = packagePrefix === "gotham";
+
   for (const error of ns.errors) {
-    if (isIgnoredType(error.spec)) {
+    if (isGotham !== isIgnoredType(error.spec)) {
       continue;
     }
     out += error.getDeclaration(ns.name);
