@@ -179,7 +179,10 @@ export async function generateComponents(
   const isGotham = packagePrefix === "gotham";
 
   for (const component of ns.components) {
-    if (isGotham !== isIgnoredType(component.component)) {
+    if (
+      isGotham !== isIgnoredType(component.component)
+      && component.component.locator.localName !== "PreviewMode"
+    ) {
       continue;
     }
     out += component.getDeclaration(ns.name);
