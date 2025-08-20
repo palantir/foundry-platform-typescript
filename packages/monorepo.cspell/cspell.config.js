@@ -120,6 +120,7 @@ const cspell = {
     "npm-packages",
     "foundry-words",
     "normal-dev-words",
+    "gotham-words",
     "oauth",
   ],
   words: ["todoapp"],
@@ -129,7 +130,7 @@ const cspell = {
   overrides: [
     {
       filename: ["**/*.md"],
-      dictionaries: ["foundry-words", "dev-words"],
+      dictionaries: ["foundry-words", "dev-words", "gotham-words"],
     },
     {
       filename: [".changeset/**/*.md"],
