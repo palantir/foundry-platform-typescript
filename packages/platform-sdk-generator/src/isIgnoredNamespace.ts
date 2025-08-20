@@ -24,6 +24,8 @@ export function isIgnoredNamespace(ns?: string): boolean {
       return true;
     case "MapRendering":
       return true;
+    case "Geojson":
+      return true;
   }
   return false;
 }
