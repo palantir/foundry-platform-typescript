@@ -125,8 +125,10 @@ export class Model {
   }): Promise<Model> {
     const model = new Model(opts);
 
+    const isGotham = (opts["packagePrefix"] ?? "foundry") === "gotham";
+
     for (const ns of ir.namespaces) {
-      if (isIgnoredNamespace(ns.name)) continue;
+      if (isGotham !== isIgnoredNamespace(ns.name)) continue;
       if (
         ns.version !== opts.endpointVersion
       ) continue;
@@ -134,12 +136,12 @@ export class Model {
       await model.#addNamespace(ns.name, ns);
 
       for (const c of ns.components) {
-        if (isIgnoredType(c)) continue;
+        if (isGotham !== isIgnoredType(c)) continue;
         model.#addComponent(c);
       }
 
       for (const e of ns.errors) {
-        if (isIgnoredType(e)) continue;
+        if (isGotham !== isIgnoredType(e)) continue;
         model.#addError(e);
       }
 
@@ -157,7 +159,7 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesComponents?.components ?? []) {
-        if (isIgnoredType(c)) continue;
+        if (isGotham !== isIgnoredType(c)) continue;
         c.locator.namespaceName = "Core";
         model.#addComponent(c, true);
       }
@@ -167,7 +169,7 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesErrors?.errors ?? []) {
-        if (isIgnoredType(c)) continue;
+        if (isGotham !== isIgnoredType(c)) continue;
         c.locator.namespaceName = "Core";
         model.#addError(c, true);
       }
