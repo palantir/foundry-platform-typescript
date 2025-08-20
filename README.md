@@ -1,6 +1,6 @@
 # foundry-platform-typescript
 
-The Foundry Platform SDK for Typescript is an SDK for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/). Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
+The Foundry Platform SDK for Typescript is an SDK for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/). Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry) or [`@osdk/gotham.{namespace}`](...). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
 
 ## Using the Platform SDKs
 
@@ -11,11 +11,17 @@ You can install the package for a specific namespace.
 ```bash
 npm install @osdk/foundry.{namespace}
 ```
+```bash
+npm install @osdk/gotham.{namespace}
+```
 
-Alternatively, you can install all API namespaces from a single package.
+Alternatively, you can install all API namespaces for either the Gotham and Foundry platforms as a single package.
 
 ```bash
 npm install @osdk/foundry
+```
+```bash
+npm install @osdk/gotham
 ```
 
 ### Creating the Client
@@ -159,17 +165,16 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
 3. Palantir-internal developers only: copy `.envrc.sample` into `.envrc` and populate the variables
 4. Run `source .envrc` (if necessary)
 5. `pnpm install`
-6. Start dev mode: `pnpm dev`
-7. Add your code
-8. Add a changeset
+6. Add your code
+7. Add a changeset
    1. Assuming you've run `pnpm install`, run `changeset` (or `pnpm exec changeset`).
    2. The tool will split things into changed vs unchanged packages (which you may need if you decide to add changeset logs in a future PR for past features)
    3. Select the packages you want the changeset applied to using the arrow keys (up/down) and space-bar to "select" the package.
    4. Press enter to continue.
    5. Select which packages need major/minor/patch bumps. Typically you should not select anything here and always use patch bumps. We will then bump the major and minor version separately as needed.
    6. Enter a change (or press enter on empty to open your editor.)
-9. If you're curious what the final build output might look like you can run `pnpm build` from root.
-10. Run all lint rules and tests with `pnpm check` from root.
+8. If you're curious what the final build output might look like you can run `pnpm build` from root. 
+9. Run all lint rules and tests with `pnpm check` from root.
 
 ### Updating Platform SDKs
 
@@ -185,6 +190,23 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
 2. Edit `packages/docs-spec-sdk/src/spec.ts`
 3. Remember to add a changeset (following the instructions above)
 4. Commit and open a PR
+
+### Adding a new Gotham SDK
+If you are generating a new Gotham SDK for the first time, you must add it to the namespace mapping in `isGothamNamespace.ts`:
+```js
+export function isGothamNamespace(ns?: string): boolean {
+  switch (ns) {
+    case "GothamCore":
+      return true;
+    case "TargetWorkbench":
+      return true;
+    ...
+    case "<YourNamespace>":
+      return true;
+  }
+  return false;
+}
+```
 
 ### Publishing a release
 
