@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.4.0
+
+### Minor Changes
+
+- a5b9219: Add unary flag for numeric expressions
+
 ## 0.3.0
 
 ### Minor Changes
