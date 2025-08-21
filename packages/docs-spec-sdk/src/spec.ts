@@ -653,9 +653,10 @@ export const OSDK_SNIPPETS_SPEC = {
         rawOntologyApiName: "required",
         packageName: "required",
         linkName: "required",
+        isUnary: "required",
       },
     },
-    derivedPropertyDatetime: {
+    derivedPropertyDatetimeExpression: {
       variables: {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
