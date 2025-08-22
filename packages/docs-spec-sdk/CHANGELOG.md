@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.5.0
+
+### Minor Changes
+
+- e761952: Update expressions template to support extract part
+
 ## 0.4.0
 
 ### Minor Changes
