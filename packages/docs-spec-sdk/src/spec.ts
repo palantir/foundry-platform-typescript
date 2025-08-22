@@ -662,6 +662,7 @@ export const OSDK_SNIPPETS_SPEC = {
         rawOntologyApiName: "required",
         packageName: "required",
         linkName: "required",
+        isExtractPart: "required",
       },
     },
     objectSetOperationsGuide: {
