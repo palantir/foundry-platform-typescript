@@ -249,7 +249,7 @@ export interface GetUsersBatchResponse {
  * Log Safety: UNSAFE
  */
 export interface Group {
-  id: _Core.PrincipalId;
+  id: _Core.GroupId;
   name: GroupName;
   description?: string;
   realm: _Core.Realm;
@@ -728,7 +728,7 @@ export interface SearchUsersResponse {
  * Log Safety: UNSAFE
  */
 export interface User {
-  id: _Core.PrincipalId;
+  id: _Core.UserId;
   username: UserUsername;
   givenName?: string;
   familyName?: string;

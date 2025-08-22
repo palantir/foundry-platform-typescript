@@ -1519,7 +1519,14 @@ export type UpdatedTime = string;
  *
  * Log Safety: SAFE
  */
-export type UserId = string;
+export type UserId = PrincipalId;
+
+/**
+ * A Foundry Group ID.
+ *
+ * Log Safety: SAFE
+ */
+export type GroupId = PrincipalId;
 
 /**
    * The vector similarity function to support approximate nearest neighbors search. Will result in an index
