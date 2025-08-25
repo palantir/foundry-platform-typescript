@@ -17,8 +17,8 @@
 import type * as ir from "@osdk/docs-spec-platform";
 import * as path from "node:path";
 import { ensurePackageSetup } from "../generatePlatformSdkv2.js";
-import { isIgnoredNamespace } from "../isIgnoredNamespace.js";
-import { isIgnoredType } from "../isIgnoredType.js";
+import { getNamespacePlatform } from "../getNamespacePlatform.js";
+import { getNamespaceType } from "../getNamespaceType.js";
 import { mapObjectValues } from "../util/mapObjectValues.js";
 import { BinaryType } from "./BinaryType.js";
 import { BuiltinType } from "./BuiltinType.js";
@@ -125,10 +125,13 @@ export class Model {
   }): Promise<Model> {
     const model = new Model(opts);
 
-    const isGotham = (opts["packagePrefix"] ?? "foundry") === "gotham";
+    const packagePrefix = (opts["packagePrefix"] ?? "foundry") === "gotham";
 
     for (const ns of ir.namespaces) {
-      if (isGotham !== isIgnoredNamespace(ns.name) && ns.name !== "Core") {
+      if (
+        packagePrefix !== getNamespacePlatform(ns.name)
+        && getNamespacePlatform(ns.name) !== "both"
+      ) {
         continue;
       }
       if (
@@ -139,13 +142,17 @@ export class Model {
 
       for (const c of ns.components) {
         if (
-          isGotham !== isIgnoredType(c) && c.locator.localName !== "PreviewMode"
+          packagePrefix !== getNamespaceType(c)
+          && getNamespaceType(c) !== "both"
         ) continue;
         model.#addComponent(c);
       }
 
       for (const e of ns.errors) {
-        if (isGotham !== isIgnoredType(e)) continue;
+        if (
+          packagePrefix !== getNamespaceType(e)
+          && getNamespaceType(c) !== "both"
+        ) continue;
         model.#addError(e);
       }
 
@@ -163,7 +170,10 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesComponents?.components ?? []) {
-        if (isGotham !== isIgnoredType(c)) continue;
+        if (
+          packagePrefix !== getNamespaceType(c)
+          && getNamespaceType(c) !== "both"
+        ) continue;
         c.locator.namespaceName = "Core";
         model.#addComponent(c, true);
       }
@@ -173,7 +183,10 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesErrors?.errors ?? []) {
-        if (isGotham !== isIgnoredType(c)) continue;
+        if (
+          packagePrefix !== getNamespaceType(c)
+          && getNamespaceType(c) !== "both"
+        ) continue;
         c.locator.namespaceName = "Core";
         model.#addError(c, true);
       }

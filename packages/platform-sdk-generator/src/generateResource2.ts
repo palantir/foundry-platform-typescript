@@ -17,8 +17,8 @@
 import { copyright } from "./copyright.js";
 import { generateImports } from "./generateImports.js";
 import { generateMethodJsdoc } from "./generateMethodJsdoc.js";
+import { getNamespacePlatform } from "./getNamespacePlatform.js";
 import { HTTP_VERB_MAP } from "./HTTP_VERB_MAP.js";
-import { isIgnoredNamespace } from "./isIgnoredNamespace.js";
 import { BinaryType } from "./model/BinaryType.js";
 import type { Component } from "./model/Component.js";
 import type { Model } from "./model/Model.js";
@@ -36,10 +36,10 @@ export async function writeResource2(
   filePath: string,
   model: Model,
 ): Promise<void> {
-  const platformFetch = (isIgnoredNamespace(ns.toString()) === true)
+  const platformFetch = (getNamespacePlatform(ns.toString()) === "gotham")
     ? "platformFetch"
     : "foundryPlatformFetch";
-  const platformMethod = (isIgnoredNamespace(ns.toString()) === true)
+  const platformMethod = (getNamespacePlatform(ns.toString()) === "gotham")
     ? "PlatformMethod"
     : "FoundryPlatformMethod";
 
