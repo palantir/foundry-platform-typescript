@@ -179,7 +179,7 @@ export async function generateComponents(
   for (const component of ns.components) {
     if (
       platform !== getNamespaceType(component.component)
-      && getNamespaceType(c) !== "both"
+      && getNamespaceType(component.component) !== "both"
       && component.component.locator.localName !== "PreviewMode"
     ) {
       continue;
@@ -219,7 +219,7 @@ export async function generateErrors(
   for (const error of ns.errors) {
     if (
       packagePrefix !== getNamespaceType(error.spec)
-      && getNamespaceType(c) !== "both"
+      && getNamespaceType(error.spec) !== "both"
     ) {
       continue;
     }

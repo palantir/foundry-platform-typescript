@@ -151,7 +151,7 @@ export class Model {
       for (const e of ns.errors) {
         if (
           packagePrefix !== getNamespaceType(e)
-          && getNamespaceType(c) !== "both"
+          && getNamespaceType(e) !== "both"
         ) continue;
         model.#addError(e);
       }
