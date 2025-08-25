@@ -21,7 +21,7 @@ import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
 import { generateImports, SKIP } from "./generateImports.js";
 import { writeResource2 } from "./generateResource2.js";
-import { isIgnoredType } from "./isIgnoredType.js";
+import { getNamespaceType } from "./getNamespaceType.js";
 import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
@@ -176,11 +176,10 @@ export async function generateComponents(
     `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
       `;
 
-  const isGotham = packagePrefix === "gotham";
-
   for (const component of ns.components) {
     if (
-      isGotham !== isIgnoredType(component.component)
+      platform !== getNamespaceType(component.component)
+      && getNamespaceType(c) !== "both"
       && component.component.locator.localName !== "PreviewMode"
     ) {
       continue;
@@ -217,10 +216,11 @@ export async function generateErrors(
     `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
       `;
 
-  const isGotham = packagePrefix === "gotham";
-
   for (const error of ns.errors) {
-    if (isGotham !== isIgnoredType(error.spec)) {
+    if (
+      packagePrefix !== getNamespaceType(error.spec)
+      && getNamespaceType(c) !== "both"
+    ) {
       continue;
     }
     out += error.getDeclaration(ns.name);
