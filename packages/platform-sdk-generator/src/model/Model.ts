@@ -125,7 +125,7 @@ export class Model {
   }): Promise<Model> {
     const model = new Model(opts);
 
-    const packagePrefix = (opts["packagePrefix"] ?? "foundry") === "gotham";
+    const packagePrefix = opts["packagePrefix"] ?? "foundry";
 
     for (const ns of ir.namespaces) {
       if (
