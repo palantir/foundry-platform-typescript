@@ -15,6 +15,10 @@
  */
 
 export function getNamespacePlatform(ns?: string): string {
+  if (!ns) {
+    return "foundry";
+  }
+
   const namespaceMapping: { [key: string]: string } = {
     "Core": "both",
     "TargetWorkbench": "gotham",
@@ -40,5 +44,13 @@ export function getNamespacePlatform(ns?: string): string {
     "ThirdPartyApplications": "foundry",
     "Widgets": "foundry",
   };
-  return ns ? (namespaceMapping[ns] ?? "foundry") : "foundry";
+
+  const platform = namespaceMapping[ns];
+  if (platform === undefined) {
+    throw new Error(
+      `Unknown namespace "${ns}". Add it to the namespace mapping in getNamespacePlatform.ts`,
+    );
+  }
+
+  return platform;
 }
