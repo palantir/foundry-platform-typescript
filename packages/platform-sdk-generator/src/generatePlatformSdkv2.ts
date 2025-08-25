@@ -177,9 +177,10 @@ export async function generateComponents(
       `;
 
   for (const component of ns.components) {
+    const platform = getNamespaceType(component.component);
     if (
-      packagePrefix !== getNamespaceType(component.component)
-      && getNamespaceType(component.component) !== "both"
+      (packagePrefix !== platform && platform !== "both")
+      || platform === "ignore"
     ) {
       continue;
     }
@@ -216,9 +217,10 @@ export async function generateErrors(
       `;
 
   for (const error of ns.errors) {
+    const platform = getNamespaceType(error.space);
     if (
-      packagePrefix !== getNamespaceType(error.spec)
-      && getNamespaceType(error.spec) !== "both"
+      (packagePrefix !== platform && platform !== "both")
+      || platform === "ignored"
     ) {
       continue;
     }
