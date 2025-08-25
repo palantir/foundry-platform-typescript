@@ -25,29 +25,39 @@ OUT_PATH="${SCRIPT_DIR}/../packages/"
 # One of: docs, sdks, docs-and-sdks
 GENERATION_MODE="docs-and-sdks"
 
+# Whether to generate gotham, foundry, or both
+# One of: gotham, foundry, all
+PREFIX="all"
+
+run_generator() {
+  local packagePrefix=$1
+  local deprecated_file=$2
+  local generation_mode=${3:-$GENERATION_MODE}
+
+  echo "Generating ${packagePrefix} bindings"
+  $CODE_GENERATOR generate \
+      --v2 \
+      --prefix "${packagePrefix}" \
+      --inputFile "${IR_JSON}" \
+      --manifestFile "${OPENAPI_MANIFEST_YML}" \
+      --outputDir "${OUT_PATH}" \
+      --endpointVersion "v2" \
+      --mode "${generation_mode}"
+}
+
 if [[ "${GENERATION_MODE}" != "docs" ]]; then
-    echo "Generating bindings for internal.foundry"
-    $CODE_GENERATOR generate \
-        --v2 \
-        --prefix "internal.foundry" \
-        --inputFile "${IR_JSON}" \
-        --manifestFile "${OPENAPI_MANIFEST_YML}" \
-        --outputDir "${OUT_PATH}" \
-        --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
-        --endpointVersion "v1" \
-        --mode "sdks" # We don't generate docs based on the OpenAPI IR
+  if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
+    run_generator "internal.foundry" "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" "sdks"
+  fi
 fi
 
-echo "Generating bindings"
-$CODE_GENERATOR generate \
-    --v2 \
-    --prefix "foundry" \
-    --inputFile "${IR_JSON}" \
-    --manifestFile "${OPENAPI_MANIFEST_YML}" \
-    --outputDir "${OUT_PATH}" \
-    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" \
-    --endpointVersion "v2" \
-    --mode "${GENERATION_MODE}"
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
+  run_generator "foundry" "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
+fi
+
+if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
+  run_generator "gotham" "${SCRIPT_DIR}/../packages/deprecated/gotham.core/core.json"
+fi
 
 echo
 echo pnpm install to make align deps
@@ -63,9 +73,11 @@ pnpm exec -- \
     turbo run --output-logs=errors-only fix-lint \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
+        --filter ./packages/gotham \
         --filter ./packages/internal.foundry \
         --filter="./packages/foundry.*" \
-        --filter="./packages/internal.foundry.*"
+        --filter="./packages/internal.foundry.*" \
+        --filter="./packages/gotham.*"
 
 echo
 echo "Checking for any remaining lint errors"
@@ -73,6 +85,8 @@ pnpm exec -- \
     turbo run --output-logs=errors-only check \
         --filter ./packages/docs-spec-platform \
         --filter ./packages/foundry \
+        --filter ./packages/gotham \
         --filter ./packages/internal.foundry \
         --filter="./packages/foundry.*" \
-        --filter="./packages/internal.foundry.*"
+        --filter="./packages/internal.foundry.*" \
+        --filter="./packages/gotham.*"
