@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-export function getNamespacePlatform(ns?: string): string {
-  const namespaceMapping = {
+export function getNamespacePlatform(ns: string): string {
+  const namespaceMapping: { [key: string]: string } = {
     "Core": "both",
     "TargetWorkbench": "gotham",
     "Gaia": "gotham",
