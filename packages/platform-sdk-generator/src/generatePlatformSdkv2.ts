@@ -217,7 +217,7 @@ export async function generateErrors(
       `;
 
   for (const error of ns.errors) {
-    const platform = getNamespaceType(error.space);
+    const platform = getNamespaceType(error.spec);
     if (
       (packagePrefix !== platform && platform !== "both")
       || platform === "ignored"
