@@ -180,7 +180,6 @@ export async function generateComponents(
     if (
       packagePrefix !== getNamespaceType(component.component)
       && getNamespaceType(component.component) !== "both"
-      && component.component.locator.localName !== "PreviewMode"
     ) {
       continue;
     }
