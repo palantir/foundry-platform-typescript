@@ -1154,13 +1154,16 @@ export interface ObjectAlreadyExists {
 /**
  * An object used by this Action was changed by someone else while the Action was running.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ObjectChanged {
   errorCode: "CONFLICT";
   errorName: "ObjectChanged";
   errorInstanceId: string;
-  parameters: {};
+  parameters: {
+    primaryKey: unknown;
+    objectType: unknown;
+  };
 }
 
 /**

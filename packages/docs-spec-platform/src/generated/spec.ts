@@ -19,6 +19,342 @@ import type { DocsSnippetsSpec } from "@osdk/docs-spec-core";
 export const PLATFORM_API_DOCS_SPEC = {
   "version": 1,
   "snippets": {
+    "v2.getThirdPartyApplication": {
+      "variables": {},
+    },
+    "v2.getWebsite": {
+      "variables": {},
+    },
+    "v2.deployWebsite": {
+      "variables": {},
+    },
+    "v2.undeployWebsite": {
+      "variables": {},
+    },
+    "v2.deleteVersion": {
+      "variables": {},
+    },
+    "v2.listVersions": {
+      "variables": {},
+    },
+    "v2.getVersion": {
+      "variables": {},
+    },
+    "v2.uploadVersion": {
+      "variables": {},
+    },
+    "v2.uploadSnapshotVersion": {
+      "variables": {},
+    },
+    "v2.getApiDefinition": {
+      "variables": {},
+    },
+    "v2.getOpenApiDefinition": {
+      "variables": {},
+    },
+    "v2.createTargetBoard": {
+      "variables": {},
+    },
+    "v2.deleteTargetBoard": {
+      "variables": {},
+    },
+    "v2.modifyTargetBoard": {
+      "variables": {},
+    },
+    "v2.loadTargetBoard": {
+      "variables": {},
+    },
+    "v2.readMediaItem": {
+      "variables": {},
+    },
+    "v2.readOriginalMediaItem": {
+      "variables": {},
+    },
+    "v2.getMediaItemInfo": {
+      "variables": {},
+    },
+    "v2.getMediaItemReference": {
+      "variables": {},
+    },
+    "v2.getMediaItemRidByPath": {
+      "variables": {},
+    },
+    "v2.putMediaItem": {
+      "variables": {},
+    },
+    "v2.createMediaTransaction": {
+      "variables": {},
+    },
+    "v2.commitMediaTransaction": {
+      "variables": {},
+    },
+    "v2.abortMediaTransaction": {
+      "variables": {},
+    },
+    "v2.getQuery": {
+      "variables": {},
+    },
+    "v2.getByRidQueries": {
+      "variables": {},
+    },
+    "v2.executeQuery": {
+      "variables": {},
+    },
+    "v2.getValueType": {
+      "variables": {},
+    },
+    "v2.getVersionId": {
+      "variables": {},
+    },
+    "v2.listOntologiesV2": {
+      "variables": {},
+    },
+    "v2.getOntologyV2": {
+      "variables": {},
+    },
+    "v2.getOntologyFullMetadata": {
+      "variables": {},
+    },
+    "v2.loadOntologyMetadata": {
+      "variables": {},
+    },
+    "v2.listActionTypesV2": {
+      "variables": {},
+    },
+    "v2.getActionTypeV2": {
+      "variables": {},
+    },
+    "v2.getActionTypeByRid": {
+      "variables": {},
+    },
+    "v2.listObjectTypesV2": {
+      "variables": {},
+    },
+    "v2.getObjectTypeV2": {
+      "variables": {},
+    },
+    "v2.getObjectTypeFullMetadata": {
+      "variables": {},
+    },
+    "v2.listOutgoingLinkTypesV2": {
+      "variables": {},
+    },
+    "v2.getOutgoingLinkTypeV2": {
+      "variables": {},
+    },
+    "v2.listObjectsV2": {
+      "variables": {},
+    },
+    "v2.getObjectV2": {
+      "variables": {},
+    },
+    "v2.countObjects": {
+      "variables": {},
+    },
+    "v2.searchObjectsV2": {
+      "variables": {},
+    },
+    "v2.aggregateObjectsV2": {
+      "variables": {},
+    },
+    "v2.listLinkedObjectsV2": {
+      "variables": {},
+    },
+    "v2.getLinkedObjectV2": {
+      "variables": {},
+    },
+    "v2.listPropertyAttachments": {
+      "variables": {},
+    },
+    "v2.getAttachmentPropertyByRidV2": {
+      "variables": {},
+    },
+    "v2.getAttachmentPropertyContentV2": {
+      "variables": {},
+    },
+    "v2.getAttachmentPropertyContentByRidV2": {
+      "variables": {},
+    },
+    "v2.readMediaContent": {
+      "variables": {},
+    },
+    "v2.getMediaMetadata": {
+      "variables": {},
+    },
+    "v2.uploadMediaContent": {
+      "variables": {},
+    },
+    "v2.uploadMedia": {
+      "variables": {},
+    },
+    "v2.getFirstPoint": {
+      "variables": {},
+    },
+    "v2.getLastPoint": {
+      "variables": {},
+    },
+    "v2.streamPoints": {
+      "variables": {},
+    },
+    "v2.getLatestValue": {
+      "variables": {},
+    },
+    "v2.streamValues": {
+      "variables": {},
+    },
+    "v2.decrypt": {
+      "variables": {},
+    },
+    "v2.listInterfaceTypes": {
+      "variables": {},
+    },
+    "v2.getInterfaceType": {
+      "variables": {},
+    },
+    "v2.searchObjectsForInterface": {
+      "variables": {},
+    },
+    "v2.aggregateObjectsForInterface": {
+      "variables": {},
+    },
+    "v2.listOutgoingInterfaceLinkTypes": {
+      "variables": {},
+    },
+    "v2.getOutgoingInterfaceLinkType": {
+      "variables": {},
+    },
+    "v2.applyActionV2": {
+      "variables": {},
+    },
+    "v2.applyActionAsyncV2": {
+      "variables": {},
+    },
+    "v2.applyActionBatchV2": {
+      "variables": {},
+    },
+    "v2.listQueryTypesV2": {
+      "variables": {},
+    },
+    "v2.getQueryTypeV2": {
+      "variables": {},
+    },
+    "v2.executeQueryV2": {
+      "variables": {},
+    },
+    "v2.createTemporaryObjectSetV2": {
+      "variables": {},
+    },
+    "v2.getObjectSetV2": {
+      "variables": {},
+    },
+    "v2.loadObjectSetV2": {
+      "variables": {},
+    },
+    "v2.loadObjectSetV2MultipleObjectTypes": {
+      "variables": {},
+    },
+    "v2.loadObjectSetV2ObjectsOrInterfaces": {
+      "variables": {},
+    },
+    "v2.aggregateObjectSetV2": {
+      "variables": {},
+    },
+    "v2.uploadAttachmentV2": {
+      "variables": {},
+    },
+    "v2.getAttachmentContentV2": {
+      "variables": {},
+    },
+    "v2.getAttachmentV2": {
+      "variables": {},
+    },
+    "v2.getOntologyValueType": {
+      "variables": {},
+    },
+    "v2.listOntologyValueTypes": {
+      "variables": {},
+    },
+    "v2.ontologyTransactionPostEdits": {
+      "variables": {},
+    },
+    "v2.getWidgetSet": {
+      "variables": {},
+    },
+    "v2.deleteRelease": {
+      "variables": {},
+    },
+    "v2.listReleases": {
+      "variables": {},
+    },
+    "v2.getRelease": {
+      "variables": {},
+    },
+    "v2.getRepository": {
+      "variables": {},
+    },
+    "v2.publishRelease": {
+      "variables": {},
+    },
+    "v2.getDevModeSettings": {
+      "variables": {},
+    },
+    "v2.enableDevModeSettings": {
+      "variables": {},
+    },
+    "v2.pauseDevModeSettings": {
+      "variables": {},
+    },
+    "v2.disableDevModeSettings": {
+      "variables": {},
+    },
+    "v2.setWidgetSetDevModeSettings": {
+      "variables": {},
+    },
+    "v2.setWidgetSetDevModeSettingsById": {
+      "variables": {},
+    },
+    "v2.getAgent": {
+      "variables": {},
+    },
+    "v2.listSessionsForAgents": {
+      "variables": {},
+    },
+    "v2.listAgentVersions": {
+      "variables": {},
+    },
+    "v2.getAgentVersion": {
+      "variables": {},
+    },
+    "v2.createSession": {
+      "variables": {},
+    },
+    "v2.listSessions": {
+      "variables": {},
+    },
+    "v2.getSession": {
+      "variables": {},
+    },
+    "v2.blockingContinueSession": {
+      "variables": {},
+    },
+    "v2.streamingContinueSession": {
+      "variables": {},
+    },
+    "v2.cancelSession": {
+      "variables": {},
+    },
+    "v2.getRagContextForSession": {
+      "variables": {},
+    },
+    "v2.updateSessionTitle": {
+      "variables": {},
+    },
+    "v2.getContent": {
+      "variables": {},
+    },
+    "v2.getSessionTrace": {
+      "variables": {},
+    },
     "v2.deleteUser": {
       "variables": {},
     },
@@ -277,33 +613,6 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.addPrimaryKey": {
       "variables": {},
     },
-    "v2.getThirdPartyApplication": {
-      "variables": {},
-    },
-    "v2.getWebsite": {
-      "variables": {},
-    },
-    "v2.deployWebsite": {
-      "variables": {},
-    },
-    "v2.undeployWebsite": {
-      "variables": {},
-    },
-    "v2.deleteVersion": {
-      "variables": {},
-    },
-    "v2.listVersions": {
-      "variables": {},
-    },
-    "v2.getVersion": {
-      "variables": {},
-    },
-    "v2.uploadVersion": {
-      "variables": {},
-    },
-    "v2.uploadSnapshotVersion": {
-      "variables": {},
-    },
     "v2.deleteResource": {
       "variables": {},
     },
@@ -523,54 +832,6 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.resetStream": {
       "variables": {},
     },
-    "v2.getApiDefinition": {
-      "variables": {},
-    },
-    "v2.getOpenApiDefinition": {
-      "variables": {},
-    },
-    "v2.readMediaItem": {
-      "variables": {},
-    },
-    "v2.readOriginalMediaItem": {
-      "variables": {},
-    },
-    "v2.getMediaItemInfo": {
-      "variables": {},
-    },
-    "v2.getMediaItemReference": {
-      "variables": {},
-    },
-    "v2.getMediaItemRidByPath": {
-      "variables": {},
-    },
-    "v2.putMediaItem": {
-      "variables": {},
-    },
-    "v2.createMediaTransaction": {
-      "variables": {},
-    },
-    "v2.commitMediaTransaction": {
-      "variables": {},
-    },
-    "v2.abortMediaTransaction": {
-      "variables": {},
-    },
-    "v2.getQuery": {
-      "variables": {},
-    },
-    "v2.getByRidQueries": {
-      "variables": {},
-    },
-    "v2.executeQuery": {
-      "variables": {},
-    },
-    "v2.getValueType": {
-      "variables": {},
-    },
-    "v2.getVersionId": {
-      "variables": {},
-    },
     "v2.listLogFiles": {
       "variables": {},
     },
@@ -592,253 +853,19 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getOperation": {
       "variables": {},
     },
-    "v2.listOntologiesV2": {
+    "v2.searchMaps": {
       "variables": {},
     },
-    "v2.getOntologyV2": {
+    "v2.addArtifactsToMap": {
       "variables": {},
     },
-    "v2.getOntologyFullMetadata": {
+    "v2.loadMap": {
       "variables": {},
     },
-    "v2.loadOntologyMetadata": {
+    "v2.loadWithExtensionMap": {
       "variables": {},
     },
-    "v2.listActionTypesV2": {
-      "variables": {},
-    },
-    "v2.getActionTypeV2": {
-      "variables": {},
-    },
-    "v2.getActionTypeByRid": {
-      "variables": {},
-    },
-    "v2.listObjectTypesV2": {
-      "variables": {},
-    },
-    "v2.getObjectTypeV2": {
-      "variables": {},
-    },
-    "v2.getObjectTypeFullMetadata": {
-      "variables": {},
-    },
-    "v2.listOutgoingLinkTypesV2": {
-      "variables": {},
-    },
-    "v2.getOutgoingLinkTypeV2": {
-      "variables": {},
-    },
-    "v2.listObjectsV2": {
-      "variables": {},
-    },
-    "v2.getObjectV2": {
-      "variables": {},
-    },
-    "v2.countObjects": {
-      "variables": {},
-    },
-    "v2.searchObjectsV2": {
-      "variables": {},
-    },
-    "v2.aggregateObjectsV2": {
-      "variables": {},
-    },
-    "v2.listLinkedObjectsV2": {
-      "variables": {},
-    },
-    "v2.getLinkedObjectV2": {
-      "variables": {},
-    },
-    "v2.listPropertyAttachments": {
-      "variables": {},
-    },
-    "v2.getAttachmentPropertyByRidV2": {
-      "variables": {},
-    },
-    "v2.getAttachmentPropertyContentV2": {
-      "variables": {},
-    },
-    "v2.getAttachmentPropertyContentByRidV2": {
-      "variables": {},
-    },
-    "v2.readMediaContent": {
-      "variables": {},
-    },
-    "v2.getMediaMetadata": {
-      "variables": {},
-    },
-    "v2.uploadMediaContent": {
-      "variables": {},
-    },
-    "v2.uploadMedia": {
-      "variables": {},
-    },
-    "v2.getFirstPoint": {
-      "variables": {},
-    },
-    "v2.getLastPoint": {
-      "variables": {},
-    },
-    "v2.streamPoints": {
-      "variables": {},
-    },
-    "v2.getLatestValue": {
-      "variables": {},
-    },
-    "v2.streamValues": {
-      "variables": {},
-    },
-    "v2.decrypt": {
-      "variables": {},
-    },
-    "v2.listInterfaceTypes": {
-      "variables": {},
-    },
-    "v2.getInterfaceType": {
-      "variables": {},
-    },
-    "v2.searchObjectsForInterface": {
-      "variables": {},
-    },
-    "v2.aggregateObjectsForInterface": {
-      "variables": {},
-    },
-    "v2.listOutgoingInterfaceLinkTypes": {
-      "variables": {},
-    },
-    "v2.getOutgoingInterfaceLinkType": {
-      "variables": {},
-    },
-    "v2.applyActionV2": {
-      "variables": {},
-    },
-    "v2.applyActionAsyncV2": {
-      "variables": {},
-    },
-    "v2.applyActionBatchV2": {
-      "variables": {},
-    },
-    "v2.listQueryTypesV2": {
-      "variables": {},
-    },
-    "v2.getQueryTypeV2": {
-      "variables": {},
-    },
-    "v2.executeQueryV2": {
-      "variables": {},
-    },
-    "v2.createTemporaryObjectSetV2": {
-      "variables": {},
-    },
-    "v2.getObjectSetV2": {
-      "variables": {},
-    },
-    "v2.loadObjectSetV2": {
-      "variables": {},
-    },
-    "v2.loadObjectSetV2MultipleObjectTypes": {
-      "variables": {},
-    },
-    "v2.loadObjectSetV2ObjectsOrInterfaces": {
-      "variables": {},
-    },
-    "v2.aggregateObjectSetV2": {
-      "variables": {},
-    },
-    "v2.uploadAttachmentV2": {
-      "variables": {},
-    },
-    "v2.getAttachmentContentV2": {
-      "variables": {},
-    },
-    "v2.getAttachmentV2": {
-      "variables": {},
-    },
-    "v2.getOntologyValueType": {
-      "variables": {},
-    },
-    "v2.listOntologyValueTypes": {
-      "variables": {},
-    },
-    "v2.ontologyTransactionPostEdits": {
-      "variables": {},
-    },
-    "v2.getWidgetSet": {
-      "variables": {},
-    },
-    "v2.deleteRelease": {
-      "variables": {},
-    },
-    "v2.listReleases": {
-      "variables": {},
-    },
-    "v2.getRelease": {
-      "variables": {},
-    },
-    "v2.getRepository": {
-      "variables": {},
-    },
-    "v2.publishRelease": {
-      "variables": {},
-    },
-    "v2.getDevModeSettings": {
-      "variables": {},
-    },
-    "v2.enableDevModeSettings": {
-      "variables": {},
-    },
-    "v2.pauseDevModeSettings": {
-      "variables": {},
-    },
-    "v2.disableDevModeSettings": {
-      "variables": {},
-    },
-    "v2.setWidgetSetDevModeSettings": {
-      "variables": {},
-    },
-    "v2.setWidgetSetDevModeSettingsById": {
-      "variables": {},
-    },
-    "v2.getAgent": {
-      "variables": {},
-    },
-    "v2.listSessionsForAgents": {
-      "variables": {},
-    },
-    "v2.listAgentVersions": {
-      "variables": {},
-    },
-    "v2.getAgentVersion": {
-      "variables": {},
-    },
-    "v2.createSession": {
-      "variables": {},
-    },
-    "v2.listSessions": {
-      "variables": {},
-    },
-    "v2.getSession": {
-      "variables": {},
-    },
-    "v2.blockingContinueSession": {
-      "variables": {},
-    },
-    "v2.streamingContinueSession": {
-      "variables": {},
-    },
-    "v2.cancelSession": {
-      "variables": {},
-    },
-    "v2.getRagContextForSession": {
-      "variables": {},
-    },
-    "v2.updateSessionTitle": {
-      "variables": {},
-    },
-    "v2.getContent": {
-      "variables": {},
-    },
-    "v2.getSessionTrace": {
+    "v2.loadLayersMap": {
       "variables": {},
     },
   },

@@ -51,6 +51,13 @@ export interface ArrayFieldType {
 }
 
 /**
+ * The globally unique identifier of an artifact.
+ *
+ * Log Safety: SAFE
+ */
+export type ArtifactGid = LooselyBrandedString<"ArtifactGid">;
+
+/**
  * Log Safety: SAFE
  */
 export interface AttachmentType {}
@@ -559,6 +566,22 @@ export interface FoundryLiveDeployment {
   inputParamName?: string;
   outputParamName?: string;
 }
+
+/**
+ * A unique identifier of a Foundry object property.
+ *
+ * Log Safety: SAFE
+ */
+export type FoundryObjectPropertyTypeRid = LooselyBrandedString<
+  "FoundryObjectPropertyTypeRid"
+>;
+
+/**
+ * A unique identifier of a Foundry object type.
+ *
+ * Log Safety: SAFE
+ */
+export type FoundryObjectTypeRid = LooselyBrandedString<"FoundryObjectTypeRid">;
 
 /**
    * Configuration for change data capture which resolves the latest state of the dataset based on new full rows
@@ -1329,6 +1352,13 @@ export type SearchJsonQueryV2 =
   | ({ type: "intersectsPolygon" } & IntersectsPolygonQuery)
   | ({ type: "lte" } & LteQueryV2)
   | ({ type: "startsWith" } & StartsWithQuery);
+
+/**
+ * The name of the service that is not set-up
+ *
+ * Log Safety: SAFE
+ */
+export type ServiceName = LooselyBrandedString<"ServiceName">;
 
 /**
  * Log Safety: SAFE

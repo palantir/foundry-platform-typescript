@@ -1,6 +1,6 @@
 # foundry-platform-typescript
 
-The Foundry Platform SDK for Typescript is an SDK for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/). Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry) or [`@osdk/gotham.{namespace}`](...). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
+The Foundry and Gotham Platform Typescript SDKs provide helpful TypeScript bindings for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/) and select Gotham APIs. Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry) or [`@osdk/gotham.{namespace}`](...). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
 
 ## Using the Platform SDKs
 
@@ -11,17 +11,11 @@ You can install the package for a specific namespace.
 ```bash
 npm install @osdk/foundry.{namespace}
 ```
-```bash
-npm install @osdk/gotham.{namespace}
-```
 
-Alternatively, you can install all API namespaces for either the Gotham and Foundry platforms as a single package.
+Alternatively, you can install all API namespaces from a single package.
 
 ```bash
 npm install @osdk/foundry
-```
-```bash
-npm install @osdk/gotham
 ```
 
 ### Creating the Client
@@ -191,22 +185,23 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
 3. Remember to add a changeset (following the instructions above)
 4. Commit and open a PR
 
-### Adding a new Gotham SDK
-If you are generating a new Gotham SDK for the first time, you must add it to the namespace mapping in `isGothamNamespace.ts`:
+### Adding a new namespace
+If you are generating a new SDK for the first time, you must add it to the namespace mapping in `getNamespacePlatform.ts`:
 ```js
-export function isGothamNamespace(ns?: string): boolean {
-  switch (ns) {
-    case "GothamCore":
-      return true;
-    case "TargetWorkbench":
-      return true;
+export function getNamespacePlatform(ns?: string): string {
+  const namespaceMapping: { [key: string]: string } = {
+    "Core": "both",
+    "TargetWorkbench": "gotham",
+    "Gaia": "gotham",
+    "Admin": "foundry",
+    "AipAgents": "foundry",
     ...
-    case "<YourNamespace>":
-      return true;
-  }
-  return false;
+  };
+  return ns ? (namespaceMapping[ns] ?? "foundry") : "foundry";
 }
 ```
+For your namespace to be generated in the correct platform (Gotham or Foundry), it must exist in the mapping. Unknown namespaces will throw an error until you provide a correct mapping.
+With the exception of the "Core" namespace, all namespaces must map to either the "gotham" or "foundry" platform.
 
 ### Publishing a release
 

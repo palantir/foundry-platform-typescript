@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Palantir Technologies, Inc. All rights reserved.
+ * Copyright 2025 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,3 +18,6 @@ export * as Core from "@osdk/gotham.core";
 export * as Gaia from "@osdk/gotham.gaia";
 export * as Geojson from "@osdk/gotham.geojson";
 export * as TargetWorkbench from "@osdk/gotham.targetworkbench";
+export type LooselyBrandedString<T extends string> = string & {
+  __LOOSE_BRAND?: T;
+};

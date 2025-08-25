@@ -1,5 +1,34 @@
 # @osdk/foundry
 
+## 2.27.0
+
+### Minor Changes
+
+- 07f10f2: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [07f10f2]
+  - @osdk/foundry.thirdpartyapplications@2.27.0
+  - @osdk/foundry.orchestration@2.27.0
+  - @osdk/foundry.connectivity@2.27.0
+  - @osdk/foundry.datahealth@2.27.0
+  - @osdk/foundry.filesystem@2.27.0
+  - @osdk/foundry.ontologies@2.27.0
+  - @osdk/foundry.publicapis@2.27.0
+  - @osdk/foundry.sqlqueries@2.27.0
+  - @osdk/foundry.aipagents@2.27.0
+  - @osdk/foundry.functions@2.27.0
+  - @osdk/foundry.mediasets@2.27.0
+  - @osdk/foundry.datasets@2.27.0
+  - @osdk/foundry.streams@2.27.0
+  - @osdk/foundry.widgets@2.27.0
+  - @osdk/foundry.admin@2.27.0
+  - @osdk/foundry.audit@2.27.0
+  - @osdk/foundry.core@2.27.0
+  - @osdk/foundry.geo@2.27.0
+  - @osdk/foundry.geojson@2.27.0
+
 ## 2.26.0
 
 ### Minor Changes

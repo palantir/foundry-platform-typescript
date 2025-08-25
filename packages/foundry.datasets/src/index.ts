@@ -23,6 +23,7 @@ export type {
   CreateDatasetRequest,
   CreateTransactionRequest,
   CreateViewRequest,
+  DataframeReader,
   Dataset,
   DatasetName,
   DatasetRid,

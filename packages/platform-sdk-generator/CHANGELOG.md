@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.25.0
+
+### Minor Changes
+
+- 8e258f6: Ignore new Gotham API namespaces from Foundry sdk generation
+
+### Patch Changes
+
+- Updated dependencies [07f10f2]
+  - @osdk/docs-spec-platform@0.15.0
+
 ## 0.24.0
 
 ### Patch Changes

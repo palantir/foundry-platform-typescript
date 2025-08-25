@@ -128,9 +128,10 @@ export class Model {
     const packagePrefix = opts["packagePrefix"] ?? "foundry";
 
     for (const ns of ir.namespaces) {
+      const platform = getNamespacePlatform(ns.name);
       if (
-        packagePrefix !== getNamespacePlatform(ns.name)
-        && getNamespacePlatform(ns.name) !== "both"
+        (packagePrefix !== platform && platform !== "both")
+        || platform === "ignore"
       ) {
         continue;
       }
@@ -141,17 +142,19 @@ export class Model {
       await model.#addNamespace(ns.name, ns);
 
       for (const c of ns.components) {
+        const platform = getNamespaceType(c);
         if (
-          packagePrefix !== getNamespaceType(c)
-          && getNamespaceType(c) !== "both"
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
         ) continue;
         model.#addComponent(c);
       }
 
       for (const e of ns.errors) {
+        const platform = getNamespaceType(e);
         if (
-          packagePrefix !== getNamespaceType(e)
-          && getNamespaceType(e) !== "both"
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
         ) continue;
         model.#addError(e);
       }
@@ -170,9 +173,10 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesComponents?.components ?? []) {
+        const platform = getNamespaceType(c);
         if (
-          packagePrefix !== getNamespaceType(c)
-          && getNamespaceType(c) !== "both"
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
         ) continue;
         c.locator.namespaceName = "Core";
         model.#addComponent(c, true);
@@ -183,9 +187,10 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesErrors?.errors ?? []) {
+        const platform = getNamespaceType(c);
         if (
-          packagePrefix !== getNamespaceType(c)
-          && getNamespaceType(c) !== "both"
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
         ) continue;
         c.locator.namespaceName = "Core";
         model.#addError(c, true);
