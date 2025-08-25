@@ -34,7 +34,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Filesystem": "foundry",
     "Functions": "foundry",
     "Geo": "foundry",
-    "Mediasets": "foundry",
+    "MediaSets": "foundry",
     "Ontologies": "foundry",
     "Operations": "foundry",
     "Orchestration": "foundry",
