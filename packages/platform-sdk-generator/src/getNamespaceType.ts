@@ -15,9 +15,9 @@
  */
 
 import type * as ir from "@osdk/docs-spec-platform";
-import { isIgnoredNamespace } from "./isIgnoredNamespace.js";
+import { getNamespacePlatform } from "./getNamespacePlatform.js";
 import type { ErrorType } from "./model/ErrorType.js";
 
-export function isIgnoredType(component: ir.Component | ir.Error): boolean {
-  return isIgnoredNamespace(component.locator.namespaceName);
+export function getNamespaceType(component: ir.Component | ir.Error): string {
+  return getNamespacePlatform(component.locator.namespaceName);
 }

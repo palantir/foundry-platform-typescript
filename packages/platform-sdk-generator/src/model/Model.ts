@@ -17,8 +17,8 @@
 import type * as ir from "@osdk/docs-spec-platform";
 import * as path from "node:path";
 import { ensurePackageSetup } from "../generatePlatformSdkv2.js";
-import { isIgnoredNamespace } from "../isIgnoredNamespace.js";
-import { isIgnoredType } from "../isIgnoredType.js";
+import { getNamespacePlatform } from "../getNamespacePlatform.js";
+import { getNamespaceType } from "../getNamespaceType.js";
 import { mapObjectValues } from "../util/mapObjectValues.js";
 import { BinaryType } from "./BinaryType.js";
 import { BuiltinType } from "./BuiltinType.js";
@@ -125,8 +125,16 @@ export class Model {
   }): Promise<Model> {
     const model = new Model(opts);
 
+    const packagePrefix = opts["packagePrefix"] ?? "foundry";
+
     for (const ns of ir.namespaces) {
-      if (isIgnoredNamespace(ns.name)) continue;
+      const platform = getNamespacePlatform(ns.name);
+      if (
+        (packagePrefix !== platform && platform !== "both")
+        || platform === "ignore"
+      ) {
+        continue;
+      }
       if (
         ns.version !== opts.endpointVersion
       ) continue;
@@ -134,12 +142,20 @@ export class Model {
       await model.#addNamespace(ns.name, ns);
 
       for (const c of ns.components) {
-        if (isIgnoredType(c)) continue;
+        const platform = getNamespaceType(c);
+        if (
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
+        ) continue;
         model.#addComponent(c);
       }
 
       for (const e of ns.errors) {
-        if (isIgnoredType(e)) continue;
+        const platform = getNamespaceType(e);
+        if (
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
+        ) continue;
         model.#addError(e);
       }
 
@@ -157,7 +173,11 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesComponents?.components ?? []) {
-        if (isIgnoredType(c)) continue;
+        const platform = getNamespaceType(c);
+        if (
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
+        ) continue;
         c.locator.namespaceName = "Core";
         model.#addComponent(c, true);
       }
@@ -167,7 +187,11 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesErrors?.errors ?? []) {
-        if (isIgnoredType(c)) continue;
+        const platform = getNamespaceType(c);
+        if (
+          (packagePrefix !== platform && platform !== "both")
+          || platform === "ignore"
+        ) continue;
         c.locator.namespaceName = "Core";
         model.#addError(c, true);
       }

@@ -14,16 +14,24 @@
  * limitations under the License.
  */
 
-export function isIgnoredNamespace(ns?: string): boolean {
-  switch (ns) {
-    case "Operations":
-      return true;
-    case "TargetWorkbench":
-      return true;
-    case "Gaia":
-      return true;
-    case "MapRendering":
-      return true;
-  }
-  return false;
-}
+export type {
+  BBox,
+  Coordinate,
+  Feature,
+  FeatureCollection,
+  FeatureCollectionTypes,
+  FeaturePropertyKey,
+  GeoJsonObject,
+  Geometry,
+  GeometryCollection,
+  LinearRing,
+  LineString,
+  LineStringCoordinates,
+  MultiLineString,
+  MultiPoint,
+  MultiPolygon,
+  Point,
+  Polygon,
+  Position,
+} from "./_components.js";
+export type {} from "./_errors.js";
