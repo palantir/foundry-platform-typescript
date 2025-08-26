@@ -159,6 +159,7 @@ export const OSDK_SNIPPETS_SPEC = {
   version: 1,
   snippets: {
     // loadObjectSnippets
+    // dummy change
     loadSingleObjectGuide: {
       variables: {
         ...ObjectTypeTemplateStrings,
