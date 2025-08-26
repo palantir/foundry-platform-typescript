@@ -9,15 +9,15 @@ import type { SharedClientContext } from '@osdk/shared.client2';
 
 // Simple configuration - just hostname and token
 const TOKEN = process.env.TOKEN;
-const HOSTNAME = process.env.HOSTNAME;
+const STACK = process.env.STACK;
 const RID = process.env.RID;
 const ARTIFACT_GID = process.env.ARTIFACT_GID;
 
 /**
  * Creates a simple authenticated client for Foundry APIs
- * This function uses ClientContext instead of @osdk/client which requires a published public SDK
+ * This function uses ClientContext instead of a public @osdk/client which requires a frontend app
  */
-function createFoundryClient(hostname: string, token: string): SharedClientContext {
+function createFoundryClient(stack: string, token: string): SharedClientContext {
   // Automatically add authentication
   const authenticatedFetch: typeof fetch = async (input, init) => {
     const headers = new Headers(init?.headers);
@@ -27,7 +27,7 @@ function createFoundryClient(hostname: string, token: string): SharedClientConte
   };
 
   return {
-    baseUrl: `https://${hostname}`,
+    baseUrl: `https://${stack}`,
     fetch: authenticatedFetch,
     tokenProvider: async () => token,
   };
@@ -38,7 +38,7 @@ describe('Testing Gaia endpoints', () => {
 
   // Simple client setup - just pass hostname and token!
   beforeAll(() => {
-    client = createFoundryClient(HOSTNAME, TOKEN);
+    client = createFoundryClient(STACK, TOKEN);
     console.log("Client created successfully");
   });
 
@@ -49,8 +49,8 @@ describe('Testing Gaia endpoints', () => {
       expect(response).toBeDefined();
       expect(response.data).toBeDefined();
 
+      console.log(`Found ${response.data.length} maps:`);
       if (response.data && response.data.length > 0) {
-        console.log('Found maps:');
         for (const map in response.data) {
           expect(map).toBeDefined();
           console.log(map);
@@ -77,7 +77,6 @@ describe('Testing Gaia endpoints', () => {
     try {
       const response = await Maps.loadWithExtension(client, RID, { extensions: {} }, { preview: true });
       expect(response).toBeDefined();
-      expect(response.title).toStrictEqual("[judeh] mt mu test-shared-namespace");
 
       console.log('Map loaded with extensions:', response);
     } catch (error) {

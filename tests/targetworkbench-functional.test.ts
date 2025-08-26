@@ -9,14 +9,14 @@
 
    // Setup configuration
    const TOKEN = process.env.TOKEN;
-   const HOSTNAME = process.env.HOSTNAME;
+   const STACK = process.env.STACK;
    const SPACE_RID = process.env.SPACE_RID;
 
    /**
     * Creates a simple authenticated client for Foundry APIs
-    * This function uses ClientContext instead of @osdk/client which requires a published public SDK
+    * This function uses ClientContext instead of a public @osdk/client which requires a frontend app
     */
-   function createFoundryClient(hostname: string, token: string): SharedClientContext {
+   function createFoundryClient(stack: string, token: string): SharedClientContext {
      // Automatically add authentication
      const authenticatedFetch: typeof fetch = async (input, init) => {
        const headers = new Headers(init?.headers);
@@ -26,7 +26,7 @@
      };
 
      return {
-       baseUrl: `https://${hostname}`,
+       baseUrl: `https://${stack}`,
        fetch: authenticatedFetch,
        tokenProvider: async () => token,
      };
@@ -36,7 +36,7 @@
      let client: SharedClientContext;
 
      beforeAll(() => {
-       client = createFoundryClient(HOSTNAME, TOKEN);
+       client = createFoundryClient(STACK, TOKEN);
        console.log("TargetWorkbench client created successfully");
      });
 
@@ -81,16 +81,17 @@
 
        } catch (error) {
          console.log('Target board lifecycle error:', error);
-         // In preview mode or without proper permissions, this might fail
-         // We should at least verify the function exists and can be called
          expect(error).toBeDefined();
        }
      });
 
      it('Error handling -------------------------', async () => {
        try {
-         const response = await TargetBoards.load(client, "ri.compass.bad.rid", { preview: true });
-         expect(response.errorCode).toStrictEqual("PERMISSION_DENIED")
+         const badRidResponse = await TargetBoards.load(client, "ri.compass.bad.rid", { preview: true });
+         expect(badRidResponse.errorCode).toStrictEqual("INVALID_ARGUMENT")
+
+         const deniedRidResponse = await TargetBoards.load(client, "ri.compass.main.folder.50b2d4b6-9d06-4001-abb1-ac1322d3871b", { preview: true });
+         expect(deniedRidResponse.errorCode).toStrictEqual("PERMISSION_DENIED")
        } catch (error) {
          console.log("ERROR:", error);
        }

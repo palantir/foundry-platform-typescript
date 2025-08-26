@@ -9,7 +9,7 @@
     ```bash
     cd tests && npm install
     ```
-2. Set environment variables
+2. Set environment variables (recommended in a bash script)
     ```bash
    export STACK=...// e.g., danube-staging-multitenant.palantircloud.com
    export TOKEN=...// Your personal token found in your stack profile\'s User Settings
