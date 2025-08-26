@@ -12,7 +12,7 @@
 2. Set environment variables
     ```bash
    export STACK=...// e.g., danube-staging-multitenant.palantircloud.com
-   export CLIENT_ID=...// Your OAuth2 client ID from the Developer Console
+   export TOKEN=...// Your personal token found in your stack profile\'s User Settings
    export RID=...// The RID of the Gaia map you want to test
    export ARTIFACT_GID=...// The RID of the Artifact you want to add to your Gaia map
    export SPACE_RID=...// The RID of the space you want to create your TargetBoard in (can be found in Control Panel)
