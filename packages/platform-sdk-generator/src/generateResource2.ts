@@ -36,10 +36,10 @@ export async function writeResource2(
   filePath: string,
   model: Model,
 ): Promise<void> {
-  const platformFetch = (getNamespacePlatform(ns.toString()) === "gotham")
+  const platformFetch = (getNamespacePlatform(ns.name) === "gotham")
     ? "platformFetch"
     : "foundryPlatformFetch";
-  const platformMethod = (getNamespacePlatform(ns.toString()) === "gotham")
+  const platformMethod = (getNamespacePlatform(ns.name) === "gotham")
     ? "PlatformMethod"
     : "FoundryPlatformMethod";
 
