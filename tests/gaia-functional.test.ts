@@ -113,5 +113,6 @@ describe('Testing Gaia endpoints', () => {
   it('Error handling --------------------', async () => {
     const response = await Maps.load(client, "ri.invalid.format.that.will.fail", { preview: true });
     expect(response.errorCode).toStrictEqual("INVALID_ARGUMENT");
+    console.log("Successfully caught error:", response.errorCode);
   });
 });
