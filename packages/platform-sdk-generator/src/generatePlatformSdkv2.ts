@@ -180,7 +180,6 @@ export async function generateComponents(
     const platform = getNamespaceType(component.component);
     if (
       (packagePrefix !== platform && platform !== "both")
-      || platform === "ignore"
     ) {
       continue;
     }
@@ -218,10 +217,7 @@ export async function generateErrors(
 
   for (const error of ns.errors) {
     const platform = getNamespaceType(error.spec);
-    if (
-      (packagePrefix !== platform && platform !== "both")
-      || platform === "ignored"
-    ) {
+    if (packagePrefix !== platform && platform !== "both") {
       continue;
     }
     out += error.getDeclaration(ns.name);
