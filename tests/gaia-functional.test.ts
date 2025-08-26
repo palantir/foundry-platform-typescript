@@ -77,7 +77,7 @@ describe('Testing Gaia endpoints', () => {
     try {
       const response = await Maps.loadWithExtension(client, RID, { extensions: {} }, { preview: true });
       expect(response).toBeDefined();
-      expect(response.title).toStrictEqual("[judeh] mt mts/mnf test-shared-namespace");
+      expect(response.title).toStrictEqual("[judeh] mt mu test-shared-namespace");
 
       console.log('Map loaded with extensions:', response);
     } catch (error) {
