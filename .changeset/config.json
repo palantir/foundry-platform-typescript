@@ -11,6 +11,10 @@
       "@osdk/internal.foundry.datasets",
       "@osdk/internal.foundry.geo",
       "@osdk/internal.foundry.ontologies"
+    ],
+    [
+      "@osdk/gotham.*",
+      "@osdk/gotham"
     ]
   ],
   "linked": [],
