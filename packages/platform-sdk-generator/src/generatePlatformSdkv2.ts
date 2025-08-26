@@ -21,7 +21,7 @@ import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
 import { generateImports, SKIP } from "./generateImports.js";
 import { writeResource2 } from "./generateResource2.js";
-import { isIgnoredType } from "./isIgnoredType.js";
+import { getNamespaceType } from "./getNamespaceType.js";
 import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
@@ -56,8 +56,14 @@ export async function generatePlatformSdkV2(
     ns.errors.sort((a, b) =>
       a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
     );
-    componentsGenerated.set(ns, await generateComponents(ns, ns.paths.srcDir));
-    errorsGenerated.set(ns, await generateErrors(ns, ns.paths.srcDir));
+    componentsGenerated.set(
+      ns,
+      await generateComponents(ns, ns.paths.srcDir, packagePrefix),
+    );
+    errorsGenerated.set(
+      ns,
+      await generateErrors(ns, ns.paths.srcDir, packagePrefix),
+    );
   }
 
   // Now we can generate the resources
@@ -161,6 +167,7 @@ export async function generatePlatformSdkV2(
 export async function generateComponents(
   ns: Namespace,
   outputDir: string,
+  packagePrefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -170,7 +177,10 @@ export async function generateComponents(
       `;
 
   for (const component of ns.components) {
-    if (isIgnoredType(component.component)) {
+    const platform = getNamespaceType(component.component);
+    if (
+      (packagePrefix !== platform && platform !== "both")
+    ) {
       continue;
     }
     out += component.getDeclaration(ns.name);
@@ -196,6 +206,7 @@ export async function generateComponents(
 export async function generateErrors(
   ns: Namespace,
   outputDir: string,
+  packagePrefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -205,7 +216,8 @@ export async function generateErrors(
       `;
 
   for (const error of ns.errors) {
-    if (isIgnoredType(error.spec)) {
+    const platform = getNamespaceType(error.spec);
+    if (packagePrefix !== platform && platform !== "both") {
       continue;
     }
     out += error.getDeclaration(ns.name);
