@@ -155,6 +155,14 @@ const MediaTemplateStrings = {
   property: "required",
 } as const satisfies SnippetVariables;
 
+const NearestNeighborsTemplateStrings = {
+  objectTypeApiName: "required",
+  objectTypeApiNameCamelCase: "required",
+  vectorProperty: "required",
+  vectorDimensionSize: "required",
+  isOrderedByRelevance: "required",
+} as const satisfies SnippetVariables;
+
 export const OSDK_SNIPPETS_SPEC = {
   version: 1,
   snippets: {
@@ -696,6 +704,13 @@ export const OSDK_SNIPPETS_SPEC = {
     searchAround: {
       variables: {
         ...ObjectTypeWithLinkTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
+    nearestNeighbors: {
+      variables: {
+        ...NearestNeighborsTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
       },
