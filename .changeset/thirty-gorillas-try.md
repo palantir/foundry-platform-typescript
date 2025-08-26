@@ -1,10 +1,10 @@
 ---
-"@osdk/gotham.targetworkbench": major
-"@osdk/foundry.models": major
-"@osdk/gotham.geojson": major
-"@osdk/gotham.core": major
-"@osdk/gotham.gaia": major
-"@osdk/gotham": major
+"@osdk/gotham.targetworkbench": minor
+"@osdk/foundry.models": minor
+"@osdk/gotham.geojson": minor
+"@osdk/gotham.core": minor
+"@osdk/gotham.gaia": minor
+"@osdk/gotham": minor
 "@osdk/docs-spec-platform": minor
 ---
 
