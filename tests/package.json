@@ -1,0 +1,24 @@
+{
+  "name": "foundry-platform-typescript-tests",
+  "version": "1.0.0",
+  "description": "Tests for Gaia and TargetWorkbench namespaces",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:watch": "vitest --watch"
+  },
+  "dependencies": {
+    "@osdk/client": "latest",
+    "@osdk/oauth": "^1.0.0",
+    "@osdk/gotham.gaia": "file:../packages/gotham.gaia",
+    "@osdk/gotham.targetworkbench": "file:../packages/gotham.targetworkbench",
+    "@osdk/shared.client2": "^1.0.0",
+    "@osdk/shared.net.platformapi": "file:../packages/shared.net.platformapi"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.2",
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.2"
+  }
+}
