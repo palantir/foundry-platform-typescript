@@ -1,5 +1,12 @@
 # @osdk/docs-spec-sdk
 
+## 0.6.0
+
+### Minor Changes
+
+- 1fb2aca: Fix nearestNeighbor spec
+- f289f64: Add knn doc spec
+
 ## 0.5.0
 
 ### Minor Changes
