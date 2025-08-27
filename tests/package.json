@@ -6,19 +6,21 @@
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "dev": "vite"
   },
   "dependencies": {
     "@osdk/client": "latest",
-    "@osdk/oauth": "^1.0.0",
     "@osdk/gotham.gaia": "file:../packages/gotham.gaia",
     "@osdk/gotham.targetworkbench": "file:../packages/gotham.targetworkbench",
+    "@osdk/oauth": "^1.0.0",
     "@osdk/shared.client2": "^1.0.0",
     "@osdk/shared.net.platformapi": "file:../packages/shared.net.platformapi"
   },
   "devDependencies": {
-    "vitest": "^2.1.2",
     "@types/node": "^22.7.4",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vite": "^5.4.19",
+    "vitest": "^2.1.2"
   }
 }
