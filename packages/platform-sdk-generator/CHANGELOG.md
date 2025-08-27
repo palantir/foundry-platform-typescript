@@ -1,5 +1,11 @@
 # @osdk/platform-sdk-generator
 
+## 0.26.0
+
+### Minor Changes
+
+- 6472e27: The generation scripts will now generate both Gotham and Foundry packages automatically.
+
 ## 0.25.0
 
 ### Minor Changes
