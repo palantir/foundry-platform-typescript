@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Testing Gaia & Twb endpoints</title>
+    <!-- Load dependencies from a CDN. In production, most developers use a dependency and build
+         system like npm instead. -->
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.11/dist/vue.esm-browser.min.js",
+            "@osdk/client": "https://cdn.jsdelivr.net/npm/@osdk/client@2.0.4/+esm",
+            "@osdk/oauth": "https://cdn.jsdelivr.net/npm/@osdk/oauth@1.0.0/+esm",
+            "@osdk/gotham.gaia": "./packages/gotham.gaia/build/esm/index.js",
+            "@osdk/gotham.targetworkbench": "./packages/gotham.targetworkbench/build/esm/index.js",
+            "@osdk/shared.net.platformapi": "https://cdn.jsdelivr.net/npm/@osdk/shared.net.platformapi@latest/+esm",
+            "@osdk/gotham.core": "./packages/gotham.core/build/esm/index.js",
+            "@osdk/gotham.geojson": "./packages/gotham.geojson/build/esm/index.js"
+          }
+        }
+    </script>
+</head>
+<body>
+<h1>Testing Gaia & Twb endpoints</h1> <!-- The contents of our vue app. -->
+<div id="app">
+    <Suspense>
+        <Gaia />
+    </Suspense>
+</div>
+<script type="module">
+    import { createApp } from "vue"
+    import { createPlatformClient } from "@osdk/client"
+    import { createPublicOauthClient } from "@osdk/oauth"
+    import { Maps } from "@osdk/gotham.gaia"
+    import { TargetBoards } from "@osdk/gotham.targetworkbench"
+
+    const stack = // TODO;
+    const clientId = // TODO;
+    const redirectUrl = "http://localhost:8080";
+
+    const auth = createPublicOauthClient(clientId, stack, redirectUrl);
+    const client = createPlatformClient(stack, auth);
+
+    createApp({})
+    .component('Gaia', {
+      async setup() {
+        // Load map
+        const rid = // TODO;
+        const loadResponse = await Maps.load(client, rid, { preview: true });
+
+        // Load map with extension
+        const loadWithExtensionResponse = await Maps.loadWithExtension(client, rid, { extensions: {} }, { preview: true });
+
+        // Load map layers
+        const layerIds = loadResponse.rootLayerIds;
+        const loadLayersResponse = await Maps.loadLayers(client, rid, { layerIds: layerIds }, { preview: true });
+
+        // Search maps
+        const searchResponse = await Maps.search(client, { mapName: "no", pageSize: 1, preview: true});
+
+        // Add artifacts to map
+        const artifactGid = // TODO;
+        const artifactsResponse = await Maps.addArtifactsTo(client, rid, { artifactGids: [artifactGid], label: "label" }, { preview: true });
+
+        // Error handling
+        let errorResponse = null;
+        try {
+          await Maps.load(client, "ri.invalid.format.that.will.fail", { preview: true });
+        } catch (error) {
+          errorResponse = {
+            message: error.message,
+            status: error.status || 'Unknown',
+            stack: error.stack,
+            ...error
+          };
+        }
+
+        return {
+           loadResponse,
+           loadWithExtensionResponse,
+           loadLayersResponse,
+           searchResponse,
+           artifactsResponse,
+           errorResponse
+        }
+      },
+      template: `
+        <div>
+          <h2>Load Response:</h2>
+          <pre>{{ JSON.stringify(loadResponse, null, 2) }}</pre>
+
+          <h2>Load With Extension Response:</h2>
+          <pre>{{ JSON.stringify(loadWithExtensionResponse, null, 2) }}</pre>
+
+          <h2>Load Layers Response:</h2>
+          <pre>{{ JSON.stringify(loadLayersResponse, null, 2) }}</pre>
+
+          <h2>Search Response:</h2>
+          <pre>{{ JSON.stringify(searchResponse, null, 2) }}</pre>
+
+          <h2>Add Artifacts Response:</h2>
+          <pre>{{ JSON.stringify(artifactsResponse, null, 2) }}</pre>
+
+          <h2>Invalid Argument Response:</h2>
+          <pre v-if="errorResponse">{{ JSON.stringify(errorResponse, null, 2) }}</pre>
+          <p v-else>No error occurred</p>
+        </div>
+      `
+    })
+    .mount('#app');
+</script>
+</body>
+</html>
