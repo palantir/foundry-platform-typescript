@@ -125,6 +125,7 @@ export type {
   StringType,
   StructFieldName,
   StructFieldType,
+  TableRid,
   TimeSeriesItemType,
   TimeseriesType,
   TimestampType,

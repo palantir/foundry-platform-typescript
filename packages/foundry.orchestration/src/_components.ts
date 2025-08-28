@@ -254,6 +254,14 @@ export type CreateScheduleRequestScopeMode =
   | ({ type: "user" } & CreateScheduleRequestUserScope);
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CreateScheduleRequestTableUpdatedTrigger {
+  branchName?: _Datasets.BranchName;
+  tableRid: _Core.TableRid;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface CreateScheduleRequestTimeTrigger {
@@ -268,6 +276,7 @@ export type CreateScheduleRequestTrigger =
   | ({ type: "jobSucceeded" } & CreateScheduleRequestJobSucceededTrigger)
   | ({ type: "or" } & CreateScheduleRequestOrTrigger)
   | ({ type: "newLogic" } & CreateScheduleRequestNewLogicTrigger)
+  | ({ type: "tableUpdated" } & CreateScheduleRequestTableUpdatedTrigger)
   | ({ type: "and" } & CreateScheduleRequestAndTrigger)
   | ({ type: "datasetUpdated" } & CreateScheduleRequestDatasetUpdatedTrigger)
   | ({
@@ -645,6 +654,14 @@ export type ReplaceScheduleRequestScopeMode =
   | ({ type: "user" } & ReplaceScheduleRequestUserScope);
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceScheduleRequestTableUpdatedTrigger {
+  branchName?: _Datasets.BranchName;
+  tableRid: _Core.TableRid;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface ReplaceScheduleRequestTimeTrigger {
@@ -659,6 +676,7 @@ export type ReplaceScheduleRequestTrigger =
   | ({ type: "jobSucceeded" } & ReplaceScheduleRequestJobSucceededTrigger)
   | ({ type: "or" } & ReplaceScheduleRequestOrTrigger)
   | ({ type: "newLogic" } & ReplaceScheduleRequestNewLogicTrigger)
+  | ({ type: "tableUpdated" } & ReplaceScheduleRequestTableUpdatedTrigger)
   | ({ type: "and" } & ReplaceScheduleRequestAndTrigger)
   | ({ type: "datasetUpdated" } & ReplaceScheduleRequestDatasetUpdatedTrigger)
   | ({
@@ -947,6 +965,17 @@ export interface SearchBuildsResponse {
 }
 
 /**
+   * Trigger whenever a new transaction is committed to the
+table on the target branch.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface TableUpdatedTrigger {
+  tableRid: _Core.TableRid;
+  branchName: _Datasets.BranchName;
+}
+
+/**
  * Trigger on a time based schedule.
  *
  * Log Safety: SAFE
@@ -971,6 +1000,7 @@ export type Trigger =
   | ({ type: "jobSucceeded" } & JobSucceededTrigger)
   | ({ type: "or" } & OrTrigger)
   | ({ type: "newLogic" } & NewLogicTrigger)
+  | ({ type: "tableUpdated" } & TableUpdatedTrigger)
   | ({ type: "and" } & AndTrigger)
   | ({ type: "datasetUpdated" } & DatasetUpdatedTrigger)
   | ({ type: "scheduleSucceeded" } & ScheduleSucceededTrigger)

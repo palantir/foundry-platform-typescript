@@ -819,6 +819,13 @@ export interface StructFieldType {
 }
 
 /**
+ * The Resource Identifier (RID) of a Table.
+ *
+ * Log Safety: SAFE
+ */
+export type TableRid = LooselyBrandedString<"TableRid">;
+
+/**
  * A union of the types supported by time series properties.
  *
  * Log Safety: UNSAFE
