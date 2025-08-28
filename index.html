@@ -33,18 +33,25 @@
     import { Maps } from "@osdk/gotham.gaia"
     import { TargetBoards } from "@osdk/gotham.targetworkbench"
 
-    const stack = // TODO;
-    const clientId = // TODO;
+    const stack = "https://swirl.palantirfoundry.com";
+    const clientId = "";
     const redirectUrl = "http://localhost:8080";
 
-    const auth = createPublicOauthClient(clientId, stack, redirectUrl);
+    const scopes = [
+        "api:map-read",
+        "api:map-write",
+        "api:data-read",
+        "api:data-write"
+    ];
+
+    const auth = createPublicOauthClient(clientId, stack, redirectUrl, undefined, undefined, undefined, scopes);
     const client = createPlatformClient(stack, auth);
 
     createApp({})
     .component('Gaia', {
       async setup() {
         // Load map
-        const rid = // TODO;
+        const rid = "ri.gotham-artifact.2255617161039992074-0.gaia-map.2WXMcNDcKCdazEUcqj";
         const loadResponse = await Maps.load(client, rid, { preview: true });
 
         // Load map with extension
@@ -58,7 +65,7 @@
         const searchResponse = await Maps.search(client, { mapName: "no", pageSize: 1, preview: true});
 
         // Add artifacts to map
-        const artifactGid = // TODO;
+        const artifactGid = "ri.gotham-artifact.2255617161039992074-0.cosmos-collection.AdWtqcJJHARqEnQSHe";
         const artifactsResponse = await Maps.addArtifactsTo(client, rid, { artifactGids: [artifactGid], label: "label" }, { preview: true });
 
         // Error handling
