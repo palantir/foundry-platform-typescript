@@ -206,9 +206,15 @@ importers:
       '@osdk/foundry.mediasets':
         specifier: workspace:*
         version: link:../foundry.mediasets
+      '@osdk/foundry.models':
+        specifier: workspace:*
+        version: link:../foundry.models
       '@osdk/foundry.ontologies':
         specifier: workspace:*
         version: link:../foundry.ontologies
+      '@osdk/foundry.operations':
+        specifier: workspace:*
+        version: link:../foundry.operations
       '@osdk/foundry.orchestration':
         specifier: workspace:*
         version: link:../foundry.orchestration
