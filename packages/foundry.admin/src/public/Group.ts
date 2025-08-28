@@ -49,7 +49,7 @@ export function create(
 }
 
 const _deleteGroup: $FoundryPlatformMethod<
-  (groupId: _Core.PrincipalId) => Promise<void>
+  (groupId: _Core.GroupId) => Promise<void>
 > = [3, "/v2/admin/groups/{0}"];
 
 /**
@@ -62,7 +62,7 @@ const _deleteGroup: $FoundryPlatformMethod<
  */
 export function deleteGroup(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId]
+  ...args: [groupId: _Core.GroupId]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteGroup, ...args);
 }
@@ -97,7 +97,7 @@ export function list(
 }
 
 const _get: $FoundryPlatformMethod<
-  (groupId: _Core.PrincipalId) => Promise<_Admin.Group>
+  (groupId: _Core.GroupId) => Promise<_Admin.Group>
 > = [0, "/v2/admin/groups/{0}"];
 
 /**
@@ -110,7 +110,7 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId]
+  ...args: [groupId: _Core.GroupId]
 ): Promise<_Admin.Group> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

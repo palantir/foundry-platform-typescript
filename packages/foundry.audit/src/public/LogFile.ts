@@ -30,15 +30,17 @@ import type * as _Audit from "../_components.js";
 //
 
 const _list: $FoundryPlatformMethod<
-  ($queryParams: {
-    organizationRid: _Core.OrganizationRid;
-    startDate?: string | undefined;
-    endDate?: string | undefined;
-    pageSize?: _Core.PageSize | undefined;
-    pageToken?: _Core.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Audit.ListLogFilesResponse>
-> = [0, "/v2/audit/logFiles", 2];
+  (
+    organizationRid: _Core.OrganizationRid,
+    $queryParams?: {
+      startDate?: string | undefined;
+      endDate?: string | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Audit.ListLogFilesResponse>
+> = [0, "/v2/audit/organizations/{0}/logFiles", 2];
 
 /**
  * Lists all LogFiles.
@@ -48,13 +50,14 @@ const _list: $FoundryPlatformMethod<
  * @beta
  *
  * Required Scopes: [api:audit-read]
- * URL: /v2/audit/logFiles
+ * URL: /v2/audit/organizations/{organizationRid}/logFiles
  */
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    $queryParams: {
-      organizationRid: _Core.OrganizationRid;
+    organizationRid: _Core.OrganizationRid,
+
+    $queryParams?: {
       startDate?: string | undefined;
       endDate?: string | undefined;
       pageSize?: _Core.PageSize | undefined;
@@ -68,20 +71,28 @@ export function list(
 
 const _content: $FoundryPlatformMethod<
   (
+    organizationRid: _Core.OrganizationRid,
     logFileId: _Audit.FileId,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<Response>
-> = [0, "/v2/audit/logFiles/{0}/content", 2, , "application/octet-stream"];
+> = [
+  0,
+  "/v2/audit/organizations/{0}/logFiles/{1}/content",
+  2,
+  ,
+  "application/octet-stream",
+];
 
 /**
  * @beta
  *
  * Required Scopes: [api:audit-read]
- * URL: /v2/audit/logFiles/{logFileId}/content
+ * URL: /v2/audit/organizations/{organizationRid}/logFiles/{logFileId}/content
  */
 export function content(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
+    organizationRid: _Core.OrganizationRid,
     logFileId: _Audit.FileId,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },

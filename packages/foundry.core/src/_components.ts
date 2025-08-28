@@ -14,22 +14,9 @@
  * limitations under the License.
  */
 
-import type * as _Geo from "@osdk/foundry.geo";
-
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
 };
-
-/**
- * @deprecated Use `AndQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where every query is satisfied.
- *
- * Log Safety: UNSAFE
- */
-export interface AndQueryV2 {
-  value: Array<SearchJsonQueryV2>;
-}
 
 /**
  * Log Safety: SAFE
@@ -73,18 +60,6 @@ export interface BinaryType {}
 export interface BooleanType {}
 
 /**
- * @deprecated Use `BoundingBoxValue` in the `foundry.ontologies` package
- *
- * The top left and bottom right coordinate points that make up the bounding box.
- *
- * Log Safety: UNSAFE
- */
-export interface BoundingBoxValue {
-  topLeft: WithinBoundingBoxPoint;
-  bottomRight: WithinBoundingBoxPoint;
-}
-
-/**
  * Metadata about a Foundry branch.
  *
  * Log Safety: SAFE
@@ -104,25 +79,6 @@ export type BuildRid = LooselyBrandedString<"BuildRid">;
  * Log Safety: SAFE
  */
 export interface ByteType {}
-
-/**
- * @deprecated Use `CenterPoint` in the `foundry.ontologies` package
- *
- * The coordinate point to use as the center of the distance query.
- *
- * Log Safety: UNSAFE
- */
-export interface CenterPoint {
-  center: CenterPointTypes;
-  distance: Distance;
-}
-
-/**
- * @deprecated Use `CenterPointTypes` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export type CenterPointTypes = { type: "Point" } & _Geo.GeoPoint;
 
 /**
    * Configuration for utilizing the stream as a change data capture (CDC) dataset. To configure CDC on a stream, at
@@ -149,78 +105,6 @@ export interface CipherTextType {
  * Log Safety: SAFE
  */
 export type ComputeSeconds = number;
-
-/**
-* @deprecated Use `ContainsAllTermsInOrderPrefixLastTerm` in the `foundry.ontologies` package
-*
-   * Returns objects where the specified field contains all of the terms in the order provided,
-but they do have to be adjacent to each other.
-The last term can be a partial prefix match.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAllTermsInOrderPrefixLastTerm {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-}
-
-/**
-* @deprecated Use `ContainsAllTermsInOrderQuery` in the `foundry.ontologies` package
-*
-   * Returns objects where the specified field contains all of the terms in the order provided,
-but they do have to be adjacent to each other.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAllTermsInOrderQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-}
-
-/**
-* @deprecated Use `ContainsAllTermsQuery` in the `foundry.ontologies` package
-*
-   * Returns objects where the specified field contains all of the whitespace separated words in any
-order in the provided value. This query supports fuzzy matching.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAllTermsQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-  fuzzy?: FuzzyV2;
-}
-
-/**
-* @deprecated Use `ContainsAnyTermQuery` in the `foundry.ontologies` package
-*
-   * Returns objects where the specified field contains any of the whitespace separated words in any
-order in the provided value. This query supports fuzzy matching.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAnyTermQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-  fuzzy?: FuzzyV2;
-}
-
-/**
- * @deprecated Use `ContainsQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where the specified array contains a value.
- *
- * Log Safety: UNSAFE
- */
-export interface ContainsQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
 
 /**
  * Log Safety: SAFE
@@ -324,32 +208,6 @@ export type DistanceUnit =
   | "NAUTICAL_MILES";
 
 /**
- * @deprecated Use `DoesNotIntersectBoundingBoxQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field does not intersect the bounding box provided.
- *
- * Log Safety: UNSAFE
- */
-export interface DoesNotIntersectBoundingBoxQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: BoundingBoxValue;
-}
-
-/**
- * @deprecated Use `DoesNotIntersectPolygonQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field does not intersect the polygon provided.
- *
- * Log Safety: UNSAFE
- */
-export interface DoesNotIntersectPolygonQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PolygonValue;
-}
-
-/**
  * Log Safety: SAFE
  */
 export interface DoubleType {}
@@ -382,19 +240,6 @@ export type EmbeddingModel =
  * Log Safety: SAFE
  */
 export type EnrollmentRid = LooselyBrandedString<"EnrollmentRid">;
-
-/**
- * @deprecated Use `EqualsQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field is equal to a value.
- *
- * Log Safety: UNSAFE
- */
-export interface EqualsQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
 
 /**
    * A field in a Foundry schema. For more information on supported data types, see the
@@ -596,15 +441,6 @@ export interface FullRowChangeDataCaptureConfiguration {
 }
 
 /**
- * @deprecated Use `FuzzyV2` in the `foundry.ontologies` package
- *
- * Setting fuzzy to true allows approximate matching in search queries that support it.
- *
- * Log Safety: SAFE
- */
-export type FuzzyV2 = boolean;
-
-/**
  * Log Safety: SAFE
  */
 export interface GeohashType {}
@@ -625,6 +461,13 @@ export interface GeoShapeType {}
 export interface GeotimeSeriesReferenceType {}
 
 /**
+ * A Foundry Group ID.
+ *
+ * Log Safety: SAFE
+ */
+export type GroupId = string;
+
+/**
  * The display name of a multipass group.
  *
  * Log Safety: UNSAFE
@@ -639,32 +482,6 @@ export type GroupName = LooselyBrandedString<"GroupName">;
 export type GroupRid = LooselyBrandedString<"GroupRid">;
 
 /**
- * @deprecated Use `GteQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field is greater than or equal to a value.
- *
- * Log Safety: UNSAFE
- */
-export interface GteQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
-
-/**
- * @deprecated Use `GtQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field is greater than a value.
- *
- * Log Safety: UNSAFE
- */
-export interface GtQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
-
-/**
    * Indicates whether the response should include compute usage details for the request. This feature is currently
 only available for OSDK applications.
 Note: Enabling this flag may slow down query performance and is not recommended for use in production.
@@ -674,61 +491,9 @@ Note: Enabling this flag may slow down query performance and is not recommended 
 export type IncludeComputeUsage = boolean;
 
 /**
- * @deprecated Use `InQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field equals any of the provided values.
- *
- * Log Safety: UNSAFE
- */
-export interface InQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: Array<PropertyValue>;
-}
-
-/**
  * Log Safety: SAFE
  */
 export interface IntegerType {}
-
-/**
- * @deprecated Use `IntersectsBoundingBoxQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field intersects the bounding box provided.
- *
- * Log Safety: UNSAFE
- */
-export interface IntersectsBoundingBoxQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: BoundingBoxValue;
-}
-
-/**
- * @deprecated Use `IntersectsPolygonQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field intersects the polygon provided.
- *
- * Log Safety: UNSAFE
- */
-export interface IntersectsPolygonQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PolygonValue;
-}
-
-/**
- * @deprecated Use `IsNullQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects based on the existence of the specified field.
- *
- * Log Safety: UNSAFE
- */
-export interface IsNullQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: boolean;
-}
 
 /**
  * The RID of a Job.
@@ -736,15 +501,6 @@ export interface IsNullQueryV2 {
  * Log Safety: SAFE
  */
 export type JobRid = LooselyBrandedString<"JobRid">;
-
-/**
- * @deprecated Use `LinkTypeApiName` in the `foundry.ontologies` package
- *
- * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager.
- *
- * Log Safety: UNSAFE
- */
-export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
 
 /**
  * A model provided by Language Model Service.
@@ -774,32 +530,6 @@ export interface LocalFilePath {}
  * Log Safety: SAFE
  */
 export interface LongType {}
-
-/**
- * @deprecated Use `LteQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field is less than or equal to a value.
- *
- * Log Safety: UNSAFE
- */
-export interface LteQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
-
-/**
- * @deprecated Use `LtQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field is less than a value.
- *
- * Log Safety: UNSAFE
- */
-export interface LtQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
 
 /**
  * Log Safety: UNSAFE
@@ -900,215 +630,9 @@ Examples: application/json, application/pdf, application/octet-stream, image/jpe
 export type MediaType = LooselyBrandedString<"MediaType">;
 
 /**
- * @deprecated Use `NotQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where the query is not satisfied.
- *
- * Log Safety: UNSAFE
- */
-export interface NotQueryV2 {
-  value: SearchJsonQueryV2;
-}
-
-/**
  * Log Safety: SAFE
  */
 export interface NullType {}
-
-/**
- * @deprecated Use `ObjectRid` in the `foundry.ontologies` package
- *
- * The Resource Identifier (RID) for an ontology object instance.
- *
- * Log Safety: SAFE
- */
-export type ObjectRid = LooselyBrandedString<"ObjectRid">;
-
-/**
- * @deprecated Use `ObjectSet` in the `foundry.ontologies` package
- *
- * Represents the definition of an ObjectSet in the ontology.
- *
- * Log Safety: UNSAFE
- */
-export type ObjectSet =
-  | ({ type: "searchAround" } & ObjectSetSearchAroundType)
-  | ({ type: "static" } & ObjectSetStaticType)
-  | ({ type: "intersect" } & ObjectSetIntersectionType)
-  | ({ type: "withProperties" } & ObjectSetWithPropertiesType)
-  | ({ type: "subtract" } & ObjectSetSubtractType)
-  | ({ type: "nearestNeighbors" } & ObjectSetNearestNeighborsType)
-  | ({ type: "union" } & ObjectSetUnionType)
-  | ({ type: "asType" } & ObjectSetAsTypeType)
-  | ({ type: "methodInput" } & ObjectSetMethodInputType)
-  | ({ type: "reference" } & ObjectSetReferenceType)
-  | ({ type: "filter" } & ObjectSetFilterType)
-  | ({ type: "interfaceBase" } & ObjectSetInterfaceBaseType)
-  | ({ type: "asBaseObjectTypes" } & ObjectSetAsBaseObjectTypesType)
-  | ({ type: "base" } & ObjectSetBaseType);
-
-/**
- * @deprecated Use `ObjectSetAsBaseObjectTypesType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetAsBaseObjectTypesType {
-  objectSet: ObjectSet;
-}
-
-/**
-* @deprecated Use `ObjectSetAsTypeType` in the `foundry.ontologies` package
-*
-   * Casts an object set to a specified object type or interface type API name. Any object whose object type does
-not match the object type provided or implement the interface type provided will be dropped from the resulting
-object set. This is currently unsupported and an exception will be thrown if used.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ObjectSetAsTypeType {
-  entityType: string;
-  objectSet: ObjectSet;
-}
-
-/**
- * @deprecated Use `ObjectSetBaseType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetBaseType {
-  objectType: string;
-}
-
-/**
- * @deprecated Use `ObjectSetFilterType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetFilterType {
-  objectSet: ObjectSet;
-  where: SearchJsonQueryV2;
-}
-
-/**
- * @deprecated Use `ObjectSetInterfaceBaseType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetInterfaceBaseType {
-  interfaceType: string;
-}
-
-/**
- * @deprecated Use `ObjectSetIntersectionType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetIntersectionType {
-  objectSets: Array<ObjectSet>;
-}
-
-/**
- * @deprecated Use `ObjectSetMethodInputType` in the `foundry.ontologies` package
- *
- * Log Safety: SAFE
- */
-export interface ObjectSetMethodInputType {}
-
-/**
- * @deprecated Use `ObjectSetNearestNeighborsType` in the `foundry.ontologies` package
- *
- * Log Safety: SAFE
- */
-export interface ObjectSetNearestNeighborsType {}
-
-/**
- * @deprecated Use `ObjectSetReferenceType` in the `foundry.ontologies` package
- *
- * Log Safety: SAFE
- */
-export interface ObjectSetReferenceType {
-  reference: ObjectSetRid;
-}
-
-/**
- * @deprecated Use `ObjectSetRid` in the `foundry.ontologies` package
- *
- * The Resource Identifier (RID) for an object set.
- *
- * Log Safety: SAFE
- */
-export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
-
-/**
- * @deprecated Use `ObjectSetSearchAroundType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetSearchAroundType {
-  objectSet: ObjectSet;
-  link: LinkTypeApiName;
-}
-
-/**
- * @deprecated Use `ObjectSetStaticType` in the `foundry.ontologies` package
- *
- * Log Safety: SAFE
- */
-export interface ObjectSetStaticType {
-  objects: Array<ObjectRid>;
-}
-
-/**
- * @deprecated Use `ObjectSetSubtractType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetSubtractType {
-  objectSets: Array<ObjectSet>;
-}
-
-/**
- * @deprecated Use `ObjectSetUnionType` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetUnionType {
-  objectSets: Array<ObjectSet>;
-}
-
-/**
- * @deprecated Use `ObjectSetWithPropertiesType` in the `foundry.ontologies` package
- *
- * Log Safety: SAFE
- */
-export interface ObjectSetWithPropertiesType {}
-
-/**
- * @deprecated Use `ObjectTypeId` in the `foundry.ontologies` package
- *
- * The unique identifier (ID) for an object type. This can be viewed in Ontology Manager.
- *
- * Log Safety: UNSAFE
- */
-export type ObjectTypeId = LooselyBrandedString<"ObjectTypeId">;
-
-/**
- * @deprecated Use `ObjectTypeRid` in the `foundry.ontologies` package
- *
- * The unique Resource Identifier (RID) of an object type, useful for interacting with other Foundry APIs.
- *
- * Log Safety: SAFE
- */
-export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
-
-/**
- * @deprecated Use `OntologyIdentifier` in the `foundry.ontologies` package
- *
- * Either an ontology RID or an ontology API name.
- *
- * Log Safety: UNSAFE
- */
-export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
 
 /**
    * An operation that can be performed on a resource. Operations are used to define the permissions that a Role has.
@@ -1136,17 +660,6 @@ export type OrderByDirection = "ASC" | "DESC";
 export type OrganizationRid = LooselyBrandedString<"OrganizationRid">;
 
 /**
- * @deprecated Use `OrQueryV2` in the `foundry.ontologies` package
- *
- * Returns objects where at least 1 query is satisfied.
- *
- * Log Safety: UNSAFE
- */
-export interface OrQueryV2 {
-  value: Array<SearchJsonQueryV2>;
-}
-
-/**
  * The page size to use for the endpoint.
  *
  * Log Safety: SAFE
@@ -1163,13 +676,6 @@ and use it to populate the pageToken field of the next request.
 export type PageToken = LooselyBrandedString<"PageToken">;
 
 /**
- * @deprecated Use `PolygonValue` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export type PolygonValue = { type: "Polygon" } & _Geo.Polygon;
-
-/**
  * Enables the use of preview functionality.
  *
  * Log Safety: SAFE
@@ -1181,70 +687,12 @@ export type PreviewMode = boolean;
  *
  * Log Safety: SAFE
  */
-export type PrincipalId = LooselyBrandedString<"PrincipalId">;
+export type PrincipalId = string;
 
 /**
  * Log Safety: SAFE
  */
 export type PrincipalType = "USER" | "GROUP";
-
-/**
-* @deprecated Use `PropertyApiName` in the `foundry.ontologies` package
-*
-   * The name of the property in the API. To find the API name for your property, use the Get object type
-endpoint or check the Ontology Manager.
-   *
-   * Log Safety: UNSAFE
-   */
-export type PropertyApiName = LooselyBrandedString<"PropertyApiName">;
-
-/**
- * @deprecated Use `PropertyApiNameSelector` in the `foundry.ontologies` package
- *
- * A property api name that references properties to query on.
- *
- * Log Safety: UNSAFE
- */
-export interface PropertyApiNameSelector {
-  apiName: PropertyApiName;
-}
-
-/**
- * @deprecated Use `PropertyIdentifier` in the `foundry.ontologies` package
- *
- * An identifier used to select properties or struct fields.
- *
- * Log Safety: UNSAFE
- */
-export type PropertyIdentifier =
-  | ({ type: "property" } & PropertyApiNameSelector)
-  | ({ type: "structField" } & StructFieldSelector);
-
-/**
- * @deprecated Use `PropertyTypeRid` in the `foundry.ontologies` package
- *
- * The RID for a property type from an ontology object.
- *
- * Log Safety: SAFE
- */
-export type PropertyTypeRid = LooselyBrandedString<"PropertyTypeRid">;
-
-/**
-* @deprecated Use `PropertyValue` in the `foundry.ontologies` package
-*
-   * Represents the value of a property in the following format.
-| Type       | JSON encoding                                         | Example                                                                                            |
-|----------- |-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| Array      | array                                                 | ["alpha", "bravo", "charlie"]                                                                    |
-| Attachment | JSON encoded AttachmentProperty object              | {"rid":"ri.blobster.main.attachment.2f944bae-5851-4204-8615-920c969a9f2e"}                       |
-| Boolean    | boolean                                               | true                                                                                             |
-| Byte       | number                                                | 31                                                                                               |
-| CipherText | string                                                | "CIPHER::ri.bellaso.main.cipher-channel.e414ab9e-b606-499a-a0e1-844fa296ba7e::unzjs3VifsTxuIpf1fH1CJ7OaPBr2bzMMdozPaZJtCii8vVG60yXIEmzoOJaEl9mfFFe::CIPHER" | | Date | ISO 8601 extended local date string |"2021-05-01"| | Decimal | string |"2.718281828"| | Double | number |3.14159265| | Float | number |3.14159265| | GeoPoint | geojson |{"type":"Point","coordinates":[102.0,0.5]}| | GeoShape | geojson |{"type":"LineString","coordinates":[[102.0,0.0],[103.0,1.0],[104.0,0.0],[105.0,1.0]]}| | Integer | number |238940| | Long | string |"58319870951433"| | Short | number |8739| | String | string |"Call me Ishmael"| | Timestamp | ISO 8601 extended offset date-time string in UTC zone |"2021-01-04T05:00:00Z"`                                                                           |
-Note that for backwards compatibility, the Boolean, Byte, Double, Float, Integer, and Short types can also be encoded as JSON strings.
-   *
-   * Log Safety: UNSAFE
-   */
-export type PropertyValue = any;
 
 /**
    * Identifies which Realm a User or Group is a member of.
@@ -1322,38 +770,6 @@ export type RoleSetId = LooselyBrandedString<"RoleSetId">;
 export type ScheduleRid = LooselyBrandedString<"ScheduleRid">;
 
 /**
- * @deprecated Use `SearchJsonQueryV2` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export type SearchJsonQueryV2 =
-  | ({ type: "or" } & OrQueryV2)
-  | ({ type: "in" } & InQuery)
-  | ({ type: "doesNotIntersectPolygon" } & DoesNotIntersectPolygonQuery)
-  | ({ type: "lt" } & LtQueryV2)
-  | ({ type: "doesNotIntersectBoundingBox" } & DoesNotIntersectBoundingBoxQuery)
-  | ({ type: "eq" } & EqualsQueryV2)
-  | ({ type: "containsAllTerms" } & ContainsAllTermsQuery)
-  | ({ type: "gt" } & GtQueryV2)
-  | ({ type: "withinDistanceOf" } & WithinDistanceOfQuery)
-  | ({ type: "withinBoundingBox" } & WithinBoundingBoxQuery)
-  | ({ type: "contains" } & ContainsQueryV2)
-  | ({ type: "not" } & NotQueryV2)
-  | ({ type: "intersectsBoundingBox" } & IntersectsBoundingBoxQuery)
-  | ({ type: "and" } & AndQueryV2)
-  | ({ type: "isNull" } & IsNullQueryV2)
-  | ({
-    type: "containsAllTermsInOrderPrefixLastTerm";
-  } & ContainsAllTermsInOrderPrefixLastTerm)
-  | ({ type: "containsAnyTerm" } & ContainsAnyTermQuery)
-  | ({ type: "gte" } & GteQueryV2)
-  | ({ type: "containsAllTermsInOrder" } & ContainsAllTermsInOrderQuery)
-  | ({ type: "withinPolygon" } & WithinPolygonQuery)
-  | ({ type: "intersectsPolygon" } & IntersectsPolygonQuery)
-  | ({ type: "lte" } & LteQueryV2)
-  | ({ type: "startsWith" } & StartsWithQuery);
-
-/**
  * The name of the service that is not set-up
  *
  * Log Safety: SAFE
@@ -1373,19 +789,6 @@ export interface ShortType {}
 export type SizeBytes = string;
 
 /**
- * @deprecated Use `StartsWithQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field starts with the provided value.
- *
- * Log Safety: UNSAFE
- */
-export interface StartsWithQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-}
-
-/**
  * The schema for a Foundry stream. Records pushed to this stream must match this schema.
  *
  * Log Safety: UNSAFE
@@ -1402,15 +805,6 @@ export interface StreamSchema {
 export interface StringType {}
 
 /**
- * @deprecated Use `StructFieldApiName` in the `foundry.ontologies` package
- *
- * The name of a struct field in the Ontology.
- *
- * Log Safety: UNSAFE
- */
-export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
-
-/**
  * The name of a field in a Struct.
  *
  * Log Safety: UNSAFE
@@ -1418,25 +812,18 @@ export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
 export type StructFieldName = LooselyBrandedString<"StructFieldName">;
 
 /**
-* @deprecated Use `StructFieldSelector` in the `foundry.ontologies` package
-*
-   * A combination of a struct property api name and a struct field api name. This is used to select struct fields
-to query on. Note that you can still select struct properties with only a 'PropertyApiNameSelector'; the queries
-will then become 'OR' queries across the fields of the struct property.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface StructFieldSelector {
-  propertyApiName: PropertyApiName;
-  structFieldApiName: StructFieldApiName;
-}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface StructFieldType {
   subFields: Array<Field>;
 }
+
+/**
+ * The Resource Identifier (RID) of a Table.
+ *
+ * Log Safety: SAFE
+ */
+export type TableRid = LooselyBrandedString<"TableRid">;
 
 /**
  * A union of the types supported by time series properties.
@@ -1556,52 +943,6 @@ export interface VectorType {
  * Log Safety: SAFE
  */
 export type VersionId = string;
-
-/**
- * @deprecated Use `WithinBoundingBoxPoint` in the `foundry.ontologies` package
- *
- * Log Safety: UNSAFE
- */
-export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
-
-/**
- * @deprecated Use `WithinBoundingBoxQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field contains a point within the bounding box provided.
- *
- * Log Safety: UNSAFE
- */
-export interface WithinBoundingBoxQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: BoundingBoxValue;
-}
-
-/**
- * @deprecated Use `WithinDistanceOfQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field contains a point within the distance provided of the center point.
- *
- * Log Safety: UNSAFE
- */
-export interface WithinDistanceOfQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: CenterPoint;
-}
-
-/**
- * @deprecated Use `WithinPolygonQuery` in the `foundry.ontologies` package
- *
- * Returns objects where the specified field contains a point within the polygon provided.
- *
- * Log Safety: UNSAFE
- */
-export interface WithinPolygonQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PolygonValue;
-}
 
 /**
  * A string representation of a java.time.ZoneId

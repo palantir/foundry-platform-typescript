@@ -896,9 +896,19 @@ export interface IntegerColumnInitialIncrementalState {
 export interface JdbcConnectionConfiguration {
   url: string;
   driverClass: string;
+  uploadedJdbcDrivers: Array<JdbcDriverArtifactName>;
   jdbcProperties: JdbcProperties;
   credentials?: BasicCredentials;
 }
+
+/**
+ * The name of the uploaded JDBC artifact.
+ *
+ * Log Safety: UNSAFE
+ */
+export type JdbcDriverArtifactName = LooselyBrandedString<
+  "JdbcDriverArtifactName"
+>;
 
 /**
    * A map of properties passed

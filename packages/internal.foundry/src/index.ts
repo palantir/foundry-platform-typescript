@@ -15,6 +15,3 @@
  */
 
 export * as Core from "@osdk/internal.foundry.core";
-export * as Datasets from "@osdk/internal.foundry.datasets";
-export * as Geo from "@osdk/internal.foundry.geo";
-export * as Ontologies from "@osdk/internal.foundry.ontologies";
