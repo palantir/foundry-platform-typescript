@@ -186,14 +186,14 @@ export interface EnrollmentRoleAssignment {
  * Log Safety: SAFE
  */
 export interface GetGroupsBatchRequestElement {
-  groupId: _Core.PrincipalId;
+  groupId: _Core.GroupId;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export interface GetGroupsBatchResponse {
-  data: Record<_Core.PrincipalId, Group>;
+  data: Record<_Core.GroupId, Group>;
 }
 
 /**
@@ -235,21 +235,21 @@ export interface GetUserMarkingsResponse {
  * Log Safety: SAFE
  */
 export interface GetUsersBatchRequestElement {
-  userId: _Core.PrincipalId;
+  userId: _Core.UserId;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export interface GetUsersBatchResponse {
-  data: Record<_Core.PrincipalId, User>;
+  data: Record<_Core.UserId, User>;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export interface Group {
-  id: _Core.PrincipalId;
+  id: _Core.GroupId;
   name: GroupName;
   description?: string;
   realm: _Core.Realm;
@@ -269,7 +269,7 @@ export interface GroupMember {
  * Log Safety: SAFE
  */
 export interface GroupMembership {
-  groupId: _Core.PrincipalId;
+  groupId: _Core.GroupId;
 }
 
 /**
@@ -728,7 +728,7 @@ export interface SearchUsersResponse {
  * Log Safety: UNSAFE
  */
 export interface User {
-  id: _Core.PrincipalId;
+  id: _Core.UserId;
   username: UserUsername;
   givenName?: string;
   familyName?: string;

@@ -112,6 +112,27 @@ export interface LengthConstraint {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface MapConstraint {
+  keyConstraints: Array<ValueTypeConstraint>;
+  valueConstraints: Array<ValueTypeConstraint>;
+  uniqueValues: boolean;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface NullableConstraint {
+  value: NullableConstraintValue;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type NullableConstraintValue = "NULLABLE" | "NOT_NULLABLE";
+
+/**
  * Details about a parameter of a query.
  *
  * Log Safety: UNSAFE
@@ -300,6 +321,13 @@ export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
 export type StructFieldName = LooselyBrandedString<"StructFieldName">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface StructV1Constraint {
+  fields: Record<StructFieldApiName, ValueTypeConstraint>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface ThreeDimensionalAggregation {
@@ -346,11 +374,14 @@ export type ValueTypeApiName = LooselyBrandedString<"ValueTypeApiName">;
  */
 export type ValueTypeConstraint =
   | ({ type: "struct" } & StructConstraint)
+  | ({ type: "structV1" } & StructV1Constraint)
   | ({ type: "regex" } & RegexConstraint)
+  | ({ type: "nullable" } & NullableConstraint)
   | ({ type: "array" } & ArrayConstraint)
   | ({ type: "length" } & LengthConstraint)
   | ({ type: "range" } & RangesConstraint)
   | ({ type: "rid" } & RidConstraint)
+  | ({ type: "map" } & MapConstraint)
   | ({ type: "uuid" } & UuidConstraint)
   | ({ type: "enum" } & EnumConstraint);
 

@@ -211,6 +211,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getInterfaceType": {
       "variables": {},
     },
+    "v2.listObjectsForInterface": {
+      "variables": {},
+    },
     "v2.searchObjectsForInterface": {
       "variables": {},
     },
@@ -709,6 +712,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getConfiguration": {
       "variables": {},
     },
+    "v2.uploadCustomJdbcDriversConnection": {
+      "variables": {},
+    },
     "v2.createFileImport": {
       "variables": {},
     },
@@ -830,6 +836,21 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.resetStream": {
+      "variables": {},
+    },
+    "v2.createModel": {
+      "variables": {},
+    },
+    "v2.getModel": {
+      "variables": {},
+    },
+    "v2.createModelVersion": {
+      "variables": {},
+    },
+    "v2.listModelVersions": {
+      "variables": {},
+    },
+    "v2.getModelVersion": {
       "variables": {},
     },
     "v2.listLogFiles": {

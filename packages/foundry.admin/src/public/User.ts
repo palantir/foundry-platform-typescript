@@ -30,7 +30,7 @@ import type * as _Admin from "../_components.js";
 //
 
 const _deleteUser: $FoundryPlatformMethod<
-  (userId: _Core.PrincipalId) => Promise<void>
+  (userId: _Core.UserId) => Promise<void>
 > = [3, "/v2/admin/users/{0}"];
 
 /**
@@ -43,7 +43,7 @@ const _deleteUser: $FoundryPlatformMethod<
  */
 export function deleteUser(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [userId: _Core.PrincipalId]
+  ...args: [userId: _Core.UserId]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteUser, ...args);
 }
@@ -78,7 +78,7 @@ export function list(
 }
 
 const _get: $FoundryPlatformMethod<
-  (userId: _Core.PrincipalId) => Promise<_Admin.User>
+  (userId: _Core.UserId) => Promise<_Admin.User>
 > = [0, "/v2/admin/users/{0}"];
 
 /**
@@ -91,7 +91,7 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [userId: _Core.PrincipalId]
+  ...args: [userId: _Core.UserId]
 ): Promise<_Admin.User> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -139,7 +139,7 @@ export function getCurrent(
 
 const _getMarkings: $FoundryPlatformMethod<
   (
-    userId: _Core.PrincipalId,
+    userId: _Core.UserId,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.GetUserMarkingsResponse>
 > = [0, "/v2/admin/users/{0}/getMarkings", 2];
@@ -155,7 +155,7 @@ const _getMarkings: $FoundryPlatformMethod<
 export function getMarkings(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    userId: _Core.PrincipalId,
+    userId: _Core.UserId,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -164,7 +164,7 @@ export function getMarkings(
 }
 
 const _profilePicture: $FoundryPlatformMethod<
-  (userId: _Core.PrincipalId) => Promise<Response>
+  (userId: _Core.UserId) => Promise<Response>
 > = [0, "/v2/admin/users/{0}/profilePicture", , , "application/octet-stream"];
 
 /**
@@ -175,7 +175,7 @@ const _profilePicture: $FoundryPlatformMethod<
  */
 export function profilePicture(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [userId: _Core.PrincipalId]
+  ...args: [userId: _Core.UserId]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _profilePicture, ...args);
 }
@@ -201,7 +201,7 @@ export function search(
 
 const _revokeAllTokens: $FoundryPlatformMethod<
   (
-    userId: _Core.PrincipalId,
+    userId: _Core.UserId,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
 > = [1, "/v2/admin/users/{0}/revokeAllTokens", 2];
@@ -220,7 +220,7 @@ const _revokeAllTokens: $FoundryPlatformMethod<
 export function revokeAllTokens(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    userId: _Core.PrincipalId,
+    userId: _Core.UserId,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
