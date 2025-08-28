@@ -541,6 +541,31 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
+  packages/foundry.models:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
+      '@osdk/foundry.filesystem':
+        specifier: workspace:*
+        version: link:../foundry.filesystem
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/foundry.ontologies:
     dependencies:
       '@osdk/foundry.core':
@@ -549,6 +574,28 @@ importers:
       '@osdk/foundry.geo':
         specifier: workspace:*
         version: link:../foundry.geo
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/foundry.operations:
+    dependencies:
+      '@osdk/foundry.ontologies':
+        specifier: workspace:*
+        version: link:../foundry.ontologies
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -698,6 +745,122 @@ importers:
         version: link:../foundry.core
       '@osdk/shared.client':
         specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/gotham:
+    dependencies:
+      '@osdk/gotham.core':
+        specifier: workspace:*
+        version: link:../gotham.core
+      '@osdk/gotham.gaia':
+        specifier: workspace:*
+        version: link:../gotham.gaia
+      '@osdk/gotham.geojson':
+        specifier: workspace:*
+        version: link:../gotham.geojson
+      '@osdk/gotham.targetworkbench':
+        specifier: workspace:*
+        version: link:../gotham.targetworkbench
+      '@osdk/shared.client':
+        specifier: 1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/gotham.core:
+    dependencies:
+      '@osdk/shared.client':
+        specifier: 1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/gotham.gaia:
+    dependencies:
+      '@osdk/gotham.core':
+        specifier: workspace:*
+        version: link:../gotham.core
+      '@osdk/gotham.geojson':
+        specifier: workspace:*
+        version: link:../gotham.geojson
+      '@osdk/shared.client':
+        specifier: 1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/gotham.geojson:
+    dependencies:
+      '@osdk/shared.client':
+        specifier: 1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/gotham.targetworkbench:
+    dependencies:
+      '@osdk/gotham.core':
+        specifier: workspace:*
+        version: link:../gotham.core
+      '@osdk/shared.client':
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
         specifier: ^1.0.0
