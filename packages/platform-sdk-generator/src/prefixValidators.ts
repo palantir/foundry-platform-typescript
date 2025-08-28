@@ -18,11 +18,30 @@ import type * as ir from "@osdk/docs-spec-platform";
 import { getNamespacePlatform } from "./getNamespacePlatform.js";
 import type { ErrorType } from "./model/ErrorType.js";
 
-export function isNamespaceCorrectForComponent(
+export function isPrefixCorrectForComponent(
   component: ir.Component | ir.Error,
   prefix: string,
 ): boolean {
-  const platform = getNamespacePlatform(component.locator.namespaceName);
+  return doesPlatformMatchPrefix(
+    getNamespacePlatform(component.locator.namespaceName),
+    prefix,
+  );
+}
+
+export function isPrefixCorrectForNamespace(
+  namespace: ir.Namespace,
+  prefix: string,
+): boolean {
+  return doesPlatformMatchPrefix(
+    getNamespacePlatform(namespace.name),
+    prefix,
+  );
+}
+
+function doesPlatformMatchPrefix(
+  platform: string,
+  prefix: string,
+): boolean {
   const mappedPrefix = prefix === "internal.foundry" ? "foundry" : prefix;
   if (
     (mappedPrefix !== platform && platform !== "both")

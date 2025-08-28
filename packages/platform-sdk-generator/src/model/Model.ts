@@ -18,7 +18,10 @@ import type * as ir from "@osdk/docs-spec-platform";
 import * as path from "node:path";
 import { ensurePackageSetup } from "../generatePlatformSdkv2.js";
 import { getNamespacePlatform } from "../getNamespacePlatform.js";
-import { isNamespaceCorrectForComponent } from "../isNamespaceCorrectForComponent.js";
+import {
+  isPrefixCorrectForComponent,
+  isPrefixCorrectForNamespace,
+} from "../prefixValidators.js";
 import { mapObjectValues } from "../util/mapObjectValues.js";
 import { BinaryType } from "./BinaryType.js";
 import { BuiltinType } from "./BuiltinType.js";
@@ -128,11 +131,7 @@ export class Model {
     const packagePrefix = opts["packagePrefix"];
 
     for (const ns of ir.namespaces) {
-      const platform = getNamespacePlatform(ns.name);
-      const mappedPrefix = packagePrefix === "internal.foundry"
-        ? "foundry"
-        : packagePrefix;
-      if (mappedPrefix !== platform && platform !== "both") {
+      if (!isPrefixCorrectForNamespace(ns, packagePrefix)) {
         continue;
       }
 
@@ -271,7 +270,12 @@ export class Model {
   }
 
   checkPlatformMatch(packagePrefix: string, c: ir.Error | ir.Component): void {
-    if (!isNamespaceCorrectForComponent(c, packagePrefix)) {
+    if (
+      !isPrefixCorrectForComponent(
+        c,
+        packagePrefix,
+      )
+    ) {
       throw new Error(
         `${c.locator.localName} belongs to "${
           getNamespacePlatform(c.locator.namespaceName)
