@@ -31,7 +31,7 @@ import type * as _Admin from "../_components.js";
 
 const _list: $FoundryPlatformMethod<
   (
-    userId: _Core.PrincipalId,
+    userId: _Core.UserId,
     $queryParams?: {
       transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
@@ -57,7 +57,7 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    userId: _Core.PrincipalId,
+    userId: _Core.UserId,
 
     $queryParams?: {
       transitive?: boolean | undefined;

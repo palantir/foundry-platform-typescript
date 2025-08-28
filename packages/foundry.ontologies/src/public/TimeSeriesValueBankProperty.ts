@@ -44,7 +44,7 @@ const _getLatestValue: $FoundryPlatformMethod<
 /**
  * Get the latest value of a property backed by a timeseries. If a specific geotime series integration has both a history and a live integration, we will give precedence to the live integration.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/timeseries/{propertyName}/latestValue
@@ -89,7 +89,7 @@ const _streamValues: $FoundryPlatformMethod<
 /**
  * Stream all of the points of a time series property (this includes geotime series references).
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/timeseries/{property}/streamValues

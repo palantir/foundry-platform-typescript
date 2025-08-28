@@ -1514,6 +1514,21 @@ export interface PropertyBaseTypeNotSupported {
 }
 
 /**
+ * A property that does not support exact matching is used in a setting that requires exact matching.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyExactMatchingNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PropertyExactMatchingNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    propertyBaseType: unknown;
+    propertyTypeRid: unknown;
+  };
+}
+
+/**
    * At least one of the requested property filters are not supported. See the documentation of PropertyFilter for
 a list of supported property filters.
    *
@@ -1539,6 +1554,22 @@ export interface PropertyNotFound {
   errorName: "PropertyNotFound";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * Could not find the given property on the object. The user may not have permissions to see this property or it may be configured incorrectly.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyNotFoundOnObject {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PropertyNotFoundOnObject";
+  errorInstanceId: string;
+  parameters: {
+    objectTypeRid: unknown;
+    objectRid: unknown;
+    objectPropertyRid: unknown;
+  };
 }
 
 /**

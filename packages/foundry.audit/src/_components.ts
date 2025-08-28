@@ -41,3 +41,10 @@ export interface ListLogFilesResponse {
 export interface LogFile {
   id: FileId;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export interface Organization {
+  rid: _Core.OrganizationRid;
+}

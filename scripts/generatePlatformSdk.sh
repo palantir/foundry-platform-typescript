@@ -25,39 +25,34 @@ OUT_PATH="${SCRIPT_DIR}/../packages/"
 # One of: docs, sdks, docs-and-sdks
 GENERATION_MODE="docs-and-sdks"
 
-# Whether to generate gotham, foundry, or both
-# One of: gotham, foundry, all
-PREFIX="all"
+$CODE_GENERATOR generate \
+    --v2 \
+    --prefix "internal.foundry" \
+    --inputFile "${IR_JSON}" \
+    --manifestFile "${OPENAPI_MANIFEST_YML}" \
+    --outputDir "${OUT_PATH}" \
+    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
+    --endpointVersion "v1" \
+    --mode "sdks" 
 
-run_generator() {
-  local packagePrefix=$1
-  local deprecated_file=$2
-  local generation_mode=${3:-$GENERATION_MODE}
+$CODE_GENERATOR generate \
+    --v2 \
+    --prefix "foundry" \
+    --inputFile "${IR_JSON}" \
+    --manifestFile "${OPENAPI_MANIFEST_YML}" \
+    --outputDir "${OUT_PATH}" \
+    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" \
+    --endpointVersion "v2" \
+    --mode "${GENERATION_MODE}"
 
-  echo "Generating ${packagePrefix} bindings"
-  $CODE_GENERATOR generate \
-      --v2 \
-      --prefix "${packagePrefix}" \
-      --inputFile "${IR_JSON}" \
-      --manifestFile "${OPENAPI_MANIFEST_YML}" \
-      --outputDir "${OUT_PATH}" \
-      --endpointVersion "v2" \
-      --mode "${generation_mode}"
-}
-
-if [[ "${GENERATION_MODE}" != "docs" ]]; then
-  if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
-    run_generator "internal.foundry" "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" "sdks"
-  fi
-fi
-
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "foundry" ]]; then
-  run_generator "foundry" "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
-fi
-
-if [[ "${PREFIX}" == "all" || "${PREFIX}" == "gotham" ]]; then
-  run_generator "gotham" "${SCRIPT_DIR}/../packages/deprecated/gotham.core/core.json"
-fi
+$CODE_GENERATOR generate \
+    --v2 \
+    --prefix "gotham" \
+    --inputFile "${IR_JSON}" \
+    --manifestFile "${OPENAPI_MANIFEST_YML}" \
+    --outputDir "${OUT_PATH}" \
+    --endpointVersion "v2" \
+    --mode "${GENERATION_MODE}"
 
 echo
 echo pnpm install to make align deps

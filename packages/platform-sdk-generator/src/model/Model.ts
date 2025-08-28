@@ -18,7 +18,7 @@ import type * as ir from "@osdk/docs-spec-platform";
 import * as path from "node:path";
 import { ensurePackageSetup } from "../generatePlatformSdkv2.js";
 import { getNamespacePlatform } from "../getNamespacePlatform.js";
-import { getNamespaceType } from "../getNamespaceType.js";
+import { isNamespaceCorrectForComponent } from "../isNamespaceCorrectForComponent.js";
 import { mapObjectValues } from "../util/mapObjectValues.js";
 import { BinaryType } from "./BinaryType.js";
 import { BuiltinType } from "./BuiltinType.js";
@@ -125,13 +125,17 @@ export class Model {
   }): Promise<Model> {
     const model = new Model(opts);
 
-    const packagePrefix = opts["packagePrefix"] ?? "foundry";
+    const packagePrefix = opts["packagePrefix"];
 
     for (const ns of ir.namespaces) {
       const platform = getNamespacePlatform(ns.name);
-      if (packagePrefix !== platform && platform !== "both") {
+      const mappedPrefix = packagePrefix === "internal.foundry"
+        ? "foundry"
+        : packagePrefix;
+      if (mappedPrefix !== platform && platform !== "both") {
         continue;
       }
+
       if (
         ns.version !== opts.endpointVersion
       ) continue;
@@ -267,10 +271,11 @@ export class Model {
   }
 
   checkPlatformMatch(packagePrefix: string, c: ir.Error | ir.Component): void {
-    const platform = getNamespaceType(c);
-    if (packagePrefix !== platform && platform !== "both") {
+    if (!isNamespaceCorrectForComponent(c, packagePrefix)) {
       throw new Error(
-        `${c.locator.localName} belongs to "${platform}" but ${c.locator.namespaceName} belongs to "${packagePrefix}"`,
+        `${c.locator.localName} belongs to "${
+          getNamespacePlatform(c.locator.namespaceName)
+        }" but ${c.locator.namespaceName} belongs to "${packagePrefix}"`,
       );
     }
   }

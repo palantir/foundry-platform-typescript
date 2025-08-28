@@ -33,8 +33,12 @@ const _createTemporary: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateTemporaryObjectSetRequestV2,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
   ) => Promise<_Ontologies.CreateTemporaryObjectSetResponseV2>
-> = [1, "/v2/ontologies/{0}/objectSets/createTemporary", 1];
+> = [1, "/v2/ontologies/{0}/objectSets/createTemporary", 3];
 
 /**
  * Creates a temporary `ObjectSet` from the given definition. This `ObjectSet` expires after one hour.
@@ -49,6 +53,10 @@ export function createTemporary(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateTemporaryObjectSetRequestV2,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
   ]
 ): Promise<_Ontologies.CreateTemporaryObjectSetResponseV2> {
   return $foundryPlatformFetch($ctx, _createTemporary, ...args);

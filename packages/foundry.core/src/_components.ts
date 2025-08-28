@@ -625,6 +625,13 @@ export interface GeoShapeType {}
 export interface GeotimeSeriesReferenceType {}
 
 /**
+ * A Foundry Group ID.
+ *
+ * Log Safety: SAFE
+ */
+export type GroupId = string;
+
+/**
  * The display name of a multipass group.
  *
  * Log Safety: UNSAFE
@@ -1181,7 +1188,7 @@ export type PreviewMode = boolean;
  *
  * Log Safety: SAFE
  */
-export type PrincipalId = LooselyBrandedString<"PrincipalId">;
+export type PrincipalId = string;
 
 /**
  * Log Safety: SAFE
@@ -1437,6 +1444,13 @@ export interface StructFieldSelector {
 export interface StructFieldType {
   subFields: Array<Field>;
 }
+
+/**
+ * The Resource Identifier (RID) of a Table.
+ *
+ * Log Safety: SAFE
+ */
+export type TableRid = LooselyBrandedString<"TableRid">;
 
 /**
  * A union of the types supported by time series properties.

@@ -53,7 +53,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/ontologies/{0}"];
 
 /**
- * Gets a specific ontology with the given Ontology RID.
+ * Gets a specific ontology for a given Ontology API name or RID.
  *
  * @public
  *
