@@ -139,10 +139,12 @@ export class Model {
       await model.#addNamespace(ns.name, ns);
 
       for (const c of ns.components) {
+        model.checkPlatformMatch(packagePrefix, c);
         model.#addComponent(c);
       }
 
       for (const e of ns.errors) {
+        model.checkPlatformMatch(packagePrefix, e);
         model.#addError(e);
       }
 
@@ -160,8 +162,7 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesComponents?.components ?? []) {
-        const platform = getNamespaceType(c);
-        if (packagePrefix !== platform && platform !== "both") continue;
+        model.checkPlatformMatch(packagePrefix, c);
         c.locator.namespaceName = "Core";
         model.#addComponent(c, true);
       }
@@ -171,6 +172,7 @@ export class Model {
       );
 
       for (const c of deprecatedOntologiesErrors?.errors ?? []) {
+        model.checkPlatformMatch(packagePrefix, c);
         c.locator.namespaceName = "Core";
         model.#addError(c, true);
       }
@@ -262,5 +264,14 @@ export class Model {
         operations: r.operations.map(so => new Operation(so, this)),
         pluralName: r.pluralName,
       });
+  }
+
+  checkPlatformMatch(packagePrefix: string, c: ir.Error | ir.Component): void {
+    const platform = getNamespaceType(c);
+    if (packagePrefix !== platform && platform !== "both") {
+      throw new Error(
+        `${c.locator.localName} belongs to "${platform}" but ${c.locator.namespaceName} belongs to "${packagePrefix}"`,
+      );
+    }
   }
 }
