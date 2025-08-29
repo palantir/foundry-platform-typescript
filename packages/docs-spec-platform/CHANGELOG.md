@@ -1,5 +1,12 @@
 # @osdk/docs-spec-platform
 
+## 0.16.0
+
+### Minor Changes
+
+- 8d43b96: Regenerate SDKs
+- 5724c96: Generated first versions of the Gotham and Models SDKs
+
 ## 0.15.0
 
 ### Minor Changes

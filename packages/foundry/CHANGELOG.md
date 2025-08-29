@@ -1,5 +1,37 @@
 # @osdk/foundry
 
+## 2.28.0
+
+### Minor Changes
+
+- 8d43b96: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [8d43b96]
+- Updated dependencies [5724c96]
+  - @osdk/foundry.admin@2.28.0
+  - @osdk/foundry.aipagents@2.28.0
+  - @osdk/foundry.audit@2.28.0
+  - @osdk/foundry.connectivity@2.28.0
+  - @osdk/foundry.core@2.28.0
+  - @osdk/foundry.datahealth@2.28.0
+  - @osdk/foundry.datasets@2.28.0
+  - @osdk/foundry.filesystem@2.28.0
+  - @osdk/foundry.functions@2.28.0
+  - @osdk/foundry.geo@2.28.0
+  - @osdk/foundry.geojson@2.28.0
+  - @osdk/foundry.mediasets@2.28.0
+  - @osdk/foundry.models@2.28.0
+  - @osdk/foundry.ontologies@2.28.0
+  - @osdk/foundry.operations@2.28.0
+  - @osdk/foundry.orchestration@2.28.0
+  - @osdk/foundry.publicapis@2.28.0
+  - @osdk/foundry.sqlqueries@2.28.0
+  - @osdk/foundry.streams@2.28.0
+  - @osdk/foundry.thirdpartyapplications@2.28.0
+  - @osdk/foundry.widgets@2.28.0
+
 ## 2.27.0
 
 ### Minor Changes
