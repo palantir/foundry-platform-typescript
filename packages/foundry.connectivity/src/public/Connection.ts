@@ -177,3 +177,36 @@ export function getConfiguration(
 ): Promise<_Connectivity.ConnectionConfiguration> {
   return $foundryPlatformFetch($ctx, _getConfiguration, ...args);
 }
+
+const _uploadCustomJdbcDrivers: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: Blob,
+    $queryParams: { fileName: string; preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.Connection>
+> = [
+  1,
+  "/v2/connectivity/connections/{0}/uploadCustomJdbcDrivers",
+  3,
+  "application/octet-stream",
+];
+
+/**
+ * Upload custom jdbc drivers to an existing JDBC connection.
+ * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:connectivity-connection-write]
+ * URL: /v2/connectivity/connections/{connectionRid}/uploadCustomJdbcDrivers
+ */
+export function uploadCustomJdbcDrivers(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: Blob,
+    $queryParams: { fileName: string; preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.Connection> {
+  return $foundryPlatformFetch($ctx, _uploadCustomJdbcDrivers, ...args);
+}

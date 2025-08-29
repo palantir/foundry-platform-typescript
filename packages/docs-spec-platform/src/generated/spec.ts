@@ -211,6 +211,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getInterfaceType": {
       "variables": {},
     },
+    "v2.listObjectsForInterface": {
+      "variables": {},
+    },
     "v2.searchObjectsForInterface": {
       "variables": {},
     },

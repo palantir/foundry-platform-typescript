@@ -31,7 +31,7 @@ import type * as _Admin from "../_components.js";
 
 const _list: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
     $queryParams?: {
       transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
@@ -57,7 +57,7 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
 
     $queryParams?: {
       transitive?: boolean | undefined;
@@ -71,7 +71,7 @@ export function list(
 
 const _add: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
     $body: _Admin.AddGroupMembersRequest,
   ) => Promise<void>
 > = [1, "/v2/admin/groups/{0}/groupMembers/add", 1];
@@ -84,14 +84,14 @@ const _add: $FoundryPlatformMethod<
  */
 export function add(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId, $body: _Admin.AddGroupMembersRequest]
+  ...args: [groupId: _Core.GroupId, $body: _Admin.AddGroupMembersRequest]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
 }
 
 const _remove: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
     $body: _Admin.RemoveGroupMembersRequest,
   ) => Promise<void>
 > = [1, "/v2/admin/groups/{0}/groupMembers/remove", 1];
@@ -104,7 +104,7 @@ const _remove: $FoundryPlatformMethod<
  */
 export function remove(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId, $body: _Admin.RemoveGroupMembersRequest]
+  ...args: [groupId: _Core.GroupId, $body: _Admin.RemoveGroupMembersRequest]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);
 }

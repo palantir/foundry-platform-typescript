@@ -21,7 +21,6 @@ import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
 import { generateImports, SKIP } from "./generateImports.js";
 import { writeResource2 } from "./generateResource2.js";
-import { getNamespaceType } from "./getNamespaceType.js";
 import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
@@ -58,11 +57,11 @@ export async function generatePlatformSdkV2(
     );
     componentsGenerated.set(
       ns,
-      await generateComponents(ns, ns.paths.srcDir, packagePrefix),
+      await generateComponents(ns, ns.paths.srcDir),
     );
     errorsGenerated.set(
       ns,
-      await generateErrors(ns, ns.paths.srcDir, packagePrefix),
+      await generateErrors(ns, ns.paths.srcDir),
     );
   }
 
@@ -167,7 +166,6 @@ export async function generatePlatformSdkV2(
 export async function generateComponents(
   ns: Namespace,
   outputDir: string,
-  packagePrefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -177,12 +175,6 @@ export async function generateComponents(
       `;
 
   for (const component of ns.components) {
-    const platform = getNamespaceType(component.component);
-    if (
-      (packagePrefix !== platform && platform !== "both")
-    ) {
-      continue;
-    }
     out += component.getDeclaration(ns.name);
     ret.push(component.name === "Record" ? "_Record" : component.name);
 
@@ -206,7 +198,6 @@ export async function generateComponents(
 export async function generateErrors(
   ns: Namespace,
   outputDir: string,
-  packagePrefix: string = "foundry",
 ): Promise<string[]> {
   const referencedComponents = new Set<Component>();
   const ret = [];
@@ -216,10 +207,6 @@ export async function generateErrors(
       `;
 
   for (const error of ns.errors) {
-    const platform = getNamespaceType(error.spec);
-    if (packagePrefix !== platform && platform !== "both") {
-      continue;
-    }
     out += error.getDeclaration(ns.name);
     ret.push(error.name);
 

@@ -72,3 +72,15 @@ export interface DeleteCheckPermissionDenied {
     checkRid: unknown;
   };
 }
+
+/**
+ * The TimeCheckConfig is invalid. It must contain at least one of timeBounds or medianDeviation.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidTimeCheckConfig {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidTimeCheckConfig";
+  errorInstanceId: string;
+  parameters: {};
+}

@@ -1276,10 +1276,10 @@ export interface EntrySetType {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface EnumConstraint {
-  options: Array<any>;
+  options: Array<PropertyValue | undefined>;
 }
 
 /**
@@ -1858,6 +1858,15 @@ export interface ListLinkedObjectsResponseV2 {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListObjectsForInterfaceResponse {
+  nextPageToken?: _Core.PageToken;
+  data: Array<OntologyObjectV2>;
+  totalCount: _Core.TotalCount;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListObjectsResponse {
   nextPageToken?: _Core.PageToken;
   data: Array<OntologyObject>;
@@ -2383,8 +2392,7 @@ export type ObjectSet =
 
 /**
    * Casts the objects in the object set to their base type and thus ensures objects are returned with all of their
-properties in the resulting object set, not just the properties that implement interface properties. This is
-currently unsupported and an exception will be thrown if used.
+properties in the resulting object set, not just the properties that implement interface properties.
    *
    * Log Safety: UNSAFE
    */
@@ -2395,7 +2403,7 @@ export interface ObjectSetAsBaseObjectTypesType {
 /**
    * Casts an object set to a specified object type or interface type API name. Any object whose object type does
 not match the object type provided or implement the interface type provided will be dropped from the resulting
-object set. This is currently unsupported and an exception will be thrown if used.
+object set.
    *
    * Log Safety: UNSAFE
    */
@@ -2763,10 +2771,11 @@ export interface OntologyFullMetadata {
 }
 
 /**
- * Either an ontology rid or an ontology api name.
- *
- * Log Safety: UNSAFE
- */
+   * The API name or RID of the Ontology. To find the API name or RID, use the List Ontologies endpoint or
+check the Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
 export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
 
 /**
@@ -3495,11 +3504,11 @@ export interface RangeConstraint {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface RangesConstraint {
-  minimumValue?: any;
-  maximumValue?: any;
+  minimumValue?: PropertyValue;
+  maximumValue?: PropertyValue;
 }
 
 /**
@@ -4540,6 +4549,7 @@ export interface ValueTypeArrayType {
 export type ValueTypeConstraint =
   | ({ type: "struct" } & StructConstraint)
   | ({ type: "regex" } & RegexConstraint)
+  | ({ type: "unsupported" } & _Core.UnsupportedType)
   | ({ type: "array" } & ArrayConstraint)
   | ({ type: "length" } & LengthConstraint)
   | ({ type: "range" } & RangesConstraint)

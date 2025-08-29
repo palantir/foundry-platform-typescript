@@ -102,6 +102,62 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _listObjectsForInterface: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+    $queryParams: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      select: Array<_Ontologies.SelectedPropertyApiName>;
+      orderBy?: _Ontologies.OrderBy | undefined;
+      excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ) => Promise<_Ontologies.ListObjectsForInterfaceResponse>
+> = [0, "/v2/ontologies/{0}/interfaces/{1}", 2];
+
+/**
+ * Lists the objects for the given Ontology and interface type.
+ *
+ * Note that this endpoint does not guarantee consistency, unless you use the snapshot flag specified below. Changes to the data could result in missing or
+ * repeated objects in the response pages.
+ *
+ * For Object Storage V1 backed objects, this endpoint returns a maximum of 10,000 objects. After 10,000 objects have been returned and if more objects
+ * are available, attempting to load another page will result in an `ObjectsExceededLimit` error being returned. There is no limit on Object Storage V2 backed objects.
+ *
+ * Each page may be smaller or larger than the requested page size. However, it
+ * is guaranteed that if there are more results available, at least one result will be present
+ * in the response.
+ *
+ * Note that null value properties will not be returned.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/interfaces/{interfaceType}
+ */
+export function listObjectsForInterface(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+
+    $queryParams: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      select: Array<_Ontologies.SelectedPropertyApiName>;
+      orderBy?: _Ontologies.OrderBy | undefined;
+      excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ]
+): Promise<_Ontologies.ListObjectsForInterfaceResponse> {
+  return $foundryPlatformFetch($ctx, _listObjectsForInterface, ...args);
+}
+
 const _search: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,

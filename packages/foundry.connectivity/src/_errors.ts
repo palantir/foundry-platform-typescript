@@ -156,6 +156,35 @@ export interface DomainMustUseHttpsWithAuthentication {
 }
 
 /**
+ * The driver content must be provided as a jar.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DriverContentMustBeUploadedAsJar {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DriverContentMustBeUploadedAsJar";
+  errorInstanceId: string;
+  parameters: {
+    driverName: unknown;
+  };
+}
+
+/**
+ * Duplicate jar with different versions already exists on connection.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DriverJarAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "DriverJarAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    driverName: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
  * The encrypted property must be specified as a plaintext value.
  *
  * Log Safety: SAFE
@@ -509,6 +538,34 @@ export interface UpdateExportSettingsForConnectionPermissionDenied {
 export interface UpdateSecretsForConnectionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UpdateSecretsForConnectionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
+ * Only JDBC connections support uploading custom JDBC drivers.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UploadCustomJdbcDriverNotSupportForConnection {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UploadCustomJdbcDriverNotSupportForConnection";
+  errorInstanceId: string;
+  parameters: {
+    connectionType: unknown;
+  };
+}
+
+/**
+ * Could not uploadCustomJdbcDrivers the Connection.
+ *
+ * Log Safety: SAFE
+ */
+export interface UploadCustomJdbcDriversConnectionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UploadCustomJdbcDriversConnectionPermissionDenied";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;

@@ -31,7 +31,7 @@ import type * as _Admin from "../_components.js";
 
 const _get: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.GroupMembershipExpirationPolicy>
 > = [0, "/v2/admin/groups/{0}/membershipExpirationPolicy", 2];
@@ -47,7 +47,7 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -57,7 +57,7 @@ export function get(
 
 const _replace: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
     $body: _Admin.ReplaceGroupMembershipExpirationPolicyRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.GroupMembershipExpirationPolicy>
@@ -74,7 +74,7 @@ const _replace: $FoundryPlatformMethod<
 export function replace(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    groupId: _Core.PrincipalId,
+    groupId: _Core.GroupId,
     $body: _Admin.ReplaceGroupMembershipExpirationPolicyRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]

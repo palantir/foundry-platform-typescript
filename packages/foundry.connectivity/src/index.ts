@@ -101,6 +101,7 @@ export type {
   HeaderApiKey,
   IntegerColumnInitialIncrementalState,
   JdbcConnectionConfiguration,
+  JdbcDriverArtifactName,
   JdbcProperties,
   JdbcTableImportConfig,
   ListFileImportsResponse,
@@ -178,6 +179,8 @@ export type {
   DeleteFileImportPermissionDenied,
   DeleteTableImportPermissionDenied,
   DomainMustUseHttpsWithAuthentication,
+  DriverContentMustBeUploadedAsJar,
+  DriverJarAlreadyExists,
   EncryptedPropertyMustBeSpecifiedAsPlaintextValue,
   ExecuteFileImportPermissionDenied,
   ExecuteTableImportPermissionDenied,
@@ -203,6 +206,8 @@ export type {
   TableImportTypeNotSupported,
   UpdateExportSettingsForConnectionPermissionDenied,
   UpdateSecretsForConnectionPermissionDenied,
+  UploadCustomJdbcDriverNotSupportForConnection,
+  UploadCustomJdbcDriversConnectionPermissionDenied,
 } from "./_errors.js";
 export * as Connections from "./public/Connection.js";
 export * as FileImports from "./public/FileImport.js";

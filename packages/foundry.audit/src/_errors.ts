@@ -28,6 +28,7 @@ export interface GetLogFileContentPermissionDenied {
   errorName: "GetLogFileContentPermissionDenied";
   errorInstanceId: string;
   parameters: {
+    organizationRid: unknown;
     logFileId: unknown;
   };
 }
