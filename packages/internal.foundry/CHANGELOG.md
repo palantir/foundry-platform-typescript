@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.28.0
+
+### Minor Changes
+
+- 8d43b96: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [8d43b96]
+  - @osdk/internal.foundry.core@2.28.0
+  - @osdk/internal.foundry.datasets@2.28.0
+  - @osdk/internal.foundry.geo@2.28.0
+  - @osdk/internal.foundry.mediasets@2.28.0
+  - @osdk/internal.foundry.ontologies@2.28.0
+  - @osdk/internal.foundry.ontologiesv2@2.28.0
+
 ## 2.27.0
 
 ### Minor Changes
