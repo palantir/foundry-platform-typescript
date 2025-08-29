@@ -1,7 +1,5 @@
 ---
-"@osdk/docs-spec-core": patch
 "@osdk/docs-spec-platform": patch
-"@osdk/docs-spec-sdk": patch
 "@osdk/foundry": patch
 "@osdk/foundry.admin": patch
 "@osdk/foundry.aipagents": patch
@@ -37,8 +35,6 @@
 "@osdk/internal.foundry.ontologies": patch
 "@osdk/internal.foundry.ontologiesv2": patch
 "@osdk/platform-sdk-generator": patch
-"@osdk/shared.net.platformapi": patch
-"@osdk/tool.release": patch
 ---
 
 Regenerate SDKs
