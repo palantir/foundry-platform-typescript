@@ -33,6 +33,18 @@ export interface CannotUpdateColumnsWithTargets {
 }
 
 /**
+ * Could not create the HighPriorityTargetList.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateHighPriorityTargetListPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateHighPriorityTargetListPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not create the TargetBoard.
  *
  * Log Safety: SAFE

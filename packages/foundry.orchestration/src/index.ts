@@ -17,6 +17,7 @@
 export type {
   AbortOnFailure,
   Action,
+  AffectedResourcesResponse,
   AndTrigger,
   Build,
   BuildableRid,
@@ -141,6 +142,7 @@ export type {
   CreateBuildPermissionDenied,
   CreateSchedulePermissionDenied,
   DeleteSchedulePermissionDenied,
+  GetAffectedResourcesSchedulePermissionDenied,
   InvalidAndTrigger,
   InvalidMediaSetTrigger,
   InvalidOrTrigger,

@@ -205,6 +205,30 @@ export function unpause(
   return $foundryPlatformFetch($ctx, _unpause, ...args);
 }
 
+const _getAffectedResources: $FoundryPlatformMethod<
+  (
+    scheduleRid: _Core.ScheduleRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Orchestration.AffectedResourcesResponse>
+> = [1, "/v2/orchestration/schedules/{0}/getAffectedResources", 2];
+
+/**
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-read]
+ * URL: /v2/orchestration/schedules/{scheduleRid}/getAffectedResources
+ */
+export function getAffectedResources(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    scheduleRid: _Core.ScheduleRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Orchestration.AffectedResourcesResponse> {
+  return $foundryPlatformFetch($ctx, _getAffectedResources, ...args);
+}
+
 const _runs: $FoundryPlatformMethod<
   (
     scheduleRid: _Core.ScheduleRid,

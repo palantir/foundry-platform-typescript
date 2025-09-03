@@ -1,6 +1,12 @@
 hptl
+htpl
 sidc
 milsym
 jdbc
 dataframe
 multitenant
+Aois
+Elnot
+ELNOTs
+elnots
+ELINT

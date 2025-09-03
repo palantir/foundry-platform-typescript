@@ -45,6 +45,13 @@ export interface Action {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AffectedResourcesResponse {
+  datasets: Array<BuildableRid>;
+}
+
+/**
  * Trigger after all of the given triggers emit an event.
  *
  * Log Safety: UNSAFE
@@ -67,6 +74,7 @@ export interface Build {
   retryBackoffDuration: RetryBackoffDuration;
   abortOnFailure: AbortOnFailure;
   status: BuildStatus;
+  scheduleRid?: _Core.ScheduleRid;
 }
 
 /**

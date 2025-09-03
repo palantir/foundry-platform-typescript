@@ -180,6 +180,20 @@ export interface DeleteSchedulePermissionDenied {
 }
 
 /**
+ * Could not getAffectedResources the Schedule.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetAffectedResourcesSchedulePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetAffectedResourcesSchedulePermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    scheduleRid: unknown;
+  };
+}
+
+/**
  * The AND trigger should have at least one value.
  *
  * Log Safety: SAFE
