@@ -1,5 +1,36 @@
 # @osdk/foundry
 
+## 2.29.0
+
+### Minor Changes
+
+- 365da44: Bump platform SDK to 1.1281.0
+
+### Patch Changes
+
+- Updated dependencies [365da44]
+  - @osdk/foundry.thirdpartyapplications@2.29.0
+  - @osdk/foundry.orchestration@2.29.0
+  - @osdk/foundry.connectivity@2.29.0
+  - @osdk/foundry.datahealth@2.29.0
+  - @osdk/foundry.filesystem@2.29.0
+  - @osdk/foundry.ontologies@2.29.0
+  - @osdk/foundry.operations@2.29.0
+  - @osdk/foundry.publicapis@2.29.0
+  - @osdk/foundry.sqlqueries@2.29.0
+  - @osdk/foundry.aipagents@2.29.0
+  - @osdk/foundry.functions@2.29.0
+  - @osdk/foundry.mediasets@2.29.0
+  - @osdk/foundry.datasets@2.29.0
+  - @osdk/foundry.streams@2.29.0
+  - @osdk/foundry.widgets@2.29.0
+  - @osdk/foundry.models@2.29.0
+  - @osdk/foundry.admin@2.29.0
+  - @osdk/foundry.audit@2.29.0
+  - @osdk/foundry.core@2.29.0
+  - @osdk/foundry.geo@2.29.0
+  - @osdk/foundry.geojson@2.29.0
+
 ## 2.28.0
 
 ### Minor Changes

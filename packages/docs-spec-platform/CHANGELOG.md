@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.17.0
+
+### Minor Changes
+
+- 365da44: Bump platform SDK to 1.1281.0
+
 ## 0.16.0
 
 ### Minor Changes

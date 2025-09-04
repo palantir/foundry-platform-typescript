@@ -1,5 +1,17 @@
 # @osdk/gotham.gaia
 
+## 0.2.0
+
+### Minor Changes
+
+- 365da44: Bump platform SDK to 1.1281.0
+
+### Patch Changes
+
+- Updated dependencies [365da44]
+  - @osdk/gotham.geojson@0.2.0
+  - @osdk/gotham.core@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes
