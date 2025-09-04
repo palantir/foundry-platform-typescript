@@ -80,6 +80,33 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _getBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Filesystem.GetFoldersBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.GetFoldersBatchResponse>
+> = [1, "/v2/filesystem/folders/getBatch", 3];
+
+/**
+ * Fetches multiple folders in a single request.
+ *
+ * The maximum batch size for this endpoint is 1000.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/folders/getBatch
+ */
+export function getBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Filesystem.GetFoldersBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.GetFoldersBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getBatch, ...args);
+}
+
 const _children: $FoundryPlatformMethod<
   (
     folderRid: _Filesystem.FolderRid,

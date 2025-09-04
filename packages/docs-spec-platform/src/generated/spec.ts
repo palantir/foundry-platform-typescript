@@ -64,6 +64,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.loadTargetBoard": {
       "variables": {},
     },
+    "v2.createHighPriorityTargetList": {
+      "variables": {},
+    },
     "v2.readMediaItem": {
       "variables": {},
     },
@@ -658,6 +661,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getFolder": {
       "variables": {},
     },
+    "v2.getFoldersBatch": {
+      "variables": {},
+    },
     "v2.listChildrenOfFolder": {
       "variables": {},
     },
@@ -773,6 +779,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.unpauseSchedule": {
+      "variables": {},
+    },
+    "v2.getAffectedResourcesSchedule": {
       "variables": {},
     },
     "v2.listRunsOfSchedule": {

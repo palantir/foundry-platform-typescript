@@ -54,6 +54,20 @@ export type ColumnColor =
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateHighPriorityTargetListRequest {
+  targetBoard?: TargetBoardRid;
+  targetAois?: Array<HptlTargetAoi>;
+  security: ArtifactSecurity;
+  areaGeo?: GeoPolygon;
+  areaObjectRid?: ObjectPrimaryKey;
+  name: HighPriorityTargetListName;
+  description?: string;
+  targets?: Array<HighPriorityTargetListTarget>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateTargetBoardRequest {
   security: ArtifactSecurity;
   highPriorityTargetList?: string;
@@ -80,6 +94,95 @@ export interface GeoLocation {
 }
 
 /**
+ * A point representing a latitude-longitude pair, with an option of adding elevation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeoPoint {
+  longitude: number;
+  latitude: number;
+  elevation?: number;
+}
+
+/**
+ * A Polygon representing the area where this High Priority Target List is applicable. If areaObjectRid exists, that field will be preferred.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeoPolygon {
+  points?: Array<GeoPoint>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface HighPriorityTargetList {
+  rid: HighPriorityTargetListRid;
+  name: HighPriorityTargetListName;
+  description?: string;
+  targetBoard?: TargetBoardRid;
+  targets?: Array<HighPriorityTargetListTarget>;
+  areaObjectRid?: ObjectPrimaryKey;
+  areaGeo?: GeoPolygon;
+  targetAois?: Array<HptlTargetAoi>;
+  security: ArtifactSecurity;
+}
+
+/**
+ * The Attack Guidance Matrix on a Target on an High Priority Target List.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface HighPriorityTargetListAgm {
+  agmId: HighPriorityTargetListAgmId;
+  effectorType?: HighPriorityTargetListEffectType;
+  effector?: string;
+  effectorPriority?: number;
+  timelinessInMinutes?: number;
+  accuracyInMeters?: number;
+}
+
+/**
+ * Identifier of the agm associated with the htpl
+ *
+ * Log Safety: UNSAFE
+ */
+export type HighPriorityTargetListAgmId = LooselyBrandedString<
+  "HighPriorityTargetListAgmId"
+>;
+
+/**
+ * The action that should be taken on a Target in a High Priority Target List.
+ *
+ * Log Safety: SAFE
+ */
+export type HighPriorityTargetListEffectType =
+  | "DESTROY"
+  | "JAMMING"
+  | "NEUTRALIZE"
+  | "SUPPRESS"
+  | "K_KILL"
+  | "COG_KILL"
+  | "F_KILL"
+  | "G_KILL"
+  | "MSN_KILL"
+  | "M_KILL"
+  | "M_SLASH_F_KILL"
+  | "M_SLASH_MSN_KILL"
+  | "M_SLASH_P_KILL"
+  | "P_KILL"
+  | "PM_KILL"
+  | "PTO_KILL"
+  | "TOA_KILL";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type HighPriorityTargetListName = LooselyBrandedString<
+  "HighPriorityTargetListName"
+>;
+
+/**
  * The unique identifier for a High Priority Target List
  *
  * Log Safety: SAFE
@@ -87,6 +190,96 @@ export interface GeoLocation {
 export type HighPriorityTargetListRid = LooselyBrandedString<
   "HighPriorityTargetListRid"
 >;
+
+/**
+ * The target on an High Priority Target List.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface HighPriorityTargetListTarget {
+  highPriorityTargetListTargetId: HighPriorityTargetListTargetId;
+  aoiId?: HptlTargetAoiId;
+  targetType: string;
+  targetSubtypes?: Array<HptlTargetSubtype>;
+  priority: number;
+  subPriority?: number;
+  category?: string;
+  elnots?: Array<HptlTargetElnot>;
+  when: HighPriorityTargetListWhen;
+  agm?: Record<HighPriorityTargetListAgmId, HighPriorityTargetListAgm>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type HighPriorityTargetListTargetId = LooselyBrandedString<
+  "HighPriorityTargetListTargetId"
+>;
+
+/**
+ * A category representing when to action the Target on a High Priority Target List.
+ *
+ * Log Safety: SAFE
+ */
+export type HighPriorityTargetListWhen =
+  | "ACQUIRED"
+  | "IMMEDIATE"
+  | "PLANNED"
+  | "NONE";
+
+/**
+ * An AOI referenced by the defined HptlTarget
+ *
+ * Log Safety: UNSAFE
+ */
+export interface HptlTargetAoi {
+  id: HptlTargetAoiId;
+  name?: string;
+  data: HptlTargetAoiUnion;
+}
+
+/**
+ * Identifier of the HptlTarget AOI
+ *
+ * Log Safety: SAFE
+ */
+export type HptlTargetAoiId = string;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type HptlTargetAoiUnion =
+  | ({ type: "geo" } & HptlTargetGeoAoi)
+  | ({ type: "entity" } & HptlTargetEntityAoi);
+
+/**
+ * ELINT Notations (ELNOTs) associated with the HPTL target
+ *
+ * Log Safety: UNSAFE
+ */
+export type HptlTargetElnot = LooselyBrandedString<"HptlTargetElnot">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface HptlTargetEntityAoi {
+  entity: ObjectPrimaryKey;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface HptlTargetGeoAoi {
+  geo: GeoPolygon;
+}
+
+/**
+   * This subtype will be matched against the subType stored on HptlTarget in order to determine a target's
+subPriority, in addition to priority and AGM.
+   *
+   * Log Safety: UNSAFE
+   */
+export type HptlTargetSubtype = LooselyBrandedString<"HptlTargetSubtype">;
 
 /**
  * Log Safety: UNSAFE
@@ -128,6 +321,13 @@ export interface ModifyTargetBoardRequest {
   configuration?: TargetBoardConfiguration;
   baseRevisionId: BaseRevisionId;
 }
+
+/**
+ * The primary key/unique identifier of an object, useful for interacting with Gotham APIs to load and mutate objects.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ObjectPrimaryKey = LooselyBrandedString<"ObjectPrimaryKey">;
 
 /**
    * Security markings represent the level of access control that applies to a specific piece of information (e.g., object property, object title).

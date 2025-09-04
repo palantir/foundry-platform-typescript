@@ -28,6 +28,8 @@ export type {
   Folder,
   FolderRid,
   FolderType,
+  GetFoldersBatchRequestElement,
+  GetFoldersBatchResponse,
   IsDirectlyApplied,
   ListChildrenOfFolderResponse,
   ListMarkingsOfResourceResponse,

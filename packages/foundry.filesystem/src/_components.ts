@@ -151,6 +151,20 @@ Space.
 export type FolderType = "FOLDER" | "SPACE" | "PROJECT";
 
 /**
+ * Log Safety: SAFE
+ */
+export interface GetFoldersBatchRequestElement {
+  folderRid: FolderRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetFoldersBatchResponse {
+  data: Record<FolderRid, Folder>;
+}
+
+/**
    * Boolean flag to indicate if the marking is directly applied to the resource, or if it's applied
 to a parent resource and inherited by the current resource.
    *

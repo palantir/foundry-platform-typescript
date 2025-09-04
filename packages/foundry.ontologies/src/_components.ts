@@ -1795,8 +1795,11 @@ export interface LinkTypeSide {
 export type LinkTypeSideCardinality = "ONE" | "MANY";
 
 /**
- * Log Safety: UNSAFE
- */
+   * foreignKeyPropertyApiName is the API name of the foreign key on this object type. If absent, the link is
+either a m2m link or the linked object has the foreign key and this object type has the primary key.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface LinkTypeSideV2 {
   apiName: LinkTypeApiName;
   displayName: _Core.DisplayName;
@@ -2650,6 +2653,7 @@ export type ObjectTypeId = LooselyBrandedString<"ObjectTypeId">;
  */
 export interface ObjectTypeInterfaceImplementation {
   properties: Record<SharedPropertyTypeApiName, PropertyApiName>;
+  links: Record<InterfaceLinkTypeApiName, Array<LinkTypeApiName>>;
 }
 
 /**
