@@ -1,5 +1,18 @@
 # @osdk/foundry.orchestration
 
+## 2.29.0
+
+### Minor Changes
+
+- 365da44: Bump platform SDK to 1.1281.0
+
+### Patch Changes
+
+- Updated dependencies [365da44]
+  - @osdk/foundry.filesystem@2.29.0
+  - @osdk/foundry.datasets@2.29.0
+  - @osdk/foundry.core@2.29.0
+
 ## 2.28.0
 
 ### Minor Changes

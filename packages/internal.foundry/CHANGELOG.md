@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.29.0
+
+### Minor Changes
+
+- 365da44: Bump platform SDK to 1.1281.0
+
+### Patch Changes
+
+- Updated dependencies [365da44]
+  - @osdk/internal.foundry.ontologies@2.29.0
+  - @osdk/internal.foundry.datasets@2.29.0
+  - @osdk/internal.foundry.core@2.29.0
+  - @osdk/internal.foundry.geo@2.29.0
+  - @osdk/internal.foundry.ontologiesv2@2.29.0
+  - @osdk/internal.foundry.mediasets@2.29.0
+
 ## 2.28.0
 
 ### Minor Changes
