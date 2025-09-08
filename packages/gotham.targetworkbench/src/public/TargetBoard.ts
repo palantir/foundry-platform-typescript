@@ -65,6 +65,7 @@ const _deleteTargetBoard: $PlatformMethod<
 
 /**
  * Archive a Target Board by RID.
+ * The user is required to have OWN permissions on the target.
  *
  * @beta
  *

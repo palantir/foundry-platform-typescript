@@ -363,6 +363,20 @@ export interface GetBranchTransactionHistoryPermissionDenied {
 }
 
 /**
+ * Could not jobs the Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetDatasetJobsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetDatasetJobsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+  };
+}
+
+/**
  * Could not getSchedules the Dataset.
  *
  * Log Safety: SAFE

@@ -64,7 +64,37 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.loadTargetBoard": {
       "variables": {},
     },
+    "v2.createTarget": {
+      "variables": {},
+    },
+    "v2.deleteTarget": {
+      "variables": {},
+    },
+    "v2.modifyTarget": {
+      "variables": {},
+    },
+    "v2.loadTarget": {
+      "variables": {},
+    },
+    "v2.setTargetColumnTarget": {
+      "variables": {},
+    },
+    "v2.createTargetIntelTarget": {
+      "variables": {},
+    },
+    "v2.modifyTargetIntelTarget": {
+      "variables": {},
+    },
+    "v2.removeTargetIntelTarget": {
+      "variables": {},
+    },
     "v2.createHighPriorityTargetList": {
+      "variables": {},
+    },
+    "v2.modifyHighPriorityTargetList": {
+      "variables": {},
+    },
+    "v2.loadHighPriorityTargetList": {
       "variables": {},
     },
     "v2.readMediaItem": {
@@ -548,6 +578,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.putDatasetSchema": {
+      "variables": {},
+    },
+    "v2.getDatasetJobs": {
       "variables": {},
     },
     "v2.listTransactionsOfDataset": {

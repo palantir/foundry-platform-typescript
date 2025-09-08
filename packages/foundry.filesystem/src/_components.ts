@@ -24,7 +24,7 @@ export type LooselyBrandedString<T extends string> = string & {
    * Access requirements for a resource are composed of Markings and Organizations. Organizations are disjunctive,
 while Markings are conjunctive.
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface AccessRequirements {
   organizations: Array<Organization>;
@@ -32,7 +32,7 @@ export interface AccessRequirements {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface AddMarkingsRequest {
   markingIds: Array<_Core.MarkingId>;
@@ -49,7 +49,7 @@ export interface AddOrganizationsRequest {
  * Log Safety: SAFE
  */
 export interface AddResourceRolesRequest {
-  roles: Array<ResourceRole>;
+  roles: Array<ResourceRoleIdentifier>;
 }
 
 /**
@@ -218,7 +218,7 @@ folders, and Projects within Foundry. Markings define eligibility criteria that 
 and actions to users who meet those criteria. To access a resource, a user must be a member of all
 Markings applied to a resource to access it.
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface Marking {
   markingId: _Core.MarkingId;
@@ -232,12 +232,21 @@ one Organization, but can be a guest member of multiple Organizations. In order 
 users must be a member or guest member of at least one Organization applied to a Project.
 Organizations are inherited via the file hierarchy and direct dependencies.
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface Organization {
   markingId: _Core.MarkingId;
   organizationRid: _Core.OrganizationRid;
   isDirectlyApplied: IsDirectlyApplied;
+}
+
+/**
+ * Represents a principal with just an ID, without the type.
+ *
+ * Log Safety: SAFE
+ */
+export interface PrincipalIdOnly {
+  principalId: _Core.PrincipalId;
 }
 
 /**
@@ -300,7 +309,7 @@ export type ProjectTemplateVariableValue = LooselyBrandedString<
 >;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface RemoveMarkingsRequest {
   markingIds: Array<_Core.MarkingId>;
@@ -317,7 +326,7 @@ export interface RemoveOrganizationsRequest {
  * Log Safety: SAFE
  */
 export interface RemoveResourceRolesRequest {
-  roles: Array<ResourceRole>;
+  roles: Array<ResourceRoleIdentifier>;
 }
 
 /**
@@ -388,10 +397,29 @@ export interface ResourceRole {
 }
 
 /**
+ * A role grant on a resource for add/remove operations that doesn't require specifying the principal type.
+ *
+ * Log Safety: SAFE
+ */
+export interface ResourceRoleIdentifier {
+  resourceRolePrincipal: ResourceRolePrincipalIdentifier;
+  roleId: _Core.RoleId;
+}
+
+/**
  * Log Safety: SAFE
  */
 export type ResourceRolePrincipal =
   | ({ type: "principalWithId" } & PrincipalWithId)
+  | ({ type: "everyone" } & Everyone);
+
+/**
+ * A principal for resource role operations that doesn't require specifying the principal type.
+ *
+ * Log Safety: SAFE
+ */
+export type ResourceRolePrincipalIdentifier =
+  | ({ type: "principalIdOnly" } & PrincipalIdOnly)
   | ({ type: "everyone" } & Everyone);
 
 /**
@@ -401,6 +429,9 @@ export type ResourceRolePrincipal =
  */
 export type ResourceType =
   | "AIP_PROFILE"
+  | "AIP_AGENTS_AGENT"
+  | "AIP_AGENTS_SESSION"
+  | "AIP_ASSIST_FLOW_CAPTURE"
   | "AIP_ASSIST_WALKTHROUGH"
   | "ARTIFACTS_REPOSITORY"
   | "BELLASO_CIPHER_CHANNEL"
@@ -437,6 +468,7 @@ export type ResourceType =
   | "FOUNDRY_ML_OBJECTIVE"
   | "FOUNDRY_TEMPLATES_TEMPLATE"
   | "FUSION_DOCUMENT"
+  | "GEOTIME_CATALOG_INTEGRATION"
   | "GPS_VIEW"
   | "HUBBLE_EXPLORATION_LAYOUT"
   | "HYPERAUTO_INTEGRATION"
@@ -444,6 +476,7 @@ export type ResourceType =
   | "MACHINERY_DOCUMENT"
   | "MAGRITTE_AGENT"
   | "MAGRITTE_DRIVER"
+  | "MAGRITTE_EXPORT"
   | "MAGRITTE_SOURCE"
   | "MARKETPLACE_BLOCK_SET_INSTALLATION"
   | "MARKETPLACE_BLOCK_SET_REPO"
@@ -466,6 +499,8 @@ export type ResourceType =
   | "QUIVER_ANALYSIS"
   | "QUIVER_ARTIFACT"
   | "QUIVER_DASHBOARD"
+  | "QUIVER_FUNCTION"
+  | "QUIVER_OBJECT_SET_PATH"
   | "REPORT_REPORT"
   | "SLATE_DOCUMENT"
   | "SOLUTION_DESIGN_DIAGRAM"

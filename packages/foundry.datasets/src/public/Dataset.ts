@@ -208,6 +208,43 @@ export function putSchema(
   return $foundryPlatformFetch($ctx, _putSchema, ...args);
 }
 
+const _jobs: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    $body: _Datasets.GetDatasetJobsRequest,
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Datasets.GetJobResponse>
+> = [1, "/v2/datasets/{0}/jobs", 3];
+
+/**
+ * Get the RIDs of the Jobs for the given dataset. By default, returned Jobs are sorted in descending order by the Job start time.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/jobs
+ */
+export function jobs(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+    $body: _Datasets.GetDatasetJobsRequest,
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Datasets.GetJobResponse> {
+  return $foundryPlatformFetch($ctx, _jobs, ...args);
+}
+
 const _transactions: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,

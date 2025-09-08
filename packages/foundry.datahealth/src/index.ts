@@ -26,7 +26,6 @@ export type {
   ColumnCountConfig,
   ColumnInfo,
   ColumnName,
-  ColumnType,
   ColumnTypeCheckConfig,
   ColumnTypeConfig,
   CreateCheckRequest,

@@ -68,7 +68,11 @@ const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     queryApiName: _Ontologies.QueryApiName,
-    $queryParams?: { version?: _Ontologies.FunctionVersion | undefined },
+    $queryParams?: {
+      version?: _Ontologies.FunctionVersion | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
   ) => Promise<_Ontologies.QueryTypeV2>
 > = [0, "/v2/ontologies/{0}/queryTypes/{1}", 2];
 
@@ -86,7 +90,11 @@ export function get(
     ontology: _Ontologies.OntologyIdentifier,
     queryApiName: _Ontologies.QueryApiName,
 
-    $queryParams?: { version?: _Ontologies.FunctionVersion | undefined },
+    $queryParams?: {
+      version?: _Ontologies.FunctionVersion | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
   ]
 ): Promise<_Ontologies.QueryTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
