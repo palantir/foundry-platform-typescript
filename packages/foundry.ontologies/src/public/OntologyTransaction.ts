@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -33,8 +34,9 @@ const _postEdits: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     transactionRid: _Ontologies.OntologyTransactionRid,
     $body: _Ontologies.PostTransactionEditsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.PostTransactionEditsResponse>
-> = [1, "/v2/ontologies/{0}/transactions/{1}/edits", 1];
+> = [1, "/v2/ontologies/{0}/transactions/{1}/edits", 3];
 
 /**
  * Applies a set of edits to a transaction in order.
@@ -50,6 +52,7 @@ export function postEdits(
     ontology: _Ontologies.OntologyIdentifier,
     transactionRid: _Ontologies.OntologyTransactionRid,
     $body: _Ontologies.PostTransactionEditsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.PostTransactionEditsResponse> {
   return $foundryPlatformFetch($ctx, _postEdits, ...args);

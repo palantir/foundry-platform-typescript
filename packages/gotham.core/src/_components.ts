@@ -141,7 +141,7 @@ export type CustomMetadata = Record<string, any>;
  * Log Safety: UNSAFE
  */
 export interface DatasetFieldSchema {
-  type: string;
+  type: SchemaFieldType;
   name: FieldName;
   nullable: boolean;
   userDefinedTypeClass?: string;
@@ -446,6 +446,17 @@ export interface FullRowChangeDataCaptureConfiguration {
 export interface GeohashType {}
 
 /**
+ * A point representing a latitude-longitude pair, with an option of adding elevation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeoPoint {
+  longitude: number;
+  latitude: number;
+  elevation?: number;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface GeoPointType {}
@@ -542,9 +553,9 @@ export interface MapFieldType {
 /**
  * The ID of a security marking.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export type MarkingId = string;
+export type MarkingId = LooselyBrandedString<"MarkingId">;
 
 /**
  * Log Safety: SAFE
@@ -768,6 +779,28 @@ export type RoleSetId = LooselyBrandedString<"RoleSetId">;
  * Log Safety: SAFE
  */
 export type ScheduleRid = LooselyBrandedString<"ScheduleRid">;
+
+/**
+ * The data type of a column in a dataset schema.
+ *
+ * Log Safety: SAFE
+ */
+export type SchemaFieldType =
+  | "ARRAY"
+  | "BINARY"
+  | "BOOLEAN"
+  | "BYTE"
+  | "DATE"
+  | "DECIMAL"
+  | "DOUBLE"
+  | "FLOAT"
+  | "INTEGER"
+  | "LONG"
+  | "MAP"
+  | "SHORT"
+  | "STRING"
+  | "STRUCT"
+  | "TIMESTAMP";
 
 /**
  * The name of the service that is not set-up

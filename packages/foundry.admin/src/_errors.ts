@@ -49,7 +49,7 @@ export interface AddGroupMembersPermissionDenied {
 /**
  * Could not add the MarkingMember.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface AddMarkingMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -63,7 +63,7 @@ export interface AddMarkingMembersPermissionDenied {
 /**
  * Could not add the MarkingRoleAssignment.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface AddMarkingRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -287,7 +287,7 @@ export interface GetMarkingCategoryPermissionDenied {
 /**
  * The provided token does not have permission to view the marking.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GetMarkingPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -498,7 +498,7 @@ export interface ListHostsPermissionDenied {
 /**
  * The provided token does not have permission to list the members of this marking.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ListMarkingMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -512,7 +512,7 @@ export interface ListMarkingMembersPermissionDenied {
 /**
  * The provided token does not have permission to list assigned roles for this marking.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ListMarkingRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -581,7 +581,7 @@ export interface MarkingNameIsEmpty {
 /**
  * The given Marking could not be found.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface MarkingNotFound {
   errorCode: "NOT_FOUND";
@@ -709,7 +709,7 @@ export interface RemoveGroupMembersPermissionDenied {
 /**
  * Could not remove the MarkingMember.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface RemoveMarkingMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -723,7 +723,7 @@ export interface RemoveMarkingMembersPermissionDenied {
 /**
  * Could not remove the MarkingRoleAssignment.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface RemoveMarkingRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -737,7 +737,7 @@ export interface RemoveMarkingRoleAssignmentsPermissionDenied {
 /**
  * You cannot remove all administrators from a marking.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed {
   errorCode: "INVALID_ARGUMENT";
@@ -794,7 +794,7 @@ export interface ReplaceGroupProviderInfoPermissionDenied {
 /**
  * Could not replace the Marking.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ReplaceMarkingPermissionDenied {
   errorCode: "PERMISSION_DENIED";

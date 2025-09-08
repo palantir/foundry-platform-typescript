@@ -470,7 +470,7 @@ export interface InvalidVariableEnumOption {
 /**
  * A provided marking ID cannot be found.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface MarkingNotFound {
   errorCode: "NOT_FOUND";
@@ -555,7 +555,7 @@ export interface OrganizationMarkingNotOnSpace {
    * Adding an organization marking as a regular marking is not supported. Use the organization endpoints on a
 project resource instead.
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface OrganizationMarkingNotSupported {
   errorCode: "INVALID_ARGUMENT";

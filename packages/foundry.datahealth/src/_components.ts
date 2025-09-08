@@ -113,35 +113,13 @@ export interface ColumnCountConfig {
  */
 export interface ColumnInfo {
   name: ColumnName;
-  columnType?: ColumnType;
+  columnType?: _Core.SchemaFieldType;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export type ColumnName = LooselyBrandedString<"ColumnName">;
-
-/**
- * The data type of a column in a dataset schema.
- *
- * Log Safety: SAFE
- */
-export type ColumnType =
-  | "ARRAY"
-  | "BINARY"
-  | "BOOLEAN"
-  | "BYTE"
-  | "DATE"
-  | "DECIMAL"
-  | "DOUBLE"
-  | "FLOAT"
-  | "INTEGER"
-  | "LONG"
-  | "MAP"
-  | "SHORT"
-  | "STRING"
-  | "STRUCT"
-  | "TIMESTAMP";
 
 /**
  * Checks the existence and optionally the type of a specific column.
@@ -160,7 +138,7 @@ export interface ColumnTypeCheckConfig {
  */
 export interface ColumnTypeConfig {
   columnName: string;
-  expectedType?: ColumnType;
+  expectedType?: _Core.SchemaFieldType;
   severity: SeverityLevel;
 }
 

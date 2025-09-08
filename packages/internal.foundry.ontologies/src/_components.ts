@@ -3676,6 +3676,7 @@ export type SearchJsonQueryV2 =
   | ({ type: "eq" } & EqualsQueryV2)
   | ({ type: "containsAllTerms" } & ContainsAllTermsQuery)
   | ({ type: "gt" } & GtQueryV2)
+  | ({ type: "wildcard" } & WildcardQuery)
   | ({ type: "withinDistanceOf" } & WithinDistanceOfQuery)
   | ({ type: "withinBoundingBox" } & WithinBoundingBoxQuery)
   | ({ type: "contains" } & ContainsQueryV2)
@@ -4647,6 +4648,18 @@ Examples: 'myGroup:myFunction:latest', 'myGroup:myFunction:1.0.0', 'myFunction',
 export type VersionedQueryTypeApiName = LooselyBrandedString<
   "VersionedQueryTypeApiName"
 >;
+
+/**
+   * Returns objects where the specified field matches the wildcard pattern provided.
+Either field or propertyIdentifier can be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface WildcardQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: string;
+}
 
 /**
  * Log Safety: UNSAFE

@@ -137,6 +137,75 @@ export type FileUpdatedTime = string;
 export type FolderRid = LooselyBrandedString<"FolderRid">;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface GetDatasetJobsAndFilter {
+  items: Array<GetDatasetJobsQuery>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type GetDatasetJobsComparisonType = "GTE" | "LT";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetDatasetJobsOrFilter {
+  items: Array<GetDatasetJobsQuery>;
+}
+
+/**
+ * Query for getting jobs on given dataset.
+ *
+ * Log Safety: SAFE
+ */
+export type GetDatasetJobsQuery =
+  | ({ type: "or" } & GetDatasetJobsOrFilter)
+  | ({ type: "and" } & GetDatasetJobsAndFilter)
+  | ({ type: "timeFilter" } & GetDatasetJobsTimeFilter);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetDatasetJobsRequest {
+  where?: GetDatasetJobsQuery;
+  orderBy: Array<GetDatasetJobsSort>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetDatasetJobsSort {
+  sortType: GetDatasetJobsSortType;
+  sortDirection: GetDatasetJobsSortDirection;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type GetDatasetJobsSortDirection = "ASCENDING" | "DESCENDING";
+
+/**
+ * Log Safety: SAFE
+ */
+export type GetDatasetJobsSortType = "BY_STARTED_TIME" | "BY_FINISHED_TIME";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetDatasetJobsTimeFilter {
+  field: GetDatasetJobsTimeFilterField;
+  comparisonType: GetDatasetJobsComparisonType;
+  value: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type GetDatasetJobsTimeFilterField = "SUBMITTED_TIME" | "FINISHED_TIME";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface GetDatasetSchemaResponse {
@@ -144,6 +213,21 @@ export interface GetDatasetSchemaResponse {
   endTransactionRid: TransactionRid;
   schema: _Core.DatasetSchema;
   versionId: _Core.VersionId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetJobResponse {
+  jobs: Array<JobDetails>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface JobDetails {
+  jobRid: _Core.JobRid;
 }
 
 /**

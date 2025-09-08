@@ -197,7 +197,7 @@ export interface GetGroupsBatchResponse {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GetMarkingsBatchRequestElement {
   markingId: _Core.MarkingId;
@@ -225,7 +225,7 @@ export interface GetRolesBatchResponse {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GetUserMarkingsResponse {
   view: Array<_Core.MarkingId>;

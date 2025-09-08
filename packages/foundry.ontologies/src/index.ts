@@ -496,6 +496,7 @@ export type {
   ValueTypeStructType,
   ValueTypeUnionType,
   VersionedQueryTypeApiName,
+  WildcardQuery,
   WithinBoundingBoxPoint,
   WithinBoundingBoxQuery,
   WithinDistanceOfQuery,

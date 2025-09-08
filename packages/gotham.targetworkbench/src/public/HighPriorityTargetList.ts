@@ -53,3 +53,57 @@ export function create(
 ): Promise<_TargetWorkbench.HighPriorityTargetList> {
   return $platformFetch($ctx, _create, ...args);
 }
+
+const _modify: $PlatformMethod<
+  (
+    highPriorityTargetListRid: _TargetWorkbench.HighPriorityTargetListRid,
+    $body: _TargetWorkbench.ModifyHighPriorityTargetListRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_TargetWorkbench.EmptySuccessResponse>
+> = [2, "/v2/targetWorkbench/highPriorityTargetLists/{0}/modify", 3];
+
+/**
+ * Modify a High Priority Target (HPTL) List by RID.
+ *
+ * Sets the current state of a HPTL. Any fields not supplied, except target board, will result in removal if there was a value present.
+ * Trying to set target board to empty when there is already a value will result in an INVALID\_ARGUMENT exception.
+ * You cannot modify the target board field if a value is already set.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:target-write]
+ * URL: /v2/targetWorkbench/highPriorityTargetLists/{highPriorityTargetListRid}/modify
+ */
+export function modify(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    highPriorityTargetListRid: _TargetWorkbench.HighPriorityTargetListRid,
+    $body: _TargetWorkbench.ModifyHighPriorityTargetListRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_TargetWorkbench.EmptySuccessResponse> {
+  return $platformFetch($ctx, _modify, ...args);
+}
+
+const _load: $PlatformMethod<
+  (
+    highPriorityTargetListRid: _TargetWorkbench.HighPriorityTargetListRid,
+  ) => Promise<_TargetWorkbench.LoadHighPriorityTargetListResponse>
+> = [0, "/v2/targetWorkbench/highPriorityTargetLists/{0}/load"];
+
+/**
+ * Load a High Priority Target List by RID.
+ *
+ * @public
+ *
+ * Required Scopes: [api:target-read]
+ * URL: /v2/targetWorkbench/highPriorityTargetLists/{highPriorityTargetListRid}/load
+ */
+export function load(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    highPriorityTargetListRid: _TargetWorkbench.HighPriorityTargetListRid,
+  ]
+): Promise<_TargetWorkbench.LoadHighPriorityTargetListResponse> {
+  return $platformFetch($ctx, _load, ...args);
+}
