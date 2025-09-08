@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.30.0
+
+### Minor Changes
+
+- 763137d: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [763137d]
+  - @osdk/foundry.ontologies@2.30.0
+  - @osdk/foundry.functions@2.30.0
+  - @osdk/foundry.core@2.30.0
+
 ## 2.29.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @osdk/platform-sdk-generator
 
+## 0.29.0
+
+### Patch Changes
+
+- Updated dependencies [763137d]
+  - @osdk/docs-spec-platform@0.18.0
+
 ## 0.28.0
 
 ### Patch Changes
