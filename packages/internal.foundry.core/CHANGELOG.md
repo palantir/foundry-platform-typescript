@@ -1,5 +1,16 @@
 # @osdk/internal.foundry.core
 
+## 2.30.0
+
+### Minor Changes
+
+- 763137d: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [763137d]
+  - @osdk/internal.foundry.geo@2.30.0
+
 ## 2.29.0
 
 ### Minor Changes
