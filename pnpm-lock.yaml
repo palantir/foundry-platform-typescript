@@ -543,8 +543,11 @@ importers:
         specifier: workspace:~
         version: link:../shared.net.platformapi
     devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.5.4
         version: 5.5.4
 
   packages/foundry.mediasets:
@@ -831,14 +834,17 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
         version: link:../shared.net.platformapi
     devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
       typescript:
-        specifier: ^5.4.5
+        specifier: ^5.5.4
         version: 5.5.4
 
   packages/gotham.core:

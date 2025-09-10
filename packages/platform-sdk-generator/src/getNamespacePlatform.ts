@@ -19,7 +19,9 @@ export function getNamespacePlatform(ns?: string): string {
     return "foundry";
   }
 
-  const namespaceMapping: { [key: string]: string } = {
+  const namespaceMapping: {
+    [key: string]: "foundry" | "gotham" | "both" | "skipped";
+  } = {
     "Core": "both",
     "TargetWorkbench": "gotham",
     "Gaia": "gotham",
@@ -27,7 +29,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Geojson": "gotham",
     "Admin": "foundry",
     "AipAgents": "foundry",
-    "Appkit": "gotham",
+    "Appkit": "skipped",
     "Audit": "foundry",
     "Connectivity": "foundry",
     "DataHealth": "foundry",

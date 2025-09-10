@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-export * as Appkit from "@osdk/gotham.appkit";
 export * as Core from "@osdk/gotham.core";
 export * as Gaia from "@osdk/gotham.gaia";
 export * as Geojson from "@osdk/gotham.geojson";
