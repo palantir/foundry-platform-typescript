@@ -98,7 +98,10 @@ export type {
   InvalidBranchName,
   InvalidTransactionType,
   InvalidViewBackingDataset,
+  InvalidViewPrimaryKeyColumnType,
+  InvalidViewPrimaryKeyDeletionColumn,
   JobTransactionPermissionDenied,
+  NotAllColumnsInPrimaryKeyArePresent,
   OpenTransactionAlreadyExists,
   PutDatasetSchemaPermissionDenied,
   PutSchemaPermissionDenied,
@@ -116,6 +119,7 @@ export type {
   ViewDatasetCleanupFailed,
   ViewNotFound,
   ViewPrimaryKeyCannotBeModified,
+  ViewPrimaryKeyDeletionColumnNotInDatasetSchema,
   ViewPrimaryKeyMustContainAtLeastOneColumn,
   ViewPrimaryKeyRequiresBackingDatasets,
 } from "./_errors.js";

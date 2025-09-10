@@ -21,6 +21,7 @@ export type {
   GetMediaItemRidByPathResponse,
   LogicalTimestamp,
   MediaAttribution,
+  MediaItemXmlFormat,
   MediaSet,
   MediaSetName,
   PutMediaItemResponse,
@@ -29,8 +30,14 @@ export type {
 export type {
   ConflictingMediaSetIdentifiers,
   GetMediaItemRidByPathPermissionDenied,
+  InvalidMediaItemSchema,
+  MediaItemHasUnsupportedSecuritySettings,
+  MediaItemImageUnparsable,
+  MediaItemIsPasswordProtected,
   MediaItemNotFound,
+  MediaItemXmlUnparsable,
   MediaSetNotFound,
+  MissingMediaItemContent,
   MissingMediaItemPath,
 } from "./_errors.js";
 export * as MediaSets from "./public/MediaSet.js";

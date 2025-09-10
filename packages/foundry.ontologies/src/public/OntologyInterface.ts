@@ -320,3 +320,67 @@ export function getOutgoingInterfaceLinkType(
 ): Promise<_Ontologies.InterfaceLinkType> {
   return $foundryPlatformFetch($ctx, _getOutgoingInterfaceLinkType, ...args);
 }
+
+const _listInterfaceLinkedObjects: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+    interfaceLinkType: _Ontologies.InterfaceLinkTypeApiName,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    $queryParams: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      select: Array<_Ontologies.SelectedPropertyApiName>;
+      orderBy?: _Ontologies.OrderBy | undefined;
+      excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.ListInterfaceLinkedObjectsResponse>
+> = [0, "/v2/ontologies/{0}/interfaces/{1}/{2}/{3}/links/{4}", 2];
+
+/**
+ * Lists the linked objects for a specific object and the given interface link type.
+ *
+ * Note that this endpoint does not guarantee consistency. Changes to the data could result in missing or
+ * repeated objects in the response pages.
+ *
+ * For Object Storage V1 backed objects, this endpoint returns a maximum of 10,000 objects. After 10,000 objects have been returned and if more objects
+ * are available, attempting to load another page will result in an `ObjectsExceededLimit` error being returned. There is no limit on Object Storage V2 backed objects.
+ *
+ * Each page may be smaller or larger than the requested page size. However, it
+ * is guaranteed that if there are more results available, at least one result will be present
+ * in the response.
+ *
+ * Note that null value properties will not be returned.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/interfaces/{interfaceType}/{objectType}/{primaryKey}/links/{interfaceLinkType}
+ */
+export function listInterfaceLinkedObjects(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    interfaceType: _Ontologies.InterfaceTypeApiName,
+    interfaceLinkType: _Ontologies.InterfaceLinkTypeApiName,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+
+    $queryParams: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      select: Array<_Ontologies.SelectedPropertyApiName>;
+      orderBy?: _Ontologies.OrderBy | undefined;
+      excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.ListInterfaceLinkedObjectsResponse> {
+  return $foundryPlatformFetch($ctx, _listInterfaceLinkedObjects, ...args);
+}

@@ -259,6 +259,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getOutgoingInterfaceLinkType": {
       "variables": {},
     },
+    "v2.listInterfaceLinkedObjects": {
+      "variables": {},
+    },
     "v2.applyActionV2": {
       "variables": {},
     },
@@ -859,6 +862,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getCheck": {
       "variables": {},
     },
+    "v2.getDocument": {
+      "variables": {},
+    },
     "v2.createStreamingDataset": {
       "variables": {},
     },
@@ -878,6 +884,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.resetStream": {
+      "variables": {},
+    },
+    "v2.anthropicMessages": {
       "variables": {},
     },
     "v2.createModel": {

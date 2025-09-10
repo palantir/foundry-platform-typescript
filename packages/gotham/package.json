@@ -27,6 +27,7 @@
     "transpile": "monorepo.tool.transpile"
   },
   "dependencies": {
+    "@osdk/gotham.appkit": "workspace:*",
     "@osdk/gotham.core": "workspace:*",
     "@osdk/gotham.gaia": "workspace:*",
     "@osdk/gotham.geojson": "workspace:*",
@@ -56,7 +57,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1285.0",
+        "minVersion": "1.1293.0",
         "maxVersion": "1.x.x",
         "optional": false
       }
