@@ -1,5 +1,17 @@
 # @osdk/gotham.gaia
 
+## 0.4.0
+
+### Minor Changes
+
+- 85be85a: Regenerated SDKs
+
+### Patch Changes
+
+- Updated dependencies [85be85a]
+  - @osdk/gotham.geojson@0.4.0
+  - @osdk/gotham.core@0.4.0
+
 ## 0.3.0
 
 ### Minor Changes
