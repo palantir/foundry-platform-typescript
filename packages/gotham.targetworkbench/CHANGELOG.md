@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.4.0
+
+### Minor Changes
+
+- 85be85a: Regenerated SDKs
+
+### Patch Changes
+
+- Updated dependencies [85be85a]
+  - @osdk/gotham.core@0.4.0
+
 ## 0.3.0
 
 ### Minor Changes
