@@ -27,7 +27,6 @@
     "transpile": "monorepo.tool.transpile"
   },
   "dependencies": {
-    "@osdk/gotham.appkit": "workspace:*",
     "@osdk/gotham.core": "workspace:*",
     "@osdk/gotham.gaia": "workspace:*",
     "@osdk/gotham.geojson": "workspace:*",
