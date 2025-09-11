@@ -128,6 +128,38 @@ export interface InvalidDevModeBaseHref {
 }
 
 /**
+   * The dev mode settings contains too many CSS entrypoints. You must limit the number
+of CSS entrypoints to the maximum allowed.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidDevModeEntrypointCssCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDevModeEntrypointCssCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    entrypointCssCount: unknown;
+  };
+}
+
+/**
+   * The dev mode settings contains too many JavaScript entrypoints. You must limit the number
+of JavaScript entrypoints to the maximum allowed.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidDevModeEntrypointJsCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDevModeEntrypointJsCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    entrypointJsCount: unknown;
+  };
+}
+
+/**
    * The dev mode settings contains an invalid entrypoint file path. The file path must be a
 valid localhost URL with an optional port and a file path.
    *
@@ -138,6 +170,7 @@ export interface InvalidDevModeFilePath {
   errorName: "InvalidDevModeFilePath";
   errorInstanceId: string;
   parameters: {
+    reason: unknown;
     filePath: unknown;
   };
 }
@@ -159,7 +192,7 @@ export interface InvalidDevModeWidgetSettingsCount {
 }
 
 /**
-   * The dev mode settings contains too many CSS entrypoints. You must limit the number
+   * The widget declares too many CSS entrypoints. You must limit the number
 of CSS entrypoints to the maximum allowed.
    *
    * Log Safety: SAFE
@@ -175,7 +208,7 @@ export interface InvalidEntrypointCssCount {
 }
 
 /**
-   * The dev mode settings contains too many JavaScript entrypoints. You must limit the number
+   * The widget declares too many JavaScript entrypoints. You must limit the number
 of JavaScript entrypoints to the maximum allowed.
    *
    * Log Safety: SAFE
@@ -191,10 +224,85 @@ export interface InvalidEntrypointJsCount {
 }
 
 /**
+ * The widget config contains too many events.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidEventCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEventCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    eventCount: unknown;
+  };
+}
+
+/**
+ * The event display name is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidEventDisplayName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEventDisplayName";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    eventDisplayName: unknown;
+  };
+}
+
+/**
+ * The event id is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidEventId {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEventId";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    eventId: unknown;
+  };
+}
+
+/**
+ * The event references an invalid parameter id.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidEventParameterUpdateId {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEventParameterUpdateId";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    parameterUpdateId: unknown;
+  };
+}
+
+/**
+ * The widget declares an invalid production entrypoint file path.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidFilePath {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidFilePath";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    filePath: unknown;
+  };
+}
+
+/**
    * The manifest file in the .zip archive at the path .palantir/widgets.config.json
 could not be found or is not well formed.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: SAFE
    */
 export interface InvalidManifest {
   errorCode: "INVALID_ARGUMENT";
@@ -202,6 +310,51 @@ export interface InvalidManifest {
   errorInstanceId: string;
   parameters: {
     reason: unknown;
+  };
+}
+
+/**
+ * The widget config contains too many parameters.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidParameterCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidParameterCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    parameterCount: unknown;
+  };
+}
+
+/**
+ * The parameter display name is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidParameterDisplayName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidParameterDisplayName";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    parameterDisplayName: unknown;
+  };
+}
+
+/**
+ * The parameter id is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidParameterId {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidParameterId";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    parameterId: unknown;
   };
 }
 
@@ -218,6 +371,36 @@ export interface InvalidPublishRepository {
 }
 
 /**
+ * The release description is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidReleaseDescription {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidReleaseDescription";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    releaseDescription: unknown;
+  };
+}
+
+/**
+ * The release contains zero widgets or too many widgets.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidReleaseWidgetsCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidReleaseWidgetsCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    widgetsCount: unknown;
+  };
+}
+
+/**
    * The given version is invalid. Versions must follow semantic versioning with major, minor,
 and patch versions separate by periods, e.g. 0.1.0 or 1.2.3.
    *
@@ -229,6 +412,66 @@ export interface InvalidVersion {
   errorInstanceId: string;
   parameters: {
     version: unknown;
+  };
+}
+
+/**
+ * The widget description is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidWidgetDescription {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidWidgetDescription";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    widgetDescription: unknown;
+  };
+}
+
+/**
+ * The widget id is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidWidgetId {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidWidgetId";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    widgetId: unknown;
+  };
+}
+
+/**
+ * The widget name is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidWidgetName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidWidgetName";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    widgetName: unknown;
+  };
+}
+
+/**
+ * A referenced Ontology SDK package could not be found.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OntologySdkNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "OntologySdkNotFound";
+  errorInstanceId: string;
+  parameters: {
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
   };
 }
 
@@ -337,6 +580,21 @@ export interface VersionLimitExceeded {
   errorInstanceId: string;
   parameters: {
     versionLimit: unknown;
+  };
+}
+
+/**
+   * The widget set contains too many widgets. You must delete another widget before
+creating a new one.
+   *
+   * Log Safety: SAFE
+   */
+export interface WidgetLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "WidgetLimitExceeded";
+  errorInstanceId: string;
+  parameters: {
+    widgetLimit: unknown;
   };
 }
 

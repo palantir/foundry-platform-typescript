@@ -203,6 +203,9 @@ importers:
       '@osdk/foundry.geojson':
         specifier: workspace:*
         version: link:../foundry.geojson
+      '@osdk/foundry.languagemodels':
+        specifier: workspace:*
+        version: link:../foundry.languagemodels
       '@osdk/foundry.mediasets':
         specifier: workspace:*
         version: link:../foundry.mediasets
@@ -508,6 +511,28 @@ importers:
 
   packages/foundry.geojson:
     dependencies:
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/foundry.languagemodels:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

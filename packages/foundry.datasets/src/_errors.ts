@@ -475,6 +475,37 @@ export interface InvalidViewBackingDataset {
 }
 
 /**
+   * The type of each referenced column in the primary key must be one of the following: BYTE, SHORT, DECIMAL,
+INTEGER, LONG, STRING, BOOLEAN, TIMESTAMP or DATE.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidViewPrimaryKeyColumnType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidViewPrimaryKeyColumnType";
+  errorInstanceId: string;
+  parameters: {
+    primaryKeyColumns: unknown;
+    invalidColumns: unknown;
+  };
+}
+
+/**
+ * The deletion column must be a boolean.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidViewPrimaryKeyDeletionColumn {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidViewPrimaryKeyDeletionColumn";
+  errorInstanceId: string;
+  parameters: {
+    deletionColumn: unknown;
+    deletionColumnType: unknown;
+  };
+}
+
+/**
  * Could not job the Transaction.
  *
  * Log Safety: SAFE
@@ -486,6 +517,21 @@ export interface JobTransactionPermissionDenied {
   parameters: {
     datasetRid: unknown;
     transactionRid: unknown;
+  };
+}
+
+/**
+ * Not all columns in the View's primary key are present in the dataset(s).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NotAllColumnsInPrimaryKeyArePresent {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "NotAllColumnsInPrimaryKeyArePresent";
+  errorInstanceId: string;
+  parameters: {
+    primaryKeyColumns: unknown;
+    missingColumns: unknown;
   };
 }
 
@@ -738,6 +784,20 @@ export interface ViewPrimaryKeyCannotBeModified {
   errorName: "ViewPrimaryKeyCannotBeModified";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The deletion column is not present in the dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ViewPrimaryKeyDeletionColumnNotInDatasetSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ViewPrimaryKeyDeletionColumnNotInDatasetSchema";
+  errorInstanceId: string;
+  parameters: {
+    deletionColumn: unknown;
+  };
 }
 
 /**

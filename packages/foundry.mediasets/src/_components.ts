@@ -71,6 +71,13 @@ export interface MediaAttribution {
 }
 
 /**
+ * Format of the media item attempted to be decoded based on the XML structure.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaItemXmlFormat = "DOCX" | "XLSX" | "PPTX";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface MediaSet {

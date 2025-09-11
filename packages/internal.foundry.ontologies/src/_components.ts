@@ -1719,6 +1719,22 @@ export interface LeastPropertyExpression {
 }
 
 /**
+   * The unique ID of an object type. This is a legacy identifier and is not recommended for use in new applications.
+To find the ID for your Object Type, check the Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
+export type LegacyObjectTypeId = LooselyBrandedString<"LegacyObjectTypeId">;
+
+/**
+   * The unique ID of a property. This is a legacy identifier and is not recommended for use in new applications.
+To find the ID for your property, check the Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
+export type LegacyPropertyId = LooselyBrandedString<"LegacyPropertyId">;
+
+/**
  * Log Safety: SAFE
  */
 export interface LengthConstraint {
@@ -1831,6 +1847,14 @@ export interface ListActionTypesResponseV2 {
  */
 export interface ListAttachmentsResponseV2 {
   data: Array<AttachmentV2>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListInterfaceLinkedObjectsResponse {
+  data: Array<OntologyObjectV2>;
   nextPageToken?: _Core.PageToken;
 }
 
@@ -2603,6 +2627,7 @@ export type ObjectState = "ADDED_OR_UPDATED" | "REMOVED";
  */
 export interface ObjectType {
   apiName: ObjectTypeApiName;
+  legacyObjectTypeId?: LegacyObjectTypeId;
   displayName?: _Core.DisplayName;
   status: _Core.ReleaseStatus;
   description?: string;
@@ -3117,6 +3142,7 @@ export interface Property {
   description?: string;
   displayName?: _Core.DisplayName;
   baseType: ValueType;
+  legacyPropertyId?: LegacyPropertyId;
 }
 
 /**

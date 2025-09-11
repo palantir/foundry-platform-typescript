@@ -45,6 +45,66 @@ export interface GetMediaItemRidByPathPermissionDenied {
 }
 
 /**
+ * The media item does not match the schema of the media set.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidMediaItemSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidMediaItemSchema";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+    path: unknown;
+  };
+}
+
+/**
+ * The file cannot be read because it contains unsupported security settings (for example, public-key security handlers in a PDF).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MediaItemHasUnsupportedSecuritySettings {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MediaItemHasUnsupportedSecuritySettings";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+    path: unknown;
+  };
+}
+
+/**
+ * The file cannot be parsed as an image.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MediaItemImageUnparsable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MediaItemImageUnparsable";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+    path: unknown;
+  };
+}
+
+/**
+ * The file cannot be read because it is password protected.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MediaItemIsPasswordProtected {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MediaItemIsPasswordProtected";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+    path: unknown;
+  };
+}
+
+/**
  * The requested media item could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
@@ -60,6 +120,22 @@ export interface MediaItemNotFound {
 }
 
 /**
+ * The document cannot be parsed due to an unrecognized XML structure.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MediaItemXmlUnparsable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MediaItemXmlUnparsable";
+  errorInstanceId: string;
+  parameters: {
+    mediaItemXmlFormat: unknown;
+    mediaSetRid: unknown;
+    path: unknown;
+  };
+}
+
+/**
  * The requested media set could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
@@ -70,6 +146,21 @@ export interface MediaSetNotFound {
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
+  };
+}
+
+/**
+ * The file has no bytes.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MissingMediaItemContent {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingMediaItemContent";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+    path: unknown;
   };
 }
 
