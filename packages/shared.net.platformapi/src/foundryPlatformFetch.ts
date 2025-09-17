@@ -151,6 +151,7 @@ async function apiFetch(
         convertedError.message,
         convertedError.errorName,
         convertedError.errorCode,
+        convertedError.errorDescription,
         response.status,
         convertedError.errorInstanceId,
         convertedError.parameters,

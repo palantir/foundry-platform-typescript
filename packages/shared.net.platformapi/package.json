@@ -30,7 +30,7 @@
   "dependencies": {
     "@osdk/shared.client": "^1.0.1",
     "@osdk/shared.client2": "^1.0.0",
-    "@osdk/shared.net.errors": "^2.0.1"
+    "@osdk/shared.net.errors": "2.5.0-beta.2"
   },
   "devDependencies": {
     "@osdk/monorepo.api-extractor": "workspace:~",
