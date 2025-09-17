@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface ExecuteQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ExecuteQueryPermissionDenied";
+  errorDescription: "Could not execute the Query.";
   errorInstanceId: string;
   parameters: {
     queryApiName: unknown;
@@ -40,6 +41,7 @@ export interface ExecuteQueryPermissionDenied {
 export interface GetByRidQueriesPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetByRidQueriesPermissionDenied";
+  errorDescription: "Could not getByRid the Query.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -53,6 +55,8 @@ output type or constraints.
 export interface InvalidQueryOutputValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidQueryOutputValue";
+  errorDescription:
+    "The value of the query's output is invalid. This may be because the return value did not match the specified output type or constraints.";
   errorInstanceId: string;
   parameters: {
     outputDataType: unknown;
@@ -71,6 +75,8 @@ how parameters are represented.
 export interface InvalidQueryParameterValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidQueryParameterValue";
+  errorDescription:
+    "The value of the given parameter is invalid. See the documentation of DataValue for details on how parameters are represented.";
   errorInstanceId: string;
   parameters: {
     parameterDataType: unknown;
@@ -88,6 +94,8 @@ missing from the request.
 export interface MissingParameter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingParameter";
+  errorDescription:
+    "Required parameters are missing. Please look at the parameters field to see which required parameters are missing from the request.";
   errorInstanceId: string;
   parameters: {
     parameters: unknown;
@@ -103,6 +111,8 @@ is meant to be displayed to the user.
 export interface QueryEncounteredUserFacingError {
   errorCode: "CONFLICT";
   errorName: "QueryEncounteredUserFacingError";
+  errorDescription:
+    "The authored Query failed to execute because of a user induced error. The message argument is meant to be displayed to the user.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -119,6 +129,7 @@ export interface QueryEncounteredUserFacingError {
 export interface QueryMemoryExceededLimit {
   errorCode: "TIMEOUT";
   errorName: "QueryMemoryExceededLimit";
+  errorDescription: "Memory limits were exceeded for the Query execution.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -134,6 +145,7 @@ export interface QueryMemoryExceededLimit {
 export interface QueryNotFound {
   errorCode: "NOT_FOUND";
   errorName: "QueryNotFound";
+  errorDescription: "The given Query could not be found.";
   errorInstanceId: string;
   parameters: {
     queryApiName: unknown;
@@ -148,6 +160,8 @@ export interface QueryNotFound {
 export interface QueryRuntimeError {
   errorCode: "INVALID_ARGUMENT";
   errorName: "QueryRuntimeError";
+  errorDescription:
+    "The authored Query failed to execute because of a runtime error.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -166,6 +180,7 @@ export interface QueryRuntimeError {
 export interface QueryTimeExceededLimit {
   errorCode: "TIMEOUT";
   errorName: "QueryTimeExceededLimit";
+  errorDescription: "Time limits were exceeded for the Query execution.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -181,6 +196,7 @@ export interface QueryTimeExceededLimit {
 export interface QueryVersionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "QueryVersionNotFound";
+  errorDescription: "The query could not be found at the provided version.";
   errorInstanceId: string;
   parameters: {
     apiName: unknown;
@@ -197,6 +213,8 @@ to see which ones are available.
 export interface UnknownParameter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UnknownParameter";
+  errorDescription:
+    "The provided parameters were not found. Please look at the knownParameters field to see which ones are available.";
   errorInstanceId: string;
   parameters: {
     unknownParameters: unknown;
@@ -212,6 +230,7 @@ export interface UnknownParameter {
 export interface ValueTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ValueTypeNotFound";
+  errorDescription: "The given ValueType could not be found.";
   errorInstanceId: string;
   parameters: {
     valueTypeRid: unknown;
@@ -226,6 +245,7 @@ export interface ValueTypeNotFound {
 export interface VersionIdNotFound {
   errorCode: "NOT_FOUND";
   errorName: "VersionIdNotFound";
+  errorDescription: "The given VersionId could not be found.";
   errorInstanceId: string;
   parameters: {
     valueTypeRid: unknown;

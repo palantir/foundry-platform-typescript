@@ -27,6 +27,8 @@ if the provided token has permission to view it.
 export interface CheckAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "CheckAlreadyExists";
+  errorDescription:
+    "A check of the given type for the given subject(s) already exists. The conflicting check will be returned if the provided token has permission to view it.";
   errorInstanceId: string;
   parameters: {
     conflictingCheck: unknown;
@@ -41,6 +43,7 @@ export interface CheckAlreadyExists {
 export interface CheckNotFound {
   errorCode: "NOT_FOUND";
   errorName: "CheckNotFound";
+  errorDescription: "The given Check could not be found.";
   errorInstanceId: string;
   parameters: {
     checkRid: unknown;
@@ -55,6 +58,7 @@ export interface CheckNotFound {
 export interface CreateCheckPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateCheckPermissionDenied";
+  errorDescription: "Could not create the Check.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -67,6 +71,7 @@ export interface CreateCheckPermissionDenied {
 export interface DeleteCheckPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteCheckPermissionDenied";
+  errorDescription: "Could not delete the Check.";
   errorInstanceId: string;
   parameters: {
     checkRid: unknown;
@@ -81,6 +86,8 @@ export interface DeleteCheckPermissionDenied {
 export interface InvalidTimeCheckConfig {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidTimeCheckConfig";
+  errorDescription:
+    "The TimeCheckConfig is invalid. It must contain at least one of timeBounds or medianDeviation.";
   errorInstanceId: string;
   parameters: {};
 }

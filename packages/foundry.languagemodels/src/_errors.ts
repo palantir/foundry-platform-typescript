@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface AnthropicMessagesPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AnthropicMessagesPermissionDenied";
+  errorDescription: "Could not messages the AnthropicModel.";
   errorInstanceId: string;
   parameters: {
     anthropicModelModelId: unknown;
@@ -40,6 +41,8 @@ export interface AnthropicMessagesPermissionDenied {
 export interface MultipleSystemPromptsNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MultipleSystemPromptsNotSupported";
+  errorDescription:
+    "Multiple system prompts are not currently supported, but will be in the future.";
   errorInstanceId: string;
   parameters: {
     systemPromptSize: unknown;
@@ -54,6 +57,8 @@ export interface MultipleSystemPromptsNotSupported {
 export interface MultipleToolResultContentsNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MultipleToolResultContentsNotSupported";
+  errorDescription:
+    "Multiple tool result contents are not currently supported, but will be in the future.";
   errorInstanceId: string;
   parameters: {
     toolResultContentsSize: unknown;

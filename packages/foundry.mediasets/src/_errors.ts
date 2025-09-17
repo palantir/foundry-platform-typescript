@@ -26,6 +26,8 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface ConflictingMediaSetIdentifiers {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ConflictingMediaSetIdentifiers";
+  errorDescription:
+    "Client provided more than one of branch name, branch rid, or view rid as arguments.  Only one may be specified.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -38,6 +40,8 @@ export interface ConflictingMediaSetIdentifiers {
 export interface GetMediaItemRidByPathPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetMediaItemRidByPathPermissionDenied";
+  errorDescription:
+    "The token does not have permission to view paths in this media set.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -52,6 +56,8 @@ export interface GetMediaItemRidByPathPermissionDenied {
 export interface InvalidMediaItemSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidMediaItemSchema";
+  errorDescription:
+    "The media item does not match the schema of the media set.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -67,6 +73,8 @@ export interface InvalidMediaItemSchema {
 export interface MediaItemHasUnsupportedSecuritySettings {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MediaItemHasUnsupportedSecuritySettings";
+  errorDescription:
+    "The file cannot be read because it contains unsupported security settings (for example, public-key security handlers in a PDF).";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -82,6 +90,7 @@ export interface MediaItemHasUnsupportedSecuritySettings {
 export interface MediaItemImageUnparsable {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MediaItemImageUnparsable";
+  errorDescription: "The file cannot be parsed as an image.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -97,6 +106,7 @@ export interface MediaItemImageUnparsable {
 export interface MediaItemIsPasswordProtected {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MediaItemIsPasswordProtected";
+  errorDescription: "The file cannot be read because it is password protected.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -112,6 +122,8 @@ export interface MediaItemIsPasswordProtected {
 export interface MediaItemNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MediaItemNotFound";
+  errorDescription:
+    "The requested media item could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -127,6 +139,8 @@ export interface MediaItemNotFound {
 export interface MediaItemXmlUnparsable {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MediaItemXmlUnparsable";
+  errorDescription:
+    "The document cannot be parsed due to an unrecognized XML structure.";
   errorInstanceId: string;
   parameters: {
     mediaItemXmlFormat: unknown;
@@ -143,6 +157,8 @@ export interface MediaItemXmlUnparsable {
 export interface MediaSetNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MediaSetNotFound";
+  errorDescription:
+    "The requested media set could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -157,6 +173,7 @@ export interface MediaSetNotFound {
 export interface MissingMediaItemContent {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingMediaItemContent";
+  errorDescription: "The file has no bytes.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -172,6 +189,8 @@ export interface MissingMediaItemContent {
 export interface MissingMediaItemPath {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingMediaItemPath";
+  errorDescription:
+    "The given media set requires paths but no path was provided.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;

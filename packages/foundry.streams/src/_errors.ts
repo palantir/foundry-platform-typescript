@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface CannotCreateStreamingDatasetInUserFolder {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CannotCreateStreamingDatasetInUserFolder";
+  errorDescription: "Cannot create a streaming dataset in a user folder.";
   errorInstanceId: string;
   parameters: {
     parentFolderRid: unknown;
@@ -40,6 +41,7 @@ export interface CannotCreateStreamingDatasetInUserFolder {
 export interface CannotWriteToTrashedStream {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CannotWriteToTrashedStream";
+  errorDescription: "Cannot write to a stream that is in the trash.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -54,6 +56,7 @@ export interface CannotWriteToTrashedStream {
 export interface CreateStreamingDatasetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateStreamingDatasetPermissionDenied";
+  errorDescription: "Could not create the Dataset.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -66,6 +69,7 @@ export interface CreateStreamingDatasetPermissionDenied {
 export interface CreateStreamPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateStreamPermissionDenied";
+  errorDescription: "Could not create the Stream.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -81,6 +85,7 @@ export interface CreateStreamPermissionDenied {
 export interface FailedToProcessBinaryRecord {
   errorCode: "INTERNAL";
   errorName: "FailedToProcessBinaryRecord";
+  errorDescription: "The byte stream could not be processed.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -93,6 +98,8 @@ export interface FailedToProcessBinaryRecord {
 export interface InvalidStreamNoSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidStreamNoSchema";
+  errorDescription:
+    "The requested stream exists but is invalid, as it does not have a schema.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -109,6 +116,7 @@ export interface InvalidStreamNoSchema {
 export interface InvalidStreamType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidStreamType";
+  errorDescription: "The stream type is invalid.";
   errorInstanceId: string;
   parameters: {
     streamType: unknown;
@@ -123,6 +131,7 @@ export interface InvalidStreamType {
 export interface PublishBinaryRecordToStreamPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PublishBinaryRecordToStreamPermissionDenied";
+  errorDescription: "Could not publishBinaryRecord the Stream.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -138,6 +147,7 @@ export interface PublishBinaryRecordToStreamPermissionDenied {
 export interface PublishRecordsToStreamPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PublishRecordsToStreamPermissionDenied";
+  errorDescription: "Could not publishRecords the Stream.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -153,6 +163,7 @@ export interface PublishRecordsToStreamPermissionDenied {
 export interface PublishRecordToStreamPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PublishRecordToStreamPermissionDenied";
+  errorDescription: "Could not publishRecord the Stream.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -168,6 +179,7 @@ export interface PublishRecordToStreamPermissionDenied {
 export interface RecordDoesNotMatchStreamSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "RecordDoesNotMatchStreamSchema";
+  errorDescription: "A provided record does not match the stream schema";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -184,6 +196,8 @@ export interface RecordDoesNotMatchStreamSchema {
 export interface RecordTooLarge {
   errorCode: "REQUEST_ENTITY_TOO_LARGE";
   errorName: "RecordTooLarge";
+  errorDescription:
+    "A record is too large to be published to the stream. On most enrollments, the maximum record size is 1MB.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -196,6 +210,7 @@ export interface RecordTooLarge {
 export interface ResetStreamPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ResetStreamPermissionDenied";
+  errorDescription: "Could not reset the Stream.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -211,6 +226,7 @@ export interface ResetStreamPermissionDenied {
 export interface StreamNotFound {
   errorCode: "NOT_FOUND";
   errorName: "StreamNotFound";
+  errorDescription: "The given Stream could not be found.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -226,6 +242,8 @@ export interface StreamNotFound {
 export interface ViewNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ViewNotFound";
+  errorDescription:
+    "No view for the provided view rid provided could be found.";
   errorInstanceId: string;
   parameters: {
     viewRid: unknown;

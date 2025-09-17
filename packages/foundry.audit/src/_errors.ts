@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface GetLogFileContentPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetLogFileContentPermissionDenied";
+  errorDescription: "Could not content the LogFile.";
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
@@ -41,6 +42,8 @@ export interface GetLogFileContentPermissionDenied {
 export interface ListLogFilesPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListLogFilesPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to list audit log files.";
   errorInstanceId: string;
   parameters: {};
 }

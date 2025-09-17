@@ -27,6 +27,8 @@ parameters to call this endpoint.
 export interface ApiFeaturePreviewUsageOnly {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ApiFeaturePreviewUsageOnly";
+  errorDescription:
+    "This feature is only supported in preview mode. Please use preview=true in the query parameters to call this endpoint.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -39,6 +41,7 @@ export interface ApiFeaturePreviewUsageOnly {
 export interface ApiUsageDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ApiUsageDenied";
+  errorDescription: "You are not allowed to use Palantir APIs.";
   errorInstanceId: string;
   parameters: {
     missingScope: unknown;
@@ -53,6 +56,7 @@ export interface ApiUsageDenied {
 export interface BatchRequestSizeExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "BatchRequestSizeExceededLimit";
+  errorDescription: "The submitted batch request was too large.";
   errorInstanceId: string;
   parameters: {
     maximumBatchSize: unknown;
@@ -68,6 +72,8 @@ export interface BatchRequestSizeExceededLimit {
 export interface FolderNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FolderNotFound";
+  errorDescription:
+    "The requested folder could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     folderRid: unknown;
@@ -82,6 +88,8 @@ export interface FolderNotFound {
 export interface FoundryBranchNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FoundryBranchNotFound";
+  errorDescription:
+    "The requested foundry branch could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     branch: unknown;
@@ -96,6 +104,8 @@ export interface FoundryBranchNotFound {
 export interface InvalidAndFilter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAndFilter";
+  errorDescription:
+    "The provided AND filter should have at least one sub-filter.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -108,6 +118,7 @@ export interface InvalidAndFilter {
 export interface InvalidChangeDataCaptureConfiguration {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidChangeDataCaptureConfiguration";
+  errorDescription: "The change data capture configuration is invalid.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -120,6 +131,7 @@ export interface InvalidChangeDataCaptureConfiguration {
 export interface InvalidFieldSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidFieldSchema";
+  errorDescription: "The field schema failed validations";
   errorInstanceId: string;
   parameters: {
     fieldName: unknown;
@@ -135,6 +147,7 @@ export interface InvalidFieldSchema {
 export interface InvalidFilterValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidFilterValue";
+  errorDescription: "The provided filter value is invalid.";
   errorInstanceId: string;
   parameters: {
     field: unknown;
@@ -151,6 +164,8 @@ export interface InvalidFilterValue {
 export interface InvalidOrFilter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidOrFilter";
+  errorDescription:
+    "The provided OR filter should have at least one sub-filter.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -163,6 +178,8 @@ export interface InvalidOrFilter {
 export interface InvalidPageSize {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPageSize";
+  errorDescription:
+    "The provided page size was zero or negative. Page sizes must be greater than zero.";
   errorInstanceId: string;
   parameters: {
     pageSize: unknown;
@@ -177,6 +194,7 @@ export interface InvalidPageSize {
 export interface InvalidPageToken {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPageToken";
+  errorDescription: "The provided page token is invalid.";
   errorInstanceId: string;
   parameters: {
     pageToken: unknown;
@@ -191,6 +209,8 @@ export interface InvalidPageToken {
 export interface InvalidParameterCombination {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameterCombination";
+  errorDescription:
+    "The given parameters are individually valid but cannot be used in the given combination.";
   errorInstanceId: string;
   parameters: {
     validCombinations: unknown;
@@ -206,6 +226,7 @@ export interface InvalidParameterCombination {
 export interface InvalidSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidSchema";
+  errorDescription: "The schema failed validations";
   errorInstanceId: string;
   parameters: {
     errorType: unknown;
@@ -221,6 +242,7 @@ export interface InvalidSchema {
 export interface InvalidTimeZone {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidTimeZone";
+  errorDescription: "The time zone is invalid.";
   errorInstanceId: string;
   parameters: {
     timeZone: unknown;
@@ -235,6 +257,7 @@ export interface InvalidTimeZone {
 export interface MissingBatchRequest {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingBatchRequest";
+  errorDescription: "Batch requests must contain at least one element.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -247,6 +270,8 @@ export interface MissingBatchRequest {
 export interface MissingPostBody {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingPostBody";
+  errorDescription:
+    "A post body is required for this endpoint, but was not found in the request.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -259,6 +284,8 @@ export interface MissingPostBody {
 export interface ResourceNameAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "ResourceNameAlreadyExists";
+  errorDescription:
+    "The provided resource name is already in use by another resource in the same folder.";
   errorInstanceId: string;
   parameters: {
     parentFolderRid: unknown;
@@ -274,6 +301,8 @@ export interface ResourceNameAlreadyExists {
 export interface SchemaIsNotStreamSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "SchemaIsNotStreamSchema";
+  errorDescription:
+    "The requested schema could not be converted into a stream schema.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -286,6 +315,7 @@ export interface SchemaIsNotStreamSchema {
 export interface UnknownDistanceUnit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UnknownDistanceUnit";
+  errorDescription: "An unknown distance unit was provided.";
   errorInstanceId: string;
   parameters: {
     unknownUnit: unknown;

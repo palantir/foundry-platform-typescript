@@ -26,6 +26,8 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface CannotDeleteDeployedVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CannotDeleteDeployedVersion";
+  errorDescription:
+    "The given website version is deployed. You must un-deploy it before deleting it.";
   errorInstanceId: string;
   parameters: {
     version: unknown;
@@ -40,6 +42,7 @@ export interface CannotDeleteDeployedVersion {
 export interface DeleteVersionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteVersionPermissionDenied";
+  errorDescription: "Could not delete the Version.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;
@@ -55,6 +58,7 @@ export interface DeleteVersionPermissionDenied {
 export interface DeployWebsitePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeployWebsitePermissionDenied";
+  errorDescription: "Could not deploy the Website.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;
@@ -69,6 +73,7 @@ export interface DeployWebsitePermissionDenied {
 export interface FileCountLimitExceeded {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileCountLimitExceeded";
+  errorDescription: "The .zip archive contains too many files.";
   errorInstanceId: string;
   parameters: {
     fileCountLimit: unknown;
@@ -84,6 +89,8 @@ the .zip archive are within the limit.
 export interface FileSizeLimitExceeded {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileSizeLimitExceeded";
+  errorDescription:
+    "A file inside the .zip archive is too big. You must ensure that all files inside the .zip archive are within the limit.";
   errorInstanceId: string;
   parameters: {
     fileSizeBytesLimit: unknown;
@@ -100,6 +107,8 @@ export interface FileSizeLimitExceeded {
 export interface InvalidVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidVersion";
+  errorDescription:
+    "The given website version is invalid. Versions must follow semantic versioning with major, minor, and patch versions separate by periods, e.g. 0.1.0 or 1.2.3.";
   errorInstanceId: string;
   parameters: {
     version: unknown;
@@ -114,6 +123,7 @@ export interface InvalidVersion {
 export interface ThirdPartyApplicationNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ThirdPartyApplicationNotFound";
+  errorDescription: "The given ThirdPartyApplication could not be found.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;
@@ -128,6 +138,7 @@ export interface ThirdPartyApplicationNotFound {
 export interface UndeployWebsitePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UndeployWebsitePermissionDenied";
+  errorDescription: "Could not undeploy the Website.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;
@@ -142,6 +153,7 @@ export interface UndeployWebsitePermissionDenied {
 export interface UploadSnapshotVersionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UploadSnapshotVersionPermissionDenied";
+  errorDescription: "Could not uploadSnapshot the Version.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;
@@ -156,6 +168,7 @@ export interface UploadSnapshotVersionPermissionDenied {
 export interface UploadVersionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UploadVersionPermissionDenied";
+  errorDescription: "Could not upload the Version.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;
@@ -170,6 +183,7 @@ export interface UploadVersionPermissionDenied {
 export interface VersionAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "VersionAlreadyExists";
+  errorDescription: "The given website version already exists.";
   errorInstanceId: string;
   parameters: {
     version: unknown;
@@ -185,6 +199,8 @@ uploading a new one.
 export interface VersionLimitExceeded {
   errorCode: "INVALID_ARGUMENT";
   errorName: "VersionLimitExceeded";
+  errorDescription:
+    "The website contains too many versions. You must delete an old version before uploading a new one.";
   errorInstanceId: string;
   parameters: {
     versionLimit: unknown;
@@ -199,6 +215,7 @@ export interface VersionLimitExceeded {
 export interface VersionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "VersionNotFound";
+  errorDescription: "The given Version could not be found.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;
@@ -214,6 +231,7 @@ export interface VersionNotFound {
 export interface WebsiteNotFound {
   errorCode: "NOT_FOUND";
   errorName: "WebsiteNotFound";
+  errorDescription: "The given Website could not be found.";
   errorInstanceId: string;
   parameters: {
     thirdPartyApplicationRid: unknown;

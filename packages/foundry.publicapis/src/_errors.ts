@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface ApiDefinitionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ApiDefinitionNotFound";
+  errorDescription: "The given ApiDefinition could not be found.";
   errorInstanceId: string;
   parameters: {
     apiDefinitionVersion: unknown;
@@ -40,6 +41,7 @@ export interface ApiDefinitionNotFound {
 export interface OpenApiDefinitionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "OpenApiDefinitionNotFound";
+  errorDescription: "The given OpenApiDefinition could not be found.";
   errorInstanceId: string;
   parameters: {
     openApiDefinitionApiVersion: unknown;

@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface AddArtifactsToMapPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddArtifactsToMapPermissionDenied";
+  errorDescription: "Could not addArtifactsTo the Map.";
   errorInstanceId: string;
   parameters: {
     mapRid: unknown;
@@ -40,6 +41,8 @@ export interface AddArtifactsToMapPermissionDenied {
 export interface ErrorConvertingAppData {
   errorCode: "INTERNAL";
   errorName: "ErrorConvertingAppData";
+  errorDescription:
+    "Failed to convert MapAppData from artifact appData to gaia MapAppData";
   errorInstanceId: string;
   parameters: {
     mapId: unknown;
@@ -54,6 +57,7 @@ export interface ErrorConvertingAppData {
 export interface ErrorExporting {
   errorCode: "INTERNAL";
   errorName: "ErrorExporting";
+  errorDescription: "Failed to export map.";
   errorInstanceId: string;
   parameters: {
     mapId: unknown;
@@ -68,6 +72,7 @@ export interface ErrorExporting {
 export interface ExpectedMapGid {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ExpectedMapGid";
+  errorDescription: "Expected a map Gid.";
   errorInstanceId: string;
   parameters: {
     mapId: unknown;
@@ -82,6 +87,8 @@ export interface ExpectedMapGid {
 export interface InvalidUrlSymbol {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidUrlSymbol";
+  errorDescription:
+    "Url Symbol not supported, must be either IconSymbol or MilsymSymbol.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -94,6 +101,7 @@ export interface InvalidUrlSymbol {
 export interface LoadLayersMapPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "LoadLayersMapPermissionDenied";
+  errorDescription: "Could not loadLayers the Map.";
   errorInstanceId: string;
   parameters: {
     mapRid: unknown;
@@ -108,6 +116,7 @@ export interface LoadLayersMapPermissionDenied {
 export interface LoadMapPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "LoadMapPermissionDenied";
+  errorDescription: "Could not load the Map.";
   errorInstanceId: string;
   parameters: {
     mapRid: unknown;
@@ -122,6 +131,7 @@ export interface LoadMapPermissionDenied {
 export interface LoadWithExtensionMapPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "LoadWithExtensionMapPermissionDenied";
+  errorDescription: "Could not loadWithExtension the Map.";
   errorInstanceId: string;
   parameters: {
     mapRid: unknown;
@@ -136,6 +146,7 @@ export interface LoadWithExtensionMapPermissionDenied {
 export interface MapNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MapNotFound";
+  errorDescription: "Map not found";
   errorInstanceId: string;
   parameters: {
     mapId: unknown;
@@ -150,6 +161,7 @@ export interface MapNotFound {
 export interface SearchMapsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "SearchMapsPermissionDenied";
+  errorDescription: "Could not search the Map.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -162,6 +174,8 @@ export interface SearchMapsPermissionDenied {
 export interface UnknownSymbolType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UnknownSymbolType";
+  errorDescription:
+    "Unknown symbol type not supported, must be either IconSymbol or MilsymSymbol.";
   errorInstanceId: string;
   parameters: {
     unknownType: unknown;

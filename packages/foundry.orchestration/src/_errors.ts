@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface BuildInputsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "BuildInputsNotFound";
+  errorDescription: "The given build inputs could be found.";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -40,6 +41,8 @@ export interface BuildInputsNotFound {
 export interface BuildInputsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "BuildInputsPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to use the given resources as inputs to the build.";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -54,6 +57,7 @@ export interface BuildInputsPermissionDenied {
 export interface BuildNotFound {
   errorCode: "NOT_FOUND";
   errorName: "BuildNotFound";
+  errorDescription: "The given Build could not be found.";
   errorInstanceId: string;
   parameters: {
     buildRid: unknown;
@@ -68,6 +72,7 @@ export interface BuildNotFound {
 export interface BuildTargetsMissingJobSpecs {
   errorCode: "INVALID_ARGUMENT";
   errorName: "BuildTargetsMissingJobSpecs";
+  errorDescription: "The action targets are missing job specs";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -82,6 +87,7 @@ export interface BuildTargetsMissingJobSpecs {
 export interface BuildTargetsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "BuildTargetsNotFound";
+  errorDescription: "The given build targets could not be found.";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -96,6 +102,8 @@ export interface BuildTargetsNotFound {
 export interface BuildTargetsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "BuildTargetsPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to build the given resources.";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -110,6 +118,8 @@ export interface BuildTargetsPermissionDenied {
 export interface BuildTargetsResolutionError {
   errorCode: "INVALID_ARGUMENT";
   errorName: "BuildTargetsResolutionError";
+  errorDescription:
+    "Unable to resolve the given target to a set of targets to build.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -123,6 +133,8 @@ use the force build option when creating the Build.
 export interface BuildTargetsUpToDate {
   errorCode: "INVALID_ARGUMENT";
   errorName: "BuildTargetsUpToDate";
+  errorDescription:
+    "The build targets are up to date and no Build was created. To rebuild the targets regardless, use the force build option when creating the Build.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -135,6 +147,7 @@ export interface BuildTargetsUpToDate {
 export interface CancelBuildPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CancelBuildPermissionDenied";
+  errorDescription: "Could not cancel the Build.";
   errorInstanceId: string;
   parameters: {
     buildRid: unknown;
@@ -149,6 +162,7 @@ export interface CancelBuildPermissionDenied {
 export interface CreateBuildPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateBuildPermissionDenied";
+  errorDescription: "Could not create the Build.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -161,6 +175,7 @@ export interface CreateBuildPermissionDenied {
 export interface CreateSchedulePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateSchedulePermissionDenied";
+  errorDescription: "Could not create the Schedule.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -173,6 +188,7 @@ export interface CreateSchedulePermissionDenied {
 export interface DeleteSchedulePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteSchedulePermissionDenied";
+  errorDescription: "Could not delete the Schedule.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -187,6 +203,7 @@ export interface DeleteSchedulePermissionDenied {
 export interface GetAffectedResourcesSchedulePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetAffectedResourcesSchedulePermissionDenied";
+  errorDescription: "Could not getAffectedResources the Schedule.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -201,6 +218,7 @@ export interface GetAffectedResourcesSchedulePermissionDenied {
 export interface InvalidAndTrigger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAndTrigger";
+  errorDescription: "The AND trigger should have at least one value.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -213,6 +231,7 @@ export interface InvalidAndTrigger {
 export interface InvalidMediaSetTrigger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidMediaSetTrigger";
+  errorDescription: "The given MediaSet rid is invalid.";
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
@@ -227,6 +246,7 @@ export interface InvalidMediaSetTrigger {
 export interface InvalidOrTrigger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidOrTrigger";
+  errorDescription: "The OR trigger should have at least one value.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -239,6 +259,7 @@ export interface InvalidOrTrigger {
 export interface InvalidScheduleDescription {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidScheduleDescription";
+  errorDescription: "The schedule description is too long.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -251,6 +272,7 @@ export interface InvalidScheduleDescription {
 export interface InvalidScheduleName {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidScheduleName";
+  errorDescription: "The schedule name is too long";
   errorInstanceId: string;
   parameters: {};
 }
@@ -263,6 +285,7 @@ export interface InvalidScheduleName {
 export interface InvalidTimeTrigger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidTimeTrigger";
+  errorDescription: "The schedule trigger cron expression is invalid.";
   errorInstanceId: string;
   parameters: {
     cronExpression: unknown;
@@ -277,6 +300,7 @@ export interface InvalidTimeTrigger {
 export interface JobNotFound {
   errorCode: "NOT_FOUND";
   errorName: "JobNotFound";
+  errorDescription: "The given Job could not be found.";
   errorInstanceId: string;
   parameters: {
     jobRid: unknown;
@@ -291,6 +315,8 @@ export interface JobNotFound {
 export interface MissingBuildTargets {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingBuildTargets";
+  errorDescription:
+    "The build target must contains at least one dataset target";
   errorInstanceId: string;
   parameters: {};
 }
@@ -303,6 +329,8 @@ export interface MissingBuildTargets {
 export interface MissingConnectingBuildInputs {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingConnectingBuildInputs";
+  errorDescription:
+    "The connecting build target must contains at least one input dataset target";
   errorInstanceId: string;
   parameters: {};
 }
@@ -315,6 +343,8 @@ export interface MissingConnectingBuildInputs {
 export interface MissingTrigger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingTrigger";
+  errorDescription:
+    "You must pass in a trigger when creating or updating a schedule";
   errorInstanceId: string;
   parameters: {};
 }
@@ -327,6 +357,7 @@ export interface MissingTrigger {
 export interface PauseSchedulePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PauseSchedulePermissionDenied";
+  errorDescription: "Could not pause the Schedule.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -341,6 +372,7 @@ export interface PauseSchedulePermissionDenied {
 export interface ReplaceSchedulePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceSchedulePermissionDenied";
+  errorDescription: "Could not replace the Schedule.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -355,6 +387,7 @@ export interface ReplaceSchedulePermissionDenied {
 export interface RunSchedulePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RunSchedulePermissionDenied";
+  errorDescription: "Could not run the Schedule.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -369,6 +402,7 @@ export interface RunSchedulePermissionDenied {
 export interface ScheduleAlreadyRunning {
   errorCode: "CONFLICT";
   errorName: "ScheduleAlreadyRunning";
+  errorDescription: "The target schedule is currently running.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -383,6 +417,7 @@ export interface ScheduleAlreadyRunning {
 export interface ScheduleNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ScheduleNotFound";
+  errorDescription: "The given Schedule could not be found.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -397,6 +432,8 @@ export interface ScheduleNotFound {
 export interface ScheduleTriggerResourcesNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ScheduleTriggerResourcesNotFound";
+  errorDescription:
+    "The given resources in the schedule trigger could not be found.";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -411,6 +448,8 @@ export interface ScheduleTriggerResourcesNotFound {
 export interface ScheduleTriggerResourcesPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ScheduleTriggerResourcesPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to use the given resources as a schedule trigger.";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -425,6 +464,7 @@ export interface ScheduleTriggerResourcesPermissionDenied {
 export interface ScheduleVersionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ScheduleVersionNotFound";
+  errorDescription: "The given ScheduleVersion could not be found.";
   errorInstanceId: string;
   parameters: {
     scheduleVersionRid: unknown;
@@ -439,6 +479,7 @@ export interface ScheduleVersionNotFound {
 export interface SearchBuildsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "SearchBuildsPermissionDenied";
+  errorDescription: "Could not search the Build.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -452,6 +493,8 @@ target or list of single dataset targets.
 export interface TargetNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TargetNotSupported";
+  errorDescription:
+    "The schedule target is not supported. The schedule target must be either a connecting target, upstream target or list of single dataset targets.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
@@ -466,6 +509,7 @@ export interface TargetNotSupported {
 export interface UnpauseSchedulePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UnpauseSchedulePermissionDenied";
+  errorDescription: "Could not unpause the Schedule.";
   errorInstanceId: string;
   parameters: {
     scheduleRid: unknown;
