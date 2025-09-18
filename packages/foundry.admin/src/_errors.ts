@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface AddEnrollmentRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddEnrollmentRoleAssignmentsPermissionDenied";
+  errorDescription: "Could not add the EnrollmentRoleAssignment.";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -40,6 +41,7 @@ export interface AddEnrollmentRoleAssignmentsPermissionDenied {
 export interface AddGroupMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddGroupMembersPermissionDenied";
+  errorDescription: "Could not add the GroupMember.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -54,6 +56,7 @@ export interface AddGroupMembersPermissionDenied {
 export interface AddMarkingMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddMarkingMembersPermissionDenied";
+  errorDescription: "Could not add the MarkingMember.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -68,6 +71,7 @@ export interface AddMarkingMembersPermissionDenied {
 export interface AddMarkingRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddMarkingRoleAssignmentsPermissionDenied";
+  errorDescription: "Could not add the MarkingRoleAssignment.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -82,6 +86,7 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 export interface AddOrganizationRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddOrganizationRoleAssignmentsPermissionDenied";
+  errorDescription: "Could not add the OrganizationRoleAssignment.";
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
@@ -96,6 +101,7 @@ export interface AddOrganizationRoleAssignmentsPermissionDenied {
 export interface AuthenticationProviderNotFound {
   errorCode: "NOT_FOUND";
   errorName: "AuthenticationProviderNotFound";
+  errorDescription: "The given AuthenticationProvider could not be found.";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -111,6 +117,8 @@ export interface AuthenticationProviderNotFound {
 export interface CannotReplaceProviderInfoForPrincipalInProtectedRealm {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CannotReplaceProviderInfoForPrincipalInProtectedRealm";
+  errorDescription:
+    "Provider information for Principals in this Realm cannot be replaced.";
   errorInstanceId: string;
   parameters: {
     principalId: unknown;
@@ -126,6 +134,7 @@ export interface CannotReplaceProviderInfoForPrincipalInProtectedRealm {
 export interface CreateGroupPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateGroupPermissionDenied";
+  errorDescription: "Could not create the Group.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -138,6 +147,8 @@ export interface CreateGroupPermissionDenied {
 export interface CreateMarkingMissingInitialAdminRole {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CreateMarkingMissingInitialAdminRole";
+  errorDescription:
+    "At least one ADMIN role assignment must be provided when creating a marking.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -150,6 +161,7 @@ export interface CreateMarkingMissingInitialAdminRole {
 export interface CreateMarkingPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateMarkingPermissionDenied";
+  errorDescription: "Could not create the Marking.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -162,6 +174,8 @@ export interface CreateMarkingPermissionDenied {
 export interface CreateOrganizationMissingInitialAdminRole {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CreateOrganizationMissingInitialAdminRole";
+  errorDescription:
+    "At least one organization:administrator role grant must be provided when creating a organization.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -174,6 +188,7 @@ export interface CreateOrganizationMissingInitialAdminRole {
 export interface CreateOrganizationPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateOrganizationPermissionDenied";
+  errorDescription: "Could not create the Organization.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -186,6 +201,7 @@ export interface CreateOrganizationPermissionDenied {
 export interface DeleteGroupPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteGroupPermissionDenied";
+  errorDescription: "Could not delete the Group.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -200,6 +216,7 @@ export interface DeleteGroupPermissionDenied {
 export interface DeleteUserPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteUserPermissionDenied";
+  errorDescription: "Could not delete the User.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -214,6 +231,7 @@ export interface DeleteUserPermissionDenied {
 export interface EnrollmentNotFound {
   errorCode: "NOT_FOUND";
   errorName: "EnrollmentNotFound";
+  errorDescription: "The given Enrollment could not be found.";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -228,6 +246,7 @@ export interface EnrollmentNotFound {
 export interface EnrollmentRoleNotFound {
   errorCode: "NOT_FOUND";
   errorName: "EnrollmentRoleNotFound";
+  errorDescription: "One of the provided role IDs was not found.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -240,6 +259,7 @@ export interface EnrollmentRoleNotFound {
 export interface GetCurrentEnrollmentPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetCurrentEnrollmentPermissionDenied";
+  errorDescription: "Could not getCurrent the Enrollment.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -252,6 +272,7 @@ export interface GetCurrentEnrollmentPermissionDenied {
 export interface GetCurrentUserPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetCurrentUserPermissionDenied";
+  errorDescription: "Could not getCurrent the User.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -264,6 +285,8 @@ export interface GetCurrentUserPermissionDenied {
 export interface GetGroupProviderInfoPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetGroupProviderInfoPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to view the provider information for the given group.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -278,6 +301,8 @@ export interface GetGroupProviderInfoPermissionDenied {
 export interface GetMarkingCategoryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetMarkingCategoryPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to view the marking category.";
   errorInstanceId: string;
   parameters: {
     markingCategoryId: unknown;
@@ -292,6 +317,8 @@ export interface GetMarkingCategoryPermissionDenied {
 export interface GetMarkingPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetMarkingPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to view the marking.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -306,6 +333,7 @@ export interface GetMarkingPermissionDenied {
 export interface GetMarkingsUserPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetMarkingsUserPermissionDenied";
+  errorDescription: "Could not getMarkings the User.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -320,6 +348,7 @@ export interface GetMarkingsUserPermissionDenied {
 export interface GetProfilePictureOfUserPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetProfilePictureOfUserPermissionDenied";
+  errorDescription: "Could not profilePicture the User.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -334,6 +363,8 @@ export interface GetProfilePictureOfUserPermissionDenied {
 export interface GetUserProviderInfoPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetUserProviderInfoPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to view the provider information for the given user.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -348,6 +379,8 @@ export interface GetUserProviderInfoPermissionDenied {
 export interface GroupMembershipExpirationPolicyNotFound {
   errorCode: "NOT_FOUND";
   errorName: "GroupMembershipExpirationPolicyNotFound";
+  errorDescription:
+    "The given GroupMembershipExpirationPolicy could not be found.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -362,6 +395,7 @@ export interface GroupMembershipExpirationPolicyNotFound {
 export interface GroupNameAlreadyExists {
   errorCode: "INVALID_ARGUMENT";
   errorName: "GroupNameAlreadyExists";
+  errorDescription: "A group with this name already exists";
   errorInstanceId: string;
   parameters: {
     groupName: unknown;
@@ -376,6 +410,7 @@ export interface GroupNameAlreadyExists {
 export interface GroupNotFound {
   errorCode: "NOT_FOUND";
   errorName: "GroupNotFound";
+  errorDescription: "The given Group could not be found.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -390,6 +425,7 @@ export interface GroupNotFound {
 export interface GroupProviderInfoNotFound {
   errorCode: "NOT_FOUND";
   errorName: "GroupProviderInfoNotFound";
+  errorDescription: "The given GroupProviderInfo could not be found.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -404,6 +440,8 @@ export interface GroupProviderInfoNotFound {
 export interface InvalidGroupMembershipExpiration {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidGroupMembershipExpiration";
+  errorDescription:
+    "The member expiration you provided does not conform to the Group's requirements for member expirations.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -421,6 +459,8 @@ export interface InvalidGroupMembershipExpiration {
 export interface InvalidGroupOrganizations {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidGroupOrganizations";
+  errorDescription:
+    "At least one Organization RID must be provided for a group";
   errorInstanceId: string;
   parameters: {};
 }
@@ -433,6 +473,8 @@ export interface InvalidGroupOrganizations {
 export interface InvalidHostName {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidHostName";
+  errorDescription:
+    "The provided hostname must be a valid domain name. The only allowed characters are letters, numbers, periods, and hyphens.";
   errorInstanceId: string;
   parameters: {
     invalidHostName: unknown;
@@ -447,6 +489,7 @@ export interface InvalidHostName {
 export interface InvalidProfilePicture {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidProfilePicture";
+  errorDescription: "The user's profile picture is not a valid image";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -461,6 +504,7 @@ export interface InvalidProfilePicture {
 export interface ListAvailableRolesOrganizationPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListAvailableRolesOrganizationPermissionDenied";
+  errorDescription: "Could not listAvailableRoles the Organization.";
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
@@ -475,6 +519,8 @@ export interface ListAvailableRolesOrganizationPermissionDenied {
 export interface ListEnrollmentRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListEnrollmentRoleAssignmentsPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to list assigned roles for this enrollment.";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -489,6 +535,8 @@ export interface ListEnrollmentRoleAssignmentsPermissionDenied {
 export interface ListHostsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListHostsPermissionDenied";
+  errorDescription:
+    "You do not have permission to list hosts for this enrollment";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -503,6 +551,8 @@ export interface ListHostsPermissionDenied {
 export interface ListMarkingMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListMarkingMembersPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to list the members of this marking.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -517,6 +567,8 @@ export interface ListMarkingMembersPermissionDenied {
 export interface ListMarkingRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListMarkingRoleAssignmentsPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to list assigned roles for this marking.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -531,6 +583,8 @@ export interface ListMarkingRoleAssignmentsPermissionDenied {
 export interface ListOrganizationRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListOrganizationRoleAssignmentsPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to list assigned roles for this organization.";
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
@@ -545,6 +599,7 @@ export interface ListOrganizationRoleAssignmentsPermissionDenied {
 export interface MarkingCategoryNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarkingCategoryNotFound";
+  errorDescription: "The given MarkingCategory could not be found.";
   errorInstanceId: string;
   parameters: {
     markingCategoryId: unknown;
@@ -559,6 +614,8 @@ export interface MarkingCategoryNotFound {
 export interface MarkingNameInCategoryAlreadyExists {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MarkingNameInCategoryAlreadyExists";
+  errorDescription:
+    "A marking with the same name already exists in the category.";
   errorInstanceId: string;
   parameters: {
     displayName: unknown;
@@ -574,6 +631,7 @@ export interface MarkingNameInCategoryAlreadyExists {
 export interface MarkingNameIsEmpty {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MarkingNameIsEmpty";
+  errorDescription: "The marking name is empty.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -586,6 +644,7 @@ export interface MarkingNameIsEmpty {
 export interface MarkingNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarkingNotFound";
+  errorDescription: "The given Marking could not be found.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -600,6 +659,7 @@ export interface MarkingNotFound {
 export interface OrganizationNameAlreadyExists {
   errorCode: "INVALID_ARGUMENT";
   errorName: "OrganizationNameAlreadyExists";
+  errorDescription: "An organization with the same name already exists.";
   errorInstanceId: string;
   parameters: {
     displayName: unknown;
@@ -614,6 +674,7 @@ export interface OrganizationNameAlreadyExists {
 export interface OrganizationNotFound {
   errorCode: "NOT_FOUND";
   errorName: "OrganizationNotFound";
+  errorDescription: "The given Organization could not be found.";
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
@@ -628,6 +689,7 @@ export interface OrganizationNotFound {
 export interface PreregisterGroupPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PreregisterGroupPermissionDenied";
+  errorDescription: "Could not preregisterGroup the AuthenticationProvider.";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -643,6 +705,7 @@ export interface PreregisterGroupPermissionDenied {
 export interface PreregisterUserPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PreregisterUserPermissionDenied";
+  errorDescription: "Could not preregisterUser the AuthenticationProvider.";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -658,6 +721,8 @@ export interface PreregisterUserPermissionDenied {
 export interface PrincipalNotFound {
   errorCode: "NOT_FOUND";
   errorName: "PrincipalNotFound";
+  errorDescription:
+    "A principal (User or Group) with the given PrincipalId could not be found";
   errorInstanceId: string;
   parameters: {
     principalId: unknown;
@@ -672,6 +737,7 @@ export interface PrincipalNotFound {
 export interface ProfilePictureNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ProfilePictureNotFound";
+  errorDescription: "The user has not set a profile picture";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -686,6 +752,7 @@ export interface ProfilePictureNotFound {
 export interface RemoveEnrollmentRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveEnrollmentRoleAssignmentsPermissionDenied";
+  errorDescription: "Could not remove the EnrollmentRoleAssignment.";
   errorInstanceId: string;
   parameters: {
     enrollmentRid: unknown;
@@ -700,6 +767,7 @@ export interface RemoveEnrollmentRoleAssignmentsPermissionDenied {
 export interface RemoveGroupMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveGroupMembersPermissionDenied";
+  errorDescription: "Could not remove the GroupMember.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -714,6 +782,7 @@ export interface RemoveGroupMembersPermissionDenied {
 export interface RemoveMarkingMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveMarkingMembersPermissionDenied";
+  errorDescription: "Could not remove the MarkingMember.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -728,6 +797,7 @@ export interface RemoveMarkingMembersPermissionDenied {
 export interface RemoveMarkingRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveMarkingRoleAssignmentsPermissionDenied";
+  errorDescription: "Could not remove the MarkingRoleAssignment.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -742,6 +812,7 @@ export interface RemoveMarkingRoleAssignmentsPermissionDenied {
 export interface RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed {
   errorCode: "INVALID_ARGUMENT";
   errorName: "RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed";
+  errorDescription: "You cannot remove all administrators from a marking.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -757,6 +828,7 @@ export interface RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed {
 export interface RemoveOrganizationRoleAssignmentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveOrganizationRoleAssignmentsPermissionDenied";
+  errorDescription: "Could not remove the OrganizationRoleAssignment.";
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
@@ -771,6 +843,7 @@ export interface RemoveOrganizationRoleAssignmentsPermissionDenied {
 export interface ReplaceGroupMembershipExpirationPolicyPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceGroupMembershipExpirationPolicyPermissionDenied";
+  errorDescription: "Could not replace the GroupMembershipExpirationPolicy.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -785,6 +858,7 @@ export interface ReplaceGroupMembershipExpirationPolicyPermissionDenied {
 export interface ReplaceGroupProviderInfoPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceGroupProviderInfoPermissionDenied";
+  errorDescription: "Could not replace the GroupProviderInfo.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -799,6 +873,7 @@ export interface ReplaceGroupProviderInfoPermissionDenied {
 export interface ReplaceMarkingPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceMarkingPermissionDenied";
+  errorDescription: "Could not replace the Marking.";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
@@ -813,6 +888,7 @@ export interface ReplaceMarkingPermissionDenied {
 export interface ReplaceOrganizationPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceOrganizationPermissionDenied";
+  errorDescription: "Could not replace the Organization.";
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
@@ -827,6 +903,7 @@ export interface ReplaceOrganizationPermissionDenied {
 export interface ReplaceUserProviderInfoPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceUserProviderInfoPermissionDenied";
+  errorDescription: "Could not replace the UserProviderInfo.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -841,6 +918,7 @@ export interface ReplaceUserProviderInfoPermissionDenied {
 export interface RevokeAllTokensUserPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RevokeAllTokensUserPermissionDenied";
+  errorDescription: "Could not revokeAllTokens the User.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -855,6 +933,7 @@ export interface RevokeAllTokensUserPermissionDenied {
 export interface RoleNotFound {
   errorCode: "NOT_FOUND";
   errorName: "RoleNotFound";
+  errorDescription: "The given Role could not be found.";
   errorInstanceId: string;
   parameters: {
     roleId: unknown;
@@ -869,6 +948,7 @@ export interface RoleNotFound {
 export interface SearchGroupsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "SearchGroupsPermissionDenied";
+  errorDescription: "Could not search the Group.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -881,6 +961,7 @@ export interface SearchGroupsPermissionDenied {
 export interface SearchUsersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "SearchUsersPermissionDenied";
+  errorDescription: "Could not search the User.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -893,6 +974,7 @@ export interface SearchUsersPermissionDenied {
 export interface UserNotFound {
   errorCode: "NOT_FOUND";
   errorName: "UserNotFound";
+  errorDescription: "The given User could not be found.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -907,6 +989,7 @@ export interface UserNotFound {
 export interface UserProviderInfoNotFound {
   errorCode: "NOT_FOUND";
   errorName: "UserProviderInfoNotFound";
+  errorDescription: "The given UserProviderInfo could not be found.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;

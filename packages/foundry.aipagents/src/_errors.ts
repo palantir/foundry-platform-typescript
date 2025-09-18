@@ -28,6 +28,8 @@ Try a different query or review the Agent configuration in AIP Agent Studio.
 export interface AgentIterationsExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AgentIterationsExceededLimit";
+  errorDescription:
+    "The Agent was unable to produce an answer in the set number of maximum iterations. This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex. Try a different query or review the Agent configuration in AIP Agent Studio.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -44,6 +46,7 @@ export interface AgentIterationsExceededLimit {
 export interface AgentNotFound {
   errorCode: "NOT_FOUND";
   errorName: "AgentNotFound";
+  errorDescription: "The given Agent could not be found.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -58,6 +61,7 @@ export interface AgentNotFound {
 export interface AgentVersionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "AgentVersionNotFound";
+  errorDescription: "The given AgentVersion could not be found.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -73,6 +77,7 @@ export interface AgentVersionNotFound {
 export interface BlockingContinueSessionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "BlockingContinueSessionPermissionDenied";
+  errorDescription: "Could not blockingContinue the Session.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -96,6 +101,8 @@ conversation state.
 export interface CancelSessionFailedMessageNotInProgress {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CancelSessionFailedMessageNotInProgress";
+  errorDescription:
+    "Unable to cancel the requested session exchange as no in-progress exchange was found for the provided message identifier. This is expected if no exchange was initiated with the provided message identifier through a streamingContinue request, or if the exchange for this identifier has already completed and cannot be canceled, or if the exchange has already been canceled. This error can also occur if the cancellation was requested immediately after requesting the exchange through a streamingContinue request, and the exchange has not started yet. Clients should handle these errors gracefully, and can reload the session content to get the latest conversation state.";
   errorInstanceId: string;
   parameters: {
     messageId: unknown;
@@ -112,6 +119,7 @@ export interface CancelSessionFailedMessageNotInProgress {
 export interface CancelSessionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CancelSessionPermissionDenied";
+  errorDescription: "Could not cancel the Session.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -127,6 +135,7 @@ export interface CancelSessionPermissionDenied {
 export interface ContentNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ContentNotFound";
+  errorDescription: "The given Content could not be found.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -143,6 +152,8 @@ Clients should either retry with a shorter message or create a new session and t
 export interface ContextSizeExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ContextSizeExceededLimit";
+  errorDescription:
+    "Failed to generate a response for a session because the context size of the LLM has been exceeded. Clients should either retry with a shorter message or create a new session and try re-sending the message.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -159,6 +170,7 @@ export interface ContextSizeExceededLimit {
 export interface CreateSessionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateSessionPermissionDenied";
+  errorDescription: "Could not create the Session.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -174,6 +186,8 @@ The function type or version may not exist or the client token does not have acc
 export interface FunctionLocatorNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FunctionLocatorNotFound";
+  errorDescription:
+    "The specified function locator is configured for use by the Agent but could not be found. The function type or version may not exist or the client token does not have access.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -192,6 +206,8 @@ Listing all sessions across all agents requires the api:aip-agents-write scope.
 export interface GetAllSessionsAgentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetAllSessionsAgentsPermissionDenied";
+  errorDescription:
+    "The calling user does not have permission to list all sessions across all Agents. Listing all sessions across all agents requires the api:aip-agents-write scope.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -204,6 +220,7 @@ export interface GetAllSessionsAgentsPermissionDenied {
 export interface GetRagContextForSessionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetRagContextForSessionPermissionDenied";
+  errorDescription: "Could not ragContext the Session.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -219,6 +236,8 @@ export interface GetRagContextForSessionPermissionDenied {
 export interface InvalidAgentVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAgentVersion";
+  errorDescription:
+    "The provided version string is not a valid format for an Agent version.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -236,6 +255,8 @@ The Agent version used for the session can be checked through the API with getSe
 export interface InvalidParameter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameter";
+  errorDescription:
+    "The provided application variable is not valid for the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio. The Agent version used for the session can be checked through the API with getSession.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -254,6 +275,8 @@ The Agent version used for the session can be checked through the API with getSe
 export interface InvalidParameterType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameterType";
+  errorDescription:
+    "The provided value does not match the expected type for the application variable configured on the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio. The Agent version used for the session can be checked through the API with getSession.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -272,6 +295,7 @@ export interface InvalidParameterType {
 export interface ListSessionsForAgentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ListSessionsForAgentsPermissionDenied";
+  errorDescription: "Could not allSessions the Agent.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -285,6 +309,8 @@ Try publishing the Agent in AIP Agent Studio to use the latest published version
 export interface NoPublishedAgentVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "NoPublishedAgentVersion";
+  errorDescription:
+    "Failed to retrieve the latest published version of the Agent because the Agent has no published versions. Try publishing the Agent in AIP Agent Studio to use the latest published version, or specify the version of the Agent to use.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -301,6 +327,8 @@ Object types can be checked by listing available object types through the API, o
 export interface ObjectTypeIdsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ObjectTypeIdsNotFound";
+  errorDescription:
+    "Some object types are configured for use by the Agent but could not be found. The object types either do not exist or the client token does not have access. Object types can be checked by listing available object types through the API, or searching in Ontology Manager.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -319,6 +347,8 @@ Object types can be checked by listing available object types through the API, o
 export interface ObjectTypeRidsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ObjectTypeRidsNotFound";
+  errorDescription:
+    "Some object types are configured for use by the Agent but could not be found. The object types either do not exist or the client token does not have access. Object types can be checked by listing available object types through the API, or searching in Ontology Manager.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -337,6 +367,8 @@ Object types and their link types can be checked by listing available object/lin
 export interface OntologyEntitiesNotFound {
   errorCode: "NOT_FOUND";
   errorName: "OntologyEntitiesNotFound";
+  errorDescription:
+    "Some ontology types are configured for use by the Agent but could not be found. The types either do not exist or the client token does not have access. Object types and their link types can be checked by listing available object/link types through the API, or searching in Ontology Manager.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -354,6 +386,8 @@ export interface OntologyEntitiesNotFound {
 export interface RateLimitExceeded {
   errorCode: "CUSTOM_CLIENT";
   errorName: "RateLimitExceeded";
+  errorDescription:
+    "Failed to generate a response as the model rate limits were exceeded. Clients should wait and retry.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -370,6 +404,8 @@ export interface RateLimitExceeded {
 export interface SessionExecutionFailed {
   errorCode: "INTERNAL";
   errorName: "SessionExecutionFailed";
+  errorDescription:
+    "Failed to generate a response for a session due to an unexpected error.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -387,6 +423,7 @@ export interface SessionExecutionFailed {
 export interface SessionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "SessionNotFound";
+  errorDescription: "The given Session could not be found.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -402,6 +439,8 @@ export interface SessionNotFound {
 export interface SessionTraceIdAlreadyExists {
   errorCode: "INVALID_ARGUMENT";
   errorName: "SessionTraceIdAlreadyExists";
+  errorDescription:
+    "The provided trace ID already exists for the session and cannot be reused.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -418,6 +457,7 @@ export interface SessionTraceIdAlreadyExists {
 export interface SessionTraceNotFound {
   errorCode: "NOT_FOUND";
   errorName: "SessionTraceNotFound";
+  errorDescription: "The given SessionTrace could not be found.";
   errorInstanceId: string;
   parameters: {
     sessionTraceId: unknown;
@@ -434,6 +474,7 @@ export interface SessionTraceNotFound {
 export interface StreamingContinueSessionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "StreamingContinueSessionPermissionDenied";
+  errorDescription: "Could not streamingContinue the Session.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -449,6 +490,7 @@ export interface StreamingContinueSessionPermissionDenied {
 export interface UpdateSessionTitlePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UpdateSessionTitlePermissionDenied";
+  errorDescription: "Could not updateTitle the Session.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;

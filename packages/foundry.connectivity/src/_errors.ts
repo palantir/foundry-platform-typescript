@@ -26,6 +26,8 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface AdditionalSecretsMustBeSpecifiedAsPlaintextValueMap {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AdditionalSecretsMustBeSpecifiedAsPlaintextValueMap";
+  errorDescription:
+    "The additional secrets must be specified as a plaintext value map.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -38,6 +40,8 @@ export interface AdditionalSecretsMustBeSpecifiedAsPlaintextValueMap {
 export interface ConnectionDetailsNotDetermined {
   errorCode: "INTERNAL";
   errorName: "ConnectionDetailsNotDetermined";
+  errorDescription:
+    "Details of the connection (such as which types of import it supports) could not be determined.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -53,6 +57,7 @@ export interface ConnectionDetailsNotDetermined {
 export interface ConnectionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ConnectionNotFound";
+  errorDescription: "The given Connection could not be found.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -67,6 +72,8 @@ export interface ConnectionNotFound {
 export interface ConnectionTypeNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ConnectionTypeNotSupported";
+  errorDescription:
+    "The specified connection is not yet supported in the Platform API.";
   errorInstanceId: string;
   parameters: {
     connectionType: unknown;
@@ -81,6 +88,7 @@ export interface ConnectionTypeNotSupported {
 export interface CreateConnectionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateConnectionPermissionDenied";
+  errorDescription: "Could not create the Connection.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -93,6 +101,7 @@ export interface CreateConnectionPermissionDenied {
 export interface CreateFileImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateFileImportPermissionDenied";
+  errorDescription: "Could not create the FileImport.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -107,6 +116,7 @@ export interface CreateFileImportPermissionDenied {
 export interface CreateTableImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateTableImportPermissionDenied";
+  errorDescription: "Could not create the TableImport.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -121,6 +131,7 @@ export interface CreateTableImportPermissionDenied {
 export interface DeleteFileImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteFileImportPermissionDenied";
+  errorDescription: "Could not delete the FileImport.";
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
@@ -136,6 +147,7 @@ export interface DeleteFileImportPermissionDenied {
 export interface DeleteTableImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteTableImportPermissionDenied";
+  errorDescription: "Could not delete the TableImport.";
   errorInstanceId: string;
   parameters: {
     tableImportRid: unknown;
@@ -151,6 +163,7 @@ export interface DeleteTableImportPermissionDenied {
 export interface DomainMustUseHttpsWithAuthentication {
   errorCode: "INVALID_ARGUMENT";
   errorName: "DomainMustUseHttpsWithAuthentication";
+  errorDescription: "The domain must use HTTPS if authentication is required.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -163,6 +176,7 @@ export interface DomainMustUseHttpsWithAuthentication {
 export interface DriverContentMustBeUploadedAsJar {
   errorCode: "INVALID_ARGUMENT";
   errorName: "DriverContentMustBeUploadedAsJar";
+  errorDescription: "The driver content must be provided as a jar.";
   errorInstanceId: string;
   parameters: {
     driverName: unknown;
@@ -177,6 +191,8 @@ export interface DriverContentMustBeUploadedAsJar {
 export interface DriverJarAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "DriverJarAlreadyExists";
+  errorDescription:
+    "Duplicate jar with different versions already exists on connection.";
   errorInstanceId: string;
   parameters: {
     driverName: unknown;
@@ -192,6 +208,8 @@ export interface DriverJarAlreadyExists {
 export interface EncryptedPropertyMustBeSpecifiedAsPlaintextValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "EncryptedPropertyMustBeSpecifiedAsPlaintextValue";
+  errorDescription:
+    "The encrypted property must be specified as a plaintext value.";
   errorInstanceId: string;
   parameters: {
     propertyName: unknown;
@@ -206,6 +224,7 @@ export interface EncryptedPropertyMustBeSpecifiedAsPlaintextValue {
 export interface ExecuteFileImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ExecuteFileImportPermissionDenied";
+  errorDescription: "Could not execute the FileImport.";
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
@@ -221,6 +240,7 @@ export interface ExecuteFileImportPermissionDenied {
 export interface ExecuteTableImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ExecuteTableImportPermissionDenied";
+  errorDescription: "Could not execute the TableImport.";
   errorInstanceId: string;
   parameters: {
     tableImportRid: unknown;
@@ -236,6 +256,8 @@ export interface ExecuteTableImportPermissionDenied {
 export interface FileAtLeastCountFilterInvalidMinCount {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileAtLeastCountFilterInvalidMinCount";
+  errorDescription:
+    "The provided minFilesCount property in the FileAtLeastCountFilter must be strictly greater than 0.";
   errorInstanceId: string;
   parameters: {
     minFilesCount: unknown;
@@ -251,6 +273,8 @@ when creating or updating file imports.
 export interface FileImportCustomFilterCannotBeUsedToCreateOrUpdateFileImports {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileImportCustomFilterCannotBeUsedToCreateOrUpdateFileImports";
+  errorDescription:
+    "Custom file import filters can be fetched but cannot currently be used when creating or updating file imports.";
   errorInstanceId: string;
   parameters: {
     config: unknown;
@@ -265,6 +289,7 @@ export interface FileImportCustomFilterCannotBeUsedToCreateOrUpdateFileImports {
 export interface FileImportNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FileImportNotFound";
+  errorDescription: "The given FileImport could not be found.";
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
@@ -280,6 +305,7 @@ export interface FileImportNotFound {
 export interface FileImportNotSupportedForConnection {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileImportNotSupportedForConnection";
+  errorDescription: "The specified connection does not support file imports.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -294,6 +320,8 @@ export interface FileImportNotSupportedForConnection {
 export interface FilesCountLimitFilterInvalidLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FilesCountLimitFilterInvalidLimit";
+  errorDescription:
+    "The filesCount property in the FilesCountLimitFilter must be strictly greater than 0.";
   errorInstanceId: string;
   parameters: {
     filesCount: unknown;
@@ -308,6 +336,8 @@ export interface FilesCountLimitFilterInvalidLimit {
 export interface FileSizeFilterGreaterThanCannotBeNegative {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileSizeFilterGreaterThanCannotBeNegative";
+  errorDescription:
+    "The gt property in the FileSizeFilter cannot be a negative number.";
   errorInstanceId: string;
   parameters: {
     gt: unknown;
@@ -323,6 +353,8 @@ satisfy the provided range. The value specified for gt must be strictly less tha
 export interface FileSizeFilterInvalidGreaterThanAndLessThanRange {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileSizeFilterInvalidGreaterThanAndLessThanRange";
+  errorDescription:
+    "The provided gt and lt properties in the FileSizeFilter are invalid. No files will ever satisfy the provided range. The value specified for gt must be strictly less than lt - 1.";
   errorInstanceId: string;
   parameters: {
     gt: unknown;
@@ -338,6 +370,8 @@ export interface FileSizeFilterInvalidGreaterThanAndLessThanRange {
 export interface FileSizeFilterLessThanMustBeOneByteOrLarger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileSizeFilterLessThanMustBeOneByteOrLarger";
+  errorDescription:
+    "The lt property in the FileSizeFilter must be at least 1 byte.";
   errorInstanceId: string;
   parameters: {
     lt: unknown;
@@ -353,6 +387,8 @@ properties must be present
 export interface FileSizeFilterMissingGreaterThanAndLessThan {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileSizeFilterMissingGreaterThanAndLessThan";
+  errorDescription:
+    "Both the gt and lt properties are missing from the FileSizeFilter. At least one of these properties must be present";
   errorInstanceId: string;
   parameters: {};
 }
@@ -365,6 +401,7 @@ export interface FileSizeFilterMissingGreaterThanAndLessThan {
 export interface GetConfigurationPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetConfigurationPermissionDenied";
+  errorDescription: "Could not getConfiguration the Connection.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -379,6 +416,8 @@ export interface GetConfigurationPermissionDenied {
 export interface HostNameCannotHaveProtocolOrPort {
   errorCode: "INVALID_ARGUMENT";
   errorName: "HostNameCannotHaveProtocolOrPort";
+  errorDescription:
+    "The hostname should not include a protocol (e.g., https://) or port number (e.g., :443).";
   errorInstanceId: string;
   parameters: {
     hostName: unknown;
@@ -393,6 +432,8 @@ export interface HostNameCannotHaveProtocolOrPort {
 export interface ParentFolderNotFoundForConnection {
   errorCode: "NOT_FOUND";
   errorName: "ParentFolderNotFoundForConnection";
+  errorDescription:
+    "The parent folder for the specified connection could not be found.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -407,6 +448,7 @@ export interface ParentFolderNotFoundForConnection {
 export interface PropertyCannotBeBlank {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyCannotBeBlank";
+  errorDescription: "The specified property cannot be blank.";
   errorInstanceId: string;
   parameters: {
     propertyName: unknown;
@@ -421,6 +463,7 @@ export interface PropertyCannotBeBlank {
 export interface PropertyCannotBeEmpty {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyCannotBeEmpty";
+  errorDescription: "The specified property cannot be empty.";
   errorInstanceId: string;
   parameters: {
     propertyName: unknown;
@@ -435,6 +478,7 @@ export interface PropertyCannotBeEmpty {
 export interface ReplaceFileImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceFileImportPermissionDenied";
+  errorDescription: "Could not replace the FileImport.";
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
@@ -450,6 +494,7 @@ export interface ReplaceFileImportPermissionDenied {
 export interface ReplaceTableImportPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceTableImportPermissionDenied";
+  errorDescription: "Could not replace the TableImport.";
   errorInstanceId: string;
   parameters: {
     tableImportRid: unknown;
@@ -465,6 +510,7 @@ export interface ReplaceTableImportPermissionDenied {
 export interface SecretNamesDoNotExist {
   errorCode: "INVALID_ARGUMENT";
   errorName: "SecretNamesDoNotExist";
+  errorDescription: "The secret names provided do not exist on the connection.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -480,6 +526,7 @@ export interface SecretNamesDoNotExist {
 export interface TableImportNotFound {
   errorCode: "NOT_FOUND";
   errorName: "TableImportNotFound";
+  errorDescription: "The given TableImport could not be found.";
   errorInstanceId: string;
   parameters: {
     tableImportRid: unknown;
@@ -495,6 +542,8 @@ export interface TableImportNotFound {
 export interface TableImportNotSupportedForConnection {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TableImportNotSupportedForConnection";
+  errorDescription:
+    "The specified connection does not support creating or replacing a table import with the specified config.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -510,6 +559,8 @@ export interface TableImportNotSupportedForConnection {
 export interface TableImportTypeNotSupported {
   errorCode: "INTERNAL";
   errorName: "TableImportTypeNotSupported";
+  errorDescription:
+    "The specified table import type is not yet supported in the Platform API.";
   errorInstanceId: string;
   parameters: {
     tableImportType: unknown;
@@ -524,6 +575,7 @@ export interface TableImportTypeNotSupported {
 export interface UpdateExportSettingsForConnectionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UpdateExportSettingsForConnectionPermissionDenied";
+  errorDescription: "Could not updateExportSettings the Connection.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -538,6 +590,7 @@ export interface UpdateExportSettingsForConnectionPermissionDenied {
 export interface UpdateSecretsForConnectionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UpdateSecretsForConnectionPermissionDenied";
+  errorDescription: "Could not update secrets for the Connection.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
@@ -552,6 +605,8 @@ export interface UpdateSecretsForConnectionPermissionDenied {
 export interface UploadCustomJdbcDriverNotSupportForConnection {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UploadCustomJdbcDriverNotSupportForConnection";
+  errorDescription:
+    "Only JDBC connections support uploading custom JDBC drivers.";
   errorInstanceId: string;
   parameters: {
     connectionType: unknown;
@@ -566,6 +621,7 @@ export interface UploadCustomJdbcDriverNotSupportForConnection {
 export interface UploadCustomJdbcDriversConnectionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UploadCustomJdbcDriversConnectionPermissionDenied";
+  errorDescription: "Could not uploadCustomJdbcDrivers the Connection.";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;

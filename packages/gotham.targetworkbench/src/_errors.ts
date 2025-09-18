@@ -26,6 +26,8 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface CannotUpdateColumnsWithTargets {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CannotUpdateColumnsWithTargets";
+  errorDescription:
+    "Cannot update a target board's columns if targets are present in the column.";
   errorInstanceId: string;
   parameters: {
     targetBoardRid: unknown;
@@ -40,6 +42,8 @@ export interface CannotUpdateColumnsWithTargets {
 export interface CannotUpdateUnknownArtifact {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CannotUpdateUnknownArtifact";
+  errorDescription:
+    "Non-create operations cannot be applied to unknown artifacts.";
   errorInstanceId: string;
   parameters: {
     artifactId: unknown;
@@ -55,6 +59,7 @@ export interface CannotUpdateUnknownArtifact {
 export interface CreateHighPriorityTargetListPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateHighPriorityTargetListPermissionDenied";
+  errorDescription: "Could not create the HighPriorityTargetList.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -67,6 +72,7 @@ export interface CreateHighPriorityTargetListPermissionDenied {
 export interface CreateTargetBoardPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateTargetBoardPermissionDenied";
+  errorDescription: "Could not create the TargetBoard.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -79,6 +85,7 @@ export interface CreateTargetBoardPermissionDenied {
 export interface CreateTargetIntelTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateTargetIntelTargetPermissionDenied";
+  errorDescription: "Could not createTargetIntel the Target.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -93,6 +100,7 @@ export interface CreateTargetIntelTargetPermissionDenied {
 export interface CreateTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateTargetPermissionDenied";
+  errorDescription: "Could not create the Target.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -105,6 +113,7 @@ export interface CreateTargetPermissionDenied {
 export interface DeleteTargetBoardPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteTargetBoardPermissionDenied";
+  errorDescription: "Could not delete the TargetBoard.";
   errorInstanceId: string;
   parameters: {
     targetBoardRid: unknown;
@@ -119,6 +128,7 @@ export interface DeleteTargetBoardPermissionDenied {
 export interface DeleteTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteTargetPermissionDenied";
+  errorDescription: "Could not delete the Target.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -133,6 +143,7 @@ export interface DeleteTargetPermissionDenied {
 export interface HighPriorityTargetListNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "HighPriorityTargetListNotFound";
+  errorDescription: "Cannot find High Priority Target List from provided RID";
   errorInstanceId: string;
   parameters: {
     highPriorityTargetListRid: unknown;
@@ -147,6 +158,7 @@ export interface HighPriorityTargetListNotFound {
 export interface InvalidClassificationPortionMarkings {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidClassificationPortionMarkings";
+  errorDescription: "The specified portion markings are not valid.";
   errorInstanceId: string;
   parameters: {
     portionMarkings: unknown;
@@ -161,6 +173,8 @@ export interface InvalidClassificationPortionMarkings {
 export interface InvalidGeotrackableEntity {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidGeotrackableEntity";
+  errorDescription:
+    "The supplied geotrackable entity does not match the backing entity of the target.";
   errorInstanceId: string;
   parameters: {
     targetEntity: unknown;
@@ -176,6 +190,8 @@ export interface InvalidGeotrackableEntity {
 export interface InvalidSidc {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidSidc";
+  errorDescription:
+    "The specified symbol identification code (SIDC) was not valid based on MIL-STD-2525C specification.";
   errorInstanceId: string;
   parameters: {
     invalidSidc: unknown;
@@ -190,6 +206,7 @@ export interface InvalidSidc {
 export interface InvalidSpaceRid {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidSpaceRid";
+  errorDescription: "The space rid is missing or invalid.";
   errorInstanceId: string;
   parameters: {
     spaceRid: unknown;
@@ -204,6 +221,7 @@ export interface InvalidSpaceRid {
 export interface LoadHighPriorityTargetListPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "LoadHighPriorityTargetListPermissionDenied";
+  errorDescription: "Could not load the HighPriorityTargetList.";
   errorInstanceId: string;
   parameters: {
     highPriorityTargetListRid: unknown;
@@ -218,6 +236,7 @@ export interface LoadHighPriorityTargetListPermissionDenied {
 export interface LoadTargetBoardPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "LoadTargetBoardPermissionDenied";
+  errorDescription: "Could not load the TargetBoard.";
   errorInstanceId: string;
   parameters: {
     targetBoardRid: unknown;
@@ -232,6 +251,7 @@ export interface LoadTargetBoardPermissionDenied {
 export interface LoadTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "LoadTargetPermissionDenied";
+  errorDescription: "Could not load the Target.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -246,6 +266,7 @@ export interface LoadTargetPermissionDenied {
 export interface ModifyHighPriorityTargetListPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ModifyHighPriorityTargetListPermissionDenied";
+  errorDescription: "Could not modify the HighPriorityTargetList.";
   errorInstanceId: string;
   parameters: {
     highPriorityTargetListRid: unknown;
@@ -260,6 +281,7 @@ export interface ModifyHighPriorityTargetListPermissionDenied {
 export interface ModifyTargetBoardPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ModifyTargetBoardPermissionDenied";
+  errorDescription: "Could not modify the TargetBoard.";
   errorInstanceId: string;
   parameters: {
     targetBoardRid: unknown;
@@ -274,6 +296,7 @@ export interface ModifyTargetBoardPermissionDenied {
 export interface ModifyTargetIntelTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ModifyTargetIntelTargetPermissionDenied";
+  errorDescription: "Could not modifyTargetIntel the Target.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -288,6 +311,7 @@ export interface ModifyTargetIntelTargetPermissionDenied {
 export interface ModifyTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ModifyTargetPermissionDenied";
+  errorDescription: "Could not modify the Target.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -302,6 +326,7 @@ export interface ModifyTargetPermissionDenied {
 export interface MultitenantModeUnknown {
   errorCode: "INTERNAL";
   errorName: "MultitenantModeUnknown";
+  errorDescription: "Multitenant mode is currently unknown.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -314,6 +339,7 @@ export interface MultitenantModeUnknown {
 export interface RemoveTargetIntelTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveTargetIntelTargetPermissionDenied";
+  errorDescription: "Could not removeTargetIntel the Target.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -328,6 +354,7 @@ export interface RemoveTargetIntelTargetPermissionDenied {
 export interface RevisionOutdated {
   errorCode: "INVALID_ARGUMENT";
   errorName: "RevisionOutdated";
+  errorDescription: "The provided revision id is behind the current id.";
   errorInstanceId: string;
   parameters: {
     id: unknown;
@@ -343,6 +370,7 @@ export interface RevisionOutdated {
 export interface SetTargetColumnTargetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "SetTargetColumnTargetPermissionDenied";
+  errorDescription: "Could not setTargetColumn the Target.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -357,6 +385,7 @@ export interface SetTargetColumnTargetPermissionDenied {
 export interface TargetBoardNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TargetBoardNotFound";
+  errorDescription: "Cannot find target board from provided rid.";
   errorInstanceId: string;
   parameters: {
     targetBoardRid: unknown;
@@ -371,6 +400,7 @@ export interface TargetBoardNotFound {
 export interface TargetNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TargetNotFound";
+  errorDescription: "Cannot find target from provided rid.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -385,6 +415,7 @@ export interface TargetNotFound {
 export interface TargetNotOnTargetBoard {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TargetNotOnTargetBoard";
+  errorDescription: "Target must be located on the request target board.";
   errorInstanceId: string;
   parameters: {
     targetRid: unknown;
@@ -400,6 +431,8 @@ export interface TargetNotOnTargetBoard {
 export interface UserHasNoOwnerPerms {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UserHasNoOwnerPerms";
+  errorDescription:
+    "The user is required to have owner permissions on the artifact.";
   errorInstanceId: string;
   parameters: {
     artifactId: unknown;

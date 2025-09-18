@@ -26,6 +26,8 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface AbortTransactionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AbortTransactionPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to abort the given transaction on the given dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -41,6 +43,7 @@ export interface AbortTransactionPermissionDenied {
 export interface AddBackingDatasetsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddBackingDatasetsPermissionDenied";
+  errorDescription: "Could not addBackingDatasets the View.";
   errorInstanceId: string;
   parameters: {
     viewDatasetRid: unknown;
@@ -55,6 +58,7 @@ export interface AddBackingDatasetsPermissionDenied {
 export interface AddPrimaryKeyPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "AddPrimaryKeyPermissionDenied";
+  errorDescription: "Could not addPrimaryKey the View.";
   errorInstanceId: string;
   parameters: {
     viewDatasetRid: unknown;
@@ -69,6 +73,8 @@ export interface AddPrimaryKeyPermissionDenied {
 export interface BranchAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "BranchAlreadyExists";
+  errorDescription:
+    "The branch cannot be created because a branch with that name already exists.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -84,6 +90,8 @@ export interface BranchAlreadyExists {
 export interface BranchNotFound {
   errorCode: "NOT_FOUND";
   errorName: "BranchNotFound";
+  errorDescription:
+    "The requested branch could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -99,6 +107,7 @@ export interface BranchNotFound {
 export interface BuildTransactionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "BuildTransactionPermissionDenied";
+  errorDescription: "Could not build the Transaction.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -114,6 +123,7 @@ export interface BuildTransactionPermissionDenied {
 export interface ColumnTypesNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ColumnTypesNotSupported";
+  errorDescription: "The dataset contains column types that are not supported.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -128,6 +138,8 @@ export interface ColumnTypesNotSupported {
 export interface CommitTransactionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CommitTransactionPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to commit the given transaction on the given dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -143,6 +155,8 @@ export interface CommitTransactionPermissionDenied {
 export interface CreateBranchPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateBranchPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to create a branch of this dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -158,6 +172,8 @@ export interface CreateBranchPermissionDenied {
 export interface CreateDatasetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateDatasetPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to create a dataset in this folder.";
   errorInstanceId: string;
   parameters: {
     parentFolderRid: unknown;
@@ -173,6 +189,8 @@ export interface CreateDatasetPermissionDenied {
 export interface CreateTransactionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateTransactionPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to create a transaction on this dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -188,6 +206,7 @@ export interface CreateTransactionPermissionDenied {
 export interface CreateViewPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateViewPermissionDenied";
+  errorDescription: "Could not create the View.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -200,6 +219,8 @@ export interface CreateViewPermissionDenied {
 export interface DatasetNotFound {
   errorCode: "NOT_FOUND";
   errorName: "DatasetNotFound";
+  errorDescription:
+    "The requested dataset could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -214,6 +235,7 @@ export interface DatasetNotFound {
 export interface DatasetReadNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "DatasetReadNotSupported";
+  errorDescription: "The dataset does not support being read.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -230,6 +252,8 @@ exist if the dataset has no transactions, contains no files, the branch is not v
 export interface DatasetViewNotFound {
   errorCode: "NOT_FOUND";
   errorName: "DatasetViewNotFound";
+  errorDescription:
+    "The requested dataset view could not be found. A dataset view represents the effective file contents of a dataset for a branch at a point in time, calculated from transactions (SNAPSHOT, APPEND, UPDATE, DELETE). The view may not exist if the dataset has no transactions, contains no files, the branch is not valid, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -245,6 +269,8 @@ export interface DatasetViewNotFound {
 export interface DeleteBranchPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteBranchPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to delete the given branch from this dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -260,6 +286,7 @@ export interface DeleteBranchPermissionDenied {
 export interface DeleteFilePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteFilePermissionDenied";
+  errorDescription: "Could not delete the File.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -275,6 +302,7 @@ export interface DeleteFilePermissionDenied {
 export interface DeleteSchemaPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteSchemaPermissionDenied";
+  errorDescription: "todo";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -291,6 +319,8 @@ export interface DeleteSchemaPermissionDenied {
 export interface FileAlreadyExists {
   errorCode: "NOT_FOUND";
   errorName: "FileAlreadyExists";
+  errorDescription:
+    "The given file path already exists in the dataset and transaction.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -307,6 +337,7 @@ export interface FileAlreadyExists {
 export interface FileNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FileNotFound";
+  errorDescription: "The given File could not be found.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -322,6 +353,8 @@ export interface FileNotFound {
 export interface FileNotFoundOnBranch {
   errorCode: "NOT_FOUND";
   errorName: "FileNotFoundOnBranch";
+  errorDescription:
+    "The requested file could not be found on the given branch, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -338,6 +371,8 @@ export interface FileNotFoundOnBranch {
 export interface FileNotFoundOnTransactionRange {
   errorCode: "NOT_FOUND";
   errorName: "FileNotFoundOnTransactionRange";
+  errorDescription:
+    "The requested file could not be found on the given transaction range, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -355,6 +390,7 @@ export interface FileNotFoundOnTransactionRange {
 export interface GetBranchTransactionHistoryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetBranchTransactionHistoryPermissionDenied";
+  errorDescription: "Could not transactions the Branch.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -370,6 +406,7 @@ export interface GetBranchTransactionHistoryPermissionDenied {
 export interface GetDatasetJobsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetDatasetJobsPermissionDenied";
+  errorDescription: "Could not jobs the Dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -384,6 +421,7 @@ export interface GetDatasetJobsPermissionDenied {
 export interface GetDatasetSchedulesPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetDatasetSchedulesPermissionDenied";
+  errorDescription: "Could not getSchedules the Dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -398,6 +436,7 @@ export interface GetDatasetSchedulesPermissionDenied {
 export interface GetDatasetSchemaPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetDatasetSchemaPermissionDenied";
+  errorDescription: "Could not getSchema the Dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -412,6 +451,7 @@ export interface GetDatasetSchemaPermissionDenied {
 export interface GetFileContentPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetFileContentPermissionDenied";
+  errorDescription: "Could not content the File.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -428,6 +468,8 @@ the same project as the view or add them as project references.
 export interface InputBackingDatasetNotInOutputViewProject {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InputBackingDatasetNotInOutputViewProject";
+  errorDescription:
+    "One or more backing datasets do not live in the same project as the view. Either move the input datasets to the same project as the view or add them as project references.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -440,6 +482,8 @@ export interface InputBackingDatasetNotInOutputViewProject {
 export interface InvalidBranchName {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidBranchName";
+  errorDescription:
+    "The requested branch name cannot be used. Branch names cannot be empty and must not look like RIDs or UUIDs.";
   errorInstanceId: string;
   parameters: {
     branchName: unknown;
@@ -454,6 +498,8 @@ export interface InvalidBranchName {
 export interface InvalidTransactionType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidTransactionType";
+  errorDescription:
+    "The given transaction type is not valid. Valid transaction types are SNAPSHOT, UPDATE, APPEND, and DELETE.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -470,6 +516,8 @@ export interface InvalidTransactionType {
 export interface InvalidViewBackingDataset {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidViewBackingDataset";
+  errorDescription:
+    "Either you do not have access to one or more of the backing datasets or it does not exist.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -483,6 +531,8 @@ INTEGER, LONG, STRING, BOOLEAN, TIMESTAMP or DATE.
 export interface InvalidViewPrimaryKeyColumnType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidViewPrimaryKeyColumnType";
+  errorDescription:
+    "The type of each referenced column in the primary key must be one of the following: BYTE, SHORT, DECIMAL, INTEGER, LONG, STRING, BOOLEAN, TIMESTAMP or DATE.";
   errorInstanceId: string;
   parameters: {
     primaryKeyColumns: unknown;
@@ -498,6 +548,7 @@ export interface InvalidViewPrimaryKeyColumnType {
 export interface InvalidViewPrimaryKeyDeletionColumn {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidViewPrimaryKeyDeletionColumn";
+  errorDescription: "The deletion column must be a boolean.";
   errorInstanceId: string;
   parameters: {
     deletionColumn: unknown;
@@ -513,6 +564,7 @@ export interface InvalidViewPrimaryKeyDeletionColumn {
 export interface JobTransactionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "JobTransactionPermissionDenied";
+  errorDescription: "Could not job the Transaction.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -528,6 +580,8 @@ export interface JobTransactionPermissionDenied {
 export interface NotAllColumnsInPrimaryKeyArePresent {
   errorCode: "INVALID_ARGUMENT";
   errorName: "NotAllColumnsInPrimaryKeyArePresent";
+  errorDescription:
+    "Not all columns in the View's primary key are present in the dataset(s).";
   errorInstanceId: string;
   parameters: {
     primaryKeyColumns: unknown;
@@ -543,6 +597,8 @@ export interface NotAllColumnsInPrimaryKeyArePresent {
 export interface OpenTransactionAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "OpenTransactionAlreadyExists";
+  errorDescription:
+    "A transaction is already open on this dataset and branch. A branch of a dataset can only have one open transaction at a time.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -558,6 +614,7 @@ export interface OpenTransactionAlreadyExists {
 export interface PutDatasetSchemaPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PutDatasetSchemaPermissionDenied";
+  errorDescription: "Could not putSchema the Dataset.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -572,6 +629,7 @@ export interface PutDatasetSchemaPermissionDenied {
 export interface PutSchemaPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "PutSchemaPermissionDenied";
+  errorDescription: "todo";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -587,6 +645,8 @@ export interface PutSchemaPermissionDenied {
 export interface ReadTableDatasetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReadTableDatasetPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to read the given dataset as a table.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -601,6 +661,8 @@ export interface ReadTableDatasetPermissionDenied {
 export interface ReadTableError {
   errorCode: "INTERNAL";
   errorName: "ReadTableError";
+  errorDescription:
+    "An error occurred while reading the table. Refer to the message for more details.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -617,6 +679,8 @@ stored as Parquet there is a limit of 1 million rows. For datasets stored as Par
 export interface ReadTableRowLimitExceeded {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ReadTableRowLimitExceeded";
+  errorDescription:
+    "The request to read the table generates a result that exceeds the allowed number of rows. For datasets not stored as Parquet there is a limit of 1 million rows. For datasets stored as Parquet there is no limit.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -631,6 +695,7 @@ export interface ReadTableRowLimitExceeded {
 export interface ReadTableTimeout {
   errorCode: "TIMEOUT";
   errorName: "ReadTableTimeout";
+  errorDescription: "The request to read the table timed out.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -645,6 +710,7 @@ export interface ReadTableTimeout {
 export interface RemoveBackingDatasetsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveBackingDatasetsPermissionDenied";
+  errorDescription: "Could not removeBackingDatasets the View.";
   errorInstanceId: string;
   parameters: {
     viewDatasetRid: unknown;
@@ -659,6 +725,7 @@ export interface RemoveBackingDatasetsPermissionDenied {
 export interface ReplaceBackingDatasetsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceBackingDatasetsPermissionDenied";
+  errorDescription: "Could not replaceBackingDatasets the View.";
   errorInstanceId: string;
   parameters: {
     viewDatasetRid: unknown;
@@ -673,6 +740,8 @@ export interface ReplaceBackingDatasetsPermissionDenied {
 export interface SchemaNotFound {
   errorCode: "NOT_FOUND";
   errorName: "SchemaNotFound";
+  errorDescription:
+    "A schema could not be found for the given dataset and branch, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -689,6 +758,7 @@ export interface SchemaNotFound {
 export interface TransactionNotCommitted {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TransactionNotCommitted";
+  errorDescription: "The given transaction has not been committed.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -705,6 +775,8 @@ export interface TransactionNotCommitted {
 export interface TransactionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "TransactionNotFound";
+  errorDescription:
+    "The requested transaction could not be found on the dataset, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -720,6 +792,7 @@ export interface TransactionNotFound {
 export interface TransactionNotOpen {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TransactionNotOpen";
+  errorDescription: "The given transaction is not open.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -736,6 +809,8 @@ export interface TransactionNotOpen {
 export interface UploadFilePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "UploadFilePermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to upload the given file to the given dataset and transaction.";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -752,6 +827,7 @@ export interface UploadFilePermissionDenied {
 export interface ViewDatasetCleanupFailed {
   errorCode: "INTERNAL";
   errorName: "ViewDatasetCleanupFailed";
+  errorDescription: "Failed to delete dataset following View creation failure.";
   errorInstanceId: string;
   parameters: {
     viewDatasetRid: unknown;
@@ -767,6 +843,8 @@ client token does not have access to it.
 export interface ViewNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ViewNotFound";
+  errorDescription:
+    "The requested View could not be found. Either the view does not exist, the branch is not valid or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     viewDatasetRid: unknown;
@@ -782,6 +860,7 @@ export interface ViewNotFound {
 export interface ViewPrimaryKeyCannotBeModified {
   errorCode: "CONFLICT";
   errorName: "ViewPrimaryKeyCannotBeModified";
+  errorDescription: "A primary key already exits.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -794,6 +873,7 @@ export interface ViewPrimaryKeyCannotBeModified {
 export interface ViewPrimaryKeyDeletionColumnNotInDatasetSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ViewPrimaryKeyDeletionColumnNotInDatasetSchema";
+  errorDescription: "The deletion column is not present in the dataset.";
   errorInstanceId: string;
   parameters: {
     deletionColumn: unknown;
@@ -808,6 +888,7 @@ export interface ViewPrimaryKeyDeletionColumnNotInDatasetSchema {
 export interface ViewPrimaryKeyMustContainAtLeastOneColumn {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ViewPrimaryKeyMustContainAtLeastOneColumn";
+  errorDescription: "No columns were provided as part of the primary key";
   errorInstanceId: string;
   parameters: {};
 }
@@ -820,6 +901,8 @@ export interface ViewPrimaryKeyMustContainAtLeastOneColumn {
 export interface ViewPrimaryKeyRequiresBackingDatasets {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ViewPrimaryKeyRequiresBackingDatasets";
+  errorDescription:
+    "Cannot add a primary key to a View that does not have any backing datasets.";
   errorInstanceId: string;
   parameters: {};
 }

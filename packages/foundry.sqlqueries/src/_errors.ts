@@ -26,6 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface CancelSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CancelSqlQueryPermissionDenied";
+  errorDescription: "Could not cancel the SqlQuery.";
   errorInstanceId: string;
   parameters: {
     sqlQueryId: unknown;
@@ -40,6 +41,7 @@ export interface CancelSqlQueryPermissionDenied {
 export interface ExecuteSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ExecuteSqlQueryPermissionDenied";
+  errorDescription: "Could not execute the SqlQuery.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -52,6 +54,7 @@ export interface ExecuteSqlQueryPermissionDenied {
 export interface GetResultsSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetResultsSqlQueryPermissionDenied";
+  errorDescription: "Could not getResults the SqlQuery.";
   errorInstanceId: string;
   parameters: {
     sqlQueryId: unknown;
@@ -66,6 +69,7 @@ export interface GetResultsSqlQueryPermissionDenied {
 export interface GetStatusSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetStatusSqlQueryPermissionDenied";
+  errorDescription: "Could not getStatus the SqlQuery.";
   errorInstanceId: string;
   parameters: {
     sqlQueryId: unknown;
@@ -80,6 +84,7 @@ export interface GetStatusSqlQueryPermissionDenied {
 export interface QueryCanceled {
   errorCode: "INVALID_ARGUMENT";
   errorName: "QueryCanceled";
+  errorDescription: "The query was canceled.";
   errorInstanceId: string;
   parameters: {
     queryId: unknown;
@@ -94,6 +99,7 @@ export interface QueryCanceled {
 export interface QueryFailed {
   errorCode: "INTERNAL";
   errorName: "QueryFailed";
+  errorDescription: "The query failed.";
   errorInstanceId: string;
   parameters: {
     queryId: unknown;
@@ -109,6 +115,7 @@ export interface QueryFailed {
 export interface QueryParseError {
   errorCode: "INVALID_ARGUMENT";
   errorName: "QueryParseError";
+  errorDescription: "The query cannot be parsed.";
   errorInstanceId: string;
   parameters: {
     errorMessage: unknown;
@@ -123,6 +130,8 @@ export interface QueryParseError {
 export interface QueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "QueryPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to access the given query.";
   errorInstanceId: string;
   parameters: {
     queryId: unknown;
@@ -137,6 +146,7 @@ export interface QueryPermissionDenied {
 export interface QueryRunning {
   errorCode: "INVALID_ARGUMENT";
   errorName: "QueryRunning";
+  errorDescription: "The query is running.";
   errorInstanceId: string;
   parameters: {
     queryId: unknown;
@@ -151,6 +161,8 @@ export interface QueryRunning {
 export interface ReadQueryInputsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReadQueryInputsPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to access the inputs to the query.";
   errorInstanceId: string;
   parameters: {
     rids: unknown;

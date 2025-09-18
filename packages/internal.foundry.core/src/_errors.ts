@@ -28,6 +28,8 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface ActionContainsDuplicateEdits {
   errorCode: "CONFLICT";
   errorName: "ActionContainsDuplicateEdits";
+  errorDescription:
+    "The given action request has multiple edits on the same object.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -43,6 +45,8 @@ Please contact the Ontology administrator to resolve this issue.
 export interface ActionEditedPropertiesNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ActionEditedPropertiesNotFound";
+  errorDescription:
+    "Actions attempted to edit properties that could not be found on the object type. Please contact the Ontology administrator to resolve this issue.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -57,6 +61,8 @@ export interface ActionEditedPropertiesNotFound {
 export interface ActionEditsReadOnlyEntity {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ActionEditsReadOnlyEntity";
+  errorDescription:
+    "The given action request performs edits on a type that is read-only or does not allow edits.";
   errorInstanceId: string;
   parameters: {
     entityTypeRid: unknown;
@@ -73,6 +79,8 @@ export interface ActionEditsReadOnlyEntity {
 export interface ActionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ActionNotFound";
+  errorDescription:
+    "The action is not found, or the user does not have access to it.";
   errorInstanceId: string;
   parameters: {
     actionRid: unknown;
@@ -89,6 +97,8 @@ export interface ActionNotFound {
 export interface ActionParameterInterfaceTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ActionParameterInterfaceTypeNotFound";
+  errorDescription:
+    "The parameter references an interface type that could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     parameterId: unknown;
@@ -105,6 +115,8 @@ export interface ActionParameterInterfaceTypeNotFound {
 export interface ActionParameterObjectNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ActionParameterObjectNotFound";
+  errorDescription:
+    "The parameter object reference or parameter default value is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     parameterId: unknown;
@@ -121,6 +133,8 @@ export interface ActionParameterObjectNotFound {
 export interface ActionParameterObjectTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ActionParameterObjectTypeNotFound";
+  errorDescription:
+    "The parameter references an object type that could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     parameterId: unknown;
@@ -137,6 +151,8 @@ export interface ActionParameterObjectTypeNotFound {
 export interface ActionTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ActionTypeNotFound";
+  errorDescription:
+    "The action type is not found, or the user does not have access to it.";
   errorInstanceId: string;
   parameters: {
     actionType: unknown;
@@ -155,6 +171,8 @@ details.
 export interface ActionValidationFailed {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ActionValidationFailed";
+  errorDescription:
+    "The validation failed for the given action parameters. Please use the validateAction endpoint for more details.";
   errorInstanceId: string;
   parameters: {
     actionType: unknown;
@@ -176,6 +194,8 @@ to reduce the number of groups.
 export interface AggregationGroupCountExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AggregationGroupCountExceededLimit";
+  errorDescription:
+    "The number of groups in the aggregations grouping exceeded the allowed limit. This can typically be fixed by adjusting your query to reduce the number of groups created by your aggregation. For instance:  If you are using multiple groupBy clauses, try reducing the number of clauses. If you are using a groupBy clause with a high cardinality property, try filtering the data first to reduce the number of groups.";
   errorInstanceId: string;
   parameters: {
     groupsCount: unknown;
@@ -198,6 +218,8 @@ to reduce the number of groups.
 export interface AggregationMemoryExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AggregationMemoryExceededLimit";
+  errorDescription:
+    "The amount of memory used in the request exceeded the limit. This can typically be fixed by adjusting your query to reduce the number of groups created by your aggregation. For instance:  If you are using multiple groupBy clauses, try reducing the number of clauses. If you are using a groupBy clause with a high cardinality property, try filtering the data first to reduce the number of groups.";
   errorInstanceId: string;
   parameters: {
     memoryUsedBytes: unknown;
@@ -216,6 +238,8 @@ This can be fixed by aggregating over fewer objects, such as by applying a filte
 export interface AggregationNestedObjectSetSizeExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AggregationNestedObjectSetSizeExceededLimit";
+  errorDescription:
+    "A nested object set within the aggregation exceeded the allowed limit. This can be fixed by aggregating over fewer objects, such as by applying a filter.";
   errorInstanceId: string;
   parameters: {
     objectsCount: unknown;
@@ -232,6 +256,8 @@ parameters to call this endpoint.
 export interface ApiFeaturePreviewUsageOnly {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ApiFeaturePreviewUsageOnly";
+  errorDescription:
+    "This feature is only supported in preview mode. Please use preview=true in the query parameters to call this endpoint.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -244,6 +270,7 @@ export interface ApiFeaturePreviewUsageOnly {
 export interface ApiUsageDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ApiUsageDenied";
+  errorDescription: "You are not allowed to use Palantir APIs.";
   errorInstanceId: string;
   parameters: {
     missingScope: unknown;
@@ -258,6 +285,7 @@ export interface ApiUsageDenied {
 export interface ApplyActionFailed {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ApplyActionFailed";
+  errorDescription: "";
   errorInstanceId: string;
   parameters: {};
 }
@@ -275,6 +303,8 @@ Attachments that have been attached to an object can be viewed by users who can 
 export interface AttachmentNotFound {
   errorCode: "NOT_FOUND";
   errorName: "AttachmentNotFound";
+  errorDescription:
+    "The requested attachment is not found, or the client token does not have access to it. Attachments that are not attached to any objects are deleted after two weeks. Attachments that have not been attached to an object can only be viewed by the user who uploaded them. Attachments that have been attached to an object can be viewed by users who can view the object.";
   errorInstanceId: string;
   parameters: {
     attachmentRid: unknown;
@@ -292,6 +322,8 @@ The maximum attachment size is 200MB.
 export interface AttachmentSizeExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AttachmentSizeExceededLimit";
+  errorDescription:
+    "The file is too large to be uploaded as an attachment. The maximum attachment size is 200MB.";
   errorInstanceId: string;
   parameters: {
     fileSizeBytes: unknown;
@@ -310,6 +342,8 @@ please reach out to Palantir Support.
 export interface CompositePrimaryKeyNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CompositePrimaryKeyNotSupported";
+  errorDescription:
+    "Primary keys consisting of multiple properties are not supported by this API. If you need support for this, please reach out to Palantir Support.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -327,6 +361,8 @@ export interface CompositePrimaryKeyNotSupported {
 export interface DerivedPropertyApiNamesNotUnique {
   errorCode: "INVALID_ARGUMENT";
   errorName: "DerivedPropertyApiNamesNotUnique";
+  errorDescription:
+    "At least one of the requested derived property API names already exist on the object set.";
   errorInstanceId: string;
   parameters: {
     derivedPropertyApiNames: unknown;
@@ -343,6 +379,7 @@ export interface DerivedPropertyApiNamesNotUnique {
 export interface DuplicateOrderBy {
   errorCode: "INVALID_ARGUMENT";
   errorName: "DuplicateOrderBy";
+  errorDescription: "The requested sort order includes duplicate properties.";
   errorInstanceId: string;
   parameters: {
     properties: unknown;
@@ -359,6 +396,8 @@ export interface DuplicateOrderBy {
 export interface EditObjectPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "EditObjectPermissionDenied";
+  errorDescription:
+    "The user does not have permission to edit this ObjectType.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -371,6 +410,8 @@ export interface EditObjectPermissionDenied {
 export interface FolderNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FolderNotFound";
+  errorDescription:
+    "The requested folder could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     folderRid: unknown;
@@ -385,6 +426,8 @@ export interface FolderNotFound {
 export interface FoundryBranchNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FoundryBranchNotFound";
+  errorDescription:
+    "The requested foundry branch could not be found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     branch: unknown;
@@ -402,6 +445,8 @@ is meant to be displayed to the user.
 export interface FunctionEncounteredUserFacingError {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FunctionEncounteredUserFacingError";
+  errorDescription:
+    "The authored function failed to execute because of a user induced error. The message argument is meant to be displayed to the user.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -418,6 +463,7 @@ export interface FunctionEncounteredUserFacingError {
 export interface FunctionExecutionFailed {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FunctionExecutionFailed";
+  errorDescription: "";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -435,6 +481,7 @@ export interface FunctionExecutionFailed {
 export interface FunctionExecutionTimedOut {
   errorCode: "TIMEOUT";
   errorName: "FunctionExecutionTimedOut";
+  errorDescription: "";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -450,6 +497,7 @@ export interface FunctionExecutionTimedOut {
 export interface FunctionInvalidInput {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FunctionInvalidInput";
+  errorDescription: "";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -467,6 +515,8 @@ export interface FunctionInvalidInput {
 export interface InterfaceTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "InterfaceTypeNotFound";
+  errorDescription:
+    "The requested interface type is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     apiName: unknown;
@@ -484,6 +534,8 @@ export interface InterfaceTypeNotFound {
 export interface InterfaceTypesNotFound {
   errorCode: "NOT_FOUND";
   errorName: "InterfaceTypesNotFound";
+  errorDescription:
+    "The requested interface types were not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     apiName: unknown;
@@ -501,6 +553,8 @@ export interface InterfaceTypesNotFound {
 export interface InvalidAggregationOrdering {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAggregationOrdering";
+  errorDescription:
+    "Aggregation ordering can only be applied to metrics with exactly one groupBy clause.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -515,6 +569,8 @@ export interface InvalidAggregationOrdering {
 export interface InvalidAggregationRange {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAggregationRange";
+  errorDescription:
+    "Aggregation range should include one lt or lte and one gt or gte.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -529,6 +585,7 @@ export interface InvalidAggregationRange {
 export interface InvalidAggregationRangePropertyType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAggregationRangePropertyType";
+  errorDescription: "Range group by is not supported by property type.";
   errorInstanceId: string;
   parameters: {
     property: unknown;
@@ -547,6 +604,8 @@ export interface InvalidAggregationRangePropertyType {
 export interface InvalidAggregationRangeValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAggregationRangeValue";
+  errorDescription:
+    "Aggregation value does not conform to the expected underlying type.";
   errorInstanceId: string;
   parameters: {
     property: unknown;
@@ -565,6 +624,8 @@ export interface InvalidAggregationRangeValue {
 export interface InvalidApplyActionOptionCombination {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidApplyActionOptionCombination";
+  errorDescription:
+    "The given options are individually valid but cannot be used in the given combination.";
   errorInstanceId: string;
   parameters: {
     invalidCombination: unknown;
@@ -581,6 +642,8 @@ export interface InvalidApplyActionOptionCombination {
 export interface InvalidContentLength {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidContentLength";
+  errorDescription:
+    "A Content-Length header is required for all uploads, but was missing or invalid.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -596,6 +659,8 @@ Please check your request content and filename to ensure they are compatible.
 export interface InvalidContentType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidContentType";
+  errorDescription:
+    "The Content-Type cannot be inferred from the request content and filename. Please check your request content and filename to ensure they are compatible.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -610,6 +675,7 @@ export interface InvalidContentType {
 export interface InvalidDurationGroupByPropertyType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidDurationGroupByPropertyType";
+  errorDescription: "Invalid property type for duration groupBy.";
   errorInstanceId: string;
   parameters: {
     property: unknown;
@@ -630,6 +696,8 @@ every two hours are allowed.
 export interface InvalidDurationGroupByValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidDurationGroupByValue";
+  errorDescription:
+    "Duration groupBy value is invalid. Units larger than day must have value 1 and date properties do not support filtering on units smaller than day. As examples, neither bucketing by every two weeks nor bucketing a date by every two hours are allowed.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -645,6 +713,8 @@ should be written properties.id.
 export interface InvalidFields {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidFields";
+  errorDescription:
+    "The value of the given field does not match the expected pattern. For example, an Ontology object property id should be written properties.id.";
   errorInstanceId: string;
   parameters: {
     properties: unknown;
@@ -661,6 +731,7 @@ export interface InvalidFields {
 export interface InvalidGroupId {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidGroupId";
+  errorDescription: "The provided value for a group id must be a UUID.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
@@ -677,6 +748,7 @@ export interface InvalidGroupId {
 export interface InvalidOrderType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidOrderType";
+  errorDescription: "This query type does not support the provided order type";
   errorInstanceId: string;
   parameters: {
     orderType: unknown;
@@ -691,6 +763,8 @@ export interface InvalidOrderType {
 export interface InvalidPageSize {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPageSize";
+  errorDescription:
+    "The provided page size was zero or negative. Page sizes must be greater than zero.";
   errorInstanceId: string;
   parameters: {
     pageSize: unknown;
@@ -705,6 +779,8 @@ export interface InvalidPageSize {
 export interface InvalidPageToken {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPageToken";
+  errorDescription:
+    "The provided page token could not be used to retrieve the next page of results.";
   errorInstanceId: string;
   parameters: {
     pageToken: unknown;
@@ -719,6 +795,8 @@ export interface InvalidPageToken {
 export interface InvalidParameterCombination {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameterCombination";
+  errorDescription:
+    "The given parameters are individually valid but cannot be used in the given combination.";
   errorInstanceId: string;
   parameters: {
     validCombinations: unknown;
@@ -737,6 +815,8 @@ how parameters are represented.
 export interface InvalidParameterValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameterValue";
+  errorDescription:
+    "The value of the given parameter is invalid. See the documentation of DataValue for details on how parameters are represented.";
   errorInstanceId: string;
   parameters: {
     parameterBaseType: unknown;
@@ -756,6 +836,7 @@ export interface InvalidParameterValue {
 export interface InvalidPropertyFiltersCombination {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPropertyFiltersCombination";
+  errorDescription: "The provided filters cannot be used together.";
   errorInstanceId: string;
   parameters: {
     propertyFilters: unknown;
@@ -774,6 +855,8 @@ isNull in properties.address.isNull=2 because the isNull filter expects a value 
 export interface InvalidPropertyFilterValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPropertyFilterValue";
+  errorDescription:
+    "The value of the given property filter is invalid. For instance, 2 is an invalid value for isNull in properties.address.isNull=2 because the isNull filter expects a value of boolean type.";
   errorInstanceId: string;
   parameters: {
     expectedType: unknown;
@@ -793,6 +876,7 @@ export interface InvalidPropertyFilterValue {
 export interface InvalidPropertyType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPropertyType";
+  errorDescription: "The given property type is not of the expected type.";
   errorInstanceId: string;
   parameters: {
     propertyBaseType: unknown;
@@ -811,6 +895,8 @@ how properties are represented.
 export interface InvalidPropertyValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidPropertyValue";
+  errorDescription:
+    "The value of the given property is invalid. See the documentation of PropertyValue for details on how properties are represented.";
   errorInstanceId: string;
   parameters: {
     propertyBaseType: unknown;
@@ -830,6 +916,8 @@ how parameters are represented.
 export interface InvalidQueryParameterValue {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidQueryParameterValue";
+  errorDescription:
+    "The value of the given parameter is invalid. See the documentation of DataValue for details on how parameters are represented.";
   errorInstanceId: string;
   parameters: {
     parameterDataType: unknown;
@@ -848,6 +936,7 @@ export interface InvalidQueryParameterValue {
 export interface InvalidRangeQuery {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidRangeQuery";
+  errorDescription: "The specified query range filter is invalid.";
   errorInstanceId: string;
   parameters: {
     lt: unknown;
@@ -869,6 +958,8 @@ order can also be omitted, and defaults to 'asc'.
 export interface InvalidSortOrder {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidSortOrder";
+  errorDescription:
+    "The requested sort order of one or more properties is invalid. Valid sort orders are 'asc' or 'desc'. Sort order can also be omitted, and defaults to 'asc'.";
   errorInstanceId: string;
   parameters: {
     invalidSortOrder: unknown;
@@ -885,6 +976,8 @@ export interface InvalidSortOrder {
 export interface InvalidSortType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidSortType";
+  errorDescription:
+    "The requested sort type of one or more clauses is invalid. Valid sort types are 'p' or 'properties'.";
   errorInstanceId: string;
   parameters: {
     invalidSortType: unknown;
@@ -901,6 +994,7 @@ export interface InvalidSortType {
 export interface InvalidUserId {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidUserId";
+  errorDescription: "The provided value for a user id must be a UUID.";
   errorInstanceId: string;
   parameters: {
     userId: unknown;
@@ -917,6 +1011,7 @@ export interface InvalidUserId {
 export interface LinkAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "LinkAlreadyExists";
+  errorDescription: "The link the user is attempting to create already exists.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -931,6 +1026,8 @@ export interface LinkAlreadyExists {
 export interface LinkedObjectNotFound {
   errorCode: "NOT_FOUND";
   errorName: "LinkedObjectNotFound";
+  errorDescription:
+    "The linked object with the given primary key is not found, or the user does not have access to it.";
   errorInstanceId: string;
   parameters: {
     linkType: unknown;
@@ -949,6 +1046,8 @@ export interface LinkedObjectNotFound {
 export interface LinkTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "LinkTypeNotFound";
+  errorDescription:
+    "The link type is not found, or the user does not have access to it.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -966,6 +1065,8 @@ export interface LinkTypeNotFound {
 export interface MalformedPropertyFilters {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MalformedPropertyFilters";
+  errorDescription:
+    "At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.";
   errorInstanceId: string;
   parameters: {
     malformedPropertyFilter: unknown;
@@ -982,6 +1083,8 @@ export interface MalformedPropertyFilters {
 export interface MarketplaceActionMappingNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarketplaceActionMappingNotFound";
+  errorDescription:
+    "The given action could not be mapped to a Marketplace installation.";
   errorInstanceId: string;
   parameters: {
     actionType: unknown;
@@ -1000,6 +1103,8 @@ export interface MarketplaceActionMappingNotFound {
 export interface MarketplaceInstallationNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarketplaceInstallationNotFound";
+  errorDescription:
+    "The given marketplace installation could not be found or the user does not have access to it.";
   errorInstanceId: string;
   parameters: {
     artifactRepository: unknown;
@@ -1017,6 +1122,8 @@ export interface MarketplaceInstallationNotFound {
 export interface MarketplaceLinkMappingNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarketplaceLinkMappingNotFound";
+  errorDescription:
+    "The given link could not be mapped to a Marketplace installation.";
   errorInstanceId: string;
   parameters: {
     linkType: unknown;
@@ -1035,6 +1142,8 @@ export interface MarketplaceLinkMappingNotFound {
 export interface MarketplaceObjectMappingNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarketplaceObjectMappingNotFound";
+  errorDescription:
+    "The given object could not be mapped to a Marketplace installation.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1053,6 +1162,8 @@ export interface MarketplaceObjectMappingNotFound {
 export interface MarketplaceQueryMappingNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarketplaceQueryMappingNotFound";
+  errorDescription:
+    "The given query could not be mapped to a Marketplace installation.";
   errorInstanceId: string;
   parameters: {
     queryType: unknown;
@@ -1072,6 +1183,8 @@ missing from the request.
 export interface MissingParameter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingParameter";
+  errorDescription:
+    "Required parameters are missing. Please look at the parameters field to see which required parameters are missing from the request.";
   errorInstanceId: string;
   parameters: {
     parameters: unknown;
@@ -1086,6 +1199,8 @@ export interface MissingParameter {
 export interface MissingPostBody {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingPostBody";
+  errorDescription:
+    "A post body is required for this endpoint, but was not found in the request.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1100,6 +1215,8 @@ export interface MissingPostBody {
 export interface MultipleGroupByOnFieldNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MultipleGroupByOnFieldNotSupported";
+  errorDescription:
+    "Aggregation cannot group by on the same field multiple times.";
   errorInstanceId: string;
   parameters: {
     duplicateFields: unknown;
@@ -1117,6 +1234,8 @@ it.
 export interface MultiplePropertyValuesNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MultiplePropertyValuesNotSupported";
+  errorDescription:
+    "One of the requested property filters does not support multiple values. Please include only a single value for it.";
   errorInstanceId: string;
   parameters: {
     propertyFilter: unknown;
@@ -1134,6 +1253,8 @@ export interface MultiplePropertyValuesNotSupported {
 export interface ObjectAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "ObjectAlreadyExists";
+  errorDescription:
+    "The object the user is attempting to create already exists.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1148,6 +1269,8 @@ export interface ObjectAlreadyExists {
 export interface ObjectChanged {
   errorCode: "CONFLICT";
   errorName: "ObjectChanged";
+  errorDescription:
+    "An object used by this Action was changed by someone else while the Action was running.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1162,6 +1285,8 @@ export interface ObjectChanged {
 export interface ObjectNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ObjectNotFound";
+  errorDescription:
+    "The requested object is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1179,6 +1304,8 @@ export interface ObjectNotFound {
 export interface ObjectSetNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ObjectSetNotFound";
+  errorDescription:
+    "The requested object set is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     objectSetRid: unknown;
@@ -1196,6 +1323,8 @@ API for a given request.
 export interface ObjectsExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ObjectsExceededLimit";
+  errorDescription:
+    "There are more objects, but they cannot be returned by this API. Only 10,000 objects are available through this API for a given request.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1210,6 +1339,8 @@ export interface ObjectsExceededLimit {
 export interface ObjectTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ObjectTypeNotFound";
+  errorDescription:
+    "The requested object type is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1228,6 +1359,8 @@ Administrator to re-index the object type in Ontology Management Application.
 export interface ObjectTypeNotSynced {
   errorCode: "CONFLICT";
   errorName: "ObjectTypeNotSynced";
+  errorDescription:
+    "The requested object type is not synced into the ontology. Please reach out to your Ontology Administrator to re-index the object type in Ontology Management Application.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1245,6 +1378,8 @@ Administrator to re-index the object type(s) in Ontology Management Application.
 export interface ObjectTypesNotSynced {
   errorCode: "CONFLICT";
   errorName: "ObjectTypesNotSynced";
+  errorDescription:
+    "One or more of the requested object types are not synced into the ontology. Please reach out to your Ontology Administrator to re-index the object type(s) in Ontology Management Application.";
   errorInstanceId: string;
   parameters: {
     objectTypes: unknown;
@@ -1261,6 +1396,8 @@ export interface ObjectTypesNotSynced {
 export interface OntologyApiNameNotUnique {
   errorCode: "INVALID_ARGUMENT";
   errorName: "OntologyApiNameNotUnique";
+  errorDescription:
+    "The given Ontology API name is not unique. Use the Ontology RID in place of the Ontology API name.";
   errorInstanceId: string;
   parameters: {
     ontologyApiName: unknown;
@@ -1279,6 +1416,8 @@ Please change the size of your request or contact the Ontology administrator.
 export interface OntologyEditsExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "OntologyEditsExceededLimit";
+  errorDescription:
+    "The number of edits to the Ontology exceeded the allowed limit. This may happen because of the request or because the Action is modifying too many objects. Please change the size of your request or contact the Ontology administrator.";
   errorInstanceId: string;
   parameters: {
     editsCount: unknown;
@@ -1296,6 +1435,8 @@ export interface OntologyEditsExceededLimit {
 export interface OntologyNotFound {
   errorCode: "NOT_FOUND";
   errorName: "OntologyNotFound";
+  errorDescription:
+    "The requested Ontology is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     ontologyRid: unknown;
@@ -1314,6 +1455,8 @@ few seconds and try again.
 export interface OntologySyncing {
   errorCode: "CONFLICT";
   errorName: "OntologySyncing";
+  errorDescription:
+    "The requested object type has been changed in the Ontology Manager and changes are currently being applied. Wait a few seconds and try again.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1331,6 +1474,8 @@ applied. Wait a few seconds and try again.
 export interface OntologySyncingObjectTypes {
   errorCode: "CONFLICT";
   errorName: "OntologySyncingObjectTypes";
+  errorDescription:
+    "One or more requested object types have been changed in the Ontology Manager and changes are currently being applied. Wait a few seconds and try again.";
   errorInstanceId: string;
   parameters: {
     objectTypes: unknown;
@@ -1347,6 +1492,8 @@ export interface OntologySyncingObjectTypes {
 export interface ParameterObjectNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ParameterObjectNotFound";
+  errorDescription:
+    "The parameter object reference or parameter default value is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1364,6 +1511,8 @@ export interface ParameterObjectNotFound {
 export interface ParameterObjectSetRidNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ParameterObjectSetRidNotFound";
+  errorDescription:
+    "The parameter object set RID is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     objectSetRid: unknown;
@@ -1381,6 +1530,8 @@ to see which ones are available.
 export interface ParametersNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ParametersNotFound";
+  errorDescription:
+    "The provided parameter ID was not found for the action. Please look at the configuredParameterIds field to see which ones are available.";
   errorInstanceId: string;
   parameters: {
     actionType: unknown;
@@ -1400,6 +1551,8 @@ please reach out to Palantir Support.
 export interface ParameterTypeNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ParameterTypeNotSupported";
+  errorDescription:
+    "The type of the requested parameter is not currently supported by this API. If you need support for this, please reach out to Palantir Support.";
   errorInstanceId: string;
   parameters: {
     parameterId: unknown;
@@ -1417,6 +1570,7 @@ export interface ParameterTypeNotSupported {
 export interface ParentAttachmentPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ParentAttachmentPermissionDenied";
+  errorDescription: "The user does not have permission to parent attachments.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1431,6 +1585,8 @@ export interface ParentAttachmentPermissionDenied {
 export interface PropertiesHaveDifferentIds {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertiesHaveDifferentIds";
+  errorDescription:
+    "Properties used in ordering must have the same ids. Temporary restriction imposed due to OSS limitations.";
   errorInstanceId: string;
   parameters: {
     properties: unknown;
@@ -1449,6 +1605,8 @@ between the time a property is marked Searchable and Selectable and when it can 
 export interface PropertiesNotFilterable {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertiesNotFilterable";
+  errorDescription:
+    "Results could not be filtered by the requested properties. Please mark the properties as Searchable and Selectable in the Ontology Manager to be able to filter on those properties. There may be a short delay between the time a property is marked Searchable and Selectable and when it can be used.";
   errorInstanceId: string;
   parameters: {
     properties: unknown;
@@ -1465,6 +1623,8 @@ export interface PropertiesNotFilterable {
 export interface PropertiesNotFound {
   errorCode: "NOT_FOUND";
   errorName: "PropertiesNotFound";
+  errorDescription:
+    "The requested properties are not found on the object type.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1484,6 +1644,8 @@ between the time a property is marked Searchable and when it can be used.
 export interface PropertiesNotSearchable {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertiesNotSearchable";
+  errorDescription:
+    "Search is not enabled on the specified properties. Please mark the properties as Searchable in the Ontology Manager to enable search on them. There may be a short delay between the time a property is marked Searchable and when it can be used.";
   errorInstanceId: string;
   parameters: {
     propertyApiNames: unknown;
@@ -1502,6 +1664,8 @@ between the time a property is set to Searchable and Sortable and when it can be
 export interface PropertiesNotSortable {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertiesNotSortable";
+  errorDescription:
+    "Results could not be ordered by the requested properties. Please mark the properties as Searchable and Sortable in the Ontology Manager to enable their use in orderBy parameters. There may be a short delay between the time a property is set to Searchable and Sortable and when it can be used.";
   errorInstanceId: string;
   parameters: {
     properties: unknown;
@@ -1519,6 +1683,8 @@ name for it using the Ontology Manager.
 export interface PropertyApiNameNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyApiNameNotFound";
+  errorDescription:
+    "A property that was required to have an API name, such as a primary key, is missing one. You can set an API name for it using the Ontology Manager.";
   errorInstanceId: string;
   parameters: {
     propertyId: unknown;
@@ -1537,6 +1703,8 @@ please reach out to Palantir Support.
 export interface PropertyBaseTypeNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyBaseTypeNotSupported";
+  errorDescription:
+    "The type of the requested property is not currently supported by this API. If you need support for this, please reach out to Palantir Support.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1556,6 +1724,8 @@ a list of supported property filters.
 export interface PropertyFiltersNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyFiltersNotSupported";
+  errorDescription:
+    "At least one of the requested property filters are not supported. See the documentation of PropertyFilter for a list of supported property filters.";
   errorInstanceId: string;
   parameters: {
     propertyFilters: unknown;
@@ -1573,6 +1743,7 @@ export interface PropertyFiltersNotSupported {
 export interface PropertyNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyNotFound";
+  errorDescription: "Failed to find a provided property for a given object.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1587,6 +1758,8 @@ export interface PropertyNotFound {
 export interface PropertyTypeDoesNotSupportNearestNeighbors {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyTypeDoesNotSupportNearestNeighbors";
+  errorDescription:
+    "The provided propertyIdentifier is not configured with an embedding model in the ontology.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1601,6 +1774,8 @@ export interface PropertyTypeDoesNotSupportNearestNeighbors {
 export interface PropertyTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "PropertyTypeNotFound";
+  errorDescription:
+    "The requested property type is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     objectTypeApiName: unknown;
@@ -1619,6 +1794,8 @@ a list of supported search queries on different property types.
 export interface PropertyTypesSearchNotSupported {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyTypesSearchNotSupported";
+  errorDescription:
+    "The search on the property types are not supported. See the Search Objects documentation for a list of supported search queries on different property types.";
   errorInstanceId: string;
   parameters: {
     parameters: unknown;
@@ -1636,6 +1813,8 @@ is meant to be displayed to the user.
 export interface QueryEncounteredUserFacingError {
   errorCode: "CONFLICT";
   errorName: "QueryEncounteredUserFacingError";
+  errorDescription:
+    "The authored Query failed to execute because of a user induced error. The message argument is meant to be displayed to the user.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -1654,6 +1833,7 @@ export interface QueryEncounteredUserFacingError {
 export interface QueryMemoryExceededLimit {
   errorCode: "TIMEOUT";
   errorName: "QueryMemoryExceededLimit";
+  errorDescription: "Memory limits were exceeded for the Query execution.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -1671,6 +1851,8 @@ export interface QueryMemoryExceededLimit {
 export interface QueryNotFound {
   errorCode: "NOT_FOUND";
   errorName: "QueryNotFound";
+  errorDescription:
+    "The query is not found, or the user does not have access to it.";
   errorInstanceId: string;
   parameters: {
     query: unknown;
@@ -1687,6 +1869,8 @@ export interface QueryNotFound {
 export interface QueryRuntimeError {
   errorCode: "INVALID_ARGUMENT";
   errorName: "QueryRuntimeError";
+  errorDescription:
+    "The authored Query failed to execute because of a runtime error.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -1707,6 +1891,7 @@ export interface QueryRuntimeError {
 export interface QueryTimeExceededLimit {
   errorCode: "TIMEOUT";
   errorName: "QueryTimeExceededLimit";
+  errorDescription: "Time limits were exceeded for the Query execution.";
   errorInstanceId: string;
   parameters: {
     functionRid: unknown;
@@ -1722,6 +1907,8 @@ export interface QueryTimeExceededLimit {
 export interface ResourceNameAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "ResourceNameAlreadyExists";
+  errorDescription:
+    "The provided resource name is already in use by another resource in the same folder.";
   errorInstanceId: string;
   parameters: {
     parentFolderRid: unknown;
@@ -1739,6 +1926,8 @@ export interface ResourceNameAlreadyExists {
 export interface SearchVectorDimensionsDiffer {
   errorCode: "INVALID_ARGUMENT";
   errorName: "SearchVectorDimensionsDiffer";
+  errorDescription:
+    "The dimensions of the provided vector don't match the dimensions of the embedding model being queried.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1753,6 +1942,8 @@ export interface SearchVectorDimensionsDiffer {
 export interface SharedPropertiesNotFound {
   errorCode: "NOT_FOUND";
   errorName: "SharedPropertiesNotFound";
+  errorDescription:
+    "The requested shared property types are not present on every object type.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
@@ -1770,6 +1961,8 @@ export interface SharedPropertiesNotFound {
 export interface SharedPropertyTypeNotFound {
   errorCode: "NOT_FOUND";
   errorName: "SharedPropertyTypeNotFound";
+  errorDescription:
+    "The requested shared property type is not found, or the client token does not have access to it.";
   errorInstanceId: string;
   parameters: {
     apiName: unknown;
@@ -1787,6 +1980,8 @@ export interface SharedPropertyTypeNotFound {
 export interface TooManyNearestNeighborsRequested {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TooManyNearestNeighborsRequested";
+  errorDescription:
+    "The value of numNeighbors must be in the range 1 <= numNeighbors <= 500.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1799,6 +1994,7 @@ export interface TooManyNearestNeighborsRequested {
 export interface UnknownDistanceUnit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UnknownDistanceUnit";
+  errorDescription: "An unknown distance unit was provided.";
   errorInstanceId: string;
   parameters: {
     unknownUnit: unknown;
@@ -1817,6 +2013,8 @@ to see which ones are available.
 export interface UnknownParameter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UnknownParameter";
+  errorDescription:
+    "The provided parameters were not found. Please look at the knownParameters field to see which ones are available.";
   errorInstanceId: string;
   parameters: {
     unknownParameters: unknown;
@@ -1834,6 +2032,7 @@ export interface UnknownParameter {
 export interface UnsupportedObjectSet {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UnsupportedObjectSet";
+  errorDescription: "The requested object set is not supported.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -1849,6 +2048,8 @@ type has backing data sources configured and visible.
 export interface ViewObjectPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ViewObjectPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to view any data sources backing this object type. Ensure the object type has backing data sources configured and visible.";
   errorInstanceId: string;
   parameters: {
     objectType: unknown;

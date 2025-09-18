@@ -84,6 +84,9 @@ export class ErrorType extends Type {
       ? "UNSAFE"
       : "SAFE";
 
+    const errorDescription = error.documentation.plainTextDescription ?? "";
+    const errorDescriptionNoNewLines = errorDescription.replaceAll("\n", " ");
+
     let out = "";
     out += `
   /** ${
@@ -93,13 +96,14 @@ export class ErrorType extends Type {
         }foundry.ontologies\` package\n*`
         : ""
     } 
-   * ${error.documentation.plainTextDescription ?? ""}
+   * ${errorDescription}
    * 
    * Log Safety: ${safety}
    */
   export interface ${error.locator.localName} {
     errorCode: "${error.errorType}";
     errorName: "${error.locator.localName}";
+    errorDescription: "${errorDescriptionNoNewLines}";
     errorInstanceId: string;
     parameters: {
       ${

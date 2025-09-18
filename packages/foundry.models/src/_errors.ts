@@ -26,6 +26,8 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface CondaSolveFailureForProvidedPackages {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CondaSolveFailureForProvidedPackages";
+  errorDescription:
+    "Thrown when conda solve fails for the provided input packages.";
   errorInstanceId: string;
   parameters: {
     errorType: unknown;
@@ -41,6 +43,7 @@ export interface CondaSolveFailureForProvidedPackages {
 export interface CreateModelPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateModelPermissionDenied";
+  errorDescription: "Could not create the Model.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -53,6 +56,7 @@ export interface CreateModelPermissionDenied {
 export interface CreateModelVersionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateModelVersionPermissionDenied";
+  errorDescription: "Could not create the ModelVersion.";
   errorInstanceId: string;
   parameters: {
     modelRid: unknown;
@@ -67,6 +71,7 @@ export interface CreateModelVersionPermissionDenied {
 export interface InvalidModelApi {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidModelApi";
+  errorDescription: "The model api failed validations";
   errorInstanceId: string;
   parameters: {
     errorType: unknown;
@@ -82,6 +87,7 @@ export interface InvalidModelApi {
 export interface ModelNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ModelNotFound";
+  errorDescription: "The given Model could not be found.";
   errorInstanceId: string;
   parameters: {
     modelRid: unknown;
@@ -96,6 +102,7 @@ export interface ModelNotFound {
 export interface ModelVersionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ModelVersionNotFound";
+  errorDescription: "The given ModelVersion could not be found.";
   errorInstanceId: string;
   parameters: {
     modelRid: unknown;
