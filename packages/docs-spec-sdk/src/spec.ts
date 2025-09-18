@@ -157,7 +157,7 @@ const MediaTemplateStrings = {
 
 const NearestNeighborsTemplateStrings = {
   objectType: "required",
-  vectorProperty: "required",
+  property: "required",
   isOrderedByRelevance: "required",
 } as const satisfies SnippetVariables;
 
