@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.7.0
+
+### Minor Changes
+
+- bb1ac6b: vectorProperty -> property
+
 ## 0.6.0
 
 ### Minor Changes

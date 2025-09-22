@@ -1,5 +1,16 @@
 # @osdk/gotham
 
+## 0.5.0
+
+### Patch Changes
+
+- Updated dependencies [0a711d1]
+  - @osdk/gotham.targetworkbench@0.5.0
+  - @osdk/shared.net.platformapi@1.5.0
+  - @osdk/gotham.core@0.5.0
+  - @osdk/gotham.gaia@0.5.0
+  - @osdk/gotham.geojson@0.5.0
+
 ## 0.4.0
 
 ### Minor Changes

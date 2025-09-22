@@ -1,5 +1,13 @@
 # @osdk/internal.foundry.mediasets
 
+## 2.32.0
+
+### Patch Changes
+
+- Updated dependencies [0a711d1]
+  - @osdk/shared.net.platformapi@1.5.0
+  - @osdk/internal.foundry.core@2.32.0
+
 ## 2.31.0
 
 ### Patch Changes

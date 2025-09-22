@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.5.0
+
+### Minor Changes
+
+- 0a711d1: Introduce error descriptions
+
 ## 1.4.0
 
 ### Minor Changes

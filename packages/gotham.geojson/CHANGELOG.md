@@ -1,5 +1,12 @@
 # @osdk/gotham.geojson
 
+## 0.5.0
+
+### Patch Changes
+
+- Updated dependencies [0a711d1]
+  - @osdk/shared.net.platformapi@1.5.0
+
 ## 0.4.0
 
 ### Minor Changes

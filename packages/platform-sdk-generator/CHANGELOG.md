@@ -1,5 +1,11 @@
 # @osdk/platform-sdk-generator
 
+## 0.31.0
+
+### Minor Changes
+
+- 0a711d1: Introduce error descriptions
+
 ## 0.30.0
 
 ### Minor Changes
