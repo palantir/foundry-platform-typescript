@@ -109,6 +109,8 @@ const FunctionTemplateStrings = {
   hasTimestampInputs: "required",
   hasDateInputs: "required",
   needsImports: "required",
+  hasAttachmentProperty: "required",
+  objectType: "required",
 } as const satisfies SnippetVariables;
 
 const ActionTemplateStrings = {
@@ -129,6 +131,9 @@ const ActionTemplateStrings = {
   hasEditObjectTypes: "required",
   hasParameters: "required",
   rawActionTypeParameterValues: "required",
+  hasAttachmentProperty: "required",
+  attachmentParameter: "required",
+  objectType: "required",
 } as const satisfies SnippetVariables;
 
 const BatchActionTemplateStrings = {
@@ -147,7 +152,11 @@ const InterfaceCastingTemplateStrings = {
   objectTypeApiNameCamelCase: "required",
 } as const satisfies SnippetVariables;
 
-const AttachmentTemplateStrings = {} as const satisfies SnippetVariables;
+const AttachmentTemplateStrings = {
+  actionApiName: "required",
+  property: "required",
+  rawPrimaryKeyProperty: "required",
+} as const satisfies SnippetVariables;
 
 const MediaTemplateStrings = {
   objectType: "required",
@@ -445,21 +454,21 @@ export const OSDK_SNIPPETS_SPEC = {
     },
     notTemplate: {
       variables: {
-        ...ObjectTypeTemplateStrings,
+        ...ObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
       },
     },
     andTemplate: {
       variables: {
-        ...ObjectTypeTemplateStrings,
+        ...ObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
       },
     },
     orTemplate: {
       variables: {
-        ...ObjectTypeTemplateStrings,
+        ...ObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
       },
@@ -484,6 +493,7 @@ export const OSDK_SNIPPETS_SPEC = {
         ...InterfaceTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
+        property: "required",
       },
     },
     searchInterfacesReference: {
@@ -491,6 +501,7 @@ export const OSDK_SNIPPETS_SPEC = {
         ...InterfaceTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
+        property: "required",
       },
     },
     // loadTimeSeriesSnippets
@@ -587,6 +598,7 @@ export const OSDK_SNIPPETS_SPEC = {
         ...ObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
+        linkName: "required",
       },
     },
     derivedPropertyApproximateDistinctAggregation: {
@@ -669,6 +681,7 @@ export const OSDK_SNIPPETS_SPEC = {
         packageName: "required",
         linkName: "required",
         isExtractPart: "required",
+        otherProperty: "required",
       },
     },
     objectSetOperationsGuide: {
