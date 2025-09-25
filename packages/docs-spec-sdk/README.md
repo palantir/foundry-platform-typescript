@@ -48,12 +48,12 @@ The package defines IR types that represent sample data in a language-agnostic w
 ```typescript
 // Property values
 export type PropertySampleValueTypeIR =
-  | BooleanValueType      // { type: "boolean", value: true }
-  | StringType           // { type: "string", value: "example" }
-  | DateType            // { type: "date", daysOffset: 0 }
-  | ObjectType          // { type: "object", primaryKeyType: "string" }
-  | { type: "array", subtype: PropertySampleValueTypeIR }
-  // ... more types
+  | BooleanValueType // { type: "boolean", value: true }
+  | StringType // { type: "string", value: "example" }
+  | DateType // { type: "date", daysOffset: 0 }
+  | ObjectType // { type: "object", primaryKeyType: "string" }
+  | { type: "array"; subtype: PropertySampleValueTypeIR };
+// ... more types
 
 // Action parameters
 export type ActionParameterSampleValuesIR = Array<{
@@ -73,6 +73,7 @@ Templates use two types of variables:
 ### Version Handling
 
 The system supports multiple SDK versions with different syntax patterns:
+
 - **V1**: Legacy syntax (e.g., `__primaryKey`, `LocalDate.now()`)
 - **V2**: Modern syntax (e.g., `$primaryKey`, `"2024-01-01"`)
 
@@ -83,6 +84,7 @@ Let's trace how the `loadSingleObjectGuide` template works through the complete 
 ### 1. Template Definition
 
 In `documentation.yml`:
+
 ```yaml
 loadSingleObjectGuide:
   - template: |-
@@ -100,6 +102,7 @@ loadSingleObjectGuide:
 ### 2. Variable Specification
 
 In `spec.ts`, `loadSingleObjectGuide` requires these variables:
+
 ```typescript
 loadSingleObjectGuide: {
   variables: {
@@ -111,16 +114,17 @@ loadSingleObjectGuide: {
 ```
 
 Where `ObjectTypeTemplateStrings` includes:
+
 ```typescript
 const ObjectTypeTemplateStrings = {
-  objectType: "required",                    // → "Employee"
-  rawObjectTypeApiName: "required",          // → "com.company.Employee"
-  titleProperty: "required",                 // → "firstName"
-  titlePropertySnakeCase: "required",        // → "first_name"
+  objectType: "required", // → "Employee"
+  rawObjectTypeApiName: "required", // → "com.company.Employee"
+  titleProperty: "required", // → "firstName"
+  titlePropertySnakeCase: "required", // → "first_name"
   allCapsTitlePropertySnakeCase: "required", // → "FIRST_NAME"
-  rawProperties: "required",                 // → PropertySampleIR[]
-  rawPrimaryKeyProperty: "required",         // → PropertySampleIR
-  structSubPropertyApiName: "optional",      // → "address.street" (if applicable)
+  rawProperties: "required", // → PropertySampleIR[]
+  rawPrimaryKeyProperty: "required", // → PropertySampleIR
+  structSubPropertyApiName: "optional", // → "address.street" (if applicable)
 } as const satisfies SnippetVariables;
 ```
 
@@ -129,6 +133,7 @@ const ObjectTypeTemplateStrings = {
 Properties are populated from different sources:
 
 #### Static Properties (Direct Substitution)
+
 ```typescript
 // These come from context/configuration
 {
@@ -140,21 +145,22 @@ Properties are populated from different sources:
 ```
 
 #### IR-Based Properties (Computed Variables)
+
 ```typescript
 // Sample IR data for an Employee object
 const sampleEmployeeData: PropertySampleIR[] = [
   {
     apiName: "firstName",
-    value: { type: "string", value: "John" }
+    value: { type: "string", value: "John" },
   },
   {
     apiName: "age",
-    value: { type: "integer", value: 30 }
+    value: { type: "integer", value: 30 },
   },
   {
     apiName: "hireDate",
-    value: { type: "date", daysOffset: -365 }
-  }
+    value: { type: "date", daysOffset: -365 },
+  },
 ];
 ```
 
@@ -170,16 +176,16 @@ function renderPropertyValue(
 ): string {
   switch (propertyValue.type) {
     case "string":
-      return `"${propertyValue.value}"`;           // → "John"
+      return `"${propertyValue.value}"`; // → "John"
     case "integer":
-      return propertyValue.value.toString();      // → 30
+      return propertyValue.value.toString(); // → 30
     case "date":
       if (majorVersion >= SdkMajorVersion.V2) {
         const offsetDate = new Date();
         offsetDate.setDate(offsetDate.getDate() + propertyValue.daysOffset);
-        return `"${offsetDate.toISOString().split("T")[0]}"`;  // → "2023-09-25"
+        return `"${offsetDate.toISOString().split("T")[0]}"`; // → "2023-09-25"
       }
-      return "LocalDate.now().plusDays(-365)";    // V1 syntax
+      return "LocalDate.now().plusDays(-365)"; // V1 syntax
   }
 }
 ```
@@ -192,11 +198,12 @@ After all transformations, the final generated TypeScript code:
 import { type GetObjectError, isOk, type Result } from "@osdk/client";
 import { Employee } from "@osdk/client";
 
-const result: Result<Employee, GetObjectError> = await client.ontology.objects.Employee.get("primaryKey");
+const result: Result<Employee, GetObjectError> = await client.ontology.objects
+  .Employee.get("primaryKey");
 if (isOk(result)) {
-    const object: Employee = result.value;
+  const object: Employee = result.value;
 } else {
-    console.error(result.error.errorType);
+  console.error(result.error.errorType);
 }
 ```
 
@@ -204,27 +211,28 @@ if (isOk(result)) {
 
 ### Template Variable Categories
 
-| Category | Description | Example Variables |
-|----------|-------------|------------------|
-| **Base** | Common to all snippets | `packageName` |
-| **Object Type** | Object-related properties | `objectType`, `titleProperty`, `rawProperties` |
-| **Object with Property** | Object + specific property | `property`, `rawPropertyValue`, `isDateProperty` |
-| **Object with Link** | Object relationships | `sourceObjectType`, `linkedObjectType`, `linkApiName` |
-| **Action** | Action/function related | `actionApiName`, `rawActionParameterValues` |
-| **Attachment** | File upload functionality | `hasAttachmentUpload`, `attachmentProperty` |
+| Category                 | Description                | Example Variables                                     |
+| ------------------------ | -------------------------- | ----------------------------------------------------- |
+| **Base**                 | Common to all snippets     | `packageName`                                         |
+| **Object Type**          | Object-related properties  | `objectType`, `titleProperty`, `rawProperties`        |
+| **Object with Property** | Object + specific property | `property`, `rawPropertyValue`, `isDateProperty`      |
+| **Object with Link**     | Object relationships       | `sourceObjectType`, `linkedObjectType`, `linkApiName` |
+| **Action**               | Action/function related    | `actionApiName`, `rawActionParameterValues`           |
+| **Attachment**           | File upload functionality  | `hasAttachmentUpload`, `attachmentProperty`           |
 
 ### Data Sources
 
-| Variable Type | Source | Example |
-|---------------|--------|---------|
-| **Static Context** | Configuration/Metadata | `packageName`, `objectType`, `actionApiName` |
-| **Computed Properties** | Derived from static data | `titlePropertySnakeCase`, `objectDisplayName` |
-| **IR Data** | Sample values from spec | `rawProperties`, `rawPropertyValue`, `rawActionParameterValues` |
-| **Computed Variables** | IR transformation functions | `functionInputValues`, `propertyValue`, `actionParameterSampleValues` |
+| Variable Type           | Source                      | Example                                                               |
+| ----------------------- | --------------------------- | --------------------------------------------------------------------- |
+| **Static Context**      | Configuration/Metadata      | `packageName`, `objectType`, `actionApiName`                          |
+| **Computed Properties** | Derived from static data    | `titlePropertySnakeCase`, `objectDisplayName`                         |
+| **IR Data**             | Sample values from spec     | `rawProperties`, `rawPropertyValue`, `rawActionParameterValues`       |
+| **Computed Variables**  | IR transformation functions | `functionInputValues`, `propertyValue`, `actionParameterSampleValues` |
 
 ### Required vs Optional Variables
 
 Variables are marked as `"required"` or `"optional"` in the spec:
+
 - **Required**: Must be provided or template generation fails
 - **Optional**: Can be omitted; templates should handle gracefully with conditionals
 
@@ -233,6 +241,7 @@ Variables are marked as `"required"` or `"optional"` in the spec:
 ### Adding New Snippet Types
 
 1. **Define template variables** in `spec.ts`:
+
 ```typescript
 const MyNewTemplateStrings = {
   customProperty: "required",
@@ -249,6 +258,7 @@ myNewSnippet: {
 ```
 
 2. **Create template** in `documentation.yml`:
+
 ```yaml
 myNewSnippet:
   - template: |-
@@ -272,6 +282,7 @@ To add new properties to existing templates:
 ### Testing Computed Variable Handlers
 
 When modifying computed variables:
+
 1. Test with different IR data types
 2. Verify both V1 and V2 SDK version outputs
 3. Check edge cases (empty arrays, null values, complex nested types)
@@ -280,6 +291,7 @@ When modifying computed variables:
 ### Version Compatibility
 
 When adding version-specific features:
+
 - Use `SdkMajorVersion` enum for branching logic
 - Provide fallbacks for older versions
 - Document version requirements in template specifications
@@ -297,9 +309,10 @@ import type {
 } from "@osdk/docs-spec-sdk";
 
 // Type-safe snippet processing
-export const TYPESCRIPT_OSDK_SNIPPETS: SdkSnippets<typeof OSDK_SNIPPETS_SPEC> = {
-  // ... computed variable implementations
-};
+export const TYPESCRIPT_OSDK_SNIPPETS: SdkSnippets<typeof OSDK_SNIPPETS_SPEC> =
+  {
+    // ... computed variable implementations
+  };
 ```
 
 ### How documentation-snippets Uses Processed Templates
@@ -334,34 +347,35 @@ The `@foundry/api-documentation-code-templates` package shows how IR data gets g
 ```typescript
 // From codeSnippetTemplates.ts
 import {
-    ActionParameterSampleValuesIR,
-    FunctionSampleParametersIR,
-    PropertySampleIR,
-    PropertySampleValueTypeIR,
+  ActionParameterSampleValuesIR,
+  FunctionSampleParametersIR,
+  PropertySampleIR,
+  PropertySampleValueTypeIR,
 } from "@foundry/documentation-snippets-spec";
 
 // Generate ObjectTypeTemplateStrings from GraphQL schema
 export function getObjectTypeTemplateStrings(
-    objectType: CodeSnippetObjectType.Result | undefined,
+  objectType: CodeSnippetObjectType.Result | undefined,
 ): ObjectTypeTemplateStrings {
-    if (objectType == null) {
-        return FALLBACK_OBJECT_TYPE_TEMPLATE_STRINGS;
-    }
-    return {
-        objectType: processObjectApiName(objectType.apiName ?? ""),
-        rawObjectTypeApiName: objectType.apiName ?? "",
-        titleProperty: objectType.titleProperty.apiName,
-        titlePropertySnakeCase: pythonOsdkSnakeCase(objectType.titleProperty.apiName) ?? "",
-        // Convert GraphQL properties to IR format
-        rawProperties: objectType.properties.map(property => ({
-            apiName: property.apiName,
-            value: getPropertySampleValueIR(property), // Converts GraphQL to IR
-        })),
-        rawPrimaryKeyProperty: {
-            apiName: objectType.primaryKeyProperties[0]?.apiName ?? "",
-            value: getPropertySampleValueIR(objectType.primaryKeyProperties[0]!),
-        },
-    };
+  if (objectType == null) {
+    return FALLBACK_OBJECT_TYPE_TEMPLATE_STRINGS;
+  }
+  return {
+    objectType: processObjectApiName(objectType.apiName ?? ""),
+    rawObjectTypeApiName: objectType.apiName ?? "",
+    titleProperty: objectType.titleProperty.apiName,
+    titlePropertySnakeCase:
+      pythonOsdkSnakeCase(objectType.titleProperty.apiName) ?? "",
+    // Convert GraphQL properties to IR format
+    rawProperties: objectType.properties.map((property) => ({
+      apiName: property.apiName,
+      value: getPropertySampleValueIR(property), // Converts GraphQL to IR
+    })),
+    rawPrimaryKeyProperty: {
+      apiName: objectType.primaryKeyProperties[0]?.apiName ?? "",
+      value: getPropertySampleValueIR(objectType.primaryKeyProperties[0]!),
+    },
+  };
 }
 ```
 
@@ -371,21 +385,23 @@ The package includes sophisticated sample value generation that converts GraphQL
 
 ```typescript
 // Convert different GraphQL property types to IR values
-function getPropertySampleValueIR(property: GraphQLProperty): PropertySampleValueTypeIR {
-    switch (property.type.__typename) {
-        case "ObjectTypePropertyType_String":
-            return { type: "string", value: "sampleValue" };
-        case "ObjectTypePropertyType_Integer":
-            return { type: "integer", value: 42 };
-        case "ObjectTypePropertyType_Date":
-            return { type: "date", daysOffset: 0 };
-        case "ObjectTypePropertyType_Array":
-            return {
-                type: "array",
-                subtype: getPropertySampleValueIR(property.type.subtype)
-            };
-        // ... handle all GraphQL types
-    }
+function getPropertySampleValueIR(
+  property: GraphQLProperty,
+): PropertySampleValueTypeIR {
+  switch (property.type.__typename) {
+    case "ObjectTypePropertyType_String":
+      return { type: "string", value: "sampleValue" };
+    case "ObjectTypePropertyType_Integer":
+      return { type: "integer", value: 42 };
+    case "ObjectTypePropertyType_Date":
+      return { type: "date", daysOffset: 0 };
+    case "ObjectTypePropertyType_Array":
+      return {
+        type: "array",
+        subtype: getPropertySampleValueIR(property.type.subtype),
+      };
+      // ... handle all GraphQL types
+  }
 }
 ```
 
@@ -400,7 +416,9 @@ In production, the flow looks like:
 
 ```typescript
 // In Dev Console or similar application
-const graphqlObjectType = await client.query(GET_OBJECT_TYPE_SCHEMA, { apiName: "Employee" });
+const graphqlObjectType = await client.query(GET_OBJECT_TYPE_SCHEMA, {
+  apiName: "Employee",
+});
 const templateStrings = getObjectTypeTemplateStrings(graphqlObjectType);
 
 // This provides all the IR data that powers the templates:
@@ -423,7 +441,7 @@ For complex nested structures, use computed variables:
 const complexValue = {
   type: "object",
   primaryKeyType: "string",
-  apiName: "com.company.Address"
+  apiName: "com.company.Address",
 };
 
 // Computed variable transforms to appropriate syntax
@@ -443,7 +461,7 @@ Always branch on SDK version for syntax differences:
 function renderDateValue(dateValue, majorVersion) {
   if (majorVersion >= SdkMajorVersion.V2) {
     // Modern: use ISO string literals
-    return `"${new Date().toISOString().split('T')[0]}"`;
+    return `"${new Date().toISOString().split("T")[0]}"`;
   }
   // Legacy: use Java-style date constructors
   return "LocalDate.now()";
@@ -456,8 +474,9 @@ Templates should gracefully handle missing optional variables:
 
 ```handlebars
 {{#if structSubPropertyApiName}}
-// Access nested property: {{structSubPropertyApiName}}
-const nested = object.{{structSubPropertyApiName}};
+  // Access nested property:
+  {{structSubPropertyApiName}}
+  const nested = object.{{structSubPropertyApiName}};
 {{/if}}
 ```
 
