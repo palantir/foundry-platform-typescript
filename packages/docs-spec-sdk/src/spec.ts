@@ -73,6 +73,7 @@ const RangeObjectTypeWithPropertyTemplateStrings = {
 const NumericAggregationObjectTypeWithPropertyTemplateStrings = {
   ...ObjectTypeWithPropertyTemplateStrings,
   operation: "required",
+  linkApiName: "required",
 } as const satisfies SnippetVariables;
 
 const DurationObjectTypeWithPropertyTemplateStrings = {
@@ -502,6 +503,7 @@ export const OSDK_SNIPPETS_SPEC = {
         rawOntologyApiName: "required",
         packageName: "required",
         property: "required",
+        rawPropertyValue: "required",
       },
     },
     // loadTimeSeriesSnippets
@@ -595,10 +597,9 @@ export const OSDK_SNIPPETS_SPEC = {
     // Derived Property Snippets
     derivedPropertyBaseExample: {
       variables: {
-        ...ObjectTypeWithPropertyTemplateStrings,
+        ...ObjectTypeWithLinkTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyApproximateDistinctAggregation: {
@@ -606,7 +607,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyExactDistinctAggregation: {
@@ -614,7 +614,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyCollectToListAggregation: {
@@ -622,7 +621,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyCollectToSetAggregation: {
@@ -630,7 +628,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyCountAggregation: {
@@ -638,7 +635,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertySelectPropertyAggregation: {
@@ -646,7 +642,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyApproximatePercentileAggregation: {
@@ -654,7 +649,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyNumericAggregation: {
@@ -662,7 +656,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
       },
     },
     derivedPropertyNumericExpression: {
@@ -670,7 +663,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
         isUnary: "required",
       },
     },
@@ -679,7 +671,6 @@ export const OSDK_SNIPPETS_SPEC = {
         ...NumericAggregationObjectTypeWithPropertyTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
-        linkName: "required",
         isExtractPart: "required",
         otherProperty: "required",
       },
