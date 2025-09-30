@@ -3597,6 +3597,19 @@ export interface RegexConstraint {
 }
 
 /**
+   * Returns objects where the specified field matches the regex pattern provided. This applies to the non-analyzed
+form of text fields and supports standard regex syntax of dot (.), star(*) and question mark(?).
+Either field or propertyIdentifier can be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface RegexQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: string;
+}
+
+/**
  * A relative time, such as "3 days before" or "2 hours after" the current moment.
  *
  * Log Safety: UNSAFE
@@ -3701,31 +3714,32 @@ export type SearchJsonQuery =
  * Log Safety: UNSAFE
  */
 export type SearchJsonQueryV2 =
-  | ({ type: "or" } & OrQueryV2)
-  | ({ type: "in" } & InQuery)
-  | ({ type: "doesNotIntersectPolygon" } & DoesNotIntersectPolygonQuery)
   | ({ type: "lt" } & LtQueryV2)
   | ({ type: "doesNotIntersectBoundingBox" } & DoesNotIntersectBoundingBoxQuery)
-  | ({ type: "eq" } & EqualsQueryV2)
-  | ({ type: "containsAllTerms" } & ContainsAllTermsQuery)
-  | ({ type: "gt" } & GtQueryV2)
   | ({ type: "wildcard" } & WildcardQuery)
   | ({ type: "withinDistanceOf" } & WithinDistanceOfQuery)
   | ({ type: "withinBoundingBox" } & WithinBoundingBoxQuery)
-  | ({ type: "contains" } & ContainsQueryV2)
   | ({ type: "not" } & NotQueryV2)
   | ({ type: "intersectsBoundingBox" } & IntersectsBoundingBoxQuery)
   | ({ type: "and" } & AndQueryV2)
-  | ({ type: "isNull" } & IsNullQueryV2)
   | ({
     type: "containsAllTermsInOrderPrefixLastTerm";
   } & ContainsAllTermsInOrderPrefixLastTerm)
-  | ({ type: "containsAnyTerm" } & ContainsAnyTermQuery)
   | ({ type: "gte" } & GteQueryV2)
   | ({ type: "containsAllTermsInOrder" } & ContainsAllTermsInOrderQuery)
   | ({ type: "withinPolygon" } & WithinPolygonQuery)
   | ({ type: "intersectsPolygon" } & IntersectsPolygonQuery)
   | ({ type: "lte" } & LteQueryV2)
+  | ({ type: "or" } & OrQueryV2)
+  | ({ type: "in" } & InQuery)
+  | ({ type: "doesNotIntersectPolygon" } & DoesNotIntersectPolygonQuery)
+  | ({ type: "eq" } & EqualsQueryV2)
+  | ({ type: "containsAllTerms" } & ContainsAllTermsQuery)
+  | ({ type: "gt" } & GtQueryV2)
+  | ({ type: "contains" } & ContainsQueryV2)
+  | ({ type: "regex" } & RegexQuery)
+  | ({ type: "isNull" } & IsNullQueryV2)
+  | ({ type: "containsAnyTerm" } & ContainsAnyTermQuery)
   | ({ type: "startsWith" } & StartsWithQuery);
 
 /**

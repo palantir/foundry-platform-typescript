@@ -219,7 +219,7 @@ export interface GetDatasetSchemaResponse {
  * Log Safety: UNSAFE
  */
 export interface GetJobResponse {
-  jobs: Array<JobDetails>;
+  data: Array<JobDetails>;
   nextPageToken?: _Core.PageToken;
 }
 

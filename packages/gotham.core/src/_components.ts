@@ -142,7 +142,7 @@ export type CustomMetadata = Record<string, any>;
  */
 export interface DatasetFieldSchema {
   type: SchemaFieldType;
-  name: FieldName;
+  name?: FieldName;
   nullable: boolean;
   userDefinedTypeClass?: string;
   customMetadata?: CustomMetadata;

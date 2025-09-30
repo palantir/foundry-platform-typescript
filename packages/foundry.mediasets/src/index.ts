@@ -25,6 +25,10 @@ export type {
   MediaSet,
   MediaSetName,
   PutMediaItemResponse,
+  TrackedTransformationFailedResponse,
+  TrackedTransformationPendingResponse,
+  TrackedTransformationResponse,
+  TrackedTransformationSuccessfulResponse,
   TransactionId,
 } from "./_components.js";
 export type {
@@ -37,7 +41,9 @@ export type {
   MediaItemNotFound,
   MediaItemXmlUnparsable,
   MediaSetNotFound,
+  MediaSetOpenTransactionAlreadyExists,
   MissingMediaItemContent,
   MissingMediaItemPath,
+  TransformedMediaItemNotFound,
 } from "./_errors.js";
 export * as MediaSets from "./public/MediaSet.js";

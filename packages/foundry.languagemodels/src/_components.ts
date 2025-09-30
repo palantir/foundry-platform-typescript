@@ -193,10 +193,10 @@ export type AnthropicImageSource = {
  * Log Safety: SAFE
  */
 export type AnthropicMediaType =
-  | "image_jpeg"
-  | "image_png"
-  | "image_gif"
-  | "image_webp";
+  | "IMAGE_JPEG"
+  | "IMAGE_PNG"
+  | "IMAGE_GIF"
+  | "IMAGE_WEBP";
 
 /**
  * Log Safety: UNSAFE
@@ -221,7 +221,7 @@ export type AnthropicMessageContent =
 /**
  * Log Safety: SAFE
  */
-export type AnthropicMessageRole = "user" | "assistant";
+export type AnthropicMessageRole = "USER" | "ASSISTANT";
 
 /**
  * Log Safety: UNSAFE

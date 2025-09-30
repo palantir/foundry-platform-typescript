@@ -317,3 +317,71 @@ export function abort(
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _abort, ...args);
 }
+
+const _calculate: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<_MediaSets.TrackedTransformationResponse>
+> = [0, "/v2/mediasets/{0}/items/{1}/transform/imagery/thumbnail/calculate", 6];
+
+/**
+ * Starts calculation of a thumbnail for a given image.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/transform/imagery/thumbnail/calculate
+ */
+export function calculate(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<_MediaSets.TrackedTransformationResponse> {
+  return $foundryPlatformFetch($ctx, _calculate, ...args);
+}
+
+const _retrieve: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<Response>
+> = [
+  0,
+  "/v2/mediasets/{0}/items/{1}/transform/imagery/thumbnail/retrieve",
+  6,
+  ,
+  "*/*",
+];
+
+/**
+ * Retrieves a successfully calculated thumbnail for a given image.
+ *
+ * Thumbnails are 200px wide in the format of `image/webp`
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/transform/imagery/thumbnail/retrieve
+ */
+export function retrieve(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _retrieve, ...args);
+}

@@ -70,10 +70,12 @@ export type CheckConfig =
   | ({ type: "columnType" } & ColumnTypeCheckConfig)
   | ({ type: "jobStatus" } & JobStatusCheckConfig)
   | ({ type: "jobDuration" } & JobDurationCheckConfig)
+  | ({ type: "nullPercentage" } & NullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & TotalColumnCountCheckConfig)
   | ({ type: "buildDuration" } & BuildDurationCheckConfig)
   | ({ type: "schemaComparison" } & SchemaComparisonCheckConfig)
-  | ({ type: "buildStatus" } & BuildStatusCheckConfig);
+  | ({ type: "buildStatus" } & BuildStatusCheckConfig)
+  | ({ type: "primaryKey" } & PrimaryKeyCheckConfig);
 
 /**
  * The unique resource identifier (RID) of a CheckGroup.
@@ -234,6 +236,78 @@ export type MedianDeviationBoundsType =
  */
 export interface MedianDeviationConfig {
   medianDeviation: MedianDeviation;
+  severity: SeverityLevel;
+}
+
+/**
+ * Checks the percentage of null values in a specific column.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NullPercentageCheckConfig {
+  subject: DatasetSubject;
+  percentageCheckConfig: PercentageCheckConfig;
+}
+
+/**
+ * The configuration for the range of percentage values between which the health check is expected to succeed.
+ *
+ * Log Safety: SAFE
+ */
+export interface PercentageBounds {
+  lowerBoundPercentage?: PercentageValue;
+  upperBoundPercentage?: PercentageValue;
+}
+
+/**
+ * Configuration for percentage bounds check with severity settings.
+ *
+ * Log Safety: SAFE
+ */
+export interface PercentageBoundsConfig {
+  percentageBounds: PercentageBounds;
+  severity: SeverityLevel;
+}
+
+/**
+ * Configuration for percentage-based checks (such as null percentage).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PercentageCheckConfig {
+  columnName: ColumnName;
+  percentageBounds?: PercentageBoundsConfig;
+  medianDeviation?: MedianDeviationConfig;
+}
+
+/**
+   * A percentage value in the range 0.0 to 100.0.
+Validation rules:
+
+must be greater than or equal to 0.0
+must be less than or equal to 100.0
+   *
+   * Log Safety: SAFE
+   */
+export type PercentageValue = number;
+
+/**
+ * Checks the uniqueness and non-null values of one or more columns (primary key constraint).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PrimaryKeyCheckConfig {
+  subject: DatasetSubject;
+  primaryKeyConfig: PrimaryKeyConfig;
+}
+
+/**
+ * Configuration for primary key validation with severity settings.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PrimaryKeyConfig {
+  columnNames: Array<ColumnName>;
   severity: SeverityLevel;
 }
 

@@ -47,7 +47,7 @@ const _create: $FoundryPlatformMethod<
  * in-memory handling of secrets. If you do not want your secrets to be temporarily decrypted, you should
  * use the Foundry UI instead.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-connection-write]
  * URL: /v2/connectivity/connections
@@ -100,7 +100,7 @@ const _updateExportSettings: $FoundryPlatformMethod<
  * Updates the [export settings on the Connection.](https://www.palantir.com/docs/foundry/data-connection/export-overview/#enable-exports-for-source)
  * Only users with Information Security Officer role can modify the export settings.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-connection-write]
  * URL: /v2/connectivity/connections/{connectionRid}/updateExportSettings

@@ -637,6 +637,24 @@ export interface VersionLimitExceeded {
 }
 
 /**
+   * A non-existent widget id was provided. If creating a new widget, you must first publish your changes before
+previewing with developer mode.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface WidgetIdNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "WidgetIdNotFound";
+  errorDescription:
+    "A non-existent widget id was provided. If creating a new widget, you must first publish your changes before previewing with developer mode.";
+  errorInstanceId: string;
+  parameters: {
+    widgetSetRid: unknown;
+    widgetId: unknown;
+  };
+}
+
+/**
    * The widget set contains too many widgets. You must delete another widget before
 creating a new one.
    *

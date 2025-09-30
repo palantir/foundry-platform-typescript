@@ -90,7 +90,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Check with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:data-health-read]
  * URL: /v2/dataHealth/checks/{checkRid}

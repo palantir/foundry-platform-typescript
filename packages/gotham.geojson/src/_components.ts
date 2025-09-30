@@ -40,10 +40,10 @@ export type Coordinate = number;
  * Log Safety: UNSAFE
  */
 export interface Feature {
-  geometry: Geometry;
+  geometry?: Geometry;
   properties: Record<FeaturePropertyKey, any>;
-  id: any;
-  bbox: BBox;
+  id?: any;
+  bbox?: BBox;
 }
 
 /**
@@ -53,6 +53,7 @@ export interface Feature {
  */
 export interface FeatureCollection {
   features: Array<FeatureCollectionTypes>;
+  bbox?: BBox;
 }
 
 /**
@@ -116,7 +117,7 @@ be used instead.
    */
 export interface GeometryCollection {
   geometries: Array<Geometry>;
-  bbox: BBox;
+  bbox?: BBox;
 }
 
 /**
@@ -137,8 +138,8 @@ export type LinearRing = Array<Position>;
  * Log Safety: UNSAFE
  */
 export interface LineString {
-  coordinates: LineStringCoordinates;
-  bbox: BBox;
+  coordinates?: LineStringCoordinates;
+  bbox?: BBox;
 }
 
 /**
@@ -153,7 +154,7 @@ export type LineStringCoordinates = Array<Position>;
  */
 export interface MultiLineString {
   coordinates: Array<LineStringCoordinates>;
-  bbox: BBox;
+  bbox?: BBox;
 }
 
 /**
@@ -161,7 +162,7 @@ export interface MultiLineString {
  */
 export interface MultiPoint {
   coordinates: Array<Position>;
-  bbox: BBox;
+  bbox?: BBox;
 }
 
 /**
@@ -169,7 +170,7 @@ export interface MultiPoint {
  */
 export interface MultiPolygon {
   coordinates: Array<Array<LinearRing>>;
-  bbox: BBox;
+  bbox?: BBox;
 }
 
 /**
@@ -185,7 +186,7 @@ export interface Point {
  */
 export interface Polygon {
   coordinates: Array<LinearRing>;
-  bbox: BBox;
+  bbox?: BBox;
 }
 
 /**

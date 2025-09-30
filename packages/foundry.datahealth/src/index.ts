@@ -38,6 +38,13 @@ export type {
   MedianDeviation,
   MedianDeviationBoundsType,
   MedianDeviationConfig,
+  NullPercentageCheckConfig,
+  PercentageBounds,
+  PercentageBoundsConfig,
+  PercentageCheckConfig,
+  PercentageValue,
+  PrimaryKeyCheckConfig,
+  PrimaryKeyConfig,
   ScheduleSubject,
   SchemaComparisonCheckConfig,
   SchemaComparisonConfig,
@@ -53,8 +60,12 @@ export type {
 export type {
   CheckAlreadyExists,
   CheckNotFound,
+  CheckTypeNotSupported,
   CreateCheckPermissionDenied,
   DeleteCheckPermissionDenied,
+  InvalidPercentageCheckConfig,
   InvalidTimeCheckConfig,
+  PercentageValueAboveMaximum,
+  PercentageValueBelowMinimum,
 } from "./_errors.js";
 export * as Checks from "./public/Check.js";

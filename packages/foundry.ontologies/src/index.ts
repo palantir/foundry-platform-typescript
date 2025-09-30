@@ -390,6 +390,7 @@ export type {
   ReferenceValue,
   RefreshObjectSet,
   RegexConstraint,
+  RegexQuery,
   RelativeTime,
   RelativeTimeRange,
   RelativeTimeRelation,

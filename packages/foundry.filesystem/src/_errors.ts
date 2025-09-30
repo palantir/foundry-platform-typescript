@@ -370,8 +370,8 @@ export interface InvalidDescription {
 }
 
 /**
-   * The display name of a Resource should not be exactly . or .., contain a forward slash / or be
-too long.
+   * The display name of a Resource should not be exactly . or .., contain a forward slash / and must be
+less than or equal to 700 characters.
    *
    * Log Safety: UNSAFE
    */
@@ -379,7 +379,7 @@ export interface InvalidDisplayName {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidDisplayName";
   errorDescription:
-    "The display name of a Resource should not be exactly . or .., contain a forward slash / or be too long.";
+    "The display name of a Resource should not be exactly . or .., contain a forward slash / and must be less than or equal to 700 characters.";
   errorInstanceId: string;
   parameters: {
     displayName: unknown;

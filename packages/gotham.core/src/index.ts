@@ -154,6 +154,7 @@ export type {
   InvalidAndFilter,
   InvalidChangeDataCaptureConfiguration,
   InvalidFieldSchema,
+  InvalidFilePath,
   InvalidFilterValue,
   InvalidOrFilter,
   InvalidPageSize,

@@ -23,4 +23,6 @@ export interface Component {
   safety: Safety;
   documentation: Documentation;
   nullable?: boolean;
+  // @ts-ignore
+  validation?: any;
 }

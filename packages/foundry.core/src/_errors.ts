@@ -140,6 +140,21 @@ export interface InvalidFieldSchema {
 }
 
 /**
+ * The provided file path is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidFilePath {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidFilePath";
+  errorDescription: "The provided file path is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    filePath: unknown;
+  };
+}
+
+/**
  * The provided filter value is invalid.
  *
  * Log Safety: UNSAFE
