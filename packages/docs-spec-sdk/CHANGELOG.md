@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.9.0
+
+### Minor Changes
+
+- c233e66: Cleanup the spec and rename to linkApiName
+
 ## 0.8.0
 
 ### Minor Changes
