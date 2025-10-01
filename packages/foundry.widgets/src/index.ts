@@ -78,6 +78,7 @@ export type {
   SetWidgetSetDevModeSettingsPermissionDenied,
   VersionAlreadyExists,
   VersionLimitExceeded,
+  WidgetIdNotFound,
   WidgetLimitExceeded,
   WidgetSetNotFound,
 } from "./_errors.js";

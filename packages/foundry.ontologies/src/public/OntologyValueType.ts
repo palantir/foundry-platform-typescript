@@ -40,7 +40,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Gets a specific value type with the given API name.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/valueTypes/{valueType}
@@ -67,7 +67,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists the latest versions of the value types for the given Ontology.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/valueTypes

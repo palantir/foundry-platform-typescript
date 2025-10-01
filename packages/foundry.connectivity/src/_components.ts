@@ -122,6 +122,7 @@ export interface Connection {
   parentFolderRid: _Filesystem.FolderRid;
   displayName: ConnectionDisplayName;
   exportSettings: ConnectionExportSettings;
+  worker: ConnectionWorker;
   configuration: ConnectionConfiguration;
 }
 
@@ -162,12 +163,23 @@ export interface ConnectionExportSettings {
 export type ConnectionRid = LooselyBrandedString<"ConnectionRid">;
 
 /**
+   * The worker of a Connection, which defines where
+compute for capabilities are run.
+   *
+   * Log Safety: SAFE
+   */
+export type ConnectionWorker =
+  | ({ type: "unknownWorker" } & UnknownWorker)
+  | ({ type: "foundryWorker" } & FoundryWorker);
+
+/**
  * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequest {
   parentFolderRid: _Filesystem.FolderRid;
   configuration: CreateConnectionRequestConnectionConfiguration;
   displayName: ConnectionDisplayName;
+  worker: CreateConnectionRequestConnectionWorker;
 }
 
 /**
@@ -229,6 +241,16 @@ export type CreateConnectionRequestConnectionConfiguration =
   | ({ type: "jdbc" } & CreateConnectionRequestJdbcConnectionConfiguration);
 
 /**
+   * The worker of a Connection, which defines where
+compute for capabilities are run.
+   *
+   * Log Safety: SAFE
+   */
+export type CreateConnectionRequestConnectionWorker =
+  | ({ type: "unknownWorker" } & CreateConnectionRequestUnknownWorker)
+  | ({ type: "foundryWorker" } & CreateConnectionRequestFoundryWorker);
+
+/**
  * The method of authentication for connecting to an external Databricks system.
  *
  * Log Safety: DO_NOT_LOG
@@ -274,6 +296,13 @@ and the property will retain its previously encrypted value.
 export type CreateConnectionRequestEncryptedProperty =
   | ({ type: "asSecretName" } & CreateConnectionRequestAsSecretName)
   | ({ type: "asPlaintextValue" } & CreateConnectionRequestAsPlaintextValue);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionRequestFoundryWorker {
+  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
+}
 
 /**
  * Log Safety: DO_NOT_LOG
@@ -426,6 +455,11 @@ export interface CreateConnectionRequestStsRoleConfiguration {
   externalId?: string;
   roleSessionDuration?: _Core.Duration;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionRequestUnknownWorker {}
 
 /**
  * Log Safety: UNSAFE
@@ -869,6 +903,18 @@ If both are present, the value specified for gt must be strictly less than lt - 
 export interface FileSizeFilter {
   gt?: _Core.SizeBytes;
   lt?: _Core.SizeBytes;
+}
+
+/**
+   * The Foundry worker is used to run capabilities
+in Foundry.
+This is the preferred method for connections, as these connections benefit from Foundry's containerized
+and scalable job execution, improved stability and do not incur the maintenance overhead associated with agents.
+   *
+   * Log Safety: SAFE
+   */
+export interface FoundryWorker {
+  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
 }
 
 /**
@@ -1542,6 +1588,16 @@ export interface TimestampColumnInitialIncrementalState {
   columnName: string;
   currentValue: string;
 }
+
+/**
+   * A ConnectionWorker that is not supported in the Platform APIs. This can happen because either the
+ConnectionWorker configuration is malformed, or because the ConnectionWorker is a legacy one.
+The ConnectionWorker should be updated to use the Foundry worker
+with either direct egress policies or agent proxy egress policies.
+   *
+   * Log Safety: SAFE
+   */
+export interface UnknownWorker {}
 
 /**
  * Log Safety: SAFE

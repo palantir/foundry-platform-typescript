@@ -36,7 +36,6 @@ const _list: $FoundryPlatformMethod<
       transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Admin.ListMarkingMembersResponse>
 > = [0, "/v2/admin/markings/{0}/markingMembers", 2];
@@ -45,7 +44,7 @@ const _list: $FoundryPlatformMethod<
  * Lists all principals who can view resources protected by the given Marking. Ignores the `pageSize` parameter.
  * Requires `api:admin-write` because only marking administrators can view marking members.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markings/{markingId}/markingMembers
@@ -59,7 +58,6 @@ export function list(
       transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.ListMarkingMembersResponse> {
@@ -70,23 +68,18 @@ const _add: $FoundryPlatformMethod<
   (
     markingId: _Core.MarkingId,
     $body: _Admin.AddMarkingMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/markings/{0}/markingMembers/add", 3];
+> = [1, "/v2/admin/markings/{0}/markingMembers/add", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markings/{markingId}/markingMembers/add
  */
 export function add(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    markingId: _Core.MarkingId,
-    $body: _Admin.AddMarkingMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [markingId: _Core.MarkingId, $body: _Admin.AddMarkingMembersRequest]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
 }
@@ -95,12 +88,11 @@ const _remove: $FoundryPlatformMethod<
   (
     markingId: _Core.MarkingId,
     $body: _Admin.RemoveMarkingMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/markings/{0}/markingMembers/remove", 3];
+> = [1, "/v2/admin/markings/{0}/markingMembers/remove", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markings/{markingId}/markingMembers/remove
@@ -110,7 +102,6 @@ export function remove(
   ...args: [
     markingId: _Core.MarkingId,
     $body: _Admin.RemoveMarkingMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);

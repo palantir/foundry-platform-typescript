@@ -99,6 +99,29 @@ export interface PutMediaItemResponse {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface TrackedTransformationFailedResponse {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface TrackedTransformationPendingResponse {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type TrackedTransformationResponse =
+  | ({ type: "pending" } & TrackedTransformationPendingResponse)
+  | ({ type: "failed" } & TrackedTransformationFailedResponse)
+  | ({ type: "successful" } & TrackedTransformationSuccessfulResponse);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface TrackedTransformationSuccessfulResponse {}
+
+/**
  * An identifier which represents a transaction on a media set.
  *
  * Log Safety: SAFE

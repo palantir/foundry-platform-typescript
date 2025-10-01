@@ -36,7 +36,6 @@ const _list: $FoundryPlatformMethod<
       includeInherited?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Filesystem.ListResourceRolesResponse>
 > = [0, "/v2/filesystem/resources/{0}/roles", 2];
@@ -44,7 +43,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * List the roles on a resource.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/{resourceRid}/roles
@@ -58,7 +57,6 @@ export function list(
       includeInherited?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Filesystem.ListResourceRolesResponse> {
@@ -69,12 +67,11 @@ const _add: $FoundryPlatformMethod<
   (
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.AddResourceRolesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/resources/{0}/roles/add", 3];
+> = [1, "/v2/filesystem/resources/{0}/roles/add", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/roles/add
@@ -84,7 +81,6 @@ export function add(
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.AddResourceRolesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
@@ -94,12 +90,11 @@ const _remove: $FoundryPlatformMethod<
   (
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.RemoveResourceRolesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/resources/{0}/roles/remove", 3];
+> = [1, "/v2/filesystem/resources/{0}/roles/remove", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/roles/remove
@@ -109,7 +104,6 @@ export function remove(
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.RemoveResourceRolesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);

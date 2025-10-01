@@ -30,6 +30,7 @@
     "@osdk/gotham.core": "workspace:*",
     "@osdk/gotham.gaia": "workspace:*",
     "@osdk/gotham.geojson": "workspace:*",
+    "@osdk/gotham.maprendering": "workspace:*",
     "@osdk/gotham.targetworkbench": "workspace:*",
     "@osdk/shared.client": "1.0.1",
     "@osdk/shared.client2": "^1.0.0",
@@ -56,7 +57,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1293.0",
+        "minVersion": "1.1315.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

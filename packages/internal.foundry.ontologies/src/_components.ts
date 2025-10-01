@@ -46,6 +46,26 @@ export interface AbsoluteValuePropertyExpression {
 export type Action = LooselyBrandedString<"Action">;
 
 /**
+ * A detailed operation for an Action
+ *
+ * Log Safety: UNSAFE
+ */
+export type ActionLogicRule =
+  | ({ type: "modifyInterface" } & ModifyInterfaceLogicRule)
+  | ({ type: "createOrModifyObject" } & CreateOrModifyObjectLogicRule)
+  | ({ type: "modifyObject" } & ModifyObjectLogicRule)
+  | ({ type: "deleteLink" } & DeleteLinkLogicRule)
+  | ({ type: "createObject" } & CreateObjectLogicRule)
+  | ({ type: "createLink" } & CreateLinkLogicRule)
+  | ({ type: "batchedFunction" } & BatchedFunctionLogicRule)
+  | ({ type: "createOrModifyObjectV2" } & CreateOrModifyObjectLogicRuleV2)
+  | ({ type: "deleteInterfaceLink" } & DeleteInterfaceLinkLogicRule)
+  | ({ type: "deleteObject" } & DeleteObjectLogicRule)
+  | ({ type: "function" } & FunctionLogicRule)
+  | ({ type: "createInterfaceLink" } & CreateInterfaceLinkLogicRule)
+  | ({ type: "createInterface" } & CreateInterfaceLogicRule);
+
+/**
  * Log Safety: SAFE
  */
 export type ActionMode = "ASYNC" | "RUN" | "VALIDATE";
@@ -131,6 +151,16 @@ endpoint or check the Ontology Manager.
    * Log Safety: UNSAFE
    */
 export type ActionTypeApiName = LooselyBrandedString<"ActionTypeApiName">;
+
+/**
+ * Returns the full metadata for an Action type in the Ontology.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionTypeFullMetadata {
+  actionType: ActionTypeV2;
+  fullLogicRule: ActionLogicRule;
+}
 
 /**
  * The unique resource identifier of an action type, useful for interacting with other Foundry APIs.
@@ -872,6 +902,14 @@ export interface BatchApplyActionResponseV2 {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface BatchedFunctionLogicRule {
+  objectSetRidInputName: FunctionParameterName;
+  functionRule: FunctionLogicRule;
+}
+
+/**
  * Log Safety: SAFE
  */
 export type BatchReturnEditsMode = "ALL" | "NONE";
@@ -1020,8 +1058,40 @@ export interface CountObjectsResponseV2 {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateInterfaceLinkLogicRule {
+  interfaceTypeApiName: InterfaceTypeApiName;
+  interfaceLinkTypeApiName: InterfaceLinkTypeApiName;
+  sourceObject: ParameterId;
+  targetObject: ParameterId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateInterfaceLogicRule {
+  interfaceTypeApiName: InterfaceTypeApiName;
+  objectType: ParameterId;
+  sharedPropertyArguments: Record<SharedPropertyTypeApiName, LogicRuleArgument>;
+  structPropertyArguments: Record<
+    SharedPropertyTypeApiName,
+    Record<StructFieldApiName, StructFieldArgument>
+  >;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateInterfaceObjectRule {
   interfaceTypeApiName: InterfaceTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateLinkLogicRule {
+  linkTypeApiName: LinkTypeApiName;
+  sourceObject: ParameterId;
+  targetObject: ParameterId;
 }
 
 /**
@@ -1037,8 +1107,44 @@ export interface CreateLinkRule {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateObjectLogicRule {
+  objectTypeApiName: ObjectTypeApiName;
+  propertyArguments: Record<PropertyApiName, LogicRuleArgument>;
+  structPropertyArguments: Record<
+    PropertyApiName,
+    Record<StructFieldApiName, StructFieldArgument>
+  >;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateObjectRule {
   objectTypeApiName: ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateOrModifyObjectLogicRule {
+  objectTypeApiName: ObjectTypeApiName;
+  propertyArguments: Record<PropertyApiName, LogicRuleArgument>;
+  structPropertyArguments: Record<
+    PropertyApiName,
+    Record<StructFieldApiName, StructFieldArgument>
+  >;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateOrModifyObjectLogicRuleV2 {
+  objectToModify: ParameterId;
+  propertyArguments: Record<PropertyApiName, LogicRuleArgument>;
+  structPropertyArguments: Record<
+    PropertyApiName,
+    Record<StructFieldApiName, StructFieldArgument>
+  >;
 }
 
 /**
@@ -1054,6 +1160,20 @@ export interface CreateTemporaryObjectSetRequestV2 {
 export interface CreateTemporaryObjectSetResponseV2 {
   objectSetRid: ObjectSetRid;
 }
+
+/**
+ * Represents the current time argument in a logic rule.
+ *
+ * Log Safety: SAFE
+ */
+export interface CurrentTimeArgument {}
+
+/**
+ * Represents the current user argument in a logic rule.
+ *
+ * Log Safety: SAFE
+ */
+export interface CurrentUserArgument {}
 
 /**
  * A UUID representing a custom type in a given Function.
@@ -1108,6 +1228,16 @@ export interface DecryptionResult {
 /**
  * Log Safety: UNSAFE
  */
+export interface DeleteInterfaceLinkLogicRule {
+  interfaceTypeApiName: InterfaceTypeApiName;
+  interfaceLinkTypeApiName: InterfaceLinkTypeApiName;
+  sourceObject: ParameterId;
+  targetObject: ParameterId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface DeleteInterfaceObjectRule {
   interfaceTypeApiName: InterfaceTypeApiName;
 }
@@ -1135,6 +1265,15 @@ export interface DeleteLinkEdit {
 /**
  * Log Safety: UNSAFE
  */
+export interface DeleteLinkLogicRule {
+  linkTypeApiName: LinkTypeApiName;
+  sourceObject: ParameterId;
+  targetObject: ParameterId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface DeleteLinkRule {
   linkTypeApiNameAtoB: LinkTypeApiName;
   linkTypeApiNameBtoA: LinkTypeApiName;
@@ -1156,6 +1295,13 @@ export interface DeleteObject {
 export interface DeleteObjectEdit {
   objectType: ObjectTypeApiName;
   primaryKey: PropertyValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DeleteObjectLogicRule {
+  objectToDelete: ParameterId;
 }
 
 /**
@@ -1388,6 +1534,24 @@ properties.{propertyApiName}.isNull=false.
 export type FilterValue = LooselyBrandedString<"FilterValue">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface FunctionLogicRule {
+  functionRid: FunctionRid;
+  functionVersion: FunctionVersion;
+  functionInputValues: Record<FunctionParameterName, LogicRuleArgument>;
+}
+
+/**
+ * The name of an input to a function.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FunctionParameterName = LooselyBrandedString<
+  "FunctionParameterName"
+>;
+
+/**
  * The unique resource identifier of a Function, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
@@ -1592,6 +1756,16 @@ export type InterfaceLinkTypeLinkedEntityApiName =
  * Log Safety: SAFE
  */
 export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
+
+/**
+ * Represents an interface parameter property argument in a logic rule.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfaceParameterPropertyArgument {
+  parameterId: ParameterId;
+  sharedPropertyTypeRid: string;
+}
 
 /**
    * A shared property type with an additional field to indicate whether the property must be included on every
@@ -2106,6 +2280,23 @@ export type LogicRule =
   | ({ type: "createLink" } & CreateLinkRule);
 
 /**
+ * Represents an argument for a logic rule operation. An argument can be passed in via the action parameters, as a static value, or as some other value.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LogicRuleArgument =
+  | ({ type: "currentTime" } & CurrentTimeArgument)
+  | ({ type: "staticValue" } & StaticArgument)
+  | ({ type: "currentUser" } & CurrentUserArgument)
+  | ({ type: "parameterId" } & ParameterIdArgument)
+  | ({
+    type: "interfaceParameterPropertyValue";
+  } & InterfaceParameterPropertyArgument)
+  | ({ type: "synchronousWebhookOutput" } & SynchronousWebhookOutputArgument)
+  | ({ type: "objectParameterPropertyValue" } & ObjectParameterPropertyArgument)
+  | ({ type: "uniqueIdentifier" } & UniqueIdentifierArgument);
+
+/**
  * Returns objects where the specified field is less than or equal to a value.
  *
  * Log Safety: UNSAFE
@@ -2215,6 +2406,18 @@ export interface MinAggregationV2 {
 /**
  * Log Safety: UNSAFE
  */
+export interface ModifyInterfaceLogicRule {
+  interfaceObjectToModify: ParameterId;
+  sharedPropertyArguments: Record<SharedPropertyTypeApiName, LogicRuleArgument>;
+  structPropertyArguments: Record<
+    SharedPropertyTypeApiName,
+    Record<StructFieldApiName, StructFieldArgument>
+  >;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ModifyInterfaceObjectRule {
   interfaceTypeApiName: InterfaceTypeApiName;
 }
@@ -2234,6 +2437,18 @@ export interface ModifyObjectEdit {
   objectType: ObjectTypeApiName;
   primaryKey: PropertyValue;
   properties: Record<PropertyApiName, DataValue>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ModifyObjectLogicRule {
+  objectToModify: ParameterId;
+  propertyArguments: Record<PropertyApiName, LogicRuleArgument>;
+  structPropertyArguments: Record<
+    PropertyApiName,
+    Record<StructFieldApiName, StructFieldArgument>
+  >;
 }
 
 /**
@@ -2336,6 +2551,16 @@ export interface ObjectEdits {
 export interface ObjectLocator {
   objectTypeApiName: ObjectTypeApiName;
   primaryKeyValue: PrimaryKeyValue;
+}
+
+/**
+ * Represents an object parameter property argument in a logic rule.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectParameterPropertyArgument {
+  parameterId: ParameterId;
+  propertyTypeApiName: PropertyTypeApiName;
 }
 
 /**
@@ -3050,6 +3275,15 @@ Parameters can be viewed and managed in the Ontology Manager.
 export type ParameterId = LooselyBrandedString<"ParameterId">;
 
 /**
+ * Represents a parameter ID argument in a logic rule.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ParameterIdArgument {
+  parameterId: ParameterId;
+}
+
+/**
  * A possible value for the parameter. This is defined in the Ontology Manager by Actions admins.
  *
  * Log Safety: UNSAFE
@@ -3590,6 +3824,19 @@ export interface RegexConstraint {
 }
 
 /**
+   * Returns objects where the specified field matches the regex pattern provided. This applies to the non-analyzed
+form of text fields and supports standard regex syntax of dot (.), star(*) and question mark(?).
+Either field or propertyIdentifier can be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface RegexQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: string;
+}
+
+/**
  * A relative time, such as "3 days before" or "2 hours after" the current moment.
  *
  * Log Safety: UNSAFE
@@ -3694,31 +3941,32 @@ export type SearchJsonQuery =
  * Log Safety: UNSAFE
  */
 export type SearchJsonQueryV2 =
-  | ({ type: "or" } & OrQueryV2)
-  | ({ type: "in" } & InQuery)
-  | ({ type: "doesNotIntersectPolygon" } & DoesNotIntersectPolygonQuery)
   | ({ type: "lt" } & LtQueryV2)
   | ({ type: "doesNotIntersectBoundingBox" } & DoesNotIntersectBoundingBoxQuery)
-  | ({ type: "eq" } & EqualsQueryV2)
-  | ({ type: "containsAllTerms" } & ContainsAllTermsQuery)
-  | ({ type: "gt" } & GtQueryV2)
   | ({ type: "wildcard" } & WildcardQuery)
   | ({ type: "withinDistanceOf" } & WithinDistanceOfQuery)
   | ({ type: "withinBoundingBox" } & WithinBoundingBoxQuery)
-  | ({ type: "contains" } & ContainsQueryV2)
   | ({ type: "not" } & NotQueryV2)
   | ({ type: "intersectsBoundingBox" } & IntersectsBoundingBoxQuery)
   | ({ type: "and" } & AndQueryV2)
-  | ({ type: "isNull" } & IsNullQueryV2)
   | ({
     type: "containsAllTermsInOrderPrefixLastTerm";
   } & ContainsAllTermsInOrderPrefixLastTerm)
-  | ({ type: "containsAnyTerm" } & ContainsAnyTermQuery)
   | ({ type: "gte" } & GteQueryV2)
   | ({ type: "containsAllTermsInOrder" } & ContainsAllTermsInOrderQuery)
   | ({ type: "withinPolygon" } & WithinPolygonQuery)
   | ({ type: "intersectsPolygon" } & IntersectsPolygonQuery)
   | ({ type: "lte" } & LteQueryV2)
+  | ({ type: "or" } & OrQueryV2)
+  | ({ type: "in" } & InQuery)
+  | ({ type: "doesNotIntersectPolygon" } & DoesNotIntersectPolygonQuery)
+  | ({ type: "eq" } & EqualsQueryV2)
+  | ({ type: "containsAllTerms" } & ContainsAllTermsQuery)
+  | ({ type: "gt" } & GtQueryV2)
+  | ({ type: "contains" } & ContainsQueryV2)
+  | ({ type: "regex" } & RegexQuery)
+  | ({ type: "isNull" } & IsNullQueryV2)
+  | ({ type: "containsAnyTerm" } & ContainsAnyTermQuery)
   | ({ type: "startsWith" } & StartsWithQuery);
 
 /**
@@ -4031,6 +4279,15 @@ export interface StartsWithQuery {
 }
 
 /**
+ * Represents a static argument in a logic rule.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StaticArgument {
+  value: DataValue;
+}
+
+/**
    * Which format to serialize the binary stream in.
 ARROW is more efficient for streaming a large sized response.
    *
@@ -4126,6 +4383,17 @@ export interface StructEvaluatedConstraint {
 export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
 
 /**
+ * Represents an argument used for an individual struct field.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StructFieldArgument =
+  | ({
+    type: "structListParameterFieldValue";
+  } & StructListParameterFieldArgument)
+  | ({ type: "structParameterFieldValue" } & StructParameterFieldArgument);
+
+/**
    * A constraint that an action struct parameter field value must satisfy in order to be considered valid.
 Constraints can be configured on fields of struct parameters in the Ontology Manager.
 Applicable constraints are determined dynamically based on parameter inputs.
@@ -4187,6 +4455,16 @@ export interface StructFieldType {
 export type StructFieldTypeRid = LooselyBrandedString<"StructFieldTypeRid">;
 
 /**
+ * Represents a struct list parameter field argument in a logic rule.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StructListParameterFieldArgument {
+  parameterId: ParameterId;
+  structParameterFieldApiName: StructParameterFieldApiName;
+}
+
+/**
  * The unique identifier of the struct parameter field.
  *
  * Log Safety: UNSAFE
@@ -4194,6 +4472,16 @@ export type StructFieldTypeRid = LooselyBrandedString<"StructFieldTypeRid">;
 export type StructParameterFieldApiName = LooselyBrandedString<
   "StructParameterFieldApiName"
 >;
+
+/**
+ * Represents a struct parameter field argument in a logic rule.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StructParameterFieldArgument {
+  parameterId: ParameterId;
+  structParameterFieldApiName: StructParameterFieldApiName;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -4289,6 +4577,15 @@ export interface SumAggregationV2 {
 export interface SyncApplyActionResponseV2 {
   validation?: ValidateActionResponseV2;
   edits?: ActionResults;
+}
+
+/**
+ * Represents a synchronous webhook output argument in a logic rule.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SynchronousWebhookOutputArgument {
+  webhookOutputParamName: string;
 }
 
 /**
@@ -4485,6 +4782,15 @@ This can happen when a parameter's allowed values are defined by another paramet
    * Log Safety: SAFE
    */
 export interface UnevaluableConstraint {}
+
+/**
+ * Represents a unique identifier argument in a logic rule.
+ *
+ * Log Safety: SAFE
+ */
+export interface UniqueIdentifierArgument {
+  linkId?: string;
+}
 
 /**
  * The string must be a valid UUID (Universally Unique Identifier).

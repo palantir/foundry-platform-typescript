@@ -166,6 +166,22 @@ export interface MediaSetNotFound {
 }
 
 /**
+ * A transaction is already open on this media set and branch. A branch of a media set can only have one open transaction at a time.
+ *
+ * Log Safety: SAFE
+ */
+export interface MediaSetOpenTransactionAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "MediaSetOpenTransactionAlreadyExists";
+  errorDescription:
+    "A transaction is already open on this media set and branch. A branch of a media set can only have one open transaction at a time.";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+  };
+}
+
+/**
  * The file has no bytes.
  *
  * Log Safety: UNSAFE
@@ -194,5 +210,22 @@ export interface MissingMediaItemPath {
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
+  };
+}
+
+/**
+ * The requested media item could not be found, or the client token does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformedMediaItemNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "TransformedMediaItemNotFound";
+  errorDescription:
+    "The requested media item could not be found, or the client token does not have access to it.";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+    mediaItemRid: unknown;
   };
 }

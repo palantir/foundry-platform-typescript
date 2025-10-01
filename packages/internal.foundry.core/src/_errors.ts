@@ -722,6 +722,21 @@ export interface InvalidFields {
 }
 
 /**
+ * The provided file path is not valid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidFilePath {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidFilePath";
+  errorDescription: "The provided file path is not valid.";
+  errorInstanceId: string;
+  parameters: {
+    filePath: unknown;
+  };
+}
+
+/**
  * @deprecated Use `InvalidGroupId` in the `internal.foundry.ontologies` package
  *
  * The provided value for a group id must be a UUID.

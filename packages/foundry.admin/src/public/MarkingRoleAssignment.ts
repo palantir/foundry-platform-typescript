@@ -35,7 +35,6 @@ const _list: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Admin.ListMarkingRoleAssignmentsResponse>
 > = [0, "/v2/admin/markings/{0}/roleAssignments", 2];
@@ -43,7 +42,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * List all principals who are assigned a role for the given Marking. Ignores the `pageSize` parameter.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/{markingId}/roleAssignments
@@ -56,7 +55,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.ListMarkingRoleAssignmentsResponse> {
@@ -67,12 +65,11 @@ const _add: $FoundryPlatformMethod<
   (
     markingId: _Core.MarkingId,
     $body: _Admin.AddMarkingRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/markings/{0}/roleAssignments/add", 3];
+> = [1, "/v2/admin/markings/{0}/roleAssignments/add", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markings/{markingId}/roleAssignments/add
@@ -82,7 +79,6 @@ export function add(
   ...args: [
     markingId: _Core.MarkingId,
     $body: _Admin.AddMarkingRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
@@ -92,12 +88,11 @@ const _remove: $FoundryPlatformMethod<
   (
     markingId: _Core.MarkingId,
     $body: _Admin.RemoveMarkingRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/markings/{0}/roleAssignments/remove", 3];
+> = [1, "/v2/admin/markings/{0}/roleAssignments/remove", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markings/{markingId}/roleAssignments/remove
@@ -107,7 +102,6 @@ export function remove(
   ...args: [
     markingId: _Core.MarkingId,
     $body: _Admin.RemoveMarkingRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);

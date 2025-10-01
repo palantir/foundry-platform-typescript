@@ -7,8 +7,10 @@ ELINT
 Elnot
 elnots
 ELNOTs
+EPSG
 freetext
 GEOINT
+geopositioned
 geotrackable
 hptl
 htpl
@@ -19,4 +21,8 @@ Jpdi
 milsym
 multitenant
 OPIR
+Renderable
+Renderables
+RRGGBB
 sidc
+sourcings

@@ -90,7 +90,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Check with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:data-health-read]
  * URL: /v2/dataHealth/checks/{checkRid}
@@ -104,4 +104,31 @@ export function get(
   ]
 ): Promise<_DataHealth.Check> {
   return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _replace: $FoundryPlatformMethod<
+  (
+    checkRid: _DataHealth.CheckRid,
+    $body: _DataHealth.ReplaceCheckRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_DataHealth.Check>
+> = [2, "/v2/dataHealth/checks/{0}", 3];
+
+/**
+ * Replace the Check with the specified rid. Changing the type of a check after it has been created  is not supported.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:data-health-write]
+ * URL: /v2/dataHealth/checks/{checkRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    checkRid: _DataHealth.CheckRid,
+    $body: _DataHealth.ReplaceCheckRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_DataHealth.Check> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
 }

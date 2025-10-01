@@ -51,6 +51,22 @@ export interface CheckNotFound {
 }
 
 /**
+ * The type of the requested check is not yet supported in the Platform API.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CheckTypeNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CheckTypeNotSupported";
+  errorDescription:
+    "The type of the requested check is not yet supported in the Platform API.";
+  errorInstanceId: string;
+  parameters: {
+    checkType: unknown;
+  };
+}
+
+/**
  * Could not create the Check.
  *
  * Log Safety: SAFE
@@ -79,6 +95,20 @@ export interface DeleteCheckPermissionDenied {
 }
 
 /**
+ * The PercentageCheckConfig is invalid. It must contain at least one of percentageBounds or medianDeviation.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidPercentageCheckConfig {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPercentageCheckConfig";
+  errorDescription:
+    "The PercentageCheckConfig is invalid. It must contain at least one of percentageBounds or medianDeviation.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The TimeCheckConfig is invalid. It must contain at least one of timeBounds or medianDeviation.
  *
  * Log Safety: SAFE
@@ -90,4 +120,68 @@ export interface InvalidTimeCheckConfig {
     "The TimeCheckConfig is invalid. It must contain at least one of timeBounds or medianDeviation.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * Changing the type of a check after it has been created is not supported.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModifyingCheckTypeNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ModifyingCheckTypeNotSupported";
+  errorDescription:
+    "Changing the type of a check after it has been created is not supported.";
+  errorInstanceId: string;
+  parameters: {
+    originalCheckType: unknown;
+    newCheckType: unknown;
+  };
+}
+
+/**
+ * PercentageValue must be less than or equal to 100.0
+ *
+ * Log Safety: SAFE
+ */
+export interface PercentageValueAboveMaximum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PercentageValueAboveMaximum";
+  errorDescription: "PercentageValue must be less than or equal to 100.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    maxInclusive: unknown;
+  };
+}
+
+/**
+ * PercentageValue must be greater than or equal to 0.0
+ *
+ * Log Safety: SAFE
+ */
+export interface PercentageValueBelowMinimum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PercentageValueBelowMinimum";
+  errorDescription: "PercentageValue must be greater than or equal to 0.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    minInclusive: unknown;
+  };
+}
+
+/**
+ * Could not replace the Check.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceCheckPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceCheckPermissionDenied";
+  errorDescription: "Could not replace the Check.";
+  errorInstanceId: string;
+  parameters: {
+    checkRid: unknown;
+  };
 }

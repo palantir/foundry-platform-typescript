@@ -568,6 +568,20 @@ export interface TableImportTypeNotSupported {
 }
 
 /**
+ * The UnknownWorker cannot be used for creating or updating connections. Please use the Foundry worker instead.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnknownWorkerCannotBeUsedForCreatingOrUpdatingConnections {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnknownWorkerCannotBeUsedForCreatingOrUpdatingConnections";
+  errorDescription:
+    "The UnknownWorker cannot be used for creating or updating connections. Please use the Foundry worker instead.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not updateExportSettings the Connection.
  *
  * Log Safety: SAFE

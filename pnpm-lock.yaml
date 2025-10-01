@@ -802,6 +802,9 @@ importers:
       '@osdk/gotham.geojson':
         specifier: workspace:*
         version: link:../gotham.geojson
+      '@osdk/gotham.maprendering':
+        specifier: workspace:*
+        version: link:../gotham.maprendering
       '@osdk/gotham.targetworkbench':
         specifier: workspace:*
         version: link:../gotham.targetworkbench
@@ -868,6 +871,31 @@ importers:
 
   packages/gotham.geojson:
     dependencies:
+      '@osdk/shared.client':
+        specifier: 1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/gotham.maprendering:
+    dependencies:
+      '@osdk/gotham.core':
+        specifier: workspace:*
+        version: link:../gotham.core
+      '@osdk/gotham.geojson':
+        specifier: workspace:*
+        version: link:../gotham.geojson
       '@osdk/shared.client':
         specifier: 1.0.1
         version: 1.0.1

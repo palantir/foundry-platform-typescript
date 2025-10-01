@@ -527,6 +527,7 @@ export type {
   InvalidDurationGroupByPropertyType,
   InvalidDurationGroupByValue,
   InvalidFields,
+  InvalidFilePath,
   InvalidGroupId,
   InvalidOrderType,
   InvalidPageSize,

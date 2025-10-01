@@ -17,4 +17,5 @@
 export * as Core from "@osdk/gotham.core";
 export * as Gaia from "@osdk/gotham.gaia";
 export * as Geojson from "@osdk/gotham.geojson";
+export * as MapRendering from "@osdk/gotham.maprendering";
 export * as TargetWorkbench from "@osdk/gotham.targetworkbench";
