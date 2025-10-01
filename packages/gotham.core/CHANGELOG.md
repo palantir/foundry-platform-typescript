@@ -1,5 +1,11 @@
 # @osdk/gotham.core
 
+## 0.6.0
+
+### Minor Changes
+
+- 3b147c5: Bump sdks
+
 ## 0.5.0
 
 ### Minor Changes

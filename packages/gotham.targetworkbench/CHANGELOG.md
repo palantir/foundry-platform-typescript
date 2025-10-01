@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.6.0
+
+### Minor Changes
+
+- 3b147c5: Bump sdks
+
+### Patch Changes
+
+- Updated dependencies [3b147c5]
+  - @osdk/gotham.core@0.6.0
+
 ## 0.5.0
 
 ### Minor Changes

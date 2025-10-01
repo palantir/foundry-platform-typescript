@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.20.0
+
+### Minor Changes
+
+- 3b147c5: Bump sdks
+
 ## 0.19.0
 
 ### Minor Changes
