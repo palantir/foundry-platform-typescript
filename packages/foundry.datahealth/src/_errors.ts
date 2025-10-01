@@ -123,6 +123,23 @@ export interface InvalidTimeCheckConfig {
 }
 
 /**
+ * Changing the type of a check after it has been created is not supported.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModifyingCheckTypeNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ModifyingCheckTypeNotSupported";
+  errorDescription:
+    "Changing the type of a check after it has been created is not supported.";
+  errorInstanceId: string;
+  parameters: {
+    originalCheckType: unknown;
+    newCheckType: unknown;
+  };
+}
+
+/**
  * PercentageValue must be less than or equal to 100.0
  *
  * Log Safety: SAFE
@@ -151,5 +168,20 @@ export interface PercentageValueBelowMinimum {
   parameters: {
     value: unknown;
     minInclusive: unknown;
+  };
+}
+
+/**
+ * Could not replace the Check.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceCheckPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceCheckPermissionDenied";
+  errorDescription: "Could not replace the Check.";
+  errorInstanceId: string;
+  parameters: {
+    checkRid: unknown;
   };
 }

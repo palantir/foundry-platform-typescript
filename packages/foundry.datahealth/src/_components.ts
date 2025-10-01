@@ -312,6 +312,93 @@ export interface PrimaryKeyConfig {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ReplaceBuildDurationCheckConfig {
+  timeCheckConfig: TimeCheckConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceBuildStatusCheckConfig {
+  statusCheckConfig: StatusCheckConfig;
+}
+
+/**
+ * Configuration of a check.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ReplaceCheckConfig =
+  | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
+  | ({ type: "jobStatus" } & ReplaceJobStatusCheckConfig)
+  | ({ type: "jobDuration" } & ReplaceJobDurationCheckConfig)
+  | ({ type: "nullPercentage" } & ReplaceNullPercentageCheckConfig)
+  | ({ type: "totalColumnCount" } & ReplaceTotalColumnCountCheckConfig)
+  | ({ type: "buildDuration" } & ReplaceBuildDurationCheckConfig)
+  | ({ type: "schemaComparison" } & ReplaceSchemaComparisonCheckConfig)
+  | ({ type: "buildStatus" } & ReplaceBuildStatusCheckConfig)
+  | ({ type: "primaryKey" } & ReplacePrimaryKeyCheckConfig);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceCheckRequest {
+  config: ReplaceCheckConfig;
+  intent?: CheckIntent;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceColumnTypeCheckConfig {
+  columnTypeConfig: ColumnTypeConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceJobDurationCheckConfig {
+  timeCheckConfig: TimeCheckConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceJobStatusCheckConfig {
+  statusCheckConfig: StatusCheckConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceNullPercentageCheckConfig {
+  percentageCheckConfig: PercentageCheckConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplacePrimaryKeyCheckConfig {
+  primaryKeyConfig: PrimaryKeyConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceSchemaComparisonCheckConfig {
+  schemaComparisonConfig: SchemaComparisonConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceTotalColumnCountCheckConfig {
+  columnCountConfig: ColumnCountConfig;
+}
+
+/**
  * A schedule resource type.
  *
  * Log Safety: SAFE

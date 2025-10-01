@@ -166,6 +166,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getActionTypeByRid": {
       "variables": {},
     },
+    "v2.getActionTypeFullMetadata": {
+      "variables": {},
+    },
     "v2.listObjectTypesV2": {
       "variables": {},
     },
@@ -866,6 +869,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getCheck": {
+      "variables": {},
+    },
+    "v2.replaceCheck": {
       "variables": {},
     },
     "v2.renderInvocationObject": {
