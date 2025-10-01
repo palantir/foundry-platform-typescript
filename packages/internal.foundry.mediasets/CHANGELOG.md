@@ -1,5 +1,12 @@
 # @osdk/internal.foundry.mediasets
 
+## 2.33.0
+
+### Patch Changes
+
+- Updated dependencies [3b147c5]
+  - @osdk/internal.foundry.core@2.33.0
+
 ## 2.32.0
 
 ### Patch Changes

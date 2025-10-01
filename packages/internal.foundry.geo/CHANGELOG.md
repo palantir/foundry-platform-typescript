@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.33.0
+
+### Minor Changes
+
+- 3b147c5: Bump sdks
+
 ## 2.32.0
 
 ### Patch Changes

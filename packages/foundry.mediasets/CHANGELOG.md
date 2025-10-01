@@ -1,5 +1,16 @@
 # @osdk/foundry.mediasets
 
+## 2.33.0
+
+### Minor Changes
+
+- 3b147c5: Bump sdks
+
+### Patch Changes
+
+- Updated dependencies [3b147c5]
+  - @osdk/foundry.core@2.33.0
+
 ## 2.32.0
 
 ### Minor Changes
