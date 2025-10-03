@@ -114,7 +114,7 @@ const _createFromTemplate: $FoundryPlatformMethod<
 /**
  * Creates a project from a project template.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/createFromTemplate

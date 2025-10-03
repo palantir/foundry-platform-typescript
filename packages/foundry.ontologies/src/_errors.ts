@@ -1982,6 +1982,22 @@ export interface SharedPropertyTypeNotFound {
 }
 
 /**
+ * The value of the similarity threshold must be in the range 0 <= threshold <= 1.
+ *
+ * Log Safety: SAFE
+ */
+export interface SimilarityThresholdOutOfRange {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SimilarityThresholdOutOfRange";
+  errorDescription:
+    "The value of the similarity threshold must be in the range 0 <= threshold <= 1.";
+  errorInstanceId: string;
+  parameters: {
+    providedThreshold: unknown;
+  };
+}
+
+/**
  * The value of numNeighbors must be in the range 1 <= numNeighbors <= 500.
  *
  * Log Safety: SAFE

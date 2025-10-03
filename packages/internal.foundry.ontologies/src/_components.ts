@@ -241,6 +241,14 @@ export interface AddPropertyExpression {
 /**
  * Log Safety: UNSAFE
  */
+export interface Affix {
+  prefix?: PropertyTypeReferenceOrStringConstant;
+  postfix?: PropertyTypeReferenceOrStringConstant;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface AggregateObjectSetRequestV2 {
   aggregation: Array<AggregationV2>;
   objectSet: ObjectSet;
@@ -1217,6 +1225,66 @@ export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 export type DataValue = any;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type DatetimeFormat =
+  | ({ type: "stringFormat" } & DatetimeStringFormat)
+  | ({ type: "localizedFormat" } & DatetimeLocalizedFormat);
+
+/**
+ * Predefined localized formatting options.
+ *
+ * Log Safety: SAFE
+ */
+export interface DatetimeLocalizedFormat {
+  format: DatetimeLocalizedFormatType;
+}
+
+/**
+ * Localized date/time format types.
+ *
+ * Log Safety: SAFE
+ */
+export type DatetimeLocalizedFormatType =
+  | "DATE_FORMAT_RELATIVE_TO_NOW"
+  | "DATE_FORMAT_DATE"
+  | "DATE_FORMAT_YEAR_AND_MONTH"
+  | "DATE_FORMAT_DATE_TIME"
+  | "DATE_FORMAT_DATE_TIME_SHORT"
+  | "DATE_FORMAT_TIME"
+  | "DATE_FORMAT_ISO_INSTANT";
+
+/**
+ * A strictly specified date format pattern.
+ *
+ * Log Safety: SAFE
+ */
+export interface DatetimeStringFormat {
+  pattern: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type DatetimeTimezone =
+  | ({ type: "static" } & DatetimeTimezoneStatic)
+  | ({ type: "user" } & DatetimeTimezoneUser);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DatetimeTimezoneStatic {
+  zoneId: PropertyTypeReferenceOrStringConstant;
+}
+
+/**
+ * The user's local timezone.
+ *
+ * Log Safety: SAFE
+ */
+export interface DatetimeTimezoneUser {}
+
+/**
  * The result of a CipherText decryption. If successful, the plaintext decrypted value will be returned. Otherwise, an error will be thrown.
  *
  * Log Safety: DO_NOT_LOG
@@ -1414,6 +1482,32 @@ export interface DoubleVector {
 export type Duration = LooselyBrandedString<"Duration">;
 
 /**
+ * Specifies the unit of the input duration value.
+ *
+ * Log Safety: SAFE
+ */
+export type DurationBaseValue = "SECONDS" | "MILLISECONDS";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type DurationFormatStyle =
+  | ({ type: "humanReadable" } & HumanReadableFormat)
+  | ({ type: "timecode" } & TimeCodeFormat);
+
+/**
+ * Specifies the maximum precision to apply when formatting a duration.
+ *
+ * Log Safety: SAFE
+ */
+export type DurationPrecision =
+  | "DAYS"
+  | "HOURS"
+  | "MINUTES"
+  | "SECONDS"
+  | "AUTO";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface EntrySetType {
@@ -1532,6 +1626,13 @@ properties.{propertyApiName}.isNull=false.
    * Log Safety: UNSAFE
    */
 export type FilterValue = LooselyBrandedString<"FilterValue">;
+
+/**
+ * Integer key for fixed value mapping.
+ *
+ * Log Safety: SAFE
+ */
+export type FixedValuesMapKey = number;
 
 /**
  * Log Safety: UNSAFE
@@ -1685,6 +1786,15 @@ export interface GtQueryV2 {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
+}
+
+/**
+ * Formats the duration as a human-readable written string.
+ *
+ * Log Safety: SAFE
+ */
+export interface HumanReadableFormat {
+  showFullUnits?: boolean;
 }
 
 /**
@@ -1882,6 +1992,17 @@ export interface IsNullQueryV2 {
   propertyIdentifier?: PropertyIdentifier;
   value: boolean;
 }
+
+/**
+   * Known Foundry types for specialized formatting:
+
+userOrGroupRid: Format as user or group RID (both are structurally RIDs)
+resourceRid: Format as resource RID
+artifactGid: Format as artifact GID
+   *
+   * Log Safety: SAFE
+   */
+export type KnownType = "userOrGroupRid" | "resourceRid" | "artifactGid";
 
 /**
  * Finds least of two or more numeric, date or timestamp values.
@@ -2522,6 +2643,208 @@ export interface NotQueryV2 {
 }
 
 /**
+   * Attach arbitrary text before and/or after the formatted number.
+Example: prefix "USD " and postfix " total" displays as "USD 1,234.56 total"
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumberFormatAffix {
+  baseFormatOptions: NumberFormatOptions;
+  affix: Affix;
+}
+
+/**
+   * Display the value as basis points. Multiplies by 10,000 and appends "bps" suffix.
+Used in finance where 1 basis point = 0.01%.
+Example: 0.0025 displays as "25 bps", 0.01 displays as "100 bps"
+   *
+   * Log Safety: SAFE
+   */
+export interface NumberFormatBasisPoints {
+  baseFormatOptions: NumberFormatOptions;
+}
+
+/**
+   * Format numbers as currency values with proper symbols and styling.
+Example: 1234.56 with currency "USD" displays as "USD 1,234.56" (standard) or "USD 1.2K" (compact)
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumberFormatCurrency {
+  baseFormatOptions: NumberFormatOptions;
+  style: NumberFormatCurrencyStyle;
+  currencyCode: PropertyTypeReferenceOrStringConstant;
+}
+
+/**
+   * Currency rendering style options:
+
+STANDARD: Full currency formatting (e.g., "USD 1,234.56")
+COMPACT: Abbreviated currency formatting (e.g., "USD 1.2K")
+   *
+   * Log Safety: SAFE
+   */
+export type NumberFormatCurrencyStyle = "STANDARD" | "COMPACT";
+
+/**
+   * Format numbers with custom units not supported by standard formatting.
+Use this for domain-specific units like "requests/sec", "widgets", etc.
+Example: 1500 with unit "widgets" displays as "1,500 widgets"
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumberFormatCustomUnit {
+  baseFormatOptions: NumberFormatOptions;
+  unit: PropertyTypeReferenceOrStringConstant;
+}
+
+/**
+   * Format numeric values representing time durations.
+
+Human readable: 3661 seconds displays as "1h 1m 1s"
+Timecode: 3661 seconds displays as "01:01:01"
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumberFormatDuration {
+  formatStyle: DurationFormatStyle;
+  precision?: DurationPrecision;
+  baseValue: DurationBaseValue;
+}
+
+/**
+   * Map integer values to custom human-readable strings.
+Example: {1: "First", 2: "Second", 3: "Third"} would display 2 as "Second".
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumberFormatFixedValues {
+  values: Record<FixedValuesMapKey, string>;
+}
+
+/**
+   * Number notation style options:
+
+STANDARD: Regular number display ("1,234")
+SCIENTIFIC: Scientific notation ("1.234E3")
+ENGINEERING: Engineering notation ("1.234E3")
+COMPACT: Compact notation ("1.2K")
+   *
+   * Log Safety: SAFE
+   */
+export type NumberFormatNotation =
+  | "STANDARD"
+  | "SCIENTIFIC"
+  | "ENGINEERING"
+  | "COMPACT";
+
+/**
+   * Base number formatting options that can be applied to all number formatters.
+Controls precision, grouping, rounding, and notation. Consistent with JavaScript's Intl.NumberFormat.
+Examples:
+
+useGrouping: true makes 1234567 display as "1,234,567"
+maximumFractionDigits: 2 makes 3.14159 display as "3.14"
+notation: SCIENTIFIC makes 1234 display as "1.234E3"
+   *
+   * Log Safety: SAFE
+   */
+export interface NumberFormatOptions {
+  useGrouping?: boolean;
+  convertNegativeToParenthesis?: boolean;
+  minimumIntegerDigits?: number;
+  minimumFractionDigits?: number;
+  maximumFractionDigits?: number;
+  minimumSignificantDigits?: number;
+  maximumSignificantDigits?: number;
+  notation?: NumberFormatNotation;
+  roundingMode?: NumberRoundingMode;
+}
+
+/**
+   * Display the value as a ratio with different scaling factors and suffixes:
+
+PERCENTAGE: Multiply by 100 and add "%" suffix (0.15 → "15%")
+PER_MILLE: Multiply by 1000 and add "‰" suffix (0.015 → "15‰")
+BASIS_POINTS: Multiply by 10000 and add "bps" suffix (0.0015 → "15bps")
+   *
+   * Log Safety: SAFE
+   */
+export interface NumberFormatRatio {
+  ratioType: NumberRatioType;
+  baseFormatOptions: NumberFormatOptions;
+}
+
+/**
+   * Scale the numeric value by dividing by the specified factor and append an appropriate suffix.
+
+THOUSANDS: 1500 displays as "1.5K"
+MILLIONS: 2500000 displays as "2.5M"
+BILLIONS: 3200000000 displays as "3.2B"
+   *
+   * Log Safety: SAFE
+   */
+export interface NumberFormatScale {
+  scaleType: NumberScaleType;
+  baseFormatOptions: NumberFormatOptions;
+}
+
+/**
+   * Standard number formatting with configurable options.
+This provides basic number formatting without any special units, scaling, or transformations.
+   *
+   * Log Safety: SAFE
+   */
+export interface NumberFormatStandard {
+  baseFormatOptions: NumberFormatOptions;
+}
+
+/**
+   * Format numbers with standard units supported by Intl.NumberFormat.
+Examples: "meter", "kilogram", "celsius", "percent"
+Input: 25 with unit "celsius" displays as "25 degrees C"
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumberFormatStandardUnit {
+  baseFormatOptions: NumberFormatOptions;
+  unit: PropertyTypeReferenceOrStringConstant;
+}
+
+/**
+   * Ratio format options for displaying proportional values:
+
+PERCENTAGE: Multiply by 100 and add "%" suffix
+PER_MILLE: Multiply by 1000 and add "‰" suffix
+BASIS_POINTS: Multiply by 10000 and add "bps" suffix
+   *
+   * Log Safety: SAFE
+   */
+export type NumberRatioType = "PERCENTAGE" | "PER_MILLE" | "BASIS_POINTS";
+
+/**
+   * Number rounding behavior:
+
+CEIL: Always round up (3.1 becomes 4)
+FLOOR: Always round down (3.9 becomes 3)
+ROUND_CLOSEST: Round to nearest (3.4 becomes 3, 3.6 becomes 4)
+   *
+   * Log Safety: SAFE
+   */
+export type NumberRoundingMode = "CEIL" | "FLOOR" | "ROUND_CLOSEST";
+
+/**
+   * Scale factor options for large numbers:
+
+THOUSANDS: Divide by 1,000 and add "K" suffix
+MILLIONS: Divide by 1,000,000 and add "M" suffix
+BILLIONS: Divide by 1,000,000,000 and add "B" suffix
+   *
+   * Log Safety: SAFE
+   */
+export type NumberScaleType = "THOUSANDS" | "MILLIONS" | "BILLIONS";
+
+/**
  * Log Safety: UNSAFE
  */
 export type ObjectEdit =
@@ -2727,6 +3050,7 @@ export interface ObjectSetNearestNeighborsType {
   objectSet: ObjectSet;
   propertyIdentifier: PropertyIdentifier;
   numNeighbors: number;
+  similarityThreshold?: number;
   query: NearestNeighborsQuery;
 }
 
@@ -3397,6 +3721,25 @@ export interface PropertyApiNameSelector {
 }
 
 /**
+ * Formatting configuration for boolean property values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyBooleanFormattingRule {
+  valueIfTrue: string;
+  valueIfFalse: string;
+}
+
+/**
+ * Formatting configuration for date property values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyDateFormattingRule {
+  format: DatetimeFormat;
+}
+
+/**
    * Represents a filter used on properties.
 Endpoints that accept this supports optional parameters that have the form:
 properties.{propertyApiName}.{propertyFilter}={propertyValueEscapedString} to filter the returned objects.
@@ -3443,9 +3786,65 @@ export type PropertyIdentifier =
   | ({ type: "structField" } & StructFieldSelector);
 
 /**
+ * Formatting configuration for known Foundry types.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyKnownTypeFormattingRule {
+  knownType: KnownType;
+}
+
+/**
+ * Wrapper for numeric formatting options.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyNumberFormattingRule {
+  numberType: PropertyNumberFormattingRuleType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type PropertyNumberFormattingRuleType =
+  | ({ type: "standard" } & NumberFormatStandard)
+  | ({ type: "duration" } & NumberFormatDuration)
+  | ({ type: "fixedValues" } & NumberFormatFixedValues)
+  | ({ type: "affix" } & NumberFormatAffix)
+  | ({ type: "scale" } & NumberFormatScale)
+  | ({ type: "currency" } & NumberFormatCurrency)
+  | ({ type: "standardUnit" } & NumberFormatStandardUnit)
+  | ({ type: "customUnit" } & NumberFormatCustomUnit)
+  | ({ type: "ratio" } & NumberFormatRatio);
+
+/**
+ * Formatting configuration for timestamp property values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyTimestampFormattingRule {
+  format: DatetimeFormat;
+  displayTimezone: DatetimeTimezone;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type PropertyTypeApiName = LooselyBrandedString<"PropertyTypeApiName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface PropertyTypeReference {
+  propertyApiName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type PropertyTypeReferenceOrStringConstant =
+  | ({ type: "constant" } & StringConstant)
+  | ({ type: "propertyType" } & PropertyTypeReference);
 
 /**
  * Log Safety: SAFE
@@ -3481,6 +3880,7 @@ export interface PropertyV2 {
   status?: PropertyTypeStatus;
   visibility?: PropertyTypeVisibility;
   valueTypeApiName?: ValueTypeApiName;
+  valueFormatting?: PropertyValueFormattingRule;
 }
 
 /**
@@ -3522,6 +3922,26 @@ export type PropertyValue = any;
 export type PropertyValueEscapedString = LooselyBrandedString<
   "PropertyValueEscapedString"
 >;
+
+/**
+   * This feature is experimental and may change in a future release.
+Comprehensive formatting configuration for displaying property values in user interfaces.
+Supports different value types including numbers, dates, timestamps, booleans, and known Foundry types.
+Each formatter type provides specific options tailored to that data type:
+
+Numbers: Support for percentages, currencies, units, scaling, and custom formatting
+Dates/Timestamps: Localized and custom formatting patterns
+Booleans: Custom true/false display text
+Known types: Special formatting for Foundry-specific identifiers
+   *
+   * Log Safety: UNSAFE
+   */
+export type PropertyValueFormattingRule =
+  | ({ type: "date" } & PropertyDateFormattingRule)
+  | ({ type: "number" } & PropertyNumberFormattingRule)
+  | ({ type: "boolean" } & PropertyBooleanFormattingRule)
+  | ({ type: "knownType" } & PropertyKnownTypeFormattingRule)
+  | ({ type: "timestamp" } & PropertyTimestampFormattingRule);
 
 /**
  * An error indicating that the subscribe request should be attempted on a different node.
@@ -4244,6 +4664,7 @@ export interface SharedPropertyType {
   description?: string;
   dataType: ObjectPropertyType;
   valueTypeApiName?: ValueTypeApiName;
+  valueFormatting?: PropertyValueFormattingRule;
 }
 
 /**
@@ -4331,6 +4752,13 @@ export interface StreamTimeSeriesValuesRequest {
  */
 export interface StreamTimeSeriesValuesResponse {
   data: Array<TimeseriesEntry>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StringConstant {
+  value: string;
 }
 
 /**
@@ -4595,6 +5023,13 @@ export interface ThreeDimensionalAggregation {
   keyType: QueryAggregationKeyType;
   valueType: TwoDimensionalAggregation;
 }
+
+/**
+ * Formats the duration in a timecode format.
+ *
+ * Log Safety: SAFE
+ */
+export interface TimeCodeFormat {}
 
 /**
  * An absolute or relative range for a time series query.
