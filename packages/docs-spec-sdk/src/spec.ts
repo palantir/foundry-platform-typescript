@@ -330,6 +330,9 @@ export const OSDK_SNIPPETS_SPEC = {
         ...MediaTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
+        mediaParameter: "required",
+        rawPropertyValue: "required",
+        actionApiName: "required",
       },
     },
     readMedia: {
@@ -337,6 +340,7 @@ export const OSDK_SNIPPETS_SPEC = {
         ...MediaTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
+        rawPrimaryKeyProperty: "required",
       },
     },
     // castInterfacesSnippets
