@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.10.0
+
+### Minor Changes
+
+- a013a3b: Update media spec
+
 ## 0.9.0
 
 ### Minor Changes
