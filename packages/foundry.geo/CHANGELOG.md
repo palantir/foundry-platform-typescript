@@ -1,5 +1,11 @@
 # @osdk/foundry.geo
 
+## 2.34.0
+
+### Minor Changes
+
+- 1f4aa71: Regenerate Platform SDKs
+
 ## 2.33.0
 
 ### Minor Changes

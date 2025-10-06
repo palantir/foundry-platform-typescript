@@ -1,5 +1,16 @@
 # @osdk/foundry.admin
 
+## 2.34.0
+
+### Minor Changes
+
+- 1f4aa71: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [1f4aa71]
+  - @osdk/foundry.core@2.34.0
+
 ## 2.33.0
 
 ### Minor Changes
