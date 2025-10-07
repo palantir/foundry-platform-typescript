@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.8.0
+
+### Minor Changes
+
+- dfa9cd5: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [dfa9cd5]
+  - @osdk/gotham.core@0.8.0
+
 ## 0.7.0
 
 ### Minor Changes

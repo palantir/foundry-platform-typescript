@@ -1,5 +1,19 @@
 # @osdk/foundry.datahealth
 
+## 2.35.0
+
+### Minor Changes
+
+- dfa9cd5: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [dfa9cd5]
+  - @osdk/foundry.orchestration@2.35.0
+  - @osdk/foundry.connectivity@2.35.0
+  - @osdk/foundry.datasets@2.35.0
+  - @osdk/foundry.core@2.35.0
+
 ## 2.34.0
 
 ### Minor Changes
