@@ -382,3 +382,45 @@ export type JsonSchema = Record<string, any>;
  * Log Safety: SAFE
  */
 export type LanguageModelApiName = LooselyBrandedString<"LanguageModelApiName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type OpenAiEmbeddingInput = Array<string>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OpenAiEmbeddingsRequest {
+  input: OpenAiEmbeddingInput;
+  dimensions?: number;
+  encodingFormat?: OpenAiEncodingFormat;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OpenAiEmbeddingsResponse {
+  data: Array<Array<number>>;
+  model: string;
+  usage: OpenAiTokenUsage;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type OpenAiEncodingFormat = "FLOAT" | "BASE64";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface OpenAiModel {
+  modelId: LanguageModelApiName;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface OpenAiTokenUsage {
+  promptTokens: number;
+}

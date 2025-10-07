@@ -904,6 +904,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.resetStream": {
       "variables": {},
     },
+    "v2.openAiEmbeddings": {
+      "variables": {},
+    },
     "v2.anthropicMessages": {
       "variables": {},
     },

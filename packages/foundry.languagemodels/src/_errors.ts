@@ -64,3 +64,18 @@ export interface MultipleToolResultContentsNotSupported {
     toolResultContentsSize: unknown;
   };
 }
+
+/**
+ * Could not embeddings the OpenAiModel.
+ *
+ * Log Safety: SAFE
+ */
+export interface OpenAiEmbeddingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "OpenAiEmbeddingsPermissionDenied";
+  errorDescription: "Could not embeddings the OpenAiModel.";
+  errorInstanceId: string;
+  parameters: {
+    openAiModelModelId: unknown;
+  };
+}
