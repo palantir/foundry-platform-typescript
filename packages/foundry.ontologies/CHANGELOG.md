@@ -1,5 +1,17 @@
 # @osdk/foundry.ontologies
 
+## 2.35.0
+
+### Minor Changes
+
+- dfa9cd5: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [dfa9cd5]
+  - @osdk/foundry.core@2.35.0
+  - @osdk/foundry.geo@2.35.0
+
 ## 2.34.0
 
 ### Minor Changes

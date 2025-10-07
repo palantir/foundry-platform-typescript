@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.22.0
+
+### Minor Changes
+
+- dfa9cd5: Regenerate Platform SDKs
+
 ## 0.21.0
 
 ### Minor Changes
