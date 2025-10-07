@@ -61,10 +61,18 @@ export type {
   AnthropicUrlDocumentSource,
   JsonSchema,
   LanguageModelApiName,
+  OpenAiEmbeddingInput,
+  OpenAiEmbeddingsRequest,
+  OpenAiEmbeddingsResponse,
+  OpenAiEncodingFormat,
+  OpenAiModel,
+  OpenAiTokenUsage,
 } from "./_components.js";
 export type {
   AnthropicMessagesPermissionDenied,
   MultipleSystemPromptsNotSupported,
   MultipleToolResultContentsNotSupported,
+  OpenAiEmbeddingsPermissionDenied,
 } from "./_errors.js";
 export * as Anthropic from "./public/AnthropicModel.js";
+export * as OpenAi from "./public/OpenAiModel.js";
