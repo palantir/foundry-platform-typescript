@@ -159,7 +159,7 @@ export type ActionTypeApiName = LooselyBrandedString<"ActionTypeApiName">;
  */
 export interface ActionTypeFullMetadata {
   actionType: ActionTypeV2;
-  fullLogicRule: ActionLogicRule;
+  fullLogicRules: Array<ActionLogicRule>;
 }
 
 /**
@@ -1996,13 +1996,13 @@ export interface IsNullQueryV2 {
 /**
    * Known Foundry types for specialized formatting:
 
-userOrGroupRid: Format as user or group RID (both are structurally RIDs)
-resourceRid: Format as resource RID
-artifactGid: Format as artifact GID
+userOrGroupRid: Format as user or group
+resourceRid: Format as resource
+artifactGid: Format as artifact
    *
    * Log Safety: SAFE
    */
-export type KnownType = "userOrGroupRid" | "resourceRid" | "artifactGid";
+export type KnownType = "USER_OR_GROUP_ID" | "RESOURCE_RID" | "ARTIFACT_GID";
 
 /**
  * Finds least of two or more numeric, date or timestamp values.
