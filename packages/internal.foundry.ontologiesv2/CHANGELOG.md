@@ -1,5 +1,14 @@
 # @osdk/internal.foundry.ontologiesv2
 
+## 2.35.0
+
+### Patch Changes
+
+- Updated dependencies [7c587d4]
+- Updated dependencies [dfa9cd5]
+  - @osdk/internal.foundry.ontologies@2.35.0
+  - @osdk/internal.foundry.core@2.35.0
+
 ## 2.34.0
 
 ### Patch Changes
