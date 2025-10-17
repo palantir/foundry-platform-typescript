@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.11.0
+
+### Minor Changes
+
+- 30d09d8: remove unused attachmentParameter from spec
+
 ## 0.10.0
 
 ### Minor Changes
