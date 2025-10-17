@@ -133,7 +133,6 @@ const ActionTemplateStrings = {
   hasParameters: "required",
   rawActionTypeParameterValues: "required",
   hasAttachmentProperty: "required",
-  attachmentParameter: "required",
   objectType: "required",
 } as const satisfies SnippetVariables;
 
