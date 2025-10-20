@@ -64,9 +64,9 @@ export type {
   OpenAiEmbeddingInput,
   OpenAiEmbeddingsRequest,
   OpenAiEmbeddingsResponse,
+  OpenAiEmbeddingTokenUsage,
   OpenAiEncodingFormat,
   OpenAiModel,
-  OpenAiTokenUsage,
 } from "./_components.js";
 export type {
   AnthropicMessagesPermissionDenied,

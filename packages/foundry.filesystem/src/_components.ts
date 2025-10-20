@@ -151,6 +151,20 @@ Space.
 export type FolderType = "FOLDER" | "SPACE" | "PROJECT";
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface GetByPathResourcesBatchRequestElement {
+  path: ResourcePath;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetByPathResourcesBatchResponse {
+  data: Array<Resource>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface GetFoldersBatchRequestElement {
@@ -162,6 +176,20 @@ export interface GetFoldersBatchRequestElement {
  */
 export interface GetFoldersBatchResponse {
   data: Record<FolderRid, Folder>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetResourcesBatchRequestElement {
+  resourceRid: ResourceRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetResourcesBatchResponse {
+  data: Record<ResourceRid, Resource>;
 }
 
 /**

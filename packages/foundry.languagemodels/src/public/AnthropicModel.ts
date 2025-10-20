@@ -34,8 +34,9 @@ const _messages: $FoundryPlatformMethod<
     anthropicModelModelId: _LanguageModels.LanguageModelApiName,
     $body: _LanguageModels.AnthropicMessagesRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { attribution?: _Core.Attribution | undefined },
   ) => Promise<_LanguageModels.AnthropicMessagesResponse>
-> = [1, "/v2/languageModels/anthropic/{0}/messages", 3];
+> = [1, "/v2/languageModels/anthropic/{0}/messages", 7];
 
 /**
  * @alpha
@@ -49,6 +50,7 @@ export function messages(
     anthropicModelModelId: _LanguageModels.LanguageModelApiName,
     $body: _LanguageModels.AnthropicMessagesRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { attribution?: _Core.Attribution | undefined },
   ]
 ): Promise<_LanguageModels.AnthropicMessagesResponse> {
   return $foundryPlatformFetch($ctx, _messages, ...args);

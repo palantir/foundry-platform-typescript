@@ -212,6 +212,9 @@ importers:
       '@osdk/foundry.models':
         specifier: workspace:*
         version: link:../foundry.models
+      '@osdk/foundry.notepad':
+        specifier: workspace:*
+        version: link:../foundry.notepad
       '@osdk/foundry.ontologies':
         specifier: workspace:*
         version: link:../foundry.ontologies
@@ -221,6 +224,9 @@ importers:
       '@osdk/foundry.orchestration':
         specifier: workspace:*
         version: link:../foundry.orchestration
+      '@osdk/foundry.pack':
+        specifier: workspace:*
+        version: link:../foundry.pack
       '@osdk/foundry.publicapis':
         specifier: workspace:*
         version: link:../foundry.publicapis
@@ -597,6 +603,34 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
+  packages/foundry.notepad:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
+      '@osdk/foundry.filesystem':
+        specifier: workspace:*
+        version: link:../foundry.filesystem
+      '@osdk/foundry.ontologies':
+        specifier: workspace:*
+        version: link:../foundry.ontologies
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/foundry.ontologies:
     dependencies:
       '@osdk/foundry.core':
@@ -652,6 +686,31 @@ importers:
       '@osdk/foundry.datasets':
         specifier: workspace:*
         version: link:../foundry.datasets
+      '@osdk/foundry.filesystem':
+        specifier: workspace:*
+        version: link:../foundry.filesystem
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/foundry.pack:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
       '@osdk/foundry.filesystem':
         specifier: workspace:*
         version: link:../foundry.filesystem

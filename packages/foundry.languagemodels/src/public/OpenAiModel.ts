@@ -34,8 +34,9 @@ const _embeddings: $FoundryPlatformMethod<
     openAiModelModelId: _LanguageModels.LanguageModelApiName,
     $body: _LanguageModels.OpenAiEmbeddingsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { attribution?: _Core.Attribution | undefined },
   ) => Promise<_LanguageModels.OpenAiEmbeddingsResponse>
-> = [1, "/v2/languageModels/openAi/{0}/embeddings", 3];
+> = [1, "/v2/languageModels/openAi/{0}/embeddings", 7];
 
 /**
  * @alpha
@@ -49,6 +50,7 @@ export function embeddings(
     openAiModelModelId: _LanguageModels.LanguageModelApiName,
     $body: _LanguageModels.OpenAiEmbeddingsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { attribution?: _Core.Attribution | undefined },
   ]
 ): Promise<_LanguageModels.OpenAiEmbeddingsResponse> {
   return $foundryPlatformFetch($ctx, _embeddings, ...args);
