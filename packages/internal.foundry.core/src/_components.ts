@@ -871,6 +871,13 @@ export interface AttachmentV2 {
 }
 
 /**
+ * Attribution for a request
+ *
+ * Log Safety: UNSAFE
+ */
+export type Attribution = LooselyBrandedString<"Attribution">;
+
+/**
  * @deprecated Use `AvgAggregation` in the `internal.foundry.ontologies` package
  *
  * Computes the average value for the provided field.

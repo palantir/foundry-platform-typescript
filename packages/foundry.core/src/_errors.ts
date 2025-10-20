@@ -111,6 +111,23 @@ export interface InvalidAndFilter {
 }
 
 /**
+   * The attribution provided in the header could not be parsed to a valid RID, or to a comma separated list of
+valid RIDs.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidAttributionHeader {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidAttributionHeader";
+  errorDescription:
+    "The attribution provided in the header could not be parsed to a valid RID, or to a comma separated list of valid RIDs.";
+  errorInstanceId: string;
+  parameters: {
+    header: unknown;
+  };
+}
+
+/**
  * The change data capture configuration is invalid.
  *
  * Log Safety: SAFE

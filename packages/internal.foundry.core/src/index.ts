@@ -94,6 +94,7 @@ export type {
   AttachmentRid,
   AttachmentType,
   AttachmentV2,
+  Attribution,
   AvgAggregation,
   AvgAggregationV2,
   BatchApplyActionRequest,

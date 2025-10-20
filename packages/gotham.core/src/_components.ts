@@ -50,6 +50,13 @@ export type ArtifactGid = LooselyBrandedString<"ArtifactGid">;
 export interface AttachmentType {}
 
 /**
+ * Attribution for a request
+ *
+ * Log Safety: UNSAFE
+ */
+export type Attribution = LooselyBrandedString<"Attribution">;
+
+/**
  * Log Safety: SAFE
  */
 export interface BinaryType {}
@@ -91,6 +98,13 @@ Foundry, see the Change Data Capture user documentation.
 export type ChangeDataCaptureConfiguration = {
   type: "fullRow";
 } & FullRowChangeDataCaptureConfiguration;
+
+/**
+ * The unique resource identifier (RID) of a Data Health Check.
+ *
+ * Log Safety: SAFE
+ */
+export type CheckRid = LooselyBrandedString<"CheckRid">;
 
 /**
  * Log Safety: SAFE
@@ -534,6 +548,13 @@ export type LmsEmbeddingModelValue =
   | "BGE_BASE_EN_V1_5";
 
 /**
+ * A string representation of a java.util.Locale
+ *
+ * Log Safety: SAFE
+ */
+export type Locale = LooselyBrandedString<"Locale">;
+
+/**
  * Log Safety: SAFE
  */
 export interface LocalFilePath {}
@@ -941,6 +962,13 @@ export type UpdatedTime = string;
  * Log Safety: SAFE
  */
 export type UserId = string;
+
+/**
+ * Present status of user.
+ *
+ * Log Safety: SAFE
+ */
+export type UserStatus = "ACTIVE" | "DELETED";
 
 /**
    * The vector similarity function to support approximate nearest neighbors search. Will result in an index

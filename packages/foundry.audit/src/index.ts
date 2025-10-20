@@ -23,5 +23,6 @@ export type {
 export type {
   GetLogFileContentPermissionDenied,
   ListLogFilesPermissionDenied,
+  MissingStartDate,
 } from "./_errors.js";
 export * as LogFiles from "./public/LogFile.js";

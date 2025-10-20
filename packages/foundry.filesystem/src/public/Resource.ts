@@ -82,6 +82,35 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _getBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Filesystem.GetResourcesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.GetResourcesBatchResponse>
+> = [1, "/v2/filesystem/resources/getBatch", 3];
+
+/**
+ * Fetches multiple resources in a single request.
+ * Returns a map from RID to the corresponding resource. If a resource does not exist, or if it is a root folder or space, its RID will not be included in the map.
+ * At most 1,000 resources should be requested at once.
+ *
+ * The maximum batch size for this endpoint is 1000.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/resources/getBatch
+ */
+export function getBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Filesystem.GetResourcesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.GetResourcesBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getBatch, ...args);
+}
+
 const _getByPath: $FoundryPlatformMethod<
   ($queryParams: {
     path: _Filesystem.ResourcePath;
@@ -107,6 +136,36 @@ export function getByPath(
   ]
 ): Promise<_Filesystem.Resource> {
   return $foundryPlatformFetch($ctx, _getByPath, ...args);
+}
+
+const _getByPathBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Filesystem.GetByPathResourcesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.GetByPathResourcesBatchResponse>
+> = [1, "/v2/filesystem/resources/getByPathBatch", 3];
+
+/**
+ * Gets multiple Resources by their absolute paths.
+ * Returns a list of resources. If a path does not exist, is inaccessible, or refers to
+ * a root folder or space, it will not be included in the response.
+ * At most 1,000 paths should be requested at once.
+ *
+ * The maximum batch size for this endpoint is 1000.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/resources/getByPathBatch
+ */
+export function getByPathBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Filesystem.GetByPathResourcesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.GetByPathResourcesBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getByPathBatch, ...args);
 }
 
 const _restore: $FoundryPlatformMethod<
