@@ -18,7 +18,7 @@ import type { PrimitiveType } from "@osdk/docs-spec-platform";
 
 export function convertIrPrimitiveTypeToTsTypeReference(
   builtin: PrimitiveType,
-): "string" | "any" | "boolean" | "number" {
+): "string" | "any" | "boolean" | "number" | "Blob" {
   switch (builtin.type) {
     case "rid":
     case "string":
@@ -32,6 +32,8 @@ export function convertIrPrimitiveTypeToTsTypeReference(
     case "any":
     case "boolean":
       return builtin.type;
+    case "binary":
+      return "Blob";
 
     case "double":
     case "integer":

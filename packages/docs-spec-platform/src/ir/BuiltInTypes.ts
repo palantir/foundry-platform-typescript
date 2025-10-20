@@ -69,6 +69,11 @@ export interface DateType {
   date: {};
 }
 
+export interface BinaryComponentType {
+  type: "binary";
+  binary: {};
+}
+
 export type PrimitiveType =
   | StringType
   | RidType
@@ -80,4 +85,5 @@ export type PrimitiveType =
   | LongType
   | AnyType
   | DecimalType
+  | BinaryComponentType
   | DateType;
