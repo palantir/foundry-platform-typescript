@@ -1,5 +1,11 @@
 # @osdk/gotham.geojson
 
+## 0.9.0
+
+### Minor Changes
+
+- daa53c5: Update Gotham SDKs with new endpoints added to Gotham APIs
+
 ## 0.8.0
 
 ### Minor Changes

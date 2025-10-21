@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.36.0
+
+### Minor Changes
+
+- daa53c5: Update Foundry API SDKs
+
 ## 2.35.0
 
 ### Minor Changes

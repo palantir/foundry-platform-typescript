@@ -1,5 +1,17 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.36.0
+
+### Minor Changes
+
+- daa53c5: Update Foundry API SDKs
+
+### Patch Changes
+
+- Updated dependencies [daa53c5]
+  - @osdk/internal.foundry.core@2.36.0
+  - @osdk/internal.foundry.geo@2.36.0
+
 ## 2.35.0
 
 ### Minor Changes

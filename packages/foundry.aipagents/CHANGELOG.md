@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.36.0
+
+### Minor Changes
+
+- daa53c5: Update Foundry API SDKs
+
+### Patch Changes
+
+- Updated dependencies [daa53c5]
+  - @osdk/foundry.ontologies@2.36.0
+  - @osdk/foundry.functions@2.36.0
+  - @osdk/foundry.core@2.36.0
+
 ## 2.35.0
 
 ### Minor Changes

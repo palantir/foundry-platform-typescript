@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.9.0
+
+### Minor Changes
+
+- daa53c5: Update Gotham SDKs with new endpoints added to Gotham APIs
+
+### Patch Changes
+
+- Updated dependencies [daa53c5]
+  - @osdk/gotham.targetworkbench@0.9.0
+  - @osdk/gotham.maprendering@0.9.0
+  - @osdk/gotham.geojson@0.9.0
+  - @osdk/gotham.core@0.9.0
+  - @osdk/gotham.gaia@0.9.0
+
 ## 0.8.0
 
 ### Minor Changes
