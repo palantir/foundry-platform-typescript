@@ -35,6 +35,7 @@ const _execute: $FoundryPlatformMethod<
     queryApiName: _Ontologies.QueryApiName,
     $body: _Ontologies.ExecuteQueryRequest,
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },
@@ -57,6 +58,7 @@ export function execute(
     $body: _Ontologies.ExecuteQueryRequest,
 
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },

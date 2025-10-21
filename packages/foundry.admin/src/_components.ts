@@ -236,6 +236,7 @@ export interface GetUserMarkingsResponse {
  */
 export interface GetUsersBatchRequestElement {
   userId: _Core.UserId;
+  status?: _Core.UserStatus;
 }
 
 /**
@@ -332,6 +333,14 @@ export interface ListAuthenticationProvidersResponse {
  */
 export interface ListAvailableOrganizationRolesResponse {
   data: Array<_Core.Role>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListDeletedUsersResponse {
+  data: Array<User>;
+  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -735,6 +744,7 @@ export interface User {
   email?: string;
   realm: _Core.Realm;
   organization?: _Core.OrganizationRid;
+  status: _Core.UserStatus;
   attributes: Record<AttributeName, AttributeValues>;
 }
 

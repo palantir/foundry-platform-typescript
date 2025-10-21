@@ -37,7 +37,6 @@ const _list: $FoundryPlatformMethod<
       endDate?: string | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Audit.ListLogFilesResponse>
 > = [0, "/v2/audit/organizations/{0}/logFiles", 2];
@@ -47,7 +46,7 @@ const _list: $FoundryPlatformMethod<
  *
  * This is a paged endpoint. Each page may be smaller or larger than the requested page size. However, it is guaranteed that if there are more results available, the `nextPageToken` field will be populated. To get the next page, make the same request again, but set the value of the `pageToken` query parameter to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field in the response, you are on the last page.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:audit-read]
  * URL: /v2/audit/organizations/{organizationRid}/logFiles
@@ -62,7 +61,6 @@ export function list(
       endDate?: string | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Audit.ListLogFilesResponse> {
@@ -73,30 +71,24 @@ const _content: $FoundryPlatformMethod<
   (
     organizationRid: _Core.OrganizationRid,
     logFileId: _Audit.FileId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<Response>
 > = [
   0,
   "/v2/audit/organizations/{0}/logFiles/{1}/content",
-  2,
+  ,
   ,
   "application/octet-stream",
 ];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:audit-read]
  * URL: /v2/audit/organizations/{organizationRid}/logFiles/{logFileId}/content
  */
 export function content(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    organizationRid: _Core.OrganizationRid,
-    logFileId: _Audit.FileId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [organizationRid: _Core.OrganizationRid, logFileId: _Audit.FileId]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _content, ...args);
 }
