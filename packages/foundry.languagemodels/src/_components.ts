@@ -403,7 +403,14 @@ export interface OpenAiEmbeddingsRequest {
 export interface OpenAiEmbeddingsResponse {
   data: Array<Array<number>>;
   model: string;
-  usage: OpenAiTokenUsage;
+  usage: OpenAiEmbeddingTokenUsage;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface OpenAiEmbeddingTokenUsage {
+  promptTokens: number;
 }
 
 /**
@@ -416,11 +423,4 @@ export type OpenAiEncodingFormat = "FLOAT" | "BASE64";
  */
 export interface OpenAiModel {
   modelId: LanguageModelApiName;
-}
-
-/**
- * Log Safety: SAFE
- */
-export interface OpenAiTokenUsage {
-  promptTokens: number;
 }

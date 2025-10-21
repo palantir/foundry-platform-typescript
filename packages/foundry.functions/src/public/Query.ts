@@ -92,6 +92,7 @@ const _execute: $FoundryPlatformMethod<
     $body: _Functions.ExecuteQueryRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },
@@ -115,6 +116,7 @@ export function execute(
     $body: _Functions.ExecuteQueryRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },

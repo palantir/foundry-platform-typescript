@@ -1067,3 +1067,16 @@ export interface TrashingSpaceNotSupported {
     resourceRid: unknown;
   };
 }
+
+/**
+ * The Usage Accounts service is unexpectedly not present.
+ *
+ * Log Safety: SAFE
+ */
+export interface UsageAccountServiceIsNotPresent {
+  errorCode: "INTERNAL";
+  errorName: "UsageAccountServiceIsNotPresent";
+  errorDescription: "The Usage Accounts service is unexpectedly not present.";
+  errorInstanceId: string;
+  parameters: {};
+}

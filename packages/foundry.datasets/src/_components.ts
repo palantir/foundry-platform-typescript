@@ -224,6 +224,23 @@ export interface GetJobResponse {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface GetSchemaDatasetsBatchRequestElement {
+  endTransactionRid?: TransactionRid;
+  datasetRid: DatasetRid;
+  versionId?: _Core.VersionId;
+  branchName?: BranchName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetSchemaDatasetsBatchResponse {
+  data: Record<DatasetRid, GetDatasetSchemaResponse>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface JobDetails {
@@ -244,6 +261,13 @@ export interface ListBranchesResponse {
 export interface ListFilesResponse {
   data: Array<File>;
   nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ListHealthChecksResponse {
+  data: Array<_Core.CheckRid>;
 }
 
 /**

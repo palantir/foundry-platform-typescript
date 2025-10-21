@@ -745,6 +745,19 @@ export interface ProfilePictureNotFound {
 }
 
 /**
+ * The Profile service is unexpectedly not present.
+ *
+ * Log Safety: SAFE
+ */
+export interface ProfileServiceNotPresent {
+  errorCode: "INTERNAL";
+  errorName: "ProfileServiceNotPresent";
+  errorDescription: "The Profile service is unexpectedly not present.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not remove the EnrollmentRoleAssignment.
  *
  * Log Safety: SAFE
@@ -964,6 +977,36 @@ export interface SearchUsersPermissionDenied {
   errorDescription: "Could not search the User.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The user is deleted.
+ *
+ * Log Safety: SAFE
+ */
+export interface UserDeleted {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UserDeleted";
+  errorDescription: "The user is deleted.";
+  errorInstanceId: string;
+  parameters: {
+    principalId: unknown;
+  };
+}
+
+/**
+ * The user is an active user.
+ *
+ * Log Safety: SAFE
+ */
+export interface UserIsActive {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UserIsActive";
+  errorDescription: "The user is an active user.";
+  errorInstanceId: string;
+  parameters: {
+    principalId: unknown;
+  };
 }
 
 /**

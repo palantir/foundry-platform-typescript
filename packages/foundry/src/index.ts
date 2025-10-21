@@ -30,6 +30,7 @@ export * as Models from "@osdk/foundry.models";
 export * as Ontologies from "@osdk/foundry.ontologies";
 export * as Operations from "@osdk/foundry.operations";
 export * as Orchestration from "@osdk/foundry.orchestration";
+export * as Pack from "@osdk/foundry.pack";
 export * as PublicApis from "@osdk/foundry.publicapis";
 export * as SqlQueries from "@osdk/foundry.sqlqueries";
 export * as Streams from "@osdk/foundry.streams";

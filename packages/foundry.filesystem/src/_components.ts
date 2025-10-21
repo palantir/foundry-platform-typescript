@@ -151,6 +151,20 @@ Space.
 export type FolderType = "FOLDER" | "SPACE" | "PROJECT";
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface GetByPathResourcesBatchRequestElement {
+  path: ResourcePath;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetByPathResourcesBatchResponse {
+  data: Array<Resource>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface GetFoldersBatchRequestElement {
@@ -162,6 +176,20 @@ export interface GetFoldersBatchRequestElement {
  */
 export interface GetFoldersBatchResponse {
   data: Record<FolderRid, Folder>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetResourcesBatchRequestElement {
+  resourceRid: ResourceRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetResourcesBatchResponse {
+  data: Record<ResourceRid, Resource>;
 }
 
 /**
@@ -527,7 +555,15 @@ export interface Space {
   organizations: Array<_Core.OrganizationRid>;
   deletionPolicyOrganizations: Array<_Core.OrganizationRid>;
   defaultRoleSetId: _Core.RoleSetId;
+  spaceMavenIdentifier?: SpaceMavenIdentifier;
 }
+
+/**
+ * The maven identifier used as the prefix to the maven coordinate that uniquely identifies resources published from this space.
+ *
+ * Log Safety: UNSAFE
+ */
+export type SpaceMavenIdentifier = LooselyBrandedString<"SpaceMavenIdentifier">;
 
 /**
  * The unique resource identifier (RID) of a Space.

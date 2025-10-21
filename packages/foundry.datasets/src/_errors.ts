@@ -399,6 +399,21 @@ export interface GetBranchTransactionHistoryPermissionDenied {
 }
 
 /**
+ * Could not getHealthChecks the Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetDatasetHealthChecksPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetDatasetHealthChecksPermissionDenied";
+  errorDescription: "Could not getHealthChecks the Dataset.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+  };
+}
+
+/**
  * Could not jobs the Dataset.
  *
  * Log Safety: SAFE

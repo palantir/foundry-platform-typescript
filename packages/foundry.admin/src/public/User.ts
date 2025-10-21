@@ -50,6 +50,7 @@ export function deleteUser(
 
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
+    include?: _Core.UserStatus | undefined;
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
   }) => Promise<_Admin.ListUsersResponse>
@@ -69,6 +70,7 @@ export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $queryParams?: {
+      include?: _Core.UserStatus | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -78,8 +80,11 @@ export function list(
 }
 
 const _get: $FoundryPlatformMethod<
-  (userId: _Core.UserId) => Promise<_Admin.User>
-> = [0, "/v2/admin/users/{0}"];
+  (
+    userId: _Core.UserId,
+    $queryParams?: { status?: _Core.UserStatus | undefined },
+  ) => Promise<_Admin.User>
+> = [0, "/v2/admin/users/{0}", 2];
 
 /**
  * Get the User with the specified id.
@@ -91,7 +96,11 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [userId: _Core.UserId]
+  ...args: [
+    userId: _Core.UserId,
+
+    $queryParams?: { status?: _Core.UserStatus | undefined },
+  ]
 ): Promise<_Admin.User> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
