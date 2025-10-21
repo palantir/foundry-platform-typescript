@@ -41,9 +41,11 @@
     "@osdk/foundry.languagemodels": "workspace:*",
     "@osdk/foundry.mediasets": "workspace:*",
     "@osdk/foundry.models": "workspace:*",
+    "@osdk/foundry.notepad": "workspace:*",
     "@osdk/foundry.ontologies": "workspace:*",
     "@osdk/foundry.operations": "workspace:*",
     "@osdk/foundry.orchestration": "workspace:*",
+    "@osdk/foundry.pack": "workspace:*",
     "@osdk/foundry.publicapis": "workspace:*",
     "@osdk/foundry.sqlqueries": "workspace:*",
     "@osdk/foundry.streams": "workspace:*",
@@ -74,7 +76,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1327.0",
+        "minVersion": "1.1342.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

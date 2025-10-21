@@ -103,6 +103,38 @@ export function getSchedules(
   return $foundryPlatformFetch($ctx, _getSchedules, ...args);
 }
 
+const _getHealthChecks: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Datasets.ListHealthChecksResponse>
+> = [0, "/v2/datasets/{0}/getHealthChecks", 2];
+
+/**
+ * Get the RIDs of the Data Health Checks that are configured for the given Dataset.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:data-health-read, api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/getHealthChecks
+ */
+export function getHealthChecks(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+
+    $queryParams?: {
+      branchName?: _Datasets.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Datasets.ListHealthChecksResponse> {
+  return $foundryPlatformFetch($ctx, _getHealthChecks, ...args);
+}
+
 const _readTable: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
@@ -179,6 +211,34 @@ export function getSchema(
   ]
 ): Promise<_Datasets.GetDatasetSchemaResponse> {
   return $foundryPlatformFetch($ctx, _getSchema, ...args);
+}
+
+const _getSchemaBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Datasets.GetSchemaDatasetsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Datasets.GetSchemaDatasetsBatchResponse>
+> = [1, "/v2/datasets/getSchemaBatch", 3];
+
+/**
+ * Fetch schemas for multiple datasets in a single request. Datasets not found
+ * or inaccessible to the user will be omitted from the response.
+ *
+ * The maximum batch size for this endpoint is 1000.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:datasets-read]
+ * URL: /v2/datasets/getSchemaBatch
+ */
+export function getSchemaBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Datasets.GetSchemaDatasetsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Datasets.GetSchemaDatasetsBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getSchemaBatch, ...args);
 }
 
 const _putSchema: $FoundryPlatformMethod<

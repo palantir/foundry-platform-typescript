@@ -53,7 +53,7 @@ export interface BuildStatusCheckConfig {
  * Log Safety: UNSAFE
  */
 export interface Check {
-  rid: CheckRid;
+  rid: _Core.CheckRid;
   groups: Array<CheckGroupRid>;
   config: CheckConfig;
   intent?: CheckIntent;
@@ -90,13 +90,6 @@ export type CheckGroupRid = LooselyBrandedString<"CheckGroupRid">;
  * Log Safety: UNSAFE
  */
 export type CheckIntent = LooselyBrandedString<"CheckIntent">;
-
-/**
- * The unique resource identifier (RID) of a Check.
- *
- * Log Safety: SAFE
- */
-export type CheckRid = LooselyBrandedString<"CheckRid">;
 
 /**
  * Configuration for column count validation with severity settings.

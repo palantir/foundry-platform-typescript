@@ -583,10 +583,16 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getDatasetSchedules": {
       "variables": {},
     },
+    "v2.getDatasetHealthChecks": {
+      "variables": {},
+    },
     "v2.readTableDataset": {
       "variables": {},
     },
     "v2.getDatasetSchema": {
+      "variables": {},
+    },
+    "v2.getSchemaDatasetsBatch": {
       "variables": {},
     },
     "v2.putDatasetSchema": {
@@ -670,7 +676,13 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getResource": {
       "variables": {},
     },
+    "v2.getResourcesBatch": {
+      "variables": {},
+    },
     "v2.getByPath": {
+      "variables": {},
+    },
+    "v2.getByPathResourcesBatch": {
       "variables": {},
     },
     "v2.restoreResource": {
@@ -880,9 +892,6 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.genericSymbol": {
       "variables": {},
     },
-    "v2.getDocument": {
-      "variables": {},
-    },
     "v2.createStreamingDataset": {
       "variables": {},
     },
@@ -944,6 +953,33 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getOperation": {
+      "variables": {},
+    },
+    "v2.createDocumentType": {
+      "variables": {},
+    },
+    "v2.createDocument": {
+      "variables": {},
+    },
+    "v2.getDocument": {
+      "variables": {},
+    },
+    "v2.generateTemplate": {
+      "variables": {},
+    },
+    "v2.getGenerationJob": {
+      "variables": {},
+    },
+    "v2.saveDocumentGenerationJob": {
+      "variables": {},
+    },
+    "v2.getExportJob": {
+      "variables": {},
+    },
+    "v2.createExportJob": {
+      "variables": {},
+    },
+    "v2.contentFile": {
       "variables": {},
     },
     "v2.searchMaps": {

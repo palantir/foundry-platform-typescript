@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e2e18ac0-d6af-438c-91c2-424e71bf297e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/packages/docs-spec-platform/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/docs-spec-platform/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/docs-spec-platform/src/generated/ir.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/docs-spec-platform/src/generated/ir.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/docs-spec-platform/src/generated/spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/docs-spec-platform/src/generated/spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.admin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.admin/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.admin/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.admin/src/_errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.admin/src/_errors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.admin/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.admin/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.admin/src/public/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.admin/src/public/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.aipagents/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.aipagents/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.audit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.audit/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.audit/src/_errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.audit/src/_errors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.audit/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.audit/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.audit/src/public/LogFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.audit/src/public/LogFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.connectivity/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.connectivity/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.core/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.core/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.core/src/_errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.core/src/_errors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.core/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.core/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datahealth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datahealth/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datahealth/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datahealth/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datahealth/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datahealth/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datahealth/src/public/Check.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datahealth/src/public/Check.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datasets/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datasets/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datasets/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datasets/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datasets/src/_errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datasets/src/_errors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datasets/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datasets/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.datasets/src/public/Dataset.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.datasets/src/public/Dataset.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.filesystem/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.filesystem/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.filesystem/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.filesystem/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.filesystem/src/_errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.filesystem/src/_errors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.filesystem/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.filesystem/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.filesystem/src/public/Resource.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.filesystem/src/public/Resource.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.functions/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.functions/src/public/Query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.functions/src/public/Query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.geo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.geo/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.languagemodels/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.languagemodels/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.languagemodels/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.languagemodels/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.languagemodels/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.languagemodels/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.languagemodels/src/public/AnthropicModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.languagemodels/src/public/AnthropicModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.languagemodels/src/public/OpenAiModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.languagemodels/src/public/OpenAiModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.mediasets/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.mediasets/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.models/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.models/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.ontologies/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.ontologies/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.ontologies/src/public/Query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.ontologies/src/public/Query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.operations/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.operations/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.orchestration/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.orchestration/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.publicapis/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.publicapis/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.sqlqueries/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.sqlqueries/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.streams/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.streams/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.thirdpartyapplications/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.thirdpartyapplications/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry.widgets/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry.widgets/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/foundry/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/foundry/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.core/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.core/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.core/src/_errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.core/src/_errors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.core/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.core/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.gaia/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.gaia/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.geojson/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.geojson/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.maprendering/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.maprendering/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham.targetworkbench/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham.targetworkbench/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/gotham/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/gotham/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry.core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry.core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry.core/src/_components.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry.core/src/_components.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry.core/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry.core/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry.datasets/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry.datasets/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry.geo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry.geo/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry.ontologies/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry.ontologies/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry.ontologies/src/public/Query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry.ontologies/src/public/Query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/internal.foundry/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/internal.foundry/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/platform-sdk-generator/src/getNamespacePlatform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/platform-sdk-generator/src/getNamespacePlatform.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="34CrSWZpzWcWXqVEn1cOL2KwzUo" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;regen-sdk&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Volumes/git/cathli66-foundry-platform-typescript&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e2e18ac0-d6af-438c-91c2-424e71bf297e" name="Changes" comment="" />
+      <created>1760728395170</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760728395170</updated>
+    </task>
+    <servers />
+  </component>
+</project>

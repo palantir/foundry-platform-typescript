@@ -22,7 +22,6 @@ export type {
   CheckConfig,
   CheckGroupRid,
   CheckIntent,
-  CheckRid,
   ColumnCountConfig,
   ColumnInfo,
   ColumnName,

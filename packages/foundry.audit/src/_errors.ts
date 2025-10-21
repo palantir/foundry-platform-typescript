@@ -47,3 +47,16 @@ export interface ListLogFilesPermissionDenied {
   errorInstanceId: string;
   parameters: {};
 }
+
+/**
+ * Start date is required to list audit log files.
+ *
+ * Log Safety: SAFE
+ */
+export interface MissingStartDate {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingStartDate";
+  errorDescription: "Start date is required to list audit log files.";
+  errorInstanceId: string;
+  parameters: {};
+}

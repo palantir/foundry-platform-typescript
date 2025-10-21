@@ -28,8 +28,12 @@ export type {
   Folder,
   FolderRid,
   FolderType,
+  GetByPathResourcesBatchRequestElement,
+  GetByPathResourcesBatchResponse,
   GetFoldersBatchRequestElement,
   GetFoldersBatchResponse,
+  GetResourcesBatchRequestElement,
+  GetResourcesBatchResponse,
   IsDirectlyApplied,
   ListChildrenOfFolderResponse,
   ListMarkingsOfResourceResponse,
@@ -60,6 +64,7 @@ export type {
   ResourceRolePrincipalIdentifier,
   ResourceType,
   Space,
+  SpaceMavenIdentifier,
   SpaceRid,
   TrashStatus,
   UsageAccountRid,
@@ -134,6 +139,7 @@ export type {
   TrashingAutosavedResourcesNotSupported,
   TrashingHiddenResourcesNotSupported,
   TrashingSpaceNotSupported,
+  UsageAccountServiceIsNotPresent,
 } from "./_errors.js";
 export * as Folders from "./public/Folder.js";
 export * as Projects from "./public/Project.js";

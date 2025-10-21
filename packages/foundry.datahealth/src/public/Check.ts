@@ -56,7 +56,7 @@ export function create(
 
 const _deleteCheck: $FoundryPlatformMethod<
   (
-    checkRid: _DataHealth.CheckRid,
+    checkRid: _Core.CheckRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
 > = [3, "/v2/dataHealth/checks/{0}", 2];
@@ -72,7 +72,7 @@ const _deleteCheck: $FoundryPlatformMethod<
 export function deleteCheck(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    checkRid: _DataHealth.CheckRid,
+    checkRid: _Core.CheckRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -82,7 +82,7 @@ export function deleteCheck(
 
 const _get: $FoundryPlatformMethod<
   (
-    checkRid: _DataHealth.CheckRid,
+    checkRid: _Core.CheckRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_DataHealth.Check>
 > = [0, "/v2/dataHealth/checks/{0}", 2];
@@ -98,7 +98,7 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    checkRid: _DataHealth.CheckRid,
+    checkRid: _Core.CheckRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -108,7 +108,7 @@ export function get(
 
 const _replace: $FoundryPlatformMethod<
   (
-    checkRid: _DataHealth.CheckRid,
+    checkRid: _Core.CheckRid,
     $body: _DataHealth.ReplaceCheckRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_DataHealth.Check>
@@ -125,7 +125,7 @@ const _replace: $FoundryPlatformMethod<
 export function replace(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    checkRid: _DataHealth.CheckRid,
+    checkRid: _Core.CheckRid,
     $body: _DataHealth.ReplaceCheckRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]

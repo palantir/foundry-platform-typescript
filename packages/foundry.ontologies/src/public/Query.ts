@@ -40,6 +40,7 @@ const _execute: $FoundryPlatformMethod<
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },
@@ -68,6 +69,7 @@ export function execute(
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },
