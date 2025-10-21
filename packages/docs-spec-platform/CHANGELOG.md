@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.23.0
+
+### Minor Changes
+
+- daa53c5: Update Foundry API SDKs
+
 ## 0.22.0
 
 ### Minor Changes

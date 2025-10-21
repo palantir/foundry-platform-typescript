@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.35.0
+
+### Minor Changes
+
+- daa53c5: Update Foundry API SDKs
+
+### Patch Changes
+
+- Updated dependencies [daa53c5]
+  - @osdk/docs-spec-platform@0.23.0
+
 ## 0.34.0
 
 ### Patch Changes
