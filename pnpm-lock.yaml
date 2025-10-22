@@ -240,10 +240,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.widgets
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -262,10 +262,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -290,10 +290,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.ontologies
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -318,10 +318,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -349,10 +349,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.orchestration
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -377,10 +377,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.geo
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -408,10 +408,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.orchestration
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -433,10 +433,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.filesystem
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -455,10 +455,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -477,10 +477,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -496,10 +496,10 @@ importers:
   packages/foundry.geo:
     dependencies:
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -537,10 +537,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -559,10 +559,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -584,10 +584,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.filesystem
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -609,10 +609,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.geo
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -631,10 +631,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.ontologies
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -659,10 +659,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.filesystem
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -684,10 +684,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.filesystem
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -706,10 +706,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -731,10 +731,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.datasets
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -759,10 +759,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.filesystem
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -781,10 +781,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -803,10 +803,10 @@ importers:
         specifier: workspace:*
         version: link:../foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -840,7 +840,7 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -859,7 +859,7 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -884,7 +884,7 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -903,7 +903,7 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -928,7 +928,7 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -950,7 +950,7 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -984,10 +984,10 @@ importers:
         specifier: workspace:*
         version: link:../internal.foundry.ontologiesv2
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -1006,10 +1006,10 @@ importers:
         specifier: workspace:*
         version: link:../internal.foundry.geo
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -1028,10 +1028,10 @@ importers:
         specifier: workspace:*
         version: link:../internal.foundry.core
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -1047,10 +1047,10 @@ importers:
   packages/internal.foundry.geo:
     dependencies:
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -1094,10 +1094,10 @@ importers:
         specifier: workspace:*
         version: link:../internal.foundry.geo
       '@osdk/shared.client':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: workspace:~
@@ -5126,7 +5126,7 @@ packages:
     hasBin: true
 
   typescript@5.4.2:
-    resolution: {integrity: sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ==}
+    resolution: {integrity: sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ==, tarball: https://publish.artifactory.palantir.build/artifactory/api/npm/all-npm/typescript/-/typescript-5.4.2.tgz}
     engines: {node: '>=14.17'}
     hasBin: true
 

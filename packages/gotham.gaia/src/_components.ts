@@ -386,6 +386,13 @@ export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
 export type PageToken = LooselyBrandedString<"PageToken">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface RenderSymbolMapRequest {
+  value: GaiaSymbol;
+}
+
+/**
  * The response body containing the queried Gaia maps
  *
  * Log Safety: UNSAFE

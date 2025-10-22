@@ -65,6 +65,19 @@ export interface ErrorExporting {
 }
 
 /**
+ * Failed to export symbol.
+ *
+ * Log Safety: SAFE
+ */
+export interface ErrorExportingSymbol {
+  errorCode: "INTERNAL";
+  errorName: "ErrorExportingSymbol";
+  errorDescription: "Failed to export symbol.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Expected a map Gid.
  *
  * Log Safety: SAFE
@@ -151,6 +164,19 @@ export interface MapNotFound {
   parameters: {
     mapId: unknown;
   };
+}
+
+/**
+ * Could not renderSymbol the Map.
+ *
+ * Log Safety: SAFE
+ */
+export interface RenderSymbolMapPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RenderSymbolMapPermissionDenied";
+  errorDescription: "Could not renderSymbol the Map.";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**

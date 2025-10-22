@@ -98,6 +98,17 @@ export interface BearerToken {
 }
 
 /**
+ * Pointer to the table in BigQuery. Uses the BigQuery table identifier of project, dataset and table.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BigQueryVirtualTableConfig {
+  project: string;
+  dataset: string;
+  table: string;
+}
+
+/**
    * Cloud identities allow you to authenticate to
 cloud provider resources without the use of static credentials.
    *
@@ -656,6 +667,16 @@ export interface CreateTableImportRequestTimestampColumnInitialIncrementalState 
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CreateVirtualTableRequest {
+  markings?: Array<_Core.MarkingId>;
+  parentRid: _Filesystem.FolderRid;
+  name: TableName;
+  config: VirtualTableConfig;
+}
+
+/**
  * The method of authentication for connecting to an external Databricks system.
  *
  * Log Safety: DO_NOT_LOG
@@ -711,6 +732,15 @@ export interface DecimalColumnInitialIncrementalState {
 }
 
 /**
+ * Pointer to the Delta table in cloud object storage (e.g., Azure Data Lake Storage, Google Cloud Storage, S3).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DeltaVirtualTableConfig {
+  path: string;
+}
+
+/**
  * The domain that the connection is allowed to access.
  *
  * Log Safety: DO_NOT_LOG
@@ -763,6 +793,13 @@ This will exclude files uploaded in any previous imports, regardless of the file
 export interface FileChangedSinceLastUploadFilter {
   fileProperties: Array<FileProperty>;
 }
+
+/**
+ * The format of files in the upstream source.
+ *
+ * Log Safety: SAFE
+ */
+export type FileFormat = "AVRO" | "CSV" | "PARQUET";
 
 /**
  * Log Safety: UNSAFE
@@ -906,6 +943,23 @@ export interface FileSizeFilter {
 }
 
 /**
+ * Pointer to the table in cloud object storage (e.g., Azure Data Lake Storage, Google Cloud Storage, S3).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FilesVirtualTableConfig {
+  format: FileFormat;
+  path: string;
+}
+
+/**
+ * The unique resource identifier (RID) of a Folder.
+ *
+ * Log Safety: SAFE
+ */
+export type FolderRid = LooselyBrandedString<"FolderRid">;
+
+/**
    * The Foundry worker is used to run capabilities
 in Foundry.
 This is the preferred method for connections, as these connections benefit from Foundry's containerized
@@ -918,10 +972,30 @@ export interface FoundryWorker {
 }
 
 /**
+ * Pointer to the table in AWS Glue.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GlueVirtualTableConfig {
+  database: string;
+  table: string;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface HeaderApiKey {
   headerName: string;
+}
+
+/**
+ * Pointer to the Iceberg table.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface IcebergVirtualTableConfig {
+  tableIdentifier: string;
+  warehousePath?: string;
 }
 
 /**
@@ -933,6 +1007,85 @@ export interface IntegerColumnInitialIncrementalState {
   columnName: string;
   currentValue: number;
 }
+
+/**
+ * Reasons why a connection configuration is invalid.
+ *
+ * Log Safety: SAFE
+ */
+export type InvalidConnectionReason =
+  | "CONNECTION_NOT_FOUND"
+  | "INVALID_CREDENTIALS"
+  | "NETWORK_POLICY_VIOLATION"
+  | "CONNECTION_UNAVAILABLE"
+  | "CANNOT_DESERIALIZE"
+  | "CANNOT_SUBSTITUTE_SECRETS"
+  | "CANNOT_USE_USER_HOME_FOLDER"
+  | "INVALID_SOURCE_RUNTIME"
+  | "INVALID_SOURCE_TYPE"
+  | "MISSING_CREDENTIALS"
+  | "MISSING_PROXY_SETTINGS"
+  | "NOT_CLOUD_RUNTIME"
+  | "NO_AGENTS_ASSIGNED"
+  | "SERVICE_UNAVAILABLE"
+  | "TOO_MANY_REQUESTS"
+  | "AZURE_CONTAINER_DOES_NOT_EXIST"
+  | "AZURE_MANAGED_IDENTITY_AUTH_NOT_SUPPORTED"
+  | "AZURE_REFRESH_TOKEN_AUTH_NOT_SUPPORTED"
+  | "AZURE_SHARED_ACCESS_SIGNATURE_AUTH_NOT_SUPPORTED"
+  | "AZURE_SHARED_KEY_AUTH_NOT_SUPPORTED"
+  | "AZURE_TENANT_NOT_FOUND"
+  | "INVALID_ABFS_ROOT_DIRECTORY"
+  | "INVALID_CLIENT_ENDPOINT"
+  | "DATABRICKS_AUTH_UNSUPPORTED"
+  | "DATABRICKS_BASIC_AUTH_NOT_SUPPORTED"
+  | "DATABRICKS_INVALID_CLIENT_CREDENTIALS"
+  | "DATABRICKS_INVALID_HOST"
+  | "DATABRICKS_INVALID_HTTP_PATH"
+  | "DATABRICKS_INVALID_OIDC_CREDENTIALS"
+  | "DATABRICKS_INVALID_TOKEN_URL"
+  | "GCP_INSTANCE_AUTH_NOT_SUPPORTED"
+  | "GCP_INVALID_OIDC_CREDENTIALS"
+  | "INVALID_GCS_CONFIG"
+  | "INVALID_GCS_URL"
+  | "GCS_INVALID_PREFIX_PATH"
+  | "MISSING_GLUE_CATALOG"
+  | "INVALID_HIVE_URL"
+  | "INVALID_KERBEROS_URL"
+  | "MISSING_HIVE_CONFIGURATION"
+  | "ICEBERG_CATALOG_UNSUPPORTED"
+  | "INVALID_ICEBERG_CATALOG_URL"
+  | "INVALID_ICEBERG_TOKEN_URL"
+  | "CONNECTION_FAILED"
+  | "INVALID_JDBC_DRIVER"
+  | "INVALID_JDBC_URL"
+  | "AWS_BUCKET_DOES_NOT_EXIST"
+  | "AWS_SESSION_TOKEN_NOT_SUPPORTED"
+  | "INVALID_S3_ENDPOINT"
+  | "INVALID_S3_URL"
+  | "INVALID_STS_ENDPOINT"
+  | "MISSING_STS_ROLE"
+  | "STS_ASSUME_ROLE_DENIED"
+  | "INVALID_SNOWFLAKE_URL"
+  | "SNOWFLAKE_IAM_AUTH_NOT_SUPPORTED"
+  | "SNOWFLAKE_RSA_AUTH_NOT_SUPPORTED"
+  | "INVALID_UNITY_CATALOG_TOKEN_URL"
+  | "INVALID_UNITY_CATALOG_URL"
+  | "MISSING_UNITY_CATALOG"
+  | "UNITY_CATALOG_EXTERNAL_ACCESS_NOT_ENABLED"
+  | "UNITY_CATALOG_INSUFFICIENT_PERMISSIONS"
+  | "UNITY_CATALOG_TEMPORARY_CREDENTIALS_FAILED";
+
+/**
+ * Describes specific reasons why a connection configuration is invalid.
+ *
+ * Log Safety: SAFE
+ */
+export type InvalidTableReason =
+  | "TABLE_NOT_FOUND"
+  | "INVALID_TABLE_NAME"
+  | "SCHEMA_VALIDATION_FAILED"
+  | "TABLE_ACCESS_DENIED";
 
 /**
  * The configuration needed to connect to an external system using the JDBC protocol.
@@ -1001,6 +1154,13 @@ export interface LongColumnInitialIncrementalState {
   columnName: string;
   currentValue: string;
 }
+
+/**
+ * The ID of a security marking.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MarkingId = LooselyBrandedString<"MarkingId">;
 
 /**
  * The import configuration for a Microsoft Access connection.
@@ -1462,6 +1622,17 @@ export interface SnowflakeTableImportConfig {
 }
 
 /**
+ * Pointer to the table in Snowflake. Uses the Snowflake table identifier of database, schema and table.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SnowflakeVirtualTableConfig {
+  database: string;
+  schema: string;
+  table: string;
+}
+
+/**
  * The state for an incremental table import using a column with a string data type.
  *
  * Log Safety: UNSAFE
@@ -1582,11 +1753,36 @@ export type TableImportQuery = LooselyBrandedString<"TableImportQuery">;
 export type TableImportRid = LooselyBrandedString<"TableImportRid">;
 
 /**
+ * The name of a VirtualTable.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TableName = LooselyBrandedString<"TableName">;
+
+/**
+ * The Resource Identifier (RID) of a registered VirtualTable.
+ *
+ * Log Safety: SAFE
+ */
+export type TableRid = LooselyBrandedString<"TableRid">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface TimestampColumnInitialIncrementalState {
   columnName: string;
   currentValue: string;
+}
+
+/**
+ * Pointer to the table in Unity Catalog. Uses the Databricks table identifier of catalog, schema and table.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnityVirtualTableConfig {
+  catalog: string;
+  schema: string;
+  table: string;
 }
 
 /**
@@ -1619,6 +1815,29 @@ export interface UpdateSecretsForConnectionRequest {
  * Log Safety: SAFE
  */
 export type UriScheme = "HTTP" | "HTTPS";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface VirtualTable {
+  rid: TableRid;
+  name: TableName;
+  parentRid: _Filesystem.FolderRid;
+  config: VirtualTableConfig;
+  markings?: Array<_Core.MarkingId>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type VirtualTableConfig =
+  | ({ type: "snowflake" } & SnowflakeVirtualTableConfig)
+  | ({ type: "unity" } & UnityVirtualTableConfig)
+  | ({ type: "glue" } & GlueVirtualTableConfig)
+  | ({ type: "delta" } & DeltaVirtualTableConfig)
+  | ({ type: "iceberg" } & IcebergVirtualTableConfig)
+  | ({ type: "files" } & FilesVirtualTableConfig)
+  | ({ type: "bigquery" } & BigQueryVirtualTableConfig);
 
 /**
    * Authenticate as a service principal using workload identity federation. This is the recommended way to connect to Databricks.
