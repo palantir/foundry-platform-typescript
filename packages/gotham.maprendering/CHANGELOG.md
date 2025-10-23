@@ -1,5 +1,17 @@
 # @osdk/gotham.maprendering
 
+## 0.10.0
+
+### Minor Changes
+
+- f76d849: Generate latest SDK for Gotham APIs
+
+### Patch Changes
+
+- Updated dependencies [f76d849]
+  - @osdk/gotham.geojson@0.10.0
+  - @osdk/gotham.core@0.10.0
+
 ## 0.9.0
 
 ### Minor Changes

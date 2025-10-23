@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.37.0
+
+### Minor Changes
+
+- f76d849: Generate latest SDK for Gotham APIs
+
 ## 2.36.0
 
 ### Minor Changes

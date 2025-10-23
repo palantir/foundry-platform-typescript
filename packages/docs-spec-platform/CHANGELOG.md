@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.24.0
+
+### Minor Changes
+
+- f76d849: Generate latest SDK for Gotham APIs
+
 ## 0.23.0
 
 ### Minor Changes
