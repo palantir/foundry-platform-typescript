@@ -124,6 +124,21 @@ export interface CreateTableImportPermissionDenied {
 }
 
 /**
+ * Could not create the VirtualTable.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateVirtualTablePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateVirtualTablePermissionDenied";
+  errorDescription: "Could not create the VirtualTable.";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
  * Could not delete the FileImport.
  *
  * Log Safety: SAFE
@@ -425,6 +440,22 @@ export interface HostNameCannotHaveProtocolOrPort {
 }
 
 /**
+ * The specified connection is invalid or inaccessible.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidVirtualTableConnection {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidVirtualTableConnection";
+  errorDescription: "The specified connection is invalid or inaccessible.";
+  errorInstanceId: string;
+  parameters: {
+    connection: unknown;
+    reason: unknown;
+  };
+}
+
+/**
  * The parent folder for the specified connection could not be found.
  *
  * Log Safety: SAFE
@@ -640,4 +671,35 @@ export interface UploadCustomJdbcDriversConnectionPermissionDenied {
   parameters: {
     connectionRid: unknown;
   };
+}
+
+/**
+ * A VirtualTable with the same name already exists in the parent folder.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface VirtualTableAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "VirtualTableAlreadyExists";
+  errorDescription:
+    "A VirtualTable with the same name already exists in the parent folder.";
+  errorInstanceId: string;
+  parameters: {
+    parentRid: unknown;
+    name: unknown;
+  };
+}
+
+/**
+ * User lacks permission to use the specified connection for virtual table registration.
+ *
+ * Log Safety: SAFE
+ */
+export interface VirtualTableRegisterFromSourcePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "VirtualTableRegisterFromSourcePermissionDenied";
+  errorDescription:
+    "User lacks permission to use the specified connection for virtual table registration.";
+  errorInstanceId: string;
+  parameters: {};
 }

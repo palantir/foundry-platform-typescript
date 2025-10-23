@@ -182,3 +182,28 @@ export function loadLayers(
 ): Promise<_Gaia.LoadLayersResponse> {
   return $platformFetch($ctx, _loadLayers, ...args);
 }
+
+const _renderSymbol: $PlatformMethod<
+  (
+    $body: _Gaia.RenderSymbolMapRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<Response>
+> = [2, "/v2/gaia/maps/renderSymbol", 3, , "application/octet-stream"];
+
+/**
+ * Fetches the PNG for the given symbol identifier
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:map-read]
+ * URL: /v2/gaia/maps/renderSymbol
+ */
+export function renderSymbol(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Gaia.RenderSymbolMapRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<Response> {
+  return $platformFetch($ctx, _renderSymbol, ...args);
+}

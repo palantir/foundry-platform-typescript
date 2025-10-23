@@ -548,7 +548,7 @@ export type LmsEmbeddingModelValue =
   | "BGE_BASE_EN_V1_5";
 
 /**
- * A string representation of a java.util.Locale
+ * A string representation of a BCP 47 language tag (java.util.Locale.toLanguageTag)
  *
  * Log Safety: SAFE
  */

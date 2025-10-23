@@ -814,6 +814,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.executeTableImport": {
       "variables": {},
     },
+    "v2.createVirtualTable": {
+      "variables": {},
+    },
     "v2.createSchedule": {
       "variables": {},
     },
@@ -995,6 +998,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.loadLayersMap": {
+      "variables": {},
+    },
+    "v2.renderSymbolMap": {
       "variables": {},
     },
   },
