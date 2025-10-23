@@ -1,5 +1,11 @@
 # @osdk/gotham.core
 
+## 0.10.0
+
+### Minor Changes
+
+- f76d849: Generate latest SDK for Gotham APIs
+
 ## 0.9.0
 
 ### Minor Changes
