@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.12.0
+
+### Minor Changes
+
+- c1d1bfe: Add funcVersion to FunctionTemplateStrings
+
 ## 0.11.0
 
 ### Minor Changes
