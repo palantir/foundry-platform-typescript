@@ -104,6 +104,7 @@ const FunctionTemplateStrings = {
   ...CodeSnippetBaseTemplateStrings,
   ...AttachmentUploadTemplateStrings,
   funcApiName: "required",
+  funcVersion: "optional",
   rawFuncApiName: "required",
   funcApiNameSnakeCase: "required",
   rawFunctionInputValues: "required",
