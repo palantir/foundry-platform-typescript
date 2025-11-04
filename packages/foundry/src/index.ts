@@ -27,6 +27,7 @@ export * as Geo from "@osdk/foundry.geo";
 export * as LanguageModels from "@osdk/foundry.languagemodels";
 export * as MediaSets from "@osdk/foundry.mediasets";
 export * as Models from "@osdk/foundry.models";
+export * as Notepad from "@osdk/foundry.notepad";
 export * as Ontologies from "@osdk/foundry.ontologies";
 export * as Operations from "@osdk/foundry.operations";
 export * as Orchestration from "@osdk/foundry.orchestration";

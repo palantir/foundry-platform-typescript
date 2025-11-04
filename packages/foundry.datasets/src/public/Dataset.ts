@@ -317,7 +317,7 @@ const _transactions: $FoundryPlatformMethod<
 > = [0, "/v2/datasets/{0}/transactions", 2];
 
 /**
- * Get the Transaction history for the given Dataset
+ * Get the Transaction history for the given Dataset. When requesting all transactions, the endpoint returns them in reverse chronological order.
  *
  * @beta
  *

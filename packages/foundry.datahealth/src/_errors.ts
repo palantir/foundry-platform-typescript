@@ -95,6 +95,20 @@ export interface DeleteCheckPermissionDenied {
 }
 
 /**
+ * The NumericColumnCheckConfig is invalid. It must contain at least one of numericBounds or trend.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidNumericColumnCheckConfig {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidNumericColumnCheckConfig";
+  errorDescription:
+    "The NumericColumnCheckConfig is invalid. It must contain at least one of numericBounds or trend.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The PercentageCheckConfig is invalid. It must contain at least one of percentageBounds or medianDeviation.
  *
  * Log Safety: SAFE
@@ -118,6 +132,20 @@ export interface InvalidTimeCheckConfig {
   errorName: "InvalidTimeCheckConfig";
   errorDescription:
     "The TimeCheckConfig is invalid. It must contain at least one of timeBounds or medianDeviation.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The TrendConfig is invalid. It must contain at least one of trendType or differenceBounds.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidTrendConfig {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidTrendConfig";
+  errorDescription:
+    "The TrendConfig is invalid. It must contain at least one of trendType or differenceBounds.";
   errorInstanceId: string;
   parameters: {};
 }

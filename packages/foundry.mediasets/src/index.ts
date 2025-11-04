@@ -44,6 +44,8 @@ export type {
   MediaSetOpenTransactionAlreadyExists,
   MissingMediaItemContent,
   MissingMediaItemPath,
+  TemporaryMediaUploadInsufficientPermissions,
+  TemporaryMediaUploadUnknownFailure,
   TransformedMediaItemNotFound,
 } from "./_errors.js";
 export * as MediaSets from "./public/MediaSet.js";
