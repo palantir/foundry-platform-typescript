@@ -68,10 +68,13 @@ export interface Check {
  */
 export type CheckConfig =
   | ({ type: "columnType" } & ColumnTypeCheckConfig)
+  | ({ type: "numericColumnRange" } & NumericColumnRangeCheckConfig)
   | ({ type: "jobStatus" } & JobStatusCheckConfig)
+  | ({ type: "numericColumnMean" } & NumericColumnMeanCheckConfig)
   | ({ type: "jobDuration" } & JobDurationCheckConfig)
   | ({ type: "nullPercentage" } & NullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & TotalColumnCountCheckConfig)
+  | ({ type: "numericColumnMedian" } & NumericColumnMedianCheckConfig)
   | ({ type: "buildDuration" } & BuildDurationCheckConfig)
   | ({ type: "schemaComparison" } & SchemaComparisonCheckConfig)
   | ({ type: "buildStatus" } & BuildStatusCheckConfig)
@@ -132,7 +135,7 @@ export interface ColumnTypeCheckConfig {
  * Log Safety: UNSAFE
  */
 export interface ColumnTypeConfig {
-  columnName: string;
+  columnName: ColumnName;
   expectedType?: _Core.SchemaFieldType;
   severity: SeverityLevel;
 }
@@ -243,6 +246,68 @@ export interface NullPercentageCheckConfig {
 }
 
 /**
+ * The range of numeric values a check is expected to be within.
+ *
+ * Log Safety: SAFE
+ */
+export interface NumericBounds {
+  lowerBound?: number;
+  upperBound?: number;
+}
+
+/**
+ * Configuration for numeric bounds check with severity settings.
+ *
+ * Log Safety: SAFE
+ */
+export interface NumericBoundsConfig {
+  numericBounds: NumericBounds;
+  severity: SeverityLevel;
+}
+
+/**
+ * Configuration for numeric column-based checks (such as mean or median). At least one of numericBounds or trend must be specified. Both may be provided to validate both the absolute value range and the trend behavior over time.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NumericColumnCheckConfig {
+  columnName: ColumnName;
+  numericBounds?: NumericBoundsConfig;
+  trend?: TrendConfig;
+}
+
+/**
+ * Checks the mean value of a numeric column.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NumericColumnMeanCheckConfig {
+  subject: DatasetSubject;
+  numericColumnCheckConfig: NumericColumnCheckConfig;
+}
+
+/**
+ * Checks the median value of a numeric column.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NumericColumnMedianCheckConfig {
+  subject: DatasetSubject;
+  numericColumnCheckConfig: NumericColumnCheckConfig;
+}
+
+/**
+ * Checks that values in a numeric column fall within a specified range.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NumericColumnRangeCheckConfig {
+  subject: DatasetSubject;
+  columnName: ColumnName;
+  numericBoundsConfig: NumericBoundsConfig;
+}
+
+/**
  * The configuration for the range of percentage values between which the health check is expected to succeed.
  *
  * Log Safety: SAFE
@@ -325,10 +390,13 @@ export interface ReplaceBuildStatusCheckConfig {
  */
 export type ReplaceCheckConfig =
   | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
+  | ({ type: "numericColumnRange" } & ReplaceNumericColumnRangeCheckConfig)
   | ({ type: "jobStatus" } & ReplaceJobStatusCheckConfig)
+  | ({ type: "numericColumnMean" } & ReplaceNumericColumnMeanCheckConfig)
   | ({ type: "jobDuration" } & ReplaceJobDurationCheckConfig)
   | ({ type: "nullPercentage" } & ReplaceNullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & ReplaceTotalColumnCountCheckConfig)
+  | ({ type: "numericColumnMedian" } & ReplaceNumericColumnMedianCheckConfig)
   | ({ type: "buildDuration" } & ReplaceBuildDurationCheckConfig)
   | ({ type: "schemaComparison" } & ReplaceSchemaComparisonCheckConfig)
   | ({ type: "buildStatus" } & ReplaceBuildStatusCheckConfig)
@@ -343,10 +411,18 @@ export interface ReplaceCheckRequest {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ReplaceColumnTypeCheckConfig {
-  columnTypeConfig: ColumnTypeConfig;
+  columnTypeConfig: ReplaceColumnTypeConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceColumnTypeConfig {
+  severity: SeverityLevel;
+  expectedType?: _Core.SchemaFieldType;
 }
 
 /**
@@ -364,17 +440,61 @@ export interface ReplaceJobStatusCheckConfig {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ReplaceNullPercentageCheckConfig {
-  percentageCheckConfig: PercentageCheckConfig;
+  percentageCheckConfig: ReplacePercentageCheckConfig;
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
+ */
+export interface ReplaceNumericColumnCheckConfig {
+  numericBounds?: NumericBoundsConfig;
+  trend?: TrendConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceNumericColumnMeanCheckConfig {
+  numericColumnCheckConfig: ReplaceNumericColumnCheckConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceNumericColumnMedianCheckConfig {
+  numericColumnCheckConfig: ReplaceNumericColumnCheckConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceNumericColumnRangeCheckConfig {
+  numericBoundsConfig: NumericBoundsConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplacePercentageCheckConfig {
+  medianDeviation?: MedianDeviationConfig;
+  percentageBounds?: PercentageBoundsConfig;
+}
+
+/**
+ * Log Safety: SAFE
  */
 export interface ReplacePrimaryKeyCheckConfig {
-  primaryKeyConfig: PrimaryKeyConfig;
+  primaryKeyConfig: ReplacePrimaryKeyConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplacePrimaryKeyConfig {
+  severity: SeverityLevel;
 }
 
 /**
@@ -449,11 +569,11 @@ export interface SchemaInfo {
 }
 
 /**
- * The severity level of the check. Possible values are LOW, MODERATE, or CRITICAL.
+ * The severity level of the check. Possible values are MODERATE or CRITICAL.
  *
  * Log Safety: SAFE
  */
-export type SeverityLevel = "LOW" | "MODERATE" | "CRITICAL";
+export type SeverityLevel = "MODERATE" | "CRITICAL";
 
 /**
  * Log Safety: UNSAFE
@@ -500,3 +620,32 @@ export interface TotalColumnCountCheckConfig {
   subject: DatasetSubject;
   columnCountConfig: ColumnCountConfig;
 }
+
+/**
+ * Configuration for trend-based validation with severity settings. At least one of trendType or differenceBounds must be specified. Both may be provided to validate both the trend pattern and the magnitude of change.
+ *
+ * Log Safety: SAFE
+ */
+export interface TrendConfig {
+  trendType?: TrendType;
+  differenceBounds?: NumericBounds;
+  severity: SeverityLevel;
+}
+
+/**
+   * The type of trend to validate:
+
+NON_INCREASING: Values should not increase over time
+NON_DECREASING: Values should not decrease over time
+STRICTLY_INCREASING: Values should strictly increase over time
+STRICTLY_DECREASING: Values should strictly decrease over time
+CONSTANT: Values should remain constant over time
+   *
+   * Log Safety: SAFE
+   */
+export type TrendType =
+  | "NON_INCREASING"
+  | "NON_DECREASING"
+  | "STRICTLY_INCREASING"
+  | "STRICTLY_DECREASING"
+  | "CONSTANT";

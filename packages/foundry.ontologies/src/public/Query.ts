@@ -48,7 +48,7 @@ const _execute: $FoundryPlatformMethod<
 > = [1, "/v2/ontologies/{0}/queries/{1}/execute", 7];
 
 /**
- * Executes a Query using the given parameters.
+ * Executes a Query using the given parameters. By default, the latest version of the Query is executed.
  *
  * Optional parameters do not need to be supplied.
  *

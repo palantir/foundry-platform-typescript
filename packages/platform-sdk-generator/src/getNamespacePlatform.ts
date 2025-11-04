@@ -40,7 +40,7 @@ export function getNamespacePlatform(ns?: string): string {
     "LanguageModels": "foundry",
     "MediaSets": "foundry",
     "Models": "foundry",
-    "Notepad": "skipped",
+    "Notepad": "foundry",
     "Ontologies": "foundry",
     "Operations": "foundry",
     "Orchestration": "foundry",

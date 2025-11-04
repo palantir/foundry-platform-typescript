@@ -29,54 +29,52 @@ import type * as _MediaSets from "../_components.js";
 
 //
 
-const _read: $FoundryPlatformMethod<
+const _abort: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
-    mediaItemRid: _Core.MediaItemRid,
+    transactionId: _MediaSets.TransactionId,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
-  ) => Promise<Response>
-> = [0, "/v2/mediasets/{0}/items/{1}/content", 6, , "*/*"];
+  ) => Promise<void>
+> = [1, "/v2/mediasets/{0}/transactions/{1}/abort", 2];
 
 /**
- * Gets the content of a media item.
+ * Aborts an open transaction. Items uploaded to the media set during this transaction will be deleted.
  *
  * @beta
  *
- * Required Scopes: [api:mediasets-read]
- * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/content
+ * Required Scopes: [api:mediasets-write]
+ * URL: /v2/mediasets/{mediaSetRid}/transactions/{transactionId}/abort
  */
-export function read(
+export function abort(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     mediaSetRid: _Core.MediaSetRid,
-    mediaItemRid: _Core.MediaItemRid,
+    transactionId: _MediaSets.TransactionId,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
-): Promise<Response> {
-  return $foundryPlatformFetch($ctx, _read, ...args);
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _abort, ...args);
 }
 
-const _readOriginal: $FoundryPlatformMethod<
+const _calculate: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
-  ) => Promise<Response>
-> = [0, "/v2/mediasets/{0}/items/{1}/original", 6, , "*/*"];
+  ) => Promise<_MediaSets.TrackedTransformationResponse>
+> = [0, "/v2/mediasets/{0}/items/{1}/transform/imagery/thumbnail/calculate", 6];
 
 /**
- * Gets the content of an original file uploaded to the media item, even if it was transformed on upload due to being an additional input format.
+ * Starts calculation of a thumbnail for a given image.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:mediasets-read]
- * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/original
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/transform/imagery/thumbnail/calculate
  */
-export function readOriginal(
+export function calculate(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     mediaSetRid: _Core.MediaSetRid,
@@ -85,8 +83,68 @@ export function readOriginal(
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
-): Promise<Response> {
-  return $foundryPlatformFetch($ctx, _readOriginal, ...args);
+): Promise<_MediaSets.TrackedTransformationResponse> {
+  return $foundryPlatformFetch($ctx, _calculate, ...args);
+}
+
+const _commit: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    transactionId: _MediaSets.TransactionId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/mediasets/{0}/transactions/{1}/commit", 2];
+
+/**
+ * Commits an open transaction. On success, items uploaded to the media set during this transaction will become available.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-write]
+ * URL: /v2/mediasets/{mediaSetRid}/transactions/{transactionId}/commit
+ */
+export function commit(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    transactionId: _MediaSets.TransactionId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _commit, ...args);
+}
+
+const _create: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    $queryParams?: {
+      branchName?: _MediaSets.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_MediaSets.TransactionId>
+> = [1, "/v2/mediasets/{0}/transactions", 2];
+
+/**
+ * Creates a new transaction. Items uploaded to the media set while this transaction is open will not be reflected until the transaction is committed.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-write]
+ * URL: /v2/mediasets/{mediaSetRid}/transactions
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+
+    $queryParams?: {
+      branchName?: _MediaSets.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_MediaSets.TransactionId> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
 const _info: $FoundryPlatformMethod<
@@ -230,112 +288,24 @@ export function upload(
   return $foundryPlatformFetch($ctx, _upload, ...args);
 }
 
-const _create: $FoundryPlatformMethod<
-  (
-    mediaSetRid: _Core.MediaSetRid,
-    $queryParams?: {
-      branchName?: _MediaSets.BranchName | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ) => Promise<_MediaSets.TransactionId>
-> = [1, "/v2/mediasets/{0}/transactions", 2];
-
-/**
- * Creates a new transaction. Items uploaded to the media set while this transaction is open will not be reflected until the transaction is committed.
- *
- * @beta
- *
- * Required Scopes: [api:mediasets-write]
- * URL: /v2/mediasets/{mediaSetRid}/transactions
- */
-export function create(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    mediaSetRid: _Core.MediaSetRid,
-
-    $queryParams?: {
-      branchName?: _MediaSets.BranchName | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
-): Promise<_MediaSets.TransactionId> {
-  return $foundryPlatformFetch($ctx, _create, ...args);
-}
-
-const _commit: $FoundryPlatformMethod<
-  (
-    mediaSetRid: _Core.MediaSetRid,
-    transactionId: _MediaSets.TransactionId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/mediasets/{0}/transactions/{1}/commit", 2];
-
-/**
- * Commits an open transaction. On success, items uploaded to the media set during this transaction will become available.
- *
- * @beta
- *
- * Required Scopes: [api:mediasets-write]
- * URL: /v2/mediasets/{mediaSetRid}/transactions/{transactionId}/commit
- */
-export function commit(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    mediaSetRid: _Core.MediaSetRid,
-    transactionId: _MediaSets.TransactionId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<void> {
-  return $foundryPlatformFetch($ctx, _commit, ...args);
-}
-
-const _abort: $FoundryPlatformMethod<
-  (
-    mediaSetRid: _Core.MediaSetRid,
-    transactionId: _MediaSets.TransactionId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/mediasets/{0}/transactions/{1}/abort", 2];
-
-/**
- * Aborts an open transaction. Items uploaded to the media set during this transaction will be deleted.
- *
- * @beta
- *
- * Required Scopes: [api:mediasets-write]
- * URL: /v2/mediasets/{mediaSetRid}/transactions/{transactionId}/abort
- */
-export function abort(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    mediaSetRid: _Core.MediaSetRid,
-    transactionId: _MediaSets.TransactionId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<void> {
-  return $foundryPlatformFetch($ctx, _abort, ...args);
-}
-
-const _calculate: $FoundryPlatformMethod<
+const _read: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
-  ) => Promise<_MediaSets.TrackedTransformationResponse>
-> = [0, "/v2/mediasets/{0}/items/{1}/transform/imagery/thumbnail/calculate", 6];
+  ) => Promise<Response>
+> = [0, "/v2/mediasets/{0}/items/{1}/content", 6, , "*/*"];
 
 /**
- * Starts calculation of a thumbnail for a given image.
+ * Gets the content of a media item.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-read]
- * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/transform/imagery/thumbnail/calculate
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/content
  */
-export function calculate(
+export function read(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     mediaSetRid: _Core.MediaSetRid,
@@ -344,8 +314,38 @@ export function calculate(
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
-): Promise<_MediaSets.TrackedTransformationResponse> {
-  return $foundryPlatformFetch($ctx, _calculate, ...args);
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _read, ...args);
+}
+
+const _readOriginal: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<Response>
+> = [0, "/v2/mediasets/{0}/items/{1}/original", 6, , "*/*"];
+
+/**
+ * Gets the content of an original file uploaded to the media item, even if it was transformed on upload due to being an additional input format.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/original
+ */
+export function readOriginal(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _readOriginal, ...args);
 }
 
 const _retrieve: $FoundryPlatformMethod<
@@ -384,4 +384,40 @@ export function retrieve(
   ]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _retrieve, ...args);
+}
+
+const _uploadMedia: $FoundryPlatformMethod<
+  (
+    $body: Blob,
+    $queryParams: {
+      filename: _Core.MediaItemPath;
+      preview?: _Core.PreviewMode | undefined;
+    },
+    $headerParams?: { attribution?: _Core.Attribution | undefined },
+  ) => Promise<_Core.MediaReference>
+> = [2, "/v2/mediasets/media/upload", 7, "*/*"];
+
+/**
+ * "Uploads a temporary media item. If the media item isn't persisted within 1 hour, the item will be deleted.
+ *
+ * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:ontologies-write`."
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read, api:ontologies-write]
+ * URL: /v2/mediasets/media/upload
+ */
+export function uploadMedia(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Blob,
+    $queryParams: {
+      filename: _Core.MediaItemPath;
+      preview?: _Core.PreviewMode | undefined;
+    },
+    $headerParams?: { attribution?: _Core.Attribution | undefined },
+  ]
+): Promise<_Core.MediaReference> {
+  return $foundryPlatformFetch($ctx, _uploadMedia, ...args);
 }

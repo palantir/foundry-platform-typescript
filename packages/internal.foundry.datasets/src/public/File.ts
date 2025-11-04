@@ -46,6 +46,8 @@ const _list: $FoundryPlatformMethod<
  * Lists Files contained in a Dataset. By default files are listed on the latest view of the default
  * branch - `master` for most enrollments.
  *
+ * This endpoint currently does not support views (virtual datasets composed of other datasets). For more information, refer to the [views documentation](https://www.palantir.com/docs/foundry/data-integration/views).
+ *
  * #### Advanced Usage
  *
  * See [Datasets Core Concepts](https://www.palantir.com/docs/foundry/data-integration/datasets/) for details on using branches and transactions.
@@ -263,6 +265,8 @@ const _read: $FoundryPlatformMethod<
 /**
  * Gets the content of a File contained in a Dataset. By default this retrieves the file's content from the latest
  * view of the default branch - `master` for most enrollments.
+ *
+ * This endpoint currently does not support views (virtual datasets composed of other datasets). For more information, refer to the [views documentation](https://www.palantir.com/docs/foundry/data-integration/views).
  *
  * #### Advanced Usage
  *

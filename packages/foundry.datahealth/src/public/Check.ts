@@ -115,7 +115,7 @@ const _replace: $FoundryPlatformMethod<
 > = [2, "/v2/dataHealth/checks/{0}", 3];
 
 /**
- * Replace the Check with the specified rid. Changing the type of a check after it has been created  is not supported.
+ * Replace the Check with the specified rid. Changing the type of a check after it has been created is not supported.
  *
  * @beta
  *

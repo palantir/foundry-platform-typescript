@@ -214,6 +214,36 @@ export interface MissingMediaItemPath {
 }
 
 /**
+   * Insufficient permissions to use this endpoint. This may be because that you are using a custom client instead of
+an official Palantir client library. If so, please try again using OSDK, Python Functions, or TypeScript
+Functions V2.
+   *
+   * Log Safety: SAFE
+   */
+export interface TemporaryMediaUploadInsufficientPermissions {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "TemporaryMediaUploadInsufficientPermissions";
+  errorDescription:
+    "Insufficient permissions to use this endpoint. This may be because that you are using a custom client instead of an official Palantir client library. If so, please try again using OSDK, Python Functions, or TypeScript Functions V2.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * An unknown error occurred, please try again, and if this continues please contact your Palantir representative.
+ *
+ * Log Safety: SAFE
+ */
+export interface TemporaryMediaUploadUnknownFailure {
+  errorCode: "INTERNAL";
+  errorName: "TemporaryMediaUploadUnknownFailure";
+  errorDescription:
+    "An unknown error occurred, please try again, and if this continues please contact your Palantir representative.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested media item could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE

@@ -97,10 +97,16 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.loadHighPriorityTargetList": {
       "variables": {},
     },
-    "v2.readMediaItem": {
+    "v2.abortMediaTransaction": {
       "variables": {},
     },
-    "v2.readOriginalMediaItem": {
+    "v2.calculateImageMediaItemThumbnail": {
+      "variables": {},
+    },
+    "v2.commitMediaTransaction": {
+      "variables": {},
+    },
+    "v2.createMediaTransaction": {
       "variables": {},
     },
     "v2.getMediaItemInfo": {
@@ -115,19 +121,16 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.putMediaItem": {
       "variables": {},
     },
-    "v2.createMediaTransaction": {
+    "v2.readMediaItem": {
       "variables": {},
     },
-    "v2.commitMediaTransaction": {
-      "variables": {},
-    },
-    "v2.abortMediaTransaction": {
-      "variables": {},
-    },
-    "v2.calculateImageMediaItemThumbnail": {
+    "v2.readOriginalMediaItem": {
       "variables": {},
     },
     "v2.retrieveImageMediaItemThumbnail": {
+      "variables": {},
+    },
+    "v2.uploadMedia": {
       "variables": {},
     },
     "v2.getQuery": {
@@ -164,6 +167,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getActionTypeByRid": {
+      "variables": {},
+    },
+    "v2.listActionTypesFullMetadata": {
       "variables": {},
     },
     "v2.getActionTypeFullMetadata": {
@@ -224,9 +230,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.uploadMediaContent": {
-      "variables": {},
-    },
-    "v2.uploadMedia": {
       "variables": {},
     },
     "v2.getFirstPoint": {

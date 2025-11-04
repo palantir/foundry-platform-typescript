@@ -241,6 +241,7 @@ export type {
   LinkTypeSide,
   LinkTypeSideCardinality,
   LinkTypeSideV2,
+  ListActionTypesFullMetadataResponse,
   ListActionTypesResponse,
   ListActionTypesResponseV2,
   ListAttachmentsResponseV2,

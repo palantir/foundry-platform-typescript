@@ -77,37 +77,9 @@ discretionary access.
 export interface AllPrincipal {}
 
 /**
- * Update sent by client to apply to internal Y.Doc on server.
- *
- * Log Safety: UNSAFE
- */
-export interface ApplyYjsUpdate {
-  yjsUpdate: YjsUpdate;
-  clientId: ClientId;
-  description?: DocumentEditDescription;
-}
-
-/**
  * Log Safety: SAFE
  */
 export type ClientId = string;
-
-/**
- * Update broadcast to all clients after being applied on server.
- *
- * Log Safety: UNSAFE
- */
-export interface CollaborativeUpdate {
-  update: CollaborativeUpdateContents;
-  clientId: ClientId;
-}
-
-/**
- * Union type to allow broadcasting different collaborative message types.
- *
- * Log Safety: UNSAFE
- */
-export type CollaborativeUpdateContents = { type: "yjsUpdate" } & YjsUpdate;
 
 /**
  * Log Safety: UNSAFE
@@ -207,6 +179,30 @@ export type DocumentName = LooselyBrandedString<"DocumentName">;
 export type DocumentOntologyRid = LooselyBrandedString<"DocumentOntologyRid">;
 
 /**
+   * Sent when a user's presence changes on a document. That is, sent when a user opens or closes the document.
+Note that just because a user is not present on a particular document does not mean that they are overall
+"offline" -- they may have other documents or non-document applications open in the platform.
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentPresenceChangeEvent {
+  userId: _Core.UserId;
+  status: UserPresence;
+}
+
+/**
+ * Update sent by client to apply to internal Y.Doc on server.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentPublishMessage {
+  yjsUpdate: YjsUpdate;
+  editId: EditId;
+  clientId: ClientId;
+  description?: DocumentEditDescription;
+}
+
+/**
  * Identifier for an PACK Document.
  *
  * Log Safety: SAFE
@@ -246,6 +242,63 @@ export type DocumentTypeName = LooselyBrandedString<"DocumentTypeName">;
 export type DocumentTypeRid = LooselyBrandedString<"DocumentTypeRid">;
 
 /**
+ * Update broadcast to all clients after being applied on server.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentUpdate {
+  update?: YjsUpdate;
+  clientId: ClientId;
+  revisionId: RevisionId;
+  baseRevisionId: RevisionId;
+  editIds: Array<EditId>;
+}
+
+/**
+ * Union type to allow broadcasting different collaborative message types.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DocumentUpdateMessage =
+  | ({ type: "update" } & DocumentUpdate)
+  | ({ type: "error" } & ErrorMessage);
+
+/**
+   * A request from client to subscribe to a document's collaborative updates,
+required on a subscription request to /documents/{documentId}/updates
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentUpdateSubscriptionRequest {
+  clientId: ClientId;
+  lastRevisionId?: RevisionId;
+}
+
+/**
+ * A unique identifier for an edit to an AppKit Document.
+ *
+ * Log Safety: SAFE
+ */
+export type EditId = LooselyBrandedString<"EditId">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type ErrorCode = "INTERNAL_ERROR" | "REVISION_TOO_OLD";
+
+/**
+   * Message sent to clients when an error occurs. The subscription may not remain in a valid state after this
+message and should be reopened.
+   *
+   * Log Safety: SAFE
+   */
+export interface ErrorMessage {
+  code: ErrorCode;
+  errorInstanceId: string;
+  args: Record<string, string>;
+}
+
+/**
  * A unique identifier for this activity event.
  *
  * Log Safety: UNSAFE
@@ -281,11 +334,32 @@ export type MarkingId = string;
 export type MarkingPrincipal = LooselyBrandedString<"MarkingPrincipal">;
 
 /**
+ * Log Safety: SAFE
+ */
+export type PresenceCollaborativeUpdate = {
+  type: "presenceChangeEvent";
+} & DocumentPresenceChangeEvent;
+
+/**
+ * A unique incrementing identifier that represents the order of edits applied by the server.
+ *
+ * Log Safety: SAFE
+ */
+export type RevisionId = string;
+
+/**
  * A Foundry User ID.
  *
  * Log Safety: SAFE
  */
 export type UserId = string;
+
+/**
+ * A user's presence on a document
+ *
+ * Log Safety: SAFE
+ */
+export type UserPresence = "PRESENT" | "NOT_PRESENT";
 
 /**
  * Log Safety: UNSAFE

@@ -29,6 +29,43 @@ import type * as _Ontologies from "../_components.js";
 
 //
 
+const _list: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+    },
+  ) => Promise<_Ontologies.ListActionTypesFullMetadataResponse>
+> = [0, "/v2/ontologies/{0}/actionTypesFullMetadata", 2];
+
+/**
+ * Lists the action types (with full metadata) for the given Ontology.
+ *
+ * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
+ * results available, at least one result will be present in the response.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypesFullMetadata
+ */
+export function list(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+    },
+  ]
+): Promise<_Ontologies.ListActionTypesFullMetadataResponse> {
+  return $foundryPlatformFetch($ctx, _list, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,

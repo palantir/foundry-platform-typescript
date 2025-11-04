@@ -2124,6 +2124,14 @@ export interface LinkTypeSideV2 {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListActionTypesFullMetadataResponse {
+  nextPageToken?: _Core.PageToken;
+  data: Array<ActionTypeFullMetadata>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListActionTypesResponse {
   nextPageToken?: _Core.PageToken;
   data: Array<ActionType>;
