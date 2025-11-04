@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.37.0
+
+### Minor Changes
+
+- 549beb2: Bump SDKs and add Notepad namespace
+
+### Patch Changes
+
+- Updated dependencies [549beb2]
+  - @osdk/docs-spec-platform@0.25.0
+
 ## 0.36.0
 
 ### Patch Changes

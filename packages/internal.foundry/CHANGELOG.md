@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.38.0
+
+### Minor Changes
+
+- 549beb2: Bump SDKs and add Notepad namespace
+
+### Patch Changes
+
+- Updated dependencies [549beb2]
+  - @osdk/internal.foundry.ontologies@2.38.0
+  - @osdk/internal.foundry.datasets@2.38.0
+  - @osdk/internal.foundry.core@2.38.0
+  - @osdk/internal.foundry.geo@2.38.0
+  - @osdk/internal.foundry.ontologiesv2@2.38.0
+  - @osdk/internal.foundry.mediasets@2.38.0
+
 ## 2.37.0
 
 ### Minor Changes

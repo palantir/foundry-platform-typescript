@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.11.0
+
+### Minor Changes
+
+- 549beb2: Bump SDKs and add Notepad namespace
+
+### Patch Changes
+
+- Updated dependencies [549beb2]
+  - @osdk/gotham.core@0.11.0
+
 ## 0.10.0
 
 ### Minor Changes

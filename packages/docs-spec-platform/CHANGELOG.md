@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.25.0
+
+### Minor Changes
+
+- 549beb2: Bump SDKs and add Notepad namespace
+
 ## 0.24.0
 
 ### Minor Changes
