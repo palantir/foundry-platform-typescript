@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.38.0
+
+### Minor Changes
+
+- 549beb2: Bump SDKs and add Notepad namespace
+
 ## 2.37.0
 
 ### Minor Changes

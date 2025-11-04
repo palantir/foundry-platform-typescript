@@ -1,5 +1,17 @@
 # @osdk/foundry.models
 
+## 2.38.0
+
+### Minor Changes
+
+- 549beb2: Bump SDKs and add Notepad namespace
+
+### Patch Changes
+
+- Updated dependencies [549beb2]
+  - @osdk/foundry.filesystem@2.38.0
+  - @osdk/foundry.core@2.38.0
+
 ## 2.37.0
 
 ### Minor Changes
