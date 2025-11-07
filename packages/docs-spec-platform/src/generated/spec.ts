@@ -970,6 +970,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getDocument": {
       "variables": {},
     },
+    "v2.searchDocuments": {
+      "variables": {},
+    },
     "v2.generateTemplate": {
       "variables": {},
     },

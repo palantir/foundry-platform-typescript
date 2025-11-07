@@ -23,6 +23,7 @@ export type {
   ClientId,
   CreateDocumentRequest,
   CreateDocumentTypeRequest,
+  CustomPresenceEvent,
   DiscretionaryPrincipal,
   DiscretionaryPrincipalGroupId,
   DiscretionaryPrincipalUserId,
@@ -35,6 +36,8 @@ export type {
   DocumentPresenceChangeEvent,
   DocumentPublishMessage,
   DocumentRid,
+  DocumentSearchQuery,
+  DocumentSearchResponse,
   DocumentSecurity,
   DocumentType,
   DocumentTypeName,
@@ -52,6 +55,7 @@ export type {
   MarkingPrincipal,
   PresenceCollaborativeUpdate,
   RevisionId,
+  SearchDocumentsRequest,
   UserId,
   UserPresence,
   VersionedEventData,
@@ -63,6 +67,8 @@ export type {
   CreateDocumentTypePermissionDenied,
   DocumentNotFound,
   DocumentTypeAlreadyExists,
+  DocumentTypeNameNotFound,
+  SearchDocumentsPermissionDenied,
 } from "./_errors.js";
 export * as Documents from "./public/Document.js";
 export * as DocumentTypes from "./public/DocumentType.js";

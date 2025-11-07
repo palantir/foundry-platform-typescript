@@ -79,3 +79,29 @@ export function get(
 ): Promise<_Pack.Document> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _search: $FoundryPlatformMethod<
+  (
+    $body: _Pack.SearchDocumentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.DocumentSearchResponse>
+> = [1, "/v2/pack/documents/search", 3];
+
+/**
+ * Loads all PACK Documents visible to the user of the provided Document Type Name. If a search query
+ * is provided, filters the results based on the user's query.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documents/search
+ */
+export function search(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.SearchDocumentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.DocumentSearchResponse> {
+  return $foundryPlatformFetch($ctx, _search, ...args);
+}

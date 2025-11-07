@@ -101,6 +101,15 @@ export interface CreateDocumentTypeRequest {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CustomPresenceEvent {
+  userId: _Core.UserId;
+  clientId: ClientId;
+  eventData: any;
+}
+
+/**
    * Union of all security principals usable within disjunctive security conditions.
 These principals are used to grant additional role access beyond mandatory security.
 This includes the special 'all' principal, which grants access to any users who meet mandatory
@@ -208,6 +217,18 @@ export interface DocumentPublishMessage {
  * Log Safety: SAFE
  */
 export type DocumentRid = LooselyBrandedString<"DocumentRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DocumentSearchQuery {
+  documentName?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type DocumentSearchResponse = Array<Document>;
 
 /**
  * Log Safety: UNSAFE
@@ -334,11 +355,11 @@ export type MarkingId = string;
 export type MarkingPrincipal = LooselyBrandedString<"MarkingPrincipal">;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export type PresenceCollaborativeUpdate = {
-  type: "presenceChangeEvent";
-} & DocumentPresenceChangeEvent;
+export type PresenceCollaborativeUpdate =
+  | ({ type: "presenceChangeEvent" } & DocumentPresenceChangeEvent)
+  | ({ type: "customPresenceEvent" } & CustomPresenceEvent);
 
 /**
  * A unique incrementing identifier that represents the order of edits applied by the server.
@@ -346,6 +367,15 @@ export type PresenceCollaborativeUpdate = {
  * Log Safety: SAFE
  */
 export type RevisionId = string;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchDocumentsRequest {
+  documentTypeName: DocumentTypeName;
+  limit?: number;
+  searchQuery?: DocumentSearchQuery;
+}
 
 /**
  * A Foundry User ID.
