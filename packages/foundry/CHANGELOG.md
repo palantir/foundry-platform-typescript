@@ -1,5 +1,39 @@
 # @osdk/foundry
 
+## 2.39.0
+
+### Minor Changes
+
+- 840b37a: Update Gotham and Foundry sdks
+
+### Patch Changes
+
+- Updated dependencies [840b37a]
+  - @osdk/foundry.thirdpartyapplications@2.39.0
+  - @osdk/foundry.languagemodels@2.39.0
+  - @osdk/foundry.orchestration@2.39.0
+  - @osdk/foundry.connectivity@2.39.0
+  - @osdk/foundry.datahealth@2.39.0
+  - @osdk/foundry.filesystem@2.39.0
+  - @osdk/foundry.ontologies@2.39.0
+  - @osdk/foundry.operations@2.39.0
+  - @osdk/foundry.publicapis@2.39.0
+  - @osdk/foundry.sqlqueries@2.39.0
+  - @osdk/foundry.aipagents@2.39.0
+  - @osdk/foundry.functions@2.39.0
+  - @osdk/foundry.mediasets@2.39.0
+  - @osdk/foundry.datasets@2.39.0
+  - @osdk/foundry.notepad@2.39.0
+  - @osdk/foundry.streams@2.39.0
+  - @osdk/foundry.widgets@2.39.0
+  - @osdk/foundry.models@2.39.0
+  - @osdk/foundry.admin@2.39.0
+  - @osdk/foundry.audit@2.39.0
+  - @osdk/foundry.core@2.39.0
+  - @osdk/foundry.pack@2.39.0
+  - @osdk/foundry.geo@2.39.0
+  - @osdk/foundry.geojson@2.39.0
+
 ## 2.38.0
 
 ### Minor Changes

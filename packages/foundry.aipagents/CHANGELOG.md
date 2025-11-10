@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.39.0
+
+### Minor Changes
+
+- 840b37a: Update Gotham and Foundry sdks
+
+### Patch Changes
+
+- Updated dependencies [840b37a]
+  - @osdk/foundry.ontologies@2.39.0
+  - @osdk/foundry.functions@2.39.0
+  - @osdk/foundry.core@2.39.0
+
 ## 2.38.0
 
 ### Minor Changes

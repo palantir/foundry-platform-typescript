@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.26.0
+
+### Minor Changes
+
+- 840b37a: Update Gotham and Foundry sdks
+
 ## 0.25.0
 
 ### Minor Changes

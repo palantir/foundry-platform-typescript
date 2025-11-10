@@ -1,5 +1,11 @@
 # @osdk/foundry.geo
 
+## 2.39.0
+
+### Minor Changes
+
+- 840b37a: Update Gotham and Foundry sdks
+
 ## 2.38.0
 
 ### Minor Changes

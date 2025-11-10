@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.39.0
+
+### Minor Changes
+
+- 840b37a: Update Gotham and Foundry sdks
+
+### Patch Changes
+
+- Updated dependencies [840b37a]
+  - @osdk/internal.foundry.ontologies@2.39.0
+  - @osdk/internal.foundry.datasets@2.39.0
+  - @osdk/internal.foundry.core@2.39.0
+  - @osdk/internal.foundry.geo@2.39.0
+  - @osdk/internal.foundry.ontologiesv2@2.39.0
+  - @osdk/internal.foundry.mediasets@2.39.0
+
 ## 2.38.0
 
 ### Minor Changes

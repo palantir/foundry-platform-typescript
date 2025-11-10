@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.12.0
+
+### Minor Changes
+
+- 840b37a: Update Gotham and Foundry sdks
+
+### Patch Changes
+
+- Updated dependencies [840b37a]
+  - @osdk/gotham.targetworkbench@0.12.0
+  - @osdk/gotham.maprendering@0.12.0
+  - @osdk/gotham.geojson@0.12.0
+  - @osdk/gotham.core@0.12.0
+  - @osdk/gotham.gaia@0.12.0
+
 ## 0.11.0
 
 ### Minor Changes
