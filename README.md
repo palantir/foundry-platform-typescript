@@ -167,6 +167,7 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
    4. Press enter to continue.
    5. Select which packages need major/minor/patch bumps. Typically you should not select anything here and always use patch bumps. We will then bump the major and minor version separately as needed.
    6. Enter a change (or press enter on empty to open your editor.)
+   7. Make sure you include a changeset for each changed package.
 8. If you're curious what the final build output might look like you can run `pnpm build` from root. 
 9. Run all lint rules and tests with `pnpm check` from root.
 
@@ -205,6 +206,10 @@ With the exception of the "Core" namespace, all namespaces must map to either th
 
 ### Publishing a release
 
-1. Follow the dev workflow above
-2. Run `scripts/createReleasePr.sh`
-3. Merge the PR (Github Actions will publish it)
+1. Create a new branch on this repo, not your forked repo.
+2. Follow the dev workflow above
+3. Run `scripts/createReleasePr.sh`
+4. Merge the PR (Github Actions will publish it)
+5. The new npm package version should be visible in 20-30 minutes.
+  - Foundry: https://www.npmjs.com/package/@osdk/foundry
+  - Gotham: https://www.npmjs.com/package/@osdk/gotham
