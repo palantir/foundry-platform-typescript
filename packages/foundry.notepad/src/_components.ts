@@ -66,6 +66,8 @@ export interface ExportJobDocumentSource {
  */
 export interface ExportJobFailed {
   errorMessage: string;
+  errorCode?: string;
+  errorInstanceId?: string;
 }
 
 /**
@@ -207,15 +209,8 @@ export interface GenerationJobSucceeded {}
  * Log Safety: UNSAFE
  */
 export interface SaveDocumentGenerationJobRequest {
-  request: SaveDocumentRequest;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface SaveDocumentRequest {
   documentName?: string;
-  parentFolderRid?: _Filesystem.FolderRid;
+  parentFolderRid: _Filesystem.FolderRid;
 }
 
 /**

@@ -16,6 +16,7 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
+import type * as _Ontologies from "@osdk/foundry.ontologies";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -75,6 +76,14 @@ discretionary access.
    * Log Safety: SAFE
    */
 export interface AllPrincipal {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface BlueprintIcon {
+  color: string;
+  locator: string;
+}
 
 /**
  * Log Safety: SAFE
@@ -341,6 +350,20 @@ export type FolderRid = LooselyBrandedString<"FolderRid">;
 export type GroupId = string;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface LoadObjectActivityResponse {
+  events: Array<ObjectEditEvent>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LoadObjectEditEventsRequest {
+  query: ObjectActivityQuery;
+}
+
+/**
  * A UUID representing a Mandatory Marking.
  *
  * Log Safety: SAFE
@@ -353,6 +376,58 @@ export type MarkingId = string;
  * Log Safety: UNSAFE
  */
 export type MarkingPrincipal = LooselyBrandedString<"MarkingPrincipal">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ObjectActivityQuery {
+  objectIds: Array<_Ontologies.ObjectRid>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectDisplayMetadata {
+  objectTypeDisplayIcon: BlueprintIcon;
+  objectTypeDisplayName: string;
+  objectDisplayName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectEditEvent {
+  propertyChanges: Array<ObjectPropertyEdit>;
+  eventName: ObjectEditEventEventName;
+  eventDescription: ObjectEditEventEventDescription;
+  objectDisplayMetadata: ObjectDisplayMetadata;
+  objectRid: _Ontologies.ObjectRid;
+  createdBy: _Core.CreatedBy;
+  createdTime: _Core.CreatedTime;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ObjectEditEventEventDescription = LooselyBrandedString<
+  "ObjectEditEventEventDescription"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ObjectEditEventEventName = LooselyBrandedString<
+  "ObjectEditEventEventName"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectPropertyEdit {
+  previousValue: string;
+  newValue: string;
+  propertyDisplayName: string;
+}
 
 /**
  * Log Safety: UNSAFE

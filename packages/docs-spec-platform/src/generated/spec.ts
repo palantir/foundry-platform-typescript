@@ -142,6 +142,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.executeQuery": {
       "variables": {},
     },
+    "v2.streamingExecuteQuery": {
+      "variables": {},
+    },
     "v2.getValueType": {
       "variables": {},
     },
@@ -971,6 +974,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.searchDocuments": {
+      "variables": {},
+    },
+    "v2.loadObjectEditEvents": {
       "variables": {},
     },
     "v2.generateTemplate": {

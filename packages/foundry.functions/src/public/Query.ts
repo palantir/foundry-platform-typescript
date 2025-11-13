@@ -102,7 +102,10 @@ const _execute: $FoundryPlatformMethod<
 /**
  * Executes a Query using the given parameters. By default, this executes the latest version of the query.
  *
- * Optional parameters do not need to be supplied.
+ * This endpoint is maintained for backward compatibility only.
+ *
+ * For all new implementations, use the `streamingExecute` endpoint, which supports all function types
+ * and provides enhanced functionality.
  *
  * @alpha
  *
@@ -123,4 +126,71 @@ export function execute(
   ]
 ): Promise<_Functions.ExecuteQueryResponse> {
   return $foundryPlatformFetch($ctx, _execute, ...args);
+}
+
+const _streamingExecute: $FoundryPlatformMethod<
+  (
+    queryApiName: _Functions.QueryApiName,
+    $body: _Functions.StreamingExecuteQueryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
+  ) => Promise<Response>
+> = [
+  1,
+  "/v2/functions/queries/{0}/streamingExecute",
+  7,
+  ,
+  "application/octet-stream",
+];
+
+/**
+ * Executes a Query using the given parameters, returning results as an NDJSON stream. By default, this executes the latest version of the query.
+ *
+ * This endpoint supports all Query functions. The endpoint name 'streamingExecute' refers to the NDJSON
+ * streaming response format. Both streaming and non-streaming functions can use this endpoint.
+ * Non-streaming functions return a single-line NDJSON response, while streaming functions return multi-line NDJSON responses.
+ * This is the recommended endpoint for all query execution.
+ *
+ * The response is returned as a binary stream in NDJSON (Newline Delimited JSON) format, where each line
+ * is a StreamingExecuteQueryResponse containing either a data batch or an error.
+ *
+ * For a function returning a list of 5 records with a batch size of 3, the response stream would contain
+ * two lines. The first line contains the first 3 items, and the second line contains the remaining 2 items:
+ *
+ * ```
+ * {"type":"data","value":[{"productId":"SKU-001","price":29.99},{"productId":"SKU-002","price":49.99},{"productId":"SKU-003","price":19.99}]}
+ * {"type":"data","value":[{"productId":"SKU-004","price":39.99},{"productId":"SKU-005","price":59.99}]}
+ * ```
+ *
+ * Each line is a separate JSON object followed by a newline character. Clients should parse the stream
+ * line-by-line to process results as they arrive. If an error occurs during execution, the stream will
+ * contain an error line:
+ *
+ * ```
+ * {"type":"error","errorCode":"INVALID_ARGUMENT","errorName":"QueryRuntimeError","errorInstanceId":"3f8a9c7b-2e4d-4a1f-9b8c-7d6e5f4a3b2c","errorDescription":"Division by zero","parameters":{}}
+ * ```
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:functions-read]
+ * URL: /v2/functions/queries/{queryApiName}/streamingExecute
+ */
+export function streamingExecute(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    queryApiName: _Functions.QueryApiName,
+    $body: _Functions.StreamingExecuteQueryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _streamingExecute, ...args);
 }

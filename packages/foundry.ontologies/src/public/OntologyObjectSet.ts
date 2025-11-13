@@ -95,6 +95,7 @@ const _load: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetResponseV2>
 > = [1, "/v2/ontologies/{0}/objectSets/loadObjects", 3];
@@ -123,6 +124,7 @@ export function load(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
   ]
 ): Promise<_Ontologies.LoadObjectSetResponseV2> {
@@ -137,6 +139,7 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetV2MultipleObjectTypesResponse>
@@ -171,6 +174,7 @@ export function loadMultipleObjectTypes(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -237,6 +241,7 @@ const _aggregate: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
   ) => Promise<_Ontologies.AggregateObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/objectSets/aggregate", 3];
@@ -258,6 +263,7 @@ export function aggregate(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
   ]
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {

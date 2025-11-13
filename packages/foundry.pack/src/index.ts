@@ -20,6 +20,7 @@ export type {
   ActivityDeleted,
   ActivityEvent,
   AllPrincipal,
+  BlueprintIcon,
   ClientId,
   CreateDocumentRequest,
   CreateDocumentTypeRequest,
@@ -51,8 +52,16 @@ export type {
   EventId,
   FolderRid,
   GroupId,
+  LoadObjectActivityResponse,
+  LoadObjectEditEventsRequest,
   MarkingId,
   MarkingPrincipal,
+  ObjectActivityQuery,
+  ObjectDisplayMetadata,
+  ObjectEditEvent,
+  ObjectEditEventEventDescription,
+  ObjectEditEventEventName,
+  ObjectPropertyEdit,
   PresenceCollaborativeUpdate,
   RevisionId,
   SearchDocumentsRequest,
@@ -68,7 +77,9 @@ export type {
   DocumentNotFound,
   DocumentTypeAlreadyExists,
   DocumentTypeNameNotFound,
+  LoadObjectEditEventsPermissionDenied,
   SearchDocumentsPermissionDenied,
 } from "./_errors.js";
 export * as Documents from "./public/Document.js";
 export * as DocumentTypes from "./public/DocumentType.js";
+export * as ObjectEditEvents from "./public/ObjectEditEvent.js";

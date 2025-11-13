@@ -440,6 +440,22 @@ export interface HostNameCannotHaveProtocolOrPort {
 }
 
 /**
+ * The share name is invalid. Share names cannot contain the following characters: \ / : * ? " < > |
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidShareName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidShareName";
+  errorDescription:
+    "The share name is invalid. Share names cannot contain the following characters: \ / : * ? \" < > |";
+  errorInstanceId: string;
+  parameters: {
+    shareName: unknown;
+  };
+}
+
+/**
  * The specified connection is invalid or inaccessible.
  *
  * Log Safety: SAFE
@@ -468,6 +484,21 @@ export interface ParentFolderNotFoundForConnection {
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
+  };
+}
+
+/**
+ * The specified port is not in the valid range (1-65535).
+ *
+ * Log Safety: SAFE
+ */
+export interface PortNotInRange {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PortNotInRange";
+  errorDescription: "The specified port is not in the valid range (1-65535).";
+  errorInstanceId: string;
+  parameters: {
+    port: unknown;
   };
 }
 

@@ -398,10 +398,12 @@ const _uploadMedia: $FoundryPlatformMethod<
 > = [2, "/v2/mediasets/media/upload", 7, "*/*"];
 
 /**
- * "Uploads a temporary media item. If the media item isn't persisted within 1 hour, the item will be deleted.
+ * Uploads a temporary media item. If the media item isn't persisted within 1 hour, the item will be deleted.
+ *
+ * If multiple resources are attributed to, usage will be attributed to the first one in the list.
  *
  * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
- * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:ontologies-write`."
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:ontologies-write`.
  *
  * @alpha
  *
