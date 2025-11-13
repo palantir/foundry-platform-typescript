@@ -1,5 +1,19 @@
 # @osdk/foundry.datahealth
 
+## 2.40.0
+
+### Minor Changes
+
+- 4ea7d3a: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [4ea7d3a]
+  - @osdk/foundry.orchestration@2.40.0
+  - @osdk/foundry.connectivity@2.40.0
+  - @osdk/foundry.datasets@2.40.0
+  - @osdk/foundry.core@2.40.0
+
 ## 2.39.0
 
 ### Minor Changes
