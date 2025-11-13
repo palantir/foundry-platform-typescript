@@ -1,5 +1,16 @@
 # @osdk/foundry.widgets
 
+## 2.40.0
+
+### Minor Changes
+
+- 4ea7d3a: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [4ea7d3a]
+  - @osdk/foundry.core@2.40.0
+
 ## 2.39.0
 
 ### Minor Changes

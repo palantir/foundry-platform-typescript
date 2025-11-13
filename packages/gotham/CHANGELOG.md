@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.13.0
+
+### Minor Changes
+
+- 4ea7d3a: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [4ea7d3a]
+  - @osdk/gotham.targetworkbench@0.13.0
+  - @osdk/gotham.maprendering@0.13.0
+  - @osdk/gotham.geojson@0.13.0
+  - @osdk/gotham.core@0.13.0
+  - @osdk/gotham.gaia@0.13.0
+
 ## 0.12.0
 
 ### Minor Changes

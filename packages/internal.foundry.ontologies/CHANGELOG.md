@@ -1,5 +1,17 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.40.0
+
+### Minor Changes
+
+- 4ea7d3a: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [4ea7d3a]
+  - @osdk/internal.foundry.core@2.40.0
+  - @osdk/internal.foundry.geo@2.40.0
+
 ## 2.39.0
 
 ### Minor Changes
