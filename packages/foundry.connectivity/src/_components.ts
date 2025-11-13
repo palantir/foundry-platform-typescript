@@ -145,6 +145,7 @@ export type ConnectionConfiguration =
   | ({ type: "rest" } & RestConnectionConfiguration)
   | ({ type: "snowflake" } & SnowflakeConnectionConfiguration)
   | ({ type: "databricks" } & DatabricksConnectionConfiguration)
+  | ({ type: "smb" } & SmbConnectionConfiguration)
   | ({ type: "jdbc" } & JdbcConnectionConfiguration);
 
 /**
@@ -249,6 +250,7 @@ export type CreateConnectionRequestConnectionConfiguration =
   | ({
     type: "databricks";
   } & CreateConnectionRequestDatabricksConnectionConfiguration)
+  | ({ type: "smb" } & CreateConnectionRequestSmbConnectionConfiguration)
   | ({ type: "jdbc" } & CreateConnectionRequestJdbcConnectionConfiguration);
 
 /**
@@ -418,6 +420,44 @@ export interface CreateConnectionRequestSecretsNames {}
  */
 export interface CreateConnectionRequestSecretsWithPlaintextValues {
   secrets: Record<SecretName, PlaintextValue>;
+}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export type CreateConnectionRequestSmbAuth = {
+  type: "usernamePassword";
+} & CreateConnectionRequestSmbUsernamePasswordAuth;
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface CreateConnectionRequestSmbConnectionConfiguration {
+  proxy?: SmbProxyConfiguration;
+  hostname: string;
+  port?: number;
+  auth: CreateConnectionRequestSmbAuth;
+  share: string;
+  baseDirectory?: string;
+  requireMessageSigning?: boolean;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestSmbProxyConfiguration {
+  hostname: string;
+  protocol: SmbProxyType;
+  port: number;
+}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface CreateConnectionRequestSmbUsernamePasswordAuth {
+  password: CreateConnectionRequestEncryptedProperty;
+  domain?: string;
+  username: string;
 }
 
 /**
@@ -1563,6 +1603,49 @@ This should be used when creating or updating additional secrets for a REST conn
    */
 export interface SecretsWithPlaintextValues {
   secrets: Record<SecretName, PlaintextValue>;
+}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export type SmbAuth = { type: "usernamePassword" } & SmbUsernamePasswordAuth;
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface SmbConnectionConfiguration {
+  hostname: string;
+  port?: number;
+  proxy?: SmbProxyConfiguration;
+  share: string;
+  baseDirectory?: string;
+  auth: SmbAuth;
+  requireMessageSigning?: boolean;
+}
+
+/**
+ * Egress proxy to pass all traffic through.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SmbProxyConfiguration {
+  hostname: string;
+  port: number;
+  protocol: SmbProxyType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type SmbProxyType = "HTTP" | "SOCKS";
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface SmbUsernamePasswordAuth {
+  username: string;
+  password: EncryptedProperty;
+  domain?: string;
 }
 
 /**

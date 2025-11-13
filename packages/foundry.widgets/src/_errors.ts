@@ -295,6 +295,55 @@ export interface InvalidEventId {
 }
 
 /**
+ * The event parameter is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidEventParameter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEventParameter";
+  errorDescription: "The event parameter is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    eventParameterId: unknown;
+  };
+}
+
+/**
+ * The widget config contains an event with too many event parameters.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidEventParameterCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEventParameterCount";
+  errorDescription:
+    "The widget config contains an event with too many event parameters.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    eventParameterCount: unknown;
+  };
+}
+
+/**
+ * The event parameter id is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidEventParameterId {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEventParameterId";
+  errorDescription: "The event parameter id is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    eventParameterId: unknown;
+  };
+}
+
+/**
  * The event references an invalid parameter id.
  *
  * Log Safety: UNSAFE
@@ -331,7 +380,7 @@ export interface InvalidFilePath {
    * The manifest file in the .zip archive at the path .palantir/widgets.config.json
 could not be found or is not well formed.
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface InvalidManifest {
   errorCode: "INVALID_ARGUMENT";
@@ -341,6 +390,41 @@ export interface InvalidManifest {
   errorInstanceId: string;
   parameters: {
     reason: unknown;
+    value: unknown;
+  };
+}
+
+/**
+ * The object set event parameter type is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidObjectSetEventParameterType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidObjectSetEventParameterType";
+  errorDescription: "The object set event parameter type is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    eventParameterId: unknown;
+    value: unknown;
+  };
+}
+
+/**
+ * The object set parameter type is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidObjectSetParameterType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidObjectSetParameterType";
+  errorDescription: "The object set parameter type is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    parameterId: unknown;
+    value: unknown;
   };
 }
 

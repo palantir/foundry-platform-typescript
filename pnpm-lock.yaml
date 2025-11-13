@@ -479,6 +479,9 @@ importers:
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
+      '@osdk/foundry.ontologies':
+        specifier: workspace:*
+        version: link:../foundry.ontologies
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -714,6 +717,9 @@ importers:
       '@osdk/foundry.filesystem':
         specifier: workspace:*
         version: link:../foundry.filesystem
+      '@osdk/foundry.ontologies':
+        specifier: workspace:*
+        version: link:../foundry.ontologies
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

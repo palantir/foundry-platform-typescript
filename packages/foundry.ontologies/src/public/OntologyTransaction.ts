@@ -32,7 +32,7 @@ import type * as _Ontologies from "../_components.js";
 const _postEdits: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
-    transactionRid: _Ontologies.OntologyTransactionRid,
+    transactionId: _Ontologies.OntologyTransactionId,
     $body: _Ontologies.PostTransactionEditsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.PostTransactionEditsResponse>
@@ -44,13 +44,13 @@ const _postEdits: $FoundryPlatformMethod<
  * @alpha
  *
  * Required Scopes: [api:ontologies-read]
- * URL: /v2/ontologies/{ontology}/transactions/{transactionRid}/edits
+ * URL: /v2/ontologies/{ontology}/transactions/{transactionId}/edits
  */
 export function postEdits(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
-    transactionRid: _Ontologies.OntologyTransactionRid,
+    transactionId: _Ontologies.OntologyTransactionId,
     $body: _Ontologies.PostTransactionEditsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]

@@ -182,6 +182,7 @@ export interface ActionTypeV2 {
   parameters: Record<ParameterId, ActionParameterV2>;
   rid: ActionTypeRid;
   operations: Array<LogicRule>;
+  toolDescription?: string;
 }
 
 /**
@@ -225,7 +226,6 @@ export interface AddObject {
  */
 export interface AddObjectEdit {
   objectType: ObjectTypeApiName;
-  primaryKey: PropertyValue;
   properties: Record<PropertyApiName, DataValue>;
 }
 
@@ -3478,12 +3478,12 @@ export interface OntologyStructType {
 export type OntologyTransaction = LooselyBrandedString<"OntologyTransaction">;
 
 /**
- * The RID identifying a transaction.
+ * The ID identifying a transaction.
  *
  * Log Safety: SAFE
  */
-export type OntologyTransactionRid = LooselyBrandedString<
-  "OntologyTransactionRid"
+export type OntologyTransactionId = LooselyBrandedString<
+  "OntologyTransactionId"
 >;
 
 /**
@@ -4848,12 +4848,14 @@ The type of the constraint.
 | range               | The struct parameter field value must be within the defined range.                                                                                                                                                              |
 | stringLength        | The struct parameter field value must have a length within the defined range.                                                                                                                                                   |
 | stringRegexMatch    | The struct parameter field value must match a predefined regular expression.                                                                                                                                                    |
+| objectQueryResult   | The struct parameter field value must be the primary key of an object found within an object set.                                                                                                                               |
    *
    * Log Safety: UNSAFE
    */
 export type StructFieldEvaluatedConstraint =
   | ({ type: "oneOf" } & OneOfConstraint)
   | ({ type: "range" } & RangeConstraint)
+  | ({ type: "objectQueryResult" } & ObjectQueryResultConstraint)
   | ({ type: "stringLength" } & StringLengthConstraint)
   | ({ type: "stringRegexMatch" } & StringRegexMatchConstraint);
 

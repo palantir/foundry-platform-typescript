@@ -39,7 +39,6 @@ export type {
   GenerationJobStatus,
   GenerationJobSucceeded,
   SaveDocumentGenerationJobRequest,
-  SaveDocumentRequest,
   SaveDocumentResponse,
   Template,
   TemplateParameterDateTimeValue,

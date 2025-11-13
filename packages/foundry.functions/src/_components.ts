@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
+import type * as _Ontologies from "@osdk/foundry.ontologies";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -300,6 +301,46 @@ export interface RegexConstraint {
  * Log Safety: SAFE
  */
 export interface RidConstraint {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StreamingExecuteQueryRequest {
+  ontology?: _Ontologies.OntologyIdentifier;
+  parameters: Record<ParameterId, DataValue | undefined>;
+  version?: FunctionVersion;
+}
+
+/**
+ * A single line in the NDJSON response stream from streamingExecute. Each line contains either a data batch or an error.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StreamingExecuteQueryResponse =
+  | ({ type: "data" } & StreamingQueryData)
+  | ({ type: "error" } & StreamingQueryError);
+
+/**
+ * A batch of query results.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StreamingQueryData {
+  value: DataValue;
+}
+
+/**
+ * An error that occurred during query execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StreamingQueryError {
+  errorCode: string;
+  errorName: string;
+  errorInstanceId: string;
+  errorDescription?: string;
+  parameters: Record<string, any>;
+}
 
 /**
  * Log Safety: UNSAFE

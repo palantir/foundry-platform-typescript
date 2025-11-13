@@ -912,6 +912,25 @@ export interface InvalidSortType {
 }
 
 /**
+   * The value of the given property is invalid. See the documentation of DataValue for details on
+how properties are represented for transaction edits.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidTransactionEditPropertyValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidTransactionEditPropertyValue";
+  errorDescription:
+    "The value of the given property is invalid. See the documentation of DataValue for details on how properties are represented for transaction edits.";
+  errorInstanceId: string;
+  parameters: {
+    propertyApiName: unknown;
+    propertyBaseType: unknown;
+    propertyValue: unknown;
+  };
+}
+
+/**
  * The provided value for a user id must be a UUID.
  *
  * Log Safety: UNSAFE

@@ -67,17 +67,18 @@ export interface Check {
  * Log Safety: UNSAFE
  */
 export type CheckConfig =
-  | ({ type: "columnType" } & ColumnTypeCheckConfig)
   | ({ type: "numericColumnRange" } & NumericColumnRangeCheckConfig)
   | ({ type: "jobStatus" } & JobStatusCheckConfig)
   | ({ type: "numericColumnMean" } & NumericColumnMeanCheckConfig)
+  | ({ type: "dateColumnRange" } & DateColumnRangeCheckConfig)
   | ({ type: "jobDuration" } & JobDurationCheckConfig)
+  | ({ type: "buildStatus" } & BuildStatusCheckConfig)
+  | ({ type: "columnType" } & ColumnTypeCheckConfig)
   | ({ type: "nullPercentage" } & NullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & TotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & NumericColumnMedianCheckConfig)
   | ({ type: "buildDuration" } & BuildDurationCheckConfig)
   | ({ type: "schemaComparison" } & SchemaComparisonCheckConfig)
-  | ({ type: "buildStatus" } & BuildStatusCheckConfig)
   | ({ type: "primaryKey" } & PrimaryKeyCheckConfig);
 
 /**
@@ -172,6 +173,37 @@ export type DatasetRid = LooselyBrandedString<"DatasetRid">;
 export interface DatasetSubject {
   datasetRid: _Datasets.DatasetRid;
   branchId: _Datasets.BranchName;
+}
+
+/**
+ * The range of date values a check is expected to be within.
+ *
+ * Log Safety: SAFE
+ */
+export interface DateBounds {
+  lowerBound?: string;
+  upperBound?: string;
+}
+
+/**
+ * Configuration for date bounds check with severity settings.
+ *
+ * Log Safety: SAFE
+ */
+export interface DateBoundsConfig {
+  dateBounds: DateBounds;
+  severity: SeverityLevel;
+}
+
+/**
+ * Checks that values in a date column fall within a specified range.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DateColumnRangeCheckConfig {
+  subject: DatasetSubject;
+  columnName: ColumnName;
+  dateBoundsConfig: DateBoundsConfig;
 }
 
 /**
@@ -389,17 +421,18 @@ export interface ReplaceBuildStatusCheckConfig {
  * Log Safety: UNSAFE
  */
 export type ReplaceCheckConfig =
-  | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
   | ({ type: "numericColumnRange" } & ReplaceNumericColumnRangeCheckConfig)
   | ({ type: "jobStatus" } & ReplaceJobStatusCheckConfig)
   | ({ type: "numericColumnMean" } & ReplaceNumericColumnMeanCheckConfig)
+  | ({ type: "dateColumnRange" } & ReplaceDateColumnRangeCheckConfig)
   | ({ type: "jobDuration" } & ReplaceJobDurationCheckConfig)
+  | ({ type: "buildStatus" } & ReplaceBuildStatusCheckConfig)
+  | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
   | ({ type: "nullPercentage" } & ReplaceNullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & ReplaceTotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & ReplaceNumericColumnMedianCheckConfig)
   | ({ type: "buildDuration" } & ReplaceBuildDurationCheckConfig)
   | ({ type: "schemaComparison" } & ReplaceSchemaComparisonCheckConfig)
-  | ({ type: "buildStatus" } & ReplaceBuildStatusCheckConfig)
   | ({ type: "primaryKey" } & ReplacePrimaryKeyCheckConfig);
 
 /**
@@ -423,6 +456,13 @@ export interface ReplaceColumnTypeCheckConfig {
 export interface ReplaceColumnTypeConfig {
   severity: SeverityLevel;
   expectedType?: _Core.SchemaFieldType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceDateColumnRangeCheckConfig {
+  dateBoundsConfig: DateBoundsConfig;
 }
 
 /**

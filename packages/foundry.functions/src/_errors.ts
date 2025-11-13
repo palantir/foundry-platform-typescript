@@ -205,6 +205,21 @@ export interface QueryVersionNotFound {
 }
 
 /**
+ * Could not streamingExecute the Query.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StreamingExecuteQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "StreamingExecuteQueryPermissionDenied";
+  errorDescription: "Could not streamingExecute the Query.";
+  errorInstanceId: string;
+  parameters: {
+    queryApiName: unknown;
+  };
+}
+
+/**
    * The provided parameters were not found. Please look at the knownParameters field
 to see which ones are available.
    *
