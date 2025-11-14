@@ -325,6 +325,17 @@ export const OSDK_SNIPPETS_SPEC = {
       },
     },
     // mediaSnippets
+    uploadMediaEphemeral: {
+      // using the same variables as uploadMedia for now
+      variables: {
+        ...MediaTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+        mediaParameter: "required",
+        rawPropertyValue: "required",
+        actionApiName: "required",
+      },
+    },
     uploadMedia: {
       variables: {
         ...MediaTemplateStrings,
