@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.13.0
+
+### Minor Changes
+
+- ab96e19: Add uploadMediaEphemeral
+
 ## 0.12.0
 
 ### Minor Changes
