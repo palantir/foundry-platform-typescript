@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.14.0
+
+### Minor Changes
+
+- 6820967: Add uploadMediaOntologyEdits snippet spec
+
 ## 0.13.0
 
 ### Minor Changes
