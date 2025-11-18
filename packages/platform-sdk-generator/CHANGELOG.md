@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.40.0
+
+### Minor Changes
+
+- 8ee27bc: fix error generator
+
+### Patch Changes
+
+- Updated dependencies [fb159c9]
+  - @osdk/docs-spec-platform@0.28.0
+
 ## 0.39.0
 
 ### Patch Changes
