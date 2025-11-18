@@ -398,6 +398,7 @@ export interface Job {
   rid: _Core.JobRid;
   buildRid: _Core.BuildRid;
   startedTime: JobStartedTime;
+  latestAttemptStartTime?: string;
   finishedTime?: string;
   jobStatus: JobStatus;
   outputs: Array<JobOutput>;
