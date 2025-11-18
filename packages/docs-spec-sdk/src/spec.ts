@@ -335,6 +335,26 @@ export const OSDK_SNIPPETS_SPEC = {
         actionApiName: "required",
       },
     },
+    uploadMediaEphemeral: {
+      variables: {
+        ...MediaTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+        mediaParameter: "required",
+        rawPropertyValue: "required",
+        actionApiName: "required",
+      },
+    },
+    uploadMediaOntologyEdits: {
+      variables: {
+        ...MediaTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+        mediaParameter: "required",
+        rawPropertyValue: "required",
+        actionApiName: "required",
+      },
+    },
     readMedia: {
       variables: {
         ...MediaTemplateStrings,
