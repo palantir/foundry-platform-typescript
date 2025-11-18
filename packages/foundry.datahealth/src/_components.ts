@@ -23,28 +23,6 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * Checks that values in a column are within an allowed set of values.
- *
- * Log Safety: UNSAFE
- */
-export interface AllowedColumnValuesCheckConfig {
-  subject: DatasetSubject;
-  columnName: ColumnName;
-  allowedValues: Array<ColumnValue>;
-  allowNull?: boolean;
-  severity: SeverityLevel;
-}
-
-/**
- * A boolean column value.
- *
- * Log Safety: UNSAFE
- */
-export interface BooleanColumnValue {
-  value: boolean;
-}
-
-/**
  * The name of a Branch.
  *
  * Log Safety: UNSAFE
@@ -96,7 +74,6 @@ export type CheckConfig =
   | ({ type: "jobDuration" } & JobDurationCheckConfig)
   | ({ type: "buildStatus" } & BuildStatusCheckConfig)
   | ({ type: "columnType" } & ColumnTypeCheckConfig)
-  | ({ type: "allowedColumnValues" } & AllowedColumnValuesCheckConfig)
   | ({ type: "nullPercentage" } & NullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & TotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & NumericColumnMedianCheckConfig)
@@ -165,17 +142,6 @@ export interface ColumnTypeConfig {
 }
 
 /**
- * A column value that can be of different types.
- *
- * Log Safety: UNSAFE
- */
-export type ColumnValue =
-  | ({ type: "date" } & DateColumnValue)
-  | ({ type: "boolean" } & BooleanColumnValue)
-  | ({ type: "string" } & StringColumnValue)
-  | ({ type: "numeric" } & NumericColumnValue);
-
-/**
  * Log Safety: UNSAFE
  */
 export interface CreateCheckRequest {
@@ -238,15 +204,6 @@ export interface DateColumnRangeCheckConfig {
   subject: DatasetSubject;
   columnName: ColumnName;
   dateBoundsConfig: DateBoundsConfig;
-}
-
-/**
- * A date column value.
- *
- * Log Safety: UNSAFE
- */
-export interface DateColumnValue {
-  value: string;
 }
 
 /**
@@ -383,15 +340,6 @@ export interface NumericColumnRangeCheckConfig {
 }
 
 /**
- * A numeric column value.
- *
- * Log Safety: UNSAFE
- */
-export interface NumericColumnValue {
-  value: number;
-}
-
-/**
  * The configuration for the range of percentage values between which the health check is expected to succeed.
  *
  * Log Safety: SAFE
@@ -454,15 +402,6 @@ export interface PrimaryKeyConfig {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface ReplaceAllowedColumnValuesCheckConfig {
-  allowedValues: Array<ColumnValue>;
-  severity: SeverityLevel;
-  allowNull?: boolean;
-}
-
-/**
  * Log Safety: SAFE
  */
 export interface ReplaceBuildDurationCheckConfig {
@@ -489,7 +428,6 @@ export type ReplaceCheckConfig =
   | ({ type: "jobDuration" } & ReplaceJobDurationCheckConfig)
   | ({ type: "buildStatus" } & ReplaceBuildStatusCheckConfig)
   | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
-  | ({ type: "allowedColumnValues" } & ReplaceAllowedColumnValuesCheckConfig)
   | ({ type: "nullPercentage" } & ReplaceNullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & ReplaceTotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & ReplaceNumericColumnMedianCheckConfig)
@@ -683,15 +621,6 @@ export type SeverityLevel = "MODERATE" | "CRITICAL";
 export interface StatusCheckConfig {
   severity: SeverityLevel;
   escalationConfig?: EscalationConfig;
-}
-
-/**
- * A string column value.
- *
- * Log Safety: UNSAFE
- */
-export interface StringColumnValue {
-  value: string;
 }
 
 /**

@@ -405,7 +405,7 @@ const _uploadMedia: $FoundryPlatformMethod<
  * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
  * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:ontologies-write`.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
  * URL: /v2/mediasets/media/upload
