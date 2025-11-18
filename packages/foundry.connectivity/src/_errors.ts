@@ -448,7 +448,7 @@ export interface InvalidShareName {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidShareName";
   errorDescription:
-    "The share name is invalid. Share names cannot contain the following characters: \ / : * ? \" < > |";
+    "The share name is invalid. Share names cannot contain the following characters: \\ / : * ? \" < > |";
   errorInstanceId: string;
   parameters: {
     shareName: unknown;

@@ -1818,6 +1818,22 @@ export interface InQuery {
 }
 
 /**
+   * An interface property type with an additional field to indicate constraints that need to be satisfied by
+implementing object property types.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InterfaceDefinedPropertyType {
+  rid: InterfacePropertyTypeRid;
+  apiName: InterfacePropertyApiName;
+  displayName: _Core.DisplayName;
+  description?: string;
+  dataType: ObjectPropertyType;
+  valueTypeApiName?: ValueTypeApiName;
+  requireImplementation: boolean;
+}
+
+/**
    * A link type constraint defined at the interface level where the implementation of the links is provided
 by the implementing object types.
    *
@@ -1878,6 +1894,53 @@ export interface InterfaceParameterPropertyArgument {
 }
 
 /**
+   * The name of the interface property type in the API in lowerCamelCase format. To find the API name for your
+interface property type, use the List interface types endpoint and check the allPropertiesV2 field or check
+the Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
+export type InterfacePropertyApiName = LooselyBrandedString<
+  "InterfacePropertyApiName"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface InterfacePropertyLocalPropertyImplementation {
+  propertyApiName: PropertyApiName;
+}
+
+/**
+   * The definition of an interface property type on an interface. An interface property can either be backed by a
+shared property type or defined on the interface directly.
+   *
+   * Log Safety: UNSAFE
+   */
+export type InterfacePropertyType =
+  | ({ type: "interfaceDefinedPropertyType" } & InterfaceDefinedPropertyType)
+  | ({ type: "interfaceSharedPropertyType" } & InterfaceSharedPropertyType);
+
+/**
+   * Describes how an object type implements an interface property type. For now this is only possible via a single
+local property but this may be extended in the future.
+   *
+   * Log Safety: UNSAFE
+   */
+export type InterfacePropertyTypeImplementation = {
+  type: "localPropertyImplementation";
+} & InterfacePropertyLocalPropertyImplementation;
+
+/**
+ * The unique resource identifier of an interface property type, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type InterfacePropertyTypeRid = LooselyBrandedString<
+  "InterfacePropertyTypeRid"
+>;
+
+/**
    * A shared property type with an additional field to indicate whether the property must be included on every
 object type that implements the interface, or whether it is optional.
    *
@@ -1890,6 +1953,7 @@ export interface InterfaceSharedPropertyType {
   description?: string;
   dataType: ObjectPropertyType;
   valueTypeApiName?: ValueTypeApiName;
+  valueFormatting?: PropertyValueFormattingRule;
   required: boolean;
 }
 
@@ -1914,6 +1978,26 @@ export type InterfaceToObjectTypeMappings = Record<
 >;
 
 /**
+ * Map from object type to the interface property implementations of that object type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type InterfaceToObjectTypeMappingsV2 = Record<
+  ObjectTypeApiName,
+  InterfaceToObjectTypeMappingV2
+>;
+
+/**
+ * Represents an implementation of an interface (the mapping of interface property to how it is implemented.
+ *
+ * Log Safety: UNSAFE
+ */
+export type InterfaceToObjectTypeMappingV2 = Record<
+  InterfacePropertyApiName,
+  InterfacePropertyTypeImplementation
+>;
+
+/**
  * Represents an interface type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -1925,6 +2009,11 @@ export interface InterfaceType {
   description?: string;
   properties: Record<SharedPropertyTypeApiName, InterfaceSharedPropertyType>;
   allProperties: Record<SharedPropertyTypeApiName, InterfaceSharedPropertyType>;
+  propertiesV2: Record<InterfacePropertyApiName, InterfacePropertyType>;
+  allPropertiesV2: Record<
+    InterfacePropertyApiName,
+    ResolvedInterfacePropertyType
+  >;
   extendsInterfaces: Array<InterfaceTypeApiName>;
   allExtendsInterfaces: Array<InterfaceTypeApiName>;
   implementedByObjectTypes: Array<ObjectTypeApiName>;
@@ -2341,6 +2430,9 @@ properties that implement interface properties (interface type scope). There can
 single object set- some objects may have all their properties and some may only have interface properties.
 The interfaceToObjectTypeMappings field contains mappings from SharedPropertyTypeApiNames on the interface(s) to
 PropertyApiName for properties on the object(s).
+The interfaceToObjectTypeMappingsV2 field contains mappings from InterfacePropertyApiNames on the
+interface(s) to InterfacePropertyImplementation for properties on the object(s). This therefore includes
+implementations of both properties backed by SharedPropertyTypes as well as properties defined on the interface.
    *
    * Log Safety: UNSAFE
    */
@@ -2351,6 +2443,10 @@ export interface LoadObjectSetV2MultipleObjectTypesResponse {
   interfaceToObjectTypeMappings: Record<
     InterfaceTypeApiName,
     InterfaceToObjectTypeMappings
+  >;
+  interfaceToObjectTypeMappingsV2: Record<
+    InterfaceTypeApiName,
+    InterfaceToObjectTypeMappingsV2
   >;
   computeUsage?: _Core.ComputeSeconds;
 }
@@ -3228,6 +3324,10 @@ export interface ObjectTypeFullMetadata {
  */
 export interface ObjectTypeInterfaceImplementation {
   properties: Record<SharedPropertyTypeApiName, PropertyApiName>;
+  propertiesV2: Record<
+    InterfacePropertyApiName,
+    InterfacePropertyTypeImplementation
+  >;
   links: Record<InterfaceLinkTypeApiName, Array<LinkTypeApiName>>;
 }
 
@@ -4309,6 +4409,22 @@ export type RelativeTimeSeriesTimeUnit =
  * Log Safety: SAFE
  */
 export type RequestId = string;
+
+/**
+   * An interface property type with additional fields to indicate constraints that need to be satisfied by
+implementing object property types.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ResolvedInterfacePropertyType {
+  rid: InterfacePropertyTypeRid;
+  apiName: InterfacePropertyApiName;
+  displayName: _Core.DisplayName;
+  description?: string;
+  dataType: ObjectPropertyType;
+  valueTypeApiName?: ValueTypeApiName;
+  requireImplementation: boolean;
+}
 
 /**
  * Log Safety: SAFE
