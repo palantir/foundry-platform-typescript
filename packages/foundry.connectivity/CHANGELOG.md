@@ -1,5 +1,19 @@
 # @osdk/foundry.connectivity
 
+## 2.41.0
+
+### Minor Changes
+
+- fb159c9: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [fb159c9]
+  - @osdk/foundry.orchestration@2.41.0
+  - @osdk/foundry.filesystem@2.41.0
+  - @osdk/foundry.datasets@2.41.0
+  - @osdk/foundry.core@2.41.0
+
 ## 2.40.0
 
 ### Minor Changes

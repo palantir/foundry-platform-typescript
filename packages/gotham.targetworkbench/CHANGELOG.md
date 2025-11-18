@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.14.0
+
+### Minor Changes
+
+- fb159c9: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [fb159c9]
+  - @osdk/gotham.core@0.14.0
+
 ## 0.13.0
 
 ### Minor Changes

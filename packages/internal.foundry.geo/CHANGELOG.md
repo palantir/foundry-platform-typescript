@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.41.0
+
+### Minor Changes
+
+- fb159c9: Regenerate SDKs
+
 ## 2.40.0
 
 ### Minor Changes
