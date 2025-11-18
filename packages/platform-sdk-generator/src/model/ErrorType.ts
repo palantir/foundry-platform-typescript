@@ -85,7 +85,10 @@ export class ErrorType extends Type {
       : "SAFE";
 
     const errorDescription = error.documentation.plainTextDescription ?? "";
-    const errorDescriptionNoNewLines = errorDescription.replaceAll("\n", " ");
+    const errorDescriptionNoNewLines = errorDescription
+      .replaceAll("\n", " ")
+      .replaceAll("\\", "\\\\")
+      .replaceAll("\"", "\\\"");
 
     let out = "";
     out += `
