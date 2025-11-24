@@ -38,10 +38,10 @@ const _create: $FoundryPlatformMethod<
 > = [1, "/v2/connectivity/connections/{0}/virtualTables", 3];
 
 /**
- * Creates a new VirtualTable from an upstream table. The VirtualTable will be created
+ * Creates a new [Virtual Table](https://www.palantir.com/docs/foundry/data-integration/virtual-tables/) from an upstream table. The VirtualTable will be created
  * in the specified parent folder and can be queried through Foundry's data access APIs.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-virtual-table-write]
  * URL: /v2/connectivity/connections/{connectionRid}/virtualTables

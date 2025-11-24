@@ -313,7 +313,13 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.aggregateObjectSetV2": {
       "variables": {},
     },
+    "v2.loadObjectSetLinksV2": {
+      "variables": {},
+    },
     "v2.uploadAttachmentV2": {
+      "variables": {},
+    },
+    "v2.uploadAttachmentWithRid": {
       "variables": {},
     },
     "v2.getAttachmentContentV2": {

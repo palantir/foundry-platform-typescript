@@ -66,6 +66,55 @@ export function upload(
   return $foundryPlatformFetch($ctx, _upload, args[0], args[1], headerParams);
 }
 
+const _uploadWithRid: $FoundryPlatformMethod<
+  (
+    attachmentRid: _Ontologies.AttachmentRid,
+    $body: Blob,
+    $queryParams: {
+      filename: _Core.Filename;
+      preview?: _Core.PreviewMode | undefined;
+    },
+    $headerParams?: { "Content-Type"?: _Core.ContentType },
+  ) => Promise<_Ontologies.AttachmentV2>
+> = [1, "/v2/ontologies/attachments/upload/{0}", 7, "*/*"];
+
+/**
+ * This endpoint is identical to `/v2/ontologies/attachments/upload` but additionally accepts a previously
+ * generated `AttachmentRid`.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-write]
+ * URL: /v2/ontologies/attachments/upload/{attachmentRid}
+ */
+export function uploadWithRid(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    attachmentRid: _Ontologies.AttachmentRid,
+    $body: Blob,
+    $queryParams: {
+      filename: _Core.Filename;
+      preview?: _Core.PreviewMode | undefined;
+    },
+    $headerParams?: { "Content-Type"?: _Core.ContentType },
+  ]
+): Promise<_Ontologies.AttachmentV2> {
+  const headerParams = {
+    ...args[3],
+    "Content-Type": args[3]?.["Content-Type"] ?? args[1].type,
+    "Content-Length": args[1].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _uploadWithRid,
+    args[0],
+    args[1],
+    args[2],
+    headerParams,
+  );
+}
+
 const _read: $FoundryPlatformMethod<
   (attachmentRid: _Ontologies.AttachmentRid) => Promise<Response>
 > = [0, "/v2/ontologies/attachments/{0}/content", , , "*/*"];

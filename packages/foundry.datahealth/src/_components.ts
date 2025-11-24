@@ -36,6 +36,16 @@ export interface AllowedColumnValuesCheckConfig {
 }
 
 /**
+ * Checks the approximate percentage of unique values in a specific column.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ApproximateUniquePercentageCheckConfig {
+  subject: DatasetSubject;
+  percentageCheckConfig: PercentageCheckConfig;
+}
+
+/**
  * A boolean column value.
  *
  * Log Safety: UNSAFE
@@ -94,6 +104,9 @@ export type CheckConfig =
   | ({ type: "numericColumnMean" } & NumericColumnMeanCheckConfig)
   | ({ type: "dateColumnRange" } & DateColumnRangeCheckConfig)
   | ({ type: "jobDuration" } & JobDurationCheckConfig)
+  | ({
+    type: "approximateUniquePercentage";
+  } & ApproximateUniquePercentageCheckConfig)
   | ({ type: "buildStatus" } & BuildStatusCheckConfig)
   | ({ type: "columnType" } & ColumnTypeCheckConfig)
   | ({ type: "allowedColumnValues" } & AllowedColumnValuesCheckConfig)
@@ -465,6 +478,13 @@ export interface ReplaceAllowedColumnValuesCheckConfig {
 /**
  * Log Safety: SAFE
  */
+export interface ReplaceApproximateUniquePercentageCheckConfig {
+  percentageCheckConfig: ReplacePercentageCheckConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface ReplaceBuildDurationCheckConfig {
   timeCheckConfig: TimeCheckConfig;
 }
@@ -487,6 +507,9 @@ export type ReplaceCheckConfig =
   | ({ type: "numericColumnMean" } & ReplaceNumericColumnMeanCheckConfig)
   | ({ type: "dateColumnRange" } & ReplaceDateColumnRangeCheckConfig)
   | ({ type: "jobDuration" } & ReplaceJobDurationCheckConfig)
+  | ({
+    type: "approximateUniquePercentage";
+  } & ReplaceApproximateUniquePercentageCheckConfig)
   | ({ type: "buildStatus" } & ReplaceBuildStatusCheckConfig)
   | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
   | ({ type: "allowedColumnValues" } & ReplaceAllowedColumnValuesCheckConfig)

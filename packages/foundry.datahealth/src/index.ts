@@ -16,6 +16,7 @@
 
 export type {
   AllowedColumnValuesCheckConfig,
+  ApproximateUniquePercentageCheckConfig,
   BooleanColumnValue,
   BranchName,
   BuildDurationCheckConfig,
@@ -59,6 +60,7 @@ export type {
   PrimaryKeyCheckConfig,
   PrimaryKeyConfig,
   ReplaceAllowedColumnValuesCheckConfig,
+  ReplaceApproximateUniquePercentageCheckConfig,
   ReplaceBuildDurationCheckConfig,
   ReplaceBuildStatusCheckConfig,
   ReplaceCheckConfig,
