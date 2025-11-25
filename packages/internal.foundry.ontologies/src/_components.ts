@@ -2136,10 +2136,12 @@ export interface LinkedInterfaceTypeApiName {
 }
 
 /**
- * Does not contain information about the source object. Should be used in a nested type that provides information about source objects.
- *
- * Log Safety: UNSAFE
- */
+   * Does not contain information about the source object. Should be used in a nested type that provides information about source objects.
+The targetObject Ontology Object in this response will only ever have the __primaryKey and __apiName
+fields present, thus functioning as object locators rather than full objects.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface LinkedObjectLocator {
   targetObject?: OntologyObjectV2;
   linkType?: LinkTypeApiName;
@@ -4463,6 +4465,7 @@ export interface ResolvedInterfacePropertyType {
   description?: string;
   dataType: ObjectPropertyType;
   valueTypeApiName?: ValueTypeApiName;
+  valueFormatting?: PropertyValueFormattingRule;
   requireImplementation: boolean;
 }
 
