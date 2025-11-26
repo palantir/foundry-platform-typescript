@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.15.0
+
+### Minor Changes
+
+- a6bf99a: Regenerate Platform SDKs based on Rosetta bundle 1.1387.0
+
+### Patch Changes
+
+- Updated dependencies [a6bf99a]
+  - @osdk/gotham.core@0.15.0
+
 ## 0.14.0
 
 ### Minor Changes
