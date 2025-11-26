@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.29.0
+
+### Minor Changes
+
+- a6bf99a: Regenerate Platform SDKs based on Rosetta bundle 1.1387.0
+
 ## 0.28.0
 
 ### Minor Changes

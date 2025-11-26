@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.42.0
+
+### Minor Changes
+
+- a6bf99a: Regenerate Platform SDKs based on Rosetta bundle 1.1387.0
+
+### Patch Changes
+
+- Updated dependencies [a6bf99a]
+  - @osdk/foundry.ontologies@2.42.0
+  - @osdk/foundry.functions@2.42.0
+  - @osdk/foundry.core@2.42.0
+
 ## 2.41.0
 
 ### Minor Changes
