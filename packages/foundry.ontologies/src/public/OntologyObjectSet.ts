@@ -269,3 +269,45 @@ export function aggregate(
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {
   return $foundryPlatformFetch($ctx, _aggregate, ...args);
 }
+
+const _loadLinks: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.LoadObjectSetLinksRequestV2,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.LoadObjectSetLinksResponseV2>
+> = [1, "/v2/ontologies/{0}/objectSets/loadLinks", 3];
+
+/**
+ * Loads the specified links from the defined object set.
+ *
+ * Links are defined as a link type API name and object locators for the source and target objects
+ * where only the `__primaryKey` and `__apiName` properties are loaded.
+ *
+ * Links are grouped by source object locator.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objectSets/loadLinks
+ */
+export function loadLinks(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.LoadObjectSetLinksRequestV2,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.LoadObjectSetLinksResponseV2> {
+  return $foundryPlatformFetch($ctx, _loadLinks, ...args);
+}

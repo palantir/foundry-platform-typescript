@@ -269,6 +269,22 @@ export interface AttachmentNotFound {
 }
 
 /**
+ * The provided attachment RID already exists and cannot be overwritten.
+ *
+ * Log Safety: SAFE
+ */
+export interface AttachmentRidAlreadyExists {
+  errorCode: "NOT_FOUND";
+  errorName: "AttachmentRidAlreadyExists";
+  errorDescription:
+    "The provided attachment RID already exists and cannot be overwritten.";
+  errorInstanceId: string;
+  parameters: {
+    attachmentRid: unknown;
+  };
+}
+
+/**
    * The file is too large to be uploaded as an attachment.
 The maximum attachment size is 200MB.
    *
@@ -473,6 +489,38 @@ export interface InterfaceLinkTypeNotFound {
     interfaceTypeRid: unknown;
     interfaceLinkTypeApiName: unknown;
     interfaceLinkTypeRid: unknown;
+  };
+}
+
+/**
+ * Properties used in ordering must have the same ids.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfacePropertiesHaveDifferentIds {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InterfacePropertiesHaveDifferentIds";
+  errorDescription: "Properties used in ordering must have the same ids.";
+  errorInstanceId: string;
+  parameters: {
+    properties: unknown;
+  };
+}
+
+/**
+ * The requested interface property types are not present on every object type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfacePropertiesNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "InterfacePropertiesNotFound";
+  errorDescription:
+    "The requested interface property types are not present on every object type.";
+  errorInstanceId: string;
+  parameters: {
+    objectType: unknown;
+    missingInterfaceProperties: unknown;
   };
 }
 
@@ -1012,6 +1060,20 @@ export interface LinkTypeNotFound {
 }
 
 /**
+ * Bulk loading object set links is not supported by Object Storage v1.
+ *
+ * Log Safety: SAFE
+ */
+export interface LoadObjectSetLinksNotSupported {
+  errorCode: "FAILED_PRECONDITION";
+  errorName: "LoadObjectSetLinksNotSupported";
+  errorDescription:
+    "Bulk loading object set links is not supported by Object Storage v1.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
  *
  * Log Safety: UNSAFE
@@ -1374,6 +1436,24 @@ export interface ObjectsExceededLimit {
 }
 
 /**
+   * The provided objects are being modified concurrently and the operation would result in a conflict.
+The client should retry the request later.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectsModifiedConcurrently {
+  errorCode: "CONFLICT";
+  errorName: "ObjectsModifiedConcurrently";
+  errorDescription:
+    "The provided objects are being modified concurrently and the operation would result in a conflict. The client should retry the request later.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
  * The requested object type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1594,15 +1674,14 @@ export interface ParentAttachmentPermissionDenied {
 }
 
 /**
- * Properties used in ordering must have the same ids. Temporary restriction imposed due to OSS limitations.
+ * Properties used in ordering must have the same ids.
  *
  * Log Safety: UNSAFE
  */
 export interface PropertiesHaveDifferentIds {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertiesHaveDifferentIds";
-  errorDescription:
-    "Properties used in ordering must have the same ids. Temporary restriction imposed due to OSS limitations.";
+  errorDescription: "Properties used in ordering must have the same ids.";
   errorInstanceId: string;
   parameters: {
     properties: unknown;

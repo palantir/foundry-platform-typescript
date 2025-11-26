@@ -41,7 +41,7 @@ const _search: $PlatformMethod<
 /**
  * Retrieves all published maps containing the mapName (does not have to be exact).
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:map-read]
  * URL: /v2/gaia/maps/search
@@ -74,7 +74,7 @@ const _addArtifactsTo: $PlatformMethod<
  * This creates a new layer that includes all the provided objects per request, thus not idempotent.
  * Returns the IDs of the layers created.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:map-write]
  * URL: /v2/gaia/maps/{mapRid}/addArtifactsTo
@@ -106,7 +106,7 @@ const _load: $PlatformMethod<
  * The response contains a mapping of all layers contained in the map. The map's layer hierarchy can be recreated
  * by using the `rootLayerIds` in the response along with the `subLayerIds` field in the layer's metadata.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:map-read]
  * URL: /v2/gaia/maps/{mapRid}/load
@@ -139,7 +139,7 @@ const _loadWithExtension: $PlatformMethod<
  * The response contains a mapping of all layers contained in the map. The map's layer hierarchy can be recreated
  * by using the `rootLayerIds` in the response along with the `subLayerIds` field in the layer's metadata.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:map-read]
  * URL: /v2/gaia/maps/{mapRid}/loadWithExtension
@@ -167,7 +167,7 @@ const _loadLayers: $PlatformMethod<
  * Loads the elements contained in the requested layers of a Gaia map. The response includes the geometries
  * associated with the elements.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:map-read]
  * URL: /v2/gaia/maps/{mapRid}/loadLayers
@@ -193,7 +193,7 @@ const _renderSymbol: $PlatformMethod<
 /**
  * Fetches the PNG for the given symbol identifier
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:map-read]
  * URL: /v2/gaia/maps/renderSymbol

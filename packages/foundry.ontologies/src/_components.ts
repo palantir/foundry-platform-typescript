@@ -2136,6 +2136,18 @@ export interface LinkedInterfaceTypeApiName {
 }
 
 /**
+   * Does not contain information about the source object. Should be used in a nested type that provides information about source objects.
+The targetObject Ontology Object in this response will only ever have the __primaryKey and __apiName
+fields present, thus functioning as object locators rather than full objects.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface LinkedObjectLocator {
+  targetObject?: OntologyObjectV2;
+  linkType?: LinkTypeApiName;
+}
+
+/**
  * A reference to the linked object type.
  *
  * Log Safety: UNSAFE
@@ -2148,6 +2160,17 @@ export interface LinkedObjectTypeApiName {
  * Log Safety: UNSAFE
  */
 export type LinkedObjectV2 = LooselyBrandedString<"LinkedObjectV2">;
+
+/**
+   * The Ontology Objects in this response will only ever have the __primaryKey and __apiName
+fields present, thus functioning as object locators rather than full objects.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface LinksFromObject {
+  sourceObject?: OntologyObjectV2;
+  linkedObjects: Array<LinkedObjectLocator>;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -2376,6 +2399,25 @@ export interface ListQueryTypesResponse {
 export interface ListQueryTypesResponseV2 {
   nextPageToken?: _Core.PageToken;
   data: Array<QueryTypeV2>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadObjectSetLinksRequestV2 {
+  objectSet: ObjectSet;
+  links: Array<LinkTypeApiName>;
+  pageToken?: _Core.PageToken;
+  includeComputeUsage?: _Core.IncludeComputeUsage;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadObjectSetLinksResponseV2 {
+  data: Array<LinksFromObject>;
+  nextPageToken?: _Core.PageToken;
+  computeUsage?: _Core.ComputeSeconds;
 }
 
 /**
@@ -4430,6 +4472,7 @@ export interface ResolvedInterfacePropertyType {
   description?: string;
   dataType: ObjectPropertyType;
   valueTypeApiName?: ValueTypeApiName;
+  valueFormatting?: PropertyValueFormattingRule;
   requireImplementation: boolean;
 }
 
@@ -4531,7 +4574,12 @@ export interface SearchObjectsForInterfaceRequest {
     InterfaceTypeApiName,
     Array<SharedPropertyTypeApiName>
   >;
+  augmentedInterfacePropertyTypes: Record<
+    InterfaceTypeApiName,
+    Array<InterfacePropertyApiName>
+  >;
   selectedSharedPropertyTypes: Array<SharedPropertyTypeApiName>;
+  selectedInterfacePropertyTypes: Array<InterfacePropertyApiName>;
   selectedObjectTypes: Array<ObjectTypeApiName>;
   otherInterfaceTypes: Array<InterfaceTypeApiName>;
   pageSize?: _Core.PageSize;
