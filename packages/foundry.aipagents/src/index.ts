@@ -85,6 +85,7 @@ export type {
   ContentNotFound,
   ContextSizeExceededLimit,
   CreateSessionPermissionDenied,
+  DeleteSessionPermissionDenied,
   FunctionLocatorNotFound,
   GetAllSessionsAgentsPermissionDenied,
   GetRagContextForSessionPermissionDenied,

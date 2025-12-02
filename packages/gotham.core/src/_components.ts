@@ -668,6 +668,18 @@ export type MediaType = LooselyBrandedString<"MediaType">;
 export interface NullType {}
 
 /**
+   * The time series property can either contain either numeric or non-numeric data. This enables mixed sensor types
+where some sensor time series are numeric and others are categorical. A boolean property reference can be used
+to determine if the series is numeric or non-numeric. Without this property, the series type can be either
+numeric or non-numeric and must be inferred from the result of a time series query.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumericOrNonNumericType {
+  isNonNumericPropertyTypeId?: string;
+}
+
+/**
    * An operation that can be performed on a resource. Operations are used to define the permissions that a Role has.
 Operations are typically in the format service:action, where service is related to the type of resource and action is the action being performed.
    *
@@ -887,13 +899,14 @@ export type TableRid = LooselyBrandedString<"TableRid">;
  */
 export type TimeSeriesItemType =
   | ({ type: "string" } & StringType)
-  | ({ type: "double" } & DoubleType);
+  | ({ type: "double" } & DoubleType)
+  | ({ type: "numericOrNonNumeric" } & NumericOrNonNumericType);
 
 /**
  * Log Safety: UNSAFE
  */
 export interface TimeseriesType {
-  itemType?: TimeSeriesItemType;
+  itemType: TimeSeriesItemType;
 }
 
 /**

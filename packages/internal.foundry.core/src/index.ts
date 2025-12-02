@@ -271,6 +271,7 @@ export type {
   NotQuery,
   NotQueryV2,
   NullType,
+  NumericOrNonNumericType,
   ObjectEdit,
   ObjectEdits,
   ObjectPrimaryKey,

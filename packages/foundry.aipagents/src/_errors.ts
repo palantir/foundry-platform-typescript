@@ -178,6 +178,22 @@ export interface CreateSessionPermissionDenied {
 }
 
 /**
+ * Could not delete the Session.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeleteSessionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DeleteSessionPermissionDenied";
+  errorDescription: "Could not delete the Session.";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+  };
+}
+
+/**
    * The specified function locator is configured for use by the Agent but could not be found.
 The function type or version may not exist or the client token does not have access.
    *

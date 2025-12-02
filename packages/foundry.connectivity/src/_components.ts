@@ -1012,6 +1012,20 @@ export interface FoundryWorker {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface GetConfigurationConnectionsBatchRequestElement {
+  connectionRid: ConnectionRid;
+}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface GetConfigurationConnectionsBatchResponse {
+  data: Record<ConnectionRid, ConnectionConfiguration>;
+}
+
+/**
  * Pointer to the table in AWS Glue.
  *
  * Log Safety: UNSAFE

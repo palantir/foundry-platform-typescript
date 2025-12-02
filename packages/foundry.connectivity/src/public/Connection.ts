@@ -178,6 +178,34 @@ export function getConfiguration(
   return $foundryPlatformFetch($ctx, _getConfiguration, ...args);
 }
 
+const _getConfigurationBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Connectivity.GetConfigurationConnectionsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.GetConfigurationConnectionsBatchResponse>
+> = [1, "/v2/connectivity/connections/getConfigurationBatch", 3];
+
+/**
+ * Returns a map of Connection RIDs to their corresponding configurations.
+ * Connections are filtered from the response if they don't exist or the requesting token lacks the required permissions.
+ *
+ * The maximum batch size for this endpoint is 200.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:connectivity-connection-read]
+ * URL: /v2/connectivity/connections/getConfigurationBatch
+ */
+export function getConfigurationBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Connectivity.GetConfigurationConnectionsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.GetConfigurationConnectionsBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getConfigurationBatch, ...args);
+}
+
 const _uploadCustomJdbcDrivers: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,

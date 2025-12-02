@@ -388,6 +388,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.createSession": {
       "variables": {},
     },
+    "v2.deleteSession": {
+      "variables": {},
+    },
     "v2.listSessions": {
       "variables": {},
     },
@@ -785,6 +788,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getConfiguration": {
+      "variables": {},
+    },
+    "v2.getConfigurationConnectionsBatch": {
       "variables": {},
     },
     "v2.uploadCustomJdbcDriversConnection": {
