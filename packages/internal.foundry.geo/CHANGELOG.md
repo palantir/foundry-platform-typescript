@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.43.0
+
+### Minor Changes
+
+- 843a406: Bump apis
+
 ## 2.42.0
 
 ### Minor Changes

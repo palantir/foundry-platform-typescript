@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.30.0
+
+### Minor Changes
+
+- 843a406: Bump apis
+
 ## 0.29.0
 
 ### Minor Changes

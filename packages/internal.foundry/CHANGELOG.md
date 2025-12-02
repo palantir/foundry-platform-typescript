@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.43.0
+
+### Minor Changes
+
+- 843a406: Bump apis
+
+### Patch Changes
+
+- Updated dependencies [843a406]
+  - @osdk/internal.foundry.ontologies@2.43.0
+  - @osdk/internal.foundry.datasets@2.43.0
+  - @osdk/internal.foundry.core@2.43.0
+  - @osdk/internal.foundry.geo@2.43.0
+  - @osdk/internal.foundry.ontologiesv2@2.43.0
+  - @osdk/internal.foundry.mediasets@2.43.0
+
 ## 2.42.0
 
 ### Minor Changes
