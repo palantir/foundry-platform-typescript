@@ -1,5 +1,11 @@
 # @osdk/gotham.core
 
+## 0.16.0
+
+### Minor Changes
+
+- 843a406: Bump apis
+
 ## 0.15.0
 
 ### Minor Changes

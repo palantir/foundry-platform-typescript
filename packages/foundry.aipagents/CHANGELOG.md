@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.43.0
+
+### Minor Changes
+
+- 843a406: Bump apis
+
+### Patch Changes
+
+- Updated dependencies [843a406]
+  - @osdk/foundry.ontologies@2.43.0
+  - @osdk/foundry.functions@2.43.0
+  - @osdk/foundry.core@2.43.0
+
 ## 2.42.0
 
 ### Minor Changes

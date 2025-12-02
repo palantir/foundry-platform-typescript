@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.16.0
+
+### Minor Changes
+
+- 843a406: Bump apis
+
+### Patch Changes
+
+- Updated dependencies [843a406]
+  - @osdk/gotham.targetworkbench@0.16.0
+  - @osdk/gotham.maprendering@0.16.0
+  - @osdk/gotham.geojson@0.16.0
+  - @osdk/gotham.core@0.16.0
+  - @osdk/gotham.gaia@0.16.0
+
 ## 0.15.0
 
 ### Minor Changes
