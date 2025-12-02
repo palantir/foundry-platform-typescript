@@ -2692,6 +2692,18 @@ export interface NotQueryV2 {
 export interface NullType {}
 
 /**
+   * The time series property can either contain either numeric or non-numeric data. This enables mixed sensor types
+where some sensor time series are numeric and others are categorical. A boolean property reference can be used
+to determine if the series is numeric or non-numeric. Without this property, the series type can be either
+numeric or non-numeric and must be inferred from the result of a time series query.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface NumericOrNonNumericType {
+  isNonNumericPropertyTypeId?: string;
+}
+
+/**
  * @deprecated Use `ObjectEdit` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
@@ -4883,7 +4895,8 @@ export interface TimeseriesEntry {
  */
 export type TimeSeriesItemType =
   | ({ type: "string" } & StringType)
-  | ({ type: "double" } & DoubleType);
+  | ({ type: "double" } & DoubleType)
+  | ({ type: "numericOrNonNumeric" } & NumericOrNonNumericType);
 
 /**
  * @deprecated Use `TimeSeriesPoint` in the `internal.foundry.ontologies` package
@@ -4939,7 +4952,7 @@ export type TimeseriesTemplateVersion = LooselyBrandedString<
  * Log Safety: UNSAFE
  */
 export interface TimeseriesType {
-  itemType?: TimeSeriesItemType;
+  itemType: TimeSeriesItemType;
 }
 
 /**

@@ -127,6 +127,7 @@ export type {
   MediaType,
   NotQueryV2,
   NullType,
+  NumericOrNonNumericType,
   ObjectRid,
   ObjectSet,
   ObjectSetAsBaseObjectTypesType,

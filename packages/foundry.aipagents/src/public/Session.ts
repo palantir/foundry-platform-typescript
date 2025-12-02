@@ -57,6 +57,35 @@ export function create(
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
+const _deleteSession: $FoundryPlatformMethod<
+  (
+    agentRid: _AipAgents.AgentRid,
+    sessionRid: _AipAgents.SessionRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [3, "/v2/aipAgents/agents/{0}/sessions/{1}", 2];
+
+/**
+ * Delete a conversation session between the calling user and an Agent.
+ * Once deleted, the session can no longer be accessed and will not appear in session lists.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:aip-agents-write]
+ * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}
+ */
+export function deleteSession(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    agentRid: _AipAgents.AgentRid,
+    sessionRid: _AipAgents.SessionRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _deleteSession, ...args);
+}
+
 const _list: $FoundryPlatformMethod<
   (
     agentRid: _AipAgents.AgentRid,

@@ -626,6 +626,20 @@ export interface ApplyActionRequestV2 {
 export interface ApplyActionResponse {}
 
 /**
+ * Performs both apply reducers and extract main value to return the reduced main value.
+ *
+ * Log Safety: SAFE
+ */
+export interface ApplyReducersAndExtractMainValueLoadLevel {}
+
+/**
+ * Returns a single value of an array as configured in the ontology.
+ *
+ * Log Safety: SAFE
+ */
+export interface ApplyReducersLoadLevel {}
+
+/**
  * Computes an approximate number of distinct values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -1603,6 +1617,13 @@ export interface ExperimentalPropertyTypeStatus {}
 export type ExtractDatePart = "DAYS" | "MONTHS" | "QUARTERS" | "YEARS";
 
 /**
+ * Returns the main value of a struct as configured in the ontology.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExtractMainValueLoadLevel {}
+
+/**
  * Extracts the specified date part from a date or timestamp.
  *
  * Log Safety: UNSAFE
@@ -1905,11 +1926,33 @@ export type InterfacePropertyApiName = LooselyBrandedString<
 >;
 
 /**
+ * An implementation of an interface property via a local property.
+ *
  * Log Safety: UNSAFE
  */
 export interface InterfacePropertyLocalPropertyImplementation {
   propertyApiName: PropertyApiName;
 }
+
+/**
+ * An implementation of an interface property via the field of a local struct property.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfacePropertyStructFieldImplementation {
+  structFieldOfProperty: StructFieldOfPropertyImplementation;
+}
+
+/**
+   * An implementation of a struct interface property via a local struct property. Specifies a mapping of interface
+struct fields to local struct fields or properties.
+   *
+   * Log Safety: UNSAFE
+   */
+export type InterfacePropertyStructImplementation = Record<
+  StructFieldApiName,
+  PropertyOrStructFieldOfPropertyImplementation
+>;
 
 /**
    * The definition of an interface property type on an interface. An interface property can either be backed by a
@@ -1922,14 +1965,18 @@ export type InterfacePropertyType =
   | ({ type: "interfaceSharedPropertyType" } & InterfaceSharedPropertyType);
 
 /**
-   * Describes how an object type implements an interface property type. For now this is only possible via a single
-local property but this may be extended in the future.
-   *
-   * Log Safety: UNSAFE
-   */
-export type InterfacePropertyTypeImplementation = {
-  type: "localPropertyImplementation";
-} & InterfacePropertyLocalPropertyImplementation;
+ * Describes how an object type implements an interface property.
+ *
+ * Log Safety: UNSAFE
+ */
+export type InterfacePropertyTypeImplementation =
+  | ({
+    type: "structFieldImplementation";
+  } & InterfacePropertyStructFieldImplementation)
+  | ({ type: "structImplementation" } & InterfacePropertyStructImplementation)
+  | ({
+    type: "localPropertyImplementation";
+  } & InterfacePropertyLocalPropertyImplementation);
 
 /**
  * The unique resource identifier of an interface property type, useful for interacting with other Foundry APIs.
@@ -2429,6 +2476,7 @@ export interface LoadObjectSetRequestV2 {
   objectSet: ObjectSet;
   orderBy?: SearchOrderByV2;
   select: Array<SelectedPropertyApiName>;
+  selectV2: Array<PropertyIdentifier>;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -2457,6 +2505,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   objectSet: ObjectSet;
   orderBy?: SearchOrderByV2;
   select: Array<SelectedPropertyApiName>;
+  selectV2: Array<PropertyIdentifier>;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -2473,7 +2522,7 @@ single object set- some objects may have all their properties and some may only 
 The interfaceToObjectTypeMappings field contains mappings from SharedPropertyTypeApiNames on the interface(s) to
 PropertyApiName for properties on the object(s).
 The interfaceToObjectTypeMappingsV2 field contains mappings from InterfacePropertyApiNames on the
-interface(s) to InterfacePropertyImplementation for properties on the object(s). This therefore includes
+interface(s) to InterfacePropertyTypeImplementation for properties on the object(s). This therefore includes
 implementations of both properties backed by SharedPropertyTypes as well as properties defined on the interface.
    *
    * Log Safety: UNSAFE
@@ -2502,6 +2551,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   objectSet: ObjectSet;
   orderBy?: SearchOrderByV2;
   select: Array<SelectedPropertyApiName>;
+  selectV2: Array<PropertyIdentifier>;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3541,7 +3591,23 @@ export interface OntologyObject {
  */
 export interface OntologyObjectArrayType {
   subType: ObjectPropertyType;
+  reducers: Array<OntologyObjectArrayTypeReducer>;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OntologyObjectArrayTypeReducer {
+  direction: OntologyObjectArrayTypeReducerSortDirection;
+  field?: StructFieldApiName;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type OntologyObjectArrayTypeReducerSortDirection =
+  | "ASCENDING_NULLS_LAST"
+  | "DESCENDING_NULLS_LAST";
 
 /**
  * Log Safety: UNSAFE
@@ -3933,7 +3999,15 @@ export type PropertyId = LooselyBrandedString<"PropertyId">;
  */
 export type PropertyIdentifier =
   | ({ type: "property" } & PropertyApiNameSelector)
-  | ({ type: "structField" } & StructFieldSelector);
+  | ({ type: "structField" } & StructFieldSelector)
+  | ({ type: "propertyWithLoadLevel" } & PropertyWithLoadLevelSelector);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface PropertyImplementation {
+  propertyApiName: PropertyApiName;
+}
 
 /**
  * Formatting configuration for known Foundry types.
@@ -3943,6 +4017,22 @@ export type PropertyIdentifier =
 export interface PropertyKnownTypeFormattingRule {
   knownType: KnownType;
 }
+
+/**
+   * The load level of the property:
+
+APPLY_REDUCERS: Returns a single value of an array as configured in the ontology.
+EXTRACT_MAIN_VALUE: Returns the main value of a struct as configured in the ontology.
+APPLY_REDUCERS_AND_EXTRACT_MAIN_VALUE: Performs both to return the reduced main value.
+   *
+   * Log Safety: UNSAFE
+   */
+export type PropertyLoadLevel =
+  | ({
+    type: "applyReducersAndExtractMainValue";
+  } & ApplyReducersAndExtractMainValueLoadLevel)
+  | ({ type: "applyReducers" } & ApplyReducersLoadLevel)
+  | ({ type: "extractMainValue" } & ExtractMainValueLoadLevel);
 
 /**
  * Wrapper for numeric formatting options.
@@ -3966,6 +4056,13 @@ export type PropertyNumberFormattingRuleType =
   | ({ type: "standardUnit" } & NumberFormatStandardUnit)
   | ({ type: "customUnit" } & NumberFormatCustomUnit)
   | ({ type: "ratio" } & NumberFormatRatio);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type PropertyOrStructFieldOfPropertyImplementation =
+  | ({ type: "structFieldOfProperty" } & StructFieldOfPropertyImplementation)
+  | ({ type: "property" } & PropertyImplementation);
 
 /**
  * Formatting configuration for timestamp property values.
@@ -4092,6 +4189,18 @@ export type PropertyValueFormattingRule =
   | ({ type: "boolean" } & PropertyBooleanFormattingRule)
   | ({ type: "knownType" } & PropertyKnownTypeFormattingRule)
   | ({ type: "timestamp" } & PropertyTimestampFormattingRule);
+
+/**
+   * A combination of a property API name and the load level to apply to the property. You can select a reduced value
+for arrays and the main value for structs. If the provided load level cannot be applied to the property type,
+then it will be ignored. This selector is experimental and may not work in filters or sorts.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface PropertyWithLoadLevelSelector {
+  propertyIdentifier: PropertyIdentifier;
+  loadLevel: PropertyLoadLevel;
+}
 
 /**
  * An error indicating that the subscribe request should be attempted on a different node.
@@ -4407,6 +4516,43 @@ export interface RegexQuery {
 }
 
 /**
+ * Specifies a bound for a relative date range query.
+ *
+ * Log Safety: UNSAFE
+ */
+export type RelativeDateRangeBound = {
+  type: "relativePoint";
+} & RelativePointInTime;
+
+/**
+   * Returns objects where the specified date or timestamp property falls within a relative date range.
+The bounds are calculated relative to query execution time and rounded to midnight in the specified timezone.
+Examples:
+
+Last 7 days: relativeStartTime = {value: -7, timeUnit: DAY}, relativeEndTime = {value: 0, timeUnit: DAY}
+This month: relativeStartTime = {value: 0, timeUnit: MONTH}, relativeEndTime = {value: 1, timeUnit: MONTH}
+   *
+   * Log Safety: UNSAFE
+   */
+export interface RelativeDateRangeQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  relativeStartTime?: RelativeDateRangeBound;
+  relativeEndTime?: RelativeDateRangeBound;
+  timeZoneId: string;
+}
+
+/**
+ * A point in time specified relative to query execution time.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RelativePointInTime {
+  value: number;
+  timeUnit: RelativeTimeUnit;
+}
+
+/**
  * A relative time, such as "3 days before" or "2 hours after" the current moment.
  *
  * Log Safety: UNSAFE
@@ -4444,6 +4590,13 @@ export type RelativeTimeSeriesTimeUnit =
   | "WEEKS"
   | "MONTHS"
   | "YEARS";
+
+/**
+ * Units for relative time calculations.
+ *
+ * Log Safety: SAFE
+ */
+export type RelativeTimeUnit = "DAY" | "WEEK" | "MONTH" | "YEAR";
 
 /**
  * Unique request id
@@ -4530,6 +4683,7 @@ export type SearchJsonQuery =
 export type SearchJsonQueryV2 =
   | ({ type: "lt" } & LtQueryV2)
   | ({ type: "doesNotIntersectBoundingBox" } & DoesNotIntersectBoundingBoxQuery)
+  | ({ type: "relativeDateRange" } & RelativeDateRangeQuery)
   | ({ type: "wildcard" } & WildcardQuery)
   | ({ type: "withinDistanceOf" } & WithinDistanceOfQuery)
   | ({ type: "withinBoundingBox" } & WithinBoundingBoxQuery)
@@ -4599,6 +4753,7 @@ export interface SearchObjectsRequestV2 {
   pageSize?: _Core.PageSize;
   pageToken?: _Core.PageToken;
   select: Array<PropertyApiName>;
+  selectV2: Array<PropertyIdentifier>;
   excludeRid?: boolean;
   snapshot?: boolean;
 }
@@ -5028,10 +5183,17 @@ export interface StructFieldEvaluationResult {
 }
 
 /**
-   * A combination of a property API name and a struct field API name used to select struct fields. Note that you can
-still select struct properties with only a 'PropertyApiNameSelector'; the queries will then become 'OR' queries
-across the fields of the struct property, and derived property expressions will operate on the whole struct
-where applicable.
+ * Log Safety: UNSAFE
+ */
+export interface StructFieldOfPropertyImplementation {
+  propertyApiName: PropertyApiName;
+  structFieldApiName: StructFieldApiName;
+}
+
+/**
+   * A combination of a property identifier and the load level to apply to the property. You can select a reduced
+value for arrays and the main value for structs. If the provided load level cannot be applied to the property
+type, then it will be ignored. This selector is experimental and may not work in filters or sorts.
    *
    * Log Safety: UNSAFE
    */
@@ -5090,6 +5252,15 @@ export interface StructParameterFieldArgument {
  */
 export interface StructType {
   structFieldTypes: Array<StructFieldType>;
+  mainValue?: StructTypeMainValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StructTypeMainValue {
+  mainValueType: ObjectPropertyType;
+  fields: Array<StructFieldApiName>;
 }
 
 /**

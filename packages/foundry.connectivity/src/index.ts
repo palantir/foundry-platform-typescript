@@ -113,6 +113,8 @@ export type {
   FilesVirtualTableConfig,
   FolderRid,
   FoundryWorker,
+  GetConfigurationConnectionsBatchRequestElement,
+  GetConfigurationConnectionsBatchResponse,
   GlueVirtualTableConfig,
   HeaderApiKey,
   IcebergVirtualTableConfig,

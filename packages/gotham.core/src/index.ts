@@ -104,6 +104,7 @@ export type {
   MediaSetViewRid,
   MediaType,
   NullType,
+  NumericOrNonNumericType,
   Operation,
   OperationScope,
   OrderByDirection,
