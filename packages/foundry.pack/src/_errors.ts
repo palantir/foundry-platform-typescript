@@ -110,19 +110,6 @@ export interface DocumentTypeNameNotFound {
 }
 
 /**
- * Could not load the ObjectEditEvent.
- *
- * Log Safety: SAFE
- */
-export interface LoadObjectEditEventsPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "LoadObjectEditEventsPermissionDenied";
-  errorDescription: "Could not load the ObjectEditEvent.";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
  * Could not search the Document.
  *
  * Log Safety: SAFE
