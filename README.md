@@ -1,3 +1,7 @@
+<p align="right">
+<a href="https://autorelease.general.dmz.palantir.tech/palantir/foundry-platform-typescript"><img src="https://img.shields.io/badge/Perform%20an-Autorelease-success.svg" alt="Autorelease"></a>
+</p>
+
 # foundry-platform-typescript
 
 The Foundry and Gotham Platform Typescript SDKs provide helpful TypeScript bindings for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/) and select Gotham APIs. Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry) or [`@osdk/gotham.{namespace}`](...). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
