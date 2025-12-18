@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.31.0
+
+### Minor Changes
+
+- cb3d72c: Regenerate Platform SDKs
+
 ## 0.30.0
 
 ### Minor Changes
