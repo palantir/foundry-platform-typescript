@@ -377,6 +377,13 @@ export interface ThreeDimensionalAggregation {
 }
 
 /**
+ * The ID identifying a transaction.
+ *
+ * Log Safety: SAFE
+ */
+export type TransactionId = LooselyBrandedString<"TransactionId">;
+
+/**
  * Log Safety: SAFE
  */
 export interface TwoDimensionalAggregation {

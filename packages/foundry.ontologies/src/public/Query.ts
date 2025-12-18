@@ -38,6 +38,7 @@ const _execute: $FoundryPlatformMethod<
       version?: _Ontologies.FunctionVersion | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
     $headerParams?: {
       attribution?: _Core.Attribution | undefined;
@@ -67,6 +68,7 @@ export function execute(
       version?: _Ontologies.FunctionVersion | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
     $headerParams?: {
       attribution?: _Core.Attribution | undefined;

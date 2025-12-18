@@ -413,6 +413,42 @@ export interface RateLimitExceeded {
 }
 
 /**
+ * Failed to generate a response after retrying up to the configured number of retry attempts. Clients should wait and retry.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RetryAttemptsExceeded {
+  errorCode: "CUSTOM_CLIENT";
+  errorName: "RetryAttemptsExceeded";
+  errorDescription:
+    "Failed to generate a response after retrying up to the configured number of retry attempts. Clients should wait and retry.";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    details: unknown;
+  };
+}
+
+/**
+ * Failed to generate a response after retrying up to the configured retry deadline. Clients should wait and retry.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RetryDeadlineExceeded {
+  errorCode: "CUSTOM_CLIENT";
+  errorName: "RetryDeadlineExceeded";
+  errorDescription:
+    "Failed to generate a response after retrying up to the configured retry deadline. Clients should wait and retry.";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    details: unknown;
+  };
+}
+
+/**
  * Failed to generate a response for a session due to an unexpected error.
  *
  * Log Safety: UNSAFE

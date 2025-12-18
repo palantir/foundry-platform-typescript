@@ -19,6 +19,24 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * The query failed because the Ontology snapshot used for consistent reads became stale. Retrying the request
+typically resolves this.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ConsistentSnapshotError {
+  errorCode: "CONFLICT";
+  errorName: "ConsistentSnapshotError";
+  errorDescription:
+    "The query failed because the Ontology snapshot used for consistent reads became stale. Retrying the request typically resolves this.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
  * Could not execute the Query.
  *
  * Log Safety: UNSAFE

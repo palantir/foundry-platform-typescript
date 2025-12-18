@@ -90,7 +90,10 @@ const _execute: $FoundryPlatformMethod<
   (
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.ExecuteQueryRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      transactionId?: _Functions.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
     $headerParams?: {
       attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
@@ -117,7 +120,10 @@ export function execute(
   ...args: [
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.ExecuteQueryRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      transactionId?: _Functions.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
     $headerParams?: {
       attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
@@ -132,7 +138,10 @@ const _streamingExecute: $FoundryPlatformMethod<
   (
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.StreamingExecuteQueryRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      transactionId?: _Functions.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
     $headerParams?: {
       attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
@@ -184,7 +193,10 @@ export function streamingExecute(
   ...args: [
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.StreamingExecuteQueryRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      transactionId?: _Functions.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
     $headerParams?: {
       attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;

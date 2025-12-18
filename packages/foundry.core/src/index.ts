@@ -31,6 +31,7 @@ export type {
   CenterPoint,
   CenterPointTypes,
   ChangeDataCaptureConfiguration,
+  CheckReportRid,
   CheckRid,
   CipherTextType,
   ComputeSeconds,

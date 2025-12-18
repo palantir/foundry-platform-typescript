@@ -286,6 +286,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.applyActionBatchV2": {
       "variables": {},
     },
+    "v2.applyActionWithOverrides": {
+      "variables": {},
+    },
     "v2.listQueryTypesV2": {
       "variables": {},
     },
@@ -907,6 +910,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.replaceCheck": {
       "variables": {},
     },
+    "v2.getCheckReport": {
+      "variables": {},
+    },
     "v2.renderInvocationObject": {
       "variables": {},
     },
@@ -986,9 +992,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.searchDocuments": {
-      "variables": {},
-    },
-    "v2.loadObjectEditEvents": {
       "variables": {},
     },
     "v2.generateTemplate": {

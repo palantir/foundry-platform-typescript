@@ -46,6 +46,13 @@ export interface AbsoluteValuePropertyExpression {
 export type Action = LooselyBrandedString<"Action">;
 
 /**
+ * An ISO 8601 timestamp.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionExecutionTime = string;
+
+/**
  * A detailed operation for an Action
  *
  * Log Safety: UNSAFE
@@ -551,6 +558,17 @@ export type AggregationV2 =
   | ({ type: "exactDistinct" } & ExactDistinctAggregationV2);
 
 /**
+ * Matches intervals satisfying all the rules in the query
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AllOfRule {
+  rules: Array<IntervalQueryRule>;
+  maxGaps?: number;
+  ordered: boolean;
+}
+
+/**
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
    *
@@ -581,6 +599,15 @@ export interface AndQueryV2 {
 }
 
 /**
+ * Matches intervals satisfying any of the rules in the query
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AnyOfRule {
+  rules: Array<IntervalQueryRule>;
+}
+
+/**
    * Returns objects where the specified field contains any of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
    *
@@ -596,6 +623,17 @@ export interface AnyTermQuery {
  * Log Safety: SAFE
  */
 export type ApplyActionMode = "VALIDATE_ONLY" | "VALIDATE_AND_EXECUTE";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ApplyActionOverrides {
+  uniqueIdentifierLinkIdValues: Record<
+    UniqueIdentifierLinkId,
+    UniqueIdentifierValue
+  >;
+  actionExecutionTime?: ActionExecutionTime;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -624,6 +662,14 @@ export interface ApplyActionRequestV2 {
  * Log Safety: SAFE
  */
 export interface ApplyActionResponse {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ApplyActionWithOverridesRequest {
+  request: ApplyActionRequestV2;
+  overrides: ApplyActionOverrides;
+}
 
 /**
  * Performs both apply reducers and extract main value to return the reduced main value.
@@ -1935,6 +1981,15 @@ export interface InterfacePropertyLocalPropertyImplementation {
 }
 
 /**
+ * An implementation of an interface property via applying reducers on the nested implementation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfacePropertyReducedPropertyImplementation {
+  implementation: NestedInterfacePropertyTypeImplementation;
+}
+
+/**
  * An implementation of an interface property via the field of a local struct property.
  *
  * Log Safety: UNSAFE
@@ -1949,7 +2004,17 @@ struct fields to local struct fields or properties.
    *
    * Log Safety: UNSAFE
    */
-export type InterfacePropertyStructImplementation = Record<
+export interface InterfacePropertyStructImplementation {
+  mapping: InterfacePropertyStructImplementationMapping;
+}
+
+/**
+   * An implementation of a struct interface property via a local struct property. Specifies a mapping of interface
+struct fields to local struct fields or properties.
+   *
+   * Log Safety: UNSAFE
+   */
+export type InterfacePropertyStructImplementationMapping = Record<
   StructFieldApiName,
   PropertyOrStructFieldOfPropertyImplementation
 >;
@@ -1976,7 +2041,10 @@ export type InterfacePropertyTypeImplementation =
   | ({ type: "structImplementation" } & InterfacePropertyStructImplementation)
   | ({
     type: "localPropertyImplementation";
-  } & InterfacePropertyLocalPropertyImplementation);
+  } & InterfacePropertyLocalPropertyImplementation)
+  | ({
+    type: "reducedPropertyImplementation";
+  } & InterfacePropertyReducedPropertyImplementation);
 
 /**
  * The unique resource identifier of an interface property type, useful for interacting with other Foundry APIs.
@@ -2106,6 +2174,29 @@ export interface IntersectsPolygonQuery {
   propertyIdentifier?: PropertyIdentifier;
   value: PolygonValue;
 }
+
+/**
+   * Returns objects where the specified field matches the sub-rule provided. This applies to the analyzed form of
+text fields. Either field or propertyIdentifier can be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface IntervalQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  rule: IntervalQueryRule;
+}
+
+/**
+ * Sub-rule used for evaluating an IntervalQuery
+ *
+ * Log Safety: UNSAFE
+ */
+export type IntervalQueryRule =
+  | ({ type: "allOf" } & AllOfRule)
+  | ({ type: "match" } & MatchRule)
+  | ({ type: "anyOf" } & AnyOfRule)
+  | ({ type: "prefixOnLastToken" } & PrefixOnLastTokenRule);
 
 /**
  * Returns objects based on the existence of the specified field.
@@ -2658,6 +2749,17 @@ export interface LtQueryV2 {
 }
 
 /**
+ * Matches intervals containing the terms in the query
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MatchRule {
+  query: string;
+  maxGaps?: number;
+  ordered: boolean;
+}
+
+/**
  * Computes the maximum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2811,6 +2913,21 @@ export interface NearestNeighborsQueryText {
 export interface NegatePropertyExpression {
   property: DerivedPropertyDefinition;
 }
+
+/**
+   * Describes how an object type implements an interface property when a reducer is applied to it. Is missing a
+reduced property implementation to prevent arbitrarily nested implementations.
+   *
+   * Log Safety: UNSAFE
+   */
+export type NestedInterfacePropertyTypeImplementation =
+  | ({
+    type: "structFieldImplementation";
+  } & InterfacePropertyStructFieldImplementation)
+  | ({ type: "structImplementation" } & InterfacePropertyStructImplementation)
+  | ({
+    type: "localPropertyImplementation";
+  } & InterfacePropertyLocalPropertyImplementation);
 
 /**
  * Log Safety: UNSAFE
@@ -3063,6 +3180,15 @@ export interface ObjectEdits {
 }
 
 /**
+ * Optional features to toggle when generating the object loading response.
+ *
+ * Log Safety: SAFE
+ */
+export interface ObjectLoadingResponseOptions {
+  shouldLoadObjectRids?: boolean;
+}
+
+/**
  * An object identifier containing an object type API name and primary key.
  *
  * Log Safety: UNSAFE
@@ -3284,6 +3410,7 @@ export interface ObjectSetStreamSubscribeRequest {
   objectSet: ObjectSet;
   propertySet: Array<SelectedPropertyApiName>;
   referenceSet: Array<SelectedPropertyApiName>;
+  objectLoadingResponseOptions?: ObjectLoadingResponseOptions;
 }
 
 /**
@@ -3889,6 +4016,16 @@ export type PreciseTimeUnit =
   | "HOURS"
   | "DAYS"
   | "WEEKS";
+
+/**
+   * Matches intervals containing all the terms, using exact match for all but the last term, and prefix match for
+the last term. Ordering of the terms in the query is preserved.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface PrefixOnLastTokenRule {
+  query: string;
+}
 
 /**
  * Returns objects where the specified field starts with the provided value.
@@ -4708,6 +4845,7 @@ export type SearchJsonQueryV2 =
   | ({ type: "regex" } & RegexQuery)
   | ({ type: "isNull" } & IsNullQueryV2)
   | ({ type: "containsAnyTerm" } & ContainsAnyTermQuery)
+  | ({ type: "interval" } & IntervalQuery)
   | ({ type: "startsWith" } & StartsWithQuery);
 
 /**
@@ -5571,6 +5709,21 @@ export interface UnevaluableConstraint {}
 export interface UniqueIdentifierArgument {
   linkId?: string;
 }
+
+/**
+ * A reference to a UniqueIdentifierArgument linkId defined for this action type.
+ *
+ * Log Safety: SAFE
+ */
+export type UniqueIdentifierLinkId = string;
+
+/**
+   * An override value to be used for a UniqueIdentifier action parameter, instead of
+the value being automatically generated.
+   *
+   * Log Safety: SAFE
+   */
+export type UniqueIdentifierValue = string;
 
 /**
  * The string must be a valid UUID (Universally Unique Identifier).

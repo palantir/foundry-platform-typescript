@@ -338,6 +338,21 @@ export interface CompositePrimaryKeyNotSupported {
 }
 
 /**
+   * An Ontology objects read failed because the Ontology snapshot snapshot used for consistent reads became
+stale. Retrying the request typically resolves this.
+   *
+   * Log Safety: SAFE
+   */
+export interface ConsistentSnapshotError {
+  errorCode: "CONFLICT";
+  errorName: "ConsistentSnapshotError";
+  errorDescription:
+    "An Ontology objects read failed because the Ontology snapshot snapshot used for consistent reads became stale. Retrying the request typically resolves this.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Exact match groupBy clause cannot specify a default value and allow null values.
  *
  * Log Safety: SAFE
@@ -474,6 +489,20 @@ export interface HighScaleComputationNotEnabled {
 }
 
 /**
+ * The requested object set type is not supported for interface-based object sets.
+ *
+ * Log Safety: SAFE
+ */
+export interface InterfaceBasedObjectSetNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InterfaceBasedObjectSetNotSupported";
+  errorDescription:
+    "The requested object set type is not supported for interface-based object sets.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested interface link type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -521,6 +550,23 @@ export interface InterfacePropertiesNotFound {
   parameters: {
     objectType: unknown;
     missingInterfaceProperties: unknown;
+  };
+}
+
+/**
+ * The requested interface property was not found on the interface type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfacePropertyNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "InterfacePropertyNotFound";
+  errorDescription:
+    "The requested interface property was not found on the interface type.";
+  errorInstanceId: string;
+  parameters: {
+    interfaceType: unknown;
+    interfaceProperty: unknown;
   };
 }
 
@@ -618,6 +664,24 @@ export interface InvalidAggregationRangePropertyType {
 }
 
 /**
+ * Range group by is not supported by interface property type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidAggregationRangePropertyTypeForInterface {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidAggregationRangePropertyTypeForInterface";
+  errorDescription:
+    "Range group by is not supported by interface property type.";
+  errorInstanceId: string;
+  parameters: {
+    interfaceProperty: unknown;
+    interfaceType: unknown;
+    propertyBaseType: unknown;
+  };
+}
+
+/**
  * Aggregation value does not conform to the expected underlying type.
  *
  * Log Safety: UNSAFE
@@ -631,6 +695,24 @@ export interface InvalidAggregationRangeValue {
   parameters: {
     property: unknown;
     objectType: unknown;
+    propertyBaseType: unknown;
+  };
+}
+
+/**
+ * Aggregation value does not conform to the expected underlying type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidAggregationRangeValueForInterface {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidAggregationRangeValueForInterface";
+  errorDescription:
+    "Aggregation value does not conform to the expected underlying type.";
+  errorInstanceId: string;
+  parameters: {
+    interfaceProperty: unknown;
+    interfaceType: unknown;
     propertyBaseType: unknown;
   };
 }
@@ -710,6 +792,23 @@ export interface InvalidDurationGroupByPropertyType {
   parameters: {
     property: unknown;
     objectType: unknown;
+    propertyBaseType: unknown;
+  };
+}
+
+/**
+ * Invalid interface property type for duration groupBy.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidDurationGroupByPropertyTypeForInterface {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDurationGroupByPropertyTypeForInterface";
+  errorDescription: "Invalid interface property type for duration groupBy.";
+  errorInstanceId: string;
+  parameters: {
+    interfaceProperty: unknown;
+    interfaceType: unknown;
     propertyBaseType: unknown;
   };
 }
@@ -2146,6 +2245,23 @@ export interface UndecryptableValue {
 }
 
 /**
+   * One or more unique identifier link IDs specified in apply action overrides could not be found
+in the ActionType definition.
+   *
+   * Log Safety: SAFE
+   */
+export interface UniqueIdentifierLinkIdsDoNotExistInActionType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UniqueIdentifierLinkIdsDoNotExistInActionType";
+  errorDescription:
+    "One or more unique identifier link IDs specified in apply action overrides could not be found in the ActionType definition.";
+  errorInstanceId: string;
+  parameters: {
+    unknownUniqueIdentifierLinkIds: unknown;
+  };
+}
+
+/**
    * The provided parameters were not found. Please look at the knownParameters field
 to see which ones are available.
    *
@@ -2160,6 +2276,22 @@ export interface UnknownParameter {
   parameters: {
     unknownParameters: unknown;
     expectedParameters: unknown;
+  };
+}
+
+/**
+ * Aggregations on interface-based object sets are not supported for object sets with OSv1 objects.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnsupportedInterfaceBasedObjectSet {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedInterfaceBasedObjectSet";
+  errorDescription:
+    "Aggregations on interface-based object sets are not supported for object sets with OSv1 objects.";
+  errorInstanceId: string;
+  parameters: {
+    interfaceType: unknown;
   };
 }
 

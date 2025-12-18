@@ -132,6 +132,39 @@ export type CheckGroupRid = LooselyBrandedString<"CheckGroupRid">;
 export type CheckIntent = LooselyBrandedString<"CheckIntent">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CheckReport {
+  rid: _Core.CheckReportRid;
+  check: Check;
+  result: CheckResult;
+  createdTime: _Core.CreatedTime;
+}
+
+/**
+ * The result of running a check.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CheckResult {
+  status: CheckResultStatus;
+  message?: string;
+}
+
+/**
+ * The status of a check report execution.
+ *
+ * Log Safety: SAFE
+ */
+export type CheckResultStatus =
+  | "PASSED"
+  | "FAILED"
+  | "WARNING"
+  | "ERROR"
+  | "NOT_APPLICABLE"
+  | "NOT_COMPUTABLE";
+
+/**
  * Configuration for column count validation with severity settings.
  *
  * Log Safety: SAFE

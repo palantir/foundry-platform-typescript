@@ -54,6 +54,7 @@ export type {
   StructFieldName,
   StructV1Constraint,
   ThreeDimensionalAggregation,
+  TransactionId,
   TwoDimensionalAggregation,
   UuidConstraint,
   ValueType,
@@ -88,6 +89,7 @@ export type {
   VersionId,
 } from "./_components.js";
 export type {
+  ConsistentSnapshotError,
   ExecuteQueryPermissionDenied,
   GetByRidQueriesPermissionDenied,
   InvalidQueryOutputValue,

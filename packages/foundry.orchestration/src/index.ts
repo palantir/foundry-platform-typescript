@@ -133,6 +133,7 @@ export type {
   BuildInputsNotFound,
   BuildInputsPermissionDenied,
   BuildNotFound,
+  BuildNotRunning,
   BuildTargetsMissingJobSpecs,
   BuildTargetsNotFound,
   BuildTargetsPermissionDenied,
