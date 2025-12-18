@@ -1,5 +1,19 @@
 # @osdk/foundry.connectivity
 
+## 2.44.0
+
+### Minor Changes
+
+- cb3d72c: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [cb3d72c]
+  - @osdk/foundry.orchestration@2.44.0
+  - @osdk/foundry.filesystem@2.44.0
+  - @osdk/foundry.datasets@2.44.0
+  - @osdk/foundry.core@2.44.0
+
 ## 2.43.0
 
 ### Minor Changes

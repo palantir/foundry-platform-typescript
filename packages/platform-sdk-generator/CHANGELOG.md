@@ -1,5 +1,12 @@
 # @osdk/platform-sdk-generator
 
+## 0.43.0
+
+### Patch Changes
+
+- Updated dependencies [cb3d72c]
+  - @osdk/docs-spec-platform@0.31.0
+
 ## 0.42.0
 
 ### Patch Changes

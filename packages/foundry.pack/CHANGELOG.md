@@ -1,5 +1,14 @@
 # @osdk/foundry.pack
 
+## 2.44.0
+
+### Patch Changes
+
+- Updated dependencies [cb3d72c]
+  - @osdk/foundry.filesystem@2.44.0
+  - @osdk/foundry.ontologies@2.44.0
+  - @osdk/foundry.core@2.44.0
+
 ## 2.43.0
 
 ### Minor Changes

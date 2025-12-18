@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.17.0
+
+### Minor Changes
+
+- cb3d72c: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [cb3d72c]
+  - @osdk/gotham.core@0.17.0
+
 ## 0.16.0
 
 ### Minor Changes

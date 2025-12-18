@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.44.0
+
+### Minor Changes
+
+- cb3d72c: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [cb3d72c]
+  - @osdk/internal.foundry.ontologies@2.44.0
+  - @osdk/internal.foundry.datasets@2.44.0
+  - @osdk/internal.foundry.core@2.44.0
+  - @osdk/internal.foundry.geo@2.44.0
+  - @osdk/internal.foundry.ontologiesv2@2.44.0
+  - @osdk/internal.foundry.mediasets@2.44.0
+
 ## 2.43.0
 
 ### Minor Changes

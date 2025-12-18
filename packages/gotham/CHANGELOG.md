@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.17.0
+
+### Minor Changes
+
+- cb3d72c: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [cb3d72c]
+  - @osdk/gotham.targetworkbench@0.17.0
+  - @osdk/gotham.maprendering@0.17.0
+  - @osdk/gotham.geojson@0.17.0
+  - @osdk/gotham.core@0.17.0
+  - @osdk/gotham.gaia@0.17.0
+
 ## 0.16.0
 
 ### Minor Changes
