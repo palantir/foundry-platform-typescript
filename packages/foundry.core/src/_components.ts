@@ -144,6 +144,13 @@ export type ChangeDataCaptureConfiguration = {
 } & FullRowChangeDataCaptureConfiguration;
 
 /**
+ * The unique resource identifier (RID) of a Data Health Check Report.
+ *
+ * Log Safety: SAFE
+ */
+export type CheckReportRid = LooselyBrandedString<"CheckReportRid">;
+
+/**
  * The unique resource identifier (RID) of a Data Health Check.
  *
  * Log Safety: SAFE

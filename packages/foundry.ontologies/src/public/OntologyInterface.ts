@@ -75,6 +75,8 @@ const _get: $FoundryPlatformMethod<
     $queryParams?: {
       preview?: _Core.PreviewMode | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.InterfaceType>
 > = [0, "/v2/ontologies/{0}/interfaceTypes/{1}", 2];
@@ -96,6 +98,8 @@ export function get(
     $queryParams?: {
       preview?: _Core.PreviewMode | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.InterfaceType> {

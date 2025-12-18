@@ -25,6 +25,9 @@ export type {
   CheckConfig,
   CheckGroupRid,
   CheckIntent,
+  CheckReport,
+  CheckResult,
+  CheckResultStatus,
   ColumnCountConfig,
   ColumnInfo,
   ColumnName,
@@ -98,6 +101,7 @@ export type {
 export type {
   CheckAlreadyExists,
   CheckNotFound,
+  CheckReportNotFound,
   CheckTypeNotSupported,
   CreateCheckPermissionDenied,
   DeleteCheckPermissionDenied,
@@ -111,3 +115,4 @@ export type {
   ReplaceCheckPermissionDenied,
 } from "./_errors.js";
 export * as Checks from "./public/Check.js";
+export * as CheckReports from "./public/CheckReport.js";

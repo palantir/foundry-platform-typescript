@@ -289,7 +289,16 @@ const _loadLinks: $FoundryPlatformMethod<
  * Links are defined as a link type API name and object locators for the source and target objects
  * where only the `__primaryKey` and `__apiName` properties are loaded.
  *
- * Links are grouped by source object locator.
+ * Links are grouped by source object locator; however, the links for a given source object may be
+ * split over multiple entries with the same source object locator.
+ *
+ * Please keep these limitations in mind:
+ *
+ * * Links returned may be stale. For example, primary keys returned by this endpoint may not exist anymore.
+ * * This endpoint requests links for 1,000 objects at a time. If, for any page of 1,000 objects, there are more
+ *   than 100,000 links present, results are limited to 100,000 links and should be considered partial.
+ * * This endpoint does not support OSv1 links and will return an error if links provided are backed by OSv1.
+ * * This endpoint currently does not support interface object sets or interface links, but support will be added in the near future.
  *
  * @alpha
  *

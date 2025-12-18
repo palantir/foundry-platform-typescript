@@ -98,6 +98,8 @@ export type {
   ObjectTypeRidsNotFound,
   OntologyEntitiesNotFound,
   RateLimitExceeded,
+  RetryAttemptsExceeded,
+  RetryDeadlineExceeded,
   SessionExecutionFailed,
   SessionNotFound,
   SessionTraceIdAlreadyExists,

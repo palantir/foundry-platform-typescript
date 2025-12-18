@@ -162,3 +162,41 @@ export function applyBatch(
 ): Promise<_Ontologies.BatchApplyActionResponseV2> {
   return $foundryPlatformFetch($ctx, _applyBatch, ...args);
 }
+
+const _applyWithOverrides: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    action: _Ontologies.ActionTypeApiName,
+    $body: _Ontologies.ApplyActionWithOverridesRequest,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ) => Promise<_Ontologies.SyncApplyActionResponseV2>
+> = [1, "/v2/ontologies/{0}/actions/{1}/applyWithOverrides", 3];
+
+/**
+ * Same as regular apply action operation, but allows specifying overrides for UniqueIdentifier and
+ * CurrentTime generated action parameters.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read, api:ontologies-write]
+ * URL: /v2/ontologies/{ontology}/actions/{action}/applyWithOverrides
+ */
+export function applyWithOverrides(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    action: _Ontologies.ActionTypeApiName,
+    $body: _Ontologies.ApplyActionWithOverridesRequest,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ]
+): Promise<_Ontologies.SyncApplyActionResponseV2> {
+  return $foundryPlatformFetch($ctx, _applyWithOverrides, ...args);
+}

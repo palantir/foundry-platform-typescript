@@ -65,14 +65,29 @@ export interface BuildNotFound {
 }
 
 /**
- * The action targets are missing job specs
+ * The build is not currently running.
+ *
+ * Log Safety: SAFE
+ */
+export interface BuildNotRunning {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BuildNotRunning";
+  errorDescription: "The build is not currently running.";
+  errorInstanceId: string;
+  parameters: {
+    buildRid: unknown;
+  };
+}
+
+/**
+ * The action targets are missing job specs.
  *
  * Log Safety: SAFE
  */
 export interface BuildTargetsMissingJobSpecs {
   errorCode: "INVALID_ARGUMENT";
   errorName: "BuildTargetsMissingJobSpecs";
-  errorDescription: "The action targets are missing job specs";
+  errorDescription: "The action targets are missing job specs.";
   errorInstanceId: string;
   parameters: {
     resourceRids: unknown;
@@ -265,14 +280,14 @@ export interface InvalidScheduleDescription {
 }
 
 /**
- * The schedule name is too long
+ * The schedule name is too long.
  *
  * Log Safety: SAFE
  */
 export interface InvalidScheduleName {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidScheduleName";
-  errorDescription: "The schedule name is too long";
+  errorDescription: "The schedule name is too long.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -308,7 +323,7 @@ export interface JobNotFound {
 }
 
 /**
- * The build target must contains at least one dataset target
+ * The build target must contains at least one dataset target.
  *
  * Log Safety: SAFE
  */
@@ -316,13 +331,13 @@ export interface MissingBuildTargets {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingBuildTargets";
   errorDescription:
-    "The build target must contains at least one dataset target";
+    "The build target must contains at least one dataset target.";
   errorInstanceId: string;
   parameters: {};
 }
 
 /**
- * The connecting build target must contains at least one input dataset target
+ * The connecting build target must contains at least one input dataset target.
  *
  * Log Safety: SAFE
  */
@@ -330,13 +345,13 @@ export interface MissingConnectingBuildInputs {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingConnectingBuildInputs";
   errorDescription:
-    "The connecting build target must contains at least one input dataset target";
+    "The connecting build target must contains at least one input dataset target.";
   errorInstanceId: string;
   parameters: {};
 }
 
 /**
- * You must pass in a trigger when creating or updating a schedule
+ * You must pass in a trigger when creating or updating a schedule.
  *
  * Log Safety: SAFE
  */
@@ -344,7 +359,7 @@ export interface MissingTrigger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingTrigger";
   errorDescription:
-    "You must pass in a trigger when creating or updating a schedule";
+    "You must pass in a trigger when creating or updating a schedule.";
   errorInstanceId: string;
   parameters: {};
 }

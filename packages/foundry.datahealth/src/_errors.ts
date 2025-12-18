@@ -51,6 +51,21 @@ export interface CheckNotFound {
 }
 
 /**
+ * The given CheckReport could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface CheckReportNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "CheckReportNotFound";
+  errorDescription: "The given CheckReport could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    checkReportRid: unknown;
+  };
+}
+
+/**
  * The type of the requested check is not yet supported in the Platform API.
  *
  * Log Safety: UNSAFE

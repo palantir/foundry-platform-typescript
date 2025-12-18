@@ -27,6 +27,7 @@ export type {
   BuildRid,
   ByteType,
   ChangeDataCaptureConfiguration,
+  CheckReportRid,
   CheckRid,
   CipherTextType,
   ComputeSeconds,
