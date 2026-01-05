@@ -52,7 +52,7 @@ jobs:
       issues: write
     strategy:
       matrix:
-        node: [18, 20, 22]
+        node: [18, 20, 22, 24] # We need to support any LTS versions since the initial release of all packages in this repo, which includes 18.x and up
 
     steps:
       - name: Check out code
