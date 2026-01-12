@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.6.0
+
+### Minor Changes
+
+- 1e53a63: Regenerate Platform SDKs
+
 ## 1.5.0
 
 ### Minor Changes

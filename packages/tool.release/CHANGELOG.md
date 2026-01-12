@@ -1,5 +1,11 @@
 # @osdk/tool.release
 
+## 0.8.0
+
+### Minor Changes
+
+- 1e53a63: Regenerate Platform SDKs
+
 ## 0.7.0
 
 ### Minor Changes

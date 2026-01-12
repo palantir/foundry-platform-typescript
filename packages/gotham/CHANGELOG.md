@@ -1,5 +1,21 @@
 # @osdk/gotham
 
+## 0.18.0
+
+### Minor Changes
+
+- 1e53a63: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [1e53a63]
+  - @osdk/gotham.core@0.18.0
+  - @osdk/gotham.gaia@0.18.0
+  - @osdk/gotham.geojson@0.18.0
+  - @osdk/gotham.maprendering@0.18.0
+  - @osdk/gotham.targetworkbench@0.18.0
+  - @osdk/shared.net.platformapi@1.6.0
+
 ## 0.17.0
 
 ### Minor Changes

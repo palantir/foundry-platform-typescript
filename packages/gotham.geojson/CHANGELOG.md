@@ -1,5 +1,16 @@
 # @osdk/gotham.geojson
 
+## 0.18.0
+
+### Minor Changes
+
+- 1e53a63: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [1e53a63]
+  - @osdk/shared.net.platformapi@1.6.0
+
 ## 0.17.0
 
 ### Minor Changes
