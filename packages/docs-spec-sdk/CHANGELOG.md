@@ -1,5 +1,16 @@
 # @osdk/docs-spec-sdk
 
+## 0.15.0
+
+### Minor Changes
+
+- 1e53a63: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [1e53a63]
+  - @osdk/docs-spec-core@0.6.0
+
 ## 0.14.0
 
 ### Minor Changes
