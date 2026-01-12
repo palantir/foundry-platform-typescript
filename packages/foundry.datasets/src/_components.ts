@@ -417,7 +417,7 @@ export interface View {
  * Log Safety: UNSAFE
  */
 export interface ViewBackingDataset {
-  branch: BranchName;
+  branch?: BranchName;
   datasetRid: DatasetRid;
 }
 

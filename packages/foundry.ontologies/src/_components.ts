@@ -1021,6 +1021,39 @@ export type CenterPointTypes = { type: "Point" } & _Geo.GeoPoint;
 export type CipherTextProperty = LooselyBrandedString<"CipherTextProperty">;
 
 /**
+   * The conjunctive set of markings required to access the property value.
+All markings from a conjunctive set must be met for access.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ConjunctiveMarkingSummary = Array<MarkingId>;
+
+/**
+   * The conjunctive set of markings for the container of this property value,
+such as the project of a dataset. These markings may differ from the marking
+on the actual property value, but still must be satisfied for accessing the property
+All markings from a conjunctive set must be met for access.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ContainerConjunctiveMarkingSummary = Array<MarkingId>;
+
+/**
+   * The disjunctive set of markings for the container of this property value,
+such as the project of a dataset. These markings may differ from the marking
+on the actual property value, but still must be satisfied for accessing the property
+
+All markings from a conjunctive set must be met for access.
+Disjunctive markings are represented as a conjunctive list of disjunctive sets.
+The top-level set is a conjunction of sets, where each inner set should be
+treated as a unit where any marking within the set can satisfy the set.
+All sets within the top level set should be satisfied.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ContainerDisjunctiveMarkingSummary = Array<Array<MarkingId>>;
+
+/**
    * Returns objects where the specified field contains all of the terms in the order provided,
 but they do have to be adjacent to each other.
 The last term can be a partial prefix match. Allows you to specify a property to query on
@@ -1489,6 +1522,17 @@ export interface DerivedTimeSeriesProperty {
 }
 
 /**
+   * The disjunctive set of markings required to access the property value.
+Disjunctive markings are represented as a conjunctive list of disjunctive sets.
+The top-level set is a conjunction of sets, where each inner set should be
+treated as a unit where any marking within the set can satisfy the set.
+All sets within the top level set should be satisfied.
+   *
+   * Log Safety: UNSAFE
+   */
+export type DisjunctiveMarkingSummary = Array<Array<MarkingId>>;
+
+/**
  * Divides the left numeric value by the right numeric value.
  *
  * Log Safety: UNSAFE
@@ -1611,6 +1655,13 @@ export interface Error {
   error: ErrorName;
   args: Array<Arg>;
 }
+
+/**
+ * Indicates the server was not able to load the securities of the property.
+ *
+ * Log Safety: SAFE
+ */
+export interface ErrorComputingSecurity {}
 
 /**
  * Log Safety: SAFE
@@ -1873,8 +1924,8 @@ export type Icon = { type: "blueprint" } & BlueprintIcon;
 
 /**
    * Returns objects where the specified field equals any of the provided values. Allows you to
-specify a property to query on by a variety of means. Either field or propertyIdentifier must be supplied,
-but not both.
+specify a property to query on by a variety of means. If an empty array is provided as the value, then the filter will match all objects
+in the object set. Either field or propertyIdentifier must be supplied, but not both.
    *
    * Log Safety: UNSAFE
    */
@@ -2571,6 +2622,7 @@ export interface LoadObjectSetRequestV2 {
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
+  loadPropertySecurities?: boolean;
   snapshot?: boolean;
   includeComputeUsage?: _Core.IncludeComputeUsage;
 }
@@ -2585,6 +2637,7 @@ export interface LoadObjectSetResponseV2 {
   nextPageToken?: _Core.PageToken;
   totalCount: _Core.TotalCount;
   computeUsage?: _Core.ComputeSeconds;
+  propertySecurities: Array<PropertySecurities>;
 }
 
 /**
@@ -2600,6 +2653,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
+  loadPropertySecurities?: boolean;
   snapshot?: boolean;
   includeComputeUsage?: _Core.IncludeComputeUsage;
 }
@@ -2631,6 +2685,7 @@ export interface LoadObjectSetV2MultipleObjectTypesResponse {
     InterfaceToObjectTypeMappingsV2
   >;
   computeUsage?: _Core.ComputeSeconds;
+  propertySecurities: Array<PropertySecurities>;
 }
 
 /**
@@ -2747,6 +2802,13 @@ export interface LtQueryV2 {
   propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
+
+/**
+ * The id of a classification or mandatory marking.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MarkingId = LooselyBrandedString<"MarkingId">;
 
 /**
  * Matches intervals containing the terms in the query
@@ -4179,6 +4241,18 @@ export type PropertyLoadLevel =
   | ({ type: "extractMainValue" } & ExtractMainValueLoadLevel);
 
 /**
+ * All marking requirements applicable to a property value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyMarkingSummary {
+  conjunctive?: ConjunctiveMarkingSummary;
+  disjunctive?: DisjunctiveMarkingSummary;
+  containerConjunctive?: ContainerConjunctiveMarkingSummary;
+  containerDisjunctive?: ContainerDisjunctiveMarkingSummary;
+}
+
+/**
  * Wrapper for numeric formatting options.
  *
  * Log Safety: UNSAFE
@@ -4207,6 +4281,23 @@ export type PropertyNumberFormattingRuleType =
 export type PropertyOrStructFieldOfPropertyImplementation =
   | ({ type: "structFieldOfProperty" } & StructFieldOfPropertyImplementation)
   | ({ type: "property" } & PropertyImplementation);
+
+/**
+ * A disjunctive set of security results for a property value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertySecurities {
+  disjunction: Array<PropertySecurity>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type PropertySecurity =
+  | ({ type: "propertyMarkingSummary" } & PropertyMarkingSummary)
+  | ({ type: "unsupportedPolicy" } & UnsupportedPolicy)
+  | ({ type: "errorComputingSecurity" } & ErrorComputingSecurity);
 
 /**
  * Formatting configuration for timestamp property values.
@@ -4293,6 +4384,7 @@ export interface PropertyV2 {
 | Integer                                                                                                                   | number                                                      | 238940                                                                                           |
 | Long                                                                                                                      | string                                                      | "58319870951433"                                                                                 |
 | MediaReference| JSON encoded MediaReference object                        | {"mimeType":"application/pdf","reference":{"type":"mediaSetViewItem","mediaSetViewItem":{"mediaSetRid":"ri.mio.main.media-set.4153d42f-ca4b-4e42-8ca5-8e6aa7edb642","mediaSetViewRid":"ri.mio.main.view.82a798ad-d637-4595-acc6-987bcf16629b","mediaItemRid":"ri.mio.main.media-item.001ec98b-1620-4814-9e17-8e9c4e536225"}}}                       |
+| Secured Property Value                                                                                                    | JSON encoded SecuredPropertyValue object                  | {"value": 10, "propertySecurityIndex" : 5}                                                       |
 | Short                                                                                                                     | number                                                      | 8739                                                                                             |
 | String                                                                                                                    | string                                                      | "Call me Ishmael"                                                                                |
 | Struct                                                                                                                    | JSON object of struct field API name -> value               | {"firstName": "Alex", "lastName": "Karp"}                                                          |
@@ -4955,6 +5047,14 @@ export interface SearchOrdering {
 export interface SearchOrderingV2 {
   field: PropertyApiName;
   direction?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SecuredPropertyValue {
+  value?: PropertyValue;
+  propertySecurityIndex?: number;
 }
 
 /**
@@ -5727,6 +5827,13 @@ the value being automatically generated.
    * Log Safety: SAFE
    */
 export type UniqueIdentifierValue = string;
+
+/**
+ * Indicates the property is backed by a restricted view that does not support property securities.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedPolicy {}
 
 /**
  * The string must be a valid UUID (Universally Unique Identifier).

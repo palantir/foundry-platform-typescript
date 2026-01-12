@@ -34,6 +34,7 @@ const _createTemporary: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateTemporaryObjectSetRequestV2,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
@@ -54,6 +55,7 @@ export function createTemporary(
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateTemporaryObjectSetRequestV2,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
