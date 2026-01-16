@@ -38,6 +38,10 @@ type MediaReferenceType = {
 type ObjectTypeValueType = { type: "objectType"; objectTypeApiName: string };
 type InterfaceType = { type: "interface" };
 type MarkingType = { type: "marking" };
+type ObjectSetType = {
+  type: "objectSet";
+  objectTypeApiName: string;
+};
 type UnknownType = { type: "unknown"; value?: string };
 type AnonymousCustomType = { type: "anonymousCustomType" };
 type CustomType = { type: "customType" };
@@ -51,6 +55,7 @@ export type ActionParameterSampleValueTypeIR =
   | TimestampType
   | StringType
   | ObjectType
+  | ObjectSetType
   | AttachmentType
   | MediaReferenceType
   | ObjectTypeValueType
