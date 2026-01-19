@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.16.0
+
+### Minor Changes
+
+- 0eb3a43: Add ObjectSet type to ActionParameterSampleValueTypeIR
+
 ## 0.15.0
 
 ### Minor Changes
