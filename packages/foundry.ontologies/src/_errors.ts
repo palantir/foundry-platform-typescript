@@ -221,6 +221,25 @@ export interface AggregationMemoryExceededLimit {
 }
 
 /**
+   * The requested aggregation metric is not supported by the storage backend.
+Consider migrating queried object types to Object Storage V2. See
+https://www.palantir.com/docs/foundry/object-backend/osv1-osv2-migration
+for more details.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationMetricNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AggregationMetricNotSupported";
+  errorDescription:
+    "The requested aggregation metric is not supported by the storage backend. Consider migrating queried object types to Object Storage V2. See https://www.palantir.com/docs/foundry/object-backend/osv1-osv2-migration for more details.";
+  errorInstanceId: string;
+  parameters: {
+    metricType: unknown;
+  };
+}
+
+/**
    * A nested object set within the aggregation exceeded the allowed limit.
 This can be fixed by aggregating over fewer objects, such as by applying a filter.
    *

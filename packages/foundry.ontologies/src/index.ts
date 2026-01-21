@@ -209,6 +209,8 @@ export type {
   FunctionVersion,
   Fuzzy,
   FuzzyV2,
+  GeotemporalSeriesEntry,
+  GeotemporalSeriesProperty,
   GeotimeSeriesId,
   GeotimeSeriesIntegrationRid,
   GeotimeSeriesProperty,
@@ -645,6 +647,7 @@ export type {
   AggregationAccuracyNotSupported,
   AggregationGroupCountExceededLimit,
   AggregationMemoryExceededLimit,
+  AggregationMetricNotSupported,
   AggregationNestedObjectSetSizeExceededLimit,
   ApplyActionFailed,
   AttachmentNotFound,
@@ -779,6 +782,7 @@ export * as ActionTypesV2 from "./public/ActionTypeV2.js";
 export * as Attachments from "./public/Attachment.js";
 export * as AttachmentPropertiesV2 from "./public/AttachmentPropertyV2.js";
 export * as CipherTextProperties from "./public/CipherTextProperty.js";
+export * as GeotemporalSeriesProperties from "./public/GeotemporalSeriesProperty.js";
 export * as LinkedObjectsV2 from "./public/LinkedObjectV2.js";
 export * as MediaReferenceProperties from "./public/MediaReferenceProperty.js";
 export * as ObjectTypesV2 from "./public/ObjectTypeV2.js";

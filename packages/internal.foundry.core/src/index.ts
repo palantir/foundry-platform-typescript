@@ -474,6 +474,8 @@ export type {
   TwoDimensionalAggregation,
   UnevaluableConstraint,
   UnsupportedType,
+  UnsupportedTypeParamKey,
+  UnsupportedTypeParamValue,
   UpdatedTime,
   UserId,
   ValidateActionRequest,

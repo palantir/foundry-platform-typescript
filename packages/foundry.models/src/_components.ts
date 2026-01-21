@@ -107,7 +107,7 @@ export interface ModelApi {
 export interface ModelApiAnyType {}
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ModelApiArrayType {
   itemType: ModelApiDataType;
@@ -123,7 +123,7 @@ export interface ModelApiColumn {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type ModelApiDataType =
   | ({ type: "date" } & _Core.DateType)
@@ -148,7 +148,7 @@ export type ModelApiInput =
   | ({ type: "tabular" } & ModelApiTabularType);
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ModelApiMapType {
   keyType: ModelApiDataType;
@@ -235,8 +235,19 @@ export interface StringType {}
 export interface TimestampType {}
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface UnsupportedType {
   unsupportedType: string;
+  params: Record<
+    _Core.UnsupportedTypeParamKey,
+    _Core.UnsupportedTypeParamValue
+  >;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type UnsupportedTypeParamValue = LooselyBrandedString<
+  "UnsupportedTypeParamValue"
+>;

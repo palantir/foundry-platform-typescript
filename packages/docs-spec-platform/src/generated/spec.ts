@@ -112,6 +112,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getMediaItemInfo": {
       "variables": {},
     },
+    "v2.getMediaItemMetadata": {
+      "variables": {},
+    },
     "v2.getMediaItemReference": {
       "variables": {},
     },
@@ -248,6 +251,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.streamValues": {
+      "variables": {},
+    },
+    "v2.getGeotemporalSeriesLatestValue": {
       "variables": {},
     },
     "v2.decrypt": {

@@ -45,6 +45,7 @@ export type {
   StringType,
   TimestampType,
   UnsupportedType,
+  UnsupportedTypeParamValue,
 } from "./_components.js";
 export type {
   CondaSolveFailureForProvidedPackages,

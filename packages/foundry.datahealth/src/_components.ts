@@ -110,6 +110,7 @@ export type CheckConfig =
   | ({ type: "buildStatus" } & BuildStatusCheckConfig)
   | ({ type: "columnType" } & ColumnTypeCheckConfig)
   | ({ type: "allowedColumnValues" } & AllowedColumnValuesCheckConfig)
+  | ({ type: "timeSinceLastUpdated" } & TimeSinceLastUpdatedCheckConfig)
   | ({ type: "nullPercentage" } & NullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & TotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & NumericColumnMedianCheckConfig)
@@ -304,6 +305,13 @@ export interface EscalationConfig {
   failuresToCritical: number;
   timeIntervalInSeconds?: string;
 }
+
+/**
+ * Whether empty transactions should be ignored when calculating time since last updated. If true (default), only transactions with actual data changes are considered.
+ *
+ * Log Safety: SAFE
+ */
+export type IgnoreEmptyTransactions = boolean;
 
 /**
  * Checks the total time a job takes to complete.
@@ -546,6 +554,7 @@ export type ReplaceCheckConfig =
   | ({ type: "buildStatus" } & ReplaceBuildStatusCheckConfig)
   | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
   | ({ type: "allowedColumnValues" } & ReplaceAllowedColumnValuesCheckConfig)
+  | ({ type: "timeSinceLastUpdated" } & ReplaceTimeSinceLastUpdatedCheckConfig)
   | ({ type: "nullPercentage" } & ReplaceNullPercentageCheckConfig)
   | ({ type: "totalColumnCount" } & ReplaceTotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & ReplaceNumericColumnMedianCheckConfig)
@@ -665,6 +674,13 @@ export interface ReplaceSchemaComparisonCheckConfig {
 /**
  * Log Safety: SAFE
  */
+export interface ReplaceTimeSinceLastUpdatedCheckConfig {
+  timeCheckConfig: TransactionTimeCheckConfig;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface ReplaceTotalColumnCountCheckConfig {
   columnCountConfig: ColumnCountConfig;
 }
@@ -779,6 +795,16 @@ export interface TimeCheckConfig {
 }
 
 /**
+ * Checks the total time since the dataset has updated.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TimeSinceLastUpdatedCheckConfig {
+  subject: DatasetSubject;
+  timeCheckConfig: TransactionTimeCheckConfig;
+}
+
+/**
  * Checks the total number of columns in the dataset.
  *
  * Log Safety: UNSAFE
@@ -786,6 +812,17 @@ export interface TimeCheckConfig {
 export interface TotalColumnCountCheckConfig {
   subject: DatasetSubject;
   columnCountConfig: ColumnCountConfig;
+}
+
+/**
+ * Defines the configuration of a transaction-based time check.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransactionTimeCheckConfig {
+  timeBounds?: TimeBoundsConfig;
+  medianDeviation?: MedianDeviationConfig;
+  ignoreEmptyTransactions?: IgnoreEmptyTransactions;
 }
 
 /**

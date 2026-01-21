@@ -141,6 +141,8 @@ export type {
   TraceParent,
   TraceState,
   UnsupportedType,
+  UnsupportedTypeParamKey,
+  UnsupportedTypeParamValue,
   UpdatedBy,
   UpdatedTime,
   UserId,

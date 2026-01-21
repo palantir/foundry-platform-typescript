@@ -620,6 +620,8 @@ export interface AnyTermQuery {
 }
 
 /**
+ * If not specified, defaults to VALIDATE_AND_EXECUTE.
+ *
  * Log Safety: SAFE
  */
 export type ApplyActionMode = "VALIDATE_ONLY" | "VALIDATE_AND_EXECUTE";
@@ -978,6 +980,8 @@ export interface BatchedFunctionLogicRule {
 }
 
 /**
+ * If not specified, defaults to NONE.
+ *
  * Log Safety: SAFE
  */
 export type BatchReturnEditsMode = "ALL" | "NONE";
@@ -1798,6 +1802,23 @@ export type Fuzzy = boolean;
  * Log Safety: SAFE
  */
 export type FuzzyV2 = boolean;
+
+/**
+ * A single geotemporal data point representing the location of an entity at a specific point in time.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeotemporalSeriesEntry {
+  time: string;
+  position: _Geo.GeoPoint;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type GeotemporalSeriesProperty = LooselyBrandedString<
+  "GeotemporalSeriesProperty"
+>;
 
 /**
  * The unique id of a geotime series (track) associated with a GTSR.
@@ -3611,6 +3632,8 @@ export type ObjectTypeId = LooselyBrandedString<"ObjectTypeId">;
  * Log Safety: UNSAFE
  */
 export interface ObjectTypeInterfaceImplementation {
+  apiName?: InterfaceTypeApiName;
+  rid?: InterfaceTypeRid;
   properties: Record<SharedPropertyTypeApiName, PropertyApiName>;
   propertiesV2: Record<
     InterfacePropertyApiName,
@@ -4855,6 +4878,8 @@ export interface ResolvedInterfacePropertyType {
 }
 
 /**
+ * If not specified, defaults to NONE.
+ *
  * Log Safety: SAFE
  */
 export type ReturnEditsMode = "ALL" | "ALL_V2_WITH_DELETIONS" | "NONE";

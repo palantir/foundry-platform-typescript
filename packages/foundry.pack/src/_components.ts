@@ -223,12 +223,17 @@ export type DocumentRid = LooselyBrandedString<"DocumentRid">;
  */
 export interface DocumentSearchQuery {
   documentName?: string;
+  pageSize?: _Core.PageSize;
+  pageToken?: PageToken;
 }
 
 /**
  * Log Safety: UNSAFE
  */
-export type DocumentSearchResponse = Array<Document>;
+export interface DocumentSearchResponse {
+  data: Array<Document>;
+  nextPageToken?: PageToken;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -355,6 +360,17 @@ export type MarkingId = string;
 export type MarkingPrincipal = LooselyBrandedString<"MarkingPrincipal">;
 
 /**
+   * The page token indicates where to start paging. This should be omitted from the first page's request.
+To fetch the next page, clients should take the value from the nextPageToken field of the previous response
+and use it to populate the pageToken field of the next request.
+api-gateway's Core.PageToken is an immutable @Unsafe String, which is incompatible with PACK Document search.
+This is a PACK API specific PageToken that is @Safe.
+   *
+   * Log Safety: SAFE
+   */
+export type PageToken = LooselyBrandedString<"PageToken">;
+
+/**
  * Log Safety: UNSAFE
  */
 export type PresenceCollaborativeUpdate =
@@ -378,7 +394,6 @@ export type RevisionId = string;
  */
 export interface SearchDocumentsRequest {
   documentTypeName: DocumentTypeName;
-  limit?: number;
   searchQuery?: DocumentSearchQuery;
 }
 

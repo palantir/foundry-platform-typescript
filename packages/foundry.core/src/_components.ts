@@ -1583,11 +1583,26 @@ export type TraceParent = LooselyBrandedString<"TraceParent">;
 export type TraceState = LooselyBrandedString<"TraceState">;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface UnsupportedType {
   unsupportedType: string;
+  params: Record<UnsupportedTypeParamKey, UnsupportedTypeParamValue>;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type UnsupportedTypeParamKey = LooselyBrandedString<
+  "UnsupportedTypeParamKey"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type UnsupportedTypeParamValue = LooselyBrandedString<
+  "UnsupportedTypeParamValue"
+>;
 
 /**
  * The Foundry user who last updated this resource

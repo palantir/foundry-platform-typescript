@@ -152,6 +152,20 @@ export interface InvalidTimeCheckConfig {
 }
 
 /**
+ * The TransactionTimeCheckConfig is invalid. It must contain at least one of timeBounds or medianDeviation.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidTransactionTimeCheckConfig {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidTransactionTimeCheckConfig";
+  errorDescription:
+    "The TransactionTimeCheckConfig is invalid. It must contain at least one of timeBounds or medianDeviation.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The TrendConfig is invalid. It must contain at least one of trendType or differenceBounds.
  *
  * Log Safety: SAFE
