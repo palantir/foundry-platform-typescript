@@ -1,5 +1,16 @@
 # @osdk/foundry.audit
 
+## 2.46.0
+
+### Minor Changes
+
+- aabad9b: Regenerate platform sdks
+
+### Patch Changes
+
+- Updated dependencies [aabad9b]
+  - @osdk/foundry.core@2.46.0
+
 ## 2.45.0
 
 ### Minor Changes
