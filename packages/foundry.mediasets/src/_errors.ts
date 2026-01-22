@@ -259,3 +259,17 @@ export interface TransformedMediaItemNotFound {
     mediaItemRid: unknown;
   };
 }
+
+/**
+ * Received an unexpected metadata type, this particular media item may use features that are not yet fully supported in the public API.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnexpectedMetadataType {
+  errorCode: "INTERNAL";
+  errorName: "UnexpectedMetadataType";
+  errorDescription:
+    "Received an unexpected metadata type, this particular media item may use features that are not yet fully supported in the public API.";
+  errorInstanceId: string;
+  parameters: {};
+}

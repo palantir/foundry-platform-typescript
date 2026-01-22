@@ -5027,11 +5027,26 @@ This can happen when a parameter's allowed values are defined by another paramet
 export interface UnevaluableConstraint {}
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface UnsupportedType {
   unsupportedType: string;
+  params: Record<UnsupportedTypeParamKey, UnsupportedTypeParamValue>;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type UnsupportedTypeParamKey = LooselyBrandedString<
+  "UnsupportedTypeParamKey"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type UnsupportedTypeParamValue = LooselyBrandedString<
+  "UnsupportedTypeParamValue"
+>;
 
 /**
  * The time at which the resource was most recently updated.

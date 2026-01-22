@@ -53,6 +53,7 @@ export type {
   GroupId,
   MarkingId,
   MarkingPrincipal,
+  PageToken,
   PresenceCollaborativeUpdate,
   PresencePublishMessage,
   RevisionId,

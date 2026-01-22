@@ -177,6 +177,37 @@ export function info(
   return $foundryPlatformFetch($ctx, _info, ...args);
 }
 
+const _metadata: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<_MediaSets.MediaItemMetadata>
+> = [0, "/v2/mediasets/{0}/items/{1}/metadata", 6];
+
+/**
+ * Gets detailed metadata about the media item, including type-specific information
+ * such as dimensions for images, duration for audio/video, page count for documents, etc.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/metadata
+ */
+export function metadata(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<_MediaSets.MediaItemMetadata> {
+  return $foundryPlatformFetch($ctx, _metadata, ...args);
+}
+
 const _reference: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,

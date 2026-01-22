@@ -122,7 +122,24 @@ export interface MrsColor {
  */
 export interface MrsFillStyle {
   color: MrsColor;
+  pattern: MrsSymbol;
+  opacity: MrsAlpha;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MrsGenericSdf {
+  id: MrsGenericSdfId;
+  color: MrsColor;
+}
+
+/**
+ * Unique identifier for a SDF symbol that can be used to fetch the SDF as a PNG.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MrsGenericSdfId = LooselyBrandedString<"MrsGenericSdfId">;
 
 /**
  * Base generic symbol. Clients should always support rendering this symbol type.
@@ -165,6 +182,21 @@ export interface MrsLabelStyle {
 }
 
 /**
+ * A unique identifier of an object.
+ *
+ * Log Safety: SAFE
+ */
+export type MrsObjectRid = LooselyBrandedString<"MrsObjectRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MrsObjectSourcingContentV2 {
+  objectType: FoundryObjectTypeRid;
+  objectRid: MrsObjectRid;
+}
+
+/**
  * Styling information for raster tiles.
  *
  * Log Safety: UNSAFE
@@ -181,6 +213,15 @@ export interface MrsRasterStyle {
 export type MrsRgb = LooselyBrandedString<"MrsRgb">;
 
 /**
+ * Object for RGB value to use as union
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MrsRgbObject {
+  rgb: MrsRgb;
+}
+
+/**
  * Color to be applied to some component of a renderable.
  *
  * Log Safety: UNSAFE
@@ -188,6 +229,8 @@ export type MrsRgb = LooselyBrandedString<"MrsRgb">;
 export interface MrsStrokeStyle {
   color: MrsColor;
   width: MrsVirtualPixels;
+  pattern: MrsSymbol;
+  opacity: MrsAlpha;
 }
 
 /**
@@ -195,7 +238,10 @@ export interface MrsStrokeStyle {
  *
  * Log Safety: UNSAFE
  */
-export type MrsSymbol = { type: "generic" } & MrsGenericSymbol;
+export type MrsSymbol =
+  | ({ type: "solid" } & MrsRgbObject)
+  | ({ type: "sdf" } & MrsGenericSdf)
+  | ({ type: "generic" } & MrsGenericSymbol);
 
 /**
  * Symbol to be rendered as part of the renderable content.
@@ -351,7 +397,9 @@ export interface Sourcing {
  *
  * Log Safety: UNSAFE
  */
-export type SourcingContent = { type: "object" } & ObjectSourcingContent;
+export type SourcingContent =
+  | ({ type: "object" } & ObjectSourcingContent)
+  | ({ type: "objectV2" } & MrsObjectSourcingContentV2);
 
 /**
  * Globally unique ID for the sourcing within a session. The ID is opaque and not meant to be parsed in any way.
