@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.19.0
+
+### Minor Changes
+
+- aabad9b: Regenerate platform sdks
+
+### Patch Changes
+
+- Updated dependencies [aabad9b]
+  - @osdk/gotham.targetworkbench@0.19.0
+  - @osdk/gotham.maprendering@0.19.0
+  - @osdk/gotham.geojson@0.19.0
+  - @osdk/gotham.core@0.19.0
+  - @osdk/gotham.gaia@0.19.0
+
 ## 0.18.0
 
 ### Minor Changes

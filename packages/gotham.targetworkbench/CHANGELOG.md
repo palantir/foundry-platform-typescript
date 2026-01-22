@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.19.0
+
+### Minor Changes
+
+- aabad9b: Regenerate platform sdks
+
+### Patch Changes
+
+- Updated dependencies [aabad9b]
+  - @osdk/gotham.core@0.19.0
+
 ## 0.18.0
 
 ### Minor Changes
