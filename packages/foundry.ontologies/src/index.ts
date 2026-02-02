@@ -548,6 +548,8 @@ export type {
   SharedPropertyTypeRid,
   StartsWithQuery,
   StaticArgument,
+  StreamGeotemporalSeriesValuesRequest,
+  StreamGeotemporalSeriesValuesResponse,
   StreamingOutputFormat,
   StreamMessage,
   StreamTimeSeriesPointsRequest,

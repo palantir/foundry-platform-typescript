@@ -143,6 +143,17 @@ export interface CheckReport {
 }
 
 /**
+   * The maximum number of check reports to return in a single request.
+Validation rules:
+
+must be greater than or equal to 1
+must be less than or equal to 100
+   *
+   * Log Safety: SAFE
+   */
+export type CheckReportLimit = number;
+
+/**
  * The result of running a check.
  *
  * Log Safety: UNSAFE
@@ -304,6 +315,15 @@ export interface DateColumnValue {
 export interface EscalationConfig {
   failuresToCritical: number;
   timeIntervalInSeconds?: string;
+}
+
+/**
+ * The response for getting the latest check reports.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetLatestCheckReportsResponse {
+  data: Array<CheckReport>;
 }
 
 /**

@@ -32,8 +32,9 @@ import type * as _Ontologies from "../_components.js";
 const _list: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
-    $queryParams?: {
+    $queryParams: {
       branch?: _Core.FoundryBranch | undefined;
+      objectTypeApiNames: Array<_Ontologies.ObjectTypeApiName>;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -56,8 +57,9 @@ export function list(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
 
-    $queryParams?: {
+    $queryParams: {
       branch?: _Core.FoundryBranch | undefined;
+      objectTypeApiNames: Array<_Ontologies.ObjectTypeApiName>;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },

@@ -220,3 +220,78 @@ export function reset(
 ): Promise<_Streams.Stream> {
   return $foundryPlatformFetch($ctx, _reset, ...args);
 }
+
+const _getRecords: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    streamBranchName: _Datasets.BranchName,
+    $queryParams: {
+      viewRid: _Streams.ViewRid;
+      partitionId: _Streams.PartitionId;
+      startOffset?: string | undefined;
+      limit: number;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Streams.GetRecordsResponse>
+> = [0, "/v2/highScale/streams/datasets/{0}/streams/{1}/getRecords", 2];
+
+/**
+ * Get a batch of records from a stream for a given partition. Offsets are ordered from \[0, inf) but may be sparse (e.g.: 0, 2, 3, 5).
+ * Binary field values are returned as base64-encoded strings. Decode them to retrieve the original bytes.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:streams-read]
+ * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/getRecords
+ */
+export function getRecords(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+    streamBranchName: _Datasets.BranchName,
+
+    $queryParams: {
+      viewRid: _Streams.ViewRid;
+      partitionId: _Streams.PartitionId;
+      startOffset?: string | undefined;
+      limit: number;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Streams.GetRecordsResponse> {
+  return $foundryPlatformFetch($ctx, _getRecords, ...args);
+}
+
+const _getEndOffsets: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    streamBranchName: _Datasets.BranchName,
+    $queryParams: {
+      viewRid: _Streams.ViewRid;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Streams.GetEndOffsetsResponse>
+> = [0, "/v2/highScale/streams/datasets/{0}/streams/{1}/getEndOffsets", 2];
+
+/**
+ * Get the end offsets for all partitions of a stream. The end offset is the offset of the next record that will be written to the partition.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:streams-read]
+ * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/getEndOffsets
+ */
+export function getEndOffsets(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+    streamBranchName: _Datasets.BranchName,
+
+    $queryParams: {
+      viewRid: _Streams.ViewRid;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Streams.GetEndOffsetsResponse> {
+  return $foundryPlatformFetch($ctx, _getEndOffsets, ...args);
+}

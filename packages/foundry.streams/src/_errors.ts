@@ -91,6 +91,38 @@ export interface FailedToProcessBinaryRecord {
 }
 
 /**
+ * Could not getEndOffsets the Stream.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetEndOffsetsForStreamPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetEndOffsetsForStreamPermissionDenied";
+  errorDescription: "Could not getEndOffsets the Stream.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
+ * Could not getRecords the Stream.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetRecordsFromStreamPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetRecordsFromStreamPermissionDenied";
+  errorDescription: "Could not getRecords the Stream.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
  * The requested stream exists but is invalid, as it does not have a schema.
  *
  * Log Safety: UNSAFE
@@ -235,7 +267,7 @@ export interface StreamNotFound {
 }
 
 /**
- * No view for the provided view rid provided could be found.
+ * No view for the provided view RID provided could be found.
  *
  * Log Safety: SAFE
  */
@@ -243,7 +275,7 @@ export interface ViewNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ViewNotFound";
   errorDescription:
-    "No view for the provided view rid provided could be found.";
+    "No view for the provided view RID provided could be found.";
   errorInstanceId: string;
   parameters: {
     viewRid: unknown;

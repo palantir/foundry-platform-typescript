@@ -95,6 +95,27 @@ export interface Dataset {
 }
 
 /**
+ * The end offsets for each partition of a stream.
+ *
+ * Log Safety: SAFE
+ */
+export type GetEndOffsetsResponse = Record<PartitionId, string>;
+
+/**
+ * A list of records from a stream with their offsets.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export type GetRecordsResponse = Array<RecordWithOffset>;
+
+/**
+ * The identifier for a partition of a Foundry stream.
+ *
+ * Log Safety: SAFE
+ */
+export type PartitionId = LooselyBrandedString<"PartitionId">;
+
+/**
  * The number of partitions for a Foundry stream.
  *
  * Log Safety: SAFE
@@ -123,6 +144,16 @@ export interface PublishRecordToStreamRequest {
  * Log Safety: DO_NOT_LOG
  */
 export type _Record = Record<string, any | undefined>;
+
+/**
+ * A record retrieved from a stream, including its offset within the partition.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export interface RecordWithOffset {
+  offset: string;
+  value: _Record;
+}
 
 /**
  * Log Safety: UNSAFE

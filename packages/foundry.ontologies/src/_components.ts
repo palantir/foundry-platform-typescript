@@ -5302,6 +5302,20 @@ export interface StaticArgument {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface StreamGeotemporalSeriesValuesRequest {
+  range?: TimeRange;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StreamGeotemporalSeriesValuesResponse {
+  data: Array<GeotemporalSeriesEntry>;
+}
+
+/**
    * Which format to serialize the binary stream in.
 ARROW is more efficient for streaming a large sized response.
    *

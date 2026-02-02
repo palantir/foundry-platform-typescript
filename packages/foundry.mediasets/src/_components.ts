@@ -249,6 +249,41 @@ export interface DocumentMediaItemMetadata {
 }
 
 /**
+ * Metadata about an email attachment.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface EmailAttachment {
+  attachmentIndex: number;
+  fileName?: string;
+  mimeType: string;
+}
+
+/**
+ * The format of an email media item.
+ *
+ * Log Safety: SAFE
+ */
+export type EmailDecodeFormat = "EML";
+
+/**
+ * Metadata for email media items.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface EmailMediaItemMetadata {
+  format: EmailDecodeFormat;
+  sizeBytes: number;
+  sender: Array<Mailbox>;
+  date: string;
+  attachmentCount: number;
+  to: Array<MailboxOrGroup>;
+  cc: Array<MailboxOrGroup>;
+  subject?: string;
+  attachments: Array<EmailAttachment>;
+}
+
+/**
  * The flip axis from EXIF orientation.
  *
  * Log Safety: SAFE
@@ -318,6 +353,25 @@ export interface GroundControlPoint {
 }
 
 /**
+ * A named group of mailboxes.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Group {
+  groupName: string;
+  mailboxes: Array<Mailbox>;
+}
+
+/**
+ * A wrapper for a group in the MailboxOrGroup union.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GroupWrapper {
+  group: Group;
+}
+
+/**
  * The domain of an image attribute.
  *
  * Log Safety: UNSAFE
@@ -373,6 +427,34 @@ Only positive timestamps (representing times after epoch) are supported.
 export type LogicalTimestamp = string;
 
 /**
+ * An email mailbox with an optional display name and email address.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Mailbox {
+  displayName?: string;
+  emailAddress: string;
+}
+
+/**
+ * Either a mailbox or a group of mailboxes.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MailboxOrGroup =
+  | ({ type: "mailbox" } & MailboxWrapper)
+  | ({ type: "group" } & GroupWrapper);
+
+/**
+ * A wrapper for a mailbox in the MailboxOrGroup union.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MailboxWrapper {
+  mailbox: Mailbox;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface MediaAttribution {
@@ -393,7 +475,8 @@ export type MediaItemMetadata =
   | ({ type: "untyped" } & UntypedMediaItemMetadata)
   | ({ type: "audio" } & AudioMediaItemMetadata)
   | ({ type: "video" } & VideoMediaItemMetadata)
-  | ({ type: "dicom" } & DicomMediaItemMetadata);
+  | ({ type: "dicom" } & DicomMediaItemMetadata)
+  | ({ type: "email" } & EmailMediaItemMetadata);
 
 /**
  * Format of the media item attempted to be decoded based on the XML structure.

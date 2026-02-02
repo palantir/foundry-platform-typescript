@@ -79,6 +79,7 @@ const _list: $FoundryPlatformMethod<
     datasetRid: _Datasets.DatasetRid,
     $queryParams?: {
       branchName?: _Datasets.BranchName | undefined;
+      pathPrefix?: _Core.FilePath | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       pageSize?: _Core.PageSize | undefined;
@@ -121,6 +122,7 @@ export function list(
 
     $queryParams?: {
       branchName?: _Datasets.BranchName | undefined;
+      pathPrefix?: _Core.FilePath | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       pageSize?: _Core.PageSize | undefined;

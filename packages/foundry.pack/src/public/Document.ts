@@ -88,8 +88,8 @@ const _search: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documents/search", 3];
 
 /**
- * Loads all PACK Documents visible to the user of the provided Document Type Name. If a search query
- * is provided, filters the results based on the user's query.
+ * Loads all PACK Documents visible to the user of the provided Document Type Name. If a search request
+ * is provided, filters and sorts the results based on the user's query, sort, and pagination options.
  *
  * @alpha
  *

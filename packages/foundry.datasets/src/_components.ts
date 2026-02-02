@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
+import type * as _DataHealth from "@osdk/foundry.datahealth";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
 
 export type LooselyBrandedString<T extends string> = string & {
@@ -213,6 +214,13 @@ export interface GetDatasetSchemaResponse {
   endTransactionRid: TransactionRid;
   schema: _Core.DatasetSchema;
   versionId: _Core.VersionId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetHealthCheckReportsResponse {
+  data: Record<_Core.CheckRid, _DataHealth.CheckReport | undefined>;
 }
 
 /**

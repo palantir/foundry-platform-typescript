@@ -219,10 +219,22 @@ export interface DocumentPublishMessage {
 export type DocumentRid = LooselyBrandedString<"DocumentRid">;
 
 /**
+ * Filter criteria for document search.
+ *
  * Log Safety: UNSAFE
  */
 export interface DocumentSearchQuery {
   documentName?: string;
+}
+
+/**
+ * Request body for searching documents.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentSearchRequest {
+  query?: DocumentSearchQuery;
+  orderBy?: DocumentSort;
   pageSize?: _Core.PageSize;
   pageToken?: PageToken;
 }
@@ -242,6 +254,27 @@ export interface DocumentSecurity {
   mandatory: DocumentMandatorySecurity;
   discretionary: DocumentDiscretionarySecurity;
 }
+
+/**
+ * Sorting specification for document search.
+ *
+ * Log Safety: SAFE
+ */
+export interface DocumentSort {
+  field: DocumentSortField;
+  direction: _Core.OrderByDirection;
+}
+
+/**
+ * The field to sort documents by.
+ *
+ * Log Safety: SAFE
+ */
+export type DocumentSortField =
+  | "NAME"
+  | "CREATED_TIME"
+  | "LAST_MODIFIED_TIME"
+  | "LAST_VIEW_TIME";
 
 /**
  * Log Safety: UNSAFE
@@ -394,7 +427,7 @@ export type RevisionId = string;
  */
 export interface SearchDocumentsRequest {
   documentTypeName: DocumentTypeName;
-  searchQuery?: DocumentSearchQuery;
+  requestBody: DocumentSearchRequest;
 }
 
 /**

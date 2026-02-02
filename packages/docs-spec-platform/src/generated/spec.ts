@@ -256,6 +256,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getGeotemporalSeriesLatestValue": {
       "variables": {},
     },
+    "v2.streamGeotemporalSeriesHistoricValues": {
+      "variables": {},
+    },
     "v2.decrypt": {
       "variables": {},
     },
@@ -610,6 +613,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getDatasetHealthChecks": {
       "variables": {},
     },
+    "v2.getDatasetHealthCheckReports": {
+      "variables": {},
+    },
     "v2.readTableDataset": {
       "variables": {},
     },
@@ -919,6 +925,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getCheckReport": {
       "variables": {},
     },
+    "v2.getLatestCheckReports": {
+      "variables": {},
+    },
     "v2.renderInvocationObject": {
       "variables": {},
     },
@@ -944,6 +953,12 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.resetStream": {
+      "variables": {},
+    },
+    "v2.getRecordsFromStream": {
+      "variables": {},
+    },
+    "v2.getEndOffsetsForStream": {
       "variables": {},
     },
     "v2.openAiEmbeddings": {
