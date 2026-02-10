@@ -69,7 +69,7 @@ const _getByRid: $FoundryPlatformMethod<
 > = [1, "/v2/functions/queries/getByRid", 3];
 
 /**
- * Gets a specific query type with the given RID.By default, this gets the latest version of the query.
+ * Gets a specific query type with the given RID. By default, this gets the latest version of the query.
  *
  * @alpha
  *

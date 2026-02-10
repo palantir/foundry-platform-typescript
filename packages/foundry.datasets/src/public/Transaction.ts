@@ -31,9 +31,9 @@ import type * as _Datasets from "../_components.js";
 
 const _create: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Datasets.CreateTransactionRequest,
-    $queryParams?: { branchName?: _Datasets.BranchName | undefined },
+    $queryParams?: { branchName?: _Core.BranchName | undefined },
   ) => Promise<_Datasets.Transaction>
 > = [1, "/v2/datasets/{0}/transactions", 3];
 
@@ -48,9 +48,9 @@ const _create: $FoundryPlatformMethod<
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Datasets.CreateTransactionRequest,
-    $queryParams?: { branchName?: _Datasets.BranchName | undefined },
+    $queryParams?: { branchName?: _Core.BranchName | undefined },
   ]
 ): Promise<_Datasets.Transaction> {
   return $foundryPlatformFetch($ctx, _create, ...args);
@@ -58,7 +58,7 @@ export function create(
 
 const _get: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
   ) => Promise<_Datasets.Transaction>
 > = [0, "/v2/datasets/{0}/transactions/{1}"];
@@ -74,7 +74,7 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
   ]
 ): Promise<_Datasets.Transaction> {
@@ -83,7 +83,7 @@ export function get(
 
 const _commit: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
   ) => Promise<_Datasets.Transaction>
 > = [1, "/v2/datasets/{0}/transactions/{1}/commit"];
@@ -100,7 +100,7 @@ const _commit: $FoundryPlatformMethod<
 export function commit(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
   ]
 ): Promise<_Datasets.Transaction> {
@@ -109,7 +109,7 @@ export function commit(
 
 const _abort: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
   ) => Promise<_Datasets.Transaction>
 > = [1, "/v2/datasets/{0}/transactions/{1}/abort"];
@@ -126,7 +126,7 @@ const _abort: $FoundryPlatformMethod<
 export function abort(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
   ]
 ): Promise<_Datasets.Transaction> {
@@ -135,7 +135,7 @@ export function abort(
 
 const _build: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Core.BuildRid | undefined>
@@ -154,7 +154,7 @@ const _build: $FoundryPlatformMethod<
 export function build(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
@@ -165,7 +165,7 @@ export function build(
 
 const _job: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Core.JobRid | undefined>
@@ -184,7 +184,7 @@ const _job: $FoundryPlatformMethod<
 export function job(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },

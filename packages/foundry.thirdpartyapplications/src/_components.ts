@@ -38,7 +38,7 @@ export interface ListVersionsResponse {
 /**
  * A subdomain from which a website is served.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type Subdomain = LooselyBrandedString<"Subdomain">;
 

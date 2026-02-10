@@ -508,6 +508,21 @@ export interface HighScaleComputationNotEnabled {
 }
 
 /**
+   * A wrapper object set type is incompatible with one or more of the nested object set types.
+For example, an interfaceLinkSearchAround object set wrapping a non-interface object set.
+   *
+   * Log Safety: SAFE
+   */
+export interface IncompatibleNestedObjectSet {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "IncompatibleNestedObjectSet";
+  errorDescription:
+    "A wrapper object set type is incompatible with one or more of the nested object set types. For example, an interfaceLinkSearchAround object set wrapping a non-interface object set.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested object set type is not supported for interface-based object sets.
  *
  * Log Safety: SAFE

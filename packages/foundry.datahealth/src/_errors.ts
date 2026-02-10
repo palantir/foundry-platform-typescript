@@ -51,6 +51,38 @@ export interface CheckNotFound {
 }
 
 /**
+ * CheckReportLimit must be less than or equal to 100
+ *
+ * Log Safety: SAFE
+ */
+export interface CheckReportLimitAboveMaximum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CheckReportLimitAboveMaximum";
+  errorDescription: "CheckReportLimit must be less than or equal to 100";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    maxInclusive: unknown;
+  };
+}
+
+/**
+ * CheckReportLimit must be greater than or equal to 1
+ *
+ * Log Safety: SAFE
+ */
+export interface CheckReportLimitBelowMinimum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CheckReportLimitBelowMinimum";
+  errorDescription: "CheckReportLimit must be greater than or equal to 1";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    minInclusive: unknown;
+  };
+}
+
+/**
  * The given CheckReport could not be found.
  *
  * Log Safety: SAFE
@@ -62,6 +94,7 @@ export interface CheckReportNotFound {
   errorInstanceId: string;
   parameters: {
     checkReportRid: unknown;
+    checkRid: unknown;
   };
 }
 
@@ -103,6 +136,21 @@ export interface DeleteCheckPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "DeleteCheckPermissionDenied";
   errorDescription: "Could not delete the Check.";
+  errorInstanceId: string;
+  parameters: {
+    checkRid: unknown;
+  };
+}
+
+/**
+ * Could not getLatest the CheckReport.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetLatestCheckReportsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetLatestCheckReportsPermissionDenied";
+  errorDescription: "Could not getLatest the CheckReport.";
   errorInstanceId: string;
   parameters: {
     checkRid: unknown;

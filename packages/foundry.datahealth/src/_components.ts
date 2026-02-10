@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Connectivity from "@osdk/foundry.connectivity";
 import type * as _Core from "@osdk/foundry.core";
-import type * as _Datasets from "@osdk/foundry.datasets";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -143,6 +141,17 @@ export interface CheckReport {
 }
 
 /**
+   * The maximum number of check reports to return in a single request.
+Validation rules:
+
+must be greater than or equal to 1
+must be less than or equal to 100
+   *
+   * Log Safety: SAFE
+   */
+export type CheckReportLimit = number;
+
+/**
  * The result of running a check.
  *
  * Log Safety: UNSAFE
@@ -231,15 +240,6 @@ export interface CreateCheckRequest {
 }
 
 /**
- * A data connection agent resource type.
- *
- * Log Safety: UNSAFE
- */
-export interface DataConnectionAgentSubject {
-  agentRid: _Connectivity.AgentRid;
-}
-
-/**
  * The Resource Identifier (RID) of a Dataset.
  *
  * Log Safety: SAFE
@@ -252,8 +252,8 @@ export type DatasetRid = LooselyBrandedString<"DatasetRid">;
  * Log Safety: UNSAFE
  */
 export interface DatasetSubject {
-  datasetRid: _Datasets.DatasetRid;
-  branchId: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchId: _Core.BranchName;
 }
 
 /**
@@ -304,6 +304,15 @@ export interface DateColumnValue {
 export interface EscalationConfig {
   failuresToCritical: number;
   timeIntervalInSeconds?: string;
+}
+
+/**
+ * The response for getting the latest check reports.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetLatestCheckReportsResponse {
+  data: Array<CheckReport>;
 }
 
 /**

@@ -35,7 +35,7 @@ export type AbortOnFailure = boolean;
  */
 export interface Action {
   target: BuildTarget;
-  branchName: _Datasets.BranchName;
+  branchName: _Core.BranchName;
   fallbackBranches: FallbackBranches;
   forceBuild: ForceBuild;
   retryCount?: RetryCount;
@@ -65,7 +65,7 @@ export interface AndTrigger {
  */
 export interface Build {
   rid: _Core.BuildRid;
-  branchName: _Datasets.BranchName;
+  branchName: _Core.BranchName;
   createdTime: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
   fallbackBranches: FallbackBranches;
@@ -119,7 +119,7 @@ export interface ConnectingTarget {
  */
 export interface CreateBuildRequest {
   target: BuildTarget;
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   fallbackBranches: FallbackBranches;
   forceBuild?: ForceBuild;
   retryCount?: RetryCount;
@@ -148,7 +148,7 @@ export interface CreateScheduleRequestAction {
   retryBackoffDuration?: RetryBackoffDuration;
   retryCount?: RetryCount;
   fallbackBranches?: FallbackBranches;
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   notificationsEnabled?: NotificationsEnabled;
   target: CreateScheduleRequestBuildTarget;
 }
@@ -183,8 +183,8 @@ export interface CreateScheduleRequestConnectingTarget {
  * Log Safety: UNSAFE
  */
 export interface CreateScheduleRequestDatasetUpdatedTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
 }
 
 /**
@@ -199,8 +199,8 @@ export interface CreateScheduleRequestDuration {
  * Log Safety: UNSAFE
  */
 export interface CreateScheduleRequestJobSucceededTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
 }
 
 /**
@@ -219,7 +219,7 @@ export interface CreateScheduleRequestManualTrigger {}
  * Log Safety: UNSAFE
  */
 export interface CreateScheduleRequestMediaSetUpdatedTrigger {
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   mediaSetRid: _Core.MediaSetRid;
 }
 
@@ -227,8 +227,8 @@ export interface CreateScheduleRequestMediaSetUpdatedTrigger {
  * Log Safety: UNSAFE
  */
 export interface CreateScheduleRequestNewLogicTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
 }
 
 /**
@@ -265,7 +265,7 @@ export type CreateScheduleRequestScopeMode =
  * Log Safety: UNSAFE
  */
 export interface CreateScheduleRequestTableUpdatedTrigger {
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   tableRid: _Core.TableRid;
 }
 
@@ -319,7 +319,7 @@ export type CronExpression = LooselyBrandedString<"CronExpression">;
  * Log Safety: SAFE
  */
 export interface DatasetJobOutput {
-  datasetRid: _Datasets.DatasetRid;
+  datasetRid: _Core.DatasetRid;
   outputTransactionRid?: _Datasets.TransactionRid;
 }
 
@@ -330,8 +330,8 @@ dataset on the target branch.
    * Log Safety: UNSAFE
    */
 export interface DatasetUpdatedTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName: _Core.BranchName;
 }
 
 /**
@@ -340,7 +340,7 @@ target branch.
    *
    * Log Safety: UNSAFE
    */
-export type FallbackBranches = Array<_Datasets.BranchName>;
+export type FallbackBranches = Array<_Core.BranchName>;
 
 /**
  * Whether to ignore staleness information when running the build.
@@ -442,8 +442,8 @@ branch.
    * Log Safety: UNSAFE
    */
 export interface JobSucceededTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName: _Core.BranchName;
 }
 
 /**
@@ -488,7 +488,7 @@ eventually (but not necessary immediately) after an update.
    */
 export interface MediaSetUpdatedTrigger {
   mediaSetRid: _Core.MediaSetRid;
-  branchName: _Datasets.BranchName;
+  branchName: _Core.BranchName;
 }
 
 /**
@@ -498,8 +498,8 @@ that branch.
    * Log Safety: UNSAFE
    */
 export interface NewLogicTrigger {
-  branchName: _Datasets.BranchName;
-  datasetRid: _Datasets.DatasetRid;
+  branchName: _Core.BranchName;
+  datasetRid: _Core.DatasetRid;
 }
 
 /**
@@ -549,7 +549,7 @@ export interface ReplaceScheduleRequestAction {
   retryBackoffDuration?: RetryBackoffDuration;
   retryCount?: RetryCount;
   fallbackBranches?: FallbackBranches;
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   notificationsEnabled?: NotificationsEnabled;
   target: ReplaceScheduleRequestBuildTarget;
 }
@@ -584,8 +584,8 @@ export interface ReplaceScheduleRequestConnectingTarget {
  * Log Safety: UNSAFE
  */
 export interface ReplaceScheduleRequestDatasetUpdatedTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
 }
 
 /**
@@ -600,8 +600,8 @@ export interface ReplaceScheduleRequestDuration {
  * Log Safety: UNSAFE
  */
 export interface ReplaceScheduleRequestJobSucceededTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
 }
 
 /**
@@ -620,7 +620,7 @@ export interface ReplaceScheduleRequestManualTrigger {}
  * Log Safety: UNSAFE
  */
 export interface ReplaceScheduleRequestMediaSetUpdatedTrigger {
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   mediaSetRid: _Core.MediaSetRid;
 }
 
@@ -628,8 +628,8 @@ export interface ReplaceScheduleRequestMediaSetUpdatedTrigger {
  * Log Safety: UNSAFE
  */
 export interface ReplaceScheduleRequestNewLogicTrigger {
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
 }
 
 /**
@@ -666,7 +666,7 @@ export type ReplaceScheduleRequestScopeMode =
  * Log Safety: UNSAFE
  */
 export interface ReplaceScheduleRequestTableUpdatedTrigger {
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   tableRid: _Core.TableRid;
 }
 
@@ -981,7 +981,7 @@ table on the target branch.
    */
 export interface TableUpdatedTrigger {
   tableRid: _Core.TableRid;
-  branchName: _Datasets.BranchName;
+  branchName: _Core.BranchName;
 }
 
 /**

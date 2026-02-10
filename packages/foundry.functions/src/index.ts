@@ -91,6 +91,8 @@ export type {
 export type {
   ConsistentSnapshotError,
   ExecuteQueryPermissionDenied,
+  FunctionHasNoPublishedVersion,
+  FunctionNotFound,
   GetByRidQueriesPermissionDenied,
   InvalidQueryOutputValue,
   InvalidQueryParameterValue,

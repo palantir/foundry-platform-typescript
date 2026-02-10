@@ -37,8 +37,11 @@ export type {
   DocumentPublishMessage,
   DocumentRid,
   DocumentSearchQuery,
+  DocumentSearchRequest,
   DocumentSearchResponse,
   DocumentSecurity,
+  DocumentSort,
+  DocumentSortField,
   DocumentType,
   DocumentTypeName,
   DocumentTypeRid,
@@ -49,6 +52,7 @@ export type {
   ErrorCode,
   ErrorMessage,
   EventId,
+  FileSystemType,
   FolderRid,
   GroupId,
   MarkingId,
@@ -58,6 +62,8 @@ export type {
   PresencePublishMessage,
   RevisionId,
   SearchDocumentsRequest,
+  UpdateDocumentMetadataRequest,
+  UpdateDocumentRequest,
   UserId,
   UserPresence,
   VersionedEventData,
@@ -71,6 +77,8 @@ export type {
   DocumentTypeAlreadyExists,
   DocumentTypeNameNotFound,
   SearchDocumentsPermissionDenied,
+  UpdateDocumentNotSupported,
+  UpdateDocumentPermissionDenied,
 } from "./_errors.js";
 export * as Documents from "./public/Document.js";
 export * as DocumentTypes from "./public/DocumentType.js";

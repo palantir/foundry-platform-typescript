@@ -52,6 +52,36 @@ export interface ExecuteQueryPermissionDenied {
 }
 
 /**
+ * The query function has no published versions.
+ *
+ * Log Safety: SAFE
+ */
+export interface FunctionHasNoPublishedVersion {
+  errorCode: "NOT_FOUND";
+  errorName: "FunctionHasNoPublishedVersion";
+  errorDescription: "The query function has no published versions.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+  };
+}
+
+/**
+ * The query function could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface FunctionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "FunctionNotFound";
+  errorDescription: "The query function could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+  };
+}
+
+/**
  * Could not getByRid the Query.
  *
  * Log Safety: SAFE

@@ -37,6 +37,7 @@ const _apply: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.SyncApplyActionResponseV2>
@@ -68,6 +69,7 @@ export function apply(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]
@@ -171,6 +173,7 @@ const _applyWithOverrides: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.SyncApplyActionResponseV2>
@@ -194,6 +197,7 @@ export function applyWithOverrides(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]
