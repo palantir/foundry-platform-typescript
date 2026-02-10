@@ -1,5 +1,11 @@
 # @osdk/foundry.geo
 
+## 2.47.0
+
+### Minor Changes
+
+- 0a561e6: Fix cyclic dependency
+
 ## 2.46.0
 
 ### Minor Changes
