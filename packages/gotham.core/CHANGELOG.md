@@ -1,5 +1,11 @@
 # @osdk/gotham.core
 
+## 0.20.0
+
+### Minor Changes
+
+- 0a561e6: Fix cyclic dependency
+
 ## 0.19.0
 
 ### Minor Changes

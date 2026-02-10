@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.34.0
+
+### Minor Changes
+
+- 0a561e6: Fix cyclic dependency
+
 ## 0.33.0
 
 ### Minor Changes

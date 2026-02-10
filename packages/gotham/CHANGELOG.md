@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.20.0
+
+### Minor Changes
+
+- 0a561e6: Fix cyclic dependency
+
+### Patch Changes
+
+- Updated dependencies [0a561e6]
+  - @osdk/gotham.targetworkbench@0.20.0
+  - @osdk/gotham.maprendering@0.20.0
+  - @osdk/gotham.geojson@0.20.0
+  - @osdk/gotham.core@0.20.0
+  - @osdk/gotham.gaia@0.20.0
+
 ## 0.19.0
 
 ### Minor Changes

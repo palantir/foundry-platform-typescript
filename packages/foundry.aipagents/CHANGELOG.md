@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.47.0
+
+### Minor Changes
+
+- 0a561e6: Fix cyclic dependency
+
+### Patch Changes
+
+- Updated dependencies [0a561e6]
+  - @osdk/foundry.ontologies@2.47.0
+  - @osdk/foundry.functions@2.47.0
+  - @osdk/foundry.core@2.47.0
+
 ## 2.46.0
 
 ### Minor Changes

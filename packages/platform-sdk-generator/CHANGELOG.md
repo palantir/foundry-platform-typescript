@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.46.0
+
+### Minor Changes
+
+- 0a561e6: Fix cyclic dependency
+
+### Patch Changes
+
+- Updated dependencies [0a561e6]
+  - @osdk/docs-spec-platform@0.34.0
+
 ## 0.45.0
 
 ### Patch Changes

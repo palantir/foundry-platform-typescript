@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.47.0
+
+### Minor Changes
+
+- 0a561e6: Fix cyclic dependency
+
+### Patch Changes
+
+- Updated dependencies [0a561e6]
+  - @osdk/internal.foundry.ontologies@2.47.0
+  - @osdk/internal.foundry.datasets@2.47.0
+  - @osdk/internal.foundry.core@2.47.0
+  - @osdk/internal.foundry.geo@2.47.0
+  - @osdk/internal.foundry.ontologiesv2@2.47.0
+  - @osdk/internal.foundry.mediasets@2.47.0
+
 ## 2.46.0
 
 ### Minor Changes
