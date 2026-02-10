@@ -39,7 +39,7 @@ export interface CreateStreamingDatasetRequest {
   name: _Datasets.DatasetName;
   parentFolderRid: _Filesystem.FolderRid;
   schema: _Core.StreamSchema;
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   partitionsCount?: PartitionsCount;
   streamType?: StreamType;
   compressed?: Compressed;
@@ -52,7 +52,7 @@ export interface CreateStreamRequest {
   schema: CreateStreamRequestStreamSchema;
   partitionsCount?: PartitionsCount;
   streamType?: StreamType;
-  branchName: _Datasets.BranchName;
+  branchName: _Core.BranchName;
   compressed?: Compressed;
 }
 
@@ -89,10 +89,31 @@ export interface CreateStreamRequestStreamSchema {
  * Log Safety: UNSAFE
  */
 export interface Dataset {
-  rid: _Datasets.DatasetRid;
+  rid: _Core.DatasetRid;
   name: _Datasets.DatasetName;
   parentFolderRid: _Filesystem.FolderRid;
 }
+
+/**
+ * The end offsets for each partition of a stream.
+ *
+ * Log Safety: SAFE
+ */
+export type GetEndOffsetsResponse = Record<PartitionId, string>;
+
+/**
+ * A list of records from a stream with their offsets.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export type GetRecordsResponse = Array<RecordWithOffset>;
+
+/**
+ * The identifier for a partition of a Foundry stream.
+ *
+ * Log Safety: SAFE
+ */
+export type PartitionId = LooselyBrandedString<"PartitionId">;
 
 /**
  * The number of partitions for a Foundry stream.
@@ -125,6 +146,16 @@ export interface PublishRecordToStreamRequest {
 export type _Record = Record<string, any | undefined>;
 
 /**
+ * A record retrieved from a stream, including its offset within the partition.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export interface RecordWithOffset {
+  offset: string;
+  value: _Record;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ResetStreamRequest {
@@ -138,7 +169,7 @@ export interface ResetStreamRequest {
  * Log Safety: UNSAFE
  */
 export interface Stream {
-  branchName: _Datasets.BranchName;
+  branchName: _Core.BranchName;
   schema: _Core.StreamSchema;
   viewRid: ViewRid;
   partitionsCount: PartitionsCount;

@@ -56,9 +56,9 @@ export function create(
 
 const _get: $FoundryPlatformMethod<
   (
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $queryParams?: {
-      branch?: _Datasets.BranchName | undefined;
+      branch?: _Core.BranchName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.View>
@@ -75,10 +75,10 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
 
     $queryParams?: {
-      branch?: _Datasets.BranchName | undefined;
+      branch?: _Core.BranchName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -88,7 +88,7 @@ export function get(
 
 const _addBackingDatasets: $FoundryPlatformMethod<
   (
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddBackingDatasetsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
@@ -106,7 +106,7 @@ const _addBackingDatasets: $FoundryPlatformMethod<
 export function addBackingDatasets(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddBackingDatasetsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -116,7 +116,7 @@ export function addBackingDatasets(
 
 const _replaceBackingDatasets: $FoundryPlatformMethod<
   (
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.ReplaceBackingDatasetsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
@@ -134,7 +134,7 @@ const _replaceBackingDatasets: $FoundryPlatformMethod<
 export function replaceBackingDatasets(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.ReplaceBackingDatasetsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -144,7 +144,7 @@ export function replaceBackingDatasets(
 
 const _removeBackingDatasets: $FoundryPlatformMethod<
   (
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.RemoveBackingDatasetsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
@@ -163,7 +163,7 @@ const _removeBackingDatasets: $FoundryPlatformMethod<
 export function removeBackingDatasets(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.RemoveBackingDatasetsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -173,7 +173,7 @@ export function removeBackingDatasets(
 
 const _addPrimaryKey: $FoundryPlatformMethod<
   (
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddPrimaryKeyRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
@@ -191,7 +191,7 @@ const _addPrimaryKey: $FoundryPlatformMethod<
 export function addPrimaryKey(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    viewDatasetRid: _Datasets.DatasetRid,
+    viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddPrimaryKeyRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]

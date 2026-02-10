@@ -24,6 +24,8 @@ objecttype
 objecttypes
 ontologyobject
 permissioning
+reauthentication
+redactable
 reindex
 rulesets
 schemamigrations

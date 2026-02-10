@@ -34,7 +34,11 @@ const _postEdits: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     transactionId: _Ontologies.OntologyTransactionId,
     $body: _Ontologies.PostTransactionEditsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
   ) => Promise<_Ontologies.PostTransactionEditsResponse>
 > = [1, "/v2/ontologies/{0}/transactions/{1}/edits", 3];
 
@@ -52,7 +56,11 @@ export function postEdits(
     ontology: _Ontologies.OntologyIdentifier,
     transactionId: _Ontologies.OntologyTransactionId,
     $body: _Ontologies.PostTransactionEditsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      preview?: _Core.PreviewMode | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
   ]
 ): Promise<_Ontologies.PostTransactionEditsResponse> {
   return $foundryPlatformFetch($ctx, _postEdits, ...args);

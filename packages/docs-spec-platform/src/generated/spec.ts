@@ -190,6 +190,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getObjectTypeFullMetadata": {
       "variables": {},
     },
+    "v2.getObjectTypeEditsHistory": {
+      "variables": {},
+    },
     "v2.listOutgoingLinkTypesV2": {
       "variables": {},
     },
@@ -254,6 +257,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getGeotemporalSeriesLatestValue": {
+      "variables": {},
+    },
+    "v2.streamGeotemporalSeriesHistoricValues": {
       "variables": {},
     },
     "v2.decrypt": {
@@ -610,6 +616,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getDatasetHealthChecks": {
       "variables": {},
     },
+    "v2.getDatasetHealthCheckReports": {
+      "variables": {},
+    },
     "v2.readTableDataset": {
       "variables": {},
     },
@@ -919,6 +928,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getCheckReport": {
       "variables": {},
     },
+    "v2.getLatestCheckReports": {
+      "variables": {},
+    },
     "v2.renderInvocationObject": {
       "variables": {},
     },
@@ -944,6 +956,12 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.resetStream": {
+      "variables": {},
+    },
+    "v2.getRecordsFromStream": {
+      "variables": {},
+    },
+    "v2.getEndOffsetsForStream": {
       "variables": {},
     },
     "v2.openAiEmbeddings": {
@@ -998,6 +1016,18 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.searchDocuments": {
+      "variables": {},
+    },
+    "v2.updateDocument": {
+      "variables": {},
+    },
+    "v2.getRecord": {
+      "variables": {},
+    },
+    "v2.getRecordsBatch": {
+      "variables": {},
+    },
+    "v2.searchRecords": {
       "variables": {},
     },
     "v2.generateTemplate": {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Datasets from "@osdk/foundry.datasets";
+import type * as _Core from "@osdk/foundry.core";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -30,7 +30,7 @@ export interface CanceledQueryStatus {}
  */
 export interface ExecuteSqlQueryRequest {
   query: string;
-  fallbackBranchIds?: Array<_Datasets.BranchName>;
+  fallbackBranchIds?: Array<_Core.BranchName>;
 }
 
 /**

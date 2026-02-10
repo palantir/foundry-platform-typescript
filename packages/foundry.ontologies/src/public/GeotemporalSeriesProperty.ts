@@ -69,3 +69,52 @@ export function getGeotemporalSeriesLatestValue(
 ): Promise<_Ontologies.GeotemporalSeriesEntry | undefined> {
   return $foundryPlatformFetch($ctx, _getGeotemporalSeriesLatestValue, ...args);
 }
+
+const _streamGeotemporalSeriesHistoricValues: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    propertyName: _Ontologies.PropertyApiName,
+    $body: _Ontologies.StreamGeotemporalSeriesValuesRequest,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
+  ) => Promise<Response>
+> = [
+  1,
+  "/v2/ontologies/{0}/objects/{1}/{2}/geotemporalSeries/{3}/streamHistoricValues",
+  3,
+  ,
+  "*/*",
+];
+
+/**
+ * Stream historic points of a geotemporal series reference property.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/geotemporalSeries/{propertyName}/streamHistoricValues
+ */
+export function streamGeotemporalSeriesHistoricValues(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    primaryKey: _Ontologies.PropertyValueEscapedString,
+    propertyName: _Ontologies.PropertyApiName,
+    $body: _Ontologies.StreamGeotemporalSeriesValuesRequest,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch(
+    $ctx,
+    _streamGeotemporalSeriesHistoricValues,
+    ...args,
+  );
+}

@@ -88,8 +88,8 @@ const _search: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documents/search", 3];
 
 /**
- * Loads all PACK Documents visible to the user of the provided Document Type Name. If a search query
- * is provided, filters the results based on the user's query.
+ * Loads all PACK Documents visible to the user of the provided Document Type Name. If a search request
+ * is provided, filters and sorts the results based on the user's query, sort, and pagination options.
  *
  * @alpha
  *
@@ -104,4 +104,31 @@ export function search(
   ]
 ): Promise<_Pack.DocumentSearchResponse> {
   return $foundryPlatformFetch($ctx, _search, ...args);
+}
+
+const _update: $FoundryPlatformMethod<
+  (
+    documentId: _Pack.DocumentRid,
+    $body: _Pack.UpdateDocumentRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.Document>
+> = [1, "/v2/pack/documents/{0}/update", 3];
+
+/**
+ * Updates the metadata (name and/or description) of a PACK Document.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-write]
+ * URL: /v2/pack/documents/{documentId}/update
+ */
+export function update(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    documentId: _Pack.DocumentRid,
+    $body: _Pack.UpdateDocumentRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.Document> {
+  return $foundryPlatformFetch($ctx, _update, ...args);
 }

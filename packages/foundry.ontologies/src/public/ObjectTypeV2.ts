@@ -133,6 +133,42 @@ export function getFullMetadata(
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);
 }
 
+const _getEditsHistory: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    $body: _Ontologies.ObjectTypeEditsHistoryRequest,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ) => Promise<_Ontologies.ObjectTypeEditsHistoryResponse>
+> = [1, "/v2/ontologies/{0}/objectTypes/{1}/editsHistory", 3];
+
+/**
+ * Returns the history of edits (additions, modifications, deletions) for objects of a
+ * specific object type. This endpoint provides visibility into all actions that have
+ * modified objects of this type.
+ *
+ * The edits are returned in reverse chronological order (most recent first).
+ *
+ * WARNING: right now this endpoint works only if you pass in an object primary key, i.e. it does not function
+ * as a global object type edits history. Global object type edits history is currently under development.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/editsHistory
+ */
+export function getEditsHistory(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    $body: _Ontologies.ObjectTypeEditsHistoryRequest,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ]
+): Promise<_Ontologies.ObjectTypeEditsHistoryResponse> {
+  return $foundryPlatformFetch($ctx, _getEditsHistory, ...args);
+}
+
 const _listOutgoingLinkTypes: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,

@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
+import type * as _DataHealth from "@osdk/foundry.datahealth";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
 
 export type LooselyBrandedString<T extends string> = string & {
@@ -25,7 +26,7 @@ export type LooselyBrandedString<T extends string> = string & {
  * Log Safety: UNSAFE
  */
 export interface AddBackingDatasetsRequest {
-  branch?: BranchName;
+  branch?: _Core.BranchName;
   backingDatasets: Array<ViewBackingDataset>;
 }
 
@@ -33,7 +34,7 @@ export interface AddBackingDatasetsRequest {
  * Log Safety: UNSAFE
  */
 export interface AddPrimaryKeyRequest {
-  branch?: BranchName;
+  branch?: _Core.BranchName;
   primaryKey: ViewPrimaryKey;
 }
 
@@ -41,7 +42,7 @@ export interface AddPrimaryKeyRequest {
  * Log Safety: UNSAFE
  */
 export interface Branch {
-  name: BranchName;
+  name: _Core.BranchName;
   transactionRid?: TransactionRid;
 }
 
@@ -57,7 +58,7 @@ export type BranchName = LooselyBrandedString<"BranchName">;
  */
 export interface CreateBranchRequest {
   transactionRid?: TransactionRid;
-  name: BranchName;
+  name: _Core.BranchName;
 }
 
 /**
@@ -82,7 +83,7 @@ export interface CreateViewRequest {
   parentFolderRid: _Filesystem.FolderRid;
   viewName: DatasetName;
   backingDatasets: Array<ViewBackingDataset>;
-  branch?: BranchName;
+  branch?: _Core.BranchName;
   primaryKey?: ViewPrimaryKey;
 }
 
@@ -97,7 +98,7 @@ export type DataframeReader = "AVRO" | "CSV" | "PARQUET" | "DATASOURCE";
  * Log Safety: UNSAFE
  */
 export interface Dataset {
-  rid: DatasetRid;
+  rid: _Core.DatasetRid;
   name: DatasetName;
   parentFolderRid: _Filesystem.FolderRid;
 }
@@ -209,10 +210,17 @@ export type GetDatasetJobsTimeFilterField = "SUBMITTED_TIME" | "FINISHED_TIME";
  * Log Safety: UNSAFE
  */
 export interface GetDatasetSchemaResponse {
-  branchName: BranchName;
+  branchName: _Core.BranchName;
   endTransactionRid: TransactionRid;
   schema: _Core.DatasetSchema;
   versionId: _Core.VersionId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetHealthCheckReportsResponse {
+  data: Record<_Core.CheckRid, _DataHealth.CheckReport | undefined>;
 }
 
 /**
@@ -228,16 +236,16 @@ export interface GetJobResponse {
  */
 export interface GetSchemaDatasetsBatchRequestElement {
   endTransactionRid?: TransactionRid;
-  datasetRid: DatasetRid;
+  datasetRid: _Core.DatasetRid;
   versionId?: _Core.VersionId;
-  branchName?: BranchName;
+  branchName?: _Core.BranchName;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export interface GetSchemaDatasetsBatchResponse {
-  data: Record<DatasetRid, GetDatasetSchemaResponse>;
+  data: Record<_Core.DatasetRid, GetDatasetSchemaResponse>;
 }
 
 /**
@@ -331,7 +339,7 @@ export interface PrimaryKeyResolutionUnique {}
  * Log Safety: UNSAFE
  */
 export interface PutDatasetSchemaRequest {
-  branchName?: BranchName;
+  branchName?: _Core.BranchName;
   dataframeReader?: DataframeReader;
   endTransactionRid?: TransactionRid;
   schema: _Core.DatasetSchema;
@@ -341,7 +349,7 @@ export interface PutDatasetSchemaRequest {
  * Log Safety: UNSAFE
  */
 export interface RemoveBackingDatasetsRequest {
-  branch?: BranchName;
+  branch?: _Core.BranchName;
   backingDatasets: Array<ViewBackingDataset>;
 }
 
@@ -349,7 +357,7 @@ export interface RemoveBackingDatasetsRequest {
  * Log Safety: UNSAFE
  */
 export interface ReplaceBackingDatasetsRequest {
-  branch?: BranchName;
+  branch?: _Core.BranchName;
   backingDatasets: Array<ViewBackingDataset>;
 }
 
@@ -404,9 +412,9 @@ export type TransactionType = "APPEND" | "UPDATE" | "SNAPSHOT" | "DELETE";
  */
 export interface View {
   viewName: DatasetName;
-  datasetRid: DatasetRid;
+  datasetRid: _Core.DatasetRid;
   parentFolderRid: _Filesystem.FolderRid;
-  branch?: BranchName;
+  branch?: _Core.BranchName;
   backingDatasets: Array<ViewBackingDataset>;
   primaryKey?: ViewPrimaryKey;
 }
@@ -417,8 +425,8 @@ export interface View {
  * Log Safety: UNSAFE
  */
 export interface ViewBackingDataset {
-  branch?: BranchName;
-  datasetRid: DatasetRid;
+  branch?: _Core.BranchName;
+  datasetRid: _Core.DatasetRid;
 }
 
 /**

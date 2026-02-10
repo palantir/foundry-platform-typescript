@@ -179,6 +179,9 @@ importers:
       '@osdk/foundry.audit':
         specifier: workspace:*
         version: link:../foundry.audit
+      '@osdk/foundry.checkpoints':
+        specifier: workspace:*
+        version: link:../foundry.checkpoints
       '@osdk/foundry.connectivity':
         specifier: workspace:*
         version: link:../foundry.connectivity
@@ -337,20 +340,36 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
+  packages/foundry.checkpoints:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/foundry.connectivity:
     dependencies:
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
-      '@osdk/foundry.datasets':
-        specifier: workspace:*
-        version: link:../foundry.datasets
       '@osdk/foundry.filesystem':
         specifier: workspace:*
         version: link:../foundry.filesystem
-      '@osdk/foundry.orchestration':
-        specifier: workspace:*
-        version: link:../foundry.orchestration
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -398,18 +417,9 @@ importers:
 
   packages/foundry.datahealth:
     dependencies:
-      '@osdk/foundry.connectivity':
-        specifier: workspace:*
-        version: link:../foundry.connectivity
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
-      '@osdk/foundry.datasets':
-        specifier: workspace:*
-        version: link:../foundry.datasets
-      '@osdk/foundry.orchestration':
-        specifier: workspace:*
-        version: link:../foundry.orchestration
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -432,6 +442,9 @@ importers:
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
+      '@osdk/foundry.datahealth':
+        specifier: workspace:*
+        version: link:../foundry.datahealth
       '@osdk/foundry.filesystem':
         specifier: workspace:*
         version: link:../foundry.filesystem

@@ -49,7 +49,7 @@ export function create(
 }
 
 const _get: $FoundryPlatformMethod<
-  (datasetRid: _Datasets.DatasetRid) => Promise<_Datasets.Dataset>
+  (datasetRid: _Core.DatasetRid) => Promise<_Datasets.Dataset>
 > = [0, "/v2/datasets/{0}"];
 
 /**
@@ -62,16 +62,16 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [datasetRid: _Datasets.DatasetRid]
+  ...args: [datasetRid: _Core.DatasetRid]
 ): Promise<_Datasets.Dataset> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
 const _getSchedules: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -90,10 +90,10 @@ const _getSchedules: $FoundryPlatformMethod<
 export function getSchedules(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
 
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -105,9 +105,9 @@ export function getSchedules(
 
 const _getHealthChecks: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.ListHealthChecksResponse>
@@ -124,10 +124,10 @@ const _getHealthChecks: $FoundryPlatformMethod<
 export function getHealthChecks(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
 
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -135,11 +135,49 @@ export function getHealthChecks(
   return $foundryPlatformFetch($ctx, _getHealthChecks, ...args);
 }
 
+const _getHealthCheckReports: $FoundryPlatformMethod<
+  (
+    datasetRid: _Core.DatasetRid,
+    $queryParams?: {
+      branchName?: _Core.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Datasets.GetHealthCheckReportsResponse>
+> = [0, "/v2/datasets/{0}/getHealthCheckReports", 2];
+
+/**
+ * Get the most recent Data Health Check report for each check configured on the given Dataset.
+ * Returns one report per check, representing the current health status of the dataset.
+ *
+ * To get the list of checks configured on a Dataset, use
+ * [Get Dataset Health Checks](https://www.palantir.com/docs/foundry/api/datasets/get-dataset-health-checks/).
+ * For the full report history of a specific check, use
+ * [Get Latest Check Reports](https://www.palantir.com/docs/foundry/api/v2/data-health-v2-resources/checks/get-latest-check-reports).
+ *
+ * @beta
+ *
+ * Required Scopes: [api:data-health-read, api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/getHealthCheckReports
+ */
+export function getHealthCheckReports(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Core.DatasetRid,
+
+    $queryParams?: {
+      branchName?: _Core.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Datasets.GetHealthCheckReportsResponse> {
+  return $foundryPlatformFetch($ctx, _getHealthCheckReports, ...args);
+}
+
 const _readTable: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $queryParams: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       format: _Datasets.TableExportFormat;
@@ -162,10 +200,10 @@ const _readTable: $FoundryPlatformMethod<
 export function readTable(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
 
     $queryParams: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       format: _Datasets.TableExportFormat;
@@ -179,9 +217,9 @@ export function readTable(
 
 const _getSchema: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       versionId?: _Core.VersionId | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -200,10 +238,10 @@ const _getSchema: $FoundryPlatformMethod<
 export function getSchema(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
 
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       versionId?: _Core.VersionId | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -243,7 +281,7 @@ export function getSchemaBatch(
 
 const _putSchema: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Datasets.PutDatasetSchemaRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.GetDatasetSchemaResponse>
@@ -260,7 +298,7 @@ const _putSchema: $FoundryPlatformMethod<
 export function putSchema(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Datasets.PutDatasetSchemaRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -270,10 +308,10 @@ export function putSchema(
 
 const _jobs: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Datasets.GetDatasetJobsRequest,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -292,10 +330,10 @@ const _jobs: $FoundryPlatformMethod<
 export function jobs(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Datasets.GetDatasetJobsRequest,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -307,7 +345,7 @@ export function jobs(
 
 const _transactions: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
@@ -327,7 +365,7 @@ const _transactions: $FoundryPlatformMethod<
 export function transactions(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;

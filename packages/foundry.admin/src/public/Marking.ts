@@ -30,26 +30,20 @@ import type * as _Admin from "../_components.js";
 //
 
 const _create: $FoundryPlatformMethod<
-  (
-    $body: _Admin.CreateMarkingRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.Marking>
-> = [1, "/v2/admin/markings", 3];
+  ($body: _Admin.CreateMarkingRequest) => Promise<_Admin.Marking>
+> = [1, "/v2/admin/markings", 1];
 
 /**
  * Creates a new Marking.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markings
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Admin.CreateMarkingRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Admin.CreateMarkingRequest]
 ): Promise<_Admin.Marking> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
@@ -58,14 +52,13 @@ const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
   }) => Promise<_Admin.ListMarkingsResponse>
 > = [0, "/v2/admin/markings", 2];
 
 /**
  * Maximum page size 100.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings
@@ -76,7 +69,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.ListMarkingsResponse> {
@@ -84,27 +76,20 @@ export function list(
 }
 
 const _get: $FoundryPlatformMethod<
-  (
-    markingId: _Core.MarkingId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.Marking>
-> = [0, "/v2/admin/markings/{0}", 2];
+  (markingId: _Core.MarkingId) => Promise<_Admin.Marking>
+> = [0, "/v2/admin/markings/{0}"];
 
 /**
  * Get the Marking with the specified id.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/{markingId}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    markingId: _Core.MarkingId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [markingId: _Core.MarkingId]
 ): Promise<_Admin.Marking> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -112,26 +97,22 @@ export function get(
 const _getBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Admin.GetMarkingsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.GetMarkingsBatchResponse>
-> = [1, "/v2/admin/markings/getBatch", 3];
+> = [1, "/v2/admin/markings/getBatch", 1];
 
 /**
  * Execute multiple get requests on Marking.
  *
  * The maximum batch size for this endpoint is 500.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/getBatch
  */
 export function getBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: Array<_Admin.GetMarkingsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: Array<_Admin.GetMarkingsBatchRequestElement>]
 ): Promise<_Admin.GetMarkingsBatchResponse> {
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
@@ -140,25 +121,20 @@ const _replace: $FoundryPlatformMethod<
   (
     markingId: _Core.MarkingId,
     $body: _Admin.ReplaceMarkingRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.Marking>
-> = [2, "/v2/admin/markings/{0}", 3];
+> = [2, "/v2/admin/markings/{0}", 1];
 
 /**
  * Replace the Marking with the specified id.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markings/{markingId}
  */
 export function replace(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    markingId: _Core.MarkingId,
-    $body: _Admin.ReplaceMarkingRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [markingId: _Core.MarkingId, $body: _Admin.ReplaceMarkingRequest]
 ): Promise<_Admin.Marking> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
 }

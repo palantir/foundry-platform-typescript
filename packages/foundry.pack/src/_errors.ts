@@ -121,3 +121,34 @@ export interface SearchDocumentsPermissionDenied {
   errorInstanceId: string;
   parameters: {};
 }
+
+/**
+ * The user does not have permission to update this document, or the document does not exist.
+ *
+ * Log Safety: SAFE
+ */
+export interface UpdateDocumentNotSupported {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UpdateDocumentNotSupported";
+  errorDescription:
+    "The user does not have permission to update this document, or the document does not exist.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+ * Could not update the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface UpdateDocumentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UpdateDocumentPermissionDenied";
+  errorDescription: "Could not update the Document.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}

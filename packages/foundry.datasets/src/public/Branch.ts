@@ -31,7 +31,7 @@ import type * as _Datasets from "../_components.js";
 
 const _create: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Datasets.CreateBranchRequest,
   ) => Promise<_Datasets.Branch>
 > = [1, "/v2/datasets/{0}/branches", 1];
@@ -46,19 +46,13 @@ const _create: $FoundryPlatformMethod<
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    $body: _Datasets.CreateBranchRequest,
-  ]
+  ...args: [datasetRid: _Core.DatasetRid, $body: _Datasets.CreateBranchRequest]
 ): Promise<_Datasets.Branch> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
 const _deleteBranch: $FoundryPlatformMethod<
-  (
-    datasetRid: _Datasets.DatasetRid,
-    branchName: _Datasets.BranchName,
-  ) => Promise<void>
+  (datasetRid: _Core.DatasetRid, branchName: _Core.BranchName) => Promise<void>
 > = [3, "/v2/datasets/{0}/branches/{1}"];
 
 /**
@@ -71,14 +65,14 @@ const _deleteBranch: $FoundryPlatformMethod<
  */
 export function deleteBranch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [datasetRid: _Datasets.DatasetRid, branchName: _Datasets.BranchName]
+  ...args: [datasetRid: _Core.DatasetRid, branchName: _Core.BranchName]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteBranch, ...args);
 }
 
 const _list: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
@@ -97,7 +91,7 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
@@ -110,8 +104,8 @@ export function list(
 
 const _get: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
-    branchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    branchName: _Core.BranchName,
   ) => Promise<_Datasets.Branch>
 > = [0, "/v2/datasets/{0}/branches/{1}"];
 
@@ -125,15 +119,15 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [datasetRid: _Datasets.DatasetRid, branchName: _Datasets.BranchName]
+  ...args: [datasetRid: _Core.DatasetRid, branchName: _Core.BranchName]
 ): Promise<_Datasets.Branch> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
 const _transactions: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
-    branchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    branchName: _Core.BranchName,
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
@@ -153,8 +147,8 @@ const _transactions: $FoundryPlatformMethod<
 export function transactions(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    branchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    branchName: _Core.BranchName,
 
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;

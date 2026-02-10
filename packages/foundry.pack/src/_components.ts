@@ -85,6 +85,7 @@ export type ClientId = string;
  * Log Safety: UNSAFE
  */
 export interface CreateDocumentRequest {
+  parentFolderRid?: _Filesystem.FolderRid;
   security: DocumentSecurity;
   ontologyRid: DocumentOntologyRid;
   name: DocumentName;
@@ -98,6 +99,7 @@ export interface CreateDocumentRequest {
 export interface CreateDocumentTypeRequest {
   parentFolderRid: _Filesystem.FolderRid;
   name: DocumentTypeName;
+  fileSystemType?: FileSystemType;
 }
 
 /**
@@ -107,6 +109,8 @@ export interface CustomPresenceEvent {
   userId: _Core.UserId;
   clientId: ClientId;
   eventData: any;
+  eventType: string;
+  isEphemeral?: boolean;
 }
 
 /**
@@ -145,6 +149,7 @@ export interface Document {
   ontologyRid: DocumentOntologyRid;
   name: DocumentName;
   description?: string;
+  parentFolderRid?: _Filesystem.FolderRid;
   security: DocumentSecurity;
   createdBy: _Core.CreatedBy;
   createdTime: _Core.CreatedTime;
@@ -219,10 +224,22 @@ export interface DocumentPublishMessage {
 export type DocumentRid = LooselyBrandedString<"DocumentRid">;
 
 /**
+ * Filter criteria for document search.
+ *
  * Log Safety: UNSAFE
  */
 export interface DocumentSearchQuery {
   documentName?: string;
+}
+
+/**
+ * Request body for searching documents.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentSearchRequest {
+  query?: DocumentSearchQuery;
+  orderBy?: DocumentSort;
   pageSize?: _Core.PageSize;
   pageToken?: PageToken;
 }
@@ -244,12 +261,34 @@ export interface DocumentSecurity {
 }
 
 /**
+ * Sorting specification for document search.
+ *
+ * Log Safety: SAFE
+ */
+export interface DocumentSort {
+  field: DocumentSortField;
+  direction: _Core.OrderByDirection;
+}
+
+/**
+ * The field to sort documents by.
+ *
+ * Log Safety: SAFE
+ */
+export type DocumentSortField =
+  | "NAME"
+  | "CREATED_TIME"
+  | "LAST_MODIFIED_TIME"
+  | "LAST_VIEW_TIME";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface DocumentType {
   rid: DocumentTypeRid;
   name: DocumentTypeName;
   parentFolderRid: _Filesystem.FolderRid;
+  fileSystemType?: FileSystemType;
 }
 
 /**
@@ -332,6 +371,14 @@ export interface ErrorMessage {
 export type EventId = LooselyBrandedString<"EventId">;
 
 /**
+   * The file system backing storage for documents of this type. Documents can currently be stored in
+Gotham Artifacts or in Compass.
+   *
+   * Log Safety: SAFE
+   */
+export type FileSystemType = "ARTIFACTS" | "COMPASS";
+
+/**
  * The unique resource identifier (RID) of a Folder.
  *
  * Log Safety: SAFE
@@ -394,7 +441,24 @@ export type RevisionId = string;
  */
 export interface SearchDocumentsRequest {
   documentTypeName: DocumentTypeName;
-  searchQuery?: DocumentSearchQuery;
+  requestBody: DocumentSearchRequest;
+}
+
+/**
+ * Request to update document metadata (name and/or description).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UpdateDocumentMetadataRequest {
+  name?: string;
+  description?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface UpdateDocumentRequest {
+  requestBody: UpdateDocumentMetadataRequest;
 }
 
 /**

@@ -31,10 +31,11 @@ import type * as _DataHealth from "../_components.js";
 
 const _get: $FoundryPlatformMethod<
   (
+    checkRid: _Core.CheckRid,
     checkReportRid: _Core.CheckReportRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_DataHealth.CheckReport>
-> = [0, "/v2/dataHealth/checkReports/{0}", 2];
+> = [0, "/v2/dataHealth/checks/{0}/checkReports/{1}", 2];
 
 /**
  * Get the CheckReport with the specified rid.
@@ -42,15 +43,49 @@ const _get: $FoundryPlatformMethod<
  * @beta
  *
  * Required Scopes: [api:data-health-read]
- * URL: /v2/dataHealth/checkReports/{checkReportRid}
+ * URL: /v2/dataHealth/checks/{checkRid}/checkReports/{checkReportRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
+    checkRid: _Core.CheckRid,
     checkReportRid: _Core.CheckReportRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_DataHealth.CheckReport> {
   return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _getLatest: $FoundryPlatformMethod<
+  (
+    checkRid: _Core.CheckRid,
+    $queryParams?: {
+      limit?: _DataHealth.CheckReportLimit | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_DataHealth.GetLatestCheckReportsResponse>
+> = [0, "/v2/dataHealth/checks/{0}/checkReports/getLatest", 2];
+
+/**
+ * Get the most recent check reports for this Check. Reports are returned
+ * in reverse chronological order (most recent first).
+ *
+ * @beta
+ *
+ * Required Scopes: [api:data-health-read]
+ * URL: /v2/dataHealth/checks/{checkRid}/checkReports/getLatest
+ */
+export function getLatest(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    checkRid: _Core.CheckRid,
+
+    $queryParams?: {
+      limit?: _DataHealth.CheckReportLimit | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_DataHealth.GetLatestCheckReportsResponse> {
+  return $foundryPlatformFetch($ctx, _getLatest, ...args);
 }

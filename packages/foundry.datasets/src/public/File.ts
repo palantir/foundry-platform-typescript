@@ -31,10 +31,10 @@ import type * as _Datasets from "../_components.js";
 
 const _deleteFile: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
     },
   ) => Promise<void>
@@ -62,11 +62,11 @@ const _deleteFile: $FoundryPlatformMethod<
 export function deleteFile(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
 
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
     },
   ]
@@ -76,9 +76,10 @@ export function deleteFile(
 
 const _list: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
+      pathPrefix?: _Core.FilePath | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       pageSize?: _Core.PageSize | undefined;
@@ -117,10 +118,11 @@ const _list: $FoundryPlatformMethod<
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
 
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
+      pathPrefix?: _Core.FilePath | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       pageSize?: _Core.PageSize | undefined;
@@ -133,10 +135,10 @@ export function list(
 
 const _get: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },
@@ -171,11 +173,11 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
 
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },
@@ -186,11 +188,11 @@ export function get(
 
 const _upload: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
     $body: Blob,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       transactionType?: _Datasets.TransactionType | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
     },
@@ -222,11 +224,11 @@ const _upload: $FoundryPlatformMethod<
 export function upload(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
     $body: Blob,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       transactionType?: _Datasets.TransactionType | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
     },
@@ -237,10 +239,10 @@ export function upload(
 
 const _content: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },
@@ -276,11 +278,11 @@ const _content: $FoundryPlatformMethod<
 export function content(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     filePath: _Core.FilePath,
 
     $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
+      branchName?: _Core.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },

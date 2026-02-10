@@ -157,14 +157,15 @@ export interface InvalidFieldSchema {
 }
 
 /**
- * The provided file path is invalid.
+ * The provided file path is invalid. Check that the path does not start with a leading slash.
  *
  * Log Safety: UNSAFE
  */
 export interface InvalidFilePath {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidFilePath";
-  errorDescription: "The provided file path is invalid.";
+  errorDescription:
+    "The provided file path is invalid. Check that the path does not start with a leading slash.";
   errorInstanceId: string;
   parameters: {
     filePath: unknown;

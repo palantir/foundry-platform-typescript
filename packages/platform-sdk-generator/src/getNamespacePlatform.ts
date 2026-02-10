@@ -31,6 +31,7 @@ export function getNamespacePlatform(ns?: string): string {
     "AipAgents": "foundry",
     "Appkit": "skipped",
     "Audit": "foundry",
+    "Checkpoints": "foundry",
     "Connectivity": "foundry",
     "DataHealth": "foundry",
     "Datasets": "foundry",

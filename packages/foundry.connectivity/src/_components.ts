@@ -15,7 +15,6 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
-import type * as _Datasets from "@osdk/foundry.datasets";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
 
 export type LooselyBrandedString<T extends string> = string & {
@@ -524,10 +523,10 @@ export interface CreateConnectionRequestWorkflowIdentityFederation {
  * Log Safety: UNSAFE
  */
 export interface CreateFileImportRequest {
-  datasetRid: _Datasets.DatasetRid;
+  datasetRid: _Core.DatasetRid;
   importMode: FileImportMode;
   displayName: FileImportDisplayName;
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   subfolder?: string;
   fileImportFilters: Array<FileImportFilter>;
 }
@@ -536,11 +535,11 @@ export interface CreateFileImportRequest {
  * Log Safety: UNSAFE
  */
 export interface CreateTableImportRequest {
-  datasetRid: _Datasets.DatasetRid;
+  datasetRid: _Core.DatasetRid;
   importMode: TableImportMode;
   displayName: TableImportDisplayName;
   allowSchemaChanges?: TableImportAllowSchemaChanges;
-  branchName?: _Datasets.BranchName;
+  branchName?: _Core.BranchName;
   config: CreateTableImportRequestTableImportConfig;
 }
 
@@ -847,8 +846,8 @@ export type FileFormat = "AVRO" | "CSV" | "PARQUET";
 export interface FileImport {
   rid: FileImportRid;
   connectionRid: ConnectionRid;
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
   displayName: FileImportDisplayName;
   fileImportFilters: Array<FileImportFilter>;
   importMode: FileImportMode;
@@ -1756,8 +1755,8 @@ export interface StsRoleConfiguration {
 export interface TableImport {
   rid: TableImportRid;
   connectionRid: ConnectionRid;
-  datasetRid: _Datasets.DatasetRid;
-  branchName?: _Datasets.BranchName;
+  datasetRid: _Core.DatasetRid;
+  branchName?: _Core.BranchName;
   displayName: TableImportDisplayName;
   importMode: TableImportMode;
   allowSchemaChanges: TableImportAllowSchemaChanges;

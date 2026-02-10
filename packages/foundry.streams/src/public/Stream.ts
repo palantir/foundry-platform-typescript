@@ -15,7 +15,6 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
-import type * as _Datasets from "@osdk/foundry.datasets";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -32,7 +31,7 @@ import type * as _Streams from "../_components.js";
 
 const _create: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Streams.CreateStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Streams.Stream>
@@ -49,7 +48,7 @@ const _create: $FoundryPlatformMethod<
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
+    datasetRid: _Core.DatasetRid,
     $body: _Streams.CreateStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -59,8 +58,8 @@ export function create(
 
 const _get: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Streams.Stream>
 > = [0, "/v2/streams/datasets/{0}/streams/{1}", 2];
@@ -77,8 +76,8 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -88,8 +87,8 @@ export function get(
 
 const _publishRecord: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordToStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
@@ -107,8 +106,8 @@ const _publishRecord: $FoundryPlatformMethod<
 export function publishRecord(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordToStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -118,8 +117,8 @@ export function publishRecord(
 
 const _publishRecords: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordsToStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
@@ -137,8 +136,8 @@ const _publishRecords: $FoundryPlatformMethod<
 export function publishRecords(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordsToStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -148,8 +147,8 @@ export function publishRecords(
 
 const _publishBinaryRecord: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: Blob,
     $queryParams?: {
       viewRid?: _Streams.ViewRid | undefined;
@@ -174,8 +173,8 @@ const _publishBinaryRecord: $FoundryPlatformMethod<
 export function publishBinaryRecord(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: Blob,
     $queryParams?: {
       viewRid?: _Streams.ViewRid | undefined;
@@ -188,8 +187,8 @@ export function publishBinaryRecord(
 
 const _reset: $FoundryPlatformMethod<
   (
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: _Streams.ResetStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Streams.Stream>
@@ -212,11 +211,86 @@ const _reset: $FoundryPlatformMethod<
 export function reset(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    streamBranchName: _Datasets.BranchName,
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
     $body: _Streams.ResetStreamRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Streams.Stream> {
   return $foundryPlatformFetch($ctx, _reset, ...args);
+}
+
+const _getRecords: $FoundryPlatformMethod<
+  (
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
+    $queryParams: {
+      viewRid?: _Streams.ViewRid | undefined;
+      partitionId: _Streams.PartitionId;
+      startOffset?: string | undefined;
+      limit: number;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Streams.GetRecordsResponse>
+> = [0, "/v2/highScale/streams/datasets/{0}/streams/{1}/getRecords", 2];
+
+/**
+ * Get a batch of records from a stream for a given partition. Offsets are ordered from \[0, inf) but may be sparse (e.g.: 0, 2, 3, 5).
+ * Binary field values are returned as base64-encoded strings. Decode them to retrieve the original bytes.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:streams-read]
+ * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/getRecords
+ */
+export function getRecords(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
+
+    $queryParams: {
+      viewRid?: _Streams.ViewRid | undefined;
+      partitionId: _Streams.PartitionId;
+      startOffset?: string | undefined;
+      limit: number;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Streams.GetRecordsResponse> {
+  return $foundryPlatformFetch($ctx, _getRecords, ...args);
+}
+
+const _getEndOffsets: $FoundryPlatformMethod<
+  (
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
+    $queryParams?: {
+      viewRid?: _Streams.ViewRid | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Streams.GetEndOffsetsResponse>
+> = [0, "/v2/highScale/streams/datasets/{0}/streams/{1}/getEndOffsets", 2];
+
+/**
+ * Get the end offsets for all partitions of a stream. The end offset is the offset of the next record that will be written to the partition.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:streams-read]
+ * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/getEndOffsets
+ */
+export function getEndOffsets(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Core.DatasetRid,
+    streamBranchName: _Core.BranchName,
+
+    $queryParams?: {
+      viewRid?: _Streams.ViewRid | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Streams.GetEndOffsetsResponse> {
+  return $foundryPlatformFetch($ctx, _getEndOffsets, ...args);
 }

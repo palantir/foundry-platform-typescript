@@ -120,6 +120,7 @@ export interface ActionParameterV2 {
   description?: string;
   dataType: ActionParameterType;
   required: boolean;
+  typeClasses: Array<TypeClass>;
 }
 
 /**
@@ -995,6 +996,13 @@ export interface BlueprintIcon {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface BooleanValue {
+  value: boolean;
+}
+
+/**
  * The top left and bottom right coordinate points that make up the bounding box.
  *
  * Log Safety: UNSAFE
@@ -1158,6 +1166,13 @@ export interface CountAggregationV2 {
  */
 export interface CountObjectsResponseV2 {
   count?: number;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateEdit {
+  properties: Record<PropertyApiName, PropertyValue>;
 }
 
 /**
@@ -1382,12 +1397,26 @@ export interface DatetimeTimezoneStatic {
 export interface DatetimeTimezoneUser {}
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface DateValue {
+  value: string;
+}
+
+/**
  * The result of a CipherText decryption. If successful, the plaintext decrypted value will be returned. Otherwise, an error will be thrown.
  *
  * Log Safety: DO_NOT_LOG
  */
 export interface DecryptionResult {
   plaintext?: Plaintext;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DeleteEdit {
+  previousProperties: Record<PropertyApiName, PropertyValue>;
 }
 
 /**
@@ -1573,6 +1602,13 @@ export interface DoesNotIntersectPolygonQuery {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface DoubleValue {
+  value: number;
+}
+
+/**
    * The vector to search with. The vector must be of the same dimension as the vectors stored in the provided
 propertyIdentifier.
    *
@@ -1614,6 +1650,35 @@ export type DurationPrecision =
   | "MINUTES"
   | "SECONDS"
   | "AUTO";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type EditHistoryEdit =
+  | ({ type: "createEdit" } & CreateEdit)
+  | ({ type: "deleteEdit" } & DeleteEdit)
+  | ({ type: "modifyEdit" } & ModifyEdit);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface EditsHistoryFilters {
+  startTime?: string;
+  endTime?: string;
+  actionTypes: Array<ActionTypeApiName>;
+  editTypes: Array<EditTypeFilter>;
+  userIds: Array<string>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type EditsHistorySortOrder = "newest_first" | "oldest_first";
+
+/**
+ * Log Safety: SAFE
+ */
+export type EditTypeFilter = "create" | "modify" | "delete";
 
 /**
  * Log Safety: UNSAFE
@@ -1957,6 +2022,13 @@ export interface InQuery {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface IntegerValue {
+  value: number;
+}
+
+/**
    * An interface property type with an additional field to indicate constraints that need to be satisfied by
 implementing object property types.
    *
@@ -1970,6 +2042,7 @@ export interface InterfaceDefinedPropertyType {
   dataType: ObjectPropertyType;
   valueTypeApiName?: ValueTypeApiName;
   requireImplementation: boolean;
+  typeClasses: Array<TypeClass>;
 }
 
 /**
@@ -2142,6 +2215,7 @@ export interface InterfaceSharedPropertyType {
   valueTypeApiName?: ValueTypeApiName;
   valueFormatting?: PropertyValueFormattingRule;
   required: boolean;
+  typeClasses: Array<TypeClass>;
 }
 
 /**
@@ -2781,6 +2855,13 @@ export type LogicRuleArgument =
   | ({ type: "uniqueIdentifier" } & UniqueIdentifierArgument);
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface LongValue {
+  value: string;
+}
+
+/**
  * Returns objects where the specified field is less than or equal to a value.
  *
  * Log Safety: UNSAFE
@@ -2903,6 +2984,15 @@ export interface MinAggregationV2 {
   field: PropertyApiName;
   name?: AggregationMetricName;
   direction?: OrderByDirection;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ModifyEdit {
+  includesAllPreviousValues?: boolean;
+  previousProperties: Record<PropertyApiName, PropertyValue>;
+  properties: Record<PropertyApiName, PropertyValue>;
 }
 
 /**
@@ -3251,6 +3341,20 @@ export type ObjectEdit =
   | ({ type: "addLink" } & AddLink);
 
 /**
+   * Represents a single object edit operation in the history. This captures when an object was
+created, modified, or deleted as part of an action execution.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectEditHistoryEntry {
+  operationId: ActionRid;
+  actionTypeRid: ActionTypeRid;
+  userId: string;
+  timestamp: string;
+  edit: EditHistoryEdit;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ObjectEdits {
@@ -3295,6 +3399,11 @@ export interface ObjectParameterPropertyArgument {
  * Log Safety: UNSAFE
  */
 export type ObjectPrimaryKey = Record<PropertyApiName, PropertyValue>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ObjectPrimaryKeyV2 = Record<PropertyApiName, PrimaryKeyValueV2>;
 
 /**
  * A union of all the types supported by Ontology Object properties.
@@ -3605,6 +3714,34 @@ export type ObjectTypeApiName = LooselyBrandedString<"ObjectTypeApiName">;
  */
 export interface ObjectTypeEdits {
   editedObjectTypes: Array<ObjectTypeApiName>;
+}
+
+/**
+   * Request object for querying object type edits history, containing both filters and pagination parameters
+If objectPrimaryKey property is set, the method will return edits history for the particular object.
+Otherwise, the method will return edits history for all objects of this object type.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeEditsHistoryRequest {
+  objectPrimaryKey?: ObjectPrimaryKeyV2;
+  filters?: EditsHistoryFilters;
+  sortOrder?: EditsHistorySortOrder;
+  includeAllPreviousProperties?: boolean;
+  pageSize?: number;
+  pageToken?: string;
+}
+
+/**
+   * Response containing the history of edits for objects of a specific object type.
+Only contains object edits (create, modify, delete) - link edits are not included.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeEditsHistoryResponse {
+  data: Array<ObjectEditHistoryEntry>;
+  totalCount?: number;
+  nextPageToken?: string;
 }
 
 /**
@@ -3926,6 +4063,11 @@ export interface OntologyValueType {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export type OntologyVersion = string;
+
+/**
    * A command representing the list of properties to order by. Properties should be delimited by commas and
 prefixed by p or properties. The format expected format is
 orderBy=properties.{property}:{sortDirection},properties.{property}:{sortDirection}...
@@ -4128,6 +4270,18 @@ export interface PrefixQuery {
  * Log Safety: UNSAFE
  */
 export type PrimaryKeyValue = any;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type PrimaryKeyValueV2 =
+  | ({ type: "dateValue" } & DateValue)
+  | ({ type: "stringValue" } & StringValue)
+  | ({ type: "timestampValue" } & TimestampValue)
+  | ({ type: "booleanValue" } & BooleanValue)
+  | ({ type: "integerValue" } & IntegerValue)
+  | ({ type: "doubleValue" } & DoubleValue)
+  | ({ type: "longValue" } & LongValue);
 
 /**
  * Details about some property of an object.
@@ -4345,6 +4499,8 @@ export type PropertyTypeReferenceOrStringConstant =
   | ({ type: "propertyType" } & PropertyTypeReference);
 
 /**
+ * The unique resource identifier of a property.
+ *
  * Log Safety: SAFE
  */
 export type PropertyTypeRid = LooselyBrandedString<"PropertyTypeRid">;
@@ -4379,6 +4535,7 @@ export interface PropertyV2 {
   visibility?: PropertyTypeVisibility;
   valueTypeApiName?: ValueTypeApiName;
   valueFormatting?: PropertyValueFormattingRule;
+  typeClasses: Array<TypeClass>;
 }
 
 /**
@@ -5255,6 +5412,7 @@ export interface SharedPropertyType {
   dataType: ObjectPropertyType;
   valueTypeApiName?: ValueTypeApiName;
   valueFormatting?: PropertyValueFormattingRule;
+  typeClasses: Array<TypeClass>;
 }
 
 /**
@@ -5296,6 +5454,20 @@ export interface StartsWithQuery {
  */
 export interface StaticArgument {
   value: DataValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StreamGeotemporalSeriesValuesRequest {
+  range?: TimeRange;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StreamGeotemporalSeriesValuesResponse {
+  data: Array<GeotemporalSeriesEntry>;
 }
 
 /**
@@ -5372,6 +5544,13 @@ export interface StringLengthConstraint {
 export interface StringRegexMatchConstraint {
   regex: string;
   configuredFailureMessage?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StringValue {
+  value: string;
 }
 
 /**
@@ -5472,6 +5651,7 @@ export interface StructFieldType {
   apiName: StructFieldApiName;
   rid: StructFieldTypeRid;
   dataType: ObjectPropertyType;
+  typeClasses: Array<TypeClass>;
 }
 
 /**
@@ -5787,6 +5967,13 @@ export type TimeSeriesValueBankProperty = LooselyBrandedString<
 export type TimeSeriesWindowType = "START" | "END";
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface TimestampValue {
+  value: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export type TimeUnit =
@@ -5816,6 +6003,16 @@ export type TransactionEdit =
 export interface TwoDimensionalAggregation {
   keyType: QueryAggregationKeyType;
   valueType: QueryAggregationValueType;
+}
+
+/**
+ * Additional metadata that can be interpreted by user applications that interact with the Ontology
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TypeClass {
+  kind: string;
+  name: string;
 }
 
 /**
