@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+export * from "./_assets/llmProxyUtils.js";
 export type {
   AnthropicAnyToolChoice,
   AnthropicAutoToolChoice,

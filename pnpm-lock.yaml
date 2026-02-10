@@ -559,6 +559,28 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
+  packages/foundry.languagemodels.utils:
+    dependencies:
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      '@osdk/monorepo.tsup':
+        specifier: workspace:~
+        version: link:../monorepo.tsup
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/foundry.mediasets:
     dependencies:
       '@osdk/foundry.core':

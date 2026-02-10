@@ -80,6 +80,18 @@ export async function generatePlatformSdkV2(
   for (const ns of model.namespaces) {
     let nsIndexTsContents = `${copyright}\n`;
 
+    // Check for asset files and add exports first (for import sorting)
+    const assetsDir = path.join(ns.paths.srcDir, "_assets");
+    if (await fileExists(assetsDir)) {
+      const files = await fs.readdir(assetsDir);
+      for (const file of files.sort()) {
+        if (file.endsWith(".ts") && !file.endsWith(".test.ts")) {
+          const moduleName = file.replace(".ts", "");
+          nsIndexTsContents += `export * from "./_assets/${moduleName}.js";\n`;
+        }
+      }
+    }
+
     for (const r of ns.resources) {
       const resourceDirRelToSrc = "./" // path.join() will strip a single period w do it by hand
         + path.relative(
@@ -127,6 +139,7 @@ export async function generatePlatformSdkV2(
     nsIndexTsContents += `export type {${
       errorsGenerated.get(ns)?.sort().join(",\n")
     }} from "./_errors.js";\n`;
+
     await writeCode(
       path.join(ns.paths.srcDir, "index.ts"),
       nsIndexTsContents,
