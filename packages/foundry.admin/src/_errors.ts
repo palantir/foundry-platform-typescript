@@ -140,7 +140,48 @@ export interface CreateGroupPermissionDenied {
 }
 
 /**
- * At least one ADMIN role assignment must be provided when creating a marking.
+ * At least one ADMINISTER role assignment must be provided when creating a marking category.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateMarkingCategoryMissingInitialAdminRole {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreateMarkingCategoryMissingInitialAdminRole";
+  errorDescription:
+    "At least one ADMINISTER role assignment must be provided when creating a marking category.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * At least one organization must be provided when creating a marking category.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateMarkingCategoryMissingOrganization {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreateMarkingCategoryMissingOrganization";
+  errorDescription:
+    "At least one organization must be provided when creating a marking category.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not create the MarkingCategory.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateMarkingCategoryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateMarkingCategoryPermissionDenied";
+  errorDescription: "Could not create the MarkingCategory.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * At least one ADMINISTER role assignment must be provided when creating a marking.
  *
  * Log Safety: SAFE
  */
@@ -148,7 +189,7 @@ export interface CreateMarkingMissingInitialAdminRole {
   errorCode: "INVALID_ARGUMENT";
   errorName: "CreateMarkingMissingInitialAdminRole";
   errorDescription:
-    "At least one ADMIN role assignment must be provided when creating a marking.";
+    "At least one ADMINISTER role assignment must be provided when creating a marking.";
   errorInstanceId: string;
   parameters: {};
 }

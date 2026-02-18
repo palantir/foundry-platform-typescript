@@ -116,6 +116,54 @@ export interface InvalidVersion {
 }
 
 /**
+ * An error occurred while scanning the website files for vulnerabilities. Please check the Website Hosting page in Developer Console for more information and try uploading again.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ScanningErrored {
+  errorCode: "CUSTOM_CLIENT";
+  errorName: "ScanningErrored";
+  errorDescription:
+    "An error occurred while scanning the website files for vulnerabilities. Please check the Website Hosting page in Developer Console for more information and try uploading again.";
+  errorInstanceId: string;
+  parameters: {
+    version: unknown;
+  };
+}
+
+/**
+ * The website files are currently being scanned for vulnerabilities. Please wait for the scan to complete and confirm no vulnerabilities first.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ScanningInProgress {
+  errorCode: "CUSTOM_CLIENT";
+  errorName: "ScanningInProgress";
+  errorDescription:
+    "The website files are currently being scanned for vulnerabilities. Please wait for the scan to complete and confirm no vulnerabilities first.";
+  errorInstanceId: string;
+  parameters: {
+    version: unknown;
+  };
+}
+
+/**
+ * Vulnerabilities were detected in these website files. Please check the Website Hosting page in Developer Console for more information and address these vulnerabilities before uploading again.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SiteAssetHasVulnerabilities {
+  errorCode: "CUSTOM_CLIENT";
+  errorName: "SiteAssetHasVulnerabilities";
+  errorDescription:
+    "Vulnerabilities were detected in these website files. Please check the Website Hosting page in Developer Console for more information and address these vulnerabilities before uploading again.";
+  errorInstanceId: string;
+  parameters: {
+    version: unknown;
+  };
+}
+
+/**
  * The given ThirdPartyApplication could not be found.
  *
  * Log Safety: SAFE

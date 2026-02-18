@@ -276,6 +276,77 @@ export function getRidByPath(
   return $foundryPlatformFetch($ctx, _getRidByPath, ...args);
 }
 
+const _getResult: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    transformationJobId: _MediaSets.TransformationJobId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<Response>
+> = [
+  0,
+  "/v2/mediasets/{0}/items/{1}/transformationJobs/{2}/result",
+  6,
+  ,
+  "*/*",
+];
+
+/**
+ * Gets the result of a completed transformation job. Returns the transformed media content as binary data.
+ * This endpoint will return an error if the transformation job has not completed successfully.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-transform]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/transformationJobs/{transformationJobId}/result
+ */
+export function getResult(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    transformationJobId: _MediaSets.TransformationJobId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _getResult, ...args);
+}
+
+const _getStatus: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    transformationJobId: _MediaSets.TransformationJobId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<_MediaSets.GetTransformationJobStatusResponse>
+> = [0, "/v2/mediasets/{0}/items/{1}/transformationJobs/{2}", 6];
+
+/**
+ * Gets the status of a transformation job.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-transform]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/transformationJobs/{transformationJobId}
+ */
+export function getStatus(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    transformationJobId: _MediaSets.TransformationJobId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<_MediaSets.GetTransformationJobStatusResponse> {
+  return $foundryPlatformFetch($ctx, _getStatus, ...args);
+}
+
 const _upload: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
@@ -415,6 +486,41 @@ export function retrieve(
   ]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _retrieve, ...args);
+}
+
+const _transform: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $body: _MediaSets.TransformMediaItemRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<_MediaSets.TransformMediaItemResponse>
+> = [1, "/v2/mediasets/{0}/items/{1}/transform", 7];
+
+/**
+ * Initiates a transformation on a media item. Returns a job ID that can be used to check the status and retrieve
+ * the result of the transformation.
+ *
+ * Transforming a media item requires that you are able to read the media item, either via `api:mediasets-read` or
+ * via a `MediaItemReadToken`
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-transform]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/transform
+ */
+export function transform(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $body: _MediaSets.TransformMediaItemRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<_MediaSets.TransformMediaItemResponse> {
+  return $foundryPlatformFetch($ctx, _transform, ...args);
 }
 
 const _uploadMedia: $FoundryPlatformMethod<

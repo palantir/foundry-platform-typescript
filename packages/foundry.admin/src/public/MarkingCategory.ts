@@ -29,6 +29,31 @@ import type * as _Admin from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _Admin.CreateMarkingCategoryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.MarkingCategory>
+> = [1, "/v2/admin/markingCategories", 3];
+
+/**
+ * Creates a new MarkingCategory.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/markingCategories
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Admin.CreateMarkingCategoryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.MarkingCategory> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     pageSize?: _Core.PageSize | undefined;

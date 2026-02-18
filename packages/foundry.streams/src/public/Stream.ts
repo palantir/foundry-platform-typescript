@@ -238,7 +238,7 @@ const _getRecords: $FoundryPlatformMethod<
  * Get a batch of records from a stream for a given partition. Offsets are ordered from \[0, inf) but may be sparse (e.g.: 0, 2, 3, 5).
  * Binary field values are returned as base64-encoded strings. Decode them to retrieve the original bytes.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-read]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/getRecords
@@ -275,7 +275,7 @@ const _getEndOffsets: $FoundryPlatformMethod<
 /**
  * Get the end offsets for all partitions of a stream. The end offset is the offset of the next record that will be written to the partition.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-read]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/getEndOffsets

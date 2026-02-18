@@ -36,6 +36,22 @@ export interface CondaSolveFailureForProvidedPackages {
 }
 
 /**
+ * The provided configuration is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateConfigValidationError {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreateConfigValidationError";
+  errorDescription: "The provided configuration is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    studioRid: unknown;
+    validationFailures: unknown;
+  };
+}
+
+/**
  * Could not create the Model.
  *
  * Log Safety: SAFE
@@ -44,6 +60,34 @@ export interface CreateModelPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateModelPermissionDenied";
   errorDescription: "Could not create the Model.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not create the ModelStudioConfigVersion.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateModelStudioConfigVersionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateModelStudioConfigVersionPermissionDenied";
+  errorDescription: "Could not create the ModelStudioConfigVersion.";
+  errorInstanceId: string;
+  parameters: {
+    modelStudioRid: unknown;
+  };
+}
+
+/**
+ * Permission denied to create a Model Studio.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateModelStudioPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateModelStudioPermissionDenied";
+  errorDescription: "Permission denied to create a Model Studio.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -80,6 +124,50 @@ export interface InvalidModelApi {
 }
 
 /**
+ * The request to create a Model Studio contains invalid arguments.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidModelStudioCreateRequest {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidModelStudioCreateRequest";
+  errorDescription:
+    "The request to create a Model Studio contains invalid arguments.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not latest the ModelStudioConfigVersion.
+ *
+ * Log Safety: SAFE
+ */
+export interface LatestModelStudioConfigVersionsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "LatestModelStudioConfigVersionsPermissionDenied";
+  errorDescription: "Could not latest the ModelStudioConfigVersion.";
+  errorInstanceId: string;
+  parameters: {
+    modelStudioRid: unknown;
+  };
+}
+
+/**
+ * Permission denied to launch a Model Studio run.
+ *
+ * Log Safety: SAFE
+ */
+export interface LaunchModelStudioPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "LaunchModelStudioPermissionDenied";
+  errorDescription: "Permission denied to launch a Model Studio run.";
+  errorInstanceId: string;
+  parameters: {
+    studioRid: unknown;
+  };
+}
+
+/**
  * The given Model could not be found.
  *
  * Log Safety: SAFE
@@ -91,6 +179,53 @@ export interface ModelNotFound {
   errorInstanceId: string;
   parameters: {
     modelRid: unknown;
+  };
+}
+
+/**
+ * The requested Model Studio configuration version was not found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelStudioConfigVersionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ModelStudioConfigVersionNotFound";
+  errorDescription:
+    "The requested Model Studio configuration version was not found.";
+  errorInstanceId: string;
+  parameters: {
+    studioRid: unknown;
+    configVersion: unknown;
+  };
+}
+
+/**
+ * The requested Model Studio was not found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelStudioNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ModelStudioNotFound";
+  errorDescription: "The requested Model Studio was not found.";
+  errorInstanceId: string;
+  parameters: {
+    studioRid: unknown;
+  };
+}
+
+/**
+ * The given ModelStudioTrainer could not be found.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ModelStudioTrainerNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ModelStudioTrainerNotFound";
+  errorDescription: "The given ModelStudioTrainer could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    modelStudioTrainerTrainerId: unknown;
   };
 }
 
@@ -107,5 +242,20 @@ export interface ModelVersionNotFound {
   parameters: {
     modelRid: unknown;
     modelVersionRid: unknown;
+  };
+}
+
+/**
+ * The specified trainer does not exist.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TrainerNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "TrainerNotFound";
+  errorDescription: "The specified trainer does not exist.";
+  errorInstanceId: string;
+  parameters: {
+    trainerId: unknown;
   };
 }

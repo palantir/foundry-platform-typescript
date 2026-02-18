@@ -121,6 +121,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getMediaItemRidByPath": {
       "variables": {},
     },
+    "v2.getTransformationJobResult": {
+      "variables": {},
+    },
+    "v2.getTransformationJobStatus": {
+      "variables": {},
+    },
     "v2.putMediaItem": {
       "variables": {},
     },
@@ -131,6 +137,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.retrieveImageMediaItemThumbnail": {
+      "variables": {},
+    },
+    "v2.transformMediaItem": {
       "variables": {},
     },
     "v2.uploadMedia": {
@@ -506,6 +515,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.replaceGroupMembershipExpirationPolicy": {
+      "variables": {},
+    },
+    "v2.createMarkingCategory": {
       "variables": {},
     },
     "v2.listMarkingCategories": {
@@ -968,6 +980,36 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.anthropicMessages": {
+      "variables": {},
+    },
+    "v2.createModelStudio": {
+      "variables": {},
+    },
+    "v2.getModelStudio": {
+      "variables": {},
+    },
+    "v2.launchModelStudio": {
+      "variables": {},
+    },
+    "v2.listModelStudioRuns": {
+      "variables": {},
+    },
+    "v2.createModelStudioConfigVersion": {
+      "variables": {},
+    },
+    "v2.listModelStudioConfigVersions": {
+      "variables": {},
+    },
+    "v2.getModelStudioConfigVersion": {
+      "variables": {},
+    },
+    "v2.latestModelStudioConfigVersions": {
+      "variables": {},
+    },
+    "v2.listModelStudioTrainers": {
+      "variables": {},
+    },
+    "v2.getModelStudioTrainer": {
       "variables": {},
     },
     "v2.createModel": {

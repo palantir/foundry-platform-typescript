@@ -102,6 +102,7 @@ export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 export interface GetByRidQueriesRequest {
   rid: FunctionRid;
   version?: FunctionVersion;
+  includePrerelease?: boolean;
 }
 
 /**

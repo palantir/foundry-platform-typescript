@@ -234,7 +234,7 @@ export interface AddObject {
  */
 export interface AddObjectEdit {
   objectType: ObjectTypeApiName;
-  properties: Record<PropertyApiName, DataValue>;
+  properties: Record<PropertyApiName, DataValue | undefined>;
 }
 
 /**
@@ -1696,10 +1696,11 @@ export interface EnumConstraint {
 }
 
 /**
- * Returns objects where the specified field is equal to a value.
- *
- * Log Safety: UNSAFE
- */
+   * Returns objects where the specified field is equal to a value.
+For string properties, full term matching only works when Selectable is enabled for the property in Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface EqualsQuery {
   field: FieldNameV1;
   value: PropertyValue;
@@ -1708,6 +1709,7 @@ export interface EqualsQuery {
 /**
    * Returns objects where the specified field is equal to a value. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
+For string properties, full term matching only works when Selectable is enabled for the property in Ontology Manager.
    *
    * Log Safety: UNSAFE
    */
@@ -2012,6 +2014,7 @@ export type Icon = { type: "blueprint" } & BlueprintIcon;
    * Returns objects where the specified field equals any of the provided values. Allows you to
 specify a property to query on by a variety of means. If an empty array is provided as the value, then the filter will match all objects
 in the object set. Either field or propertyIdentifier must be supplied, but not both.
+For string properties, full term matching only works when Selectable is enabled for the property in Ontology Manager.
    *
    * Log Safety: UNSAFE
    */
@@ -3028,7 +3031,7 @@ export interface ModifyObject {
 export interface ModifyObjectEdit {
   objectType: ObjectTypeApiName;
   primaryKey: PropertyValue;
-  properties: Record<PropertyApiName, DataValue>;
+  properties: Record<PropertyApiName, DataValue | undefined>;
 }
 
 /**
