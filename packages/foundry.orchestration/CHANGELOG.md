@@ -1,5 +1,18 @@
 # @osdk/foundry.orchestration
 
+## 2.48.0
+
+### Minor Changes
+
+- 21e4edc: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [21e4edc]
+  - @osdk/foundry.filesystem@2.48.0
+  - @osdk/foundry.datasets@2.48.0
+  - @osdk/foundry.core@2.48.0
+
 ## 2.47.0
 
 ### Minor Changes

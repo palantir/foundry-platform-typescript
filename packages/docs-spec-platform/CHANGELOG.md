@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.35.0
+
+### Minor Changes
+
+- 21e4edc: Regenerate Platform SDKs
+
 ## 0.34.0
 
 ### Minor Changes

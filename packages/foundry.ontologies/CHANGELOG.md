@@ -1,5 +1,17 @@
 # @osdk/foundry.ontologies
 
+## 2.48.0
+
+### Minor Changes
+
+- 21e4edc: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [21e4edc]
+  - @osdk/foundry.core@2.48.0
+  - @osdk/foundry.geo@2.48.0
+
 ## 2.47.0
 
 ### Minor Changes
