@@ -303,6 +303,13 @@ export interface ListTransactionsResponse {
 }
 
 /**
+ * The ID of a security marking.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MarkingId = LooselyBrandedString<"MarkingId">;
+
+/**
  * Picks the row with the highest value of a list of columns, compared in order.
  *
  * Log Safety: UNSAFE
@@ -427,6 +434,7 @@ export interface View {
 export interface ViewBackingDataset {
   branch?: _Core.BranchName;
   datasetRid: _Core.DatasetRid;
+  stopPropagatingMarkingIds: Array<_Core.MarkingId>;
 }
 
 /**

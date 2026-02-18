@@ -111,7 +111,7 @@ const _getFullMetadata: $FoundryPlatformMethod<
 /**
  * Gets the full metadata for a specific object type with the given API name.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/fullMetadata

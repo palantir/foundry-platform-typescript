@@ -244,6 +244,32 @@ export interface TemporaryMediaUploadUnknownFailure {
 }
 
 /**
+ * The requested transformation could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "TransformationNotFound";
+  errorDescription: "The requested transformation could not be found.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The requested transformation is not currently available.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationUnavailable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationUnavailable";
+  errorDescription: "The requested transformation is not currently available.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested media item could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE

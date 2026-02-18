@@ -140,6 +140,15 @@ export interface CreateGroupRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateMarkingCategoryRequest {
+  initialPermissions: MarkingCategoryPermissions;
+  name: MarkingCategoryName;
+  description: MarkingCategoryDescription;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateMarkingRequest {
   initialRoleAssignments: Array<MarkingRoleUpdate>;
   initialMembers: Array<_Core.PrincipalId>;
@@ -450,13 +459,20 @@ export interface Marking {
 export interface MarkingCategory {
   id: MarkingCategoryId;
   name: MarkingCategoryName;
-  description?: string;
+  description: MarkingCategoryDescription;
   categoryType: MarkingCategoryType;
   markingType: MarkingType;
   markings: Array<_Core.MarkingId>;
   createdTime: _Core.CreatedTime;
   createdBy?: _Core.CreatedBy;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type MarkingCategoryDescription = LooselyBrandedString<
+  "MarkingCategoryDescription"
+>;
 
 /**
    * The ID of a marking category. For user-created categories, this will be a UUID. Markings associated with
@@ -470,6 +486,42 @@ export type MarkingCategoryId = LooselyBrandedString<"MarkingCategoryId">;
  * Log Safety: UNSAFE
  */
 export type MarkingCategoryName = LooselyBrandedString<"MarkingCategoryName">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MarkingCategoryPermissions {
+  organizationRids: Array<_Core.OrganizationRid>;
+  roles: Array<MarkingCategoryRoleAssignment>;
+  isPublic: MarkingCategoryPermissionsIsPublic;
+}
+
+/**
+ * If true, all users who are members of at least one of the Organizations from organizationRids can view the Markings in the category. If false, only users who are explicitly granted the VIEW role can view the Markings in the category.
+ *
+ * Log Safety: SAFE
+ */
+export type MarkingCategoryPermissionsIsPublic = boolean;
+
+/**
+   * Represents the operations that a user can perform with regards to a Marking Category.
+
+ADMINISTER: The user can update a Marking Category's metadata and permissions
+VIEW: The user can view the Marking Category and the Markings within it.
+
+NOTE: Permissions to administer or view a Marking Category do not confer any permissions to administer or view data protected by the Markings within that category.
+   *
+   * Log Safety: SAFE
+   */
+export type MarkingCategoryRole = "ADMINISTER" | "VIEW";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MarkingCategoryRoleAssignment {
+  role: MarkingCategoryRole;
+  principalId: _Core.PrincipalId;
+}
 
 /**
  * Log Safety: SAFE

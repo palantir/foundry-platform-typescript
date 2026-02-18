@@ -80,7 +80,11 @@ const _getSchedules: $FoundryPlatformMethod<
 > = [0, "/v2/datasets/{0}/getSchedules", 2];
 
 /**
- * Get the RIDs of the Schedules that target the given Dataset
+ * Get the RIDs of the Schedules that target the given Dataset.
+ *
+ * Note: It may take up to an hour for recent changes to schedules to be reflected in this response,
+ * especially for schedules managed by Marketplace. This operation will return outdated results in the
+ * meantime.
  *
  * @beta
  *

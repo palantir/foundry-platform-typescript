@@ -128,6 +128,13 @@ export interface CipherTextType {
 }
 
 /**
+ * The name of a column in a dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ColumnName = LooselyBrandedString<"ColumnName">;
+
+/**
  * A measurement of compute usage expressed in compute-seconds. For more information, please refer to the Usage types documentation.
  *
  * Log Safety: SAFE

@@ -310,6 +310,22 @@ export interface MissingPostBody {
 }
 
 /**
+ * The caller does not have DECLASSIFY permission on these markings or the markings do not exist.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NotAuthorizedToDeclassifyMarkings {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "NotAuthorizedToDeclassifyMarkings";
+  errorDescription:
+    "The caller does not have DECLASSIFY permission on these markings or the markings do not exist.";
+  errorInstanceId: string;
+  parameters: {
+    markingIds: unknown;
+  };
+}
+
+/**
  * The provided resource name is already in use by another resource in the same folder.
  *
  * Log Safety: UNSAFE

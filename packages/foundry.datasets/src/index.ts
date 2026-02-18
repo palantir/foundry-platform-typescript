@@ -52,6 +52,7 @@ export type {
   ListSchedulesResponse,
   ListTransactionsOfDatasetResponse,
   ListTransactionsResponse,
+  MarkingId,
   PrimaryKeyLatestWinsResolutionStrategy,
   PrimaryKeyResolutionDuplicate,
   PrimaryKeyResolutionStrategy,
