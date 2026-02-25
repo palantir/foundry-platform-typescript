@@ -99,10 +99,17 @@ export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 /**
  * Log Safety: UNSAFE
  */
-export interface GetByRidQueriesRequest {
+export interface GetByRidQueriesBatchRequestElement {
+  includePrerelease?: boolean;
   rid: FunctionRid;
   version?: FunctionVersion;
-  includePrerelease?: boolean;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetByRidQueriesBatchResponse {
+  data: Array<Query>;
 }
 
 /**
@@ -240,6 +247,7 @@ export type QueryDataType =
   | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "unsupported" } & _Core.UnsupportedType)
   | ({ type: "attachment" } & _Core.AttachmentType)
+  | ({ type: "mediaReference" } & _Core.MediaReferenceType)
   | ({ type: "null" } & _Core.NullType)
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)

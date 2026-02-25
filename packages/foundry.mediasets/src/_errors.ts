@@ -49,6 +49,25 @@ export interface GetMediaItemRidByPathPermissionDenied {
 }
 
 /**
+ * The provided media item RID is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidMediaItemRid {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidMediaItemRid";
+  errorDescription: "The provided media item RID is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    mediaItemRid: unknown;
+    reason: unknown;
+    invalidFieldName: unknown;
+    expectedFieldValue: unknown;
+    actualFieldValue: unknown;
+  };
+}
+
+/**
  * The media item does not match the schema of the media set.
  *
  * Log Safety: UNSAFE
@@ -127,6 +146,21 @@ export interface MediaItemNotFound {
   errorInstanceId: string;
   parameters: {
     mediaSetRid: unknown;
+    mediaItemRid: unknown;
+  };
+}
+
+/**
+ * A media item with the specified RID already exists.
+ *
+ * Log Safety: SAFE
+ */
+export interface MediaItemRidAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "MediaItemRidAlreadyExists";
+  errorDescription: "A media item with the specified RID already exists.";
+  errorInstanceId: string;
+  parameters: {
     mediaItemRid: unknown;
   };
 }

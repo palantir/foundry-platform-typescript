@@ -839,6 +839,7 @@ export interface GetMediaItemInfoResponse {
   path?: _Core.MediaItemPath;
   logicalTimestamp: LogicalTimestamp;
   attribution?: MediaAttribution;
+  originallyUploadedFileMimeType?: _Core.MediaType;
 }
 
 /**

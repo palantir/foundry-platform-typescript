@@ -45,7 +45,7 @@ const _generate: $FoundryPlatformMethod<
  * The user must have the api:notepad-write scope to create GenerationJobs. Once created a GenerationJob
  * is only accessible to the user that created it.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:notepad-write]
  * URL: /v2/notepad/templates/{templateRid}/generate

@@ -39,7 +39,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new Model with no versions.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models
@@ -64,7 +64,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Retrieves a Model by its Resource Identifier (RID).
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}

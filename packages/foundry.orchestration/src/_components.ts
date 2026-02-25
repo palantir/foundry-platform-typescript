@@ -74,6 +74,7 @@ export interface Build {
   retryBackoffDuration: RetryBackoffDuration;
   abortOnFailure: AbortOnFailure;
   status: BuildStatus;
+  finishedTime?: string;
   scheduleRid?: _Core.ScheduleRid;
 }
 

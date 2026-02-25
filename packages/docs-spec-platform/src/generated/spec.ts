@@ -148,7 +148,10 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getQuery": {
       "variables": {},
     },
-    "v2.getByRidQueries": {
+    "v2.getByRid": {
+      "variables": {},
+    },
+    "v2.getByRidQueriesBatch": {
       "variables": {},
     },
     "v2.executeQuery": {
@@ -182,6 +185,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getActionTypeByRid": {
+      "variables": {},
+    },
+    "v2.getActionTypeByRidBatch": {
       "variables": {},
     },
     "v2.listActionTypesFullMetadata": {
@@ -524,6 +530,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getMarkingCategory": {
+      "variables": {},
+    },
+    "v2.replaceMarkingCategory": {
       "variables": {},
     },
     "v2.createMarking": {
@@ -982,6 +991,24 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.anthropicMessages": {
       "variables": {},
     },
+    "v2.getExperiment": {
+      "variables": {},
+    },
+    "v2.searchExperiments": {
+      "variables": {},
+    },
+    "v2.jsonExperimentSeries": {
+      "variables": {},
+    },
+    "v2.parquetExperimentSeries": {
+      "variables": {},
+    },
+    "v2.jsonExperimentArtifactTable": {
+      "variables": {},
+    },
+    "v2.parquetExperimentArtifactTable": {
+      "variables": {},
+    },
     "v2.createModelStudio": {
       "variables": {},
     },
@@ -1027,6 +1054,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getModelVersion": {
       "variables": {},
     },
+    "v2.transformJsonLiveDeployment": {
+      "variables": {},
+    },
     "v2.listLogFiles": {
       "variables": {},
     },
@@ -1043,6 +1073,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getResultsSqlQuery": {
+      "variables": {},
+    },
+    "v2.executeOntologySqlQuery": {
       "variables": {},
     },
     "v2.getOperation": {

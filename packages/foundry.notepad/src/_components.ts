@@ -87,7 +87,7 @@ export interface ExportJobPdfTarget {
 }
 
 /**
- * The unique identifier for a ExportJob
+ * The unique identifier for an ExportJob
  *
  * Log Safety: SAFE
  */

@@ -39,7 +39,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Retrieve a single checkpoint record by id.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:checkpoints-read]
  * URL: /v2/checkpoints/records/{recordRid}
@@ -68,7 +68,7 @@ const _getBatch: $FoundryPlatformMethod<
  *
  * The maximum batch size for this endpoint is 100.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:checkpoints-read]
  * URL: /v2/checkpoints/records/getBatch
@@ -93,7 +93,7 @@ const _search: $FoundryPlatformMethod<
 /**
  * Search for checkpoint records.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:checkpoints-read]
  * URL: /v2/checkpoints/records/search

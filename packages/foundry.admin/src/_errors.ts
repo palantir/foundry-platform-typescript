@@ -920,6 +920,21 @@ export interface ReplaceGroupProviderInfoPermissionDenied {
 }
 
 /**
+ * Could not replace the MarkingCategory.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceMarkingCategoryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceMarkingCategoryPermissionDenied";
+  errorDescription: "Could not replace the MarkingCategory.";
+  errorInstanceId: string;
+  parameters: {
+    markingCategoryId: unknown;
+  };
+}
+
+/**
  * Could not replace the Marking.
  *
  * Log Safety: UNSAFE

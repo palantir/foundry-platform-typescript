@@ -62,11 +62,13 @@ export function get(
 }
 
 const _getByRid: $FoundryPlatformMethod<
-  (
-    $body: _Functions.GetByRidQueriesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Functions.Query>
-> = [1, "/v2/functions/queries/getByRid", 3];
+  ($queryParams: {
+    rid: _Functions.FunctionRid;
+    version?: _Functions.FunctionVersion | undefined;
+    includePrerelease?: boolean | undefined;
+    preview?: _Core.PreviewMode | undefined;
+  }) => Promise<_Functions.Query>
+> = [0, "/v2/functions/queries/getByRid", 2];
 
 /**
  * Gets a specific query type with the given RID. By default, this gets the latest version of the query.
@@ -79,11 +81,45 @@ const _getByRid: $FoundryPlatformMethod<
 export function getByRid(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    $body: _Functions.GetByRidQueriesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams: {
+      rid: _Functions.FunctionRid;
+      version?: _Functions.FunctionVersion | undefined;
+      includePrerelease?: boolean | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Functions.Query> {
   return $foundryPlatformFetch($ctx, _getByRid, ...args);
+}
+
+const _getByRidBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Functions.GetByRidQueriesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Functions.GetByRidQueriesBatchResponse>
+> = [1, "/v2/functions/queries/getByRidBatch", 3];
+
+/**
+ * Gets a list of query types by RID in bulk. By default, this gets the latest version of each query.
+ *
+ * Queries are filtered from the response if they don't exist or the requesting token lacks the required
+ * permissions.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:functions-read]
+ * URL: /v2/functions/queries/getByRidBatch
+ */
+export function getByRidBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Functions.GetByRidQueriesBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Functions.GetByRidQueriesBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getByRidBatch, ...args);
 }
 
 const _execute: $FoundryPlatformMethod<

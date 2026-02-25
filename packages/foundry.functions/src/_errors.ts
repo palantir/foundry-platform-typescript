@@ -86,9 +86,9 @@ export interface FunctionNotFound {
  *
  * Log Safety: SAFE
  */
-export interface GetByRidQueriesPermissionDenied {
+export interface GetByRidPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "GetByRidQueriesPermissionDenied";
+  errorName: "GetByRidPermissionDenied";
   errorDescription: "Could not getByRid the Query.";
   errorInstanceId: string;
   parameters: {};

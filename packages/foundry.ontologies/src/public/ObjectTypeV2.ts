@@ -147,10 +147,9 @@ const _getEditsHistory: $FoundryPlatformMethod<
  * specific object type. This endpoint provides visibility into all actions that have
  * modified objects of this type.
  *
- * The edits are returned in reverse chronological order (most recent first).
+ * The edits are returned in reverse chronological order (most recent first) by default.
  *
- * WARNING: right now this endpoint works only if you pass in an object primary key, i.e. it does not function
- * as a global object type edits history. Global object type edits history is currently under development.
+ * Note that filters are ignored for OSv1 object types.
  *
  * @alpha
  *
