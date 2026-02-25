@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -110,4 +111,30 @@ export function getResults(
   ...args: [sqlQueryId: _SqlQueries.SqlQueryId]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _getResults, ...args);
+}
+
+const _executeOntology: $FoundryPlatformMethod<
+  (
+    $body: _SqlQueries.ExecuteOntologySqlQueryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<Response>
+> = [1, "/v2/sqlQueries/executeOntology", 3, , "application/octet-stream"];
+
+/**
+ * Executes a SQL query against the Ontology. Results are returned synchronously in
+ * [Apache Arrow](https://arrow.apache.org/) format.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:sql-queries-execute, api:ontologies-read]
+ * URL: /v2/sqlQueries/executeOntology
+ */
+export function executeOntology(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _SqlQueries.ExecuteOntologySqlQueryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _executeOntology, ...args);
 }

@@ -821,6 +821,8 @@ export interface _Record {
 }
 
 /**
+ * The time at which the checkpoint record was created.
+ *
  * Log Safety: SAFE
  */
 export type RecordCreatedAt = string;
@@ -991,6 +993,8 @@ export interface SearchCheckpointRecordsRequest {
 }
 
 /**
+ * Response payload for searching checkpoint records.
+ *
  * Log Safety: UNSAFE
  */
 export interface SearchCheckpointRecordsResponse {

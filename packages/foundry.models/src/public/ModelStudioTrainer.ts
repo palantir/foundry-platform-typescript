@@ -31,8 +31,6 @@ import type * as _Models from "../_components.js";
 
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
-    pageSize?: _Core.PageSize | undefined;
-    pageToken?: _Core.PageToken | undefined;
     preview?: _Core.PreviewMode | undefined;
   }) => Promise<_Models.ListModelStudioTrainersResponse>
 > = [0, "/v2/models/modelStudioTrainers", 2];
@@ -47,13 +45,7 @@ const _list: $FoundryPlatformMethod<
  */
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $queryParams?: {
-      pageSize?: _Core.PageSize | undefined;
-      pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
+  ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
 ): Promise<_Models.ListModelStudioTrainersResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }

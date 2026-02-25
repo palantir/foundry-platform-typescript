@@ -18,6 +18,7 @@ Mergeable
 Metadatas
 millis
 multifield
+ndarray
 Noops
 objectstorage
 objecttype

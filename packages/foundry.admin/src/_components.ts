@@ -689,6 +689,14 @@ export interface ReplaceGroupProviderInfoRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface ReplaceMarkingCategoryRequest {
+  name: MarkingCategoryName;
+  description: MarkingCategoryDescription;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ReplaceMarkingRequest {
   name: MarkingName;
   description?: string;

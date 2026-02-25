@@ -108,6 +108,109 @@ export interface CreateModelVersionPermissionDenied {
 }
 
 /**
+ * The requested artifact was not found in the experiment.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExperimentArtifactNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ExperimentArtifactNotFound";
+  errorDescription: "The requested artifact was not found in the experiment.";
+  errorInstanceId: string;
+  parameters: {
+    modelRid: unknown;
+    experimentRid: unknown;
+    artifactName: unknown;
+  };
+}
+
+/**
+ * The given Experiment could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExperimentNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ExperimentNotFound";
+  errorDescription: "The given Experiment could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    experimentRid: unknown;
+    modelRid: unknown;
+  };
+}
+
+/**
+ * The requested series was not found in the experiment.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExperimentSeriesNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ExperimentSeriesNotFound";
+  errorDescription: "The requested series was not found in the experiment.";
+  errorInstanceId: string;
+  parameters: {
+    modelRid: unknown;
+    experimentRid: unknown;
+    seriesName: unknown;
+  };
+}
+
+/**
+   * The inference request failed due to a model execution error or unexpected internal issue.
+This typically indicates a problem with the model itself rather than the input data.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InferenceFailure {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InferenceFailure";
+  errorDescription:
+    "The inference request failed due to a model execution error or unexpected internal issue. This typically indicates a problem with the model itself rather than the input data.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+    errorMessage: unknown;
+  };
+}
+
+/**
+   * The inference request contains invalid input data that does not match the model's API specification.
+Check the error type for specific validation failure details.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InferenceInvalidInput {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InferenceInvalidInput";
+  errorDescription:
+    "The inference request contains invalid input data that does not match the model's API specification. Check the error type for specific validation failure details.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+    errorType: unknown;
+  };
+}
+
+/**
+   * The live deployment took longer than 5 minutes to respond to the inference request.
+This typically indicates the model execution is taking too long or the deployment is under heavy load.
+   *
+   * Log Safety: SAFE
+   */
+export interface InferenceTimeout {
+  errorCode: "TIMEOUT";
+  errorName: "InferenceTimeout";
+  errorDescription:
+    "The live deployment took longer than 5 minutes to respond to the inference request. This typically indicates the model execution is taking too long or the deployment is under heavy load.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
  * The model api failed validations
  *
  * Log Safety: UNSAFE
@@ -138,6 +241,40 @@ export interface InvalidModelStudioCreateRequest {
 }
 
 /**
+ * Could not json the ExperimentArtifactTable.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface JsonExperimentArtifactTablePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "JsonExperimentArtifactTablePermissionDenied";
+  errorDescription: "Could not json the ExperimentArtifactTable.";
+  errorInstanceId: string;
+  parameters: {
+    experimentRid: unknown;
+    experimentArtifactTableName: unknown;
+    modelRid: unknown;
+  };
+}
+
+/**
+ * Could not json the ExperimentSeries.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface JsonExperimentSeriesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "JsonExperimentSeriesPermissionDenied";
+  errorDescription: "Could not json the ExperimentSeries.";
+  errorInstanceId: string;
+  parameters: {
+    experimentSeriesName: unknown;
+    experimentRid: unknown;
+    modelRid: unknown;
+  };
+}
+
+/**
  * Could not latest the ModelStudioConfigVersion.
  *
  * Log Safety: SAFE
@@ -164,6 +301,38 @@ export interface LaunchModelStudioPermissionDenied {
   errorInstanceId: string;
   parameters: {
     studioRid: unknown;
+  };
+}
+
+/**
+ * The specified live deployment was not found.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "LiveDeploymentNotFound";
+  errorDescription: "The specified live deployment was not found.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
+ * The requested experiment was not found or the user lacks permission to access it.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelExperimentNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ModelExperimentNotFound";
+  errorDescription:
+    "The requested experiment was not found or the user lacks permission to access it.";
+  errorInstanceId: string;
+  parameters: {
+    modelRid: unknown;
+    experimentRid: unknown;
   };
 }
 
@@ -246,6 +415,55 @@ export interface ModelVersionNotFound {
 }
 
 /**
+ * Could not parquet the ExperimentArtifactTable.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ParquetExperimentArtifactTablePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ParquetExperimentArtifactTablePermissionDenied";
+  errorDescription: "Could not parquet the ExperimentArtifactTable.";
+  errorInstanceId: string;
+  parameters: {
+    experimentRid: unknown;
+    experimentArtifactTableName: unknown;
+    modelRid: unknown;
+  };
+}
+
+/**
+ * Could not parquet the ExperimentSeries.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ParquetExperimentSeriesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ParquetExperimentSeriesPermissionDenied";
+  errorDescription: "Could not parquet the ExperimentSeries.";
+  errorInstanceId: string;
+  parameters: {
+    experimentSeriesName: unknown;
+    experimentRid: unknown;
+    modelRid: unknown;
+  };
+}
+
+/**
+ * Could not search the Experiment.
+ *
+ * Log Safety: SAFE
+ */
+export interface SearchExperimentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "SearchExperimentsPermissionDenied";
+  errorDescription: "Could not search the Experiment.";
+  errorInstanceId: string;
+  parameters: {
+    modelRid: unknown;
+  };
+}
+
+/**
  * The specified trainer does not exist.
  *
  * Log Safety: UNSAFE
@@ -257,5 +475,20 @@ export interface TrainerNotFound {
   errorInstanceId: string;
   parameters: {
     trainerId: unknown;
+  };
+}
+
+/**
+ * Could not transformJson the LiveDeployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformJsonLiveDeploymentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "TransformJsonLiveDeploymentPermissionDenied";
+  errorDescription: "Could not transformJson the LiveDeployment.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
   };
 }

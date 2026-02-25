@@ -528,6 +528,7 @@ const _uploadMedia: $FoundryPlatformMethod<
     $body: Blob,
     $queryParams: {
       filename: _Core.MediaItemPath;
+      mediaItemRid?: _Core.MediaItemRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: { attribution?: _Core.Attribution | undefined },
@@ -553,6 +554,7 @@ export function uploadMedia(
     $body: Blob,
     $queryParams: {
       filename: _Core.MediaItemPath;
+      mediaItemRid?: _Core.MediaItemRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: { attribution?: _Core.Attribution | undefined },

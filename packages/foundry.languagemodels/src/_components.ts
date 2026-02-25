@@ -153,6 +153,16 @@ export type AnthropicDocumentSource =
   | ({ type: "text" } & AnthropicTextDocumentSource);
 
 /**
+   * https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking#effort
+Controls how many tokens Claude uses when responding.
+Supported by Claude models beginning with Opus 4.5.
+Setting effort to HIGH produces the same behavior as omitting the parameter entirely.
+   *
+   * Log Safety: SAFE
+   */
+export type AnthropicEffort = "LOW" | "MEDIUM" | "HIGH" | "MAX";
+
+/**
  * Log Safety: SAFE
  */
 export interface AnthropicEnabledThinking {
@@ -188,6 +198,13 @@ export interface AnthropicImageBase64Source {
 export type AnthropicImageSource = {
   type: "base64";
 } & AnthropicImageBase64Source;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AnthropicJsonSchemaOutputFormat {
+  schema: JsonSchema;
+}
 
 /**
  * Log Safety: SAFE
@@ -237,6 +254,7 @@ export interface AnthropicMessagesRequest {
   tools?: Array<AnthropicTool>;
   topK?: number;
   topP?: number;
+  outputConfig?: AnthropicOutputConfig;
 }
 
 /**
@@ -263,6 +281,21 @@ export interface AnthropicModel {
  * Log Safety: SAFE
  */
 export interface AnthropicNoneToolChoice {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AnthropicOutputConfig {
+  format?: AnthropicOutputFormat;
+  effort?: AnthropicEffort;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type AnthropicOutputFormat = {
+  type: "jsonSchema";
+} & AnthropicJsonSchemaOutputFormat;
 
 /**
  * Log Safety: UNSAFE
