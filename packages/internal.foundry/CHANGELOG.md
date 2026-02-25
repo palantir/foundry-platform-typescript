@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.49.0
+
+### Minor Changes
+
+- ed3ac19: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [ed3ac19]
+  - @osdk/internal.foundry.ontologies@2.49.0
+  - @osdk/internal.foundry.datasets@2.49.0
+  - @osdk/internal.foundry.core@2.49.0
+  - @osdk/internal.foundry.geo@2.49.0
+  - @osdk/internal.foundry.ontologiesv2@2.49.0
+  - @osdk/internal.foundry.mediasets@2.49.0
+
 ## 2.48.0
 
 ### Minor Changes

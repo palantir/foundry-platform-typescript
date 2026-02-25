@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.36.0
+
+### Minor Changes
+
+- ed3ac19: Regenerate Platform SDKs
+
 ## 0.35.0
 
 ### Minor Changes
