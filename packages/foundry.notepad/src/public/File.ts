@@ -39,7 +39,7 @@ const _content: $FoundryPlatformMethod<
 /**
  * Download file content.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:notepad-export]
  * URL: /v2/notepad/files/{fileRid}/content

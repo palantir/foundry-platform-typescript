@@ -22,6 +22,15 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * A boolean parameter value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BooleanParameter {
+  value: boolean;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface BooleanType {}
@@ -90,6 +99,15 @@ export interface DatasetInput {
 }
 
 /**
+ * A datetime parameter value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DatetimeParameter {
+  value: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface DateType {}
@@ -102,14 +120,221 @@ export interface DillModelFiles {
 }
 
 /**
+ * A double parameter value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DoubleParameter {
+  value: number;
+}
+
+/**
+ * Aggregated statistics for numeric series.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DoubleSeriesAggregations {
+  min: number;
+  max: number;
+  last: number;
+}
+
+/**
+ * A series of double values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DoubleSeriesV1 {
+  series: Array<DoubleSeriesValueV1>;
+}
+
+/**
+ * A single double value in a series.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DoubleSeriesValueV1 {
+  value: number;
+  timestamp: EpochMillis;
+  step: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface DoubleType {}
 
 /**
+   * Milliseconds since unix time zero. This representation is used to maintain consistency with the Parquet
+format.
+   *
+   * Log Safety: SAFE
+   */
+export type EpochMillis = string;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface Experiment {
+  rid: ExperimentRid;
+  modelRid: ModelRid;
+  name: ExperimentName;
+  createdAt: _Core.CreatedTime;
+  createdBy: _Core.CreatedBy;
+  source: ExperimentSource;
+  status: ExperimentStatus;
+  statusMessage?: string;
+  branch: ExperimentBranch;
+  parameters: Array<Parameter>;
+  series: Array<SeriesAggregations>;
+  summaryMetrics: Array<SummaryMetric>;
+  artifacts: Record<ExperimentArtifactName, ExperimentArtifactMetadata>;
+  tags: Array<ExperimentTagText>;
+  linkedModelVersion?: ModelVersionRid;
+  jobRid?: _Core.JobRid;
+}
+
+/**
+ * Details about an experiment artifact.
+ *
+ * Log Safety: SAFE
+ */
+export type ExperimentArtifactDetails = {
+  type: "table";
+} & TableArtifactDetails;
+
+/**
+ * Metadata about an experiment artifact.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExperimentArtifactMetadata {
+  name: ExperimentArtifactName;
+  description?: string;
+  sizeBytes: _Core.SizeBytes;
+  details: ExperimentArtifactDetails;
+}
+
+/**
+ * The name of an experiment artifact.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ExperimentArtifactName = LooselyBrandedString<
+  "ExperimentArtifactName"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ExperimentArtifactTable {
+  name: ExperimentArtifactName;
+}
+
+/**
+ * Experiment created from an authoring repository.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExperimentAuthoringSource {
+  stemmaRid: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ExperimentBranch = LooselyBrandedString<"ExperimentBranch">;
+
+/**
+ * Experiment created from a code workspace.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExperimentCodeWorkspaceSource {
+  containerRid: string;
+  deploymentRid?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ExperimentName = LooselyBrandedString<"ExperimentName">;
+
+/**
+ * The Resource Identifier (RID) of an Experiment.
+ *
+ * Log Safety: SAFE
+ */
+export type ExperimentRid = LooselyBrandedString<"ExperimentRid">;
+
+/**
+ * Experiment created from the SDK.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExperimentSdkSource {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ExperimentSeries {
+  name: SeriesName;
+}
+
+/**
+ * The source from which the experiment was created.
+ *
+ * Log Safety: SAFE
+ */
+export type ExperimentSource =
+  | ({ type: "codeWorkspace" } & ExperimentCodeWorkspaceSource)
+  | ({ type: "authoring" } & ExperimentAuthoringSource)
+  | ({ type: "sdk" } & ExperimentSdkSource);
+
+/**
+ * The current status of an experiment.
+ *
+ * Log Safety: SAFE
+ */
+export type ExperimentStatus = "RUNNING" | "SUCCEEDED" | "FAILED";
+
+/**
+ * A tag associated with an experiment.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ExperimentTagText = LooselyBrandedString<"ExperimentTagText">;
+
+/**
  * Log Safety: SAFE
  */
 export interface FloatType {}
+
+/**
+ * Array elements have inconsistent dimensions.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InconsistentArrayDimensionsError {
+  firstElementShape: Array<number>;
+  conflictingElementShape: Array<number>;
+}
+
+/**
+   * The specific type and details of an input validation error for inference requests.
+Each variant carries parameters relevant to that specific error category.
+   *
+   * Log Safety: UNSAFE
+   */
+export type InferenceInputErrorType =
+  | ({ type: "invalidArrayShape" } & InvalidArrayShapeError)
+  | ({ type: "typeMismatch" } & TypeMismatchError)
+  | ({ type: "unsupportedType" } & UnsupportedTypeError)
+  | ({ type: "unknownInputName" } & UnknownInputNameError)
+  | ({ type: "invalidTabularFormat" } & InvalidTabularFormatError)
+  | ({ type: "inconsistentArrayDimensions" } & InconsistentArrayDimensionsError)
+  | ({ type: "requiredValueMissing" } & RequiredValueMissingError)
+  | ({ type: "invalidMapFormat" } & InvalidMapFormatError);
 
 /**
  * A string alias used to identify inputs in a Model Studio configuration.
@@ -119,9 +344,44 @@ export interface FloatType {}
 export type InputAlias = LooselyBrandedString<"InputAlias">;
 
 /**
+ * An integer parameter value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface IntegerParameter {
+  value: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface IntegerType {}
+
+/**
+ * Array dimensions do not match expected ndarray shape.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidArrayShapeError {
+  expectedShape: Array<number>;
+  actualShape?: Array<number>;
+}
+
+/**
+ * Map input has incorrect structure or null keys.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidMapFormatError {}
+
+/**
+ * Tabular input has incorrect JSON structure.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidTabularFormatError {
+  inputFieldName: string;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -154,6 +414,20 @@ export interface ListModelVersionsResponse {
   data: Array<ModelVersion>;
   nextPageToken?: _Core.PageToken;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LiveDeployment {
+  rid: LiveDeploymentRid;
+}
+
+/**
+ * The Resource Identifier (RID) of a Live Deployment.
+ *
+ * Log Safety: SAFE
+ */
+export type LiveDeploymentRid = LooselyBrandedString<"LiveDeploymentRid">;
 
 /**
  * Log Safety: SAFE
@@ -467,6 +741,44 @@ export type ModelVersionRid = LooselyBrandedString<"ModelVersionRid">;
 export type OutputAlias = LooselyBrandedString<"OutputAlias">;
 
 /**
+ * A parameter with its name and value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Parameter {
+  name: ParameterName;
+  value: ParameterValue;
+}
+
+/**
+ * The name of an experiment parameter.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ParameterName = LooselyBrandedString<"ParameterName">;
+
+/**
+ * A parameter value logged for an experiment.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ParameterValue =
+  | ({ type: "datetime" } & DatetimeParameter)
+  | ({ type: "boolean" } & BooleanParameter)
+  | ({ type: "string" } & StringParameter)
+  | ({ type: "double" } & DoubleParameter)
+  | ({ type: "integer" } & IntegerParameter);
+
+/**
+ * Required input field is null or missing.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RequiredValueMissingError {
+  fieldName: string;
+}
+
+/**
  * Compute resource configuration for training runs.
  *
  * Log Safety: SAFE
@@ -484,9 +796,296 @@ export interface ResourceConfiguration {
 export type RunId = LooselyBrandedString<"RunId">;
 
 /**
+ * Returns experiments where every filter is satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsAndFilter {
+  filters: Array<SearchExperimentsFilter>;
+}
+
+/**
+ * Filter for substring containment matches.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsContainsFilter {
+  field: SearchExperimentsContainsFilterField;
+  value: any;
+}
+
+/**
+ * Fields that support substring containment filtering.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsContainsFilterField =
+  | "EXPERIMENT_NAME"
+  | "PARAMETER_NAME"
+  | "SERIES_NAME";
+
+/**
+ * Filter for exact field value matches.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsEqualsFilter {
+  field: SearchExperimentsEqualsFilterField;
+  value: any;
+}
+
+/**
+ * Fields that support equality filtering.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsEqualsFilterField =
+  | "STATUS"
+  | "BRANCH"
+  | "EXPERIMENT_NAME"
+  | "EXPERIMENT_RID"
+  | "JOB_RID"
+  | "TAG"
+  | "PARAMETER_NAME"
+  | "SERIES_NAME";
+
+/**
+   * Filter for searching experiments using operator-based composition.
+Supports equality, text matching, boolean combination operators, and compound filters
+that atomically bind a name to a value comparison.
+Example filters:
+
+Simple status: {"eq": {"field": "STATUS", "value": "RUNNING"}}
+Branch match: {"eq": {"field": "BRANCH", "value": "master"}}
+Parameter filter: {"parameterFilter": {"parameterName": "learning_rate", "operator": "GT", "value": 0.01}}
+Combined: {"and": {"filters": [
+{"eq": {"field": "STATUS", "value": "SUCCEEDED"}},
+{"parameterFilter": {"parameterName": "learning_rate", "operator": "GT", "value": 0.5}}
+]}}
+   *
+   * Log Safety: UNSAFE
+   */
+export type SearchExperimentsFilter =
+  | ({ type: "seriesFilter" } & SearchExperimentsSeriesFilter)
+  | ({ type: "contains" } & SearchExperimentsContainsFilter)
+  | ({ type: "not" } & SearchExperimentsNotFilter)
+  | ({ type: "or" } & SearchExperimentsOrFilter)
+  | ({ type: "and" } & SearchExperimentsAndFilter)
+  | ({ type: "parameterFilter" } & SearchExperimentsParameterFilter)
+  | ({ type: "summaryMetricFilter" } & SearchExperimentsSummaryMetricFilter)
+  | ({ type: "eq" } & SearchExperimentsEqualsFilter)
+  | ({ type: "startsWith" } & SearchExperimentsStartsWithFilter);
+
+/**
+ * Comparison operator for compound filter predicates.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsFilterOperator = "EQ" | "GT" | "LT" | "CONTAINS";
+
+/**
+ * Returns experiments where the filter is not satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsNotFilter {
+  value: SearchExperimentsFilter;
+}
+
+/**
+ * Ordering configuration for experiment search results.
+ *
+ * Log Safety: SAFE
+ */
+export interface SearchExperimentsOrderBy {
+  field: SearchExperimentsOrderByField;
+  direction: _Core.OrderByDirection;
+}
+
+/**
+ * Fields to order experiment search results by.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsOrderByField = "EXPERIMENT_NAME" | "CREATED_AT";
+
+/**
+ * Returns experiments where at least one filter is satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsOrFilter {
+  filters: Array<SearchExperimentsFilter>;
+}
+
+/**
+   * Filter that atomically binds a parameter name to a value comparison,
+ensuring both conditions are evaluated on the same parameter.
+Supported combinations:
+
+EQ: boolean, double, integer, datetime, or string value
+GT/LT: double, integer, or datetime value
+CONTAINS: string value (matches the parameter's string value)
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SearchExperimentsParameterFilter {
+  parameterName: ParameterName;
+  operator: SearchExperimentsFilterOperator;
+  value: any;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsRequest {
+  where?: SearchExperimentsFilter;
+  orderBy?: SearchExperimentsOrderBy;
+  pageSize?: _Core.PageSize;
+  pageToken?: _Core.PageToken;
+}
+
+/**
+ * Response from searching experiments.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsResponse {
+  data: Array<Experiment>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+   * Filter that atomically binds a series name to a metric comparison,
+ensuring all conditions are evaluated on the same series.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SearchExperimentsSeriesFilter {
+  seriesName: SeriesName;
+  field: SearchExperimentsSeriesFilterField;
+  operator: SearchExperimentsFilterOperator;
+  value: any;
+}
+
+/**
+ * The series metric to filter on.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsSeriesFilterField =
+  | "LENGTH"
+  | "AGGREGATION_MIN"
+  | "AGGREGATION_MAX"
+  | "AGGREGATION_LAST";
+
+/**
+ * Filter for prefix matches.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchExperimentsStartsWithFilter {
+  field: SearchExperimentsStartsWithFilterField;
+  value: any;
+}
+
+/**
+ * Fields that support prefix filtering.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsStartsWithFilterField =
+  | "EXPERIMENT_NAME"
+  | "PARAMETER_NAME"
+  | "SERIES_NAME";
+
+/**
+   * Filter that atomically binds a series name and aggregation type to a value comparison,
+ensuring all conditions are evaluated on the same summary metric.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SearchExperimentsSummaryMetricFilter {
+  seriesName: SeriesName;
+  aggregation: SummaryMetricAggregation;
+  operator: SearchExperimentsFilterOperator;
+  value: any;
+}
+
+/**
+ * A series of values logged over time.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Series = { type: "doubleV1" } & DoubleSeriesV1;
+
+/**
+ * Series with precomputed aggregation values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SeriesAggregations {
+  name: SeriesName;
+  length: string;
+  value: SeriesAggregationsValue;
+}
+
+/**
+ * Union of aggregation values by series type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type SeriesAggregationsValue = {
+  type: "double";
+} & DoubleSeriesAggregations;
+
+/**
+ * The name of a series (metrics tracked over time).
+ *
+ * Log Safety: UNSAFE
+ */
+export type SeriesName = LooselyBrandedString<"SeriesName">;
+
+/**
+ * A string parameter value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StringParameter {
+  value: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface StringType {}
+
+/**
+ * A summary metric with series name, aggregation type, and computed value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SummaryMetric {
+  seriesName: SeriesName;
+  aggregation: SummaryMetricAggregation;
+  value: number;
+}
+
+/**
+ * The type of aggregation computed for a summary metric.
+ *
+ * Log Safety: SAFE
+ */
+export type SummaryMetricAggregation = "MIN" | "MAX" | "LAST";
+
+/**
+ * Details about a table artifact.
+ *
+ * Log Safety: SAFE
+ */
+export interface TableArtifactDetails {
+  rowCount: string;
+}
 
 /**
  * Log Safety: SAFE
@@ -562,12 +1161,56 @@ export interface TrainerVersionLocator {
 /**
  * Log Safety: UNSAFE
  */
+export interface TransformJsonLiveDeploymentRequest {
+  input: Record<string, any>;
+}
+
+/**
+ * The response from transforming input data using a live deployment.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TransformLiveDeploymentResponse {
+  output: Record<string, any>;
+}
+
+/**
+ * Input type does not match expected type in model API.
+ *
+ * Log Safety: SAFE
+ */
+export interface TypeMismatchError {
+  expectedType: string;
+  actualType: string;
+}
+
+/**
+ * Provided input name not found in model API specification.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnknownInputNameError {
+  inputName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface UnsupportedType {
   unsupportedType: string;
   params: Record<
     _Core.UnsupportedTypeParamKey,
     _Core.UnsupportedTypeParamValue
   >;
+}
+
+/**
+ * Input contains an unsupported data type.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedTypeError {
+  unsupportedType: string;
 }
 
 /**

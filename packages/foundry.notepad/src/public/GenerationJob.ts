@@ -40,7 +40,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Load an existing GenerationJob. This is used to monitor job progress.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:notepad-write]
  * URL: /v2/notepad/templates/{templateRid}/generationJobs/{generationJobRid}
@@ -69,7 +69,7 @@ const _saveDocument: $FoundryPlatformMethod<
 /**
  * Save generated content as a new notepad document. This is only possible if the GenerationJob succeeded.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:notepad-write]
  * URL: /v2/notepad/templates/{templateRid}/generationJobs/{generationJobRid}/saveDocument

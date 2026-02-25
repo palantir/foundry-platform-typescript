@@ -34,6 +34,19 @@ export interface CancelSqlQueryPermissionDenied {
 }
 
 /**
+ * Could not executeOntology the SqlQuery.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExecuteOntologySqlQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ExecuteOntologySqlQueryPermissionDenied";
+  errorDescription: "Could not executeOntology the SqlQuery.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not execute the SqlQuery.
  *
  * Log Safety: SAFE
@@ -73,6 +86,21 @@ export interface GetStatusSqlQueryPermissionDenied {
   errorInstanceId: string;
   parameters: {
     sqlQueryId: unknown;
+  };
+}
+
+/**
+ * The Ontology query failed.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OntologyQueryFailed {
+  errorCode: "INTERNAL";
+  errorName: "OntologyQueryFailed";
+  errorDescription: "The Ontology query failed.";
+  errorInstanceId: string;
+  parameters: {
+    errorMessage: unknown;
   };
 }
 

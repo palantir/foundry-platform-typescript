@@ -108,3 +108,30 @@ export function get(
 ): Promise<_Admin.MarkingCategory> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _replace: $FoundryPlatformMethod<
+  (
+    markingCategoryId: _Admin.MarkingCategoryId,
+    $body: _Admin.ReplaceMarkingCategoryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.MarkingCategory>
+> = [2, "/v2/admin/markingCategories/{0}", 3];
+
+/**
+ * Replace the MarkingCategory with the specified id.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/markingCategories/{markingCategoryId}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    markingCategoryId: _Admin.MarkingCategoryId,
+    $body: _Admin.ReplaceMarkingCategoryRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.MarkingCategory> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}

@@ -1662,18 +1662,29 @@ export type EditHistoryEdit =
 /**
  * Log Safety: UNSAFE
  */
-export interface EditsHistoryFilters {
-  startTime?: string;
-  endTime?: string;
-  actionTypes: Array<ActionTypeApiName>;
-  editTypes: Array<EditTypeFilter>;
-  userIds: Array<string>;
+export type EditsHistoryFilter =
+  | ({ type: "timestampFilter" } & EditsHistoryTimestampFilter)
+  | ({ type: "operationIdsFilter" } & EditsHistoryOperationIdsFilter);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface EditsHistoryOperationIdsFilter {
+  operationIds: Array<ActionRid>;
 }
 
 /**
  * Log Safety: SAFE
  */
 export type EditsHistorySortOrder = "newest_first" | "oldest_first";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface EditsHistoryTimestampFilter {
+  startTime?: string;
+  endTime?: string;
+}
 
 /**
  * Log Safety: SAFE
@@ -1864,11 +1875,55 @@ export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 export type Fuzzy = boolean;
 
 /**
+   * Matches intervals containing terms that are similar to the provided term, within an edit distance
+defined by fuzziness. An edit is a single character change needed to make a term match, including
+character insertion, deletion, substitution, or transposition of two adjacent characters.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FuzzyRule {
+  term: string;
+  fuzziness?: number;
+}
+
+/**
  * Setting fuzzy to true allows approximate matching in search queries that support it.
  *
  * Log Safety: SAFE
  */
 export type FuzzyV2 = boolean;
+
+/**
+ * A GeoJSON geometry specification.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeoJsonString {
+  geoJson: string;
+}
+
+/**
+ * Geometry specification for a GeoShapeV2Query. Supports bounding box envelopes and arbitrary GeoJSON geometries.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GeoShapeV2Geometry =
+  | ({ type: "envelope" } & BoundingBoxValue)
+  | ({ type: "geoJson" } & GeoJsonString);
+
+/**
+   * Returns objects where the specified field satisfies the provided geometry query with the given spatial operator.
+Supports both envelope (bounding box) and GeoJSON geometries for filtering geopoint or geoshape properties.
+Either field or propertyIdentifier can be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface GeoShapeV2Query {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  geometry: GeoShapeV2Geometry;
+  spatialFilterMode: SpatialFilterMode;
+}
 
 /**
  * A single geotemporal data point representing the location of an entity at a specific point in time.
@@ -1921,6 +1976,27 @@ export interface GeotimeSeriesProperty {
 export interface GeotimeSeriesValue {
   position: _Geo.Position;
   timestamp: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetActionTypeByRidBatchRequest {
+  requests: Array<GetActionTypeByRidBatchRequestElement>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetActionTypeByRidBatchRequestElement {
+  actionTypeRid: ActionTypeRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetActionTypeByRidBatchResponse {
+  data: Array<ActionTypeV2>;
 }
 
 /**
@@ -2345,7 +2421,8 @@ export type IntervalQueryRule =
   | ({ type: "allOf" } & AllOfRule)
   | ({ type: "match" } & MatchRule)
   | ({ type: "anyOf" } & AnyOfRule)
-  | ({ type: "prefixOnLastToken" } & PrefixOnLastTokenRule);
+  | ({ type: "prefixOnLastToken" } & PrefixOnLastTokenRule)
+  | ({ type: "fuzzy" } & FuzzyRule);
 
 /**
  * Returns objects based on the existence of the specified field.
@@ -2812,6 +2889,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesResponse {
   data: Array<OntologyObjectV2>;
   nextPageToken?: _Core.PageToken;
   totalCount: _Core.TotalCount;
+  transactionId?: OntologyTransactionId;
 }
 
 /**
@@ -3350,6 +3428,7 @@ created, modified, or deleted as part of an action execution.
    * Log Safety: UNSAFE
    */
 export interface ObjectEditHistoryEntry {
+  objectPrimaryKey: ObjectPrimaryKeyV2;
   operationId: ActionRid;
   actionTypeRid: ActionTypeRid;
   userId: string;
@@ -3728,7 +3807,7 @@ Otherwise, the method will return edits history for all objects of this object t
    */
 export interface ObjectTypeEditsHistoryRequest {
   objectPrimaryKey?: ObjectPrimaryKeyV2;
-  filters?: EditsHistoryFilters;
+  filters?: EditsHistoryFilter;
   sortOrder?: EditsHistorySortOrder;
   includeAllPreviousProperties?: boolean;
   pageSize?: number;
@@ -3870,6 +3949,7 @@ export type OntologyDataType =
   | ({ type: "cipherText" } & _Core.CipherTextType)
   | ({ type: "marking" } & _Core.MarkingType)
   | ({ type: "unsupported" } & _Core.UnsupportedType)
+  | ({ type: "mediaReference" } & _Core.MediaReferenceType)
   | ({ type: "array" } & OntologyArrayType)
   | ({ type: "objectSet" } & OntologyObjectSetType)
   | ({ type: "binary" } & _Core.BinaryType)
@@ -4731,6 +4811,7 @@ export type QueryDataType =
   | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "unsupported" } & _Core.UnsupportedType)
   | ({ type: "attachment" } & _Core.AttachmentType)
+  | ({ type: "mediaReference" } & _Core.MediaReferenceType)
   | ({ type: "null" } & _Core.NullType)
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "objectSet" } & OntologyObjectSetType)
@@ -5123,6 +5204,7 @@ export type SearchJsonQueryV2 =
   | ({ type: "isNull" } & IsNullQueryV2)
   | ({ type: "containsAnyTerm" } & ContainsAnyTermQuery)
   | ({ type: "interval" } & IntervalQuery)
+  | ({ type: "geoShapeV2" } & GeoShapeV2Query)
   | ({ type: "startsWith" } & StartsWithQuery);
 
 /**
@@ -5436,6 +5518,19 @@ export type SharedPropertyTypeApiName = LooselyBrandedString<
 export type SharedPropertyTypeRid = LooselyBrandedString<
   "SharedPropertyTypeRid"
 >;
+
+/**
+   * The spatial relation operator for a GeoShapeV2Query. INTERSECTS matches objects that intersect the provided
+geometry, DISJOINT matches objects that do not intersect the provided geometry, WITHIN matches objects that
+lie within the provided geometry, and CONTAINS matches objects that contain the provided geometry.
+   *
+   * Log Safety: SAFE
+   */
+export type SpatialFilterMode =
+  | "INTERSECTS"
+  | "DISJOINT"
+  | "WITHIN"
+  | "CONTAINS";
 
 /**
    * Deprecated alias for containsAllTermsInOrderPrefixLastTerm, which is preferred because the name startsWith is misleading.

@@ -70,7 +70,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists all Model Versions for a given Model.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/versions
@@ -101,7 +101,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Retrieves a Model Version by its Resource Identifier (RID).
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/versions/{modelVersionRid}

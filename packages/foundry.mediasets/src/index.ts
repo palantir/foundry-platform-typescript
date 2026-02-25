@@ -218,11 +218,13 @@ export type {
 export type {
   ConflictingMediaSetIdentifiers,
   GetMediaItemRidByPathPermissionDenied,
+  InvalidMediaItemRid,
   InvalidMediaItemSchema,
   MediaItemHasUnsupportedSecuritySettings,
   MediaItemImageUnparsable,
   MediaItemIsPasswordProtected,
   MediaItemNotFound,
+  MediaItemRidAlreadyExists,
   MediaItemXmlUnparsable,
   MediaSetNotFound,
   MediaSetOpenTransactionAlreadyExists,

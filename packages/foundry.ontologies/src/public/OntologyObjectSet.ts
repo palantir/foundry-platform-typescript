@@ -192,6 +192,7 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetV2ObjectsOrInterfacesResponse>
@@ -228,6 +229,7 @@ export function loadObjectsOrInterfaces(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
