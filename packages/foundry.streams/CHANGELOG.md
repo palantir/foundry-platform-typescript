@@ -1,5 +1,18 @@
 # @osdk/foundry.streams
 
+## 2.49.0
+
+### Minor Changes
+
+- ed3ac19: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [ed3ac19]
+  - @osdk/foundry.filesystem@2.49.0
+  - @osdk/foundry.datasets@2.49.0
+  - @osdk/foundry.core@2.49.0
+
 ## 2.48.0
 
 ### Minor Changes

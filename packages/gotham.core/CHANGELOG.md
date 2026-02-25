@@ -1,5 +1,11 @@
 # @osdk/gotham.core
 
+## 0.22.0
+
+### Minor Changes
+
+- ed3ac19: Regenerate Platform SDKs
+
 ## 0.21.0
 
 ### Minor Changes
