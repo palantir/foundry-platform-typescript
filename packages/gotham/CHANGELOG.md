@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.24.0
+
+### Minor Changes
+
+- cefa77b: Regenerate platform SDK
+
+### Patch Changes
+
+- Updated dependencies [cefa77b]
+  - @osdk/gotham.targetworkbench@0.24.0
+  - @osdk/gotham.maprendering@0.24.0
+  - @osdk/gotham.geojson@0.24.0
+  - @osdk/gotham.core@0.24.0
+  - @osdk/gotham.gaia@0.24.0
+
 ## 0.23.0
 
 ### Minor Changes

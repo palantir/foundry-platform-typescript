@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.38.0
+
+### Minor Changes
+
+- cefa77b: Regenerate platform SDK
+
 ## 0.37.0
 
 ### Minor Changes
