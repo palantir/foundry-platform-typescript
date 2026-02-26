@@ -1,5 +1,17 @@
 # @osdk/foundry.functions
 
+## 2.51.0
+
+### Minor Changes
+
+- cefa77b: Regenerate platform SDK
+
+### Patch Changes
+
+- Updated dependencies [cefa77b]
+  - @osdk/foundry.ontologies@2.51.0
+  - @osdk/foundry.core@2.51.0
+
 ## 2.50.0
 
 ### Minor Changes

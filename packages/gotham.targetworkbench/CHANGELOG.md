@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.24.0
+
+### Minor Changes
+
+- cefa77b: Regenerate platform SDK
+
+### Patch Changes
+
+- Updated dependencies [cefa77b]
+  - @osdk/gotham.core@0.24.0
+
 ## 0.23.0
 
 ### Minor Changes

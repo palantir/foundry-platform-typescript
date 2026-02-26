@@ -1,5 +1,16 @@
 # @osdk/foundry.core
 
+## 2.51.0
+
+### Minor Changes
+
+- cefa77b: Regenerate platform SDK
+
+### Patch Changes
+
+- Updated dependencies [cefa77b]
+  - @osdk/foundry.geo@2.51.0
+
 ## 2.50.0
 
 ### Minor Changes

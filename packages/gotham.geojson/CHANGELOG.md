@@ -1,5 +1,11 @@
 # @osdk/gotham.geojson
 
+## 0.24.0
+
+### Minor Changes
+
+- cefa77b: Regenerate platform SDK
+
 ## 0.23.0
 
 ### Minor Changes
