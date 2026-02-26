@@ -121,6 +121,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getMediaItemRidByPath": {
       "variables": {},
     },
+    "v2.getMediaSet": {
+      "variables": {},
+    },
     "v2.getTransformationJobResult": {
       "variables": {},
     },
@@ -134,6 +137,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.readOriginalMediaItem": {
+      "variables": {},
+    },
+    "v2.registerMediaItem": {
       "variables": {},
     },
     "v2.retrieveImageMediaItemThumbnail": {

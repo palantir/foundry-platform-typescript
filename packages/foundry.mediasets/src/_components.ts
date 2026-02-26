@@ -204,6 +204,14 @@ export interface BandInfo {
 }
 
 /**
+   * All writes must be part of a transaction. Transactions are branch-scoped and created by calling
+create transaction. Writes are not visible until commit transaction is called.
+   *
+   * Log Safety: SAFE
+   */
+export interface BatchTransactionsTransactionPolicy {}
+
+/**
  * A rectangular bounding box for annotations.
  *
  * Log Safety: SAFE
@@ -850,6 +858,19 @@ export interface GetMediaItemRidByPathResponse {
 }
 
 /**
+ * Information about a media set.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetMediaSetResponse {
+  rid: _Core.MediaSetRid;
+  mediaSchema: MediaSchema;
+  defaultBranchName: BranchName;
+  transactionPolicy: TransactionPolicy;
+  pathsRequired: boolean;
+}
+
+/**
  * Returns the dimensions of each page in a PDF document as JSON (in points).
  *
  * Log Safety: SAFE
@@ -1189,6 +1210,22 @@ export type MediaItemMetadata =
 export type MediaItemXmlFormat = "DOCX" | "XLSX" | "PPTX";
 
 /**
+ * The schema type of a media set, indicating what type of media items it can contain.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSchema =
+  | "AUDIO"
+  | "DICOM"
+  | "DOCUMENT"
+  | "IMAGERY"
+  | "MODEL_3D"
+  | "MULTIMODAL"
+  | "SPREADSHEET"
+  | "VIDEO"
+  | "EMAIL";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface MediaSet {
@@ -1350,6 +1387,14 @@ export interface Mp3Format {}
  * Log Safety: SAFE
  */
 export interface Mp4VideoContainerFormat {}
+
+/**
+   * Writes are not part of a transaction and are immediately visible.
+Calls to create transaction or commit transaction will error.
+   *
+   * Log Safety: SAFE
+   */
+export interface NoTransactionsTransactionPolicy {}
 
 /**
  * Specifies the number of audio channels. Defaults to 2 (stereo).
@@ -1676,6 +1721,26 @@ export interface PutMediaItemResponse {
 }
 
 /**
+ * Request to register a media item from a federated store.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RegisterMediaItemRequest {
+  physicalItemName: string;
+  mediaItemPath?: _Core.MediaItemPath;
+}
+
+/**
+ * Response after successfully registering a media item.
+ *
+ * Log Safety: SAFE
+ */
+export interface RegisterMediaItemResponse {
+  mediaItemRid: _Core.MediaItemRid;
+  mediaType: _Core.MediaType;
+}
+
+/**
    * Renders a frame of a DICOM file as an image.
 If only one dimension is specified, the other is calculated to preserve aspect ratio.
    *
@@ -1863,6 +1928,15 @@ export interface TrackedTransformationSuccessfulResponse {}
  * Log Safety: SAFE
  */
 export type TransactionId = string;
+
+/**
+ * The transaction policy for a media set, determining how writes are handled.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TransactionPolicy =
+  | ({ type: "batchTransactions" } & BatchTransactionsTransactionPolicy)
+  | ({ type: "noTransactions" } & NoTransactionsTransactionPolicy);
 
 /**
  * Encodes video to the specified format.
