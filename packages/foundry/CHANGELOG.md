@@ -1,5 +1,40 @@
 # @osdk/foundry
 
+## 2.50.0
+
+### Minor Changes
+
+- e7d3aec: Regenerate platform sdks, notably, for branching params in queries.
+
+### Patch Changes
+
+- Updated dependencies [e7d3aec]
+  - @osdk/foundry.thirdpartyapplications@2.50.0
+  - @osdk/foundry.languagemodels@2.50.0
+  - @osdk/foundry.orchestration@2.50.0
+  - @osdk/foundry.connectivity@2.50.0
+  - @osdk/foundry.checkpoints@2.50.0
+  - @osdk/foundry.datahealth@2.50.0
+  - @osdk/foundry.filesystem@2.50.0
+  - @osdk/foundry.ontologies@2.50.0
+  - @osdk/foundry.operations@2.50.0
+  - @osdk/foundry.publicapis@2.50.0
+  - @osdk/foundry.sqlqueries@2.50.0
+  - @osdk/foundry.aipagents@2.50.0
+  - @osdk/foundry.functions@2.50.0
+  - @osdk/foundry.mediasets@2.50.0
+  - @osdk/foundry.datasets@2.50.0
+  - @osdk/foundry.notepad@2.50.0
+  - @osdk/foundry.streams@2.50.0
+  - @osdk/foundry.widgets@2.50.0
+  - @osdk/foundry.models@2.50.0
+  - @osdk/foundry.admin@2.50.0
+  - @osdk/foundry.audit@2.50.0
+  - @osdk/foundry.core@2.50.0
+  - @osdk/foundry.pack@2.50.0
+  - @osdk/foundry.geo@2.50.0
+  - @osdk/foundry.geojson@2.50.0
+
 ## 2.49.0
 
 ### Minor Changes

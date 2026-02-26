@@ -1,5 +1,11 @@
 # @osdk/gotham.core
 
+## 0.23.0
+
+### Minor Changes
+
+- e7d3aec: Regenerate platform sdks, notably, for branching params in queries.
+
 ## 0.22.0
 
 ### Minor Changes

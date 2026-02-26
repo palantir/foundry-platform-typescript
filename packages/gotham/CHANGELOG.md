@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.23.0
+
+### Minor Changes
+
+- e7d3aec: Regenerate platform sdks, notably, for branching params in queries.
+
+### Patch Changes
+
+- Updated dependencies [e7d3aec]
+  - @osdk/gotham.targetworkbench@0.23.0
+  - @osdk/gotham.maprendering@0.23.0
+  - @osdk/gotham.geojson@0.23.0
+  - @osdk/gotham.core@0.23.0
+  - @osdk/gotham.gaia@0.23.0
+
 ## 0.22.0
 
 ### Minor Changes
