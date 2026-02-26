@@ -445,13 +445,14 @@ export interface SearchDocumentsRequest {
 }
 
 /**
- * Request to update document metadata (name and/or description).
+ * Request to update document metadata (name, description, and/or security).
  *
  * Log Safety: UNSAFE
  */
 export interface UpdateDocumentMetadataRequest {
   name?: string;
   description?: string;
+  security?: DocumentSecurity;
 }
 
 /**

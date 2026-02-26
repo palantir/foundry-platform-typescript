@@ -115,7 +115,7 @@ const _update: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documents/{0}/update", 3];
 
 /**
- * Updates the metadata (name and/or description) of a PACK Document.
+ * Updates the metadata (name, description, and/or security) of a PACK Document.
  *
  * @alpha
  *
