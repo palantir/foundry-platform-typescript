@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.37.0
+
+### Minor Changes
+
+- e7d3aec: Regenerate platform sdks, notably, for branching params in queries.
+
 ## 0.36.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.50.0
+
+### Minor Changes
+
+- e7d3aec: Regenerate platform sdks, notably, for branching params in queries.
+
+### Patch Changes
+
+- Updated dependencies [e7d3aec]
+  - @osdk/foundry.ontologies@2.50.0
+  - @osdk/foundry.functions@2.50.0
+  - @osdk/foundry.core@2.50.0
+
 ## 2.49.0
 
 ### Minor Changes

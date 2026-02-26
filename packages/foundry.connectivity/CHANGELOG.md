@@ -1,5 +1,17 @@
 # @osdk/foundry.connectivity
 
+## 2.50.0
+
+### Minor Changes
+
+- e7d3aec: Regenerate platform sdks, notably, for branching params in queries.
+
+### Patch Changes
+
+- Updated dependencies [e7d3aec]
+  - @osdk/foundry.filesystem@2.50.0
+  - @osdk/foundry.core@2.50.0
+
 ## 2.49.0
 
 ### Minor Changes
