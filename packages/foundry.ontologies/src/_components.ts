@@ -4807,6 +4807,7 @@ export type QueryDataType =
   | ({ type: "interfaceObject" } & OntologyInterfaceObjectType)
   | ({ type: "struct" } & QueryStructType)
   | ({ type: "set" } & QuerySetType)
+  | ({ type: "void" } & _Core.VoidType)
   | ({ type: "string" } & _Core.StringType)
   | ({ type: "entrySet" } & EntrySetType)
   | ({ type: "double" } & _Core.DoubleType)

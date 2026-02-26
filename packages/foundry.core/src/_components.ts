@@ -1691,6 +1691,11 @@ export interface VectorType {
 export type VersionId = string;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface VoidType {}
+
+/**
  * @deprecated Use `WithinBoundingBoxPoint` in the `foundry.ontologies` package
  *
  * Log Safety: UNSAFE
