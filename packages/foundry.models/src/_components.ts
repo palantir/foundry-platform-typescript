@@ -134,9 +134,9 @@ export interface DoubleParameter {
  * Log Safety: UNSAFE
  */
 export interface DoubleSeriesAggregations {
-  min: number;
-  max: number;
-  last: number;
+  min?: number;
+  max?: number;
+  last?: number;
 }
 
 /**
@@ -178,7 +178,7 @@ export type EpochMillis = string;
 export interface Experiment {
   rid: ExperimentRid;
   modelRid: ModelRid;
-  name: ExperimentName;
+  name?: string;
   createdAt: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
   source: ExperimentSource;
@@ -254,11 +254,6 @@ export interface ExperimentCodeWorkspaceSource {
   containerRid: string;
   deploymentRid?: string;
 }
-
-/**
- * Log Safety: UNSAFE
- */
-export type ExperimentName = LooselyBrandedString<"ExperimentName">;
 
 /**
  * The Resource Identifier (RID) of an Experiment.
@@ -877,13 +872,6 @@ export type SearchExperimentsFilter =
   | ({ type: "startsWith" } & SearchExperimentsStartsWithFilter);
 
 /**
- * Comparison operator for compound filter predicates.
- *
- * Log Safety: SAFE
- */
-export type SearchExperimentsFilterOperator = "EQ" | "GT" | "LT" | "CONTAINS";
-
-/**
  * Returns experiments where the filter is not satisfied.
  *
  * Log Safety: UNSAFE
@@ -891,6 +879,13 @@ export type SearchExperimentsFilterOperator = "EQ" | "GT" | "LT" | "CONTAINS";
 export interface SearchExperimentsNotFilter {
   value: SearchExperimentsFilter;
 }
+
+/**
+ * Comparison operator for numeric filter predicates (series and summary metrics).
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsNumericFilterOperator = "EQ" | "GT" | "LT";
 
 /**
  * Ordering configuration for experiment search results.
@@ -923,17 +918,28 @@ export interface SearchExperimentsOrFilter {
 ensuring both conditions are evaluated on the same parameter.
 Supported combinations:
 
-EQ: boolean, double, integer, datetime, or string value
+EQ: boolean, double, integer, or datetime value
 GT/LT: double, integer, or datetime value
-CONTAINS: string value (matches the parameter's string value)
+CONTAINS: string value (substring match on the parameter's string value)
    *
    * Log Safety: UNSAFE
    */
 export interface SearchExperimentsParameterFilter {
   parameterName: ParameterName;
-  operator: SearchExperimentsFilterOperator;
+  operator: SearchExperimentsParameterFilterOperator;
   value: any;
 }
+
+/**
+ * Comparison operator for parameter filter predicates.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsParameterFilterOperator =
+  | "EQ"
+  | "GT"
+  | "LT"
+  | "CONTAINS";
 
 /**
  * Log Safety: UNSAFE
@@ -964,7 +970,7 @@ ensuring all conditions are evaluated on the same series.
 export interface SearchExperimentsSeriesFilter {
   seriesName: SeriesName;
   field: SearchExperimentsSeriesFilterField;
-  operator: SearchExperimentsFilterOperator;
+  operator: SearchExperimentsNumericFilterOperator;
   value: any;
 }
 
@@ -1008,7 +1014,7 @@ ensuring all conditions are evaluated on the same summary metric.
 export interface SearchExperimentsSummaryMetricFilter {
   seriesName: SeriesName;
   aggregation: SummaryMetricAggregation;
-  operator: SearchExperimentsFilterOperator;
+  operator: SearchExperimentsNumericFilterOperator;
   value: any;
 }
 
@@ -1026,7 +1032,7 @@ export type Series = { type: "doubleV1" } & DoubleSeriesV1;
  */
 export interface SeriesAggregations {
   name: SeriesName;
-  length: string;
+  length?: string;
   value: SeriesAggregationsValue;
 }
 

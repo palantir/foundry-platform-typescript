@@ -72,6 +72,7 @@ export interface EnumConstraint {
 export interface ExecuteQueryRequest {
   parameters: Record<ParameterId, DataValue | undefined>;
   version?: FunctionVersion;
+  branch?: _Core.FoundryBranch;
 }
 
 /**
@@ -237,6 +238,7 @@ export type QueryDataType =
   | ({ type: "date" } & _Core.DateType)
   | ({ type: "struct" } & QueryStructType)
   | ({ type: "set" } & QuerySetType)
+  | ({ type: "void" } & _Core.VoidType)
   | ({ type: "string" } & _Core.StringType)
   | ({ type: "double" } & _Core.DoubleType)
   | ({ type: "integer" } & _Core.IntegerType)
@@ -318,6 +320,7 @@ export interface StreamingExecuteQueryRequest {
   ontology?: _Ontologies.OntologyIdentifier;
   parameters: Record<ParameterId, DataValue | undefined>;
   version?: FunctionVersion;
+  branch?: _Core.FoundryBranch;
 }
 
 /**

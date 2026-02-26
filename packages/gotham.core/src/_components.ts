@@ -1064,6 +1064,11 @@ export interface VectorType {
 export type VersionId = string;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface VoidType {}
+
+/**
  * A string representation of a java.time.ZoneId
  *
  * Log Safety: SAFE

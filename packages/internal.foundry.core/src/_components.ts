@@ -5163,6 +5163,11 @@ export interface VectorType {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface VoidType {}
+
+/**
  * @deprecated Use `WithinBoundingBoxPoint` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE
