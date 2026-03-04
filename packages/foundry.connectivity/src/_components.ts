@@ -313,7 +313,7 @@ export type CreateConnectionRequestEncryptedProperty =
  * Log Safety: SAFE
  */
 export interface CreateConnectionRequestFoundryWorker {
-  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
+  networkEgressPolicyRids: Array<_Core.NetworkEgressPolicyRid>;
 }
 
 /**
@@ -1007,7 +1007,7 @@ and scalable job execution, improved stability and do not incur the maintenance 
    * Log Safety: SAFE
    */
 export interface FoundryWorker {
-  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
+  networkEgressPolicyRids: Array<_Core.NetworkEgressPolicyRid>;
 }
 
 /**
@@ -1234,15 +1234,6 @@ export interface MicrosoftSqlServerTableImportConfig {
   query: TableImportQuery;
   initialIncrementalState?: TableImportInitialIncrementalState;
 }
-
-/**
- * The Resource Identifier (RID) of a Network Egress Policy.
- *
- * Log Safety: SAFE
- */
-export type NetworkEgressPolicyRid = LooselyBrandedString<
-  "NetworkEgressPolicyRid"
->;
 
 /**
    * Authenticate as a service principal using OAuth. Create a service principal in Databricks and generate an OAuth secret to obtain a client ID and secret.

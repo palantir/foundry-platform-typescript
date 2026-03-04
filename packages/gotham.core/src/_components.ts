@@ -692,6 +692,15 @@ Examples: application/json, application/pdf, application/octet-stream, image/jpe
 export type MediaType = LooselyBrandedString<"MediaType">;
 
 /**
+ * The Resource Identifier (RID) of a Network Egress Policy.
+ *
+ * Log Safety: SAFE
+ */
+export type NetworkEgressPolicyRid = LooselyBrandedString<
+  "NetworkEgressPolicyRid"
+>;
+
+/**
  * Log Safety: SAFE
  */
 export interface NullType {}

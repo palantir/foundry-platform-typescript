@@ -151,7 +151,7 @@ const _getEditsHistory: $FoundryPlatformMethod<
  *
  * Note that filters are ignored for OSv1 object types.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/editsHistory

@@ -23,6 +23,14 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Log Safety: SAFE
+ */
+export interface CommitSubscriberOffsetsRequest {
+  viewRid?: ViewRid;
+  offsets: PartitionOffsets;
+}
+
+/**
    * Compression helps reduce the size of the data being sent, resulting in lower network usage and
 storage, at the cost of some additional CPU usage for compression and decompression. This stream type
 is only recommended if your stream contains a high volume of repetitive strings and is experiencing poor
@@ -86,6 +94,48 @@ export interface CreateStreamRequestStreamSchema {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface CreateSubscriberRequest {
+  subscriberId: SubscriberId;
+  readPosition?: ReadPosition;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateSubscriberRequestEarliestPosition {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateSubscriberRequestLatestPosition {}
+
+/**
+   * Position to start reading from when registering a subscriber or resetting offsets.
+
+earliest: Start reading from the beginning of each partition (offset 0). Use this to
+reprocess all historical data in the stream.
+latest: Start reading from the current end of each partition. Use this to skip
+historical data and only process new records arriving after registration.
+specific: Start reading from explicit offsets for each partition. Use this for precise
+replay scenarios or to resume from a known checkpoint.
+   *
+   * Log Safety: SAFE
+   */
+export type CreateSubscriberRequestReadPosition =
+  | ({ type: "specific" } & CreateSubscriberRequestSpecificPosition)
+  | ({ type: "earliest" } & CreateSubscriberRequestEarliestPosition)
+  | ({ type: "latest" } & CreateSubscriberRequestLatestPosition);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateSubscriberRequestSpecificPosition {
+  offsets: PartitionOffsets;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Dataset {
@@ -93,6 +143,14 @@ export interface Dataset {
   name: _Datasets.DatasetName;
   parentFolderRid: _Filesystem.FolderRid;
 }
+
+/**
+   * Start reading from the beginning of the stream. Sets offset to 0 for all partitions,
+allowing the subscriber to read all historical data from the start.
+   *
+   * Log Safety: SAFE
+   */
+export interface EarliestPosition {}
 
 /**
  * The end offsets for each partition of a stream.
@@ -109,11 +167,34 @@ export type GetEndOffsetsResponse = Record<PartitionId, string>;
 export type GetRecordsResponse = Array<RecordWithOffset>;
 
 /**
+   * Start reading from the current end of the stream. Sets offsets to the latest available
+offset for each partition, meaning the subscriber will only receive records published
+after this point.
+   *
+   * Log Safety: SAFE
+   */
+export interface LatestPosition {}
+
+/**
  * The identifier for a partition of a Foundry stream.
  *
  * Log Safety: SAFE
  */
 export type PartitionId = LooselyBrandedString<"PartitionId">;
+
+/**
+ * A map of partition IDs to offsets.
+ *
+ * Log Safety: SAFE
+ */
+export type PartitionOffsets = Record<PartitionId, string>;
+
+/**
+ * Records from a single partition with their offsets.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export type PartitionRecords = Array<RecordWithOffset>;
 
 /**
  * The number of partitions for a Foundry stream.
@@ -136,6 +217,42 @@ export interface PublishRecordsToStreamRequest {
 export interface PublishRecordToStreamRequest {
   record: _Record;
   viewRid?: ViewRid;
+}
+
+/**
+   * Position to start reading from when registering a subscriber or resetting offsets.
+
+earliest: Start reading from the beginning of each partition (offset 0). Use this to
+reprocess all historical data in the stream.
+latest: Start reading from the current end of each partition. Use this to skip
+historical data and only process new records arriving after registration.
+specific: Start reading from explicit offsets for each partition. Use this for precise
+replay scenarios or to resume from a known checkpoint.
+   *
+   * Log Safety: SAFE
+   */
+export type ReadPosition =
+  | ({ type: "specific" } & SpecificPosition)
+  | ({ type: "earliest" } & EarliestPosition)
+  | ({ type: "latest" } & LatestPosition);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReadRecordsFromSubscriberRequest {
+  viewRid?: ViewRid;
+  limit?: number;
+  partitionIds?: Array<PartitionId>;
+  autoCommit?: boolean;
+}
+
+/**
+ * Response containing records grouped by partition ID.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export interface ReadSubscriberRecordsResponse {
+  recordsByPartition: Record<PartitionId, PartitionRecords>;
 }
 
 /**
@@ -166,6 +283,23 @@ export interface ResetStreamRequest {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ResetSubscriberOffsetsRequest {
+  position: ReadPosition;
+}
+
+/**
+   * Start reading from specific offsets for each partition. Useful for resuming from a known
+checkpoint or replaying from a specific point in time.
+   *
+   * Log Safety: SAFE
+   */
+export interface SpecificPosition {
+  offsets: PartitionOffsets;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Stream {
@@ -184,13 +318,33 @@ introduce some non-zero latency at the expense of a higher throughput. This stre
 recommended if you inspect your stream metrics in-platform and observe that the average batch size is equal
 to the max match size, or if jobs using the stream are failing due to Kafka producer batches expiring. For
 additional information on inspecting stream metrics, refer to the
-(stream monitoring)[/docs/foundry/data-integration/stream-monitoring/#viewing-metrics] documentation.
+stream monitoring documentation.
 For more information, refer to the stream types
 documentation.
    *
    * Log Safety: SAFE
    */
 export type StreamType = "LOW_LATENCY" | "HIGH_THROUGHPUT";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface Subscriber {
+  subscriberId: SubscriberId;
+  readPosition?: ReadPosition;
+  datasetRid: _Core.DatasetRid;
+  branchName: _Core.BranchName;
+  viewRid: ViewRid;
+  startOffsets: PartitionOffsets;
+  createdTime: _Core.CreatedTime;
+}
+
+/**
+ * A unique identifier for a stream subscriber. Must be unique within the scope of a stream.
+ *
+ * Log Safety: SAFE
+ */
+export type SubscriberId = LooselyBrandedString<"SubscriberId">;
 
 /**
  * The resource identifier (RID) of the view that represents a stream.

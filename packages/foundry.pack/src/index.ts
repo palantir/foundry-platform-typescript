@@ -70,9 +70,12 @@ export type {
   YjsUpdate,
 } from "./_components.js";
 export type {
+  CannotDeleteAutosavedDocument,
+  CannotDeleteHiddenDocument,
   CreateDocumentNotSupported,
   CreateDocumentPermissionDenied,
   CreateDocumentTypePermissionDenied,
+  DeleteDocumentPermissionDenied,
   DocumentNotFound,
   DocumentTypeAlreadyExists,
   DocumentTypeNameNotFound,

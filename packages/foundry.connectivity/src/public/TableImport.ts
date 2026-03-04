@@ -33,14 +33,13 @@ const _create: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
     $body: _Connectivity.CreateTableImportRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.TableImport>
-> = [1, "/v2/connectivity/connections/{0}/tableImports", 3];
+> = [1, "/v2/connectivity/connections/{0}/tableImports", 1];
 
 /**
  * Creates a new TableImport.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports
@@ -50,7 +49,6 @@ export function create(
   ...args: [
     connectionRid: _Connectivity.ConnectionRid,
     $body: _Connectivity.CreateTableImportRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Connectivity.TableImport> {
   return $foundryPlatformFetch($ctx, _create, ...args);
@@ -60,16 +58,15 @@ const _deleteTableImport: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [3, "/v2/connectivity/connections/{0}/tableImports/{1}", 2];
+> = [3, "/v2/connectivity/connections/{0}/tableImports/{1}"];
 
 /**
  * Delete the TableImport with the specified RID.
  * Deleting the table import does not delete the destination dataset but the dataset will no longer
  * be updated by this import.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
@@ -79,8 +76,6 @@ export function deleteTableImport(
   ...args: [
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteTableImport, ...args);
@@ -92,7 +87,6 @@ const _list: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Connectivity.ListTableImportsResponse>
 > = [0, "/v2/connectivity/connections/{0}/tableImports", 2];
@@ -101,7 +95,7 @@ const _list: $FoundryPlatformMethod<
  * Lists all table imports defined for this connection.
  * Only table imports that the user has permissions to view will be returned.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-table-import-read]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports
@@ -114,7 +108,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Connectivity.ListTableImportsResponse> {
@@ -125,14 +118,13 @@ const _get: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.TableImport>
-> = [0, "/v2/connectivity/connections/{0}/tableImports/{1}", 2];
+> = [0, "/v2/connectivity/connections/{0}/tableImports/{1}"];
 
 /**
  * Get the TableImport with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-table-import-read]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
@@ -142,8 +134,6 @@ export function get(
   ...args: [
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Connectivity.TableImport> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -154,14 +144,13 @@ const _replace: $FoundryPlatformMethod<
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
     $body: _Connectivity.ReplaceTableImportRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.TableImport>
-> = [2, "/v2/connectivity/connections/{0}/tableImports/{1}", 3];
+> = [2, "/v2/connectivity/connections/{0}/tableImports/{1}", 1];
 
 /**
  * Replace the TableImport with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
@@ -172,7 +161,6 @@ export function replace(
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
     $body: _Connectivity.ReplaceTableImportRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Connectivity.TableImport> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
@@ -182,15 +170,14 @@ const _execute: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Core.BuildRid>
-> = [1, "/v2/connectivity/connections/{0}/tableImports/{1}/execute", 2];
+> = [1, "/v2/connectivity/connections/{0}/tableImports/{1}/execute"];
 
 /**
  * Executes the TableImport, which runs asynchronously as a [Foundry Build](https://www.palantir.com/docs/foundry/data-integration/builds/).
  * The returned BuildRid can be used to check the status via the Orchestration API.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-table-import-execute]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}/execute
@@ -200,8 +187,6 @@ export function execute(
   ...args: [
     connectionRid: _Connectivity.ConnectionRid,
     tableImportRid: _Connectivity.TableImportRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Core.BuildRid> {
   return $foundryPlatformFetch($ctx, _execute, ...args);

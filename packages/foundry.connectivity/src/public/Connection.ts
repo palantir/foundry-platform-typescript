@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -32,9 +31,8 @@ import type * as _Connectivity from "../_components.js";
 const _create: $FoundryPlatformMethod<
   (
     $body: _Connectivity.CreateConnectionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.Connection>
-> = [1, "/v2/connectivity/connections", 3];
+> = [1, "/v2/connectivity/connections", 1];
 
 /**
  * Creates a new Connection with a [direct connection](https://www.palantir.com/docs/foundry/data-connection/core-concepts/#direct-connection) runtime.
@@ -47,17 +45,14 @@ const _create: $FoundryPlatformMethod<
  * in-memory handling of secrets. If you do not want your secrets to be temporarily decrypted, you should
  * use the Foundry UI instead.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-connection-write]
  * URL: /v2/connectivity/connections
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Connectivity.CreateConnectionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Connectivity.CreateConnectionRequest]
 ): Promise<_Connectivity.Connection> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
@@ -65,25 +60,20 @@ export function create(
 const _get: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.Connection>
-> = [0, "/v2/connectivity/connections/{0}", 2];
+> = [0, "/v2/connectivity/connections/{0}"];
 
 /**
  * Get the Connection with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-connection-read]
  * URL: /v2/connectivity/connections/{connectionRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    connectionRid: _Connectivity.ConnectionRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [connectionRid: _Connectivity.ConnectionRid]
 ): Promise<_Connectivity.Connection> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -92,15 +82,14 @@ const _updateExportSettings: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
     $body: _Connectivity.UpdateExportSettingsForConnectionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/connectivity/connections/{0}/updateExportSettings", 3];
+> = [1, "/v2/connectivity/connections/{0}/updateExportSettings", 1];
 
 /**
  * Updates the [export settings on the Connection.](https://www.palantir.com/docs/foundry/data-connection/export-overview/#enable-exports-for-source)
  * Only users with Information Security Officer role can modify the export settings.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-connection-write]
  * URL: /v2/connectivity/connections/{connectionRid}/updateExportSettings
@@ -110,7 +99,6 @@ export function updateExportSettings(
   ...args: [
     connectionRid: _Connectivity.ConnectionRid,
     $body: _Connectivity.UpdateExportSettingsForConnectionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _updateExportSettings, ...args);
@@ -154,26 +142,21 @@ export function updateSecrets(
 const _getConfiguration: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.ConnectionConfiguration>
-> = [0, "/v2/connectivity/connections/{0}/getConfiguration", 2];
+> = [0, "/v2/connectivity/connections/{0}/getConfiguration"];
 
 /**
  * Retrieves the ConnectionConfiguration of the [Connection](https://www.palantir.com/docs/foundry/data-connection/set-up-source/) itself.
  * This operation is intended for use when other Connection data is not required, providing a lighter-weight alternative to `getConnection` operation.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-connection-read]
  * URL: /v2/connectivity/connections/{connectionRid}/getConfiguration
  */
 export function getConfiguration(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    connectionRid: _Connectivity.ConnectionRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [connectionRid: _Connectivity.ConnectionRid]
 ): Promise<_Connectivity.ConnectionConfiguration> {
   return $foundryPlatformFetch($ctx, _getConfiguration, ...args);
 }
@@ -181,9 +164,8 @@ export function getConfiguration(
 const _getConfigurationBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Connectivity.GetConfigurationConnectionsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.GetConfigurationConnectionsBatchResponse>
-> = [1, "/v2/connectivity/connections/getConfigurationBatch", 3];
+> = [1, "/v2/connectivity/connections/getConfigurationBatch", 1];
 
 /**
  * Returns a map of Connection RIDs to their corresponding configurations.
@@ -191,7 +173,7 @@ const _getConfigurationBatch: $FoundryPlatformMethod<
  *
  * The maximum batch size for this endpoint is 200.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-connection-read]
  * URL: /v2/connectivity/connections/getConfigurationBatch
@@ -200,7 +182,6 @@ export function getConfigurationBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $body: Array<_Connectivity.GetConfigurationConnectionsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Connectivity.GetConfigurationConnectionsBatchResponse> {
   return $foundryPlatformFetch($ctx, _getConfigurationBatch, ...args);
@@ -210,7 +191,7 @@ const _uploadCustomJdbcDrivers: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
     $body: Blob,
-    $queryParams: { fileName: string; preview?: _Core.PreviewMode | undefined },
+    $queryParams: { fileName: string },
   ) => Promise<_Connectivity.Connection>
 > = [
   1,
@@ -223,7 +204,7 @@ const _uploadCustomJdbcDrivers: $FoundryPlatformMethod<
  * Upload custom jdbc drivers to an existing JDBC connection.
  * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-connection-write]
  * URL: /v2/connectivity/connections/{connectionRid}/uploadCustomJdbcDrivers
@@ -233,7 +214,7 @@ export function uploadCustomJdbcDrivers(
   ...args: [
     connectionRid: _Connectivity.ConnectionRid,
     $body: Blob,
-    $queryParams: { fileName: string; preview?: _Core.PreviewMode | undefined },
+    $queryParams: { fileName: string },
   ]
 ): Promise<_Connectivity.Connection> {
   return $foundryPlatformFetch($ctx, _uploadCustomJdbcDrivers, ...args);

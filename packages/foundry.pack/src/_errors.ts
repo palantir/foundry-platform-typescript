@@ -19,6 +19,36 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Autosaved documents cannot be deleted.
+ *
+ * Log Safety: SAFE
+ */
+export interface CannotDeleteAutosavedDocument {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CannotDeleteAutosavedDocument";
+  errorDescription: "Autosaved documents cannot be deleted.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+ * Hidden documents cannot be deleted.
+ *
+ * Log Safety: SAFE
+ */
+export interface CannotDeleteHiddenDocument {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CannotDeleteHiddenDocument";
+  errorDescription: "Hidden documents cannot be deleted.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
    * The user does not have permission to create documents of the given type in
 the given ontology, or the Document Type does not exist in the ontology.
    *
@@ -60,6 +90,21 @@ export interface CreateDocumentTypePermissionDenied {
   errorDescription: "Could not create the DocumentType.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * Could not delete the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeleteDocumentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DeleteDocumentPermissionDenied";
+  errorDescription: "Could not delete the Document.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
 }
 
 /**
