@@ -131,7 +131,6 @@ export type {
   MarkingId,
   MicrosoftAccessTableImportConfig,
   MicrosoftSqlServerTableImportConfig,
-  NetworkEgressPolicyRid,
   OauthMachineToMachineAuth,
   OracleTableImportConfig,
   PersonalAccessToken,

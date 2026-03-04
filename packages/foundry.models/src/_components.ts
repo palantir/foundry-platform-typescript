@@ -179,7 +179,7 @@ export interface Experiment {
   rid: ExperimentRid;
   modelRid: ModelRid;
   name?: string;
-  createdAt: _Core.CreatedTime;
+  createdTime: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
   source: ExperimentSource;
   status: ExperimentStatus;
@@ -902,7 +902,7 @@ export interface SearchExperimentsOrderBy {
  *
  * Log Safety: SAFE
  */
-export type SearchExperimentsOrderByField = "EXPERIMENT_NAME" | "CREATED_AT";
+export type SearchExperimentsOrderByField = "EXPERIMENT_NAME" | "CREATED_TIME";
 
 /**
  * Returns experiments where at least one filter is satisfied.

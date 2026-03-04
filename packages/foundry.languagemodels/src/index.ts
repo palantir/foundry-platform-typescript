@@ -74,6 +74,11 @@ export type {
 } from "./_components.js";
 export type {
   AnthropicMessagesPermissionDenied,
+  InvalidRequest,
+  LanguageModelInferenceError,
+  LanguageModelNotAvailable,
+  LanguageModelNotFound,
+  LanguageModelPermissionDenied,
   MultipleSystemPromptsNotSupported,
   MultipleToolResultContentsNotSupported,
   OpenAiEmbeddingsPermissionDenied,

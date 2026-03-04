@@ -991,6 +991,24 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getEndOffsetsForStream": {
       "variables": {},
     },
+    "v2.createSubscriber": {
+      "variables": {},
+    },
+    "v2.deleteSubscriber": {
+      "variables": {},
+    },
+    "v2.readRecordsFromSubscriber": {
+      "variables": {},
+    },
+    "v2.commitSubscriberOffsets": {
+      "variables": {},
+    },
+    "v2.getSubscriberReadPosition": {
+      "variables": {},
+    },
+    "v2.resetSubscriberOffsets": {
+      "variables": {},
+    },
     "v2.openAiEmbeddings": {
       "variables": {},
     },
@@ -1091,6 +1109,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.createDocument": {
+      "variables": {},
+    },
+    "v2.deleteDocument": {
       "variables": {},
     },
     "v2.getDocument": {

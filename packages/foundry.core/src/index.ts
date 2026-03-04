@@ -129,6 +129,7 @@ export type {
   MediaSetViewItemWrapper,
   MediaSetViewRid,
   MediaType,
+  NetworkEgressPolicyRid,
   NotQueryV2,
   NullType,
   NumericOrNonNumericType,

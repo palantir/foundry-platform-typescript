@@ -74,7 +74,6 @@ const _getSchedules: $FoundryPlatformMethod<
       branchName?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.ListSchedulesResponse>
 > = [0, "/v2/datasets/{0}/getSchedules", 2];
@@ -86,7 +85,7 @@ const _getSchedules: $FoundryPlatformMethod<
  * especially for schedules managed by Marketplace. This operation will return outdated results in the
  * meantime.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:orchestration-read, api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/getSchedules
@@ -100,7 +99,6 @@ export function getSchedules(
       branchName?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Datasets.ListSchedulesResponse> {
@@ -226,7 +224,6 @@ const _getSchema: $FoundryPlatformMethod<
       branchName?: _Core.BranchName | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       versionId?: _Core.VersionId | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.GetDatasetSchemaResponse>
 > = [0, "/v2/datasets/{0}/getSchema", 2];
@@ -234,7 +231,7 @@ const _getSchema: $FoundryPlatformMethod<
 /**
  * Gets a dataset's schema. If no `endTransactionRid` is provided, the latest committed version will be used.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/getSchema
@@ -248,7 +245,6 @@ export function getSchema(
       branchName?: _Core.BranchName | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       versionId?: _Core.VersionId | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Datasets.GetDatasetSchemaResponse> {
@@ -258,9 +254,8 @@ export function getSchema(
 const _getSchemaBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Datasets.GetSchemaDatasetsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.GetSchemaDatasetsBatchResponse>
-> = [1, "/v2/datasets/getSchemaBatch", 3];
+> = [1, "/v2/datasets/getSchemaBatch", 1];
 
 /**
  * Fetch schemas for multiple datasets in a single request. Datasets not found
@@ -268,17 +263,14 @@ const _getSchemaBatch: $FoundryPlatformMethod<
  *
  * The maximum batch size for this endpoint is 1000.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/getSchemaBatch
  */
 export function getSchemaBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: Array<_Datasets.GetSchemaDatasetsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: Array<_Datasets.GetSchemaDatasetsBatchRequestElement>]
 ): Promise<_Datasets.GetSchemaDatasetsBatchResponse> {
   return $foundryPlatformFetch($ctx, _getSchemaBatch, ...args);
 }
@@ -287,14 +279,13 @@ const _putSchema: $FoundryPlatformMethod<
   (
     datasetRid: _Core.DatasetRid,
     $body: _Datasets.PutDatasetSchemaRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.GetDatasetSchemaResponse>
-> = [2, "/v2/datasets/{0}/putSchema", 3];
+> = [2, "/v2/datasets/{0}/putSchema", 1];
 
 /**
  * Adds a schema on an existing dataset using a PUT request.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/putSchema
@@ -304,7 +295,6 @@ export function putSchema(
   ...args: [
     datasetRid: _Core.DatasetRid,
     $body: _Datasets.PutDatasetSchemaRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.GetDatasetSchemaResponse> {
   return $foundryPlatformFetch($ctx, _putSchema, ...args);

@@ -49,6 +49,23 @@ export interface CannotWriteToTrashedStream {
 }
 
 /**
+ * Could not commitOffsets the Subscriber.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CommitSubscriberOffsetsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CommitSubscriberOffsetsPermissionDenied";
+  errorDescription: "Could not commitOffsets the Subscriber.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    subscriberSubscriberId: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
  * Could not create the Dataset.
  *
  * Log Safety: SAFE
@@ -73,6 +90,40 @@ export interface CreateStreamPermissionDenied {
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
+ * Could not create the Subscriber.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateSubscriberPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateSubscriberPermissionDenied";
+  errorDescription: "Could not create the Subscriber.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    subscriberSubscriberId: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
+ * Could not delete the Subscriber.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DeleteSubscriberPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DeleteSubscriberPermissionDenied";
+  errorDescription: "Could not delete the Subscriber.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    subscriberSubscriberId: unknown;
     streamBranchName: unknown;
   };
 }
@@ -118,6 +169,23 @@ export interface GetRecordsFromStreamPermissionDenied {
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
+ * Could not getReadPosition the Subscriber.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetSubscriberReadPositionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetSubscriberReadPositionPermissionDenied";
+  errorDescription: "Could not getReadPosition the Subscriber.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    subscriberSubscriberId: unknown;
     streamBranchName: unknown;
   };
 }
@@ -204,6 +272,23 @@ export interface PublishRecordToStreamPermissionDenied {
 }
 
 /**
+ * Could not readRecords the Subscriber.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ReadRecordsFromSubscriberPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReadRecordsFromSubscriberPermissionDenied";
+  errorDescription: "Could not readRecords the Subscriber.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    subscriberSubscriberId: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
  * A provided record does not match the stream schema
  *
  * Log Safety: UNSAFE
@@ -251,6 +336,23 @@ export interface ResetStreamPermissionDenied {
 }
 
 /**
+ * Could not resetOffsets the Subscriber.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ResetSubscriberOffsetsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ResetSubscriberOffsetsPermissionDenied";
+  errorDescription: "Could not resetOffsets the Subscriber.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    subscriberSubscriberId: unknown;
+    streamBranchName: unknown;
+  };
+}
+
+/**
  * The given Stream could not be found.
  *
  * Log Safety: UNSAFE
@@ -263,6 +365,39 @@ export interface StreamNotFound {
   parameters: {
     datasetRid: unknown;
     streamBranchName: unknown;
+  };
+}
+
+/**
+ * A subscriber with this ID already exists for a different stream.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SubscriberAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "SubscriberAlreadyExists";
+  errorDescription:
+    "A subscriber with this ID already exists for a different stream.";
+  errorInstanceId: string;
+  parameters: {
+    subscriberId: unknown;
+    existingDatasetRid: unknown;
+    existingBranchName: unknown;
+  };
+}
+
+/**
+ * No subscriber with the given ID was found.
+ *
+ * Log Safety: SAFE
+ */
+export interface SubscriberNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "SubscriberNotFound";
+  errorDescription: "No subscriber with the given ID was found.";
+  errorInstanceId: string;
+  parameters: {
+    subscriberId: unknown;
   };
 }
 
