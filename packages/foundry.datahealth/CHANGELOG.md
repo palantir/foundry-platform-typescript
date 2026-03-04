@@ -1,5 +1,16 @@
 # @osdk/foundry.datahealth
 
+## 2.52.0
+
+### Minor Changes
+
+- 61dbb74: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [61dbb74]
+  - @osdk/foundry.core@2.52.0
+
 ## 2.51.0
 
 ### Minor Changes
