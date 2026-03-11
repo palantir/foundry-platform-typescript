@@ -107,6 +107,7 @@ export type {
   MediaSetViewItemWrapper,
   MediaSetViewRid,
   MediaType,
+  NetworkEgressPolicyRid,
   NullType,
   NumericOrNonNumericType,
   Operation,
@@ -154,6 +155,7 @@ export type {
   VectorSimilarityFunctionValue,
   VectorType,
   VersionId,
+  VoidType,
   ZoneId,
 } from "./_components.js";
 export type {

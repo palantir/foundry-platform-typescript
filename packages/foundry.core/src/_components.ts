@@ -969,6 +969,15 @@ Examples: application/json, application/pdf, application/octet-stream, image/jpe
 export type MediaType = LooselyBrandedString<"MediaType">;
 
 /**
+ * The Resource Identifier (RID) of a Network Egress Policy.
+ *
+ * Log Safety: SAFE
+ */
+export type NetworkEgressPolicyRid = LooselyBrandedString<
+  "NetworkEgressPolicyRid"
+>;
+
+/**
  * @deprecated Use `NotQueryV2` in the `foundry.ontologies` package
  *
  * Returns objects where the query is not satisfied.
@@ -1689,6 +1698,11 @@ export interface VectorType {
  * Log Safety: SAFE
  */
 export type VersionId = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface VoidType {}
 
 /**
  * @deprecated Use `WithinBoundingBoxPoint` in the `foundry.ontologies` package

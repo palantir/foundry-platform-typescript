@@ -36,6 +36,7 @@ const _execute: $FoundryPlatformMethod<
     $body: _Ontologies.ExecuteQueryRequest,
     $queryParams?: {
       version?: _Ontologies.FunctionVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
@@ -66,6 +67,7 @@ export function execute(
     $body: _Ontologies.ExecuteQueryRequest,
     $queryParams?: {
       version?: _Ontologies.FunctionVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;

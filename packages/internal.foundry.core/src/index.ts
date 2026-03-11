@@ -486,6 +486,7 @@ export type {
   VectorSimilarityFunction,
   VectorSimilarityFunctionValue,
   VectorType,
+  VoidType,
   WithinBoundingBoxPoint,
   WithinBoundingBoxQuery,
   WithinDistanceOfQuery,

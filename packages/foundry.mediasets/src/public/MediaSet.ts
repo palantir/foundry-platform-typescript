@@ -276,6 +276,32 @@ export function getRidByPath(
   return $foundryPlatformFetch($ctx, _getRidByPath, ...args);
 }
 
+const _get: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_MediaSets.GetMediaSetResponse>
+> = [0, "/v2/mediasets/{0}", 2];
+
+/**
+ * Gets information about the media set.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}
+ */
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_MediaSets.GetMediaSetResponse> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
 const _getResult: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
@@ -448,6 +474,45 @@ export function readOriginal(
   ]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _readOriginal, ...args);
+}
+
+const _register: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    $body: _MediaSets.RegisterMediaItemRequest,
+    $queryParams?: {
+      branchName?: _MediaSets.BranchName | undefined;
+      viewRid?: _Core.MediaSetViewRid | undefined;
+      transactionId?: _MediaSets.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_MediaSets.RegisterMediaItemResponse>
+> = [1, "/v2/mediasets/{0}/items/register", 3];
+
+/**
+ * Registers a media item that currently resides in a federated media store. Registration will validate the item
+ * against the media set's schema and perform initial metadata extraction.
+ * This endpoint is only applicable for federated media sets.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-write]
+ * URL: /v2/mediasets/{mediaSetRid}/items/register
+ */
+export function register(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    $body: _MediaSets.RegisterMediaItemRequest,
+    $queryParams?: {
+      branchName?: _MediaSets.BranchName | undefined;
+      viewRid?: _Core.MediaSetViewRid | undefined;
+      transactionId?: _MediaSets.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_MediaSets.RegisterMediaItemResponse> {
+  return $foundryPlatformFetch($ctx, _register, ...args);
 }
 
 const _retrieve: $FoundryPlatformMethod<

@@ -617,6 +617,22 @@ export interface ListMarkingRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * The provided token does not have permission to list guest members for this organization.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListOrganizationGuestMembersPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListOrganizationGuestMembersPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to list guest members for this organization.";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
+  };
+}
+
+/**
  * The provided token does not have permission to list assigned roles for this organization.
  *
  * Log Safety: SAFE

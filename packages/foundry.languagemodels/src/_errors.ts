@@ -34,6 +34,86 @@ export interface AnthropicMessagesPermissionDenied {
 }
 
 /**
+   * The request was unable to be deserialized as a valid request to this endpoint. This may be either due to
+missing a required field or including a field which is not supported.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidRequest {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidRequest";
+  errorDescription:
+    "The request was unable to be deserialized as a valid request to this endpoint. This may be either due to missing a required field or including a field which is not supported.";
+  errorInstanceId: string;
+  parameters: {
+    message: unknown;
+    params: unknown;
+  };
+}
+
+/**
+ * An error was thrown by the underlying model provider during inference.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LanguageModelInferenceError {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "LanguageModelInferenceError";
+  errorDescription:
+    "An error was thrown by the underlying model provider during inference.";
+  errorInstanceId: string;
+  parameters: {
+    code: unknown;
+    message: unknown;
+  };
+}
+
+/**
+ * The language model requested is not available in this environment.
+ *
+ * Log Safety: SAFE
+ */
+export interface LanguageModelNotAvailable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "LanguageModelNotAvailable";
+  errorDescription:
+    "The language model requested is not available in this environment.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * No known language model exists with the specified ID.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LanguageModelNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "LanguageModelNotFound";
+  errorDescription: "No known language model exists with the specified ID.";
+  errorInstanceId: string;
+  parameters: {
+    modelId: unknown;
+  };
+}
+
+/**
+ * The token provided does not have permission to use this language model.
+ *
+ * Log Safety: SAFE
+ */
+export interface LanguageModelPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "LanguageModelPermissionDenied";
+  errorDescription:
+    "The token provided does not have permission to use this language model.";
+  errorInstanceId: string;
+  parameters: {
+    languageModelRid: unknown;
+  };
+}
+
+/**
  * Multiple system prompts are not currently supported, but will be in the future.
  *
  * Log Safety: SAFE

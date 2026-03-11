@@ -16,6 +16,7 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
+import type * as _Orchestration from "@osdk/foundry.orchestration";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -134,9 +135,9 @@ export interface DoubleParameter {
  * Log Safety: UNSAFE
  */
 export interface DoubleSeriesAggregations {
-  min: number;
-  max: number;
-  last: number;
+  min?: number;
+  max?: number;
+  last?: number;
 }
 
 /**
@@ -178,8 +179,8 @@ export type EpochMillis = string;
 export interface Experiment {
   rid: ExperimentRid;
   modelRid: ModelRid;
-  name: ExperimentName;
-  createdAt: _Core.CreatedTime;
+  name?: string;
+  createdTime: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
   source: ExperimentSource;
   status: ExperimentStatus;
@@ -254,11 +255,6 @@ export interface ExperimentCodeWorkspaceSource {
   containerRid: string;
   deploymentRid?: string;
 }
-
-/**
- * Log Safety: UNSAFE
- */
-export type ExperimentName = LooselyBrandedString<"ExperimentName">;
 
 /**
  * The Resource Identifier (RID) of an Experiment.
@@ -644,6 +640,7 @@ export interface ModelStudioRun {
   configVersion: ModelStudioConfigVersionNumber;
   startedBy: _Core.CreatedBy;
   startedTime: _Core.CreatedTime;
+  buildStatus?: _Orchestration.BuildStatus;
   resolvedOutputs: Record<OutputAlias, ModelStudioRunOutput>;
 }
 
@@ -877,13 +874,6 @@ export type SearchExperimentsFilter =
   | ({ type: "startsWith" } & SearchExperimentsStartsWithFilter);
 
 /**
- * Comparison operator for compound filter predicates.
- *
- * Log Safety: SAFE
- */
-export type SearchExperimentsFilterOperator = "EQ" | "GT" | "LT" | "CONTAINS";
-
-/**
  * Returns experiments where the filter is not satisfied.
  *
  * Log Safety: UNSAFE
@@ -891,6 +881,13 @@ export type SearchExperimentsFilterOperator = "EQ" | "GT" | "LT" | "CONTAINS";
 export interface SearchExperimentsNotFilter {
   value: SearchExperimentsFilter;
 }
+
+/**
+ * Comparison operator for numeric filter predicates (series and summary metrics).
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsNumericFilterOperator = "EQ" | "GT" | "LT";
 
 /**
  * Ordering configuration for experiment search results.
@@ -907,7 +904,7 @@ export interface SearchExperimentsOrderBy {
  *
  * Log Safety: SAFE
  */
-export type SearchExperimentsOrderByField = "EXPERIMENT_NAME" | "CREATED_AT";
+export type SearchExperimentsOrderByField = "EXPERIMENT_NAME" | "CREATED_TIME";
 
 /**
  * Returns experiments where at least one filter is satisfied.
@@ -923,17 +920,28 @@ export interface SearchExperimentsOrFilter {
 ensuring both conditions are evaluated on the same parameter.
 Supported combinations:
 
-EQ: boolean, double, integer, datetime, or string value
+EQ: boolean, double, integer, or datetime value
 GT/LT: double, integer, or datetime value
-CONTAINS: string value (matches the parameter's string value)
+CONTAINS: string value (substring match on the parameter's string value)
    *
    * Log Safety: UNSAFE
    */
 export interface SearchExperimentsParameterFilter {
   parameterName: ParameterName;
-  operator: SearchExperimentsFilterOperator;
+  operator: SearchExperimentsParameterFilterOperator;
   value: any;
 }
+
+/**
+ * Comparison operator for parameter filter predicates.
+ *
+ * Log Safety: SAFE
+ */
+export type SearchExperimentsParameterFilterOperator =
+  | "EQ"
+  | "GT"
+  | "LT"
+  | "CONTAINS";
 
 /**
  * Log Safety: UNSAFE
@@ -964,7 +972,7 @@ ensuring all conditions are evaluated on the same series.
 export interface SearchExperimentsSeriesFilter {
   seriesName: SeriesName;
   field: SearchExperimentsSeriesFilterField;
-  operator: SearchExperimentsFilterOperator;
+  operator: SearchExperimentsNumericFilterOperator;
   value: any;
 }
 
@@ -1008,7 +1016,7 @@ ensuring all conditions are evaluated on the same summary metric.
 export interface SearchExperimentsSummaryMetricFilter {
   seriesName: SeriesName;
   aggregation: SummaryMetricAggregation;
-  operator: SearchExperimentsFilterOperator;
+  operator: SearchExperimentsNumericFilterOperator;
   value: any;
 }
 
@@ -1026,7 +1034,7 @@ export type Series = { type: "doubleV1" } & DoubleSeriesV1;
  */
 export interface SeriesAggregations {
   name: SeriesName;
-  length: string;
+  length?: string;
   value: SeriesAggregationsValue;
 }
 

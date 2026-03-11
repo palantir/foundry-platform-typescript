@@ -118,6 +118,7 @@ const _listObjectsForInterface: $FoundryPlatformMethod<
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ListObjectsForInterfaceResponse>
 > = [0, "/v2/ontologies/{0}/interfaces/{1}", 2];
@@ -156,6 +157,7 @@ export function listObjectsForInterface(
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ListObjectsForInterfaceResponse> {

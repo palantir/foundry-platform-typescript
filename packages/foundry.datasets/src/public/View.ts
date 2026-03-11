@@ -30,26 +30,20 @@ import type * as _Datasets from "../_components.js";
 //
 
 const _create: $FoundryPlatformMethod<
-  (
-    $body: _Datasets.CreateViewRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Datasets.View>
-> = [1, "/v2/datasets/views", 3];
+  ($body: _Datasets.CreateViewRequest) => Promise<_Datasets.View>
+> = [1, "/v2/datasets/views", 1];
 
 /**
  * Create a new View.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/views
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Datasets.CreateViewRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Datasets.CreateViewRequest]
 ): Promise<_Datasets.View> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
@@ -57,17 +51,14 @@ export function create(
 const _get: $FoundryPlatformMethod<
   (
     viewDatasetRid: _Core.DatasetRid,
-    $queryParams?: {
-      branch?: _Core.BranchName | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { branch?: _Core.BranchName | undefined },
   ) => Promise<_Datasets.View>
 > = [0, "/v2/datasets/views/{0}", 2];
 
 /**
  * Get metadata for a View.
  *
- * @beta
+ * @public
  *
  * Required Scopes: []
  * URL: /v2/datasets/views/{viewDatasetRid}
@@ -77,10 +68,7 @@ export function get(
   ...args: [
     viewDatasetRid: _Core.DatasetRid,
 
-    $queryParams?: {
-      branch?: _Core.BranchName | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { branch?: _Core.BranchName | undefined },
   ]
 ): Promise<_Datasets.View> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -90,15 +78,14 @@ const _addBackingDatasets: $FoundryPlatformMethod<
   (
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddBackingDatasetsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
-> = [1, "/v2/datasets/views/{0}/addBackingDatasets", 3];
+> = [1, "/v2/datasets/views/{0}/addBackingDatasets", 1];
 
 /**
  * Adds one or more backing datasets to a View. Any duplicates with the same dataset RID and branch name are
  * ignored.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/views/{viewDatasetRid}/addBackingDatasets
@@ -108,7 +95,6 @@ export function addBackingDatasets(
   ...args: [
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddBackingDatasetsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.View> {
   return $foundryPlatformFetch($ctx, _addBackingDatasets, ...args);
@@ -118,15 +104,14 @@ const _replaceBackingDatasets: $FoundryPlatformMethod<
   (
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.ReplaceBackingDatasetsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
-> = [2, "/v2/datasets/views/{0}/replaceBackingDatasets", 3];
+> = [2, "/v2/datasets/views/{0}/replaceBackingDatasets", 1];
 
 /**
  * Replaces the backing datasets for a View. Removing any backing dataset triggers a
  * [SNAPSHOT](https://www.palantir.com/docs/foundry/data-integration/datasets#snapshot) transaction the next time the View is updated.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/views/{viewDatasetRid}/replaceBackingDatasets
@@ -136,7 +121,6 @@ export function replaceBackingDatasets(
   ...args: [
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.ReplaceBackingDatasetsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.View> {
   return $foundryPlatformFetch($ctx, _replaceBackingDatasets, ...args);
@@ -146,16 +130,15 @@ const _removeBackingDatasets: $FoundryPlatformMethod<
   (
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.RemoveBackingDatasetsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
-> = [1, "/v2/datasets/views/{0}/removeBackingDatasets", 3];
+> = [1, "/v2/datasets/views/{0}/removeBackingDatasets", 1];
 
 /**
  * Removes specified backing datasets from a View. Removing a dataset triggers a
  * [SNAPSHOT](https://www.palantir.com/docs/foundry/data-integration/datasets#snapshot) transaction on the next update. If a
  * specified dataset does not exist, no error is thrown.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/views/{viewDatasetRid}/removeBackingDatasets
@@ -165,7 +148,6 @@ export function removeBackingDatasets(
   ...args: [
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.RemoveBackingDatasetsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.View> {
   return $foundryPlatformFetch($ctx, _removeBackingDatasets, ...args);
@@ -175,15 +157,14 @@ const _addPrimaryKey: $FoundryPlatformMethod<
   (
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddPrimaryKeyRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.View>
-> = [1, "/v2/datasets/views/{0}/addPrimaryKey", 3];
+> = [1, "/v2/datasets/views/{0}/addPrimaryKey", 1];
 
 /**
  * Adds a primary key to a View that does not already have one. Primary keys are treated as
  * guarantees provided by the creator of the dataset.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/views/{viewDatasetRid}/addPrimaryKey
@@ -193,7 +174,6 @@ export function addPrimaryKey(
   ...args: [
     viewDatasetRid: _Core.DatasetRid,
     $body: _Datasets.AddPrimaryKeyRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.View> {
   return $foundryPlatformFetch($ctx, _addPrimaryKey, ...args);

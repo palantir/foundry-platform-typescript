@@ -211,6 +211,23 @@ export interface InferenceTimeout {
 }
 
 /**
+   * The search filter is invalid. This can occur when using an unsupported operator and value type
+combination in a parameter filter, filtering by an unsupported status, or providing a malformed filter.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidExperimentSearchFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidExperimentSearchFilter";
+  errorDescription:
+    "The search filter is invalid. This can occur when using an unsupported operator and value type combination in a parameter filter, filtering by an unsupported status, or providing a malformed filter.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+  };
+}
+
+/**
  * The model api failed validations
  *
  * Log Safety: UNSAFE

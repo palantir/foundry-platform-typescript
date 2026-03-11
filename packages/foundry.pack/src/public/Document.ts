@@ -54,6 +54,32 @@ export function create(
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
+const _deleteDocument: $FoundryPlatformMethod<
+  (
+    documentId: _Pack.DocumentRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [3, "/v2/pack/documents/{0}", 2];
+
+/**
+ * Delete the Document with the specified id.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-write]
+ * URL: /v2/pack/documents/{documentId}
+ */
+export function deleteDocument(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    documentId: _Pack.DocumentRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _deleteDocument, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     documentId: _Pack.DocumentRid,
@@ -115,7 +141,7 @@ const _update: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documents/{0}/update", 3];
 
 /**
- * Updates the metadata (name and/or description) of a PACK Document.
+ * Updates the metadata (name, description, and/or security) of a PACK Document.
  *
  * @alpha
  *

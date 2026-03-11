@@ -64,6 +64,15 @@ export interface Annotation {
 }
 
 /**
+ * Wrapper for API name-based model locator.
+ *
+ * Log Safety: SAFE
+ */
+export interface ApiNameLocatorWrapper {
+  apiName: string;
+}
+
+/**
  * The output format for encoding archives.
  *
  * Log Safety: UNSAFE
@@ -204,6 +213,14 @@ export interface BandInfo {
 }
 
 /**
+   * All writes must be part of a transaction. Transactions are branch-scoped and created by calling
+create transaction. Writes are not visible until commit transaction is called.
+   *
+   * Log Safety: SAFE
+   */
+export interface BatchTransactionsTransactionPolicy {}
+
+/**
  * A rectangular bounding box for annotations.
  *
  * Log Safety: SAFE
@@ -238,6 +255,27 @@ export type BranchName = LooselyBrandedString<"BranchName">;
  * Log Safety: SAFE
  */
 export type BranchRid = LooselyBrandedString<"BranchRid">;
+
+/**
+ * Standard chat-based LLM specification with system and user prompts.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ChatLlmSpec {
+  modelLocator: LanguageModelLocator;
+  systemPrompt: string;
+  userPrompt: string;
+  maxTokens?: number;
+}
+
+/**
+ * Wrapper for chat-based LLM specification.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ChatLlmSpecWrapper {
+  chat: ChatLlmSpec;
+}
 
 /**
  * An RGBA color value.
@@ -377,6 +415,15 @@ export interface CoordinateReferenceSystem {
 export interface CreatePdfOperation {}
 
 /**
+ * Configuration for table cropping.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CropConfig {
+  tablePrompt: string;
+}
+
+/**
  * Crops an image to a rectangular sub-window.
  *
  * Log Safety: UNSAFE
@@ -503,7 +550,13 @@ export interface Dimensions {
  *
  * Log Safety: SAFE
  */
-export type DocumentDecodeFormat = "PDF" | "DOCX" | "TXT" | "PPTX";
+export type DocumentDecodeFormat =
+  | "PDF"
+  | "DOC"
+  | "DOCX"
+  | "TXT"
+  | "PPTX"
+  | "RTF";
 
 /**
  * The output format for encoding documents.
@@ -583,11 +636,16 @@ export type DocumentToTextOperation =
   | ({ type: "extractTableOfContents" } & ExtractTableOfContentsOperation)
   | ({ type: "getPdfPageDimensions" } & GetPdfPageDimensionsOperation)
   | ({ type: "extractAllText" } & ExtractAllTextOperation)
+  | ({ type: "extractVlmText" } & ExtractVlmTextOperation)
   | ({
     type: "extractTextFromPagesToArray";
   } & ExtractTextFromPagesToArrayOperation)
   | ({ type: "ocrOnPage" } & OcrOnPageOperation)
   | ({ type: "extractFormFields" } & ExtractFormFieldsOperation)
+  | ({
+    type: "extractLayoutAwareTextV2";
+  } & ExtractDocumentLayoutAwareTextV2Operation)
+  | ({ type: "extractTextV2" } & ExtractDocumentTextV2Operation)
   | ({
     type: "extractUnstructuredTextFromPage";
   } & ExtractUnstructuredTextFromPageOperation)
@@ -709,6 +767,50 @@ export interface ExtractAllTextOperation {}
 export interface ExtractAudioOperation {}
 
 /**
+ * Configuration for v2 layout-aware document text extraction.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExtractDocumentLayoutAwareTextV2Config {
+  format?: TextOutputFormat;
+  mode?: OcrMode;
+  languages: Array<OcrLanguageOrScript>;
+}
+
+/**
+   * Extract layout aware text with bounding boxes across all pages using the v2 text extraction endpoint.
+This only supports PDFs.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ExtractDocumentLayoutAwareTextV2Operation {
+  pageRange?: PageRange;
+  config: ExtractDocumentLayoutAwareTextV2Config;
+}
+
+/**
+ * Configuration for v2 document text extraction.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExtractDocumentTextV2Config {
+  format?: TextOutputFormat;
+  mode?: OcrMode;
+  languages: Array<OcrLanguageOrScript>;
+}
+
+/**
+   * Extract text across all pages using the v2 text extraction endpoint with per page text.
+This only supports PDFs.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ExtractDocumentTextV2Operation {
+  pageRange?: PageRange;
+  config: ExtractDocumentTextV2Config;
+}
+
+/**
    * Extracts the first full scene frame from the video.
 If both width and height are not specified, preserves the original size.
 If only one dimension is specified, the other is calculated to preserve aspect ratio.
@@ -767,12 +869,35 @@ export interface ExtractTextFromPagesToArrayOperation {
 }
 
 /**
+ * Wrapper for text extraction preprocessing.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExtractTextPreprocessingWrapper {
+  extractText: ExtractDocumentTextV2Config;
+}
+
+/**
  * Extracts unstructured text from a specified page.
  *
  * Log Safety: UNSAFE
  */
 export interface ExtractUnstructuredTextFromPageOperation {
   pageNumber: number;
+}
+
+/**
+   * Extract text from a document using vision language models (VLMs).
+VLMs can understand document layout and structure more intelligently than traditional OCR.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ExtractVlmTextOperation {
+  llmSpec: LlmSpec;
+  preprocessingConfiguration?: VlmPreprocessingConfig;
+  imageSpec?: ImageSpec;
+  outputFormat: TextOutputFormat;
+  pageRange?: PageRange;
 }
 
 /**
@@ -847,6 +972,19 @@ export interface GetMediaItemInfoResponse {
  */
 export interface GetMediaItemRidByPathResponse {
   mediaItemRid?: _Core.MediaItemRid;
+}
+
+/**
+ * Information about a media set.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetMediaSetResponse {
+  rid: _Core.MediaSetRid;
+  mediaSchema: MediaSchema;
+  defaultBranchName: BranchName;
+  transactionPolicy: TransactionPolicy;
+  pathsRequired: boolean;
 }
 
 /**
@@ -1036,6 +1174,19 @@ export interface ImageryMediaItemMetadata {
 }
 
 /**
+   * Specification for image processing parameters used in vision-based extraction.
+Controls how document pages are converted to images before being sent to vision models.
+   *
+   * Log Safety: SAFE
+   */
+export interface ImageSpec {
+  resizingMode: ResizingMode;
+  height?: number;
+  width?: number;
+  mimeType: ImageryDecodeFormat;
+}
+
+/**
  * The operation to perform for image to document conversion.
  *
  * Log Safety: UNSAFE
@@ -1110,6 +1261,13 @@ export interface ImageTransformation {
 export interface JpgFormat {}
 
 /**
+ * Locator for identifying a language model.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LanguageModelLocator = { type: "apiName" } & ApiNameLocatorWrapper;
+
+/**
  * Parameters for layout-aware content extraction.
  *
  * Log Safety: SAFE
@@ -1117,6 +1275,32 @@ export interface JpgFormat {}
 export interface LayoutAwareExtractionParameters {
   languages: Array<OcrLanguage>;
 }
+
+/**
+ * Configuration for layout-aware extraction preprocessing.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LayoutAwareExtractionPreprocessingConfig {
+  transformationConfig: ExtractDocumentLayoutAwareTextV2Config;
+  cropConfig?: CropConfig;
+}
+
+/**
+ * Wrapper for layout-aware preprocessing.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LayoutAwarePreprocessingWrapper {
+  layoutAware: LayoutAwareExtractionPreprocessingConfig;
+}
+
+/**
+ * Specification for language model requests.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LlmSpec = { type: "chat" } & ChatLlmSpecWrapper;
 
 /**
    * A number representing a logical ordering to be used for transactions, etc.
@@ -1187,6 +1371,23 @@ export type MediaItemMetadata =
  * Log Safety: SAFE
  */
 export type MediaItemXmlFormat = "DOCX" | "XLSX" | "PPTX";
+
+/**
+ * The schema type of a media set, indicating what type of media items it can contain.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSchema =
+  | "AUDIO"
+  | "DICOM"
+  | "DOCUMENT"
+  | "IMAGERY"
+  | "MODEL_3D"
+  | "MULTIMODAL"
+  | "SPREADSHEET"
+  | "STREAMING_VIDEO"
+  | "VIDEO"
+  | "EMAIL";
 
 /**
  * Log Safety: UNSAFE
@@ -1350,6 +1551,14 @@ export interface Mp3Format {}
  * Log Safety: SAFE
  */
 export interface Mp4VideoContainerFormat {}
+
+/**
+   * Writes are not part of a transaction and are immediately visible.
+Calls to create transaction or commit transaction will error.
+   *
+   * Log Safety: SAFE
+   */
+export interface NoTransactionsTransactionPolicy {}
 
 /**
  * Specifies the number of audio channels. Defaults to 2 (stereo).
@@ -1516,6 +1725,13 @@ export interface OcrLanguageWrapper {
 }
 
 /**
+ * OCR mode for document extraction.
+ *
+ * Log Safety: SAFE
+ */
+export type OcrMode = "AUTO" | "ELECTRONIC" | "SCAN";
+
+/**
  * Performs OCR (Optical Character Recognition) on a specific page of a document.
  *
  * Log Safety: UNSAFE
@@ -1625,6 +1841,16 @@ export interface Orientation {
 }
 
 /**
+ * Page range for document extraction.
+ *
+ * Log Safety: SAFE
+ */
+export interface PageRange {
+  startPageInclusive?: number;
+  endPageExclusive?: number;
+}
+
+/**
  * The palette interpretation of a band.
  *
  * Log Safety: SAFE
@@ -1673,6 +1899,26 @@ export interface Pttml {}
  */
 export interface PutMediaItemResponse {
   mediaItemRid: _Core.MediaItemRid;
+}
+
+/**
+ * Request to register a media item from a federated store.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RegisterMediaItemRequest {
+  physicalItemName: string;
+  mediaItemPath?: _Core.MediaItemPath;
+}
+
+/**
+ * Response after successfully registering a media item.
+ *
+ * Log Safety: SAFE
+ */
+export interface RegisterMediaItemResponse {
+  mediaItemRid: _Core.MediaItemRid;
+  mediaType: _Core.MediaType;
 }
 
 /**
@@ -1731,6 +1977,13 @@ export interface ResizeToFitBoundingBoxOperation {
   width: number;
   height: number;
 }
+
+/**
+ * Image resizing strategy.
+ *
+ * Log Safety: SAFE
+ */
+export type ResizingMode = "RESIZING" | "FIT_INTO_BOUNDING_BOX";
 
 /**
  * Rotates an image clockwise by the specified angle.
@@ -1816,6 +2069,13 @@ export interface SpreadsheetToTextTransformation {
 export interface TarFormat {}
 
 /**
+ * Format in which to return extracted text.
+ *
+ * Log Safety: SAFE
+ */
+export type TextOutputFormat = "TEXT" | "MARKDOWN" | "HTML";
+
+/**
  * TIFF image format.
  *
  * Log Safety: SAFE
@@ -1863,6 +2123,15 @@ export interface TrackedTransformationSuccessfulResponse {}
  * Log Safety: SAFE
  */
 export type TransactionId = string;
+
+/**
+ * The transaction policy for a media set, determining how writes are handled.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TransactionPolicy =
+  | ({ type: "batchTransactions" } & BatchTransactionsTransactionPolicy)
+  | ({ type: "noTransactions" } & NoTransactionsTransactionPolicy);
 
 /**
  * Encodes video to the specified format.
@@ -2358,6 +2627,15 @@ export interface VideoTransformation {
   encoding: VideoEncodeFormat;
   operation: VideoOperation;
 }
+
+/**
+ * Preprocessing configuration for VLM extraction.
+ *
+ * Log Safety: UNSAFE
+ */
+export type VlmPreprocessingConfig =
+  | ({ type: "layoutAware" } & LayoutAwarePreprocessingWrapper)
+  | ({ type: "extractText" } & ExtractTextPreprocessingWrapper);
 
 /**
    * Generates waveform visualization data from audio.
