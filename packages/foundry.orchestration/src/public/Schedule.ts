@@ -39,6 +39,12 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new Schedule.
  *
+ * :::callout{theme=warning title=Warning}
+ * If the schedule is created in user-scoped mode, outputs to build will be discovered based on resources
+ * that the user has access to. If the user's permissions change later, this could change the outputs that
+ * will be built or cause builds to fail. Consider using a project-scoped schedule instead.
+ * :::
+ *
  * @beta
  *
  * Required Scopes: [api:orchestration-write]
@@ -136,7 +142,13 @@ const _replace: $FoundryPlatformMethod<
 > = [2, "/v2/orchestration/schedules/{0}", 3];
 
 /**
- * Replace the Schedule with the specified rid.
+ * Replaces the Schedule with the specified rid.
+ *
+ * :::callout{theme=warning title=Warning}
+ * If the schedule is configured in user-scoped mode, outputs to build will be discovered based on resources
+ * that the user has access to. If the user's permissions change later, this could change the outputs that
+ * will be built or cause builds to fail. Consider using a project-scoped schedule instead.
+ * :::
  *
  * @beta
  *

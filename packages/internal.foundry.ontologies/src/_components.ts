@@ -374,11 +374,13 @@ export interface AggregationDurationGrouping {
 /**
    * Divides objects into groups according to an interval. Note that this grouping applies only on date and timestamp types.
 When grouping by YEARS, QUARTERS, MONTHS, or WEEKS, the value must be set to 1.
+Either field or propertyIdentifier must be supplied, but not both.
    *
    * Log Safety: UNSAFE
    */
 export interface AggregationDurationGroupingV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: number;
   unit: TimeUnit;
 }
@@ -394,12 +396,14 @@ export interface AggregationExactGrouping {
 }
 
 /**
- * Divides objects into groups according to an exact value.
- *
- * Log Safety: UNSAFE
- */
+   * Divides objects into groups according to an exact value.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface AggregationExactGroupingV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   maxGroupCount?: number;
   defaultValue?: string;
   includeNullValues?: boolean;
@@ -416,12 +420,14 @@ export interface AggregationFixedWidthGrouping {
 }
 
 /**
- * Divides objects into groups with the specified width.
- *
- * Log Safety: UNSAFE
- */
+   * Divides objects into groups with the specified width.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface AggregationFixedWidthGroupingV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   fixedWidth: number;
 }
 
@@ -532,12 +538,14 @@ export interface AggregationRangesGrouping {
 }
 
 /**
- * Divides objects into groups according to specified ranges.
- *
- * Log Safety: UNSAFE
- */
+   * Divides objects into groups according to specified ranges.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface AggregationRangesGroupingV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   ranges: Array<AggregationRangeV2>;
 }
 
@@ -707,23 +715,27 @@ export interface ApproximateDistinctAggregation {
 }
 
 /**
- * Computes an approximate number of distinct values for the provided field.
- *
- * Log Safety: UNSAFE
- */
+   * Computes an approximate number of distinct values for the provided field.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface ApproximateDistinctAggregationV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
 
 /**
- * Computes the approximate percentile value for the provided field. Requires Object Storage V2.
- *
- * Log Safety: UNSAFE
- */
+   * Computes the approximate percentile value for the provided field. Requires Object Storage V2.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface ApproximatePercentileAggregationV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   name?: AggregationMetricName;
   approximatePercentile: number;
   direction?: OrderByDirection;
@@ -902,12 +914,14 @@ export interface AvgAggregation {
 }
 
 /**
- * Computes the average value for the provided field.
- *
- * Log Safety: UNSAFE
- */
+   * Computes the average value for the provided field.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface AvgAggregationV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
@@ -1759,12 +1773,15 @@ export interface ErrorComputingSecurity {}
 export type ErrorName = LooselyBrandedString<"ErrorName">;
 
 /**
- * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation. Requires Object Storage V2.
- *
- * Log Safety: UNSAFE
- */
+   * Computes an exact number of distinct values for the provided field. May be slower than an approximate
+distinct aggregation. Requires Object Storage V2.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface ExactDistinctAggregationV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
@@ -3023,12 +3040,14 @@ export interface MaxAggregation {
 }
 
 /**
- * Computes the maximum value for the provided field.
- *
- * Log Safety: UNSAFE
- */
+   * Computes the maximum value for the provided field.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface MaxAggregationV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
@@ -3065,12 +3084,14 @@ export interface MinAggregation {
 }
 
 /**
- * Computes the minimum value for the provided field.
- *
- * Log Safety: UNSAFE
- */
+   * Computes the minimum value for the provided field.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface MinAggregationV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
@@ -5904,12 +5925,14 @@ export interface SumAggregation {
 }
 
 /**
- * Computes the sum of values for the provided field.
- *
- * Log Safety: UNSAFE
- */
+   * Computes the sum of values for the provided field.
+Either field or propertyIdentifier must be supplied, but not both.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface SumAggregationV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }

@@ -613,6 +613,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.removeOrganizationRoleAssignments": {
       "variables": {},
     },
+    "v2.listOrganizationGuestMembers": {
+      "variables": {},
+    },
     "v2.listAuthenticationProviders": {
       "variables": {},
     },

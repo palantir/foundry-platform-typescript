@@ -427,6 +427,14 @@ export interface ListMarkingsResponse {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListOrganizationGuestMembersResponse {
+  data: Array<OrganizationGuestMember>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListOrganizationRoleAssignmentsResponse {
   data: Array<OrganizationRoleAssignment>;
   nextPageToken?: _Core.PageToken;
@@ -588,6 +596,14 @@ export interface Organization {
   description?: string;
   markingId: _Core.MarkingId;
   host?: HostName;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface OrganizationGuestMember {
+  principalType: _Core.PrincipalType;
+  principalId: _Core.PrincipalId;
 }
 
 /**

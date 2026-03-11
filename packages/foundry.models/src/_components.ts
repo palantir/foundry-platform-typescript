@@ -16,6 +16,7 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
+import type * as _Orchestration from "@osdk/foundry.orchestration";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -639,6 +640,7 @@ export interface ModelStudioRun {
   configVersion: ModelStudioConfigVersionNumber;
   startedBy: _Core.CreatedBy;
   startedTime: _Core.CreatedTime;
+  buildStatus?: _Orchestration.BuildStatus;
   resolvedOutputs: Record<OutputAlias, ModelStudioRunOutput>;
 }
 
