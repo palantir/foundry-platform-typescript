@@ -1,5 +1,17 @@
 # @osdk/foundry.connectivity
 
+## 2.53.0
+
+### Minor Changes
+
+- 085010e: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [085010e]
+  - @osdk/foundry.filesystem@2.53.0
+  - @osdk/foundry.core@2.53.0
+
 ## 2.52.0
 
 ### Minor Changes
