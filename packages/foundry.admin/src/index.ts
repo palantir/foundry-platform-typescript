@@ -68,6 +68,7 @@ export type {
   ListMarkingMembersResponse,
   ListMarkingRoleAssignmentsResponse,
   ListMarkingsResponse,
+  ListOrganizationGuestMembersResponse,
   ListOrganizationRoleAssignmentsResponse,
   ListUsersResponse,
   Marking,
@@ -88,6 +89,7 @@ export type {
   MarkingType,
   OidcAuthenticationProtocol,
   Organization,
+  OrganizationGuestMember,
   OrganizationName,
   OrganizationRoleAssignment,
   PreregisterGroupRequest,
@@ -160,6 +162,7 @@ export type {
   ListHostsPermissionDenied,
   ListMarkingMembersPermissionDenied,
   ListMarkingRoleAssignmentsPermissionDenied,
+  ListOrganizationGuestMembersPermissionDenied,
   ListOrganizationRoleAssignmentsPermissionDenied,
   MarkingCategoryNotFound,
   MarkingNameInCategoryAlreadyExists,
@@ -207,6 +210,7 @@ export * as MarkingCategories from "./public/MarkingCategory.js";
 export * as MarkingMembers from "./public/MarkingMember.js";
 export * as MarkingRoleAssignments from "./public/MarkingRoleAssignment.js";
 export * as Organizations from "./public/Organization.js";
+export * as OrganizationGuestMembers from "./public/OrganizationGuestMember.js";
 export * as OrganizationRoleAssignments from "./public/OrganizationRoleAssignment.js";
 export * as Roles from "./public/Role.js";
 export * as Users from "./public/User.js";

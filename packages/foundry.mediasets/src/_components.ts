@@ -550,7 +550,13 @@ export interface Dimensions {
  *
  * Log Safety: SAFE
  */
-export type DocumentDecodeFormat = "PDF" | "DOCX" | "TXT" | "PPTX";
+export type DocumentDecodeFormat =
+  | "PDF"
+  | "DOC"
+  | "DOCX"
+  | "TXT"
+  | "PPTX"
+  | "RTF";
 
 /**
  * The output format for encoding documents.
@@ -1379,6 +1385,7 @@ export type MediaSchema =
   | "MODEL_3D"
   | "MULTIMODAL"
   | "SPREADSHEET"
+  | "STREAMING_VIDEO"
   | "VIDEO"
   | "EMAIL";
 

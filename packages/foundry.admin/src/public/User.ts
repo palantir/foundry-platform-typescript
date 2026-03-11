@@ -194,7 +194,8 @@ const _search: $FoundryPlatformMethod<
 > = [1, "/v2/admin/users/search", 1];
 
 /**
- * Perform a case-insensitive prefix search for users based on username, given name and family name.
+ * Perform a case-insensitive prefix search for active users based on username, given name and family name.
+ * Deleted users are not included in results. To list deleted users, use the `list` endpoint with `include=DELETED`.
  *
  * @public
  *
