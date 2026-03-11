@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.26.0
+
+### Minor Changes
+
+- 085010e: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [085010e]
+  - @osdk/gotham.core@0.26.0
+
 ## 0.25.0
 
 ### Minor Changes

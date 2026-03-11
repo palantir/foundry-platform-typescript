@@ -1,5 +1,17 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.53.0
+
+### Minor Changes
+
+- 085010e: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [085010e]
+  - @osdk/internal.foundry.core@2.53.0
+  - @osdk/internal.foundry.geo@2.53.0
+
 ## 2.52.0
 
 ### Minor Changes
