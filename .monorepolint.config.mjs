@@ -28,6 +28,7 @@ import {
   standardTsconfig,
 } from "@monorepolint/rules";
 import * as child_process from "node:child_process";
+import { createRequire } from "node:module";
 
 const LATEST_TYPESCRIPT_DEP = "^5.5.4";
 
@@ -186,17 +187,25 @@ const formattedGeneratorHelper = (contents, ext) => async (context) => {
   if (cache.has(contents)) {
     return cache.get(contents);
   }
+  const require = createRequire(import.meta.url);
+  const dprintBin = require.resolve("dprint/bin.js");
   const result = child_process.spawnSync(
-    `pnpm exec dprint fmt --stdin foo.${ext}`,
+    process.execPath,
+    [dprintBin, "fmt", "--stdin", `foo.${ext}`],
     {
       input: contents,
       encoding: "utf8",
-      shell: true,
     },
   );
 
   if (result.error) {
     throw result.error;
+  }
+
+  if (result.status !== 0) {
+    throw new Error(
+      `dprint fmt failed with exit code ${result.status}: ${result.stderr}`,
+    );
   }
 
   cache.set(contents, result.stdout);
@@ -339,31 +348,36 @@ function standardPackageRules(shared, options) {
           ...shared,
           options: {
             file: "vitest.config.mts",
-            template: `/*
- * Copyright 2024 Palantir Technologies, Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+            generator: formattedGeneratorHelper(
+              `
+          /*
+           * Copyright 2024 Palantir Technologies, Inc. All rights reserved.
+           *
+           * Licensed under the Apache License, Version 2.0 (the "License");
+           * you may not use this file except in compliance with the License.
+           * You may obtain a copy of the License at
+           *
+           *     http://www.apache.org/licenses/LICENSE-2.0
+           *
+           * Unless required by applicable law or agreed to in writing, software
+           * distributed under the License is distributed on an "AS IS" BASIS,
+           * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           * See the License for the specific language governing permissions and
+           * limitations under the License.
+           */
 
-import { configDefaults, defineConfig } from "vitest/config";
+          import { configDefaults, defineConfig } from "vitest/config";
 
-export default defineConfig({
-  test: {
-    pool: "forks",
-    exclude: [...configDefaults.exclude, "**/build/**/*"],
-  },
-});
-`,
+          export default defineConfig({
+            test: {
+              pool: "forks",
+              exclude: [...configDefaults.exclude, "**/build/**/*"],
+            },
+          });
+     
+          `,
+              "js",
+            ),
           },
         }),
       ]
