@@ -128,6 +128,13 @@ export interface CipherTextType {
 }
 
 /**
+ * The hex value of a color.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Color = LooselyBrandedString<"Color">;
+
+/**
  * The name of a column in a dataset.
  *
  * Log Safety: UNSAFE

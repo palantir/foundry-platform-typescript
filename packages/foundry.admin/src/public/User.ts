@@ -147,27 +147,20 @@ export function getCurrent(
 }
 
 const _getMarkings: $FoundryPlatformMethod<
-  (
-    userId: _Core.UserId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.GetUserMarkingsResponse>
-> = [0, "/v2/admin/users/{0}/getMarkings", 2];
+  (userId: _Core.UserId) => Promise<_Admin.GetUserMarkingsResponse>
+> = [0, "/v2/admin/users/{0}/getMarkings"];
 
 /**
  * Retrieve Markings that the user is currently a member of.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/{userId}/getMarkings
  */
 export function getMarkings(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    userId: _Core.UserId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [userId: _Core.UserId]
 ): Promise<_Admin.GetUserMarkingsResponse> {
   return $foundryPlatformFetch($ctx, _getMarkings, ...args);
 }
@@ -210,11 +203,8 @@ export function search(
 }
 
 const _revokeAllTokens: $FoundryPlatformMethod<
-  (
-    userId: _Core.UserId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/admin/users/{0}/revokeAllTokens", 2];
+  (userId: _Core.UserId) => Promise<void>
+> = [1, "/v2/admin/users/{0}/revokeAllTokens"];
 
 /**
  * Revoke all active authentication tokens for the user including active browser sessions and long-lived
@@ -222,18 +212,14 @@ const _revokeAllTokens: $FoundryPlatformMethod<
  *
  * The caller must have permission to manage users for the target user's organization.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/users/{userId}/revokeAllTokens
  */
 export function revokeAllTokens(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    userId: _Core.UserId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [userId: _Core.UserId]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _revokeAllTokens, ...args);
 }

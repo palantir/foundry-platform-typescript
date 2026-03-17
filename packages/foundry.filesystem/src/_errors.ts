@@ -80,6 +80,20 @@ export interface AddResourceRolesPermissionDenied {
 }
 
 /**
+ * The requested operation would result in a circular dependency in the folder hierarchy. For example, moving a folder into one of its descendants.
+ *
+ * Log Safety: SAFE
+ */
+export interface CircularDependency {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CircularDependency";
+  errorDescription:
+    "The requested operation would result in a circular dependency in the folder hierarchy. For example, moving a folder into one of its descendants.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The given Resource is not a folder.
  *
  * Log Safety: SAFE
@@ -434,6 +448,22 @@ export interface InvalidOrganizations {
 }
 
 /**
+ * The specified parent folder is not a valid destination for the resource. For example, a project cannot be moved under a regular folder, a folder cannot be moved to a Space, etc.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidParentFolder {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidParentFolder";
+  errorDescription:
+    "The specified parent folder is not a valid destination for the resource. For example, a project cannot be moved under a regular folder, a folder cannot be moved to a Space, etc.";
+  errorInstanceId: string;
+  parameters: {
+    parentFolderRid: unknown;
+  };
+}
+
+/**
    * The given path is invalid.
 A valid path has all components separated by a single /.
    *
@@ -777,6 +807,21 @@ export interface RemoveResourceRolesPermissionDenied {
   errorInstanceId: string;
   parameters: {
     resourceRid: unknown;
+  };
+}
+
+/**
+ * Could not replace the Folder.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceFolderPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceFolderPermissionDenied";
+  errorDescription: "Could not replace the Folder.";
+  errorInstanceId: string;
+  parameters: {
+    folderRid: unknown;
   };
 }
 

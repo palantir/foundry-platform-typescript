@@ -103,6 +103,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.calculateImageMediaItemThumbnail": {
       "variables": {},
     },
+    "v2.clearMediaItemAtPath": {
+      "variables": {},
+    },
     "v2.commitMediaTransaction": {
       "variables": {},
     },
@@ -206,6 +209,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getObjectTypeV2": {
+      "variables": {},
+    },
+    "v2.getObjectTypeByRidBatch": {
       "variables": {},
     },
     "v2.getObjectTypeFullMetadata": {
@@ -634,6 +640,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getRolesBatch": {
       "variables": {},
     },
+    "v2.getCbacBanner": {
+      "variables": {},
+    },
+    "v2.getCbacMarkingRestrictions": {
+      "variables": {},
+    },
     "v2.createDataset": {
       "variables": {},
     },
@@ -782,6 +794,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getFoldersBatch": {
+      "variables": {},
+    },
+    "v2.replaceFolder": {
       "variables": {},
     },
     "v2.listChildrenOfFolder": {
@@ -1105,6 +1120,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.executeOntologySqlQuery": {
       "variables": {},
     },
+    "v2.addBoardObjects": {
+      "variables": {},
+    },
+    "v2.moveBoardObjects": {
+      "variables": {},
+    },
     "v2.getOperation": {
       "variables": {},
     },
@@ -1157,6 +1178,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.addArtifactsToMap": {
+      "variables": {},
+    },
+    "v2.addAnnotationsToMap": {
       "variables": {},
     },
     "v2.loadMap": {

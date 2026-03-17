@@ -28,8 +28,14 @@ export type {
   AuthenticationProviderEnabled,
   AuthenticationProviderName,
   AuthenticationProviderRid,
+  CbacBanner,
+  CbacBannerClassificationString,
+  CbacMarkingRestrictions,
+  CbacMarkingRestrictionsIsValid,
+  CbacMarkingRestrictionsUserSatisfiesMarkings,
   CertificateInfo,
   CertificateUsageType,
+  ClassificationBannerDisplayType,
   CreateGroupRequest,
   CreateMarkingCategoryRequest,
   CreateMarkingRequest,
@@ -129,6 +135,9 @@ export type {
   AddOrganizationRoleAssignmentsPermissionDenied,
   AuthenticationProviderNotFound,
   CannotReplaceProviderInfoForPrincipalInProtectedRealm,
+  CbacBannerNotFound,
+  CbacMarkingRestrictionsNotFound,
+  CbacUnavailable,
   CreateGroupPermissionDenied,
   CreateMarkingCategoryMissingInitialAdminRole,
   CreateMarkingCategoryMissingOrganization,
@@ -141,6 +150,9 @@ export type {
   DeleteUserPermissionDenied,
   EnrollmentNotFound,
   EnrollmentRoleNotFound,
+  ExpirationForTransitiveGroupMembersNotSupported,
+  GetCbacBannerPermissionDenied,
+  GetCbacMarkingRestrictionInfoPermissionDenied,
   GetCurrentEnrollmentPermissionDenied,
   GetCurrentUserPermissionDenied,
   GetGroupProviderInfoPermissionDenied,
@@ -191,12 +203,15 @@ export type {
   RoleNotFound,
   SearchGroupsPermissionDenied,
   SearchUsersPermissionDenied,
+  UnknownClassificationBannerDisplayType,
   UserDeleted,
   UserIsActive,
   UserNotFound,
   UserProviderInfoNotFound,
 } from "./_errors.js";
 export * as AuthenticationProviders from "./public/AuthenticationProvider.js";
+export * as CbacBanners from "./public/CbacBanner.js";
+export * as CbacMarkingRestrictionsObjects from "./public/CbacMarkingRestrictions.js";
 export * as Enrollments from "./public/Enrollment.js";
 export * as EnrollmentRoleAssignments from "./public/EnrollmentRoleAssignment.js";
 export * as Groups from "./public/Group.js";

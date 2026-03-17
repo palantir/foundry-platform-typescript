@@ -115,6 +115,48 @@ export type AuthenticationProviderRid = LooselyBrandedString<
 /**
  * Log Safety: UNSAFE
  */
+export interface CbacBanner {
+  classificationString: CbacBannerClassificationString;
+  markings: Array<_Core.MarkingId>;
+  textColor: _Core.Color;
+  backgroundColors: Array<_Core.Color>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type CbacBannerClassificationString = LooselyBrandedString<
+  "CbacBannerClassificationString"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CbacMarkingRestrictions {
+  disallowedMarkings: Array<_Core.MarkingId>;
+  impliedMarkings: Array<_Core.MarkingId>;
+  requiredMarkings: Array<Array<_Core.MarkingId>>;
+  userSatisfiesMarkings: CbacMarkingRestrictionsUserSatisfiesMarkings;
+  isValid: CbacMarkingRestrictionsIsValid;
+}
+
+/**
+ * True if the provided markings contain no disallowed markings and each list of required markings is satisfied by the provided markings.
+ *
+ * Log Safety: SAFE
+ */
+export type CbacMarkingRestrictionsIsValid = boolean;
+
+/**
+ * True if the current user satisfies the provided markings. The user must be a member of all conjunctive markings. The provided disjunctive markings are grouped by category, and the user must be a member of at least one marking in each group.
+ *
+ * Log Safety: SAFE
+ */
+export type CbacMarkingRestrictionsUserSatisfiesMarkings = boolean;
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CertificateInfo {
   pemCertificate: string;
   commonName?: string;
@@ -126,6 +168,13 @@ export interface CertificateInfo {
  * Log Safety: SAFE
  */
 export type CertificateUsageType = "ENCRYPTION" | "SIGNING" | "UNSPECIFIED";
+
+/**
+ * The display type of the classification banner. BANNER_LINE is the long classification string used in the header of a document; PORTION_MARKING is a short classification string used for individual paragraphs
+ *
+ * Log Safety: SAFE
+ */
+export type ClassificationBannerDisplayType = "BANNER_LINE" | "PORTION_MARKING";
 
 /**
  * Log Safety: UNSAFE
@@ -273,6 +322,7 @@ export interface Group {
 export interface GroupMember {
   principalType: _Core.PrincipalType;
   principalId: _Core.PrincipalId;
+  expiration?: GroupMembershipExpiration;
 }
 
 /**

@@ -127,6 +127,45 @@ export interface CannotReplaceProviderInfoForPrincipalInProtectedRealm {
 }
 
 /**
+ * The given CbacBanner could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface CbacBannerNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "CbacBannerNotFound";
+  errorDescription: "The given CbacBanner could not be found.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The given CbacMarkingRestrictions could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface CbacMarkingRestrictionsNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "CbacMarkingRestrictionsNotFound";
+  errorDescription: "The given CbacMarkingRestrictions could not be found.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * CBAC is not available.
+ *
+ * Log Safety: SAFE
+ */
+export interface CbacUnavailable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CbacUnavailable";
+  errorDescription: "CBAC is not available.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not create the Group.
  *
  * Log Safety: SAFE
@@ -290,6 +329,51 @@ export interface EnrollmentRoleNotFound {
   errorDescription: "One of the provided role IDs was not found.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * You cannot pass includeExpirations if transitive is true.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExpirationForTransitiveGroupMembersNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ExpirationForTransitiveGroupMembersNotSupported";
+  errorDescription: "You cannot pass includeExpirations if transitive is true.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The provided token does not have permission to get the CBAC banner for the markings.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetCbacBannerPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetCbacBannerPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to get the CBAC banner for the markings.";
+  errorInstanceId: string;
+  parameters: {
+    markingIds: unknown;
+  };
+}
+
+/**
+ * The provided token does not have permission to get the CBAC marking restrictions for the markings.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetCbacMarkingRestrictionInfoPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetCbacMarkingRestrictionInfoPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to get the CBAC marking restrictions for the markings.";
+  errorInstanceId: string;
+  parameters: {
+    markingIds: unknown;
+  };
 }
 
 /**
@@ -1049,6 +1133,22 @@ export interface SearchUsersPermissionDenied {
   errorDescription: "Could not search the User.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The provided classification banner display type is not recognized.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnknownClassificationBannerDisplayType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnknownClassificationBannerDisplayType";
+  errorDescription:
+    "The provided classification banner display type is not recognized.";
+  errorInstanceId: string;
+  parameters: {
+    displayType: unknown;
+  };
 }
 
 /**

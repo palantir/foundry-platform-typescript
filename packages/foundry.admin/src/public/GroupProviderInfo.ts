@@ -30,27 +30,20 @@ import type * as _Admin from "../_components.js";
 //
 
 const _get: $FoundryPlatformMethod<
-  (
-    groupId: _Core.GroupId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.GroupProviderInfo>
-> = [0, "/v2/admin/groups/{0}/providerInfo", 2];
+  (groupId: _Core.GroupId) => Promise<_Admin.GroupProviderInfo>
+> = [0, "/v2/admin/groups/{0}/providerInfo"];
 
 /**
  * Get the GroupProviderInfo.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/groups/{groupId}/providerInfo
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    groupId: _Core.GroupId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [groupId: _Core.GroupId]
 ): Promise<_Admin.GroupProviderInfo> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -59,14 +52,13 @@ const _replace: $FoundryPlatformMethod<
   (
     groupId: _Core.GroupId,
     $body: _Admin.ReplaceGroupProviderInfoRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.GroupProviderInfo>
-> = [2, "/v2/admin/groups/{0}/providerInfo", 3];
+> = [2, "/v2/admin/groups/{0}/providerInfo", 1];
 
 /**
  * Replace the GroupProviderInfo.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/groups/{groupId}/providerInfo
@@ -76,7 +68,6 @@ export function replace(
   ...args: [
     groupId: _Core.GroupId,
     $body: _Admin.ReplaceGroupProviderInfoRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Admin.GroupProviderInfo> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
