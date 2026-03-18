@@ -48,6 +48,7 @@ export type {
   ExperimentStatus,
   ExperimentTagText,
   FloatType,
+  GpuType,
   InconsistentArrayDimensionsError,
   InferenceInputErrorType,
   InputAlias,
@@ -96,7 +97,15 @@ export type {
   ModelStudioTrainerExperimental,
   ModelStudioWorkerConfig,
   ModelVersion,
+  ModelVersionCodeRepositorySource,
+  ModelVersionCodeWorkspaceSource,
+  ModelVersionContainerizedSource,
+  ModelVersionExternalSource,
+  ModelVersionModelStudioSource,
+  ModelVersionPromotedSource,
   ModelVersionRid,
+  ModelVersionSdkSource,
+  ModelVersionSource,
   OutputAlias,
   Parameter,
   ParameterName,
@@ -183,6 +192,7 @@ export type {
   SearchExperimentsPermissionDenied,
   TrainerNotFound,
   TransformJsonLiveDeploymentPermissionDenied,
+  UnsupportedModelSource,
 } from "./_errors.js";
 export * as Experiments from "./public/Experiment.js";
 export * as ArtifactTables from "./public/ExperimentArtifactTable.js";

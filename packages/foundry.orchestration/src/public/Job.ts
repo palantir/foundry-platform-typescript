@@ -39,6 +39,8 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Job with the specified rid.
  *
+ * Users are allowed to make a maximum of **4 requests per second** and **25 concurrent requests**.
+ *
  * @beta
  *
  * Required Scopes: [api:orchestration-read]
@@ -64,6 +66,8 @@ const _getBatch: $FoundryPlatformMethod<
 
 /**
  * Execute multiple get requests on Job.
+ *
+ * Users are allowed to make a maximum of **4 requests per second** and **25 concurrent requests**.
  *
  * The maximum batch size for this endpoint is 500.
  *

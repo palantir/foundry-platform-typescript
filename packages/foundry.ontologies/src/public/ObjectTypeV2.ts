@@ -95,6 +95,38 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _getByRidBatch: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetObjectTypeByRidBatchRequest,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ) => Promise<_Ontologies.GetObjectTypeByRidBatchResponse>
+> = [1, "/v2/ontologies/{0}/objectTypes/getByRidBatch", 3];
+
+/**
+ * Gets a list of object types by RID in bulk.
+ *
+ * Object types are filtered from the response if they don't exist or the requesting token lacks the required
+ * permissions.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objectTypes/getByRidBatch
+ */
+export function getByRidBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetObjectTypeByRidBatchRequest,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ]
+): Promise<_Ontologies.GetObjectTypeByRidBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getByRidBatch, ...args);
+}
+
 const _getFullMetadata: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,

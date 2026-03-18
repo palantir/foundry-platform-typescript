@@ -107,6 +107,33 @@ export function getBatch(
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
 
+const _replace: $FoundryPlatformMethod<
+  (
+    folderRid: _Filesystem.FolderRid,
+    $body: _Filesystem.ReplaceFolderRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.Folder>
+> = [2, "/v2/filesystem/folders/{0}", 3];
+
+/**
+ * Replace the Folder with the specified rid.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/folders/{folderRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    folderRid: _Filesystem.FolderRid,
+    $body: _Filesystem.ReplaceFolderRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.Folder> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}
+
 const _children: $FoundryPlatformMethod<
   (
     folderRid: _Filesystem.FolderRid,

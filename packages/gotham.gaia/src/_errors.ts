@@ -19,6 +19,21 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Could not addAnnotationsTo the Map.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddAnnotationsToMapPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddAnnotationsToMapPermissionDenied";
+  errorDescription: "Could not addAnnotationsTo the Map.";
+  errorInstanceId: string;
+  parameters: {
+    mapRid: unknown;
+  };
+}
+
+/**
  * Could not addArtifactsTo the Map.
  *
  * Log Safety: SAFE

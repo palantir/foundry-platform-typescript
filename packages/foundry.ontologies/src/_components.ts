@@ -2025,6 +2025,27 @@ export interface GetActionTypeByRidBatchResponse {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface GetObjectTypeByRidBatchRequest {
+  requests: Array<GetObjectTypeByRidBatchRequestElement>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetObjectTypeByRidBatchRequestElement {
+  objectTypeRid: ObjectTypeRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetObjectTypeByRidBatchResponse {
+  data: Array<ObjectTypeV2>;
+}
+
+/**
    * Gets a single value of a property. Throws if the target object set is on the MANY side of the link and could
 explode the cardinality.
 Use collectList or collectSet which will return a list of values in that case.
@@ -4835,27 +4856,28 @@ export type QueryDataType =
   | ({ type: "date" } & _Core.DateType)
   | ({ type: "interfaceObject" } & OntologyInterfaceObjectType)
   | ({ type: "struct" } & QueryStructType)
-  | ({ type: "set" } & QuerySetType)
-  | ({ type: "void" } & _Core.VoidType)
   | ({ type: "string" } & _Core.StringType)
-  | ({ type: "entrySet" } & EntrySetType)
-  | ({ type: "double" } & _Core.DoubleType)
   | ({ type: "integer" } & _Core.IntegerType)
   | ({ type: "threeDimensionalAggregation" } & ThreeDimensionalAggregation)
-  | ({ type: "union" } & QueryUnionType)
   | ({ type: "float" } & _Core.FloatType)
   | ({ type: "long" } & _Core.LongType)
-  | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "unsupported" } & _Core.UnsupportedType)
   | ({ type: "attachment" } & _Core.AttachmentType)
-  | ({ type: "mediaReference" } & _Core.MediaReferenceType)
-  | ({ type: "null" } & _Core.NullType)
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "objectSet" } & OntologyObjectSetType)
   | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
+  | ({ type: "typeReference" } & QueryTypeReferenceType)
+  | ({ type: "timestamp" } & _Core.TimestampType)
+  | ({ type: "set" } & QuerySetType)
+  | ({ type: "void" } & _Core.VoidType)
+  | ({ type: "entrySet" } & EntrySetType)
+  | ({ type: "double" } & _Core.DoubleType)
+  | ({ type: "union" } & QueryUnionType)
+  | ({ type: "boolean" } & _Core.BooleanType)
+  | ({ type: "mediaReference" } & _Core.MediaReferenceType)
+  | ({ type: "null" } & _Core.NullType)
   | ({ type: "interfaceObjectSet" } & OntologyInterfaceObjectSetType)
-  | ({ type: "object" } & OntologyObjectType)
-  | ({ type: "timestamp" } & _Core.TimestampType);
+  | ({ type: "object" } & OntologyObjectType);
 
 /**
  * Details about the output of a query.
@@ -4936,6 +4958,16 @@ export interface QueryType {
 }
 
 /**
+   * A reference to a type that is defined in the typeReferences map of the enclosing Query.
+This enables support for recursive type definitions where a type may reference itself.
+   *
+   * Log Safety: SAFE
+   */
+export interface QueryTypeReferenceType {
+  typeId: TypeReferenceIdentifier;
+}
+
+/**
  * Represents a query type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -4948,6 +4980,7 @@ export interface QueryTypeV2 {
   output: QueryDataType;
   rid: FunctionRid;
   version: FunctionVersion;
+  typeReferences: Record<TypeReferenceIdentifier, QueryDataType>;
 }
 
 /**
@@ -6167,6 +6200,16 @@ export interface TypeClass {
   kind: string;
   name: string;
 }
+
+/**
+   * The unique identifier of a type reference. This identifier is used to look up the
+type definition in the typeReferences map of the enclosing Query.
+   *
+   * Log Safety: SAFE
+   */
+export type TypeReferenceIdentifier = LooselyBrandedString<
+  "TypeReferenceIdentifier"
+>;
 
 /**
    * The parameter cannot be evaluated because it depends on another parameter or object set that can't be evaluated.

@@ -90,6 +90,37 @@ export function addArtifactsTo(
   return $platformFetch($ctx, _addArtifactsTo, ...args);
 }
 
+const _addAnnotationsTo: $PlatformMethod<
+  (
+    mapRid: _Gaia.GaiaMapRid,
+    $body: _Gaia.AddAnnotationsToMapRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Gaia.AddAnnotationsToMapResponse>
+> = [1, "/v2/gaia/maps/{0}/addAnnotationsTo", 3];
+
+/**
+ * Add annotations to a map. Currently only Line, Polygon, Rectangle, Point, and tactical graphic annotations
+ * may be added. If any provided parameters are unknown, invalid, or do not satisfy the security requirements,
+ * the entire request will fail.
+ * For each request, a new element is created for each annotation, as well as a new layer if no parent layer
+ * is specified; thus not idempotent.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:map-write]
+ * URL: /v2/gaia/maps/{mapRid}/addAnnotationsTo
+ */
+export function addAnnotationsTo(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mapRid: _Gaia.GaiaMapRid,
+    $body: _Gaia.AddAnnotationsToMapRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Gaia.AddAnnotationsToMapResponse> {
+  return $platformFetch($ctx, _addAnnotationsTo, ...args);
+}
+
 const _load: $PlatformMethod<
   (
     mapRid: _Gaia.GaiaMapRid,

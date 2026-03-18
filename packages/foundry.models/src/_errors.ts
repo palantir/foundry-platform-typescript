@@ -509,3 +509,17 @@ export interface TransformJsonLiveDeploymentPermissionDenied {
     liveDeploymentRid: unknown;
   };
 }
+
+/**
+ * The Model Version has a source type that is not supported by the API. This can occur when the model was created through a legacy or internal workflow that is not exposed through the public API.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedModelSource {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedModelSource";
+  errorDescription:
+    "The Model Version has a source type that is not supported by the API. This can occur when the model was created through a legacy or internal workflow that is not exposed through the public API.";
+  errorInstanceId: string;
+  parameters: {};
+}

@@ -179,7 +179,6 @@ export type EpochMillis = string;
 export interface Experiment {
   rid: ExperimentRid;
   modelRid: ModelRid;
-  name?: string;
   createdTime: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
   source: ExperimentSource;
@@ -305,6 +304,22 @@ export type ExperimentTagText = LooselyBrandedString<"ExperimentTagText">;
  * Log Safety: SAFE
  */
 export interface FloatType {}
+
+/**
+ * The specific type of GPU to use.
+ *
+ * Log Safety: SAFE
+ */
+export type GpuType =
+  | "V100"
+  | "T4"
+  | "A10G"
+  | "A100"
+  | "H100"
+  | "H200"
+  | "L4"
+  | "A16"
+  | "L40S";
 
 /**
  * Array elements have inconsistent dimensions.
@@ -721,6 +736,62 @@ export interface ModelVersion {
   modelApi: ModelApi;
   condaRequirements: Array<string>;
   backingRepositories: Array<string>;
+  createdTime: _Core.CreatedTime;
+  source?: ModelVersionSource;
+  linkedExperiment?: ExperimentRid;
+}
+
+/**
+ * Model version created from a code repository.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelVersionCodeRepositorySource {
+  repositoryRid: string;
+  branch: string;
+}
+
+/**
+ * Model version created from a code workspace.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelVersionCodeWorkspaceSource {
+  codeWorkspaceRid: string;
+  branch: string;
+}
+
+/**
+ * Model version imported from a containerized model.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelVersionContainerizedSource {}
+
+/**
+ * Model version backed by an external model.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelVersionExternalSource {}
+
+/**
+ * Model version created from Model Studio.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelVersionModelStudioSource {
+  modelStudioRid: string;
+}
+
+/**
+ * Model version promoted from another model version.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelVersionPromotedSource {
+  previousModelRid: ModelRid;
+  previousModelVersionRid: ModelVersionRid;
 }
 
 /**
@@ -729,6 +800,27 @@ export interface ModelVersion {
  * Log Safety: SAFE
  */
 export type ModelVersionRid = LooselyBrandedString<"ModelVersionRid">;
+
+/**
+ * Model version created via the SDK.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelVersionSdkSource {}
+
+/**
+ * The source from which this model version was created.
+ *
+ * Log Safety: SAFE
+ */
+export type ModelVersionSource =
+  | ({ type: "importedContainerizedModel" } & ModelVersionContainerizedSource)
+  | ({ type: "external" } & ModelVersionExternalSource)
+  | ({ type: "codeWorkspace" } & ModelVersionCodeWorkspaceSource)
+  | ({ type: "modelStudio" } & ModelVersionModelStudioSource)
+  | ({ type: "codeRepository" } & ModelVersionCodeRepositorySource)
+  | ({ type: "sdk" } & ModelVersionSdkSource)
+  | ({ type: "promoted" } & ModelVersionPromotedSource);
 
 /**
  * A string alias used to identify outputs in a Model Studio configuration.
@@ -783,6 +875,7 @@ export interface RequiredValueMissingError {
 export interface ResourceConfiguration {
   memory: string;
   cpu: string;
+  gpu?: GpuType;
 }
 
 /**

@@ -30,27 +30,20 @@ import type * as _Admin from "../_components.js";
 //
 
 const _get: $FoundryPlatformMethod<
-  (
-    userId: _Core.UserId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.UserProviderInfo>
-> = [0, "/v2/admin/users/{0}/providerInfo", 2];
+  (userId: _Core.UserId) => Promise<_Admin.UserProviderInfo>
+> = [0, "/v2/admin/users/{0}/providerInfo"];
 
 /**
  * Get the UserProviderInfo.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/{userId}/providerInfo
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    userId: _Core.UserId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [userId: _Core.UserId]
 ): Promise<_Admin.UserProviderInfo> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -59,25 +52,20 @@ const _replace: $FoundryPlatformMethod<
   (
     userId: _Core.UserId,
     $body: _Admin.ReplaceUserProviderInfoRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.UserProviderInfo>
-> = [2, "/v2/admin/users/{0}/providerInfo", 3];
+> = [2, "/v2/admin/users/{0}/providerInfo", 1];
 
 /**
  * Replace the UserProviderInfo.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/users/{userId}/providerInfo
  */
 export function replace(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    userId: _Core.UserId,
-    $body: _Admin.ReplaceUserProviderInfoRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [userId: _Core.UserId, $body: _Admin.ReplaceUserProviderInfoRequest]
 ): Promise<_Admin.UserProviderInfo> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
 }

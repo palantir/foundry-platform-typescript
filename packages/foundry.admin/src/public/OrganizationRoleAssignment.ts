@@ -32,25 +32,20 @@ import type * as _Admin from "../_components.js";
 const _list: $FoundryPlatformMethod<
   (
     organizationRid: _Core.OrganizationRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.ListOrganizationRoleAssignmentsResponse>
-> = [0, "/v2/admin/organizations/{0}/roleAssignments", 2];
+> = [0, "/v2/admin/organizations/{0}/roleAssignments"];
 
 /**
  * List all principals who are assigned a role for the given Organization.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/organizations/{organizationRid}/roleAssignments
  */
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    organizationRid: _Core.OrganizationRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [organizationRid: _Core.OrganizationRid]
 ): Promise<_Admin.ListOrganizationRoleAssignmentsResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
@@ -59,14 +54,13 @@ const _add: $FoundryPlatformMethod<
   (
     organizationRid: _Core.OrganizationRid,
     $body: _Admin.AddOrganizationRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/organizations/{0}/roleAssignments/add", 3];
+> = [1, "/v2/admin/organizations/{0}/roleAssignments/add", 1];
 
 /**
  * Assign roles to principals for the given Organization. At most 100 role assignments can be added in a single request.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/organizations/{organizationRid}/roleAssignments/add
@@ -76,7 +70,6 @@ export function add(
   ...args: [
     organizationRid: _Core.OrganizationRid,
     $body: _Admin.AddOrganizationRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
@@ -86,14 +79,13 @@ const _remove: $FoundryPlatformMethod<
   (
     organizationRid: _Core.OrganizationRid,
     $body: _Admin.RemoveOrganizationRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/organizations/{0}/roleAssignments/remove", 3];
+> = [1, "/v2/admin/organizations/{0}/roleAssignments/remove", 1];
 
 /**
  * Remove roles from principals for the given Organization. At most 100 role assignments can be removed in a single request.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/organizations/{organizationRid}/roleAssignments/remove
@@ -103,7 +95,6 @@ export function remove(
   ...args: [
     organizationRid: _Core.OrganizationRid,
     $body: _Admin.RemoveOrganizationRoleAssignmentsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);

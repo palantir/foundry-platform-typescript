@@ -87,6 +87,53 @@ export function calculate(
   return $foundryPlatformFetch($ctx, _calculate, ...args);
 }
 
+const _clear: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    $queryParams: {
+      mediaItemPath: _Core.MediaItemPath;
+      branchName?: _MediaSets.BranchName | undefined;
+      branchRid?: _MediaSets.BranchRid | undefined;
+      viewRid?: _Core.MediaSetViewRid | undefined;
+      transactionId?: _MediaSets.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<void>
+> = [3, "/v2/mediasets/{0}/items/clearAtPath", 2];
+
+/**
+ * Clears (soft-deletes) the media item at the specified path within a media set, making it and all older
+ * media items at that path un-retrievable.
+ *
+ * A branch name, branch RID, or view RID may optionally be specified. If none is specified,
+ * the item will be cleared from the default branch. If more than one is specified, an error is thrown.
+ *
+ * For transactional media sets, a transaction ID must be provided. The deletion will not be
+ * visible until the transaction is committed.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-write]
+ * URL: /v2/mediasets/{mediaSetRid}/items/clearAtPath
+ */
+export function clear(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+
+    $queryParams: {
+      mediaItemPath: _Core.MediaItemPath;
+      branchName?: _MediaSets.BranchName | undefined;
+      branchRid?: _MediaSets.BranchRid | undefined;
+      viewRid?: _Core.MediaSetViewRid | undefined;
+      transactionId?: _MediaSets.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _clear, ...args);
+}
+
 const _commit: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
@@ -383,6 +430,7 @@ const _upload: $FoundryPlatformMethod<
       branchRid?: _MediaSets.BranchRid | undefined;
       viewRid?: _Core.MediaSetViewRid | undefined;
       transactionId?: _MediaSets.TransactionId | undefined;
+      mediaItemRid?: _Core.MediaItemRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_MediaSets.PutMediaItemResponse>
@@ -409,6 +457,7 @@ export function upload(
       branchRid?: _MediaSets.BranchRid | undefined;
       viewRid?: _Core.MediaSetViewRid | undefined;
       transactionId?: _MediaSets.TransactionId | undefined;
+      mediaItemRid?: _Core.MediaItemRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]

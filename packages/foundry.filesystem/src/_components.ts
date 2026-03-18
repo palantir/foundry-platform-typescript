@@ -360,6 +360,14 @@ export interface RemoveResourceRolesRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface ReplaceFolderRequest {
+  parentFolderRid: FolderRid;
+  displayName: ResourceDisplayName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ReplaceProjectRequest {
   displayName: ResourceDisplayName;
   description?: string;
