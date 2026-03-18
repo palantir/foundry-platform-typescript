@@ -50,6 +50,8 @@ export type {
   CheckpointedObjectSetVersionedRid,
   CheckpointedOntology,
   CheckpointedOntologyWithObjectTypes,
+  CheckpointedPeeringJob,
+  CheckpointedPeeringJobId,
   CheckpointedPrincipal,
   CheckpointedPrincipalId,
   CheckpointedPrincipalRole,

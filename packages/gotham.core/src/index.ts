@@ -31,6 +31,7 @@ export type {
   CheckReportRid,
   CheckRid,
   CipherTextType,
+  Color,
   ColumnName,
   ComputeSeconds,
   ContentLength,

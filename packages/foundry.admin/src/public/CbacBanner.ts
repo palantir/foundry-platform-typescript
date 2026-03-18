@@ -30,45 +30,30 @@ import type * as _Admin from "../_components.js";
 //
 
 const _get: $FoundryPlatformMethod<
-  (groupId: _Core.GroupId) => Promise<_Admin.GroupProviderInfo>
-> = [0, "/v2/admin/groups/{0}/providerInfo"];
+  ($queryParams: {
+    displayType?: _Admin.ClassificationBannerDisplayType | undefined;
+    markingIds: Array<_Core.MarkingId>;
+    preview?: _Core.PreviewMode | undefined;
+  }) => Promise<_Admin.CbacBanner>
+> = [0, "/v2/admin/cbacBanner", 2];
 
 /**
- * Get the GroupProviderInfo.
+ * Returns a classification banner string and colors for the given set of marking IDs.
  *
- * @public
+ * @beta
  *
  * Required Scopes: [api:admin-read]
- * URL: /v2/admin/groups/{groupId}/providerInfo
+ * URL: /v2/admin/cbacBanner
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.GroupId]
-): Promise<_Admin.GroupProviderInfo> {
-  return $foundryPlatformFetch($ctx, _get, ...args);
-}
-
-const _replace: $FoundryPlatformMethod<
-  (
-    groupId: _Core.GroupId,
-    $body: _Admin.ReplaceGroupProviderInfoRequest,
-  ) => Promise<_Admin.GroupProviderInfo>
-> = [2, "/v2/admin/groups/{0}/providerInfo", 1];
-
-/**
- * Replace the GroupProviderInfo.
- *
- * @public
- *
- * Required Scopes: [api:admin-write]
- * URL: /v2/admin/groups/{groupId}/providerInfo
- */
-export function replace(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    groupId: _Core.GroupId,
-    $body: _Admin.ReplaceGroupProviderInfoRequest,
+    $queryParams: {
+      displayType?: _Admin.ClassificationBannerDisplayType | undefined;
+      markingIds: Array<_Core.MarkingId>;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
-): Promise<_Admin.GroupProviderInfo> {
-  return $foundryPlatformFetch($ctx, _replace, ...args);
+): Promise<_Admin.CbacBanner> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
 }

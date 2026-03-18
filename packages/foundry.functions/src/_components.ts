@@ -171,6 +171,7 @@ export interface Query {
   output: QueryDataType;
   rid: FunctionRid;
   version: FunctionVersion;
+  typeReferences?: Record<TypeReferenceIdentifier, QueryDataType>;
 }
 
 /**
@@ -254,6 +255,7 @@ export type QueryDataType =
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
   | ({ type: "valueTypeReference" } & ValueTypeReference)
+  | ({ type: "typeReference" } & QueryTypeReferenceType)
   | ({ type: "timestamp" } & _Core.TimestampType);
 
 /**
@@ -283,6 +285,16 @@ export interface QueryStructField {
  */
 export interface QueryStructType {
   fields: Array<QueryStructField>;
+}
+
+/**
+   * A reference to a type that is defined in the typeReferences map of the enclosing Query.
+This enables support for recursive type definitions where a type may reference itself.
+   *
+   * Log Safety: SAFE
+   */
+export interface QueryTypeReferenceType {
+  typeId: TypeReferenceIdentifier;
 }
 
 /**
@@ -402,6 +414,16 @@ export interface TwoDimensionalAggregation {
   keyType: QueryAggregationKeyType;
   valueType: QueryAggregationValueType;
 }
+
+/**
+   * The unique identifier of a type reference. This identifier is used to look up the
+type definition in the typeReferences map of the enclosing Query.
+   *
+   * Log Safety: SAFE
+   */
+export type TypeReferenceIdentifier = LooselyBrandedString<
+  "TypeReferenceIdentifier"
+>;
 
 /**
  * Log Safety: SAFE

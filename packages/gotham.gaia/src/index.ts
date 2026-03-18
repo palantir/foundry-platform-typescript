@@ -15,14 +15,20 @@
  */
 
 export type {
+  AddAnnotationsToMapRequest,
+  AddAnnotationsToMapResponse,
   AddArtifactsToMapRequest,
   AddArtifactsToMapResponse,
   AddEnterpriseMapLayersToMapResponse,
   AddObjectsToMapResponse,
+  AnnotationStyle,
+  AnnotationType,
   ArtifactSecurity,
   EmlId,
   FillStyle,
   FoundryObjectSetLoadConfig,
+  GaiaAnnotation,
+  GaiaBoundingBox,
   GaiaCoordinate,
   GaiaElement,
   GaiaElementId,
@@ -42,6 +48,7 @@ export type {
   IconStrokeStyle,
   IconSymbol,
   LabelStyle,
+  LineAnnotation,
   LoadLayersMapRequest,
   LoadLayersResponse,
   LoadMapResponse,
@@ -53,6 +60,9 @@ export type {
   MilsymSymbol,
   ObjectSetRid,
   PageToken,
+  PointAnnotation,
+  PolygonAnnotation,
+  RectangleAnnotation,
   RenderSymbolMapRequest,
   SearchMapsResponse,
   SpaceRid,
@@ -63,6 +73,7 @@ export type {
   TextAlignment,
 } from "./_components.js";
 export type {
+  AddAnnotationsToMapPermissionDenied,
   AddArtifactsToMapPermissionDenied,
   ErrorConvertingAppData,
   ErrorExporting,

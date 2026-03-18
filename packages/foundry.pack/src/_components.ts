@@ -52,14 +52,15 @@ export interface ActivityDeleted {
 }
 
 /**
- * A single activity event associated with a particular artifact.
- *
- * Log Safety: UNSAFE
- */
+   * A single activity event associated with a particular document. The eventData union
+discriminant determines the type of event: platform-defined events (e.g. document create,
+rename, security changes) and custom application-defined events.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface ActivityEvent {
   eventId: EventId;
-  eventType: string;
-  eventData: VersionedEventData;
+  eventData: EventDataUnion;
   isRead: boolean;
   aggregationKey: string;
   createdBy: _Core.CreatedBy;
@@ -114,6 +115,14 @@ export interface CustomPresenceEvent {
 }
 
 /**
+   * Deletion method type describing whether the resource was trashed (Compass), archived (Artifacts), or
+hard-deleted.
+   *
+   * Log Safety: SAFE
+   */
+export type DeletionMethod = "TRASHED" | "ARCHIVED" | "HARD_DELETED";
+
+/**
    * Union of all security principals usable within disjunctive security conditions.
 These principals are used to grant additional role access beyond mandatory security.
 This includes the special 'all' principal, which grants access to any users who meet mandatory
@@ -141,6 +150,14 @@ export interface DiscretionaryPrincipalUserId {
 }
 
 /**
+   * Indicates whether a discretionary security update event corresponds to all-principal
+permissions or user/group-specific permissions.
+   *
+   * Log Safety: SAFE
+   */
+export type DiscretionarySecurityPrincipalType = "ALL_PRINCIPAL" | "USER";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Document {
@@ -158,6 +175,47 @@ export interface Document {
 }
 
 /**
+ * Activity event data emitted when a document is created.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentCreateEventData {
+  initialMandatorySecurity: DocumentMandatorySecurity;
+  name: string;
+}
+
+/**
+ * Versioned event data for custom application-defined activity events.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentCustomEventData {
+  eventType: string;
+  data: any;
+  version: number;
+}
+
+/**
+   * Update broadcast to all clients upon document deletion. Attempting to resubscribe to this document after
+deletion will fail with permission denied.
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentDeletionUpdate {
+  deletionMethod: DeletionMethod;
+}
+
+/**
+ * Activity event data emitted when a document's description is updated.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentDescriptionUpdateEventData {
+  newDescription: string;
+  isInitial: boolean;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface DocumentDiscretionarySecurity {
@@ -167,10 +225,23 @@ export interface DocumentDiscretionarySecurity {
 }
 
 /**
+   * Activity event data emitted when a document's discretionary security is updated.
+A single user action that updates both all-principal and user/group-specific permissions
+will trigger two separate events, one for each principal type.
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentDiscretionarySecurityUpdateEventData {
+  principalType: DiscretionarySecurityPrincipalType;
+  previousDiscretionarySecurity?: DocumentDiscretionarySecurity;
+  newDiscretionarySecurity: DocumentDiscretionarySecurity;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface DocumentEditDescription {
-  eventData: VersionedEventData;
+  eventData: DocumentCustomEventData;
   eventType: string;
 }
 
@@ -180,6 +251,17 @@ export interface DocumentEditDescription {
 export interface DocumentMandatorySecurity {
   classification: Array<MarkingPrincipal>;
   markings: Array<MarkingId>;
+}
+
+/**
+   * Activity event data emitted when a document's mandatory security (classification and markings)
+is updated.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface DocumentMandatorySecurityUpdateEventData {
+  newClassification: Array<MarkingPrincipal>;
+  newMarkings: Array<MarkingId>;
 }
 
 /**
@@ -214,6 +296,16 @@ export interface DocumentPublishMessage {
   editId: EditId;
   clientId: ClientId;
   description?: DocumentEditDescription;
+}
+
+/**
+ * Activity event data emitted when a document is renamed.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentRenameEventData {
+  previousName: string;
+  newName: string;
 }
 
 /**
@@ -307,6 +399,31 @@ export type DocumentTypeName = LooselyBrandedString<"DocumentTypeName">;
 export type DocumentTypeRid = LooselyBrandedString<"DocumentTypeRid">;
 
 /**
+ * The schema definition for a real-time document type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentTypeSchema {
+  name: string;
+  description: string;
+  version: DocumentTypeVersion;
+  primaryModelKeys: Array<ModelTypeKey>;
+  models: Record<ModelTypeKey, ModelDef>;
+}
+
+/**
+   * A semantic version following the semver specification (major.minor.patch).
+Used to version document type schemas.
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentTypeVersion {
+  major: number;
+  minor: number;
+  patch: number;
+}
+
+/**
  * Update broadcast to all clients after being applied on server.
  *
  * Log Safety: UNSAFE
@@ -325,6 +442,7 @@ export interface DocumentUpdate {
  * Log Safety: UNSAFE
  */
 export type DocumentUpdateMessage =
+  | ({ type: "deletion" } & DocumentDeletionUpdate)
   | ({ type: "update" } & DocumentUpdate)
   | ({ type: "error" } & ErrorMessage);
 
@@ -364,11 +482,231 @@ export interface ErrorMessage {
 }
 
 /**
+   * Union of all activity event data types. Platform-defined events have typed
+data, while custom application-defined events use a versioned generic payload.
+   *
+   * Log Safety: UNSAFE
+   */
+export type EventDataUnion =
+  | ({ type: "documentCustomEvent" } & DocumentCustomEventData)
+  | ({ type: "documentCreate" } & DocumentCreateEventData)
+  | ({
+    type: "documentMandatorySecurityUpdate";
+  } & DocumentMandatorySecurityUpdateEventData)
+  | ({ type: "documentRename" } & DocumentRenameEventData)
+  | ({
+    type: "documentDiscretionarySecurityUpdate";
+  } & DocumentDiscretionarySecurityUpdateEventData)
+  | ({
+    type: "documentDescriptionUpdate";
+  } & DocumentDescriptionUpdateEventData);
+
+/**
  * A unique identifier for this activity event.
  *
  * Log Safety: UNSAFE
  */
 export type EventId = LooselyBrandedString<"EventId">;
+
+/**
+ * A field definition within a record.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldDef {
+  key: FieldKey;
+  name: string;
+  description?: string;
+  metadata: SchemaMetadata;
+  fieldType: FieldTypeUnion;
+}
+
+/**
+ * A key identifying a field within a model.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FieldKey = LooselyBrandedString<"FieldKey">;
+
+/**
+ * An array type with null value handling.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldTypeArray {
+  allowNullValue: boolean;
+  value: FieldValueType;
+}
+
+/**
+ * A map type with key and value definitions.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldTypeMap {
+  allowNullValue: boolean;
+  key: FieldValueType;
+  value: FieldValueType;
+}
+
+/**
+ * A set type with null value handling.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldTypeSet {
+  allowNullValue: boolean;
+  value: FieldValueType;
+}
+
+/**
+ * The type of a field, which can be a collection, map, or value.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FieldTypeUnion =
+  | ({ type: "set" } & FieldTypeSet)
+  | ({ type: "array" } & FieldTypeArray)
+  | ({ type: "map" } & FieldTypeMap)
+  | ({ type: "value" } & FieldValueType);
+
+/**
+ * A boolean field value with optional default.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueBoolean {
+  defaultValue?: boolean;
+}
+
+/**
+ * A datetime field value.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueDatetime {}
+
+/**
+ * A reference to another document.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueDocumentRef {
+  documentTypeRids: Array<DocumentTypeRid>;
+}
+
+/**
+ * A double field value with optional constraints and default.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueDouble {
+  defaultValue?: number;
+  minValue?: number;
+  maxValue?: number;
+}
+
+/**
+ * An integer field value with optional constraints and default.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueInteger {
+  defaultValue?: number;
+  minValue?: number;
+  maxValue?: number;
+}
+
+/**
+ * A reference to media content.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueMediaRef {}
+
+/**
+ * A reference to another model within the schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldValueModelRef {
+  modelTypes: Array<ModelTypeKey>;
+}
+
+/**
+ * A reference to an ontology object or interface.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueObjectRef {
+  interfaceTypeRids: Array<InterfaceTypeRid>;
+  objectTypeRids: Array<ObjectTypeRid>;
+}
+
+/**
+ * A string field value with optional constraints and default.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldValueString {
+  defaultValue?: string;
+  minLength?: number;
+  maxLength?: number;
+}
+
+/**
+   * A text field value with optional constraints and default.
+Text should be used over string values for word-editor style complex text.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FieldValueText {
+  defaultValue?: string;
+  minLength?: number;
+  maxLength?: number;
+}
+
+/**
+ * The field value type for a field definition.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldValueType {
+  valueType: FieldValueUnion;
+}
+
+/**
+ * The possible value types for a field.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FieldValueUnion =
+  | ({ type: "mediaRef" } & FieldValueMediaRef)
+  | ({ type: "modelRef" } & FieldValueModelRef)
+  | ({ type: "datetime" } & FieldValueDatetime)
+  | ({ type: "userRef" } & FieldValueUserRef)
+  | ({ type: "boolean" } & FieldValueBoolean)
+  | ({ type: "docRef" } & FieldValueDocumentRef)
+  | ({ type: "string" } & FieldValueString)
+  | ({ type: "double" } & FieldValueDouble)
+  | ({ type: "unmanagedJson" } & FieldValueUnmanagedJson)
+  | ({ type: "integer" } & FieldValueInteger)
+  | ({ type: "text" } & FieldValueText)
+  | ({ type: "object" } & FieldValueObjectRef);
+
+/**
+ * An unmanaged JSON field value.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueUnmanagedJson {}
+
+/**
+ * A reference to a user.
+ *
+ * Log Safety: SAFE
+ */
+export interface FieldValueUserRef {}
 
 /**
    * The file system backing storage for documents of this type. Documents can currently be stored in
@@ -393,6 +731,13 @@ export type FolderRid = LooselyBrandedString<"FolderRid">;
 export type GroupId = string;
 
 /**
+ * Identifier for an ontology interface type.
+ *
+ * Log Safety: SAFE
+ */
+export type InterfaceTypeRid = LooselyBrandedString<"InterfaceTypeRid">;
+
+/**
  * A UUID representing a Mandatory Marking.
  *
  * Log Safety: SAFE
@@ -405,6 +750,29 @@ export type MarkingId = string;
  * Log Safety: UNSAFE
  */
 export type MarkingPrincipal = LooselyBrandedString<"MarkingPrincipal">;
+
+/**
+ * A model definition, either a record or a union.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ModelDef =
+  | ({ type: "record" } & RecordDef)
+  | ({ type: "union" } & UnionDef);
+
+/**
+ * A key identifying a model type within the schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ModelTypeKey = LooselyBrandedString<"ModelTypeKey">;
+
+/**
+ * Identifier for an ontology object type.
+ *
+ * Log Safety: SAFE
+ */
+export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 
 /**
    * The page token indicates where to start paging. This should be omitted from the first page's request.
@@ -430,11 +798,35 @@ export type PresenceCollaborativeUpdate =
 export type PresencePublishMessage = { type: "custom" } & CustomPresenceEvent;
 
 /**
+ * A record model definition with named fields.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RecordDef {
+  key: ModelTypeKey;
+  name: string;
+  description?: string;
+  fields: Array<FieldDef>;
+  metadata: SchemaMetadata;
+}
+
+/**
  * A unique incrementing identifier that represents the order of edits applied by the server.
  *
  * Log Safety: SAFE
  */
 export type RevisionId = string;
+
+/**
+ * Metadata about when a schema element was added or deprecated.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SchemaMetadata {
+  addedInVersion: DocumentTypeVersion;
+  deprecatedFromVersion?: DocumentTypeVersion;
+  deprecatedMessage?: string;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -443,6 +835,27 @@ export interface SearchDocumentsRequest {
   documentTypeName: DocumentTypeName;
   requestBody: DocumentSearchRequest;
 }
+
+/**
+ * A union model definition with variants.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnionDef {
+  key: ModelTypeKey;
+  discriminant: FieldKey;
+  name: string;
+  description?: string;
+  variants: Record<UnionVariantKey, ModelTypeKey>;
+  metadata: SchemaMetadata;
+}
+
+/**
+ * A key identifying a variant within a union.
+ *
+ * Log Safety: UNSAFE
+ */
+export type UnionVariantKey = LooselyBrandedString<"UnionVariantKey">;
 
 /**
  * Request to update document metadata (name, description, and/or security).
@@ -475,14 +888,6 @@ export type UserId = string;
  * Log Safety: SAFE
  */
 export type UserPresence = "PRESENT" | "NOT_PRESENT";
-
-/**
- * Log Safety: UNSAFE
- */
-export interface VersionedEventData {
-  data: any;
-  version: number;
-}
 
 /**
  * Log Safety: UNSAFE

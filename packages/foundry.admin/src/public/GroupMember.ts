@@ -34,6 +34,7 @@ const _list: $FoundryPlatformMethod<
     groupId: _Core.GroupId,
     $queryParams?: {
       transitive?: boolean | undefined;
+      includeExpirations?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -61,6 +62,7 @@ export function list(
 
     $queryParams?: {
       transitive?: boolean | undefined;
+      includeExpirations?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },

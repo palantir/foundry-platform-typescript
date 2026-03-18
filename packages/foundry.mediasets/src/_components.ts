@@ -1899,6 +1899,7 @@ export interface Pttml {}
  */
 export interface PutMediaItemResponse {
   mediaItemRid: _Core.MediaItemRid;
+  mediaSetViewRid: _Core.MediaSetViewRid;
 }
 
 /**

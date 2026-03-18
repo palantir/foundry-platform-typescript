@@ -39,7 +39,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new Organization.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/organizations
@@ -55,27 +55,20 @@ export function create(
 }
 
 const _get: $FoundryPlatformMethod<
-  (
-    organizationRid: _Core.OrganizationRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.Organization>
-> = [0, "/v2/admin/organizations/{0}", 2];
+  (organizationRid: _Core.OrganizationRid) => Promise<_Admin.Organization>
+> = [0, "/v2/admin/organizations/{0}"];
 
 /**
  * Get the Organization with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/organizations/{organizationRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    organizationRid: _Core.OrganizationRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [organizationRid: _Core.OrganizationRid]
 ): Promise<_Admin.Organization> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -84,14 +77,13 @@ const _replace: $FoundryPlatformMethod<
   (
     organizationRid: _Core.OrganizationRid,
     $body: _Admin.ReplaceOrganizationRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.Organization>
-> = [2, "/v2/admin/organizations/{0}", 3];
+> = [2, "/v2/admin/organizations/{0}", 1];
 
 /**
  * Replace the Organization with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/organizations/{organizationRid}
@@ -101,7 +93,6 @@ export function replace(
   ...args: [
     organizationRid: _Core.OrganizationRid,
     $body: _Admin.ReplaceOrganizationRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Admin.Organization> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
@@ -110,25 +101,20 @@ export function replace(
 const _listAvailableRoles: $FoundryPlatformMethod<
   (
     organizationRid: _Core.OrganizationRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.ListAvailableOrganizationRolesResponse>
-> = [0, "/v2/admin/organizations/{0}/listAvailableRoles", 2];
+> = [0, "/v2/admin/organizations/{0}/listAvailableRoles"];
 
 /**
  * List all roles that can be assigned to a principal for the given Organization.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/organizations/{organizationRid}/listAvailableRoles
  */
 export function listAvailableRoles(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    organizationRid: _Core.OrganizationRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [organizationRid: _Core.OrganizationRid]
 ): Promise<_Admin.ListAvailableOrganizationRolesResponse> {
   return $foundryPlatformFetch($ctx, _listAvailableRoles, ...args);
 }

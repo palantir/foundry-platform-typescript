@@ -39,7 +39,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * List all principals who are assigned a role for the given Enrollment.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/enrollments/{enrollmentRid}/roleAssignments
@@ -66,7 +66,7 @@ const _add: $FoundryPlatformMethod<
 /**
  * Assign roles to principals for the given Enrollment. At most 100 role assignments can be added in a single request.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/enrollments/{enrollmentRid}/roleAssignments/add
@@ -93,7 +93,7 @@ const _remove: $FoundryPlatformMethod<
 /**
  * Remove roles from principals for the given Enrollment. At most 100 role assignments can be removed in a single request.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/enrollments/{enrollmentRid}/roleAssignments/remove

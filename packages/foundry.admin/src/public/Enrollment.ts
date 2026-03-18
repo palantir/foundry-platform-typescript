@@ -39,7 +39,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Enrollment with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/enrollments/{enrollmentRid}
@@ -64,7 +64,7 @@ const _getCurrent: $FoundryPlatformMethod<
 /**
  * Returns the Enrollment associated with the current User's primary organization.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/enrollments/getCurrent

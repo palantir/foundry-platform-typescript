@@ -160,6 +160,7 @@ export type CheckpointedItem =
   | ({
     type: "checkpointedMarketplaceProduct";
   } & CheckpointedMarketplaceProduct)
+  | ({ type: "checkpointedPeeringJob" } & CheckpointedPeeringJob)
   | ({ type: "checkpointedRole" } & CheckpointedRole)
   | ({ type: "checkpointedIntervention" } & CheckpointedIntervention)
   | ({
@@ -190,6 +191,7 @@ export type CheckpointedItemId =
     type: "checkpointedObjectSetTypesProxyRids";
   } & CheckpointedObjectSetTypesProxyRids)
   | ({ type: "checkpointedResourceRid" } & CheckpointedResourceRid)
+  | ({ type: "checkpointedPeeringJobId" } & CheckpointedPeeringJobId)
   | ({ type: "checkpointedIssueRid" } & CheckpointedIssueRid)
   | ({ type: "checkpointedInterventionRid" } & CheckpointedInterventionRid)
   | ({ type: "checkpointedJobSpecRid" } & CheckpointedJobSpecRid)
@@ -236,7 +238,8 @@ export type CheckpointedItemType =
   | "OBJECT_TYPE"
   | "OBJECT_SET"
   | "ONTOLOGY"
-  | "ISSUE";
+  | "ISSUE"
+  | "PEERING_JOB";
 
 /**
  * A build job that was captured as part of a checkpoint.
@@ -405,6 +408,24 @@ export interface CheckpointedOntologyWithObjectTypes {
 }
 
 /**
+ * A peering job that was captured as part of a checkpoint.
+ *
+ * Log Safety: SAFE
+ */
+export interface CheckpointedPeeringJob {
+  jobId: string;
+}
+
+/**
+ * Peering job identifier for a checkpointed peering job.
+ *
+ * Log Safety: SAFE
+ */
+export interface CheckpointedPeeringJobId {
+  id: string;
+}
+
+/**
  * A user or group principal that was captured as part of a checkpoint.
  *
  * Log Safety: UNSAFE
@@ -501,7 +522,8 @@ export type CheckpointedResourceType =
   | "AGENT"
   | "WORKSHOP_MODULE"
   | "WALKTHROUGH"
-  | "FLOW_CAPTURE";
+  | "FLOW_CAPTURE"
+  | "PEERING_CONNECTION";
 
 /**
  * A role that was captured as part of a checkpoint.
@@ -697,7 +719,11 @@ export type CheckpointType =
   | "RECORD_FLOW_CAPTURE"
   | "UPLOAD_DATA_TO_FLOW_CAPTURE"
   | "EXPORT_FLOW_CAPTURE_ZIP"
-  | "INSIGHT_LOAD";
+  | "INSIGHT_LOAD"
+  | "AIP_ANALYST_APP_LOAD"
+  | "PEER_MANAGER_CDS_PAYLOAD_EXPORT"
+  | "PEER_MANAGER_OBJECT_TYPE_SCHEMAS_EXPORT"
+  | "AIP_ANALYST_EXPORT";
 
 /**
  * Identifier of the checkpoint configuration that produced a record.

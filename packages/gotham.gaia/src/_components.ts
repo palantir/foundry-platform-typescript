@@ -24,6 +24,25 @@ export type LooselyBrandedString<T extends string> = string & {
 /**
  * Log Safety: UNSAFE
  */
+export interface AddAnnotationsToMapRequest {
+  parentLayerId?: GaiaLayerId;
+  layerLabel?: string;
+  annotations: Array<GaiaAnnotation>;
+}
+
+/**
+ * The response body to add annotations to a map, containing the ID of the created layer.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddAnnotationsToMapResponse {
+  parentLayerId: GaiaLayerId;
+  annotationIds: Array<GaiaElementId>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface AddArtifactsToMapRequest {
   artifactGids?: Array<_Core.ArtifactGid>;
   label: string;
@@ -57,6 +76,24 @@ export interface AddObjectsToMapResponse {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface AnnotationStyle {
+  stroke?: StrokeStyle;
+  fill?: FillStyle;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type AnnotationType =
+  | ({ type: "polygon" } & PolygonAnnotation)
+  | ({ type: "line" } & LineAnnotation)
+  | ({ type: "rectangle" } & RectangleAnnotation)
+  | ({ type: "tacticalGraphic" } & TacticalGraphicProperties)
+  | ({ type: "point" } & PointAnnotation);
+
+/**
  * Security settings for map content
  *
  * Log Safety: SAFE
@@ -88,7 +125,29 @@ export interface FoundryObjectSetLoadConfig {
 }
 
 /**
- * A conjured coordinate that is NOT geojson and has an actual structure instead of a [lon, lat] array.
+ * Log Safety: UNSAFE
+ */
+export interface GaiaAnnotation {
+  title?: string;
+  annotationDescription?: string;
+  annotationType: AnnotationType;
+  style?: AnnotationStyle;
+  eventDate?: string;
+}
+
+/**
+   * A bounding box with structured coordinates, NOT geojson coordinates. Note that unlike the geojson BBox,
+this is defined by top left and bottom right coordinates, rather than bottom left and top right.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface GaiaBoundingBox {
+  topLeft: GaiaCoordinate;
+  bottomRight: GaiaCoordinate;
+}
+
+/**
+ * A coordinate that is NOT geojson and has an actual structure instead of a [lon, lat] array.
  *
  * Log Safety: UNSAFE
  */
@@ -273,6 +332,13 @@ export interface LabelStyle {
 /**
  * Log Safety: UNSAFE
  */
+export interface LineAnnotation {
+  coordinates: Array<GaiaCoordinate>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface LoadLayersMapRequest {
   layerIds: Array<GaiaLayerId>;
 }
@@ -384,6 +450,29 @@ export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
  * Log Safety: SAFE
  */
 export type PageToken = LooselyBrandedString<"PageToken">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface PointAnnotation {
+  coordinate: GaiaCoordinate;
+  symbol: GaiaSymbol;
+  rotationDegrees?: number;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface PolygonAnnotation {
+  coordinates: Array<GaiaCoordinate>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface RectangleAnnotation {
+  boundingBox: GaiaBoundingBox;
+}
 
 /**
  * Log Safety: UNSAFE

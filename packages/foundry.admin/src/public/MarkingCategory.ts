@@ -39,7 +39,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new MarkingCategory.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markingCategories
@@ -58,14 +58,13 @@ const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
   }) => Promise<_Admin.ListMarkingCategoriesResponse>
 > = [0, "/v2/admin/markingCategories", 2];
 
 /**
  * Maximum page size 100.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markingCategories
@@ -76,7 +75,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.ListMarkingCategoriesResponse> {
@@ -86,25 +84,20 @@ export function list(
 const _get: $FoundryPlatformMethod<
   (
     markingCategoryId: _Admin.MarkingCategoryId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.MarkingCategory>
-> = [0, "/v2/admin/markingCategories/{0}", 2];
+> = [0, "/v2/admin/markingCategories/{0}"];
 
 /**
  * Get the MarkingCategory with the specified id.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markingCategories/{markingCategoryId}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    markingCategoryId: _Admin.MarkingCategoryId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [markingCategoryId: _Admin.MarkingCategoryId]
 ): Promise<_Admin.MarkingCategory> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -120,7 +113,7 @@ const _replace: $FoundryPlatformMethod<
 /**
  * Replace the MarkingCategory with the specified id.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/markingCategories/{markingCategoryId}
