@@ -1,5 +1,18 @@
 # @osdk/foundry.streams
 
+## 2.54.0
+
+### Minor Changes
+
+- d1a0cd3: Regenerating platform sdks.
+
+### Patch Changes
+
+- Updated dependencies [d1a0cd3]
+  - @osdk/foundry.filesystem@2.54.0
+  - @osdk/foundry.datasets@2.54.0
+  - @osdk/foundry.core@2.54.0
+
 ## 2.53.0
 
 ### Minor Changes
