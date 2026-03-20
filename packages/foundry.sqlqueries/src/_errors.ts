@@ -21,16 +21,14 @@ export type LooselyBrandedString<T extends string> = string & {
 /**
  * Could not cancel the SqlQuery.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface CancelSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CancelSqlQueryPermissionDenied";
   errorDescription: "Could not cancel the SqlQuery.";
   errorInstanceId: string;
-  parameters: {
-    sqlQueryId: unknown;
-  };
+  parameters: {};
 }
 
 /**
@@ -62,31 +60,27 @@ export interface ExecuteSqlQueryPermissionDenied {
 /**
  * Could not getResults the SqlQuery.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface GetResultsSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetResultsSqlQueryPermissionDenied";
   errorDescription: "Could not getResults the SqlQuery.";
   errorInstanceId: string;
-  parameters: {
-    sqlQueryId: unknown;
-  };
+  parameters: {};
 }
 
 /**
  * Could not getStatus the SqlQuery.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface GetStatusSqlQueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetStatusSqlQueryPermissionDenied";
   errorDescription: "Could not getStatus the SqlQuery.";
   errorInstanceId: string;
-  parameters: {
-    sqlQueryId: unknown;
-  };
+  parameters: {};
 }
 
 /**
@@ -107,16 +101,14 @@ export interface OntologyQueryFailed {
 /**
  * The query was canceled.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface QueryCanceled {
   errorCode: "INVALID_ARGUMENT";
   errorName: "QueryCanceled";
   errorDescription: "The query was canceled.";
   errorInstanceId: string;
-  parameters: {
-    queryId: unknown;
-  };
+  parameters: {};
 }
 
 /**
@@ -130,7 +122,6 @@ export interface QueryFailed {
   errorDescription: "The query failed.";
   errorInstanceId: string;
   parameters: {
-    queryId: unknown;
     errorMessage: unknown;
   };
 }
@@ -153,7 +144,7 @@ export interface QueryParseError {
 /**
  * The provided token does not have permission to access the given query.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface QueryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -161,24 +152,20 @@ export interface QueryPermissionDenied {
   errorDescription:
     "The provided token does not have permission to access the given query.";
   errorInstanceId: string;
-  parameters: {
-    queryId: unknown;
-  };
+  parameters: {};
 }
 
 /**
  * The query is running.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface QueryRunning {
   errorCode: "INVALID_ARGUMENT";
   errorName: "QueryRunning";
   errorDescription: "The query is running.";
   errorInstanceId: string;
-  parameters: {
-    queryId: unknown;
-  };
+  parameters: {};
 }
 
 /**

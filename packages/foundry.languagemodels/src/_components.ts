@@ -440,7 +440,7 @@ export interface OpenAiEmbeddingsResponse {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface OpenAiEmbeddingTokenUsage {
   promptTokens: number;

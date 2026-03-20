@@ -421,7 +421,7 @@ export interface GetGroupProviderInfoPermissionDenied {
 /**
  * The provided token does not have permission to view the marking category.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GetMarkingCategoryPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -735,7 +735,7 @@ export interface ListOrganizationRoleAssignmentsPermissionDenied {
 /**
  * The given MarkingCategory could not be found.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface MarkingCategoryNotFound {
   errorCode: "NOT_FOUND";
@@ -789,6 +789,25 @@ export interface MarkingNotFound {
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
+  };
+}
+
+/**
+   * The ADMINISTER role on Organization markings cannot be managed through the Marking Role Assignments
+endpoints. To manage administrator roles for an Organization, use the Organization Role Assignment endpoints
+instead.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface OrganizationMarkingAdministerRoleNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OrganizationMarkingAdministerRoleNotSupported";
+  errorDescription:
+    "The ADMINISTER role on Organization markings cannot be managed through the Marking Role Assignments endpoints. To manage administrator roles for an Organization, use the Organization Role Assignment endpoints instead.";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+    organizationRid: unknown;
   };
 }
 
@@ -1022,7 +1041,7 @@ export interface ReplaceGroupProviderInfoPermissionDenied {
 /**
  * Could not replace the MarkingCategory.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ReplaceMarkingCategoryPermissionDenied {
   errorCode: "PERMISSION_DENIED";

@@ -180,6 +180,7 @@ export type {
   MarkingNameInCategoryAlreadyExists,
   MarkingNameIsEmpty,
   MarkingNotFound,
+  OrganizationMarkingAdministerRoleNotSupported,
   OrganizationNameAlreadyExists,
   OrganizationNotFound,
   PreregisterGroupPermissionDenied,

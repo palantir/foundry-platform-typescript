@@ -79,3 +79,30 @@ export function get(
 ): Promise<_Models.Model> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _promoteVersion: $FoundryPlatformMethod<
+  (
+    modelRid: _Models.ModelRid,
+    $body: _Models.PromoteVersionModelRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Models.ModelVersion>
+> = [1, "/v2/models/{0}/promoteVersion", 3];
+
+/**
+ * Promotes an existing Model Version to the target Model. The promoted Model Version will be copied to the target Model as the latest version on the master branch, but will have a new Model Version RID.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:models-write]
+ * URL: /v2/models/{modelRid}/promoteVersion
+ */
+export function promoteVersion(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    modelRid: _Models.ModelRid,
+    $body: _Models.PromoteVersionModelRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Models.ModelVersion> {
+  return $foundryPlatformFetch($ctx, _promoteVersion, ...args);
+}

@@ -5051,7 +5051,7 @@ export interface RefreshObjectSet {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface RegexConstraint {
   pattern: string;
@@ -6310,7 +6310,7 @@ structs.
 | Timeseries          | TimeSeries<T> where T is either String for an enum series or Double for a numeric series.                 |
 | Timestamp           | Timestamp                                                                                                       |
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export type ValueType = LooselyBrandedString<"ValueType">;
 

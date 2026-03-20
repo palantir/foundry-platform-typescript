@@ -442,7 +442,7 @@ export interface FilterUuidType {}
 export interface FloatType {}
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type FolderRid = LooselyBrandedString<"FolderRid">;
 

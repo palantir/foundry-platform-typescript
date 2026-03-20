@@ -37,6 +37,16 @@ export interface BooleanParameter {
 export interface BooleanType {}
 
 /**
+ * The provided changelog exceeds the maximum allowed length.
+ *
+ * Log Safety: SAFE
+ */
+export interface ChangelogTooLongError {
+  maxLength: number;
+  actualLength: number;
+}
+
+/**
  * The name of a column in a dataset.
  *
  * Log Safety: UNSAFE
@@ -49,6 +59,45 @@ export type ColumnName = LooselyBrandedString<"ColumnName">;
  * Log Safety: UNSAFE
  */
 export type ColumnTypeSpecId = LooselyBrandedString<"ColumnTypeSpecId">;
+
+/**
+ * A specific reason why configuration validation failed.
+ *
+ * Log Safety: UNSAFE
+ */
+export type CreateConfigValidationFailureReason =
+  | ({ type: "jsonSchemaValidationFailure" } & JsonSchemaValidationError)
+  | ({
+    type: "outputResourceInDifferentProject";
+  } & OutputResourceInDifferentProjectError)
+  | ({ type: "other" } & OtherValidationError)
+  | ({ type: "missingWorkerConfigOutput" } & MissingWorkerConfigOutputError)
+  | ({
+    type: "missingRequiredDatasetColumn";
+  } & MissingRequiredDatasetColumnError)
+  | ({
+    type: "multiplePropertiesNotAllowedForTrainer";
+  } & MultiplePropertiesNotAllowedForTrainerError)
+  | ({ type: "fieldValidationFailure" } & FieldValidationError)
+  | ({ type: "changelogTooLong" } & ChangelogTooLongError)
+  | ({
+    type: "unknownColumnSpecIdInConfigColumnMapping";
+  } & UnknownColumnSpecIdInConfigColumnMappingError)
+  | ({
+    type: "multipleColumnsNotAllowedForTrainer";
+  } & MultipleColumnsNotAllowedForTrainerError)
+  | ({
+    type: "missingWorkerConfigInputDatasetColumnMapping";
+  } & MissingWorkerConfigInputDatasetColumnMappingError)
+  | ({ type: "datasetSchemaNotFound" } & DatasetSchemaNotFoundError)
+  | ({ type: "missingWorkerConfigInput" } & MissingWorkerConfigInputError)
+  | ({
+    type: "missingWorkerConfigInputObjectSetPropertyMapping";
+  } & MissingWorkerConfigInputObjectSetPropertyMappingError)
+  | ({ type: "outputResourceNotFound" } & OutputResourceNotFoundError)
+  | ({
+    type: "invalidResourceConfiguration";
+  } & InvalidResourceConfigurationError);
 
 /**
  * Log Safety: UNSAFE
@@ -97,6 +146,15 @@ export interface DatasetInput {
   columnMapping: Record<ColumnTypeSpecId, Array<_Core.ColumnName>>;
   ignoreColumns: Array<_Core.ColumnName>;
   selectColumns: Array<_Core.ColumnName>;
+}
+
+/**
+ * A schema could not be found for the specified dataset.
+ *
+ * Log Safety: SAFE
+ */
+export interface DatasetSchemaNotFoundError {
+  datasetRid: string;
 }
 
 /**
@@ -301,6 +359,17 @@ export type ExperimentStatus = "RUNNING" | "SUCCEEDED" | "FAILED";
 export type ExperimentTagText = LooselyBrandedString<"ExperimentTagText">;
 
 /**
+ * A dataset column type is not compatible with the trainer's supported column types.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldValidationError {
+  datasetRid: string;
+  fieldName?: string;
+  fieldType: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface FloatType {}
@@ -386,12 +455,32 @@ export interface InvalidArrayShapeError {
 export interface InvalidMapFormatError {}
 
 /**
+ * A resource configuration field has an invalid format.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidResourceConfigurationError {
+  field: string;
+  message: string;
+}
+
+/**
  * Tabular input has incorrect JSON structure.
  *
  * Log Safety: UNSAFE
  */
 export interface InvalidTabularFormatError {
   inputFieldName: string;
+}
+
+/**
+ * The custom configuration failed JSON schema validation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface JsonSchemaValidationError {
+  field: string;
+  message: string;
 }
 
 /**
@@ -444,6 +533,55 @@ export type LiveDeploymentRid = LooselyBrandedString<"LiveDeploymentRid">;
  * Log Safety: SAFE
  */
 export interface LongType {}
+
+/**
+ * The user-provided dataset is missing a column required by the trainer.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MissingRequiredDatasetColumnError {
+  datasetRid: string;
+  columnTypeSpecId: ColumnTypeSpecId;
+  columnNames: Array<_Core.ColumnName>;
+}
+
+/**
+ * The provided worker config input dataset is missing a column mapping required by the trainer.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MissingWorkerConfigInputDatasetColumnMappingError {
+  datasetRid: string;
+  columnTypeSpecId: ColumnTypeSpecId;
+}
+
+/**
+ * The worker configuration is missing an input required by the trainer.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MissingWorkerConfigInputError {
+  inputAlias: InputAlias;
+}
+
+/**
+ * The provided worker config input object set is missing a property mapping required by the trainer.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MissingWorkerConfigInputObjectSetPropertyMappingError {
+  objectSetRid: string;
+  propertyTypeSpecId: string;
+}
+
+/**
+ * The worker configuration is missing an output required by the trainer.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MissingWorkerConfigOutputError {
+  outputAlias: OutputAlias;
+}
 
 /**
  * Log Safety: SAFE
@@ -744,7 +882,7 @@ export interface ModelVersion {
 /**
  * Model version created from a code repository.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ModelVersionCodeRepositorySource {
   repositoryRid: string;
@@ -754,7 +892,7 @@ export interface ModelVersionCodeRepositorySource {
 /**
  * Model version created from a code workspace.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ModelVersionCodeWorkspaceSource {
   codeWorkspaceRid: string;
@@ -811,7 +949,7 @@ export interface ModelVersionSdkSource {}
 /**
  * The source from which this model version was created.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type ModelVersionSource =
   | ({ type: "importedContainerizedModel" } & ModelVersionContainerizedSource)
@@ -823,11 +961,60 @@ export type ModelVersionSource =
   | ({ type: "promoted" } & ModelVersionPromotedSource);
 
 /**
+ * Multiple columns were mapped but the trainer only allows a single column for this spec.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MultipleColumnsNotAllowedForTrainerError {
+  datasetRid: string;
+  columnTypeSpecId: ColumnTypeSpecId;
+}
+
+/**
+ * Multiple properties were mapped but the trainer only allows a single property for this spec.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MultiplePropertiesNotAllowedForTrainerError {
+  objectSetRid: string;
+  propertyTypeSpecId: string;
+}
+
+/**
+ * A validation error that does not match any specific known type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OtherValidationError {
+  message: string;
+}
+
+/**
  * A string alias used to identify outputs in a Model Studio configuration.
  *
  * Log Safety: UNSAFE
  */
 export type OutputAlias = LooselyBrandedString<"OutputAlias">;
+
+/**
+ * The output resource is in a different project than the Model Studio.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OutputResourceInDifferentProjectError {
+  resourceRid: string;
+  outputAlias: OutputAlias;
+}
+
+/**
+ * The output resource does not exist or is in the trash.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OutputResourceNotFoundError {
+  resourceRid: string;
+  outputAlias: OutputAlias;
+}
 
 /**
  * A parameter with its name and value.
@@ -857,6 +1044,13 @@ export type ParameterValue =
   | ({ type: "string" } & StringParameter)
   | ({ type: "double" } & DoubleParameter)
   | ({ type: "integer" } & IntegerParameter);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface PromoteVersionModelRequest {
+  sourceModelVersionRid: ModelVersionRid;
+}
 
 /**
  * Required input field is null or missing.
@@ -1203,7 +1397,7 @@ export type TrainerDescription = LooselyBrandedString<"TrainerDescription">;
 /**
  * The identifier for a trainer.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type TrainerId = LooselyBrandedString<"TrainerId">;
 
@@ -1252,7 +1446,7 @@ export type TrainerVersion = LooselyBrandedString<"TrainerVersion">;
 /**
  * Identifies a specific version of a trainer.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface TrainerVersionLocator {
   trainerId: TrainerId;
@@ -1283,6 +1477,16 @@ export interface TransformLiveDeploymentResponse {
 export interface TypeMismatchError {
   expectedType: string;
   actualType: string;
+}
+
+/**
+ * The worker config column mapping contains an unknown column spec ID not found in the trainer's column specification.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnknownColumnSpecIdInConfigColumnMappingError {
+  datasetRid: string;
+  columnTypeSpecId: ColumnTypeSpecId;
 }
 
 /**

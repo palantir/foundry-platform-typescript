@@ -403,7 +403,7 @@ export interface ModelStudioNotFound {
 /**
  * The given ModelStudioTrainer could not be found.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ModelStudioTrainerNotFound {
   errorCode: "NOT_FOUND";
@@ -466,6 +466,21 @@ export interface ParquetExperimentSeriesPermissionDenied {
 }
 
 /**
+ * Could not promoteVersion the Model.
+ *
+ * Log Safety: SAFE
+ */
+export interface PromoteVersionModelPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "PromoteVersionModelPermissionDenied";
+  errorDescription: "Could not promoteVersion the Model.";
+  errorInstanceId: string;
+  parameters: {
+    modelRid: unknown;
+  };
+}
+
+/**
  * Could not search the Experiment.
  *
  * Log Safety: SAFE
@@ -483,7 +498,7 @@ export interface SearchExperimentsPermissionDenied {
 /**
  * The specified trainer does not exist.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface TrainerNotFound {
   errorCode: "NOT_FOUND";

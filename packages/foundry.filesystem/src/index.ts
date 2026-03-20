@@ -45,6 +45,7 @@ export type {
   PrincipalIdOnly,
   PrincipalWithId,
   Project,
+  ProjectResourceLevelRoleGrantsAllowed,
   ProjectRid,
   ProjectTemplateRid,
   ProjectTemplateVariableId,

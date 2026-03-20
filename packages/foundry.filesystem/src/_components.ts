@@ -84,6 +84,7 @@ export interface CreateProjectRequest {
   roleGrants: Record<_Core.RoleId, Array<PrincipalWithId>>;
   defaultRoles: Array<_Core.RoleId>;
   organizationRids: Array<_Core.OrganizationRid>;
+  resourceLevelRoleGrantsAllowed?: boolean;
 }
 
 /**
@@ -302,7 +303,15 @@ export interface Project {
   updatedTime: _Core.UpdatedTime;
   trashStatus: TrashStatus;
   spaceRid: SpaceRid;
+  resourceLevelRoleGrantsAllowed: ProjectResourceLevelRoleGrantsAllowed;
 }
+
+/**
+ * Whether role grants are allowed on individual resources within the Project.
+ *
+ * Log Safety: SAFE
+ */
+export type ProjectResourceLevelRoleGrantsAllowed = boolean;
 
 /**
  * The unique resource identifier (RID) of a Project.

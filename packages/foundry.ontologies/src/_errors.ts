@@ -1654,6 +1654,24 @@ export interface OntologyApiNameNotUnique {
 }
 
 /**
+   * The ontology definition is temporarily out of sync. The indexed definition does not yet
+reflect the latest saved definition for this type. This is typically a transient condition that
+resolves as indexing completes.
+   *
+   * Log Safety: SAFE
+   */
+export interface OntologyDefinitionOutOfSync {
+  errorCode: "CONFLICT";
+  errorName: "OntologyDefinitionOutOfSync";
+  errorDescription:
+    "The ontology definition is temporarily out of sync. The indexed definition does not yet reflect the latest saved definition for this type. This is typically a transient condition that resolves as indexing completes.";
+  errorInstanceId: string;
+  parameters: {
+    objectTypeRid: unknown;
+  };
+}
+
+/**
    * The number of edits to the Ontology exceeded the allowed limit.
 This may happen because of the request or because the Action is modifying too many objects.
 Please change the size of your request or contact the Ontology administrator.
@@ -1932,7 +1950,7 @@ export interface PropertyBaseTypeNotSupported {
 /**
  * A property that does not support exact matching is used in a setting that requires exact matching.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface PropertyExactMatchingNotSupported {
   errorCode: "INVALID_ARGUMENT";
