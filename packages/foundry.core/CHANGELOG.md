@@ -1,5 +1,16 @@
 # @osdk/foundry.core
 
+## 2.55.0
+
+### Minor Changes
+
+- fa24a66: Regenerate SDK
+
+### Patch Changes
+
+- Updated dependencies [fa24a66]
+  - @osdk/foundry.geo@2.55.0
+
 ## 2.54.0
 
 ### Minor Changes

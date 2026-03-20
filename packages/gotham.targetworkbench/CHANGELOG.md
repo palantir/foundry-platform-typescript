@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.28.0
+
+### Minor Changes
+
+- fa24a66: Regenerate SDK
+
+### Patch Changes
+
+- Updated dependencies [fa24a66]
+  - @osdk/gotham.core@0.28.0
+
 ## 0.27.0
 
 ### Minor Changes
