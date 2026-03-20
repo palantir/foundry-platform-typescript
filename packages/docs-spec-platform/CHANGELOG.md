@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.42.0
+
+### Minor Changes
+
+- fa24a66: Regenerate SDK
+
 ## 0.41.0
 
 ### Minor Changes
