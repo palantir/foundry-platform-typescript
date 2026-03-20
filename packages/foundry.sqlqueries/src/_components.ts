@@ -297,7 +297,7 @@ export type ParameterValue =
   | ({ type: "timestamp" } & ParameterTimestampValue);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type QueryStatus =
   | ({ type: "running" } & RunningQueryStatus)
@@ -306,14 +306,14 @@ export type QueryStatus =
   | ({ type: "succeeded" } & SucceededQueryStatus);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface RunningQueryStatus {
   queryId: SqlQueryId;
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface SqlQuery {
   id: SqlQueryId;
@@ -322,7 +322,7 @@ export interface SqlQuery {
 /**
  * The identifier of a SQL Query.
  *
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type SqlQueryId = LooselyBrandedString<"SqlQueryId">;
 
@@ -379,7 +379,7 @@ export interface StructFieldRid {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface SucceededQueryStatus {
   queryId: SqlQueryId;

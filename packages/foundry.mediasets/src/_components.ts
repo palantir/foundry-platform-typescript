@@ -23,7 +23,7 @@ export type LooselyBrandedString<T extends string> = string & {
 /**
  * An affine transformation for geo-referencing.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface AffineTransform {
   xTranslate?: number;
@@ -910,7 +910,7 @@ export type FlipAxis = "HORIZONTAL" | "VERTICAL" | "UNKNOWN";
 /**
  * A list of ground control points for geo-referencing.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GcpList {
   gcps: Array<GroundControlPoint>;
@@ -1034,7 +1034,7 @@ export interface GrayscaleImageOperation {}
 /**
  * A ground control point for geo-referencing.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GroundControlPoint {
   pixX?: number;

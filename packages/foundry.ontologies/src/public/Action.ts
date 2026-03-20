@@ -40,8 +40,12 @@ const _apply: $FoundryPlatformMethod<
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.SyncApplyActionResponseV2>
-> = [1, "/v2/ontologies/{0}/actions/{1}/apply", 3];
+> = [1, "/v2/ontologies/{0}/actions/{1}/apply", 7];
 
 /**
  * Applies an action using the given parameters.
@@ -72,6 +76,10 @@ export function apply(
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Ontologies.SyncApplyActionResponseV2> {
   return $foundryPlatformFetch($ctx, _apply, ...args);
@@ -87,8 +95,12 @@ const _applyAsync: $FoundryPlatformMethod<
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.AsyncApplyActionResponseV2>
-> = [1, "/v2/ontologies/{0}/actions/{1}/applyAsync", 3];
+> = [1, "/v2/ontologies/{0}/actions/{1}/applyAsync", 7];
 
 /**
  * Applies an action using the given parameters.
@@ -114,6 +126,10 @@ export function applyAsync(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+    },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
     },
   ]
 ): Promise<_Ontologies.AsyncApplyActionResponseV2> {

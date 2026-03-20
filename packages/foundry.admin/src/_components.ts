@@ -99,7 +99,7 @@ export interface AuthenticationProvider {
 export type AuthenticationProviderEnabled = boolean;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type AuthenticationProviderName = LooselyBrandedString<
   "AuthenticationProviderName"
@@ -536,7 +536,7 @@ export type MarkingCategoryDescription = LooselyBrandedString<
    * The ID of a marking category. For user-created categories, this will be a UUID. Markings associated with
 Organizations are placed in a category with ID "Organization".
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export type MarkingCategoryId = LooselyBrandedString<"MarkingCategoryId">;
 

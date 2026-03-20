@@ -172,6 +172,7 @@ export interface Document {
   createdTime: _Core.CreatedTime;
   updatedBy: _Core.UpdatedBy;
   updatedTime: _Core.UpdatedTime;
+  operations: Array<DocumentOperation>;
 }
 
 /**
@@ -273,6 +274,14 @@ export type DocumentName = LooselyBrandedString<"DocumentName">;
  * Log Safety: SAFE
  */
 export type DocumentOntologyRid = LooselyBrandedString<"DocumentOntologyRid">;
+
+/**
+   * An operation that the requesting user is permitted to perform on a document, based on the
+document's security settings and the user's principals.
+   *
+   * Log Safety: SAFE
+   */
+export type DocumentOperation = "VIEW" | "EDIT" | "OWN" | "DELETE";
 
 /**
    * Sent when a user's presence changes on a document. That is, sent when a user opens or closes the document.

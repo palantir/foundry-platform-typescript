@@ -1087,6 +1087,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getModel": {
       "variables": {},
     },
+    "v2.promoteVersionModel": {
+      "variables": {},
+    },
     "v2.createModelVersion": {
       "variables": {},
     },

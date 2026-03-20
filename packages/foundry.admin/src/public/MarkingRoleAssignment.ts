@@ -69,6 +69,9 @@ const _add: $FoundryPlatformMethod<
 > = [1, "/v2/admin/markings/{0}/roleAssignments/add", 1];
 
 /**
+ * Adds role assignments for the given Marking. For Organization markings, only the USE and DECLASSIFY
+ * roles are supported; the ADMINISTER role must be managed via the Organization Role Assignment endpoints.
+ *
  * @public
  *
  * Required Scopes: [api:admin-write]
@@ -92,6 +95,9 @@ const _remove: $FoundryPlatformMethod<
 > = [1, "/v2/admin/markings/{0}/roleAssignments/remove", 1];
 
 /**
+ * Removes role assignments for the given Marking. For Organization markings, only the USE and DECLASSIFY
+ * roles are supported; the ADMINISTER role must be managed via the Organization Role Assignment endpoints.
+ *
  * @public
  *
  * Required Scopes: [api:admin-write]

@@ -67,7 +67,7 @@ export interface BatchRequestSizeExceededLimit {
 /**
  * The requested folder could not be found, or the client token does not have access to it.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface FolderNotFound {
   errorCode: "NOT_FOUND";

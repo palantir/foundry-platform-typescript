@@ -41,6 +41,7 @@ export type {
   DocumentMandatorySecurityUpdateEventData,
   DocumentName,
   DocumentOntologyRid,
+  DocumentOperation,
   DocumentPresenceChangeEvent,
   DocumentPublishMessage,
   DocumentRenameEventData,

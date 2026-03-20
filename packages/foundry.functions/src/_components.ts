@@ -313,7 +313,7 @@ export interface RangesConstraint {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface RegexConstraint {
   pattern: string;
@@ -638,7 +638,7 @@ export type ValueTypeRid = LooselyBrandedString<"ValueTypeRid">;
 /**
  * The version of a value type that has been registered in the Ontology.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type ValueTypeVersion = LooselyBrandedString<"ValueTypeVersion">;
 

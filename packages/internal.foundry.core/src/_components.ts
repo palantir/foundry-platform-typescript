@@ -1587,7 +1587,7 @@ export type FilterValue = LooselyBrandedString<"FilterValue">;
 export interface FloatType {}
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type FolderRid = LooselyBrandedString<"FolderRid">;
 

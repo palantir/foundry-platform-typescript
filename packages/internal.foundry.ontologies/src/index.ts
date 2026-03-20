@@ -770,6 +770,7 @@ export type {
   ObjectTypeNotSynced,
   ObjectTypesNotSynced,
   OntologyApiNameNotUnique,
+  OntologyDefinitionOutOfSync,
   OntologyEditsExceededLimit,
   OntologyNotFound,
   OntologySyncing,
