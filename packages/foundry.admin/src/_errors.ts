@@ -79,6 +79,21 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * Could not add the OrganizationGuestMember.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddOrganizationGuestMembersPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddOrganizationGuestMembersPermissionDenied";
+  errorDescription: "Could not add the OrganizationGuestMember.";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
+  };
+}
+
+/**
  * Could not add the OrganizationRoleAssignment.
  *
  * Log Safety: SAFE
@@ -637,6 +652,19 @@ export interface ListAvailableRolesOrganizationPermissionDenied {
 }
 
 /**
+ * Could not listCurrent the Group.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListCurrentGroupsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListCurrentGroupsPermissionDenied";
+  errorDescription: "Could not listCurrent the Group.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The provided token does not have permission to list assigned roles for this enrollment.
  *
  * Log Safety: SAFE
@@ -990,6 +1018,21 @@ export interface RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed {
   parameters: {
     markingId: unknown;
     currentAdministrators: unknown;
+  };
+}
+
+/**
+ * Could not remove the OrganizationGuestMember.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveOrganizationGuestMembersPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveOrganizationGuestMembersPermissionDenied";
+  errorDescription: "Could not remove the OrganizationGuestMember.";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
   };
 }
 

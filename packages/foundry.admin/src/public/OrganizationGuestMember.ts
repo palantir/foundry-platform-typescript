@@ -54,3 +54,57 @@ export function list(
 ): Promise<_Admin.ListOrganizationGuestMembersResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
+
+const _add: $FoundryPlatformMethod<
+  (
+    organizationRid: _Core.OrganizationRid,
+    $body: _Admin.AddOrganizationGuestMembersRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/admin/organizations/{0}/guestMembers/add", 3];
+
+/**
+ * Adds principals as guest members of an Organization. Attempting to add a primary member through this endpoint will not add the principal as a guest, but will still return a successful response.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/organizations/{organizationRid}/guestMembers/add
+ */
+export function add(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    organizationRid: _Core.OrganizationRid,
+    $body: _Admin.AddOrganizationGuestMembersRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _add, ...args);
+}
+
+const _remove: $FoundryPlatformMethod<
+  (
+    organizationRid: _Core.OrganizationRid,
+    $body: _Admin.RemoveOrganizationGuestMembersRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/admin/organizations/{0}/guestMembers/remove", 3];
+
+/**
+ * Removes principals from being guest members of an Organization. Attempting to remove a primary member through this endpoint will not remove the primary member, but will still return a successful response.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/organizations/{organizationRid}/guestMembers/remove
+ */
+export function remove(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    organizationRid: _Core.OrganizationRid,
+    $body: _Admin.RemoveOrganizationGuestMembersRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _remove, ...args);
+}

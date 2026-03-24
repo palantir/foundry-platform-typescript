@@ -511,6 +511,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getGroupsBatch": {
       "variables": {},
     },
+    "v2.listCurrentGroups": {
+      "variables": {},
+    },
     "v2.searchGroups": {
       "variables": {},
     },
@@ -620,6 +623,12 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.listOrganizationGuestMembers": {
+      "variables": {},
+    },
+    "v2.addOrganizationGuestMembers": {
+      "variables": {},
+    },
+    "v2.removeOrganizationGuestMembers": {
       "variables": {},
     },
     "v2.listAuthenticationProviders": {
@@ -1051,6 +1060,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.parquetExperimentArtifactTable": {
       "variables": {},
     },
+    "v2.transformJsonLiveDeployment": {
+      "variables": {},
+    },
     "v2.createModelStudio": {
       "variables": {},
     },
@@ -1097,9 +1109,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getModelVersion": {
-      "variables": {},
-    },
-    "v2.transformJsonLiveDeployment": {
       "variables": {},
     },
     "v2.listLogFiles": {

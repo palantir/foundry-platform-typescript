@@ -266,6 +266,18 @@ export interface DocumentMandatorySecurityUpdateEventData {
 }
 
 /**
+   * A websocket type sent over the document metadata channel when a metadata field has changed. The client
+should reload the Document to retrieve the updated metadata values.
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentMetadataUpdate {
+  mandatorySecurityChanged: boolean;
+  discretionarySecurityChanged: boolean;
+  deleted: boolean;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type DocumentName = LooselyBrandedString<"DocumentName">;
