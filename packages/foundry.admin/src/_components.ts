@@ -52,6 +52,13 @@ export interface AddMarkingRoleAssignmentsRequest {
 /**
  * Log Safety: SAFE
  */
+export interface AddOrganizationGuestMembersRequest {
+  principalIds: Array<_Core.PrincipalId>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface AddOrganizationRoleAssignmentsRequest {
   roleAssignments: Array<_Core.RoleAssignmentUpdate>;
 }
@@ -397,6 +404,13 @@ export interface ListAvailableOrganizationRolesResponse {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListCurrentGroupsResponse {
+  data: Array<Group>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListDeletedUsersResponse {
   data: Array<User>;
   nextPageToken?: _Core.PageToken;
@@ -728,6 +742,13 @@ export interface RemoveMarkingMembersRequest {
  */
 export interface RemoveMarkingRoleAssignmentsRequest {
   roleAssignments: Array<MarkingRoleUpdate>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RemoveOrganizationGuestMembersRequest {
+  principalIds: Array<_Core.PrincipalId>;
 }
 
 /**

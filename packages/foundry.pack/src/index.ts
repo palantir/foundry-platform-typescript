@@ -39,6 +39,7 @@ export type {
   DocumentEditDescription,
   DocumentMandatorySecurity,
   DocumentMandatorySecurityUpdateEventData,
+  DocumentMetadataUpdate,
   DocumentName,
   DocumentOntologyRid,
   DocumentOperation,

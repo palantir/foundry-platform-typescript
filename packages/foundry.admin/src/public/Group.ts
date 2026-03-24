@@ -138,6 +138,31 @@ export function getBatch(
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
 
+const _listCurrent: $FoundryPlatformMethod<
+  ($queryParams?: {
+    preview?: _Core.PreviewMode | undefined;
+  }) => Promise<_Admin.ListCurrentGroupsResponse>
+> = [0, "/v2/admin/groups/listCurrent", 2];
+
+/**
+ * Returns all Groups which contain the current user as a direct or transitive member. For example if the current user is a member of Group A and Group A is a member of Group B, this endpoint will return Group A and Group B.
+ *
+ * Unlike the list Group Memberships endpoint which requires the `api:admin-read` scope, this endpoint
+ * does not require any particular scopes and can be used by any authenticated user to retrieve their own
+ * group memberships.
+ *
+ * @beta
+ *
+ * Required Scopes: []
+ * URL: /v2/admin/groups/listCurrent
+ */
+export function listCurrent(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
+): Promise<_Admin.ListCurrentGroupsResponse> {
+  return $foundryPlatformFetch($ctx, _listCurrent, ...args);
+}
+
 const _search: $FoundryPlatformMethod<
   ($body: _Admin.SearchGroupsRequest) => Promise<_Admin.SearchGroupsResponse>
 > = [1, "/v2/admin/groups/search", 1];
