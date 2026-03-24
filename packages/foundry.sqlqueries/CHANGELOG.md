@@ -1,5 +1,17 @@
 # @osdk/foundry.sqlqueries
 
+## 2.56.0
+
+### Minor Changes
+
+- ce95560: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [ce95560]
+  - @osdk/foundry.datasets@2.56.0
+  - @osdk/foundry.core@2.56.0
+
 ## 2.55.0
 
 ### Minor Changes

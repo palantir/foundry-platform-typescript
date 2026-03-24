@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.29.0
+
+### Minor Changes
+
+- ce95560: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [ce95560]
+  - @osdk/gotham.targetworkbench@0.29.0
+  - @osdk/gotham.maprendering@0.29.0
+  - @osdk/gotham.geojson@0.29.0
+  - @osdk/gotham.core@0.29.0
+  - @osdk/gotham.gaia@0.29.0
+
 ## 0.28.0
 
 ### Minor Changes
