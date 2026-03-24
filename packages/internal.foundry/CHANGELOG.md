@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.56.0
+
+### Minor Changes
+
+- ce95560: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [ce95560]
+  - @osdk/internal.foundry.ontologies@2.56.0
+  - @osdk/internal.foundry.datasets@2.56.0
+  - @osdk/internal.foundry.core@2.56.0
+  - @osdk/internal.foundry.geo@2.56.0
+  - @osdk/internal.foundry.ontologiesv2@2.56.0
+  - @osdk/internal.foundry.mediasets@2.56.0
+
 ## 2.55.0
 
 ### Minor Changes

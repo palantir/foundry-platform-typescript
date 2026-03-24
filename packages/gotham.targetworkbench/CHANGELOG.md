@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.29.0
+
+### Minor Changes
+
+- ce95560: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [ce95560]
+  - @osdk/gotham.core@0.29.0
+
 ## 0.28.0
 
 ### Minor Changes

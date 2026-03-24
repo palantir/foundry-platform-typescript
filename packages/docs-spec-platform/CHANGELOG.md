@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.43.0
+
+### Minor Changes
+
+- ce95560: regenerate platform sdk
+
 ## 0.42.0
 
 ### Minor Changes
