@@ -1,5 +1,11 @@
 # @osdk/gotham.geojson
 
+## 0.30.0
+
+### Minor Changes
+
+- ac64eb8: Regenerate platform SDKs.
+
 ## 0.29.0
 
 ### Minor Changes

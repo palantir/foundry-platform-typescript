@@ -1,5 +1,11 @@
 # @osdk/foundry.geo
 
+## 2.57.0
+
+### Minor Changes
+
+- ac64eb8: Regenerate platform SDKs.
+
 ## 2.56.0
 
 ### Minor Changes

@@ -1,5 +1,17 @@
 # @osdk/gotham.gaia
 
+## 0.30.0
+
+### Minor Changes
+
+- ac64eb8: Regenerate platform SDKs.
+
+### Patch Changes
+
+- Updated dependencies [ac64eb8]
+  - @osdk/gotham.geojson@0.30.0
+  - @osdk/gotham.core@0.30.0
+
 ## 0.29.0
 
 ### Minor Changes
