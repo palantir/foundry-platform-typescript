@@ -43,8 +43,14 @@ type ObjectSetType = {
   objectTypeApiName: string;
 };
 type UnknownType = { type: "unknown"; value?: string };
-type AnonymousCustomType = { type: "anonymousCustomType" };
-type CustomType = { type: "customType" };
+type AnonymousCustomType = {
+  type: "anonymousCustomType";
+  fields?: Array<{ name: string; value: FunctionSampleValueTypeIR }>;
+};
+type CustomType = {
+  type: "customType";
+  fields?: Array<{ name: string; value: FunctionSampleValueTypeIR }>;
+};
 
 export type ActionParameterSampleValueTypeIR =
   | BooleanValueType
