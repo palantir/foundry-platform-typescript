@@ -39,6 +39,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Functions": "foundry",
     "Geo": "foundry",
     "LanguageModels": "foundry",
+    "Lohi": "skipped",
     "MediaSets": "foundry",
     "Models": "foundry",
     "Notepad": "foundry",

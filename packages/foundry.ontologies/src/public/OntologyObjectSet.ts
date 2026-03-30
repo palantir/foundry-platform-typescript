@@ -38,8 +38,12 @@ const _createTemporary: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.CreateTemporaryObjectSetResponseV2>
-> = [1, "/v2/ontologies/{0}/objectSets/createTemporary", 3];
+> = [1, "/v2/ontologies/{0}/objectSets/createTemporary", 7];
 
 /**
  * Creates a temporary `ObjectSet` from the given definition. This `ObjectSet` expires after one hour.
@@ -58,6 +62,10 @@ export function createTemporary(
       branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+    },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
     },
   ]
 ): Promise<_Ontologies.CreateTemporaryObjectSetResponseV2> {
@@ -99,8 +107,12 @@ const _load: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.LoadObjectSetResponseV2>
-> = [1, "/v2/ontologies/{0}/objectSets/loadObjects", 3];
+> = [1, "/v2/ontologies/{0}/objectSets/loadObjects", 7];
 
 /**
  * Load the ontology objects present in the `ObjectSet` from the provided object set definition.
@@ -128,6 +140,10 @@ export function load(
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Ontologies.LoadObjectSetResponseV2> {
   return $foundryPlatformFetch($ctx, _load, ...args);
@@ -144,8 +160,12 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.LoadObjectSetV2MultipleObjectTypesResponse>
-> = [1, "/v2/ontologies/{0}/objectSets/loadObjectsMultipleObjectTypes", 3];
+> = [1, "/v2/ontologies/{0}/objectSets/loadObjectsMultipleObjectTypes", 7];
 
 /**
  * Load the ontology objects present in the `ObjectSet` from the provided object set definition. The resulting
@@ -179,6 +199,10 @@ export function loadMultipleObjectTypes(
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Ontologies.LoadObjectSetV2MultipleObjectTypesResponse> {
   return $foundryPlatformFetch($ctx, _loadMultipleObjectTypes, ...args);
@@ -195,8 +219,12 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.LoadObjectSetV2ObjectsOrInterfacesResponse>
-> = [1, "/v2/ontologies/{0}/objectSets/loadObjectsOrInterfaces", 3];
+> = [1, "/v2/ontologies/{0}/objectSets/loadObjectsOrInterfaces", 7];
 
 /**
  * Load the ontology objects present in the `ObjectSet` from the provided object set definition. If the requested
@@ -232,6 +260,10 @@ export function loadObjectsOrInterfaces(
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Ontologies.LoadObjectSetV2ObjectsOrInterfacesResponse> {
   return $foundryPlatformFetch($ctx, _loadObjectsOrInterfaces, ...args);
@@ -247,8 +279,12 @@ const _aggregate: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.AggregateObjectsResponseV2>
-> = [1, "/v2/ontologies/{0}/objectSets/aggregate", 3];
+> = [1, "/v2/ontologies/{0}/objectSets/aggregate", 7];
 
 /**
  * Aggregates the ontology objects present in the `ObjectSet` from the provided object set definition.
@@ -269,6 +305,10 @@ export function aggregate(
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {
   return $foundryPlatformFetch($ctx, _aggregate, ...args);
@@ -284,8 +324,12 @@ const _loadLinks: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Ontologies.LoadObjectSetLinksResponseV2>
-> = [1, "/v2/ontologies/{0}/objectSets/loadLinks", 3];
+> = [1, "/v2/ontologies/{0}/objectSets/loadLinks", 7];
 
 /**
  * Loads the specified links from the defined object set.
@@ -319,6 +363,10 @@ export function loadLinks(
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
+    },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
     },
   ]
 ): Promise<_Ontologies.LoadObjectSetLinksResponseV2> {

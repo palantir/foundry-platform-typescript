@@ -696,6 +696,7 @@ export type {
   ConsistentSnapshotError,
   DefaultAndNullGroupsNotSupported,
   DerivedPropertyApiNamesNotUnique,
+  DistinctEnumValuesExceededLimit,
   DuplicateOrderBy,
   EditObjectPermissionDenied,
   FunctionEncounteredUserFacingError,

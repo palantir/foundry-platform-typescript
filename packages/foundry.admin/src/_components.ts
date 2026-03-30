@@ -148,7 +148,7 @@ export interface CbacMarkingRestrictions {
 }
 
 /**
- * True if the provided markings contain no disallowed markings and each list of required markings is satisfied by the provided markings.
+ * True if the provided markings constitute a valid classification, containing no disallowed markings and satisfying all required marking constraints.
  *
  * Log Safety: SAFE
  */
@@ -771,6 +771,16 @@ export interface ReplaceGroupMembershipExpirationPolicyRequest {
  */
 export interface ReplaceGroupProviderInfoRequest {
   providerId: ProviderId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceGroupRequest {
+  name: GroupName;
+  organizations: Array<_Core.OrganizationRid>;
+  description?: string;
+  attributes: Record<AttributeName, AttributeValues>;
 }
 
 /**

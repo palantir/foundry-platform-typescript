@@ -965,6 +965,8 @@ export interface GetMediaItemInfoResponse {
   logicalTimestamp: LogicalTimestamp;
   attribution?: MediaAttribution;
   originallyUploadedFileMimeType?: _Core.MediaType;
+  mimeType?: _Core.MediaType;
+  sizeBytes?: number;
 }
 
 /**

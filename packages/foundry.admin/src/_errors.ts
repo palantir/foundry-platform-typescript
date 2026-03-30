@@ -109,6 +109,22 @@ export interface AddOrganizationRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * One or more attributes are not editable. Attributes prefixed with "multipass:" are reserved for internal use by Foundry and are not editable.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AttributesNotEditable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AttributesNotEditable";
+  errorDescription:
+    "One or more attributes are not editable. Attributes prefixed with \"multipass:\" are reserved for internal use by Foundry and are not editable.";
+  errorInstanceId: string;
+  parameters: {
+    attributeNames: unknown;
+  };
+}
+
+/**
  * The given AuthenticationProvider could not be found.
  *
  * Log Safety: SAFE
@@ -1060,6 +1076,21 @@ export interface ReplaceGroupMembershipExpirationPolicyPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReplaceGroupMembershipExpirationPolicyPermissionDenied";
   errorDescription: "Could not replace the GroupMembershipExpirationPolicy.";
+  errorInstanceId: string;
+  parameters: {
+    groupId: unknown;
+  };
+}
+
+/**
+ * Could not replace the Group.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceGroupPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceGroupPermissionDenied";
+  errorDescription: "Could not replace the Group.";
   errorInstanceId: string;
   parameters: {
     groupId: unknown;

@@ -402,6 +402,22 @@ export interface DerivedPropertyApiNamesNotUnique {
 }
 
 /**
+ * An enum time series contained too many distinct enum values. Check that the time series sync is using the correct value column.
+ *
+ * Log Safety: SAFE
+ */
+export interface DistinctEnumValuesExceededLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DistinctEnumValuesExceededLimit";
+  errorDescription:
+    "An enum time series contained too many distinct enum values. Check that the time series sync is using the correct value column.";
+  errorInstanceId: string;
+  parameters: {
+    maxDistinctValues: unknown;
+  };
+}
+
+/**
  * The requested sort order includes duplicate properties.
  *
  * Log Safety: UNSAFE
