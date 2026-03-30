@@ -414,6 +414,7 @@ export interface CheckpointedOntologyWithObjectTypes {
  */
 export interface CheckpointedPeeringJob {
   jobId: string;
+  relationshipRid: string;
 }
 
 /**
@@ -423,6 +424,7 @@ export interface CheckpointedPeeringJob {
  */
 export interface CheckpointedPeeringJobId {
   id: string;
+  relationshipRid: string;
 }
 
 /**
@@ -723,7 +725,8 @@ export type CheckpointType =
   | "AIP_ANALYST_APP_LOAD"
   | "PEER_MANAGER_CDS_PAYLOAD_EXPORT"
   | "PEER_MANAGER_OBJECT_TYPE_SCHEMAS_EXPORT"
-  | "AIP_ANALYST_EXPORT";
+  | "AIP_ANALYST_EXPORT"
+  | "OBJECT_EXPLORER_SEARCH";
 
 /**
  * Identifier of the checkpoint configuration that produced a record.

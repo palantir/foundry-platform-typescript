@@ -138,6 +138,28 @@ export function getBatch(
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
 
+const _replace: $FoundryPlatformMethod<
+  (
+    groupId: _Core.GroupId,
+    $body: _Admin.ReplaceGroupRequest,
+  ) => Promise<_Admin.Group>
+> = [2, "/v2/admin/groups/{0}", 1];
+
+/**
+ * When replacing groups, you must send all attributes that begin with `multipass:` exactly as they appear when calling the Get Group endpoint.
+ *
+ * @public
+ *
+ * Required Scopes: [api:admin-write]
+ * URL: /v2/admin/groups/{groupId}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [groupId: _Core.GroupId, $body: _Admin.ReplaceGroupRequest]
+): Promise<_Admin.Group> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}
+
 const _listCurrent: $FoundryPlatformMethod<
   ($queryParams?: {
     preview?: _Core.PreviewMode | undefined;

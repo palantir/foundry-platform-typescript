@@ -60,27 +60,21 @@ const _get: $FoundryPlatformMethod<
   (
     datasetRid: _Core.DatasetRid,
     streamBranchName: _Core.BranchName,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Streams.Stream>
-> = [0, "/v2/streams/datasets/{0}/streams/{1}", 2];
+> = [0, "/v2/streams/datasets/{0}/streams/{1}"];
 
 /**
  * Get a stream by its branch name. If the branch does not exist, there is no stream on that branch, or the
  * user does not have permission to access the stream, a 404 error will be returned.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:streams-read]
  * URL: /v2/streams/datasets/{datasetRid}/streams/{streamBranchName}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    datasetRid: _Core.DatasetRid,
-    streamBranchName: _Core.BranchName,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [datasetRid: _Core.DatasetRid, streamBranchName: _Core.BranchName]
 ): Promise<_Streams.Stream> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -90,15 +84,14 @@ const _publishRecord: $FoundryPlatformMethod<
     datasetRid: _Core.DatasetRid,
     streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordToStreamRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/highScale/streams/datasets/{0}/streams/{1}/publishRecord", 3];
+> = [1, "/v2/highScale/streams/datasets/{0}/streams/{1}/publishRecord", 1];
 
 /**
  * Publish a single record to the stream. The record will be validated against the stream's schema, and
  * rejected if it is invalid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishRecord
@@ -109,7 +102,6 @@ export function publishRecord(
     datasetRid: _Core.DatasetRid,
     streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordToStreamRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _publishRecord, ...args);
@@ -120,15 +112,14 @@ const _publishRecords: $FoundryPlatformMethod<
     datasetRid: _Core.DatasetRid,
     streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordsToStreamRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/highScale/streams/datasets/{0}/streams/{1}/publishRecords", 3];
+> = [1, "/v2/highScale/streams/datasets/{0}/streams/{1}/publishRecords", 1];
 
 /**
  * Publish a batch of records to the stream. The records will be validated against the stream's schema, and
  * the batch will be rejected if one or more of the records are invalid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishRecords
@@ -139,7 +130,6 @@ export function publishRecords(
     datasetRid: _Core.DatasetRid,
     streamBranchName: _Core.BranchName,
     $body: _Streams.PublishRecordsToStreamRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _publishRecords, ...args);
@@ -150,10 +140,7 @@ const _publishBinaryRecord: $FoundryPlatformMethod<
     datasetRid: _Core.DatasetRid,
     streamBranchName: _Core.BranchName,
     $body: Blob,
-    $queryParams?: {
-      viewRid?: _Streams.ViewRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { viewRid?: _Streams.ViewRid | undefined },
   ) => Promise<void>
 > = [
   1,
@@ -165,7 +152,7 @@ const _publishBinaryRecord: $FoundryPlatformMethod<
 /**
  * Publish a single binary record to the stream. The stream's schema must be a single binary field.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishBinaryRecord
@@ -176,10 +163,7 @@ export function publishBinaryRecord(
     datasetRid: _Core.DatasetRid,
     streamBranchName: _Core.BranchName,
     $body: Blob,
-    $queryParams?: {
-      viewRid?: _Streams.ViewRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { viewRid?: _Streams.ViewRid | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _publishBinaryRecord, ...args);

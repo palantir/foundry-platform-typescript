@@ -52,6 +52,7 @@ export function getNamespacePlatform(ns?: string): string {
     "ThirdPartyApplications": "foundry",
     "Widgets": "foundry",
     "Workbench": "skipped",
+    "Lohi": "skipped",
   };
 
   const platform = namespaceMapping[ns];

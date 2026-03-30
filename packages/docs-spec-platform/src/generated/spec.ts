@@ -175,6 +175,15 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getVersionId": {
       "variables": {},
     },
+    "v2.sync": {
+      "variables": {},
+    },
+    "v2.syncState": {
+      "variables": {},
+    },
+    "v2.listActionLog": {
+      "variables": {},
+    },
     "v2.listOntologiesV2": {
       "variables": {},
     },
@@ -509,6 +518,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getGroupsBatch": {
+      "variables": {},
+    },
+    "v2.replaceGroup": {
       "variables": {},
     },
     "v2.listCurrentGroups": {
