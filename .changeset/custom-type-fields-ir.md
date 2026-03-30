@@ -2,4 +2,4 @@
 "@osdk/docs-spec-sdk": patch
 ---
 
-Add optional fields to AnonymousCustomType and CustomType IR types
+Add optional parameters to AnonymousCustomType and CustomType IR types
