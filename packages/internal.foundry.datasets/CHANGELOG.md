@@ -1,5 +1,16 @@
 # @osdk/internal.foundry.datasets
 
+## 2.57.0
+
+### Minor Changes
+
+- ac64eb8: Regenerate platform SDKs.
+
+### Patch Changes
+
+- Updated dependencies [ac64eb8]
+  - @osdk/internal.foundry.core@2.57.0
+
 ## 2.56.0
 
 ### Minor Changes

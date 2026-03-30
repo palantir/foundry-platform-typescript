@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.56.0
+
+### Minor Changes
+
+- ac64eb8: Regenerate platform SDKs.
+
+### Patch Changes
+
+- Updated dependencies [ac64eb8]
+  - @osdk/docs-spec-platform@0.44.0
+
 ## 0.55.0
 
 ### Patch Changes
