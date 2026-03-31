@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.17.0
+
+### Minor Changes
+
+- 7cc9931: Add optional parameters to AnonymousCustomType and CustomType IR types
+
 ## 0.16.0
 
 ### Minor Changes
