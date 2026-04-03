@@ -608,7 +608,10 @@ const _transform: $FoundryPlatformMethod<
     mediaItemRid: _Core.MediaItemRid,
     $body: _MediaSets.TransformMediaItemRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+    $headerParams?: {
+      Token?: _Core.MediaItemReadToken | undefined;
+      Attribution?: _Core.Attribution | undefined;
+    },
   ) => Promise<_MediaSets.TransformMediaItemResponse>
 > = [1, "/v2/mediasets/{0}/items/{1}/transform", 7];
 
@@ -631,7 +634,10 @@ export function transform(
     mediaItemRid: _Core.MediaItemRid,
     $body: _MediaSets.TransformMediaItemRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-    $headerParams?: { Token?: _Core.MediaItemReadToken | undefined },
+    $headerParams?: {
+      Token?: _Core.MediaItemReadToken | undefined;
+      Attribution?: _Core.Attribution | undefined;
+    },
   ]
 ): Promise<_MediaSets.TransformMediaItemResponse> {
   return $foundryPlatformFetch($ctx, _transform, ...args);

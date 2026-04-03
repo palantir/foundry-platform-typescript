@@ -997,6 +997,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getLatestCheckReports": {
       "variables": {},
     },
+    "v2.listExecutionsResource": {
+      "variables": {},
+    },
     "v2.renderInvocationObject": {
       "variables": {},
     },
@@ -1142,6 +1145,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.executeOntologySqlQuery": {
+      "variables": {},
+    },
+    "v2.searchComments": {
       "variables": {},
     },
     "v2.addBoardObjects": {

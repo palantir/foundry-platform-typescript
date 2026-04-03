@@ -31,6 +31,7 @@
     "@osdk/foundry.aipagents": "workspace:*",
     "@osdk/foundry.audit": "workspace:*",
     "@osdk/foundry.checkpoints": "workspace:*",
+    "@osdk/foundry.comments": "workspace:*",
     "@osdk/foundry.connectivity": "workspace:*",
     "@osdk/foundry.core": "workspace:*",
     "@osdk/foundry.datahealth": "workspace:*",
@@ -43,6 +44,7 @@
     "@osdk/foundry.mediasets": "workspace:*",
     "@osdk/foundry.models": "workspace:*",
     "@osdk/foundry.notepad": "workspace:*",
+    "@osdk/foundry.observability": "workspace:*",
     "@osdk/foundry.ontologies": "workspace:*",
     "@osdk/foundry.operations": "workspace:*",
     "@osdk/foundry.orchestration": "workspace:*",
@@ -77,7 +79,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1539.0",
+        "minVersion": "1.1544.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

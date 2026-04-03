@@ -510,6 +510,24 @@ export interface FunctionInvalidInput {
 }
 
 /**
+ * The function runtime does not support execution with a transaction.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FunctionNotSupportedWithTransaction {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FunctionNotSupportedWithTransaction";
+  errorDescription:
+    "The function runtime does not support execution with a transaction.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    message: unknown;
+  };
+}
+
+/**
  * High-scale compute was required for this Ontology query but is not enabled on this enrollment.
  *
  * Log Safety: SAFE

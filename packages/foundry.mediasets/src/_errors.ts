@@ -333,3 +333,16 @@ export interface UnexpectedMetadataType {
   errorInstanceId: string;
   parameters: {};
 }
+
+/**
+ * A media item has an unsupported metadata type
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedMetadata {
+  errorCode: "INTERNAL";
+  errorName: "UnsupportedMetadata";
+  errorDescription: "A media item has an unsupported metadata type";
+  errorInstanceId: string;
+  parameters: {};
+}

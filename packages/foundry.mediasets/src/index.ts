@@ -263,5 +263,6 @@ export type {
   TransformationUnavailable,
   TransformedMediaItemNotFound,
   UnexpectedMetadataType,
+  UnsupportedMetadata,
 } from "./_errors.js";
 export * as MediaSets from "./public/MediaSet.js";
