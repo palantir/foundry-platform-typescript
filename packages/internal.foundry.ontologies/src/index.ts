@@ -702,6 +702,7 @@ export type {
   FunctionExecutionFailed,
   FunctionExecutionTimedOut,
   FunctionInvalidInput,
+  FunctionNotSupportedWithTransaction,
   HighScaleComputationNotEnabled,
   IncompatibleNestedObjectSet,
   InterfaceBasedObjectSetNotSupported,

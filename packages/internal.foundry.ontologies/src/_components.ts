@@ -5974,6 +5974,7 @@ export interface SumAggregationV2 {
  * Log Safety: UNSAFE
  */
 export interface SyncApplyActionResponseV2 {
+  operationId?: string;
   validation?: ValidateActionResponseV2;
   edits?: ActionResults;
 }

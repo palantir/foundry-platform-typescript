@@ -96,6 +96,7 @@ export type {
   ExecuteQueryPermissionDenied,
   FunctionHasNoPublishedVersion,
   FunctionNotFound,
+  FunctionNotSupportedWithTransaction,
   GetByRidPermissionDenied,
   InvalidQueryOutputValue,
   InvalidQueryParameterValue,

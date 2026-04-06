@@ -82,6 +82,24 @@ export interface FunctionNotFound {
 }
 
 /**
+ * The function runtime does not support execution with a transaction.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FunctionNotSupportedWithTransaction {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FunctionNotSupportedWithTransaction";
+  errorDescription:
+    "The function runtime does not support execution with a transaction.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    message: unknown;
+  };
+}
+
+/**
  * Could not getByRid the Query.
  *
  * Log Safety: SAFE

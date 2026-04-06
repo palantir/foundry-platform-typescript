@@ -98,6 +98,7 @@ export interface CreateDocumentRequest {
  * Log Safety: UNSAFE
  */
 export interface CreateDocumentTypeRequest {
+  schema?: DocumentTypeSchema;
   parentFolderRid: _Filesystem.FolderRid;
   name: DocumentTypeName;
   fileSystemType?: FileSystemType;
@@ -109,6 +110,7 @@ export interface CreateDocumentTypeRequest {
 export interface CustomPresenceEvent {
   userId: _Core.UserId;
   clientId: ClientId;
+  clientVersion: SchemaVersion;
   eventData: any;
   eventType: string;
   isEphemeral?: boolean;
@@ -173,6 +175,17 @@ export interface Document {
   updatedBy: _Core.UpdatedBy;
   updatedTime: _Core.UpdatedTime;
   operations: Array<DocumentOperation>;
+}
+
+/**
+   * A request from client to subscribe to a document's activity updates,
+required on a subscription request to /documents/{documentId}/activity.
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentActivitySubscriptionRequest {
+  clientId: ClientId;
+  clientVersion: SchemaVersion;
 }
 
 /**
@@ -308,6 +321,17 @@ export interface DocumentPresenceChangeEvent {
 }
 
 /**
+   * A request from client to subscribe to a document's presence updates,
+required on a subscription request to /documents/{documentId}/presence.
+   *
+   * Log Safety: SAFE
+   */
+export interface DocumentPresenceSubscriptionRequest {
+  clientId: ClientId;
+  clientVersion: SchemaVersion;
+}
+
+/**
  * Update sent by client to apply to internal Y.Doc on server.
  *
  * Log Safety: UNSAFE
@@ -316,6 +340,7 @@ export interface DocumentPublishMessage {
   yjsUpdate: YjsUpdate;
   editId: EditId;
   clientId: ClientId;
+  clientVersion: SchemaVersion;
   description?: DocumentEditDescription;
 }
 
@@ -400,6 +425,7 @@ export type DocumentSortField =
 export interface DocumentType {
   rid: DocumentTypeRid;
   name: DocumentTypeName;
+  schema?: DocumentTypeSchema;
   parentFolderRid: _Filesystem.FolderRid;
   fileSystemType?: FileSystemType;
 }
@@ -425,23 +451,8 @@ export type DocumentTypeRid = LooselyBrandedString<"DocumentTypeRid">;
  * Log Safety: UNSAFE
  */
 export interface DocumentTypeSchema {
-  name: string;
-  description: string;
-  version: DocumentTypeVersion;
   primaryModelKeys: Array<ModelTypeKey>;
   models: Record<ModelTypeKey, ModelDef>;
-}
-
-/**
-   * A semantic version following the semver specification (major.minor.patch).
-Used to version document type schemas.
-   *
-   * Log Safety: SAFE
-   */
-export interface DocumentTypeVersion {
-  major: number;
-  minor: number;
-  patch: number;
 }
 
 /**
@@ -452,6 +463,7 @@ export interface DocumentTypeVersion {
 export interface DocumentUpdate {
   update?: YjsUpdate;
   clientId: ClientId;
+  clientVersion: SchemaVersion;
   revisionId: RevisionId;
   baseRevisionId: RevisionId;
   editIds: Array<EditId>;
@@ -475,8 +487,14 @@ required on a subscription request to /documents/{documentId}/updates
    */
 export interface DocumentUpdateSubscriptionRequest {
   clientId: ClientId;
+  clientVersion: SchemaVersion;
   lastRevisionId?: RevisionId;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type DoubleValue = number;
 
 /**
  * A unique identifier for an edit to an AppKit Document.
@@ -488,7 +506,10 @@ export type EditId = LooselyBrandedString<"EditId">;
 /**
  * Log Safety: SAFE
  */
-export type ErrorCode = "INTERNAL_ERROR" | "REVISION_TOO_OLD";
+export type ErrorCode =
+  | "INTERNAL_ERROR"
+  | "REVISION_TOO_OLD"
+  | "CLIENT_VERSION_TOO_LOW";
 
 /**
    * Message sent to clients when an error occurs. The subscription may not remain in a valid state after this
@@ -538,6 +559,7 @@ export interface FieldDef {
   key: FieldKey;
   name: string;
   description?: string;
+  isOptional?: boolean;
   metadata: SchemaMetadata;
   fieldType: FieldTypeUnion;
 }
@@ -603,9 +625,11 @@ export interface FieldValueBoolean {
 /**
  * A datetime field value.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export interface FieldValueDatetime {}
+export interface FieldValueDatetime {
+  value: any;
+}
 
 /**
  * A reference to another document.
@@ -619,31 +643,33 @@ export interface FieldValueDocumentRef {
 /**
  * A double field value with optional constraints and default.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface FieldValueDouble {
-  defaultValue?: number;
-  minValue?: number;
-  maxValue?: number;
+  defaultValue?: DoubleValue;
+  minValue?: DoubleValue;
+  maxValue?: DoubleValue;
 }
 
 /**
  * An integer field value with optional constraints and default.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface FieldValueInteger {
-  defaultValue?: number;
-  minValue?: number;
-  maxValue?: number;
+  defaultValue?: IntegerValue;
+  minValue?: IntegerValue;
+  maxValue?: IntegerValue;
 }
 
 /**
  * A reference to media content.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export interface FieldValueMediaRef {}
+export interface FieldValueMediaRef {
+  value: any;
+}
 
 /**
  * A reference to another model within the schema.
@@ -671,8 +697,8 @@ export interface FieldValueObjectRef {
  */
 export interface FieldValueString {
   defaultValue?: string;
-  minLength?: number;
-  maxLength?: number;
+  minLength?: TextLength;
+  maxLength?: TextLength;
 }
 
 /**
@@ -683,8 +709,8 @@ Text should be used over string values for word-editor style complex text.
    */
 export interface FieldValueText {
   defaultValue?: string;
-  minLength?: number;
-  maxLength?: number;
+  minLength?: TextLength;
+  maxLength?: TextLength;
 }
 
 /**
@@ -752,6 +778,11 @@ export type FolderRid = LooselyBrandedString<"FolderRid">;
 export type GroupId = string;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type IntegerValue = number;
+
+/**
  * Identifier for an ontology interface type.
  *
  * Log Safety: SAFE
@@ -796,7 +827,7 @@ export type ModelTypeKey = LooselyBrandedString<"ModelTypeKey">;
 export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 
 /**
-   * The page token indicates where to start paging. This should be omitted from the first page's request.
+   * The page token indicates where to start paging on. This should be omitted from the first page's request.
 To fetch the next page, clients should take the value from the nextPageToken field of the previous response
 and use it to populate the pageToken field of the next request.
 api-gateway's Core.PageToken is an immutable @Unsafe String, which is incompatible with PACK Document search.
@@ -844,10 +875,18 @@ export type RevisionId = string;
  * Log Safety: UNSAFE
  */
 export interface SchemaMetadata {
-  addedInVersion: DocumentTypeVersion;
-  deprecatedFromVersion?: DocumentTypeVersion;
+  addedInVersion: SchemaVersion;
+  deprecatedFromVersion?: SchemaVersion;
   deprecatedMessage?: string;
 }
+
+/**
+   * An incrementing version number for a document type schema. Each schema update
+increments this value by one, representing a linear history of versions.
+   *
+   * Log Safety: SAFE
+   */
+export type SchemaVersion = number;
 
 /**
  * Log Safety: UNSAFE
@@ -856,6 +895,11 @@ export interface SearchDocumentsRequest {
   documentTypeName: DocumentTypeName;
   requestBody: DocumentSearchRequest;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export type TextLength = number;
 
 /**
  * A union model definition with variants.
