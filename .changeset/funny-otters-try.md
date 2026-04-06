@@ -5,7 +5,6 @@
 "@osdk/foundry.languagemodels": patch
 "@osdk/gotham.targetworkbench": patch
 "@osdk/platform-sdk-generator": patch
-"@osdk/foundry.observability": patch
 "@osdk/foundry.orchestration": patch
 "@osdk/internal.foundry.core": patch
 "@osdk/foundry.connectivity": patch
@@ -22,7 +21,6 @@
 "@osdk/foundry.aipagents": patch
 "@osdk/foundry.functions": patch
 "@osdk/foundry.mediasets": patch
-"@osdk/foundry.comments": patch
 "@osdk/foundry.datasets": patch
 "@osdk/internal.foundry": patch
 "@osdk/foundry.notepad": patch
