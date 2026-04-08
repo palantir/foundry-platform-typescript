@@ -1,5 +1,18 @@
 # @osdk/foundry.widgets
 
+## 2.58.0
+
+### Minor Changes
+
+- fa3e9fd: regenerate platform sdk
+- 268154f: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [fa3e9fd]
+- Updated dependencies [268154f]
+  - @osdk/foundry.core@2.58.0
+
 ## 2.57.0
 
 ### Minor Changes

@@ -1,5 +1,23 @@
 # @osdk/foundry
 
+## 2.58.0
+
+### Minor Changes
+
+- fa3e9fd: regenerate platform sdk
+- 268154f: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [fa3e9fd]
+- Updated dependencies [268154f]
+  - @osdk/internal.foundry.ontologies@2.58.0
+  - @osdk/internal.foundry.datasets@2.58.0
+  - @osdk/internal.foundry.core@2.58.0
+  - @osdk/internal.foundry.geo@2.58.0
+  - @osdk/internal.foundry.ontologiesv2@2.58.0
+  - @osdk/internal.foundry.mediasets@2.58.0
+
 ## 2.57.0
 
 ### Minor Changes

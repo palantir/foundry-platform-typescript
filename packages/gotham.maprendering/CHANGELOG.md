@@ -1,5 +1,19 @@
 # @osdk/gotham.maprendering
 
+## 0.31.0
+
+### Minor Changes
+
+- fa3e9fd: regenerate platform sdk
+- 268154f: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [fa3e9fd]
+- Updated dependencies [268154f]
+  - @osdk/gotham.geojson@0.31.0
+  - @osdk/gotham.core@0.31.0
+
 ## 0.30.0
 
 ### Minor Changes
