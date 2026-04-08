@@ -107,6 +107,38 @@ export interface CreateDocumentTypeRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateFirstPartyDocumentTypeRequest {
+  requestBody: CreateFirstPartyDocumentTypeRequestBody;
+}
+
+/**
+ * Request to create a first-party document type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateFirstPartyDocumentTypeRequestBody {
+  name: DocumentTypeName;
+  ontologyRid: string;
+  schema: DocumentTypeSchema;
+  fileSystemType?: FileSystemType;
+  version?: SchemaVersion;
+}
+
+/**
+ * Response for creating a first-party document type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateFirstPartyDocumentTypeResponse {
+  rid: DocumentTypeRid;
+  name: DocumentTypeName;
+  fileSystemType?: FileSystemType;
+  version?: SchemaVersion;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CustomPresenceEvent {
   userId: _Core.UserId;
   clientId: ClientId;

@@ -16,8 +16,12 @@
 
 export type {
   AccessRequirements,
+  AddExternalResourceReferenceRequest,
+  AddFilesystemResourceReferenceRequest,
   AddMarkingsRequest,
   AddOrganizationsRequest,
+  AddProjectResourceReferencesRequest,
+  AddResourceReferenceRequest,
   AddResourceRolesRequest,
   CreateFolderRequest,
   CreateProjectFromTemplateRequest,
@@ -38,6 +42,7 @@ export type {
   ListChildrenOfFolderResponse,
   ListMarkingsOfResourceResponse,
   ListOrganizationsOfProjectResponse,
+  ListProjectResourceReferencesResponse,
   ListResourceRolesResponse,
   ListSpacesResponse,
   Marking,
@@ -45,13 +50,19 @@ export type {
   PrincipalIdOnly,
   PrincipalWithId,
   Project,
+  ProjectExternalResourceReference,
+  ProjectFilesystemResourceReference,
   ProjectResourceLevelRoleGrantsAllowed,
+  ProjectResourceReference,
+  ProjectResourceReferenceType,
+  ProjectResourceReferenceUnion,
   ProjectRid,
   ProjectTemplateRid,
   ProjectTemplateVariableId,
   ProjectTemplateVariableValue,
   RemoveMarkingsRequest,
   RemoveOrganizationsRequest,
+  RemoveProjectResourceReferencesRequest,
   RemoveResourceRolesRequest,
   ReplaceFolderRequest,
   ReplaceProjectRequest,
@@ -75,6 +86,7 @@ export type {
   AddGroupToParentGroupPermissionDenied,
   AddMarkingsPermissionDenied,
   AddOrganizationsPermissionDenied,
+  AddProjectResourceReferencesPermissionDenied,
   AddResourceRolesPermissionDenied,
   CircularDependency,
   CreateFolderOutsideProjectNotSupported,
@@ -104,6 +116,8 @@ export type {
   InvalidParentFolder,
   InvalidPath,
   InvalidPrincipalIdsForGroupTemplate,
+  InvalidProject,
+  InvalidResourceReference,
   InvalidRoleIds,
   InvalidVariable,
   InvalidVariableEnumOption,
@@ -123,6 +137,7 @@ export type {
   ProjectTemplateNotFound,
   RemoveMarkingsPermissionDenied,
   RemoveOrganizationsPermissionDenied,
+  RemoveProjectResourceReferencesPermissionDenied,
   RemoveResourceRolesPermissionDenied,
   ReplaceFolderPermissionDenied,
   ReplaceProjectPermissionDenied,
@@ -148,6 +163,7 @@ export type {
 } from "./_errors.js";
 export * as Folders from "./public/Folder.js";
 export * as Projects from "./public/Project.js";
+export * as ProjectResourceReferences from "./public/ProjectResourceReference.js";
 export * as Resources from "./public/Resource.js";
 export * as ResourceRoles from "./public/ResourceRole.js";
 export * as Spaces from "./public/Space.js";

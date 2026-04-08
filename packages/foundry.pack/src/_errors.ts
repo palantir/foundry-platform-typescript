@@ -93,6 +93,19 @@ export interface CreateDocumentTypePermissionDenied {
 }
 
 /**
+ * Could not createFirstParty the DocumentType.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateFirstPartyDocumentTypePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateFirstPartyDocumentTypePermissionDenied";
+  errorDescription: "Could not createFirstParty the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not delete the Document.
  *
  * Log Safety: SAFE
@@ -151,6 +164,42 @@ export interface DocumentTypeNameNotFound {
   errorInstanceId: string;
   parameters: {
     documentTypeName: unknown;
+  };
+}
+
+/**
+   * The provided Document Type Name is invalid. First-party document type names must follow the format
+com.palantir.pack.<assetName>.<documentTypeName>.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidDocumentTypeName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDocumentTypeName";
+  errorDescription:
+    "The provided Document Type Name is invalid. First-party document type names must follow the format com.palantir.pack.<assetName>.<documentTypeName>.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+  };
+}
+
+/**
+   * The provided Document Type Version is invalid. The version must follow semantic versioning format
+<major>.<minor>.<patch> where each part is a non-negative integer, and must be strictly increasing
+from the current version.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidDocumentTypeVersion {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDocumentTypeVersion";
+  errorDescription:
+    "The provided Document Type Version is invalid. The version must follow semantic versioning format <major>.<minor>.<patch> where each part is a non-negative integer, and must be strictly increasing from the current version.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+    version: unknown;
   };
 }
 

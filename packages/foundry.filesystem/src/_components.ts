@@ -32,6 +32,25 @@ export interface AccessRequirements {
 }
 
 /**
+ * A request to add an external resource as a reference to a project
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddExternalResourceReferenceRequest {
+  resourceRid: string;
+  importName: string;
+}
+
+/**
+ * A request to add a resource from the filesystem as a reference to a project
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddFilesystemResourceReferenceRequest {
+  resourceRid: ResourceRid;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface AddMarkingsRequest {
@@ -44,6 +63,22 @@ export interface AddMarkingsRequest {
 export interface AddOrganizationsRequest {
   organizationRids: Array<_Core.OrganizationRid>;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AddProjectResourceReferencesRequest {
+  resources: Array<AddResourceReferenceRequest>;
+}
+
+/**
+ * A request to add a resource as a reference to a project
+ *
+ * Log Safety: UNSAFE
+ */
+export type AddResourceReferenceRequest =
+  | ({ type: "external" } & AddExternalResourceReferenceRequest)
+  | ({ type: "filesystem" } & AddFilesystemResourceReferenceRequest);
 
 /**
  * Log Safety: SAFE
@@ -228,6 +263,14 @@ export interface ListOrganizationsOfProjectResponse {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListProjectResourceReferencesResponse {
+  data: Array<ProjectResourceReference>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListResourceRolesResponse {
   data: Array<ResourceRole>;
   nextPageToken?: _Core.PageToken;
@@ -307,11 +350,61 @@ export interface Project {
 }
 
 /**
+ * A reference to a resource that exists outside of the Foundry filesystem such as a spark profile or an LLM model.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ProjectExternalResourceReference {
+  resourceRid: string;
+  name: string;
+  importedAt: string;
+  importedBy: _Core.UserId;
+}
+
+/**
+ * A reference to a resource that exists within another project
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ProjectFilesystemResourceReference {
+  resourceRid: ResourceRid;
+  name: string;
+  importedAt: string;
+  importedBy: _Core.UserId;
+}
+
+/**
  * Whether role grants are allowed on individual resources within the Project.
  *
  * Log Safety: SAFE
  */
 export type ProjectResourceLevelRoleGrantsAllowed = boolean;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ProjectResourceReference {
+  reference: ProjectResourceReferenceUnion;
+}
+
+/**
+   * A type of resource that has been referenced. A FILESYSTEM resource is anything that you can find in a Foundry
+file tree within a project. An EXTERNAL resource exists outside of the Foundry filesystem, such as a spark
+profile or an LLM model.
+   *
+   * Log Safety: SAFE
+   */
+export type ProjectResourceReferenceType = "EXTERNAL" | "FILESYSTEM";
+
+/**
+   * A reference represents a resource from outside of
+the current project that has been imported to the given project.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ProjectResourceReferenceUnion =
+  | ({ type: "external" } & ProjectExternalResourceReference)
+  | ({ type: "filesystem" } & ProjectFilesystemResourceReference);
 
 /**
  * The unique resource identifier (RID) of a Project.
@@ -357,6 +450,13 @@ export interface RemoveMarkingsRequest {
  */
 export interface RemoveOrganizationsRequest {
   organizationRids: Array<_Core.OrganizationRid>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface RemoveProjectResourceReferencesRequest {
+  resources: Array<string>;
 }
 
 /**

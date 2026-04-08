@@ -65,6 +65,21 @@ export interface AddOrganizationsPermissionDenied {
 }
 
 /**
+ * Could not add the ProjectResourceReference.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddProjectResourceReferencesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddProjectResourceReferencesPermissionDenied";
+  errorDescription: "Could not add the ProjectResourceReference.";
+  errorInstanceId: string;
+  parameters: {
+    projectRid: unknown;
+  };
+}
+
+/**
  * Could not add the ResourceRole.
  *
  * Log Safety: UNSAFE
@@ -497,6 +512,39 @@ export interface InvalidPrincipalIdsForGroupTemplate {
 }
 
 /**
+ * The provided resource identifier does not refer to a valid project.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidProject {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidProject";
+  errorDescription:
+    "The provided resource identifier does not refer to a valid project.";
+  errorInstanceId: string;
+  parameters: {
+    projectRid: unknown;
+  };
+}
+
+/**
+   * The resource reference is invalid. This can occur when the resource identifier is malformed,
+the resource type does not match the reference type, or the resource cannot be added as a reference.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidResourceReference {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidResourceReference";
+  errorDescription:
+    "The resource reference is invalid. This can occur when the resource identifier is malformed, the resource type does not match the reference type, or the resource cannot be added as a reference.";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
+
+/**
  * A roleId referenced in either default roles or role grants does not exist in the project role set for the space.
  *
  * Log Safety: SAFE
@@ -789,6 +837,21 @@ export interface RemoveOrganizationsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveOrganizationsPermissionDenied";
   errorDescription: "Could not removeOrganizations the Project.";
+  errorInstanceId: string;
+  parameters: {
+    projectRid: unknown;
+  };
+}
+
+/**
+ * Could not remove the ProjectResourceReference.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveProjectResourceReferencesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveProjectResourceReferencesPermissionDenied";
+  errorDescription: "Could not remove the ProjectResourceReference.";
   errorInstanceId: string;
   parameters: {
     projectRid: unknown;
