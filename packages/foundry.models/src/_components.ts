@@ -1046,10 +1046,11 @@ export type ParameterValue =
   | ({ type: "integer" } & IntegerParameter);
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface PromoteVersionModelRequest {
   sourceModelVersionRid: ModelVersionRid;
+  branch?: _Core.BranchName;
 }
 
 /**

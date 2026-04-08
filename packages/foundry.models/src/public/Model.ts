@@ -89,7 +89,7 @@ const _promoteVersion: $FoundryPlatformMethod<
 > = [1, "/v2/models/{0}/promoteVersion", 3];
 
 /**
- * Promotes an existing Model Version to the target Model. The promoted Model Version will be copied to the target Model as the latest version on the master branch, but will have a new Model Version RID.
+ * Promotes an existing Model Version to the target Model. The promoted Model Version will be copied to the target Model as the latest version on the specified branch, but will have a new Model Version RID.
  *
  * @beta
  *

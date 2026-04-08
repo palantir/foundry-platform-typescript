@@ -766,6 +766,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.addPrimaryKey": {
       "variables": {},
     },
+    "v2.getMcpServer": {
+      "variables": {},
+    },
     "v2.deleteResource": {
       "variables": {},
     },
@@ -842,6 +845,15 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.listOrganizationsOfProject": {
+      "variables": {},
+    },
+    "v2.listProjectResourceReferences": {
+      "variables": {},
+    },
+    "v2.addProjectResourceReferences": {
+      "variables": {},
+    },
+    "v2.removeProjectResourceReferences": {
       "variables": {},
     },
     "v2.createSpace": {
@@ -1160,6 +1172,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.createDocumentType": {
+      "variables": {},
+    },
+    "v2.createFirstPartyDocumentType": {
       "variables": {},
     },
     "v2.createDocument": {

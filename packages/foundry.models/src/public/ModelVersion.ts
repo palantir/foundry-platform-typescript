@@ -60,6 +60,7 @@ const _list: $FoundryPlatformMethod<
   (
     modelRid: _Models.ModelRid,
     $queryParams?: {
+      branch?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -81,6 +82,7 @@ export function list(
     modelRid: _Models.ModelRid,
 
     $queryParams?: {
+      branch?: _Core.BranchName | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
