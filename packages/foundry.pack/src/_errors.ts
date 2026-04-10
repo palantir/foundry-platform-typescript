@@ -168,6 +168,21 @@ export interface DocumentTypeNameNotFound {
 }
 
 /**
+ * The given DocumentType could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface DocumentTypeNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "DocumentTypeNotFound";
+  errorDescription: "The given DocumentType could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeRid: unknown;
+  };
+}
+
+/**
    * The provided Document Type Name is invalid. First-party document type names must follow the format
 com.palantir.pack.<assetName>.<documentTypeName>.
    *
@@ -201,6 +216,19 @@ export interface InvalidDocumentTypeVersion {
     documentTypeName: unknown;
     version: unknown;
   };
+}
+
+/**
+ * Could not loadByName the DocumentType.
+ *
+ * Log Safety: SAFE
+ */
+export interface LoadByNameDocumentTypesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "LoadByNameDocumentTypesPermissionDenied";
+  errorDescription: "Could not loadByName the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**

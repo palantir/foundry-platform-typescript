@@ -32,8 +32,8 @@ import type * as _Widgets from "../_components.js";
 const _enable: $FoundryPlatformMethod<
   ($queryParams?: {
     preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Widgets.DevModeSettings>
-> = [1, "/v2/widgets/devModeSettings/enable", 2];
+  }) => Promise<_Widgets.DevModeSettingsV2>
+> = [1, "/v2/widgets/devModeSettingsV2/enable", 2];
 
 /**
  * Enable dev mode for the user associated with the provided token.
@@ -41,37 +41,50 @@ const _enable: $FoundryPlatformMethod<
  * @alpha
  *
  * Required Scopes: [api:widgets-write]
- * URL: /v2/widgets/devModeSettings/enable
+ * URL: /v2/widgets/devModeSettingsV2/enable
  */
 export function enable(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
-): Promise<_Widgets.DevModeSettings> {
+): Promise<_Widgets.DevModeSettingsV2> {
   return $foundryPlatformFetch($ctx, _enable, ...args);
 }
 
-const _setWidgetSetById: $FoundryPlatformMethod<
+const _setWidgetSetManifest: $FoundryPlatformMethod<
   (
-    $body: _Widgets.SetWidgetSetDevModeSettingsByIdRequest,
+    $body: _Widgets.SetWidgetSetManifestDevModeSettingsV2Request,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Widgets.DevModeSettings>
-> = [1, "/v2/widgets/devModeSettings/setWidgetSetById", 3];
+  ) => Promise<_Widgets.DevModeSettingsV2>
+> = [1, "/v2/widgets/devModeSettingsV2/setWidgetSetManifest", 3];
 
 /**
- * Set the dev mode settings for the given widget set for the user associated with the
- * provided token. Uses widget IDs to identify widgets within the set.
+ * Set the dev mode settings for the given widget set using the manifest format.
+ * The request body is a dev settings manifest JSON object with the following
+ * structure:
+ *
+ * {
+ * "manifestVersion": "1.0.0",
+ * "devSettings": {
+ * "baseHref": "...",
+ * "widgets": { ... },
+ * "inputSpec": { ... }
+ * }
+ * }
+ *
+ * See https://github.com/palantir/osdk-ts for the widget library API types for the
+ * dev settings manifest.
  *
  * @alpha
  *
  * Required Scopes: [api:widgets-write]
- * URL: /v2/widgets/devModeSettings/setWidgetSetById
+ * URL: /v2/widgets/devModeSettingsV2/setWidgetSetManifest
  */
-export function setWidgetSetById(
+export function setWidgetSetManifest(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    $body: _Widgets.SetWidgetSetDevModeSettingsByIdRequest,
+    $body: _Widgets.SetWidgetSetManifestDevModeSettingsV2Request,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_Widgets.DevModeSettings> {
-  return $foundryPlatformFetch($ctx, _setWidgetSetById, ...args);
+): Promise<_Widgets.DevModeSettingsV2> {
+  return $foundryPlatformFetch($ctx, _setWidgetSetManifest, ...args);
 }

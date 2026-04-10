@@ -235,6 +235,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getOutgoingLinkTypeV2": {
       "variables": {},
     },
+    "v2.getOutgoingLinkTypesByObjectTypeRidBatch": {
+      "variables": {},
+    },
     "v2.listObjectsV2": {
       "variables": {},
     },
@@ -406,22 +409,16 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.publishRelease": {
       "variables": {},
     },
-    "v2.getDevModeSettings": {
-      "variables": {},
-    },
     "v2.enableDevModeSettings": {
       "variables": {},
     },
-    "v2.pauseDevModeSettings": {
-      "variables": {},
-    },
-    "v2.disableDevModeSettings": {
-      "variables": {},
-    },
-    "v2.setWidgetSetDevModeSettings": {
-      "variables": {},
-    },
     "v2.setWidgetSetDevModeSettingsById": {
+      "variables": {},
+    },
+    "v2.enableDevModeSettingsV2": {
+      "variables": {},
+    },
+    "v2.setWidgetSetManifestDevModeSettingsV2": {
       "variables": {},
     },
     "v2.getAgent": {
@@ -1087,6 +1084,24 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.parquetExperimentArtifactTable": {
       "variables": {},
     },
+    "v2.createModelFunction": {
+      "variables": {},
+    },
+    "v2.getModelFunction": {
+      "variables": {},
+    },
+    "v2.replaceModelFunction": {
+      "variables": {},
+    },
+    "v2.createLiveDeployment": {
+      "variables": {},
+    },
+    "v2.getLiveDeployment": {
+      "variables": {},
+    },
+    "v2.replaceLiveDeployment": {
+      "variables": {},
+    },
     "v2.transformJsonLiveDeployment": {
       "variables": {},
     },
@@ -1172,6 +1187,12 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.createDocumentType": {
+      "variables": {},
+    },
+    "v2.getDocumentType": {
+      "variables": {},
+    },
+    "v2.loadByNameDocumentTypes": {
       "variables": {},
     },
     "v2.createFirstPartyDocumentType": {

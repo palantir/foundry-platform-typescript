@@ -37,7 +37,7 @@ const _create: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documentTypes", 3];
 
 /**
- * Creates a new DocumentType.
+ * Creates a PACK Document Type with the provided schema and metadata.
  *
  * @alpha
  *
@@ -52,6 +52,57 @@ export function create(
   ]
 ): Promise<_Pack.DocumentType> {
   return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
+const _get: $FoundryPlatformMethod<
+  (
+    documentTypeRid: _Pack.DocumentTypeRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.DocumentType>
+> = [0, "/v2/pack/documentTypes/{0}", 2];
+
+/**
+ * Get the DocumentType with the specified rid.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documentTypes/{documentTypeRid}
+ */
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    documentTypeRid: _Pack.DocumentTypeRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.DocumentType> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _loadByName: $FoundryPlatformMethod<
+  (
+    $body: _Pack.LoadByNameDocumentTypesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.DocumentType>
+> = [1, "/v2/pack/documentTypes/loadByName", 3];
+
+/**
+ * Loads the PACK Document Type's metadata and schema by the provided Document Type Name.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documentTypes/loadByName
+ */
+export function loadByName(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.LoadByNameDocumentTypesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.DocumentType> {
+  return $foundryPlatformFetch($ctx, _loadByName, ...args);
 }
 
 const _createFirstParty: $FoundryPlatformMethod<

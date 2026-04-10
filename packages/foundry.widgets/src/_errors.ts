@@ -35,32 +35,6 @@ export interface DeleteReleasePermissionDenied {
 }
 
 /**
- * The given DevModeSettings could not be found.
- *
- * Log Safety: SAFE
- */
-export interface DevModeSettingsNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "DevModeSettingsNotFound";
-  errorDescription: "The given DevModeSettings could not be found.";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
- * Could not disable the DevModeSettings.
- *
- * Log Safety: SAFE
- */
-export interface DisableDevModeSettingsPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "DisableDevModeSettingsPermissionDenied";
-  errorDescription: "Could not disable the DevModeSettings.";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
  * Could not enable the DevModeSettings.
  *
  * Log Safety: SAFE
@@ -69,6 +43,19 @@ export interface EnableDevModeSettingsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "EnableDevModeSettingsPermissionDenied";
   errorDescription: "Could not enable the DevModeSettings.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not enable the DevModeSettingsV2.
+ *
+ * Log Safety: SAFE
+ */
+export interface EnableDevModeSettingsV2PermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "EnableDevModeSettingsV2PermissionDenied";
+  errorDescription: "Could not enable the DevModeSettingsV2.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -105,20 +92,6 @@ export interface FileSizeLimitExceeded {
     currentFileSizeBytes: unknown;
     currentFilePath: unknown;
   };
-}
-
-/**
- * The provided token does not have permission to access dev mode settings.
- *
- * Log Safety: SAFE
- */
-export interface GetDevModeSettingsPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "GetDevModeSettingsPermissionDenied";
-  errorDescription:
-    "The provided token does not have permission to access dev mode settings.";
-  errorInstanceId: string;
-  parameters: {};
 }
 
 /**
@@ -377,16 +350,15 @@ export interface InvalidFilePath {
 }
 
 /**
-   * The manifest file in the .zip archive at the path .palantir/widgets.config.json
-could not be found or is not well formed.
-   *
-   * Log Safety: UNSAFE
-   */
+ * The provided manifest could not be parsed or is not well formed.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface InvalidManifest {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidManifest";
   errorDescription:
-    "The manifest file in the .zip archive at the path .palantir/widgets.config.json could not be found or is not well formed.";
+    "The provided manifest could not be parsed or is not well formed.";
   errorInstanceId: string;
   parameters: {
     reason: unknown;
@@ -604,19 +576,6 @@ export interface OntologySdkNotFound {
 }
 
 /**
- * Could not pause the DevModeSettings.
- *
- * Log Safety: SAFE
- */
-export interface PauseDevModeSettingsPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "PauseDevModeSettingsPermissionDenied";
-  errorDescription: "Could not pause the DevModeSettings.";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
  * Could not publish the Repository.
  *
  * Log Safety: SAFE
@@ -676,14 +635,14 @@ export interface SetWidgetSetDevModeSettingsByIdPermissionDenied {
 }
 
 /**
- * Could not setWidgetSet the DevModeSettings.
+ * Could not setWidgetSetManifest the DevModeSettingsV2.
  *
  * Log Safety: SAFE
  */
-export interface SetWidgetSetDevModeSettingsPermissionDenied {
+export interface SetWidgetSetManifestDevModeSettingsV2PermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "SetWidgetSetDevModeSettingsPermissionDenied";
-  errorDescription: "Could not setWidgetSet the DevModeSettings.";
+  errorName: "SetWidgetSetManifestDevModeSettingsV2PermissionDenied";
+  errorDescription: "Could not setWidgetSetManifest the DevModeSettingsV2.";
   errorInstanceId: string;
   parameters: {};
 }

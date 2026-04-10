@@ -31,26 +31,28 @@ import type * as _Models from "../_components.js";
 
 const _create: $FoundryPlatformMethod<
   (
-    $body: _Models.CreateLiveDeploymentRequest,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+    $body: _Models.CreateModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Models.LiveDeployment>
-> = [1, "/v2/models/liveDeployments", 3];
+  ) => Promise<_Models.ModelFunction>
+> = [1, "/v2/models/liveDeployments/{0}/function", 3];
 
 /**
- * Creates a new live deployment for a model version with the specified runtime configuration. The deployment will begin provisioning compute resources and deploying the target model version.
+ * Creates a function for the live deployment.
  *
  * @alpha
  *
  * Required Scopes: [api:models-write]
- * URL: /v2/models/liveDeployments
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/function
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    $body: _Models.CreateLiveDeploymentRequest,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+    $body: _Models.CreateModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_Models.LiveDeployment> {
+): Promise<_Models.ModelFunction> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
@@ -58,16 +60,16 @@ const _get: $FoundryPlatformMethod<
   (
     liveDeploymentRid: _Models.LiveDeploymentRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Models.LiveDeployment>
-> = [0, "/v2/models/liveDeployments/{0}", 2];
+  ) => Promise<_Models.ModelFunction>
+> = [0, "/v2/models/liveDeployments/{0}/function", 2];
 
 /**
- * Retrieves a live deployment by its Resource Identifier (RID), including its deployed model version and runtime configuration.
+ * Gets the function for the live deployment.
  *
  * @alpha
  *
  * Required Scopes: [api:models-read]
- * URL: /v2/models/liveDeployments/{liveDeploymentRid}
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/function
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
@@ -76,60 +78,33 @@ export function get(
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_Models.LiveDeployment> {
+): Promise<_Models.ModelFunction> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
 const _replace: $FoundryPlatformMethod<
   (
     liveDeploymentRid: _Models.LiveDeploymentRid,
-    $body: _Models.ReplaceLiveDeploymentRequest,
+    $body: _Models.ReplaceModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Models.LiveDeployment>
-> = [2, "/v2/models/liveDeployments/{0}", 3];
+  ) => Promise<_Models.ModelFunction>
+> = [2, "/v2/models/liveDeployments/{0}/function", 3];
 
 /**
- * Updates the runtime configuration of the live deployment. The deployment will apply the new configuration to the running replicas.
+ * Replaces the function for the live deployment.
  *
  * @alpha
  *
  * Required Scopes: [api:models-write]
- * URL: /v2/models/liveDeployments/{liveDeploymentRid}
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/function
  */
 export function replace(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     liveDeploymentRid: _Models.LiveDeploymentRid,
-    $body: _Models.ReplaceLiveDeploymentRequest,
+    $body: _Models.ReplaceModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_Models.LiveDeployment> {
+): Promise<_Models.ModelFunction> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
-}
-
-const _transformJson: $FoundryPlatformMethod<
-  (
-    liveDeploymentRid: _Models.LiveDeploymentRid,
-    $body: _Models.TransformJsonLiveDeploymentRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Models.TransformLiveDeploymentResponse>
-> = [1, "/v2/models/liveDeployments/{0}/transformJson", 3];
-
-/**
- * Performs inference on the live deployment.
- *
- * @beta
- *
- * Required Scopes: [api:models-execute]
- * URL: /v2/models/liveDeployments/{liveDeploymentRid}/transformJson
- */
-export function transformJson(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    liveDeploymentRid: _Models.LiveDeploymentRid,
-    $body: _Models.TransformJsonLiveDeploymentRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_Models.TransformLiveDeploymentResponse> {
-  return $foundryPlatformFetch($ctx, _transformJson, ...args);
 }
