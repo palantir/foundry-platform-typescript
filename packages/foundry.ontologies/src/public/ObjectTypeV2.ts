@@ -265,3 +265,42 @@ export function getOutgoingLinkType(
 ): Promise<_Ontologies.LinkTypeSideV2> {
   return $foundryPlatformFetch($ctx, _getOutgoingLinkType, ...args);
 }
+
+const _getOutgoingLinkTypesByObjectTypeRidBatch: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchRequest,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ) => Promise<_Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchResponse>
+> = [1, "/v2/ontologies/{0}/outgoingLinkTypes/getByRidBatch", 3];
+
+/**
+ * Gets outgoing link types for a batch of object types, identified by their RIDs.
+ *
+ * For each requested object type, returns the list of outgoing link types visible to the
+ * requesting token. Optionally, results can be filtered to only include specific link type RIDs.
+ *
+ * Object types that don't exist or that the requesting token lacks permissions for are
+ * silently omitted from the response.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/outgoingLinkTypes/getByRidBatch
+ */
+export function getOutgoingLinkTypesByObjectTypeRidBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchRequest,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ]
+): Promise<_Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchResponse> {
+  return $foundryPlatformFetch(
+    $ctx,
+    _getOutgoingLinkTypesByObjectTypeRidBatch,
+    ...args,
+  );
+}

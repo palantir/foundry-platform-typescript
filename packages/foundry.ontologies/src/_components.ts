@@ -2046,6 +2046,28 @@ export interface GetObjectTypeByRidBatchResponse {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface GetOutgoingLinkTypesByObjectTypeRidBatchRequest {
+  requests: Array<GetOutgoingLinkTypesByObjectTypeRidBatchRequestElement>;
+  filterLinkTypeRids: Array<LinkTypeRid>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetOutgoingLinkTypesByObjectTypeRidBatchRequestElement {
+  objectTypeRid: ObjectTypeRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetOutgoingLinkTypesByObjectTypeRidBatchResponse {
+  data: Record<ObjectTypeRid, Array<LinkTypeSideV2>>;
+}
+
+/**
    * Gets a single value of a property. Throws if the target object set is on the MANY side of the link and could
 explode the cardinality.
 Use collectList or collectSet which will return a list of values in that case.

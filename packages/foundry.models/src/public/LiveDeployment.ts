@@ -29,6 +29,84 @@ import type * as _Models from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _Models.CreateLiveDeploymentRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Models.LiveDeployment>
+> = [1, "/v2/models/liveDeployments", 3];
+
+/**
+ * Creates a new live deployment for a model version with the specified runtime configuration. The deployment will begin provisioning compute resources and deploying the target model version.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:models-write]
+ * URL: /v2/models/liveDeployments
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Models.CreateLiveDeploymentRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Models.LiveDeployment> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
+const _get: $FoundryPlatformMethod<
+  (
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Models.LiveDeployment>
+> = [0, "/v2/models/liveDeployments/{0}", 2];
+
+/**
+ * Retrieves a live deployment by its Resource Identifier (RID), including its deployed model version and runtime configuration.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:models-read]
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}
+ */
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Models.LiveDeployment> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _replace: $FoundryPlatformMethod<
+  (
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+    $body: _Models.ReplaceLiveDeploymentRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Models.LiveDeployment>
+> = [2, "/v2/models/liveDeployments/{0}", 3];
+
+/**
+ * Updates the runtime configuration of the live deployment. The deployment will apply the new configuration to the running replicas.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:models-write]
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+    $body: _Models.ReplaceLiveDeploymentRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Models.LiveDeployment> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}
+
 const _transformJson: $FoundryPlatformMethod<
   (
     liveDeploymentRid: _Models.LiveDeploymentRid,

@@ -52,6 +52,34 @@ export interface CreateConfigValidationError {
 }
 
 /**
+ * Could not create the LiveDeployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateLiveDeploymentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateLiveDeploymentPermissionDenied";
+  errorDescription: "Could not create the LiveDeployment.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not create the ModelFunction.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateModelFunctionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateModelFunctionPermissionDenied";
+  errorDescription: "Could not create the ModelFunction.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
  * Could not create the Model.
  *
  * Log Safety: SAFE
@@ -158,6 +186,39 @@ export interface ExperimentSeriesNotFound {
 }
 
 /**
+ * A function already exists for this live deployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface FunctionAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "FunctionAlreadyExists";
+  errorDescription: "A function already exists for this live deployment.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
+   * The requested GPU type is not available. Use a GPU type that is available in
+the deployment's resource queue.
+   *
+   * Log Safety: SAFE
+   */
+export interface GpuTypeNotAvailable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "GpuTypeNotAvailable";
+  errorDescription:
+    "The requested GPU type is not available. Use a GPU type that is available in the deployment's resource queue.";
+  errorInstanceId: string;
+  parameters: {
+    requestedGpuType: unknown;
+    availableGpuTypes: unknown;
+  };
+}
+
+/**
    * The inference request failed due to a model execution error or unexpected internal issue.
 This typically indicates a problem with the model itself rather than the input data.
    *
@@ -224,6 +285,39 @@ export interface InvalidExperimentSearchFilter {
   errorInstanceId: string;
   parameters: {
     reason: unknown;
+  };
+}
+
+/**
+ * The provided API name for the function is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidFunctionApiName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidFunctionApiName";
+  errorDescription: "The provided API name for the function is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    apiName: unknown;
+  };
+}
+
+/**
+   * The GPU count is invalid. The GPU count must be between 1 and the maximum allowed
+for the requested GPU type.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidGpuCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidGpuCount";
+  errorDescription:
+    "The GPU count is invalid. The GPU count must be between 1 and the maximum allowed for the requested GPU type.";
+  errorInstanceId: string;
+  parameters: {
+    providedGpuCount: unknown;
+    maxGpuCount: unknown;
   };
 }
 
@@ -337,6 +431,23 @@ export interface LiveDeploymentNotFound {
 }
 
 /**
+ * The model API contains a data type that is not supported for Ontology function creation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ModelApiTypeUnsupportedForFunction {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ModelApiTypeUnsupportedForFunction";
+  errorDescription:
+    "The model API contains a data type that is not supported for Ontology function creation.";
+  errorInstanceId: string;
+  parameters: {
+    fieldName: unknown;
+    unsupportedType: unknown;
+  };
+}
+
+/**
  * The requested experiment was not found or the user lacks permission to access it.
  *
  * Log Safety: SAFE
@@ -350,6 +461,21 @@ export interface ModelExperimentNotFound {
   parameters: {
     modelRid: unknown;
     experimentRid: unknown;
+  };
+}
+
+/**
+ * The given ModelFunction could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ModelFunctionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ModelFunctionNotFound";
+  errorDescription: "The given ModelFunction could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
   };
 }
 
@@ -432,6 +558,35 @@ export interface ModelVersionNotFound {
 }
 
 /**
+ * An ontologyBinding is required when creating or replacing a model function.
+ *
+ * Log Safety: SAFE
+ */
+export interface OntologyBindingRequired {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OntologyBindingRequired";
+  errorDescription:
+    "An ontologyBinding is required when creating or replacing a model function.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The specified ontology was not found.
+ *
+ * Log Safety: SAFE
+ */
+export interface OntologyNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "OntologyNotFound";
+  errorDescription: "The specified ontology was not found.";
+  errorInstanceId: string;
+  parameters: {
+    ontologyRid: unknown;
+  };
+}
+
+/**
  * Could not parquet the ExperimentArtifactTable.
  *
  * Log Safety: UNSAFE
@@ -481,6 +636,36 @@ export interface PromoteVersionModelPermissionDenied {
 }
 
 /**
+ * Could not replace the LiveDeployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceLiveDeploymentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceLiveDeploymentPermissionDenied";
+  errorDescription: "Could not replace the LiveDeployment.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
+ * Could not replace the ModelFunction.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceModelFunctionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceModelFunctionPermissionDenied";
+  errorDescription: "Could not replace the ModelFunction.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
  * Could not search the Experiment.
  *
  * Log Safety: SAFE
@@ -492,6 +677,23 @@ export interface SearchExperimentsPermissionDenied {
   errorInstanceId: string;
   parameters: {
     modelRid: unknown;
+  };
+}
+
+/**
+ * The specified thread count exceeds the maximum allowed value.
+ *
+ * Log Safety: SAFE
+ */
+export interface ThreadCountTooHigh {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ThreadCountTooHigh";
+  errorDescription:
+    "The specified thread count exceeds the maximum allowed value.";
+  errorInstanceId: string;
+  parameters: {
+    maxThreadCount: unknown;
+    providedThreadCount: unknown;
   };
 }
 
@@ -523,6 +725,19 @@ export interface TransformJsonLiveDeploymentPermissionDenied {
   parameters: {
     liveDeploymentRid: unknown;
   };
+}
+
+/**
+ * The Live Deployment type is not supported by the API.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedLiveDeployment {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedLiveDeployment";
+  errorDescription: "The Live Deployment type is not supported by the API.";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**

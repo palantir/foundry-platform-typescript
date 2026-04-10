@@ -29,27 +29,6 @@ import type * as _Widgets from "../_components.js";
 
 //
 
-const _get: $FoundryPlatformMethod<
-  ($queryParams?: {
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Widgets.DevModeSettings>
-> = [0, "/v2/widgets/devModeSettings", 2];
-
-/**
- * Get the dev mode settings for the user associated with the provided token.
- *
- * @alpha
- *
- * Required Scopes: [api:widgets-read]
- * URL: /v2/widgets/devModeSettings
- */
-export function get(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
-): Promise<_Widgets.DevModeSettings> {
-  return $foundryPlatformFetch($ctx, _get, ...args);
-}
-
 const _enable: $FoundryPlatformMethod<
   ($queryParams?: {
     preview?: _Core.PreviewMode | undefined;
@@ -69,73 +48,6 @@ export function enable(
   ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
 ): Promise<_Widgets.DevModeSettings> {
   return $foundryPlatformFetch($ctx, _enable, ...args);
-}
-
-const _pause: $FoundryPlatformMethod<
-  ($queryParams?: {
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Widgets.DevModeSettings>
-> = [1, "/v2/widgets/devModeSettings/pause", 2];
-
-/**
- * Pause dev mode for the user associated with the provided token.
- *
- * @alpha
- *
- * Required Scopes: [api:widgets-write]
- * URL: /v2/widgets/devModeSettings/pause
- */
-export function pause(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
-): Promise<_Widgets.DevModeSettings> {
-  return $foundryPlatformFetch($ctx, _pause, ...args);
-}
-
-const _disable: $FoundryPlatformMethod<
-  ($queryParams?: {
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Widgets.DevModeSettings>
-> = [1, "/v2/widgets/devModeSettings/disable", 2];
-
-/**
- * Disable dev mode for the user associated with the provided token.
- *
- * @alpha
- *
- * Required Scopes: [api:widgets-write]
- * URL: /v2/widgets/devModeSettings/disable
- */
-export function disable(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
-): Promise<_Widgets.DevModeSettings> {
-  return $foundryPlatformFetch($ctx, _disable, ...args);
-}
-
-const _setWidgetSet: $FoundryPlatformMethod<
-  (
-    $body: _Widgets.SetWidgetSetDevModeSettingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Widgets.DevModeSettings>
-> = [1, "/v2/widgets/devModeSettings/setWidgetSet", 3];
-
-/**
- * Set the dev mode settings for the given widget set for the user associated with the provided token.
- *
- * @alpha
- *
- * Required Scopes: [api:widgets-write]
- * URL: /v2/widgets/devModeSettings/setWidgetSet
- */
-export function setWidgetSet(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Widgets.SetWidgetSetDevModeSettingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_Widgets.DevModeSettings> {
-  return $foundryPlatformFetch($ctx, _setWidgetSet, ...args);
 }
 
 const _setWidgetSetById: $FoundryPlatformMethod<

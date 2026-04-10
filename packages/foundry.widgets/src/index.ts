@@ -16,9 +16,15 @@
 
 export type {
   DevModeSettings,
+  DevModeSettingsV2,
+  DevModeSnapshot,
+  DevModeSnapshotId,
   DevModeStatus,
   FilePath,
   ListReleasesResponse,
+  OntologySdkInputSpec,
+  OntologySdkPackageRid,
+  OntologySdkVersion,
   Release,
   ReleaseLocator,
   ReleaseVersion,
@@ -28,24 +34,25 @@ export type {
   ScriptEntrypoint,
   ScriptType,
   SetWidgetSetDevModeSettingsByIdRequest,
-  SetWidgetSetDevModeSettingsRequest,
+  SetWidgetSetManifestDevModeSettingsV2Request,
   StylesheetEntrypoint,
   WidgetDevModeSettings,
+  WidgetDevModeSettingsV2,
   WidgetId,
   WidgetRid,
   WidgetSet,
   WidgetSetDevModeSettings,
   WidgetSetDevModeSettingsById,
+  WidgetSetDevModeSettingsV2,
+  WidgetSetInputSpec,
   WidgetSetRid,
 } from "./_components.js";
 export type {
   DeleteReleasePermissionDenied,
-  DevModeSettingsNotFound,
-  DisableDevModeSettingsPermissionDenied,
   EnableDevModeSettingsPermissionDenied,
+  EnableDevModeSettingsV2PermissionDenied,
   FileCountLimitExceeded,
   FileSizeLimitExceeded,
-  GetDevModeSettingsPermissionDenied,
   InvalidDevModeBaseHref,
   InvalidDevModeEntrypointCssCount,
   InvalidDevModeEntrypointJsCount,
@@ -75,12 +82,11 @@ export type {
   InvalidWidgetId,
   InvalidWidgetName,
   OntologySdkNotFound,
-  PauseDevModeSettingsPermissionDenied,
   PublishReleasePermissionDenied,
   ReleaseNotFound,
   RepositoryNotFound,
   SetWidgetSetDevModeSettingsByIdPermissionDenied,
-  SetWidgetSetDevModeSettingsPermissionDenied,
+  SetWidgetSetManifestDevModeSettingsV2PermissionDenied,
   VersionAlreadyExists,
   VersionLimitExceeded,
   WidgetIdNotFound,
@@ -88,6 +94,7 @@ export type {
   WidgetSetNotFound,
 } from "./_errors.js";
 export * as WidgetsDevModeSettings from "./public/DevModeSettings.js";
+export * as WidgetsDevModeSettingsV2 from "./public/DevModeSettingsV2.js";
 export * as Releases from "./public/Release.js";
 export * as Repositories from "./public/Repository.js";
 export * as WidgetSets from "./public/WidgetSet.js";

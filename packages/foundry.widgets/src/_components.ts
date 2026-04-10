@@ -29,6 +29,32 @@ export interface DevModeSettings {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface DevModeSettingsV2 {
+  status: DevModeStatus;
+  snapshot?: DevModeSnapshot;
+}
+
+/**
+   * A content-addressed snapshot of the dev mode settings. Snapshots are immutable
+and identified by their content-addressed ID.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface DevModeSnapshot {
+  snapshotId: DevModeSnapshotId;
+  widgetSetSettings: Record<WidgetSetRid, WidgetSetDevModeSettingsV2>;
+}
+
+/**
+ * A content-addressed identifier for a dev mode settings snapshot.
+ *
+ * Log Safety: SAFE
+ */
+export type DevModeSnapshotId = LooselyBrandedString<"DevModeSnapshotId">;
+
+/**
  * The user's global development mode status for widget sets.
  *
  * Log Safety: SAFE
@@ -49,6 +75,32 @@ export interface ListReleasesResponse {
   data: Array<Release>;
   nextPageToken?: _Core.PageToken;
 }
+
+/**
+ * A specification of an Ontology SDK used by a widget set.
+ *
+ * Log Safety: SAFE
+ */
+export interface OntologySdkInputSpec {
+  sdkPackageRid: OntologySdkPackageRid;
+  sdkVersion: OntologySdkVersion;
+}
+
+/**
+ * A Resource Identifier (RID) identifying an Ontology SDK package.
+ *
+ * Log Safety: SAFE
+ */
+export type OntologySdkPackageRid = LooselyBrandedString<
+  "OntologySdkPackageRid"
+>;
+
+/**
+ * A limited semver version string of the format major.minor.patch.
+ *
+ * Log Safety: SAFE
+ */
+export type OntologySdkVersion = LooselyBrandedString<"OntologySdkVersion">;
 
 /**
  * Log Safety: UNSAFE
@@ -125,9 +177,9 @@ export interface SetWidgetSetDevModeSettingsByIdRequest {
 /**
  * Log Safety: UNSAFE
  */
-export interface SetWidgetSetDevModeSettingsRequest {
+export interface SetWidgetSetManifestDevModeSettingsV2Request {
   widgetSetRid: WidgetSetRid;
-  settings: WidgetSetDevModeSettings;
+  manifest: any;
 }
 
 /**
@@ -145,6 +197,18 @@ export interface StylesheetEntrypoint {
  * Log Safety: UNSAFE
  */
 export interface WidgetDevModeSettings {
+  scriptEntrypoints: Array<ScriptEntrypoint>;
+  stylesheetEntrypoints: Array<StylesheetEntrypoint>;
+}
+
+/**
+ * The settings for a given widget in development mode (v2).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface WidgetDevModeSettingsV2 {
+  name?: string;
+  description?: string;
   scriptEntrypoints: Array<ScriptEntrypoint>;
   stylesheetEntrypoints: Array<StylesheetEntrypoint>;
 }
@@ -195,6 +259,27 @@ export interface WidgetSetDevModeSettings {
 export interface WidgetSetDevModeSettingsById {
   baseHref: string;
   widgetSettings: Record<WidgetId, WidgetDevModeSettings>;
+}
+
+/**
+ * The settings for a widget set in development mode (v2), keyed by widget ID.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface WidgetSetDevModeSettingsV2 {
+  baseHref: string;
+  inputSpec?: WidgetSetInputSpec;
+  widgetSettings: Record<WidgetId, WidgetDevModeSettingsV2>;
+}
+
+/**
+   * A specification of the Foundry data inputs that a widget set uses. This restricts
+the data access that a widget set has at runtime.
+   *
+   * Log Safety: SAFE
+   */
+export interface WidgetSetInputSpec {
+  sdks: Array<OntologySdkInputSpec>;
 }
 
 /**

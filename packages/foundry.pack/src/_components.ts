@@ -98,8 +98,8 @@ export interface CreateDocumentRequest {
  * Log Safety: UNSAFE
  */
 export interface CreateDocumentTypeRequest {
-  schema?: DocumentTypeSchema;
   parentFolderRid: _Filesystem.FolderRid;
+  schema: DocumentTypeSchema;
   name: DocumentTypeName;
   fileSystemType?: FileSystemType;
 }
@@ -458,8 +458,8 @@ export interface DocumentType {
   rid: DocumentTypeRid;
   name: DocumentTypeName;
   schema?: DocumentTypeSchema;
-  parentFolderRid: _Filesystem.FolderRid;
   fileSystemType?: FileSystemType;
+  version?: SchemaVersion;
 }
 
 /**
@@ -820,6 +820,14 @@ export type IntegerValue = number;
  * Log Safety: SAFE
  */
 export type InterfaceTypeRid = LooselyBrandedString<"InterfaceTypeRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadByNameDocumentTypesRequest {
+  documentTypeName: DocumentTypeName;
+  ontologyRid: string;
+}
 
 /**
  * A UUID representing a Mandatory Marking.

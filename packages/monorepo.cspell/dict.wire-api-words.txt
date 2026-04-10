@@ -2,6 +2,7 @@
 actiontype
 Buildable
 checkpointed
+cooldown
 deindexed
 DREDDIE
 entitymetadata

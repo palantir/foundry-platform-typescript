@@ -16,6 +16,7 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
+import type * as _Ontologies from "@osdk/foundry.ontologies";
 import type * as _Orchestration from "@osdk/foundry.orchestration";
 
 export type LooselyBrandedString<T extends string> = string & {
@@ -102,6 +103,33 @@ export type CreateConfigValidationFailureReason =
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateLiveDeploymentRequest {
+  deploymentType: CreateLiveDeploymentTarget;
+  runtimeConfiguration: LiveDeploymentRuntimeConfiguration;
+}
+
+/**
+ * The target model source for the live deployment. Determines which model and version selection strategy to use when creating the deployment.
+ *
+ * Log Safety: UNSAFE
+ */
+export type CreateLiveDeploymentTarget = {
+  type: "direct";
+} & DirectCreateLiveDeploymentTarget;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateModelFunctionRequest {
+  apiName: ModelFunctionApiName;
+  ontologyBinding?: _Ontologies.OntologyRid;
+  isRowWise: ModelFunctionIsRowWise;
+  displayName: ModelFunctionDisplayName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateModelRequest {
   name: ModelName;
   parentFolderRid: _Filesystem.FolderRid;
@@ -179,6 +207,16 @@ export interface DillModelFiles {
 }
 
 /**
+ * Creates a live deployment that tracks the latest model version on a branch.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DirectCreateLiveDeploymentTarget {
+  modelRid: ModelRid;
+  branch: string;
+}
+
+/**
  * A double parameter value.
  *
  * Log Safety: UNSAFE
@@ -222,6 +260,14 @@ export interface DoubleSeriesValueV1 {
  * Log Safety: SAFE
  */
 export interface DoubleType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface Duration {
+  unit: _Core.TimeUnit;
+  value: number;
+}
 
 /**
    * Milliseconds since unix time zero. This representation is used to maintain consistency with the Parquet
@@ -375,20 +421,20 @@ export interface FieldValidationError {
 export interface FloatType {}
 
 /**
- * The specific type of GPU to use.
+ * The specific type of GPU hardware to use.
  *
  * Log Safety: SAFE
  */
 export type GpuType =
-  | "V100"
-  | "T4"
-  | "A10G"
   | "A100"
+  | "A10G"
+  | "A16"
   | "H100"
   | "H200"
   | "L4"
-  | "A16"
-  | "L40S";
+  | "L40S"
+  | "T4"
+  | "V100";
 
 /**
  * Array elements have inconsistent dimensions.
@@ -520,6 +566,29 @@ export interface ListModelVersionsResponse {
  */
 export interface LiveDeployment {
   rid: LiveDeploymentRid;
+  modelVersion: LiveDeploymentModelVersion;
+  runtimeConfiguration: LiveDeploymentRuntimeConfiguration;
+  status: LiveDeploymentStatus;
+}
+
+/**
+ * GPU resource configuration for a live deployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentGpu {
+  count: number;
+  type?: GpuType;
+}
+
+/**
+ * Identifies the model and model version associated with a live deployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentModelVersion {
+  modelRid: ModelRid;
+  modelVersionRid: ModelVersionRid;
 }
 
 /**
@@ -528,6 +597,61 @@ export interface LiveDeployment {
  * Log Safety: SAFE
  */
 export type LiveDeploymentRid = LooselyBrandedString<"LiveDeploymentRid">;
+
+/**
+ * The compute resource configuration for a live deployment, controlling replica scaling, CPU, memory, and GPU resources.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentRuntimeConfiguration {
+  minReplicas: number;
+  maxReplicas: number;
+  cpu?: number;
+  memory?: string;
+  gpu?: LiveDeploymentGpu;
+  threadCount?: number;
+  scalingConfiguration?: LiveDeploymentScalingConfiguration;
+}
+
+/**
+ * Autoscaling configuration that controls how the deployment scales replicas based on load thresholds and cooldown delays.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentScalingConfiguration {
+  scaleUpLoadThreshold: number;
+  scaleUpDelay: _Core.Duration;
+  scaleDownDelay: _Core.Duration;
+}
+
+/**
+   * The operational state of a live deployment.
+| Value | Description |
+| --- | --- |
+| ACTIVE | The deployment is active. It may have zero replicas due to autoscaling and still not be ready. |
+| STARTING | The deployment is starting up. |
+| DEGRADED | At least one replica is ready, but not all replicas are healthy. |
+| DISABLED | The deployment is disabled. |
+| FAILED | The deployment has failed. No healthy replicas are available. |
+   *
+   * Log Safety: SAFE
+   */
+export type LiveDeploymentState =
+  | "ACTIVE"
+  | "STARTING"
+  | "DEGRADED"
+  | "DISABLED"
+  | "FAILED";
+
+/**
+ * The current operational status of a live deployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentStatus {
+  state: LiveDeploymentState;
+  isReady: boolean;
+}
 
 /**
  * Log Safety: SAFE
@@ -693,6 +817,49 @@ Must be a base64-encoded string of a dill-serialized model function.
    * Log Safety: UNSAFE
    */
 export type ModelFiles = { type: "dill" } & DillModelFiles;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ModelFunction {
+  functionRid: ModelFunctionFunctionRid;
+  functionVersion: ModelFunctionFunctionVersion;
+  displayName: ModelFunctionDisplayName;
+  apiName: ModelFunctionApiName;
+  isRowWise: ModelFunctionIsRowWise;
+  ontologyBinding?: _Ontologies.OntologyRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ModelFunctionApiName = LooselyBrandedString<"ModelFunctionApiName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ModelFunctionDisplayName = LooselyBrandedString<
+  "ModelFunctionDisplayName"
+>;
+
+/**
+ * Log Safety: SAFE
+ */
+export type ModelFunctionFunctionRid = LooselyBrandedString<
+  "ModelFunctionFunctionRid"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ModelFunctionFunctionVersion = LooselyBrandedString<
+  "ModelFunctionFunctionVersion"
+>;
+
+/**
+ * Log Safety: SAFE
+ */
+export type ModelFunctionIsRowWise = boolean;
 
 /**
  * Log Safety: UNSAFE
@@ -981,6 +1148,13 @@ export interface MultiplePropertiesNotAllowedForTrainerError {
 }
 
 /**
+ * The Resource Identifier (RID) of an Ontology.
+ *
+ * Log Safety: SAFE
+ */
+export type OntologyRid = LooselyBrandedString<"OntologyRid">;
+
+/**
  * A validation error that does not match any specific known type.
  *
  * Log Safety: UNSAFE
@@ -1051,6 +1225,22 @@ export type ParameterValue =
 export interface PromoteVersionModelRequest {
   sourceModelVersionRid: ModelVersionRid;
   branch?: _Core.BranchName;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ReplaceLiveDeploymentRequest {
+  runtimeConfiguration: LiveDeploymentRuntimeConfiguration;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceModelFunctionRequest {
+  apiName: ModelFunctionApiName;
+  ontologyBinding?: _Ontologies.OntologyRid;
+  isRowWise: ModelFunctionIsRowWise;
 }
 
 /**
