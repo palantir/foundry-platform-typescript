@@ -4912,6 +4912,7 @@ export interface QueryOutputV2 {
 export interface QueryParameterV2 {
   description?: string;
   dataType: QueryDataType;
+  required: boolean;
 }
 
 /**
