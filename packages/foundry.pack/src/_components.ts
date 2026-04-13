@@ -83,6 +83,17 @@ export interface AllPrincipal {}
 export type ClientId = string;
 
 /**
+   * PACK clients may support a range of document type schema versions. This allows for schema upgrades while
+maintaining cross-client collaboration compatibility.
+   *
+   * Log Safety: SAFE
+   */
+export interface ClientSupportedVersionRange {
+  minVersion: SchemaVersion;
+  maxVersion: SchemaVersion;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface CreateDocumentRequest {
@@ -142,7 +153,6 @@ export interface CreateFirstPartyDocumentTypeResponse {
 export interface CustomPresenceEvent {
   userId: _Core.UserId;
   clientId: ClientId;
-  clientVersion: SchemaVersion;
   eventData: any;
   eventType: string;
   isEphemeral?: boolean;
@@ -217,7 +227,8 @@ required on a subscription request to /documents/{documentId}/activity.
    */
 export interface DocumentActivitySubscriptionRequest {
   clientId: ClientId;
-  clientVersion: SchemaVersion;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
 /**
@@ -360,7 +371,8 @@ required on a subscription request to /documents/{documentId}/presence.
    */
 export interface DocumentPresenceSubscriptionRequest {
   clientId: ClientId;
-  clientVersion: SchemaVersion;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
 /**
@@ -372,7 +384,8 @@ export interface DocumentPublishMessage {
   yjsUpdate: YjsUpdate;
   editId: EditId;
   clientId: ClientId;
-  clientVersion: SchemaVersion;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
   description?: DocumentEditDescription;
 }
 
@@ -495,7 +508,8 @@ export interface DocumentTypeSchema {
 export interface DocumentUpdate {
   update?: YjsUpdate;
   clientId: ClientId;
-  clientVersion: SchemaVersion;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
   revisionId: RevisionId;
   baseRevisionId: RevisionId;
   editIds: Array<EditId>;
@@ -519,7 +533,8 @@ required on a subscription request to /documents/{documentId}/updates
    */
 export interface DocumentUpdateSubscriptionRequest {
   clientId: ClientId;
-  clientVersion: SchemaVersion;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
   lastRevisionId?: RevisionId;
 }
 
@@ -887,7 +902,18 @@ export type PresenceCollaborativeUpdate =
 /**
  * Log Safety: UNSAFE
  */
-export type PresencePublishMessage = { type: "custom" } & CustomPresenceEvent;
+export interface PresencePublishMessage {
+  messageType: PresencePublishMessageType;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type PresencePublishMessageType = {
+  type: "custom";
+} & CustomPresenceEvent;
 
 /**
  * A record model definition with named fields.

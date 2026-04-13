@@ -150,6 +150,7 @@ export type NullableConstraintValue = "NULLABLE" | "NOT_NULLABLE";
 export interface Parameter {
   description?: string;
   dataType: QueryDataType;
+  required: boolean;
 }
 
 /**
