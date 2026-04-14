@@ -1,5 +1,18 @@
 # @osdk/foundry.checkpoints
 
+## 2.59.0
+
+### Minor Changes
+
+- 6e1c00d: regenerate platform sdk
+- f8644e3: regenerate sdk
+
+### Patch Changes
+
+- Updated dependencies [6e1c00d]
+- Updated dependencies [f8644e3]
+  - @osdk/foundry.core@2.59.0
+
 ## 2.58.0
 
 ### Minor Changes
