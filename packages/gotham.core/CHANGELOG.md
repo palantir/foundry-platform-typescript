@@ -1,5 +1,12 @@
 # @osdk/gotham.core
 
+## 0.32.0
+
+### Minor Changes
+
+- 6e1c00d: regenerate platform sdk
+- f8644e3: regenerate sdk
+
 ## 0.31.0
 
 ### Minor Changes

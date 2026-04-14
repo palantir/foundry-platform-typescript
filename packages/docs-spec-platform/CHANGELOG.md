@@ -1,5 +1,12 @@
 # @osdk/docs-spec-platform
 
+## 0.46.0
+
+### Minor Changes
+
+- 6e1c00d: regenerate platform sdk
+- f8644e3: regenerate sdk
+
 ## 0.45.0
 
 ### Minor Changes
