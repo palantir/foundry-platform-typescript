@@ -19,6 +19,7 @@
     }
   },
   "scripts": {
+    "build": "node -e \"if (process.version.startsWith(\\\"v18\\\")) { process.exit(0) } else { process.exit(1) }\" || (rollup -c && api-extractor run)",
     "check-attw": "monorepo.tool.attw esm",
     "check-spelling": "cspell --quiet .",
     "clean": "rm -rf lib dist types build tsconfig.tsbuildinfo",
@@ -57,7 +58,12 @@
     "@osdk/shared.net.platformapi": "workspace:~"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.57.7",
     "@osdk/monorepo.tsconfig": "workspace:~",
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "rollup": "^4.60.0",
     "typescript": "^5.5.4"
   },
   "publishConfig": {

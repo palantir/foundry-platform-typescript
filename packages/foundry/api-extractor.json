@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+  "projectFolder": ".",
+  "mainEntryPointFilePath": "./build/esm/index.d.ts",
+  // A missing package here will cause a build failure.
+  "bundledPackages": [
+    "@osdk/foundry.admin",
+    "@osdk/foundry.aipagents",
+    "@osdk/foundry.audit",
+    "@osdk/foundry.checkpoints",
+    "@osdk/foundry.connectivity",
+    "@osdk/foundry.core",
+    "@osdk/foundry.datahealth",
+    "@osdk/foundry.datasets",
+    "@osdk/foundry.filesystem",
+    "@osdk/foundry.functions",
+    "@osdk/foundry.geo",
+    "@osdk/foundry.languagemodels",
+    "@osdk/foundry.mediasets",
+    "@osdk/foundry.models",
+    "@osdk/foundry.notepad",
+    "@osdk/foundry.ontologies",
+    "@osdk/foundry.operations",
+    "@osdk/foundry.orchestration",
+    "@osdk/foundry.pack",
+    "@osdk/foundry.publicapis",
+    "@osdk/foundry.sqlqueries",
+    "@osdk/foundry.streams",
+    "@osdk/foundry.thirdpartyapplications",
+    "@osdk/foundry.widgets",
+    "@osdk/shared.client",
+    "@osdk/shared.client2",
+    "@osdk/shared.net.platformapi"
+  ],
+  "apiReport": {
+    "enabled": false
+  },
+  "docModel": {
+    "enabled": false
+  },
+  "dtsRollup": {
+    "enabled": true,
+    "untrimmedFilePath": "",
+    "publicTrimmedFilePath": "./dist/foundry-public.d.ts"
+  },
+  "messages": {
+    "extractorMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      },
+      // TODO: Fix this
+      "ae-missing-release-tag": {
+        "logLevel": "none"
+      },
+      "ae-forgotten-export": {
+        "logLevel": "none"
+      }
+    },
+    "tsdocMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      },
+      // TODO: Fix this
+      "tsdoc-escape-right-brace": {
+        "logLevel": "none"
+      },
+      // TODO: Fix this
+      "tsdoc-malformed-inline-tag": {
+        "logLevel": "none"
+      },
+      // TODO: Fix this
+      "tsdoc-escape-greater-than": {
+        "logLevel": "none"
+      },
+      "tsdoc-malformed-html-name": {
+        "logLevel": "none"
+      },
+      "tsdoc-unnecessary-backslash": {
+        "logLevel": "none"
+      }
+    }
+  }
+}
