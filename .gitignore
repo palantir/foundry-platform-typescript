@@ -21,6 +21,7 @@ yarn-error.log*
 lib/
 !**/src/lib/
 build/
+dist/
 tsconfig.tsbuildinfo
 /tmp/
 
