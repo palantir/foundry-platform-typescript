@@ -13,12 +13,45 @@ groups:
   foundry:
     paths:
       - packages/foundry
-      - packages/foundry.*
-      - packages/internal.foundry*
-      - packages/deprecated/*
+      - packages/foundry.admin
+      - packages/foundry.aipagents
+      - packages/foundry.audit
+      - packages/foundry.checkpoints
+      - packages/foundry.connectivity
+      - packages/foundry.core
+      - packages/foundry.datahealth
+      - packages/foundry.datasets
+      - packages/foundry.filesystem
+      - packages/foundry.functions
+      - packages/foundry.geo
+      - packages/foundry.geojson
+      - packages/foundry.languagemodels
+      - packages/foundry.mediasets
+      - packages/foundry.models
+      - packages/foundry.notepad
+      - packages/foundry.ontologies
+      - packages/foundry.operations
+      - packages/foundry.orchestration
+      - packages/foundry.pack
+      - packages/foundry.publicapis
+      - packages/foundry.sqlqueries
+      - packages/foundry.streams
+      - packages/foundry.thirdpartyapplications
+      - packages/foundry.widgets
+      - packages/internal.foundry
+      - packages/internal.foundry.core
+      - packages/internal.foundry.datasets
+      - packages/internal.foundry.geo
+      - packages/internal.foundry.mediasets
+      - packages/internal.foundry.ontologies
+      - packages/internal.foundry.ontologiesv2
     tag_prefix: "@osdk/foundry@"
   gotham:
     paths:
       - packages/gotham
-      - packages/gotham.*
+      - packages/gotham.core
+      - packages/gotham.gaia
+      - packages/gotham.geojson
+      - packages/gotham.maprendering
+      - packages/gotham.targetworkbench
     tag_prefix: "@osdk/gotham@"
