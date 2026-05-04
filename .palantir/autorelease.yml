@@ -4,6 +4,7 @@ options:
   repo_type: PNPM
   package_delimiter: "@"
   release_recommended_groups: true
+  disable_skip_ci: true
 
 groups:
   shared:
