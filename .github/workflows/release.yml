@@ -9,6 +9,10 @@ on:
       - main
       - release/*
       - next
+    tags:
+      - "@osdk/foundry@*"
+      - "@osdk/gotham@*"
+      - "@osdk/shared.net.platformapi@*"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -16,7 +20,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') }}
+    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/tags/@osdk/') }}
     permissions:
       contents: write
       pull-requests: write
