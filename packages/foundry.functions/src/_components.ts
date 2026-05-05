@@ -32,6 +32,13 @@ export interface ArrayConstraint {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface CancelExecutionResponse {
+  id: ExecutionId;
+}
+
+/**
    * Represents the value of data in the following format. Note that these values can be nested, for example an array of structs.
 | Type                        | JSON encoding                                         | Example                                                                       |
 |-----------------------------|-------------------------------------------------------|-------------------------------------------------------------------------------|
@@ -69,6 +76,25 @@ export interface EnumConstraint {
 /**
  * Log Safety: UNSAFE
  */
+export interface ExecuteAsyncQueryRequest {
+  ontology?: _Ontologies.OntologyIdentifier;
+  parameters: Record<ParameterId, DataValue | undefined>;
+  version?: FunctionVersion;
+  branch?: _Core.FoundryBranch;
+}
+
+/**
+ * Response from submitting a query for async execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ExecuteQueryAsyncResponse =
+  | ({ type: "submitted" } & ExecutionSubmitted)
+  | ({ type: "completed" } & ExecutionCompleted);
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ExecuteQueryRequest {
   parameters: Record<ParameterId, DataValue | undefined>;
   version?: FunctionVersion;
@@ -80,6 +106,39 @@ export interface ExecuteQueryRequest {
  */
 export interface ExecuteQueryResponse {
   value: DataValue;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface Execution {
+  id: ExecutionId;
+}
+
+/**
+ * The query completed immediately. No polling needed.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExecutionCompleted {
+  value: DataValue;
+}
+
+/**
+ * Unique identifier for an async query execution.
+ *
+ * Log Safety: SAFE
+ */
+export type ExecutionId = LooselyBrandedString<"ExecutionId">;
+
+/**
+   * The query was submitted for async processing.
+Use the executionId to poll for results via getResult or to cancel via cancel.
+   *
+   * Log Safety: SAFE
+   */
+export interface ExecutionSubmitted {
+  executionId: ExecutionId;
 }
 
 /**
@@ -111,6 +170,22 @@ export interface GetByRidQueriesBatchRequestElement {
  */
 export interface GetByRidQueriesBatchResponse {
   data: Array<Query>;
+}
+
+/**
+ * Poll response for an async query execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GetExecutionResultResponse =
+  | ({ type: "running" } & RunningExecution)
+  | ({ type: "succeeded" } & SucceededExecution);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GetResultExecutionRequest {
+  timeout?: number;
 }
 
 /**
@@ -327,6 +402,13 @@ export interface RegexConstraint {
 export interface RidConstraint {}
 
 /**
+ * The query execution is still in progress.
+ *
+ * Log Safety: SAFE
+ */
+export interface RunningExecution {}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface StreamingExecuteQueryRequest {
@@ -391,6 +473,15 @@ export type StructFieldName = LooselyBrandedString<"StructFieldName">;
  */
 export interface StructV1Constraint {
   fields: Record<StructFieldApiName, ValueTypeConstraint>;
+}
+
+/**
+ * The query execution completed successfully.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SucceededExecution {
+  value: DataValue;
 }
 
 /**

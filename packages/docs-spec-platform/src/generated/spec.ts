@@ -169,19 +169,34 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.streamingExecuteQuery": {
       "variables": {},
     },
+    "v2.executeAsyncQuery": {
+      "variables": {},
+    },
+    "v2.getResultExecution": {
+      "variables": {},
+    },
+    "v2.cancelExecution": {
+      "variables": {},
+    },
     "v2.getValueType": {
       "variables": {},
     },
     "v2.getVersionId": {
       "variables": {},
     },
-    "v2.sync": {
+    "v2.listUsageAccounts": {
       "variables": {},
     },
-    "v2.syncState": {
+    "v2.getUsageAccount": {
       "variables": {},
     },
-    "v2.listActionLog": {
+    "v2.replaceSync": {
+      "variables": {},
+    },
+    "v2.getState": {
+      "variables": {},
+    },
+    "v2.getActions": {
       "variables": {},
     },
     "v2.listOntologiesV2": {
@@ -1009,6 +1024,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.listExecutionsResource": {
       "variables": {},
     },
+    "v2.searchLogs": {
+      "variables": {},
+    },
     "v2.renderInvocationObject": {
       "variables": {},
     },
@@ -1198,6 +1216,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.createFirstPartyDocumentType": {
       "variables": {},
     },
+    "v2.updateSchemaDocumentType": {
+      "variables": {},
+    },
     "v2.createDocument": {
       "variables": {},
     },
@@ -1259,6 +1280,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.renderSymbolMap": {
+      "variables": {},
+    },
+    "v2.addObjectsToMap": {
       "variables": {},
     },
   },

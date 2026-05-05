@@ -21,7 +21,7 @@ export type LooselyBrandedString<T extends string> = string & {
 /**
    * The Agent was unable to produce an answer in the set number of maximum iterations.
 This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex.
-Try a different query or review the Agent configuration in AIP Agent Studio.
+Try a different query or review the Agent configuration in AIP Chatbot Studio.
    *
    * Log Safety: UNSAFE
    */
@@ -29,7 +29,7 @@ export interface AgentIterationsExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AgentIterationsExceededLimit";
   errorDescription:
-    "The Agent was unable to produce an answer in the set number of maximum iterations. This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex. Try a different query or review the Agent configuration in AIP Agent Studio.";
+    "The Agent was unable to produce an answer in the set number of maximum iterations. This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex. Try a different query or review the Agent configuration in AIP Chatbot Studio.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -263,7 +263,7 @@ export interface InvalidAgentVersion {
 
 /**
    * The provided application variable is not valid for the Agent for this session.
-Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio.
+Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio.
 The Agent version used for the session can be checked through the API with getSession.
    *
    * Log Safety: UNSAFE
@@ -272,7 +272,7 @@ export interface InvalidParameter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameter";
   errorDescription:
-    "The provided application variable is not valid for the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio. The Agent version used for the session can be checked through the API with getSession.";
+    "The provided application variable is not valid for the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio. The Agent version used for the session can be checked through the API with getSession.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -283,7 +283,7 @@ export interface InvalidParameter {
 
 /**
    * The provided value does not match the expected type for the application variable configured on the Agent for this session.
-Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio.
+Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio.
 The Agent version used for the session can be checked through the API with getSession.
    *
    * Log Safety: UNSAFE
@@ -292,7 +292,7 @@ export interface InvalidParameterType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameterType";
   errorDescription:
-    "The provided value does not match the expected type for the application variable configured on the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio. The Agent version used for the session can be checked through the API with getSession.";
+    "The provided value does not match the expected type for the application variable configured on the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio. The Agent version used for the session can be checked through the API with getSession.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -318,7 +318,7 @@ export interface ListSessionsForAgentsPermissionDenied {
 
 /**
    * Failed to retrieve the latest published version of the Agent because the Agent has no published versions.
-Try publishing the Agent in AIP Agent Studio to use the latest published version, or specify the version of the Agent to use.
+Try publishing the Agent in AIP Chatbot Studio to use the latest published version, or specify the version of the Agent to use.
    *
    * Log Safety: SAFE
    */
@@ -326,7 +326,7 @@ export interface NoPublishedAgentVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "NoPublishedAgentVersion";
   errorDescription:
-    "Failed to retrieve the latest published version of the Agent because the Agent has no published versions. Try publishing the Agent in AIP Agent Studio to use the latest published version, or specify the version of the Agent to use.";
+    "Failed to retrieve the latest published version of the Agent because the Agent has no published versions. Try publishing the Agent in AIP Chatbot Studio to use the latest published version, or specify the version of the Agent to use.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;

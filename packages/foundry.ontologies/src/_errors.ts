@@ -48,6 +48,20 @@ export interface ActionEditedPropertiesNotFound {
 }
 
 /**
+ * Returning action edits is not supported when using marketplace bindings.
+ *
+ * Log Safety: SAFE
+ */
+export interface ActionEditsNotSupportedWithMarketplace {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ActionEditsNotSupportedWithMarketplace";
+  errorDescription:
+    "Returning action edits is not supported when using marketplace bindings.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The given action request performs edits on a type that is read-only or does not allow edits.
  *
  * Log Safety: SAFE
@@ -319,6 +333,20 @@ export interface AttachmentSizeExceededLimit {
     fileSizeBytes: unknown;
     fileLimitBytes: unknown;
   };
+}
+
+/**
+ * The branch parameter is not supported when executing queries with marketplace bindings.
+ *
+ * Log Safety: SAFE
+ */
+export interface BranchNotSupportedWithMarketplaceQuery {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BranchNotSupportedWithMarketplaceQuery";
+  errorDescription:
+    "The branch parameter is not supported when executing queries with marketplace bindings.";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -843,6 +871,24 @@ export interface InvalidDerivedPropertyDefinition {
   errorInstanceId: string;
   parameters: {
     objectType: unknown;
+    derivedProperty: unknown;
+  };
+}
+
+/**
+   * Derived property definition on an interface-typed object set was invalid due to shape of query or type
+checking.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidDerivedPropertyDefinitionOnInterface {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDerivedPropertyDefinitionOnInterface";
+  errorDescription:
+    "Derived property definition on an interface-typed object set was invalid due to shape of query or type checking.";
+  errorInstanceId: string;
+  parameters: {
+    interfaceType: unknown;
     derivedProperty: unknown;
   };
 }

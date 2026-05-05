@@ -94,6 +94,7 @@ export type {
   FileNotFound,
   FileNotFoundOnBranch,
   FileNotFoundOnTransactionRange,
+  FileSizeLimitExceeded,
   GetBranchTransactionHistoryPermissionDenied,
   GetDatasetHealthCheckReportsPermissionDenied,
   GetDatasetHealthChecksPermissionDenied,

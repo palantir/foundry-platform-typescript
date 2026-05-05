@@ -47,6 +47,7 @@ export type {
   ParameterValue,
   QueryStatus,
   RunningQueryStatus,
+  SerializationFormat,
   SqlQuery,
   SqlQueryId,
   StructColumnFieldType,
@@ -60,6 +61,7 @@ export type {
 } from "./_components.js";
 export type {
   CancelSqlQueryPermissionDenied,
+  ColumnTypesNotSupported,
   ExecuteOntologySqlQueryPermissionDenied,
   ExecuteSqlQueryPermissionDenied,
   GetResultsSqlQueryPermissionDenied,

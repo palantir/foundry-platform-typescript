@@ -49,6 +49,21 @@ export interface AddArtifactsToMapPermissionDenied {
 }
 
 /**
+ * Could not addObjectsTo the Map.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddObjectsToMapPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddObjectsToMapPermissionDenied";
+  errorDescription: "Could not addObjectsTo the Map.";
+  errorInstanceId: string;
+  parameters: {
+    mapRid: unknown;
+  };
+}
+
+/**
  * Failed to convert MapAppData from artifact appData to gaia MapAppData
  *
  * Log Safety: SAFE
@@ -178,6 +193,24 @@ export interface MapNotFound {
   errorInstanceId: string;
   parameters: {
     mapId: unknown;
+  };
+}
+
+/**
+   * The provided objects could not be added to the map.
+They either don't exist, or are not accessible to the given map.
+   *
+   * Log Safety: SAFE
+   */
+export interface ObjectsNotFound {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ObjectsNotFound";
+  errorDescription:
+    "The provided objects could not be added to the map. They either don't exist, or are not accessible to the given map.";
+  errorInstanceId: string;
+  parameters: {
+    mapId: unknown;
+    objectRids: unknown;
   };
 }
 

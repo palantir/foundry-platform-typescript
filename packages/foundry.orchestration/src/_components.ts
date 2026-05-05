@@ -774,13 +774,13 @@ export interface ScheduleRunError {
  * Log Safety: SAFE
  */
 export type ScheduleRunErrorName =
-  | "TargetResolutionFailure"
-  | "CyclicDependency"
-  | "IncompatibleTargets"
-  | "PermissionDenied"
-  | "JobSpecNotFound"
-  | "ScheduleOwnerNotFound"
-  | "Internal";
+  | "TARGETRESOLUTIONFAILURE"
+  | "CYCLICDEPENDENCY"
+  | "INCOMPATIBLETARGETS"
+  | "PERMISSIONDENIED"
+  | "JOBSPECNOTFOUND"
+  | "SCHEDULEOWNERNOTFOUND"
+  | "INTERNAL";
 
 /**
  * The schedule is not running as all targets are up-to-date.

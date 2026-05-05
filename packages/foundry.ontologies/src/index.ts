@@ -678,6 +678,7 @@ export type {
 export type {
   ActionContainsDuplicateEdits,
   ActionEditedPropertiesNotFound,
+  ActionEditsNotSupportedWithMarketplace,
   ActionEditsReadOnlyEntity,
   ActionNotFound,
   ActionParameterInterfaceTypeNotFound,
@@ -694,6 +695,7 @@ export type {
   AttachmentNotFound,
   AttachmentRidAlreadyExists,
   AttachmentSizeExceededLimit,
+  BranchNotSupportedWithMarketplaceQuery,
   CipherChannelNotFound,
   CompositePrimaryKeyNotSupported,
   ConsistentSnapshotError,
@@ -727,6 +729,7 @@ export type {
   InvalidContentLength,
   InvalidContentType,
   InvalidDerivedPropertyDefinition,
+  InvalidDerivedPropertyDefinitionOnInterface,
   InvalidDurationGroupByPropertyType,
   InvalidDurationGroupByPropertyTypeForInterface,
   InvalidDurationGroupByValue,

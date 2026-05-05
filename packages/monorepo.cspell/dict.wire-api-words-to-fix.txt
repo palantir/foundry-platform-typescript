@@ -8,6 +8,7 @@ betweeen
 Blobster
 Condititon
 contruct
+cyclicdependency
 Damerau
 Damerau
 dataframe
@@ -16,7 +17,9 @@ depedent
 dependecies
 Entites
 Geohashes
+incompatibletargets
 interations
+jobspecnotfound
 linestrings
 logit
 Madatory
@@ -26,15 +29,19 @@ ONTOLOGT
 operaton
 opiniated
 paramters
+permissiondenied
 Phonograh
 postition
 primarykey
 reopenable
 Reponse
+scheduleownernotfound
 shouldnt
 specifed
+targetresolutionfailure
 treansaction
 Triggerer
+undeprecation
 unevaluable
 uniquelly
 unrestrict

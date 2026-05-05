@@ -242,3 +242,50 @@ export function streamingExecute(
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _streamingExecute, ...args);
 }
+
+const _executeAsync: $FoundryPlatformMethod<
+  (
+    queryApiName: _Functions.QueryApiName,
+    $body: _Functions.ExecuteAsyncQueryRequest,
+    $queryParams?: {
+      transactionId?: _Functions.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
+  ) => Promise<_Functions.ExecuteQueryAsyncResponse>
+> = [1, "/v2/functions/queries/{0}/executeAsync", 7];
+
+/**
+ * Submits a Query for asynchronous execution. Returns either an execution ID
+ * for polling, or the complete result if execution finished immediately.
+ *
+ * Use the Execution resource's getResult endpoint to poll for the
+ * result of a submitted execution.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:functions-execute]
+ * URL: /v2/functions/queries/{queryApiName}/executeAsync
+ */
+export function executeAsync(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    queryApiName: _Functions.QueryApiName,
+    $body: _Functions.ExecuteAsyncQueryRequest,
+    $queryParams?: {
+      transactionId?: _Functions.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
+  ]
+): Promise<_Functions.ExecuteQueryAsyncResponse> {
+  return $foundryPlatformFetch($ctx, _executeAsync, ...args);
+}

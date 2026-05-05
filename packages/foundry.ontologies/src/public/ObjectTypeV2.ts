@@ -99,7 +99,10 @@ const _getByRidBatch: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.GetObjectTypeByRidBatchRequest,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.GetObjectTypeByRidBatchResponse>
 > = [1, "/v2/ontologies/{0}/objectTypes/getByRidBatch", 3];
 
@@ -121,7 +124,10 @@ export function getByRidBatch(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.GetObjectTypeByRidBatchRequest,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.GetObjectTypeByRidBatchResponse> {
   return $foundryPlatformFetch($ctx, _getByRidBatch, ...args);
@@ -270,7 +276,10 @@ const _getOutgoingLinkTypesByObjectTypeRidBatch: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchRequest,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchResponse>
 > = [1, "/v2/ontologies/{0}/outgoingLinkTypes/getByRidBatch", 3];
 
@@ -295,7 +304,10 @@ export function getOutgoingLinkTypesByObjectTypeRidBatch(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchRequest,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.GetOutgoingLinkTypesByObjectTypeRidBatchResponse> {
   return $foundryPlatformFetch(

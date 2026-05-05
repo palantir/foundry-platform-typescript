@@ -16,14 +16,23 @@
 
 export type {
   ArrayConstraint,
+  CancelExecutionResponse,
   DataValue,
   EnumConstraint,
+  ExecuteAsyncQueryRequest,
+  ExecuteQueryAsyncResponse,
   ExecuteQueryRequest,
   ExecuteQueryResponse,
+  Execution,
+  ExecutionCompleted,
+  ExecutionId,
+  ExecutionSubmitted,
   FunctionRid,
   FunctionVersion,
   GetByRidQueriesBatchRequestElement,
   GetByRidQueriesBatchResponse,
+  GetExecutionResultResponse,
+  GetResultExecutionRequest,
   LengthConstraint,
   MapConstraint,
   NullableConstraint,
@@ -47,6 +56,7 @@ export type {
   RangesConstraint,
   RegexConstraint,
   RidConstraint,
+  RunningExecution,
   StreamingExecuteQueryRequest,
   StreamingExecuteQueryResponse,
   StreamingQueryData,
@@ -55,6 +65,7 @@ export type {
   StructFieldApiName,
   StructFieldName,
   StructV1Constraint,
+  SucceededExecution,
   ThreeDimensionalAggregation,
   TransactionId,
   TwoDimensionalAggregation,
@@ -92,12 +103,24 @@ export type {
   VersionId,
 } from "./_components.js";
 export type {
+  AsyncConsistentSnapshotError,
+  AsyncFunctionNotSupportedWithTransaction,
+  AsyncInvalidQueryOutputValue,
+  AsyncQueryEncounteredUserFacingError,
+  AsyncQueryMemoryExceededLimit,
+  AsyncQueryRuntimeError,
+  AsyncQueryTimeExceededLimit,
+  CancelExecutionNotSupported,
+  CancelExecutionPermissionDenied,
   ConsistentSnapshotError,
+  ExecuteAsyncQueryPermissionDenied,
   ExecuteQueryPermissionDenied,
+  ExecutionNotFound,
   FunctionHasNoPublishedVersion,
   FunctionNotFound,
   FunctionNotSupportedWithTransaction,
   GetByRidPermissionDenied,
+  GetResultExecutionPermissionDenied,
   InvalidQueryOutputValue,
   InvalidQueryParameterValue,
   MissingParameter,
@@ -112,6 +135,7 @@ export type {
   ValueTypeNotFound,
   VersionIdNotFound,
 } from "./_errors.js";
+export * as Executions from "./public/Execution.js";
 export * as Queries from "./public/Query.js";
 export * as ValueTypes from "./public/ValueType.js";
 export * as VersionIds from "./public/VersionId.js";

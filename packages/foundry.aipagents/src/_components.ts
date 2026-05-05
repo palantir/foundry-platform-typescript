@@ -54,7 +54,7 @@ export interface AgentMetadata {
 }
 
 /**
- * An RID identifying an AIP Agent created in AIP Agent Studio.
+ * An RID identifying an Agent created in AIP Chatbot Studio.
  *
  * Log Safety: SAFE
  */
@@ -241,7 +241,7 @@ export interface ObjectSetParameterValueUpdate {
 }
 
 /**
- * A variable configured in the application state of an Agent in AIP Agent Studio.
+ * A variable configured in the application state of an Agent in AIP Chatbot Studio.
  *
  * Log Safety: UNSAFE
  */
@@ -260,7 +260,7 @@ READ_WRITE: Allows the variable to be read and updated by the Agent.
 export type ParameterAccessMode = "READ_ONLY" | "READ_WRITE";
 
 /**
- * The unique identifier for a variable configured in the application state of an Agent in AIP Agent Studio.
+ * The unique identifier for a variable configured in the application state of an Agent in AIP Chatbot Studio.
  *
  * Log Safety: UNSAFE
  */

@@ -238,3 +238,32 @@ export function renderSymbol(
 ): Promise<Response> {
   return $platformFetch($ctx, _renderSymbol, ...args);
 }
+
+const _addObjectsTo: $PlatformMethod<
+  (
+    mapRid: _Gaia.GaiaMapRid,
+    $body: _Gaia.AddObjectsToMapRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Gaia.AddObjectsToMapResponse>
+> = [1, "/v2/gaia/maps/{0}/addObjectsTo", 3];
+
+/**
+ * Add objects to a map. If unknown objects or objects that don't satisfy the security requirements
+ * are provided, the entire request will fail. This creates a new layer that includes all the provided
+ * objects per request, thus not idempotent. Returns the ID of the layer created.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:map-write]
+ * URL: /v2/gaia/maps/{mapRid}/addObjectsTo
+ */
+export function addObjectsTo(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mapRid: _Gaia.GaiaMapRid,
+    $body: _Gaia.AddObjectsToMapRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Gaia.AddObjectsToMapResponse> {
+  return $platformFetch($ctx, _addObjectsTo, ...args);
+}

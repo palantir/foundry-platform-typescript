@@ -33,6 +33,7 @@ const _list: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -56,6 +57,7 @@ export function list(
     ontology: _Ontologies.OntologyIdentifier,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
