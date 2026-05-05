@@ -74,6 +74,7 @@
     "build/esm",
     "build/browser",
     "CHANGELOG.md",
+    "dist",
     "package.json",
     "templates",
     "*.d.ts"
