@@ -33,9 +33,12 @@ const LATEST_TYPESCRIPT_DEP = "^5.5.4";
 
 const DELETE_SCRIPT_ENTRY = { options: [undefined], fixValue: undefined };
 
+const DEFAULT_STANDARD_PACKAGE_OPTIONS = { tsVersion: LATEST_TYPESCRIPT_DEP };
+
 const nonStandardPackages = [
   "@osdk/monorepo.*", // internal monorepo packages
   "@osdk/platform-sdk-generator",
+  "@osdk/foundry", // Has a dist folder that should be published to NPM
 ];
 
 // Packages that should be private
@@ -241,7 +244,7 @@ function getTsconfigOptions(baseTsconfigPath, opts) {
  * }} options
  * @returns {import("@monorepolint/config").RuleModule[]}
  */
-function standardPackageRules(shared, options) {
+function standardPackageRules(shared, options, hasDist = false) {
   return [
     disallowWorkspaceCaret({ ...shared }),
 
@@ -320,6 +323,7 @@ function standardPackageRules(shared, options) {
             "build/esm",
             "build/browser",
             "CHANGELOG.md",
+            ...(hasDist === true ? ["dist"] : []),
             "package.json",
             "templates",
 
@@ -385,16 +389,22 @@ export default {
       excludePackages: [
         ...nonStandardPackages,
       ],
-    }, {
-      tsVersion: LATEST_TYPESCRIPT_DEP,
-    }),
+    }, DEFAULT_STANDARD_PACKAGE_OPTIONS),
 
     ...standardPackageRules({
       includePackages: ["@osdk/platform-sdk-generator"],
     }, {
-      tsVersion: LATEST_TYPESCRIPT_DEP,
+      ...DEFAULT_STANDARD_PACKAGE_OPTIONS,
       vitest: true,
     }),
+
+    ...standardPackageRules(
+      {
+        includePackages: ["@osdk/foundry"],
+      },
+      DEFAULT_STANDARD_PACKAGE_OPTIONS,
+      true,
+    ),
 
     packageEntry({
       options: {
