@@ -19,6 +19,165 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * The async query failed because the Ontology snapshot used for consistent reads became stale. Retrying the
+request typically resolves this.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AsyncConsistentSnapshotError {
+  errorCode: "CONFLICT";
+  errorName: "AsyncConsistentSnapshotError";
+  errorDescription:
+    "The async query failed because the Ontology snapshot used for consistent reads became stale. Retrying the request typically resolves this.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+ * The function runtime does not support async execution with a transaction.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AsyncFunctionNotSupportedWithTransaction {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AsyncFunctionNotSupportedWithTransaction";
+  errorDescription:
+    "The function runtime does not support async execution with a transaction.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    message: unknown;
+  };
+}
+
+/**
+   * The value of the async query's output is invalid. This may be because the return value did not match the
+specified output type or constraints.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AsyncInvalidQueryOutputValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AsyncInvalidQueryOutputValue";
+  errorDescription:
+    "The value of the async query's output is invalid. This may be because the return value did not match the specified output type or constraints.";
+  errorInstanceId: string;
+  parameters: {
+    outputDataType: unknown;
+    outputValue: unknown;
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+   * The authored Query failed during async execution because of a user induced error. The message argument
+is meant to be displayed to the user.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AsyncQueryEncounteredUserFacingError {
+  errorCode: "CONFLICT";
+  errorName: "AsyncQueryEncounteredUserFacingError";
+  errorDescription:
+    "The authored Query failed during async execution because of a user induced error. The message argument is meant to be displayed to the user.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    message: unknown;
+  };
+}
+
+/**
+ * Memory limits were exceeded during async Query execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AsyncQueryMemoryExceededLimit {
+  errorCode: "TIMEOUT";
+  errorName: "AsyncQueryMemoryExceededLimit";
+  errorDescription: "Memory limits were exceeded during async Query execution.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+ * The authored Query failed to execute because of a runtime error during async execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AsyncQueryRuntimeError {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AsyncQueryRuntimeError";
+  errorDescription:
+    "The authored Query failed to execute because of a runtime error during async execution.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    message: unknown;
+    stacktrace: unknown;
+    parameters: unknown;
+  };
+}
+
+/**
+ * Time limits were exceeded during async Query execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AsyncQueryTimeExceededLimit {
+  errorCode: "TIMEOUT";
+  errorName: "AsyncQueryTimeExceededLimit";
+  errorDescription: "Time limits were exceeded during async Query execution.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+ * The function runtime does not support cancelling executions.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CancelExecutionNotSupported {
+  errorCode: "FAILED_PRECONDITION";
+  errorName: "CancelExecutionNotSupported";
+  errorDescription:
+    "The function runtime does not support cancelling executions.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+ * Could not cancel the Execution.
+ *
+ * Log Safety: SAFE
+ */
+export interface CancelExecutionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CancelExecutionPermissionDenied";
+  errorDescription: "Could not cancel the Execution.";
+  errorInstanceId: string;
+  parameters: {
+    executionId: unknown;
+  };
+}
+
+/**
    * The query failed because the Ontology snapshot used for consistent reads became stale. Retrying the request
 typically resolves this.
    *
@@ -37,6 +196,21 @@ export interface ConsistentSnapshotError {
 }
 
 /**
+ * Could not executeAsync the Query.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExecuteAsyncQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ExecuteAsyncQueryPermissionDenied";
+  errorDescription: "Could not executeAsync the Query.";
+  errorInstanceId: string;
+  parameters: {
+    queryApiName: unknown;
+  };
+}
+
+/**
  * Could not execute the Query.
  *
  * Log Safety: UNSAFE
@@ -48,6 +222,21 @@ export interface ExecuteQueryPermissionDenied {
   errorInstanceId: string;
   parameters: {
     queryApiName: unknown;
+  };
+}
+
+/**
+ * No async query execution found with the given ID.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExecutionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ExecutionNotFound";
+  errorDescription: "No async query execution found with the given ID.";
+  errorInstanceId: string;
+  parameters: {
+    executionId: unknown;
   };
 }
 
@@ -110,6 +299,21 @@ export interface GetByRidPermissionDenied {
   errorDescription: "Could not getByRid the Query.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * Could not getResult the Execution.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetResultExecutionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetResultExecutionPermissionDenied";
+  errorDescription: "Could not getResult the Execution.";
+  errorInstanceId: string;
+  parameters: {
+    executionId: unknown;
+  };
 }
 
 /**

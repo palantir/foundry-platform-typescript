@@ -40,7 +40,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}", 2];
 
 /**
- * Get details for an AIP Agent.
+ * Get details for an Agent.
  *
  * @beta
  *

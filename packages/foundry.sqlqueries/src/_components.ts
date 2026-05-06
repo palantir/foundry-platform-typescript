@@ -76,6 +76,7 @@ export interface ExecuteOntologySqlQueryRequest {
 export interface ExecuteSqlQueryRequest {
   query: string;
   fallbackBranchIds?: Array<_Core.BranchName>;
+  serializationFormat?: SerializationFormat;
 }
 
 /**
@@ -311,6 +312,13 @@ export type QueryStatus =
 export interface RunningQueryStatus {
   queryId: SqlQueryId;
 }
+
+/**
+ * Format for SQL query result serialization.
+ *
+ * Log Safety: SAFE
+ */
+export type SerializationFormat = "ARROW" | "CSV";
 
 /**
  * Log Safety: DO_NOT_LOG

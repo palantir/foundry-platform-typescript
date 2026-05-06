@@ -51,6 +51,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Orchestration": "foundry",
     "Pack": "foundry",
     "PublicApis": "foundry",
+    "ResourceManagement": "skipped",
     "SqlQueries": "foundry",
     "Streams": "foundry",
     "ThirdPartyApplications": "foundry",

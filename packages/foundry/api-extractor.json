@@ -77,6 +77,15 @@
       },
       "tsdoc-unnecessary-backslash": {
         "logLevel": "none"
+      },
+      "tsdoc-code-span-missing-delimiter": {
+        "logLevel": "none"
+      },
+      "tsdoc-undefined-tag": {
+        "logLevel": "none"
+      },
+      "tsdoc-characters-after-block-tag": {
+        "logLevel": "none"
       }
     }
   }

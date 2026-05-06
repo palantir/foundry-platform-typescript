@@ -40,7 +40,7 @@ const _decrypt: $FoundryPlatformMethod<
 /**
  * Decrypt the value of a ciphertext property.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/ciphertexts/{property}/decrypt

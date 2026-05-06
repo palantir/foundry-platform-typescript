@@ -100,7 +100,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * List all conversation sessions between the calling user and an Agent that was created by this client.
  * This does not list sessions for the user created by other clients.
- * For example, any sessions created by the user in AIP Agent Studio will not be listed here.
+ * For example, any sessions created by the user in AIP Chatbot Studio will not be listed here.
  * Sessions are returned in order of most recently updated first.
  *
  * @beta
@@ -267,7 +267,7 @@ const _ragContext: $FoundryPlatformMethod<
 > = [2, "/v2/aipAgents/agents/{0}/sessions/{1}/ragContext", 3];
 
 /**
- * Retrieve relevant [context](https://www.palantir.com/docs/foundry/agent-studio/core-concepts/#retrieval-context) for a user message from the data sources configured for the session.
+ * Retrieve relevant [context](https://www.palantir.com/docs/foundry/chatbot-studio/core-concepts/#retrieval-context) for a user message from the data sources configured for the session.
  * This allows clients to pre-retrieve context for a user message before sending it to the Agent with the `contextsOverride` option when continuing a session, to allow any pre-processing of the context before sending it to the Agent.
  *
  * @beta

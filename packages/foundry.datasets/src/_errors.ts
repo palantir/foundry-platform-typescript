@@ -383,6 +383,25 @@ export interface FileNotFoundOnTransactionRange {
 }
 
 /**
+   * The requested file is larger than the configured maximum download size. Contact Palantir Support to discuss
+limit increases.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FileSizeLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileSizeLimitExceeded";
+  errorDescription:
+    "The requested file is larger than the configured maximum download size. Contact Palantir Support to discuss limit increases.";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    path: unknown;
+    fileSizeBytes: unknown;
+  };
+}
+
+/**
  * Could not transactions the Branch.
  *
  * Log Safety: UNSAFE

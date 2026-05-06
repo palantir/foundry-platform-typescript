@@ -386,6 +386,7 @@ export interface DocumentPublishMessage {
   clientId: ClientId;
   clientVersion?: SchemaVersion;
   clientSupportedVersionRange?: ClientSupportedVersionRange;
+  documentUpdateSchemaVersion?: SchemaVersion;
   description?: DocumentEditDescription;
 }
 
@@ -885,8 +886,8 @@ export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
    * The page token indicates where to start paging on. This should be omitted from the first page's request.
 To fetch the next page, clients should take the value from the nextPageToken field of the previous response
 and use it to populate the pageToken field of the next request.
-api-gateway's Core.PageToken is an immutable unsafe String, which is incompatible with PACK Document search.
-This is a PACK API specific PageToken that is safe.
+api-gateway's Core.PageToken is an immutable @Unsafe String, which is incompatible with PACK Document search.
+This is a PACK API specific PageToken that is @Safe.
    *
    * Log Safety: SAFE
    */
@@ -925,7 +926,6 @@ export interface RecordDef {
   name: string;
   description?: string;
   fields: Array<FieldDef>;
-  metadata: SchemaMetadata;
 }
 
 /**
@@ -947,12 +947,48 @@ export interface SchemaMetadata {
 }
 
 /**
+ * A failed schema validation result containing the list of violations.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SchemaValidationFailure {
+  violations: Array<SchemaViolation>;
+}
+
+/**
    * An incrementing version number for a document type schema. Each schema update
 increments this value by one, representing a linear history of versions.
    *
    * Log Safety: SAFE
    */
 export type SchemaVersion = number;
+
+/**
+ * A single schema validation violation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SchemaViolation {
+  fieldPath: string;
+  message: string;
+  violationType: SchemaViolationType;
+}
+
+/**
+ * The type of schema validation violation.
+ *
+ * Log Safety: SAFE
+ */
+export type SchemaViolationType =
+  | "FIELD_ADDED_WITH_INCORRECT_VERSION"
+  | "FIELD_REMOVED"
+  | "RECORD_REMOVED"
+  | "UNION_VARIANT_MODIFICATION"
+  | "UNION_REMOVED"
+  | "INCORRECT_VERSION"
+  | "ADDED_WITH_DEPRECATION"
+  | "UNDEPRECATION_NOT_ALLOWED"
+  | "FIELD_MODIFIED";
 
 /**
  * Log Safety: UNSAFE
@@ -1004,6 +1040,44 @@ export interface UpdateDocumentMetadataRequest {
  */
 export interface UpdateDocumentRequest {
   requestBody: UpdateDocumentMetadataRequest;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface UpdateSchemaDocumentTypeRequest {
+  documentTypeName: DocumentTypeName;
+  requestBody: UpdateSchemaRequestBody;
+}
+
+/**
+ * Request to update a document type's schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UpdateSchemaRequestBody {
+  ontologyRid: string;
+  schema: DocumentTypeSchema;
+  version: SchemaVersion;
+  forceOverwrite?: boolean;
+}
+
+/**
+ * The result of an update schema request.
+ *
+ * Log Safety: UNSAFE
+ */
+export type UpdateSchemaResponse =
+  | ({ type: "success" } & UpdateSchemaSuccess)
+  | ({ type: "validationFailure" } & SchemaValidationFailure);
+
+/**
+ * A successful schema update result.
+ *
+ * Log Safety: SAFE
+ */
+export interface UpdateSchemaSuccess {
+  version: SchemaVersion;
 }
 
 /**

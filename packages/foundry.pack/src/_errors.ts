@@ -200,17 +200,15 @@ export interface InvalidDocumentTypeName {
 }
 
 /**
-   * The provided Document Type Version is invalid. The version must follow semantic versioning format
-<major>.<minor>.<patch> where each part is a non-negative integer, and must be strictly increasing
-from the current version.
-   *
-   * Log Safety: UNSAFE
-   */
+ * The provided Document Type Version is invalid. The version must be a positive integer.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface InvalidDocumentTypeVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidDocumentTypeVersion";
   errorDescription:
-    "The provided Document Type Version is invalid. The version must follow semantic versioning format <major>.<minor>.<patch> where each part is a non-negative integer, and must be strictly increasing from the current version.";
+    "The provided Document Type Version is invalid. The version must be a positive integer.";
   errorInstanceId: string;
   parameters: {
     documentTypeName: unknown;
@@ -229,6 +227,23 @@ export interface LoadByNameDocumentTypesPermissionDenied {
   errorDescription: "Could not loadByName the DocumentType.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+   * The schema update could not be applied because another update was applied concurrently.
+Retry the operation with the latest schema version.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SchemaUpdateConflict {
+  errorCode: "CONFLICT";
+  errorName: "SchemaUpdateConflict";
+  errorDescription:
+    "The schema update could not be applied because another update was applied concurrently. Retry the operation with the latest schema version.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+  };
 }
 
 /**
@@ -273,4 +288,17 @@ export interface UpdateDocumentPermissionDenied {
   parameters: {
     documentId: unknown;
   };
+}
+
+/**
+ * Could not updateSchema the DocumentType.
+ *
+ * Log Safety: SAFE
+ */
+export interface UpdateSchemaDocumentTypePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UpdateSchemaDocumentTypePermissionDenied";
+  errorDescription: "Could not updateSchema the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
 }

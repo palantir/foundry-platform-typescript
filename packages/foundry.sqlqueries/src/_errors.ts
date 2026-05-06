@@ -32,6 +32,20 @@ export interface CancelSqlQueryPermissionDenied {
 }
 
 /**
+ * The query result contains column types that are not supported by the requested serialization format.
+ *
+ * Log Safety: SAFE
+ */
+export interface ColumnTypesNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ColumnTypesNotSupported";
+  errorDescription:
+    "The query result contains column types that are not supported by the requested serialization format.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not executeOntology the SqlQuery.
  *
  * Log Safety: SAFE

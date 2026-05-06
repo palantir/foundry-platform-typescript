@@ -67,12 +67,20 @@ export interface AddEnterpriseMapLayersToMapResponse {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface AddObjectsToMapRequest {
+  objectRids: Array<ObjectRid>;
+  label: string;
+}
+
+/**
  * The response body to add objects to a map, containing the ID of the created layer.
  *
  * Log Safety: UNSAFE
  */
 export interface AddObjectsToMapResponse {
-  dataLayerIds: Array<GaiaLayerId>;
+  dataLayerIds: GaiaLayerId;
 }
 
 /**
@@ -436,6 +444,13 @@ export interface MilSymModifiers {
 export interface MilsymSymbol {
   sidc: string;
 }
+
+/**
+ * The Resource Identifier (RID) for an ontology object instance.
+ *
+ * Log Safety: SAFE
+ */
+export type ObjectRid = LooselyBrandedString<"ObjectRid">;
 
 /**
  * The RID of an object set.

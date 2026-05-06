@@ -131,3 +131,30 @@ export function createFirstParty(
 ): Promise<_Pack.CreateFirstPartyDocumentTypeResponse> {
   return $foundryPlatformFetch($ctx, _createFirstParty, ...args);
 }
+
+const _updateSchema: $FoundryPlatformMethod<
+  (
+    $body: _Pack.UpdateSchemaDocumentTypeRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.UpdateSchemaResponse>
+> = [1, "/v2/pack/documentTypes/updateSchema", 3];
+
+/**
+ * Updates the schema of a PACK Document Type. The new schema version must be strictly
+ * greater than the current version. Schema validation is performed to ensure backwards
+ * compatibility unless forceOverwrite is set to true.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-write]
+ * URL: /v2/pack/documentTypes/updateSchema
+ */
+export function updateSchema(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.UpdateSchemaDocumentTypeRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.UpdateSchemaResponse> {
+  return $foundryPlatformFetch($ctx, _updateSchema, ...args);
+}

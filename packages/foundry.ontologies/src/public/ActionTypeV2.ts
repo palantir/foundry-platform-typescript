@@ -126,7 +126,10 @@ const _getByRidBatch: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.GetActionTypeByRidBatchRequest,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.GetActionTypeByRidBatchResponse>
 > = [1, "/v2/ontologies/{0}/actionTypes/getByRidBatch", 3];
 
@@ -148,7 +151,10 @@ export function getByRidBatch(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.GetActionTypeByRidBatchRequest,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.GetActionTypeByRidBatchResponse> {
   return $foundryPlatformFetch($ctx, _getByRidBatch, ...args);
