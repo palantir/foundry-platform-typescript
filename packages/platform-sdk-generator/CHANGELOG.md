@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.59.0
+
+### Minor Changes
+
+- d5fa4f1: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [d5fa4f1]
+  - @osdk/docs-spec-platform@0.47.0
+
 ## 0.58.0
 
 ### Patch Changes
