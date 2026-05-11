@@ -90,7 +90,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Verify build succeeded
+      - name: Verify dependent builds succeeded
         run: |
           if [[ "${{ needs.build.result }}" != "success" ]]; then
             exit 1
