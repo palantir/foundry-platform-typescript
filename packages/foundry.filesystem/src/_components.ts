@@ -175,7 +175,9 @@ export interface Folder {
  *
  * Log Safety: SAFE
  */
-export type FolderRid = LooselyBrandedString<"FolderRid">;
+export type FolderRid = LooselyBrandedString<
+  "FolderRid" | "SpaceRid" | "ProjectRid"
+>;
 
 /**
    * A folder can be a regular Folder, a
