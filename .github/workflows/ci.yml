@@ -84,3 +84,15 @@ jobs:
       - name: Verify nothing added
         run: u="$(git ls-files --others --exclude-standard)" && test -z "$u"
 
+  ci-build:
+    name: ci-build
+    if: ${{ always() }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify dependent builds succeeded
+        run: |
+          if [[ "${{ needs.build.result }}" != "success" ]]; then
+            exit 1
+          fi
+
