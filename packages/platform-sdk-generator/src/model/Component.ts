@@ -20,44 +20,15 @@ import type { Namespace } from "./Namespace.js";
 import { Type } from "./Type.js";
 
 /**
- * Models IS-A relationships between branded rid types so the generated SDK
- * matches the documented domain. Example: in the Filesystem namespace,
- * `FolderType = "FOLDER" | "SPACE" | "PROJECT"` — a Space and a Project are
- * both folders. We express that here so `SpaceRid` and `ProjectRid` are
- * one-way assignable to `FolderRid` without needing a cast at the call site.
- *
- * Outer key: IR `namespaceName`. Inner key: child rid `localName`. Value: the
- * parent rid names this rid IS-A.
- *
- * Encoding: when we emit a PARENT rid, we widen its `LooselyBrandedString`
- * brand union to include all of its declared children. Children themselves
- * stay as `LooselyBrandedString<"Child">`. This keeps `Child → Parent`
- * assignable (the child's brand literal is in the parent's union) while
- * leaving sibling children mutually non-assignable.
+ * Parent rid → children whose brand literals widen its `LooselyBrandedString`
+ * brand union. Keyed by IR `namespaceName` then parent `localName`. Makes
+ * `Child → Parent` one-way assignable; siblings stay mutually non-assignable.
  */
-const RID_SUBTYPES: Record<string, Record<string, readonly string[]>> = {
+const RID_CHILD_BRANDS: Record<string, Record<string, readonly string[]>> = {
   Filesystem: {
-    SpaceRid: ["FolderRid"],
-    ProjectRid: ["FolderRid"],
+    FolderRid: ["SpaceRid", "ProjectRid"],
   },
 };
-
-function getChildBrandsOf(
-  namespaceName: string,
-  parentLocalName: string,
-): string[] {
-  const namespaceMap = RID_SUBTYPES[namespaceName];
-  if (!namespaceMap) {
-    return [];
-  }
-  const children: string[] = [];
-  for (const [child, parents] of Object.entries(namespaceMap)) {
-    if (parents.includes(parentLocalName)) {
-      children.push(child);
-    }
-  }
-  return children;
-}
 
 export class Component extends Type {
   isComponent = true;
@@ -140,11 +111,11 @@ export class Component extends Type {
         // need to special case this since we use a branded type
         if (dt.builtin.type === "rid" || dt.builtin.type === "string") {
           const localName = component.locator.localName;
-          const childBrands = getChildBrandsOf(
-            component.locator.namespaceName,
-            localName,
-          );
-          const brandUnion = [localName, ...childBrands]
+          const children = dt.builtin.type === "rid"
+            ? RID_CHILD_BRANDS[component.locator.namespaceName]?.[localName]
+              ?? []
+            : [];
+          const brandUnion = [localName, ...children]
             .map((n) => `"${n}"`)
             .join(" | ");
           out += `LooselyBrandedString<${brandUnion}>`;
