@@ -264,7 +264,18 @@ export class Model {
       .push({
         component: r.component.localName,
         namespace: r.component.namespaceName,
-        operations: r.operations.map(so => new Operation(so, this)),
+        operations: r.operations.flatMap(so => {
+          const unsupported = unsupportedResponseTypeVariant(so);
+          if (unsupported != null) {
+            // eslint-disable-next-line no-console
+            console.warn(
+              `Skipping ${ns.name}.${r.component.localName}.${so.name}: `
+                + `unsupported response type "${unsupported}"`,
+            );
+            return [];
+          }
+          return [new Operation(so, this)];
+        }),
         pluralName: r.pluralName,
       });
   }
@@ -283,4 +294,22 @@ export class Model {
       );
     }
   }
+}
+
+/**
+ * Returns the unsupported response-type variant name if the operation has an
+ * `ok` body whose `responseType` is anything other than `binary` or
+ * `component`. Returns `undefined` for supported operations.
+ *
+ * The IR types in `@osdk/docs-spec-platform` are static and don't know about
+ * variants added in newer IR releases (eg `sse`), so this guard reads the
+ * discriminator through a runtime cast.
+ */
+export function unsupportedResponseTypeVariant(
+  so: ir.Operation,
+): string | undefined {
+  const { body } = so.http.response;
+  if (body.type !== "ok") return undefined;
+  const variant = (body.ok.responseType as { type: string }).type;
+  return variant === "binary" || variant === "component" ? undefined : variant;
 }
