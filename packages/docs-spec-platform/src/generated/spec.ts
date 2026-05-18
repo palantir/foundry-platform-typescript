@@ -184,10 +184,16 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getVersionId": {
       "variables": {},
     },
+    "v2.createUsageAccount": {
+      "variables": {},
+    },
     "v2.listUsageAccounts": {
       "variables": {},
     },
     "v2.getUsageAccount": {
+      "variables": {},
+    },
+    "v2.replaceUsageAccount": {
       "variables": {},
     },
     "v2.replaceSync": {
@@ -310,10 +316,7 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.streamValues": {
       "variables": {},
     },
-    "v2.getGeotemporalSeriesLatestValue": {
-      "variables": {},
-    },
-    "v2.streamGeotemporalSeriesHistoricValues": {
+    "v2.loadGeotemporalSeriesEntries": {
       "variables": {},
     },
     "v2.decrypt": {
@@ -353,6 +356,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.applyActionWithOverrides": {
+      "variables": {},
+    },
+    "v2.applyActionBatchWithOverrides": {
       "variables": {},
     },
     "v2.listQueryTypesV2": {
@@ -404,6 +410,27 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.ontologyTransactionPostEdits": {
+      "variables": {},
+    },
+    "v2.createOntologyScenario": {
+      "variables": {},
+    },
+    "v2.listScenarioEditedObjectTypes": {
+      "variables": {},
+    },
+    "v2.listScenarioEditedLinkTypes": {
+      "variables": {},
+    },
+    "v2.listScenarioEditedEntityTypes": {
+      "variables": {},
+    },
+    "v2.listScenarioEditedObjects": {
+      "variables": {},
+    },
+    "v2.listScenarioEditedLinks": {
+      "variables": {},
+    },
+    "v2.listScanRecords": {
       "variables": {},
     },
     "v2.getWidgetSet": {

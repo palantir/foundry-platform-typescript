@@ -1518,6 +1518,23 @@ export interface MissingParameter {
 }
 
 /**
+ * This struct value type references another value type which either doesn't exist, or the user doesn't have access to.
+ *
+ * Log Safety: SAFE
+ */
+export interface MissingValueTypeReference {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingValueTypeReference";
+  errorDescription:
+    "This struct value type references another value type which either doesn't exist, or the user doesn't have access to.";
+  errorInstanceId: string;
+  parameters: {
+    referencedRid: unknown;
+    rid: unknown;
+  };
+}
+
+/**
  * Aggregation cannot group by on the same field multiple times.
  *
  * Log Safety: UNSAFE

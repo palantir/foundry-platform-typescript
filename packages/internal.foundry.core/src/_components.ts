@@ -4193,6 +4193,11 @@ export type RequestId = string;
 export type ReturnEditsMode = "ALL" | "NONE";
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ScenarioReferenceType {}
+
+/**
  * @deprecated Use `SdkPackageName` in the `internal.foundry.ontologies` package
  *
  * Log Safety: UNSAFE

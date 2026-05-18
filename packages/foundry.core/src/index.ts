@@ -178,6 +178,7 @@ export type {
   RoleContext,
   RoleId,
   RoleSetId,
+  ScenarioReferenceType,
   ScheduleRid,
   SchemaFieldType,
   SearchJsonQueryV2,

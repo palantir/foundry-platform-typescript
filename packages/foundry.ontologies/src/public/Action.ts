@@ -38,6 +38,7 @@ const _apply: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
     $headerParams?: {
@@ -74,6 +75,7 @@ export function apply(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
     $headerParams?: {
@@ -190,6 +192,7 @@ const _applyWithOverrides: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.SyncApplyActionResponseV2>
@@ -214,9 +217,56 @@ export function applyWithOverrides(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.SyncApplyActionResponseV2> {
   return $foundryPlatformFetch($ctx, _applyWithOverrides, ...args);
+}
+
+const _applyBatchWithOverrides: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    action: _Ontologies.ActionTypeApiName,
+    $body: _Ontologies.BatchApplyActionWithOverridesRequest,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ) => Promise<_Ontologies.BatchApplyActionResponseV2>
+> = [1, "/v2/ontologies/{0}/actions/{1}/applyBatchWithOverrides", 3];
+
+/**
+ * Applies multiple actions (of the same Action Type) with per-item overrides
+ * for UniqueIdentifier and CurrentTime generated action parameters.
+ *
+ * Changes to objects or links stored in Object Storage V1 are eventually consistent and may take some time to be visible.
+ * Edits to objects or links in Object Storage V2 will be visible immediately after the action completes.
+ *
+ * Up to 20 actions may be applied in one call. Actions that only modify objects in Object Storage v2 and do not
+ * call Functions may receive a higher limit.
+ *
+ * Note that [notifications](https://www.palantir.com/docs/foundry/action-types/notifications/) are not currently supported by this endpoint.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read, api:ontologies-write]
+ * URL: /v2/ontologies/{ontology}/actions/{action}/applyBatchWithOverrides
+ */
+export function applyBatchWithOverrides(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    action: _Ontologies.ActionTypeApiName,
+    $body: _Ontologies.BatchApplyActionWithOverridesRequest,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ]
+): Promise<_Ontologies.BatchApplyActionResponseV2> {
+  return $foundryPlatformFetch($ctx, _applyBatchWithOverrides, ...args);
 }

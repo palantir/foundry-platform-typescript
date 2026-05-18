@@ -399,6 +399,7 @@ export type {
   ReleaseStatus,
   RequestId,
   ReturnEditsMode,
+  ScenarioReferenceType,
   SdkPackageName,
   SearchJsonQuery,
   SearchJsonQueryV2,

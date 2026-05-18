@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -28,93 +29,58 @@ import type * as _Ontologies from "../_components.js";
 
 //
 
-const _getGeotemporalSeriesLatestValue: $FoundryPlatformMethod<
+const _loadGeotemporalSeriesEntries: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
     primaryKey: _Ontologies.PropertyValueEscapedString,
-    propertyName: _Ontologies.PropertyApiName,
+    property: _Ontologies.PropertyApiName,
+    $body: _Ontologies.LoadGeotemporalSeriesRequest,
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
-  ) => Promise<_Ontologies.GeotemporalSeriesEntry | undefined>
-> = [
-  0,
-  "/v2/ontologies/{0}/objects/{1}/{2}/geotemporalSeries/{3}/latestValue",
-  2,
-];
-
-/**
- * Get the latest recorded location for a geotemporal series reference property.
- *
- * @alpha
- *
- * Required Scopes: [api:ontologies-read]
- * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/geotemporalSeries/{propertyName}/latestValue
- */
-export function getGeotemporalSeriesLatestValue(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    ontology: _Ontologies.OntologyIdentifier,
-    objectType: _Ontologies.ObjectTypeApiName,
-    primaryKey: _Ontologies.PropertyValueEscapedString,
-    propertyName: _Ontologies.PropertyApiName,
-
-    $queryParams?: {
-      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
-      sdkVersion?: _Ontologies.SdkVersion | undefined;
-    },
-  ]
-): Promise<_Ontologies.GeotemporalSeriesEntry | undefined> {
-  return $foundryPlatformFetch($ctx, _getGeotemporalSeriesLatestValue, ...args);
-}
-
-const _streamGeotemporalSeriesHistoricValues: $FoundryPlatformMethod<
-  (
-    ontology: _Ontologies.OntologyIdentifier,
-    objectType: _Ontologies.ObjectTypeApiName,
-    primaryKey: _Ontologies.PropertyValueEscapedString,
-    propertyName: _Ontologies.PropertyApiName,
-    $body: _Ontologies.StreamGeotemporalSeriesValuesRequest,
-    $queryParams?: {
-      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
-      sdkVersion?: _Ontologies.SdkVersion | undefined;
-    },
-  ) => Promise<Response>
+  ) => Promise<_Ontologies.LoadGeotemporalSeriesResponse>
 > = [
   1,
-  "/v2/ontologies/{0}/objects/{1}/{2}/geotemporalSeries/{3}/streamHistoricValues",
+  "/v2/ontologies/{0}/objects/{1}/{2}/geotemporalSeries/{3}/loadEntries",
   3,
-  ,
-  "*/*",
 ];
 
 /**
- * Stream historic points of a geotemporal series reference property.
+ * Load the geotemporal series entries for a given object's geotemporal series reference property within the
+ * specified time range.
+ *
+ * Each entry in the response is a map of property names to values, following the same structure as
+ * `OntologyObjectV2`. Use the `additionalProperties` field in the request to control which properties are included
+ * in each entry depending on the underlying geotemporal integration.
+ *
+ * Results are paginated. Use the `nextPageToken` from the response to retrieve subsequent pages.
+ *
+ * :::callout{theme=warning title=Warning}
+ * Geotemporal series integrations with only "dataset archive" enabled are not supported.
+ * :::
  *
  * @alpha
  *
  * Required Scopes: [api:ontologies-read]
- * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/geotemporalSeries/{propertyName}/streamHistoricValues
+ * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/geotemporalSeries/{property}/loadEntries
  */
-export function streamGeotemporalSeriesHistoricValues(
+export function loadGeotemporalSeriesEntries(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
     primaryKey: _Ontologies.PropertyValueEscapedString,
-    propertyName: _Ontologies.PropertyApiName,
-    $body: _Ontologies.StreamGeotemporalSeriesValuesRequest,
+    property: _Ontologies.PropertyApiName,
+    $body: _Ontologies.LoadGeotemporalSeriesRequest,
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
-): Promise<Response> {
-  return $foundryPlatformFetch(
-    $ctx,
-    _streamGeotemporalSeriesHistoricValues,
-    ...args,
-  );
+): Promise<_Ontologies.LoadGeotemporalSeriesResponse> {
+  return $foundryPlatformFetch($ctx, _loadGeotemporalSeriesEntries, ...args);
 }

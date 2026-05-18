@@ -30,54 +30,40 @@ import type * as _Filesystem from "../_components.js";
 //
 
 const _deleteResource: $FoundryPlatformMethod<
-  (
-    resourceRid: _Filesystem.ResourceRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [3, "/v2/filesystem/resources/{0}", 2];
+  (resourceRid: _Filesystem.ResourceRid) => Promise<void>
+> = [3, "/v2/filesystem/resources/{0}"];
 
 /**
  * Move the given resource to the trash. Following this operation, the resource can be restored, using the
  * `restore` operation, or permanently deleted using the `permanentlyDelete` operation.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}
  */
 export function deleteResource(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    resourceRid: _Filesystem.ResourceRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [resourceRid: _Filesystem.ResourceRid]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteResource, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
-  (
-    resourceRid: _Filesystem.ResourceRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Filesystem.Resource>
-> = [0, "/v2/filesystem/resources/{0}", 2];
+  (resourceRid: _Filesystem.ResourceRid) => Promise<_Filesystem.Resource>
+> = [0, "/v2/filesystem/resources/{0}"];
 
 /**
  * Get the Resource with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/{resourceRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    resourceRid: _Filesystem.ResourceRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [resourceRid: _Filesystem.ResourceRid]
 ): Promise<_Filesystem.Resource> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -85,9 +71,8 @@ export function get(
 const _getBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Filesystem.GetResourcesBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Filesystem.GetResourcesBatchResponse>
-> = [1, "/v2/filesystem/resources/getBatch", 3];
+> = [1, "/v2/filesystem/resources/getBatch", 1];
 
 /**
  * Fetches multiple resources in a single request.
@@ -96,17 +81,14 @@ const _getBatch: $FoundryPlatformMethod<
  *
  * The maximum batch size for this endpoint is 1000.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/getBatch
  */
 export function getBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: Array<_Filesystem.GetResourcesBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: Array<_Filesystem.GetResourcesBatchRequestElement>]
 ): Promise<_Filesystem.GetResourcesBatchResponse> {
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
@@ -114,26 +96,20 @@ export function getBatch(
 const _getByPath: $FoundryPlatformMethod<
   ($queryParams: {
     path: _Filesystem.ResourcePath;
-    preview?: _Core.PreviewMode | undefined;
   }) => Promise<_Filesystem.Resource>
 > = [0, "/v2/filesystem/resources/getByPath", 2];
 
 /**
  * Get a Resource by its absolute path.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/getByPath
  */
 export function getByPath(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $queryParams: {
-      path: _Filesystem.ResourcePath;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
+  ...args: [$queryParams: { path: _Filesystem.ResourcePath }]
 ): Promise<_Filesystem.Resource> {
   return $foundryPlatformFetch($ctx, _getByPath, ...args);
 }
@@ -141,9 +117,8 @@ export function getByPath(
 const _getByPathBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Filesystem.GetByPathResourcesBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Filesystem.GetByPathResourcesBatchResponse>
-> = [1, "/v2/filesystem/resources/getByPathBatch", 3];
+> = [1, "/v2/filesystem/resources/getByPathBatch", 1];
 
 /**
  * Gets multiple Resources by their absolute paths.
@@ -153,71 +128,54 @@ const _getByPathBatch: $FoundryPlatformMethod<
  *
  * The maximum batch size for this endpoint is 1000.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/getByPathBatch
  */
 export function getByPathBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: Array<_Filesystem.GetByPathResourcesBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: Array<_Filesystem.GetByPathResourcesBatchRequestElement>]
 ): Promise<_Filesystem.GetByPathResourcesBatchResponse> {
   return $foundryPlatformFetch($ctx, _getByPathBatch, ...args);
 }
 
 const _restore: $FoundryPlatformMethod<
-  (
-    resourceRid: _Filesystem.ResourceRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/filesystem/resources/{0}/restore", 2];
+  (resourceRid: _Filesystem.ResourceRid) => Promise<void>
+> = [1, "/v2/filesystem/resources/{0}/restore"];
 
 /**
  * Restore the given resource and any directly trashed ancestors from the trash. If the resource is not
  * trashed, this operation will be ignored.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/restore
  */
 export function restore(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    resourceRid: _Filesystem.ResourceRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [resourceRid: _Filesystem.ResourceRid]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _restore, ...args);
 }
 
 const _permanentlyDelete: $FoundryPlatformMethod<
-  (
-    resourceRid: _Filesystem.ResourceRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [1, "/v2/filesystem/resources/{0}/permanentlyDelete", 2];
+  (resourceRid: _Filesystem.ResourceRid) => Promise<void>
+> = [1, "/v2/filesystem/resources/{0}/permanentlyDelete"];
 
 /**
  * Permanently delete the given resource from the trash. If the Resource is not directly trashed, a
  * `ResourceNotTrashed` error will be thrown.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/permanentlyDelete
  */
 export function permanentlyDelete(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    resourceRid: _Filesystem.ResourceRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [resourceRid: _Filesystem.ResourceRid]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _permanentlyDelete, ...args);
 }
@@ -226,14 +184,13 @@ const _addMarkings: $FoundryPlatformMethod<
   (
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.AddMarkingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/resources/{0}/addMarkings", 3];
+> = [1, "/v2/filesystem/resources/{0}/addMarkings", 1];
 
 /**
  * Adds a list of Markings to a resource.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/addMarkings
@@ -243,7 +200,6 @@ export function addMarkings(
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.AddMarkingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _addMarkings, ...args);
@@ -253,14 +209,13 @@ const _removeMarkings: $FoundryPlatformMethod<
   (
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.RemoveMarkingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/resources/{0}/removeMarkings", 3];
+> = [1, "/v2/filesystem/resources/{0}/removeMarkings", 1];
 
 /**
  * Removes Markings from a resource.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/removeMarkings
@@ -270,7 +225,6 @@ export function removeMarkings(
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
     $body: _Filesystem.RemoveMarkingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _removeMarkings, ...args);
@@ -279,26 +233,21 @@ export function removeMarkings(
 const _getAccessRequirements: $FoundryPlatformMethod<
   (
     resourceRid: _Filesystem.ResourceRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Filesystem.AccessRequirements>
-> = [0, "/v2/filesystem/resources/{0}/getAccessRequirements", 2];
+> = [0, "/v2/filesystem/resources/{0}/getAccessRequirements"];
 
 /**
  * Returns a list of access requirements a user needs in order to view a resource. Access requirements are
  * composed of Organizations and Markings, and can either be applied directly to the resource or inherited.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/{resourceRid}/getAccessRequirements
  */
 export function getAccessRequirements(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    resourceRid: _Filesystem.ResourceRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [resourceRid: _Filesystem.ResourceRid]
 ): Promise<_Filesystem.AccessRequirements> {
   return $foundryPlatformFetch($ctx, _getAccessRequirements, ...args);
 }
@@ -309,7 +258,6 @@ const _markings: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Filesystem.ListMarkingsOfResourceResponse>
 > = [0, "/v2/filesystem/resources/{0}/markings", 2];
@@ -318,7 +266,7 @@ const _markings: $FoundryPlatformMethod<
  * List of Markings directly applied to a resource. The number of Markings on a resource is typically small
  * so the `pageSize` and `pageToken` parameters are not required.
  *
- * @beta
+ * @public
  *
  * Required Scopes: []
  * URL: /v2/filesystem/resources/{resourceRid}/markings
@@ -331,7 +279,6 @@ export function markings(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Filesystem.ListMarkingsOfResourceResponse> {

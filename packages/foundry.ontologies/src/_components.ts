@@ -70,7 +70,8 @@ export type ActionLogicRule =
   | ({ type: "deleteObject" } & DeleteObjectLogicRule)
   | ({ type: "function" } & FunctionLogicRule)
   | ({ type: "createInterfaceLink" } & CreateInterfaceLinkLogicRule)
-  | ({ type: "createInterface" } & CreateInterfaceLogicRule);
+  | ({ type: "createInterface" } & CreateInterfaceLogicRule)
+  | ({ type: "applyScenario" } & ApplyScenarioLogicRule);
 
 /**
  * Log Safety: SAFE
@@ -101,6 +102,7 @@ export type ActionParameterType =
   | ({ type: "objectType" } & OntologyObjectTypeReferenceType)
   | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "marking" } & _Core.MarkingType)
+  | ({ type: "scenarioReference" } & _Core.ScenarioReferenceType)
   | ({ type: "attachment" } & _Core.AttachmentType)
   | ({ type: "mediaReference" } & _Core.MediaReferenceType)
   | ({ type: "array" } & ActionParameterArrayType)
@@ -263,6 +265,7 @@ export interface AggregateObjectSetRequestV2 {
   groupBy: Array<AggregationGroupByV2>;
   accuracy?: AggregationAccuracyRequest;
   includeComputeUsage?: _Core.IncludeComputeUsage;
+  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -705,6 +708,37 @@ export interface ApplyReducersAndExtractMainValueLoadLevel {}
 export interface ApplyReducersLoadLevel {}
 
 /**
+   * An Action rule that merges the edits accumulated on a referenced Scenario into the ontology data context
+where the Action is applied. If the Action is applied against another Scenario, the edits are merged into
+that target Scenario.
+The scenario is supplied through the parameter identified by scenarioParameter, whose value type is
+scenarioReference. The affected object types and link types are explicitly enumerated in the scope.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ApplyScenarioLogicRule {
+  scenarioParameter: ParameterId;
+  objectTypeApiNames: Array<ObjectTypeApiName>;
+  linkTypes: Array<ObjectTypeLinkTypeApiNameMapping>;
+}
+
+/**
+   * An Action rule that applies the edits accumulated on a referenced Scenario onto the ontology data context
+where the Action is applied. If the Action is applied in the context of main ontology data, the edits are
+applied there. If the Action is applied in the context of another Scenario, the edits are applied in that
+other Scenario.
+The scenario is supplied through the parameter identified by scenarioParameter of type
+scenarioReference. The affected object types and link types are explicitly enumerated in the scope.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ApplyScenarioRule {
+  scenarioParameter: ParameterId;
+  objectTypeApiNames: Array<ObjectTypeApiName>;
+  linkTypes: Array<ObjectTypeLinkTypeApiNameMapping>;
+}
+
+/**
  * Computes an approximate number of distinct values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -968,6 +1002,14 @@ export interface BatchApplyActionRequestItem {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface BatchApplyActionRequestItemWithOverrides {
+  parameters: Record<ParameterId, DataValue | undefined>;
+  overrides?: ApplyActionOverrides;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface BatchApplyActionRequestOptions {
@@ -992,6 +1034,14 @@ export interface BatchApplyActionResponse {}
  */
 export interface BatchApplyActionResponseV2 {
   edits?: BatchActionResults;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface BatchApplyActionWithOverridesRequest {
+  options?: BatchApplyActionRequestOptions;
+  requests: Array<BatchApplyActionRequestItemWithOverrides>;
 }
 
 /**
@@ -1266,6 +1316,24 @@ export interface CreateObjectRule {
 }
 
 /**
+ * The request payload for creating an ontology scenario.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateOntologyScenarioRequest {
+  base?: OntologyBase;
+}
+
+/**
+ * The response payload for creating an ontology scenario.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateOntologyScenarioResponse {
+  scenarioRid: OntologyScenarioRid;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface CreateOrModifyObjectLogicRule {
@@ -1346,6 +1414,7 @@ export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 | Ontology Object Reference           | JSON encoding of the object's primary key             | 10033123 or "EMP1234"                                                                                                                                     |
 | Ontology Interface Object Reference | JSON encoding of the object's API name and primary key| {"objectTypeApiName":"Employee", "primaryKeyValue":"EMP1234"}                                                                                               |
 | Ontology Object Type Reference      | string of the object type's api name                  | "Employee"                                                                                                                                                  |
+| Scenario Reference                  | string of the scenario RID                            | "ri.actions..scenario.cf2a8a49-8b56-446d-ab04-a6bc7fadef48"                                                                                                 |
 | Set                                 | array                                                 | ["alpha", "bravo", "charlie"]                                                                                                                               |
 | Short                               | number                                                | 8739                                                                                                                                                        |
 | String                              | string                                                | "Call me Ishmael"                                                                                                                                           |
@@ -1951,14 +2020,13 @@ export interface GeoShapeV2Query {
 }
 
 /**
- * A single geotemporal data point representing the location of an entity at a specific point in time.
- *
- * Log Safety: UNSAFE
- */
-export interface GeotemporalSeriesEntry {
-  time: string;
-  position: _Geo.GeoPoint;
-}
+   * A single geotemporal data point. Each entry is a map from property API names to property values. Standard
+entries include "time" (ISO 8601 timestamp) and "position" (GeoPoint), and may include additional geotemporal
+series metadata fields such as speed, heading, or altitude.
+   *
+   * Log Safety: UNSAFE
+   */
+export type GeotemporalSeriesEntry = Record<PropertyApiName, PropertyValue>;
 
 /**
  * Log Safety: UNSAFE
@@ -2834,6 +2902,87 @@ export interface ListQueryTypesResponseV2 {
 }
 
 /**
+ * The object types and link types that have been modified within a scenario.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListScenarioEditedEntityTypesResponse {
+  objectTypes: Array<ObjectTypeApiName>;
+  linkTypes: Array<ObjectTypeLinkTypeApiNameMapping>;
+}
+
+/**
+ * The linked objects that have been edited within a scenario for a given link type, grouped by source object.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListScenarioEditedLinksResponse {
+  data: Array<LinksFromObject>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * The link types that have been modified within a scenario.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListScenarioEditedLinkTypesResponse {
+  data: Array<LinkTypeApiName>;
+}
+
+/**
+   * The objects that have been edited within a scenario for a given object type.
+The Ontology Objects in this response will only ever have the __primaryKey and __apiName
+fields present, thus functioning as object locators rather than full objects.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ListScenarioEditedObjectsResponse {
+  data: Array<OntologyObjectV2>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * The object types that have been modified within a scenario.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListScenarioEditedObjectTypesResponse {
+  data: Array<ObjectTypeApiName>;
+}
+
+/**
+   * The request body for loading entries from a geotemporal series reference property.
+A geotemporal series represents time-indexed geographic observations for an object, such as the location history
+of a vehicle or aircraft. Each entry in the response is a map of property names to values, following the same
+structure as OntologyObjectV2.
+The range field is required and restricts results to a specific time window. Both startTime and endTime
+are required on range. The additionalProperties field controls which additional properties appear in each
+returned entry. Results are paginated; use pageToken from a previous response to retrieve additional pages.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface LoadGeotemporalSeriesRequest {
+  range: AbsoluteTimeRange;
+  additionalProperties: Array<SelectedPropertyApiName>;
+  pageToken?: _Core.PageToken;
+  pageSize?: _Core.PageSize;
+}
+
+/**
+   * The response when loading entries from a geotemporal series reference property.
+Each entry in data is a map of property names to values containing the fields requested via
+additionalProperties in the corresponding LoadGeotemporalSeriesRequest. If nextPageToken is present,
+additional entries are available and can be retrieved by passing the token in a subsequent request.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface LoadGeotemporalSeriesResponse {
+  data: Array<GeotemporalSeriesEntry>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface LoadObjectSetLinksRequestV2 {
@@ -2841,6 +2990,7 @@ export interface LoadObjectSetLinksRequestV2 {
   links: Array<LinkTypeApiName>;
   pageToken?: _Core.PageToken;
   includeComputeUsage?: _Core.IncludeComputeUsage;
+  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -2945,6 +3095,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
   snapshot?: boolean;
+  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -2984,7 +3135,8 @@ export type LogicRule =
   | ({ type: "createInterfaceObject" } & CreateInterfaceObjectRule)
   | ({ type: "deleteLink" } & DeleteLinkRule)
   | ({ type: "createObject" } & CreateObjectRule)
-  | ({ type: "createLink" } & CreateLinkRule);
+  | ({ type: "createLink" } & CreateLinkRule)
+  | ({ type: "applyScenario" } & ApplyScenarioRule);
 
 /**
  * Represents an argument for a logic rule operation. An argument can be passed in via the action parameters, as a static value, or as some other value.
@@ -3934,6 +4086,17 @@ export interface ObjectTypeInterfaceImplementation {
 }
 
 /**
+   * Groups link type API names by the object type they're scoped to. Link type API names are only unique within
+an object type, so this pairing is required to identify a link type unambiguously.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeLinkTypeApiNameMapping {
+  objectTypeApiName: ObjectTypeApiName;
+  linkTypes: Array<LinkTypeApiName>;
+}
+
+/**
  * The unique resource identifier of an object type, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
@@ -4006,6 +4169,22 @@ export type OntologyApiName = LooselyBrandedString<"OntologyApiName">;
  */
 export interface OntologyArrayType {
   itemType: OntologyDataType;
+}
+
+/**
+ * The base used to initialize a scenario.
+ *
+ * Log Safety: UNSAFE
+ */
+export type OntologyBase = { type: "branch" } & OntologyBaseBranch;
+
+/**
+ * A branch reference used to initialize a scenario.
+ *
+ * Log Safety: SAFE
+ */
+export interface OntologyBaseBranch {
+  branch: _Core.FoundryBranch;
 }
 
 /**
@@ -4160,6 +4339,18 @@ List ontologies endpoint or check the Ontology Manager.
    * Log Safety: SAFE
    */
 export type OntologyRid = LooselyBrandedString<"OntologyRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type OntologyScenario = LooselyBrandedString<"OntologyScenario">;
+
+/**
+ * The unique resource identifier of an ontology scenario.
+ *
+ * Log Safety: SAFE
+ */
+export type OntologyScenarioRid = LooselyBrandedString<"OntologyScenarioRid">;
 
 /**
  * Log Safety: UNSAFE
@@ -4427,6 +4618,13 @@ export interface PrefixQuery {
 }
 
 /**
+ * Specifies the primary key property of an object type which is present on all object types.
+ *
+ * Log Safety: SAFE
+ */
+export interface PrimaryKeyPropertySelector {}
+
+/**
  * Represents the primary key value that is used as a unique identifier for an object.
  *
  * Log Safety: UNSAFE
@@ -4538,7 +4736,9 @@ export type PropertyId = LooselyBrandedString<"PropertyId">;
 export type PropertyIdentifier =
   | ({ type: "property" } & PropertyApiNameSelector)
   | ({ type: "structField" } & StructFieldSelector)
-  | ({ type: "propertyWithLoadLevel" } & PropertyWithLoadLevelSelector);
+  | ({ type: "propertyWithLoadLevel" } & PropertyWithLoadLevelSelector)
+  | ({ type: "titleProperty" } & TitlePropertySelector)
+  | ({ type: "primaryKeyProperty" } & PrimaryKeyPropertySelector);
 
 /**
  * Log Safety: UNSAFE
@@ -5362,6 +5562,7 @@ export interface SearchObjectsRequestV2 {
   selectV2: Array<PropertyIdentifier>;
   excludeRid?: boolean;
   snapshot?: boolean;
+  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -5661,20 +5862,6 @@ export interface StartsWithQuery {
  */
 export interface StaticArgument {
   value: DataValue;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface StreamGeotemporalSeriesValuesRequest {
-  range?: TimeRange;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface StreamGeotemporalSeriesValuesResponse {
-  data: Array<GeotemporalSeriesEntry>;
 }
 
 /**
@@ -6196,6 +6383,13 @@ export type TimeUnit =
   | "MONTHS"
   | "YEARS"
   | "QUARTERS";
+
+/**
+ * Specifies the title property of an object type which is present on all object types.
+ *
+ * Log Safety: SAFE
+ */
+export interface TitlePropertySelector {}
 
 /**
  * Log Safety: UNSAFE

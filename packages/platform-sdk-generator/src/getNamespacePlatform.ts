@@ -44,6 +44,7 @@ export function getNamespacePlatform(ns?: string): string {
     "MediaSets": "foundry",
     "Models": "foundry",
     "Notepad": "foundry",
+    "Sds": "skipped",
     "Observability": "skipped",
     "Ontologies": "foundry",
     "OntologyMcp": "skipped",
@@ -59,12 +60,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Workbench": "skipped",
   };
 
-  const platform = namespaceMapping[ns];
-  if (platform === undefined) {
-    throw new Error(
-      `Unknown namespace "${ns}". Add it to the namespace mapping in getNamespacePlatform.ts`,
-    );
-  }
+  const platform = namespaceMapping[ns] ?? "skipped";
 
   return platform;
 }

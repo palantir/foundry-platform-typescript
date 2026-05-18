@@ -1412,6 +1412,11 @@ export type RoleId = LooselyBrandedString<"RoleId">;
 export type RoleSetId = LooselyBrandedString<"RoleSetId">;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ScenarioReferenceType {}
+
+/**
  * The RID of a Schedule.
  *
  * Log Safety: SAFE

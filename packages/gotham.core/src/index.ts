@@ -128,6 +128,7 @@ export type {
   RoleContext,
   RoleId,
   RoleSetId,
+  ScenarioReferenceType,
   ScheduleRid,
   SchemaFieldType,
   ServiceName,
