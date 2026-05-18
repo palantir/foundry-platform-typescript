@@ -36,7 +36,6 @@ const _list: $FoundryPlatformMethod<
       referenceType?: _Filesystem.ProjectResourceReferenceType | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Filesystem.ListProjectResourceReferencesResponse>
 > = [0, "/v2/filesystem/projects/{0}/references", 2];
@@ -44,7 +43,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * List all references in the given project
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/projects/{projectRid}/references
@@ -58,7 +57,6 @@ export function list(
       referenceType?: _Filesystem.ProjectResourceReferenceType | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Filesystem.ListProjectResourceReferencesResponse> {
@@ -69,14 +67,13 @@ const _add: $FoundryPlatformMethod<
   (
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.AddProjectResourceReferencesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/projects/{0}/references/add", 3];
+> = [1, "/v2/filesystem/projects/{0}/references/add", 1];
 
 /**
  * Add references to the given project
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/{projectRid}/references/add
@@ -86,7 +83,6 @@ export function add(
   ...args: [
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.AddProjectResourceReferencesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
@@ -96,14 +92,13 @@ const _remove: $FoundryPlatformMethod<
   (
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.RemoveProjectResourceReferencesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/projects/{0}/references/remove", 3];
+> = [1, "/v2/filesystem/projects/{0}/references/remove", 1];
 
 /**
  * Remove references from the given project
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/{projectRid}/references/remove
@@ -113,7 +108,6 @@ export function remove(
   ...args: [
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.RemoveProjectResourceReferencesRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);

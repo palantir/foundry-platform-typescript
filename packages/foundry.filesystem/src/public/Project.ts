@@ -76,11 +76,8 @@ export function replace(
 }
 
 const _create: $FoundryPlatformMethod<
-  (
-    $body: _Filesystem.CreateProjectRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Filesystem.Project>
-> = [1, "/v2/filesystem/projects/create", 3];
+  ($body: _Filesystem.CreateProjectRequest) => Promise<_Filesystem.Project>
+> = [1, "/v2/filesystem/projects/create", 1];
 
 /**
  * Creates a new Project.
@@ -89,17 +86,14 @@ const _create: $FoundryPlatformMethod<
  * Ontology SDK as this will reduce the scope of operations to only those within specified projects.
  * When creating the application, select "No, I won't use an Ontology SDK" on the Resources page.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/create
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Filesystem.CreateProjectRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Filesystem.CreateProjectRequest]
 ): Promise<_Filesystem.Project> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
@@ -107,24 +101,20 @@ export function create(
 const _createFromTemplate: $FoundryPlatformMethod<
   (
     $body: _Filesystem.CreateProjectFromTemplateRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Filesystem.Project>
-> = [1, "/v2/filesystem/projects/createFromTemplate", 3];
+> = [1, "/v2/filesystem/projects/createFromTemplate", 1];
 
 /**
  * Creates a project from a project template.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/createFromTemplate
  */
 export function createFromTemplate(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Filesystem.CreateProjectFromTemplateRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Filesystem.CreateProjectFromTemplateRequest]
 ): Promise<_Filesystem.Project> {
   return $foundryPlatformFetch($ctx, _createFromTemplate, ...args);
 }
@@ -133,14 +123,13 @@ const _addOrganizations: $FoundryPlatformMethod<
   (
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.AddOrganizationsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/projects/{0}/addOrganizations", 3];
+> = [1, "/v2/filesystem/projects/{0}/addOrganizations", 1];
 
 /**
  * Adds a list of Organizations to a Project.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/{projectRid}/addOrganizations
@@ -150,7 +139,6 @@ export function addOrganizations(
   ...args: [
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.AddOrganizationsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _addOrganizations, ...args);
@@ -160,14 +148,13 @@ const _removeOrganizations: $FoundryPlatformMethod<
   (
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.RemoveOrganizationsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/filesystem/projects/{0}/removeOrganizations", 3];
+> = [1, "/v2/filesystem/projects/{0}/removeOrganizations", 1];
 
 /**
  * Removes Organizations from a Project.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/{projectRid}/removeOrganizations
@@ -177,7 +164,6 @@ export function removeOrganizations(
   ...args: [
     projectRid: _Filesystem.ProjectRid,
     $body: _Filesystem.RemoveOrganizationsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _removeOrganizations, ...args);
@@ -189,7 +175,6 @@ const _organizations: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Filesystem.ListOrganizationsOfProjectResponse>
 > = [0, "/v2/filesystem/projects/{0}/organizations", 2];
@@ -198,7 +183,7 @@ const _organizations: $FoundryPlatformMethod<
  * List of Organizations directly applied to a Project. The number of Organizations on a Project is
  * typically small so the `pageSize` and `pageToken` parameters are not required.
  *
- * @beta
+ * @public
  *
  * Required Scopes: []
  * URL: /v2/filesystem/projects/{projectRid}/organizations
@@ -211,7 +196,6 @@ export function organizations(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Filesystem.ListOrganizationsOfProjectResponse> {

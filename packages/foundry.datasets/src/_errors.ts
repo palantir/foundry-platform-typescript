@@ -398,6 +398,7 @@ export interface FileSizeLimitExceeded {
     datasetRid: unknown;
     path: unknown;
     fileSizeBytes: unknown;
+    maxFileSizeBytes: unknown;
   };
 }
 
