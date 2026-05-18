@@ -1,5 +1,7 @@
 # @osdk/foundry.geo
 
+## 2.61.0
+
 ## 2.60.0
 
 ### Minor Changes

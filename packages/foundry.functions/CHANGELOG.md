@@ -1,5 +1,12 @@
 # @osdk/foundry.functions
 
+## 2.61.0
+
+### Patch Changes
+
+- @osdk/foundry.core@2.61.0
+- @osdk/foundry.ontologies@2.61.0
+
 ## 2.60.0
 
 ### Minor Changes
