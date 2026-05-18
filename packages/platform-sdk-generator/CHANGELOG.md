@@ -1,5 +1,11 @@
 # @osdk/platform-sdk-generator
 
+## 0.60.0
+
+### Minor Changes
+
+- 284eb86: Skip operations with unsupported response types in TS SDK generator
+
 ## 0.59.0
 
 ### Minor Changes

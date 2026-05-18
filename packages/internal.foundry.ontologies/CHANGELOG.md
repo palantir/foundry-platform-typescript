@@ -1,5 +1,12 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.61.0
+
+### Patch Changes
+
+- @osdk/internal.foundry.core@2.61.0
+- @osdk/internal.foundry.geo@2.61.0
+
 ## 2.60.0
 
 ### Minor Changes

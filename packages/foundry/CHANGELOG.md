@@ -1,5 +1,39 @@
 # @osdk/foundry
 
+## 2.61.0
+
+### Minor Changes
+
+- 71bee85: Publish .js and .d.ts bundles
+
+### Patch Changes
+
+- @osdk/foundry.admin@2.61.0
+- @osdk/foundry.aipagents@2.61.0
+- @osdk/foundry.audit@2.61.0
+- @osdk/foundry.checkpoints@2.61.0
+- @osdk/foundry.connectivity@2.61.0
+- @osdk/foundry.core@2.61.0
+- @osdk/foundry.datahealth@2.61.0
+- @osdk/foundry.datasets@2.61.0
+- @osdk/foundry.filesystem@2.61.0
+- @osdk/foundry.functions@2.61.0
+- @osdk/foundry.geo@2.61.0
+- @osdk/foundry.geojson@2.61.0
+- @osdk/foundry.languagemodels@2.61.0
+- @osdk/foundry.mediasets@2.61.0
+- @osdk/foundry.models@2.61.0
+- @osdk/foundry.notepad@2.61.0
+- @osdk/foundry.ontologies@2.61.0
+- @osdk/foundry.operations@2.61.0
+- @osdk/foundry.orchestration@2.61.0
+- @osdk/foundry.pack@2.61.0
+- @osdk/foundry.publicapis@2.61.0
+- @osdk/foundry.sqlqueries@2.61.0
+- @osdk/foundry.streams@2.61.0
+- @osdk/foundry.thirdpartyapplications@2.61.0
+- @osdk/foundry.widgets@2.61.0
+
 ## 2.60.0
 
 ### Minor Changes
