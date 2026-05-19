@@ -245,6 +245,7 @@ export type {
   LtQuery,
   LtQueryV2,
   MarkingType,
+  MarkingTypeValue,
   MaxAggregation,
   MaxAggregationV2,
   MediaItemPath,

@@ -273,7 +273,10 @@ const _listOutgoingInterfaceLinkTypes: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.ListOutgoingInterfaceLinkTypesResponse>
 > = [0, "/v2/ontologies/{0}/interfaceTypes/{1}/outgoingLinkTypes", 2];
 
@@ -291,7 +294,10 @@ export function listOutgoingInterfaceLinkTypes(
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
 
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.ListOutgoingInterfaceLinkTypesResponse> {
   return $foundryPlatformFetch($ctx, _listOutgoingInterfaceLinkTypes, ...args);
@@ -302,7 +308,10 @@ const _getOutgoingInterfaceLinkType: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     interfaceType: _Ontologies.InterfaceTypeApiName,
     interfaceLinkType: _Ontologies.InterfaceLinkTypeApiName,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.InterfaceLinkType>
 > = [0, "/v2/ontologies/{0}/interfaceTypes/{1}/outgoingLinkTypes/{2}", 2];
 
@@ -321,7 +330,10 @@ export function getOutgoingInterfaceLinkType(
     interfaceType: _Ontologies.InterfaceTypeApiName,
     interfaceLinkType: _Ontologies.InterfaceLinkTypeApiName,
 
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.InterfaceLinkType> {
   return $foundryPlatformFetch($ctx, _getOutgoingInterfaceLinkType, ...args);

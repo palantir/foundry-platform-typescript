@@ -177,6 +177,7 @@ export interface GaiaElement {
   parentId: GaiaLayerId;
   features: Array<GaiaFeature>;
   label: string;
+  objectRef?: GaiaObjectReference;
   properties?: GaiaProperties;
 }
 
@@ -195,6 +196,16 @@ export type GaiaElementId = LooselyBrandedString<"GaiaElementId">;
 export interface GaiaFeature {
   geometry: _Geojson.GeoJsonObject;
   style?: GaiaStyle;
+}
+
+/**
+ * Reference to a Foundry object.
+ *
+ * Log Safety: SAFE
+ */
+export interface GaiaFoundryObjectByRid {
+  objectRid: ObjectRid;
+  objectTypeRid: ObjectTypeRid;
 }
 
 /**
@@ -264,6 +275,15 @@ export type GaiaMapName = LooselyBrandedString<"GaiaMapName">;
  * Log Safety: SAFE
  */
 export type GaiaMapRid = LooselyBrandedString<"GaiaMapRid">;
+
+/**
+ * References to objects that are external to Gaia.
+ *
+ * Log Safety: SAFE
+ */
+export type GaiaObjectReference = {
+  type: "FoundryObjectByRid";
+} & GaiaFoundryObjectByRid;
 
 /**
    * Strongly-typed properties associated with a Gaia element. We provide API guarantees over fields in this class;
@@ -458,6 +478,13 @@ export type ObjectRid = LooselyBrandedString<"ObjectRid">;
  * Log Safety: SAFE
  */
 export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
+
+/**
+ * The RID of an object type.
+ *
+ * Log Safety: SAFE
+ */
+export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 
 /**
  * The page token indicates where to start paging. api-gateway's Core.PageToken is an immutable @Unsafe String, which is incompatible with Gaia's backend search. This is a custom PageToken that is an immutable @Safe String.

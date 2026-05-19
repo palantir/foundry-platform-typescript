@@ -695,6 +695,9 @@ importers:
 
   packages/foundry.operations:
     dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
       '@osdk/foundry.ontologies':
         specifier: workspace:*
         version: link:../foundry.ontologies

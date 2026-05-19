@@ -120,6 +120,7 @@ export type {
   MapFieldType,
   MarkingId,
   MarkingType,
+  MarkingTypeValue,
   MediaItemPath,
   MediaItemReadToken,
   MediaItemRid,

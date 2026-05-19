@@ -37,6 +37,7 @@ const _list: $FoundryPlatformMethod<
       objectTypeApiNames: Array<_Ontologies.ObjectTypeApiName>;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ListActionTypesFullMetadataResponse>
 > = [0, "/v2/ontologies/{0}/actionTypesFullMetadata", 2];
@@ -62,6 +63,7 @@ export function list(
       objectTypeApiNames: Array<_Ontologies.ObjectTypeApiName>;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ListActionTypesFullMetadataResponse> {
@@ -72,7 +74,10 @@ const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     actionType: _Ontologies.ActionTypeApiName,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.ActionTypeFullMetadata>
 > = [0, "/v2/ontologies/{0}/actionTypes/{1}/fullMetadata", 2];
 
@@ -90,7 +95,10 @@ export function get(
     ontology: _Ontologies.OntologyIdentifier,
     actionType: _Ontologies.ActionTypeApiName,
 
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.ActionTypeFullMetadata> {
   return $foundryPlatformFetch($ctx, _get, ...args);

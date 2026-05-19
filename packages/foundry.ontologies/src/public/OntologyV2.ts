@@ -70,7 +70,10 @@ export function get(
 const _getFullMetadata: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Ontologies.OntologyFullMetadata>
 > = [0, "/v2/ontologies/{0}/fullMetadata", 2];
 
@@ -89,7 +92,10 @@ export function getFullMetadata(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
 
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Ontologies.OntologyFullMetadata> {
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);

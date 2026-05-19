@@ -37,6 +37,7 @@ const _createTemporary: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -62,6 +63,7 @@ export function createTemporary(
       branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -76,8 +78,9 @@ const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     objectSetRid: _Ontologies.ObjectSetRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.ObjectSet>
-> = [0, "/v2/ontologies/{0}/objectSets/{1}"];
+> = [0, "/v2/ontologies/{0}/objectSets/{1}", 2];
 
 /**
  * Gets the definition of the `ObjectSet` with the given RID.
@@ -92,6 +95,8 @@ export function get(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     objectSetRid: _Ontologies.ObjectSetRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.ObjectSet> {
   return $foundryPlatformFetch($ctx, _get, ...args);

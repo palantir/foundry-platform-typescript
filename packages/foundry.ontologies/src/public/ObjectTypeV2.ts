@@ -179,6 +179,7 @@ const _getEditsHistory: $FoundryPlatformMethod<
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ObjectTypeEditsHistoryResponse>
 > = [1, "/v2/ontologies/{0}/objectTypes/{1}/editsHistory", 3];
@@ -206,6 +207,7 @@ export function getEditsHistory(
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ObjectTypeEditsHistoryResponse> {
