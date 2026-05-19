@@ -27,6 +27,7 @@
     "transpile": "monorepo.tool.transpile"
   },
   "dependencies": {
+    "@osdk/foundry.core": "workspace:*",
     "@osdk/foundry.ontologies": "workspace:*",
     "@osdk/shared.client": "^1.0.1",
     "@osdk/shared.client2": "^1.0.0",
@@ -53,7 +54,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1619.0",
+        "minVersion": "1.1623.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

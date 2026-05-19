@@ -2447,7 +2447,19 @@ export interface LtQueryV2 {
 /**
  * Log Safety: SAFE
  */
-export interface MarkingType {}
+export interface MarkingType {
+  markingType?: MarkingTypeValue;
+}
+
+/**
+   * The kind of marking applied by a marking property type.
+
+CBAC: Classification-based access control markings.
+MANDATORY: Standard non-classification markings. Example - Organizations.
+   *
+   * Log Safety: SAFE
+   */
+export type MarkingTypeValue = "CBAC" | "MANDATORY";
 
 /**
  * @deprecated Use `MaxAggregation` in the `internal.foundry.ontologies` package

@@ -96,6 +96,7 @@ const _applyAsync: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -128,6 +129,7 @@ export function applyAsync(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -194,6 +196,7 @@ const _applyWithOverrides: $FoundryPlatformMethod<
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.SyncApplyActionResponseV2>
 > = [1, "/v2/ontologies/{0}/actions/{1}/applyWithOverrides", 3];
@@ -219,6 +222,7 @@ export function applyWithOverrides(
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.SyncApplyActionResponseV2> {
@@ -234,6 +238,7 @@ const _applyBatchWithOverrides: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.BatchApplyActionResponseV2>
 > = [1, "/v2/ontologies/{0}/actions/{1}/applyBatchWithOverrides", 3];
@@ -265,6 +270,7 @@ export function applyBatchWithOverrides(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.BatchApplyActionResponseV2> {

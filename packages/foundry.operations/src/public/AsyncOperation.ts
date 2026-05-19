@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -29,8 +30,11 @@ import type * as _Operations from "../_components.js";
 //
 
 const _get: $FoundryPlatformMethod<
-  (operationId: string) => Promise<_Operations.AsyncOperation>
-> = [0, "/v2/operations/{0}"];
+  (
+    operationId: string,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Operations.AsyncOperation>
+> = [0, "/v2/operations/{0}", 2];
 
 /**
  * Get an asynchronous operation by its ID.
@@ -42,7 +46,11 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [operationId: string]
+  ...args: [
+    operationId: string,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<_Operations.AsyncOperation> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

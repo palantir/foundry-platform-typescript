@@ -33,8 +33,9 @@ const _createScenario: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateOntologyScenarioRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.CreateOntologyScenarioResponse>
-> = [1, "/v2/ontologies/{0}/scenarios/create", 1];
+> = [1, "/v2/ontologies/{0}/scenarios/create", 3];
 
 /**
  * Creates an ontology scenario.
@@ -49,6 +50,7 @@ export function createScenario(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateOntologyScenarioRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.CreateOntologyScenarioResponse> {
   return $foundryPlatformFetch($ctx, _createScenario, ...args);
@@ -58,8 +60,9 @@ const _listScenarioEditedObjectTypes: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.ListScenarioEditedObjectTypesResponse>
-> = [0, "/v2/ontologies/{0}/scenarios/{1}/objectTypes/edited"];
+> = [0, "/v2/ontologies/{0}/scenarios/{1}/objectTypes/edited", 2];
 
 /**
  * Returns the list of object type API names that have been modified within a given scenario.
@@ -74,6 +77,8 @@ export function listScenarioEditedObjectTypes(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.ListScenarioEditedObjectTypesResponse> {
   return $foundryPlatformFetch($ctx, _listScenarioEditedObjectTypes, ...args);
@@ -84,10 +89,12 @@ const _listScenarioEditedLinkTypes: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
     objectType: _Ontologies.ObjectTypeApiName,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.ListScenarioEditedLinkTypesResponse>
 > = [
   0,
   "/v2/ontologies/{0}/scenarios/{1}/objectTypes/{2}/outgoingLinkTypes/edited",
+  2,
 ];
 
 /**
@@ -107,6 +114,8 @@ export function listScenarioEditedLinkTypes(
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
     objectType: _Ontologies.ObjectTypeApiName,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.ListScenarioEditedLinkTypesResponse> {
   return $foundryPlatformFetch($ctx, _listScenarioEditedLinkTypes, ...args);
@@ -116,8 +125,9 @@ const _listScenarioEditedEntityTypes: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.ListScenarioEditedEntityTypesResponse>
-> = [0, "/v2/ontologies/{0}/scenarios/{1}/editedEntityTypes"];
+> = [0, "/v2/ontologies/{0}/scenarios/{1}/editedEntityTypes", 2];
 
 /**
  * Returns the object types and link types that have been modified within a given scenario.
@@ -136,6 +146,8 @@ export function listScenarioEditedEntityTypes(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.ListScenarioEditedEntityTypesResponse> {
   return $foundryPlatformFetch($ctx, _listScenarioEditedEntityTypes, ...args);
@@ -149,6 +161,7 @@ const _listScenarioEditedObjects: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ListScenarioEditedObjectsResponse>
 > = [0, "/v2/ontologies/{0}/scenarios/{1}/objects/{2}/edited", 2];
@@ -174,6 +187,7 @@ export function listScenarioEditedObjects(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ListScenarioEditedObjectsResponse> {
@@ -189,6 +203,7 @@ const _listScenarioEditedLinks: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ListScenarioEditedLinksResponse>
 > = [0, "/v2/ontologies/{0}/scenarios/{1}/objects/{2}/links/{3}/edited", 2];
@@ -216,6 +231,7 @@ export function listScenarioEditedLinks(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ListScenarioEditedLinksResponse> {
