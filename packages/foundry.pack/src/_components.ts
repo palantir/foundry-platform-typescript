@@ -471,9 +471,8 @@ export type DocumentSortField =
 export interface DocumentType {
   rid: DocumentTypeRid;
   name: DocumentTypeName;
-  schema?: DocumentTypeSchema;
+  operationalVersion?: SchemaVersion;
   fileSystemType?: FileSystemType;
-  version?: SchemaVersion;
 }
 
 /**
@@ -817,6 +816,23 @@ export type FileSystemType = "ARTIFACTS" | "COMPASS";
  * Log Safety: SAFE
  */
 export type FolderRid = LooselyBrandedString<"FolderRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetOperationalVersionDocumentTypeRequest {
+  documentTypeName: DocumentTypeName;
+  ontologyRid: string;
+}
+
+/**
+ * Response containing the operational version for a document type.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetOperationalVersionResponse {
+  operationalVersion?: SchemaVersion;
+}
 
 /**
  * A Foundry Group ID.

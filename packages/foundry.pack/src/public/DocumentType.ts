@@ -88,7 +88,7 @@ const _loadByName: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documentTypes/loadByName", 3];
 
 /**
- * Loads the PACK Document Type's metadata and schema by the provided Document Type Name.
+ * Loads the PACK Document Type's metadata by the provided Document Type Name.
  *
  * @alpha
  *
@@ -157,4 +157,30 @@ export function updateSchema(
   ]
 ): Promise<_Pack.UpdateSchemaResponse> {
   return $foundryPlatformFetch($ctx, _updateSchema, ...args);
+}
+
+const _getOperationalVersion: $FoundryPlatformMethod<
+  (
+    $body: _Pack.GetOperationalVersionDocumentTypeRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.GetOperationalVersionResponse>
+> = [1, "/v2/pack/documentTypes/getOperationalVersion", 3];
+
+/**
+ * Returns the computed operational version for a document type. The operational version is the highest
+ * schema version that all deployed asset tracks can support, used for document compatibility checks.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documentTypes/getOperationalVersion
+ */
+export function getOperationalVersion(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.GetOperationalVersionDocumentTypeRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.GetOperationalVersionResponse> {
+  return $foundryPlatformFetch($ctx, _getOperationalVersion, ...args);
 }

@@ -1246,6 +1246,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.updateSchemaDocumentType": {
       "variables": {},
     },
+    "v2.getOperationalVersionDocumentType": {
+      "variables": {},
+    },
     "v2.createDocument": {
       "variables": {},
     },
