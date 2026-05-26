@@ -1,5 +1,16 @@
 # @osdk/foundry.geojson
 
+## 2.62.0
+
+### Minor Changes
+
+- 6abd66b: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [6abd66b]
+  - @osdk/shared.net.platformapi@1.7.0
+
 ## 2.61.0
 
 ## 2.60.0

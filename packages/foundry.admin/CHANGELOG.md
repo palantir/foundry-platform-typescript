@@ -1,5 +1,19 @@
 # @osdk/foundry.admin
 
+## 2.62.0
+
+### Minor Changes
+
+- 7432721: Regenerate SDKs (api-gateway 1.1623.0): adds optional `markingType` field on `MarkingType` and new `MarkingTypeValue` enum (classification-based vs. mandatory marking subtype), and a `preview` query param on assorted Ontologies/Operations endpoints. Gotham Gaia gains `GaiaObjectReference`, `GaiaFoundryObjectByRid`, and `ObjectTypeRid`.
+- 6abd66b: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [7432721]
+- Updated dependencies [6abd66b]
+  - @osdk/foundry.core@2.62.0
+  - @osdk/shared.net.platformapi@1.7.0
+
 ## 2.61.0
 
 ### Patch Changes

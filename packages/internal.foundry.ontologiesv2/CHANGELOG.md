@@ -1,5 +1,19 @@
 # @osdk/internal.foundry.ontologiesv2
 
+## 2.62.0
+
+### Minor Changes
+
+- 6abd66b: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [7432721]
+- Updated dependencies [6abd66b]
+  - @osdk/internal.foundry.core@2.62.0
+  - @osdk/internal.foundry.ontologies@2.62.0
+  - @osdk/shared.net.platformapi@1.7.0
+
 ## 2.61.0
 
 ### Patch Changes

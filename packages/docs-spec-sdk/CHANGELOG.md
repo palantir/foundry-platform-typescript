@@ -1,5 +1,16 @@
 # @osdk/docs-spec-sdk
 
+## 0.18.0
+
+### Minor Changes
+
+- 6abd66b: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [6abd66b]
+  - @osdk/docs-spec-core@0.7.0
+
 ## 0.17.0
 
 ### Minor Changes
