@@ -1,5 +1,17 @@
 # @osdk/docs-spec-platform
 
+## 0.48.0
+
+### Minor Changes
+
+- 7432721: Regenerate SDKs (api-gateway 1.1623.0): adds optional `markingType` field on `MarkingType` and new `MarkingTypeValue` enum (classification-based vs. mandatory marking subtype), and a `preview` query param on assorted Ontologies/Operations endpoints. Gotham Gaia gains `GaiaObjectReference`, `GaiaFoundryObjectByRid`, and `ObjectTypeRid`.
+- 6abd66b: Regenerate SDKs
+
+### Patch Changes
+
+- Updated dependencies [6abd66b]
+  - @osdk/docs-spec-core@0.7.0
+
 ## 0.47.0
 
 ### Minor Changes
