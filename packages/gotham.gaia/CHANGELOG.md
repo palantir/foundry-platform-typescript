@@ -1,5 +1,17 @@
 # @osdk/gotham.gaia
 
+## 0.35.0
+
+### Minor Changes
+
+- 2acaf9e: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [2acaf9e]
+  - @osdk/gotham.geojson@0.35.0
+  - @osdk/gotham.core@0.35.0
+
 ## 0.34.0
 
 ### Minor Changes

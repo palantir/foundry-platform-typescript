@@ -1,5 +1,16 @@
 # @osdk/foundry.publicapis
 
+## 2.63.0
+
+### Minor Changes
+
+- 2acaf9e: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [2acaf9e]
+  - @osdk/foundry.core@2.63.0
+
 ## 2.62.0
 
 ### Minor Changes
