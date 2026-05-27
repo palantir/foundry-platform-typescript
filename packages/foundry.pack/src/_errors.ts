@@ -183,6 +183,19 @@ export interface DocumentTypeNotFound {
 }
 
 /**
+ * Could not getOperationalVersion the DocumentType.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetOperationalVersionDocumentTypePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetOperationalVersionDocumentTypePermissionDenied";
+  errorDescription: "Could not getOperationalVersion the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The provided Document Type Name is invalid. First-party document type names must follow the format
 com.palantir.pack.<assetName>.<documentTypeName>.
    *
