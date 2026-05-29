@@ -19,6 +19,17 @@ import type { Model } from "./Model.js";
 import type { Namespace } from "./Namespace.js";
 import { Type } from "./Type.js";
 
+/**
+ * Parent rid → children whose brand literals widen its `LooselyBrandedString`
+ * brand union. Keyed by IR `namespaceName` then parent `localName`. Makes
+ * `Child → Parent` one-way assignable; siblings stay mutually non-assignable.
+ */
+const RID_CHILD_BRANDS: Record<string, Record<string, readonly string[]>> = {
+  Filesystem: {
+    FolderRid: ["SpaceRid", "ProjectRid"],
+  },
+};
+
 export class Component extends Type {
   isComponent = true;
   namespace: Namespace;
@@ -99,7 +110,15 @@ export class Component extends Type {
       case "builtin":
         // need to special case this since we use a branded type
         if (dt.builtin.type === "rid" || dt.builtin.type === "string") {
-          out += `LooselyBrandedString<"${component.locator.localName}">`;
+          const localName = component.locator.localName;
+          const children = dt.builtin.type === "rid"
+            ? RID_CHILD_BRANDS[component.locator.namespaceName]?.[localName]
+              ?? []
+            : [];
+          const brandUnion = [localName, ...children]
+            .map((n) => `"${n}"`)
+            .join(" | ");
+          out += `LooselyBrandedString<${brandUnion}>`;
         } else {
           out += ourType.getDeclaration(localNamespace);
         }
