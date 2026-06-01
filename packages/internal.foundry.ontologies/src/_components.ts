@@ -265,7 +265,6 @@ export interface AggregateObjectSetRequestV2 {
   groupBy: Array<AggregationGroupByV2>;
   accuracy?: AggregationAccuracyRequest;
   includeComputeUsage?: _Core.IncludeComputeUsage;
-  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -2990,7 +2989,6 @@ export interface LoadObjectSetLinksRequestV2 {
   links: Array<LinkTypeApiName>;
   pageToken?: _Core.PageToken;
   includeComputeUsage?: _Core.IncludeComputeUsage;
-  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -3095,7 +3093,6 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
   snapshot?: boolean;
-  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -5559,7 +5556,6 @@ export interface SearchObjectsRequestV2 {
   selectV2: Array<PropertyIdentifier>;
   excludeRid?: boolean;
   snapshot?: boolean;
-  executeInMemoryOnly?: boolean;
 }
 
 /**
