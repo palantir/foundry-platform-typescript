@@ -62,6 +62,7 @@ const ObjectTypeWithPropertyTemplateStrings = {
   rawPropertyValue: "required",
   rawPropertyValueIncremented: "required",
   structSubPropertyApiName: "optional",
+  arrayContains: "optional",
 } as const satisfies SnippetVariables;
 
 const RangeObjectTypeWithPropertyTemplateStrings = {
