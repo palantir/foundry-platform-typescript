@@ -8,3 +8,5 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Call generatePlatformSdk.sh to generate the SDKs and docs
 "$SCRIPT_DIR/generatePlatformSdk.sh"
+
+pnpm install
