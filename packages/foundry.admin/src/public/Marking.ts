@@ -138,3 +138,28 @@ export function replace(
 ): Promise<_Admin.Marking> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
 }
+
+const _parseClassifications: $FoundryPlatformMethod<
+  (
+    $body: _Admin.ParseClassificationsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.ParseClassificationsResponse>
+> = [1, "/v2/admin/markings/parseClassifications", 3];
+
+/**
+ * Parses classification marking strings (e.g. 'S//NF') into their component marking IDs. Strings that cannot be parsed are returned in 'errors' with a human-readable message.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:admin-read]
+ * URL: /v2/admin/markings/parseClassifications
+ */
+export function parseClassifications(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Admin.ParseClassificationsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.ParseClassificationsResponse> {
+  return $foundryPlatformFetch($ctx, _parseClassifications, ...args);
+}
