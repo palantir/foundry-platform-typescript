@@ -10,3 +10,6 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 "$SCRIPT_DIR/generatePlatformSdk.sh"
 
 pnpm install
+
+pnpm exec turbo transpile --filter "./packages/tool.release" --output-logs=errors-only
+node "$SCRIPT_DIR/../packages/tool.release/build/esm/writeRegeneratedChangeset.js" --cwd "$SCRIPT_DIR/.."
