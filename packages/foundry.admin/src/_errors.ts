@@ -886,22 +886,6 @@ export interface OrganizationNotFound {
 }
 
 /**
- * The provided token does not have permission to parse the given classification strings.
- *
- * Log Safety: UNSAFE
- */
-export interface ParseClassificationsPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "ParseClassificationsPermissionDenied";
-  errorDescription:
-    "The provided token does not have permission to parse the given classification strings.";
-  errorInstanceId: string;
-  parameters: {
-    classificationStrings: unknown;
-  };
-}
-
-/**
  * Could not preregisterGroup the AuthenticationProvider.
  *
  * Log Safety: SAFE

@@ -187,9 +187,6 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.createUsageAccount": {
       "variables": {},
     },
-    "v2.deleteUsageAccount": {
-      "variables": {},
-    },
     "v2.listUsageAccounts": {
       "variables": {},
     },
@@ -617,9 +614,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.replaceMarking": {
-      "variables": {},
-    },
-    "v2.parseClassifications": {
       "variables": {},
     },
     "v2.listMarkingMembers": {
