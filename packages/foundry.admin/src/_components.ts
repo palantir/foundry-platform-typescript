@@ -687,6 +687,21 @@ export interface OrganizationRoleAssignment {
 /**
  * Log Safety: UNSAFE
  */
+export interface ParseClassificationsRequest {
+  classificationStrings: Array<string>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ParseClassificationsResponse {
+  parsed: Record<string, Array<_Core.MarkingId>>;
+  errors: Record<string, string>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface PreregisterGroupRequest {
   name: GroupName;
   organizations: Array<_Core.OrganizationRid>;
