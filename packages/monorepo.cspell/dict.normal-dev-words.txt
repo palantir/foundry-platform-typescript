@@ -8,7 +8,6 @@ Discoverability
 downsampling
 duplicative
 envrc
-FINETUNING
 gantt
 geofence
 Geolocatable
