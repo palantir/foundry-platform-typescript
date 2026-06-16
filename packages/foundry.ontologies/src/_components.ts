@@ -86,6 +86,13 @@ export interface ActionParameterArrayType {
 }
 
 /**
+ * The unique resource identifier of an action parameter, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionParameterRid = LooselyBrandedString<"ActionParameterRid">;
+
+/**
  * A union of all the types supported by Ontology Action parameters.
  *
  * Log Safety: UNSAFE
@@ -140,6 +147,13 @@ export type ActionResults =
 export type ActionRid = LooselyBrandedString<"ActionRid">;
 
 /**
+ * The unique resource identifier of an action section, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionSectionRid = LooselyBrandedString<"ActionSectionRid">;
+
+/**
  * Represents an action type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -163,6 +177,33 @@ endpoint or check the Ontology Manager.
 export type ActionTypeApiName = LooselyBrandedString<"ActionTypeApiName">;
 
 /**
+ * Returns action types with an api name matching the given string predicate.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionTypeApiNameActionTypesQueryV2 {
+  value: FullTextStringPredicateV2;
+}
+
+/**
+ * Returns action types with a description matching the given string predicate.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionTypeDescriptionActionTypesQueryV2 {
+  value: FullTextStringPredicateV2;
+}
+
+/**
+ * Returns action types with a display name matching the given string predicate.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionTypeDisplayNameActionTypesQueryV2 {
+  value: FullTextStringPredicateV2;
+}
+
+/**
  * Returns the full metadata for an Action type in the Ontology.
  *
  * Log Safety: UNSAFE
@@ -173,11 +214,112 @@ export interface ActionTypeFullMetadata {
 }
 
 /**
+   * Fuzziness setting applied to contains full-text string predicates in the search query. If not provided,
+auto is used.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ActionTypeFuzziness =
+  | ({ type: "auto" } & FuzzinessAuto)
+  | ({ type: "off" } & FuzzinessOff);
+
+/**
+ * Filter action types by the type of logic rule they contain.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionTypeLogicRuleTypeFilter =
+  | "ADD_OBJECT"
+  | "MODIFY_OBJECT"
+  | "DELETE_OBJECT"
+  | "ADD_LINK"
+  | "DELETE_LINK"
+  | "FUNCTION"
+  | "BATCHED_FUNCTION"
+  | "ADD_OR_MODIFY_OBJECT"
+  | "ADD_OR_MODIFY_OBJECT_V2";
+
+/**
+ * Filter action types by permission model.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionTypePermissionModelFilter =
+  | "DATASOURCE_DERIVED_PERMISSIONS"
+  | "ONTOLOGY_ROLES"
+  | "COMPASS_PROJECT";
+
+/**
  * The unique resource identifier of an action type, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
  */
 export type ActionTypeRid = LooselyBrandedString<"ActionTypeRid">;
+
+/**
+ * Returns action types with the given rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface ActionTypeRidActionTypesQueryV2 {
+  value: ActionTypeRid;
+}
+
+/**
+ * Represents the search query for an action type search. Supports filters for various action type features.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ActionTypeSearchJsonQueryV2 =
+  | ({ type: "webhookRid" } & WebhookRidActionTypesQueryV2)
+  | ({ type: "hasActionLog" } & HasActionLogActionTypesQueryV2)
+  | ({ type: "actionTypeApiName" } & ActionTypeApiNameActionTypesQueryV2)
+  | ({ type: "or" } & OrActionTypesQueryV2)
+  | ({ type: "permissionModel" } & PermissionModelActionTypesQueryV2)
+  | ({ type: "hasWebhook" } & HasWebhookActionTypesQueryV2)
+  | ({
+    type: "actionTypeDisplayName";
+  } & ActionTypeDisplayNameActionTypesQueryV2)
+  | ({ type: "affectedLinkTypeRid" } & AffectedLinkTypeRidActionTypesQueryV2)
+  | ({
+    type: "actionTypeDescription";
+  } & ActionTypeDescriptionActionTypesQueryV2)
+  | ({ type: "sectionRid" } & SectionRidActionTypesQueryV2)
+  | ({ type: "parameterRid" } & ParameterRidActionTypesQueryV2)
+  | ({ type: "parameterName" } & ParameterNameActionTypesQueryV2)
+  | ({ type: "hasNotification" } & HasNotificationActionTypesQueryV2)
+  | ({ type: "functionRid" } & FunctionRidActionTypesQueryV2)
+  | ({ type: "inputObjectTypeRid" } & InputObjectTypeRidActionTypesQueryV2)
+  | ({ type: "revertActionEnabled" } & RevertActionEnabledActionTypesQueryV2)
+  | ({ type: "logicRule" } & LogicRuleActionTypesQueryV2)
+  | ({ type: "typeClasses" } & TypeClassesActionTypesQueryV2)
+  | ({
+    type: "affectedInterfaceTypeRid";
+  } & AffectedInterfaceTypeRidActionTypesQueryV2)
+  | ({ type: "and" } & AndActionTypesQueryV2)
+  | ({ type: "actionTypeRid" } & ActionTypeRidActionTypesQueryV2)
+  | ({
+    type: "affectedObjectTypeRid";
+  } & AffectedObjectTypeRidActionTypesQueryV2)
+  | ({ type: "status" } & StatusActionTypesQueryV2);
+
+/**
+ * Specifies the field to sort action types by.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionTypeSortByV2 = "actionTypeDisplayName";
+
+/**
+ * Filter action types by status.
+ *
+ * Log Safety: SAFE
+ */
+export type ActionTypeStatusFilter =
+  | "EXPERIMENTAL"
+  | "ACTIVE"
+  | "DEPRECATED"
+  | "EXAMPLE";
 
 /**
  * Represents an action type in the Ontology.
@@ -249,6 +391,33 @@ export interface AddPropertyExpression {
 }
 
 /**
+ * Returns action types which edit the interface type with the given rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface AffectedInterfaceTypeRidActionTypesQueryV2 {
+  value: InterfaceTypeRid;
+}
+
+/**
+ * Returns action types which edit the link type with the given rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface AffectedLinkTypeRidActionTypesQueryV2 {
+  value: LinkTypeRid;
+}
+
+/**
+ * Returns action types which edit the object type with the given rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface AffectedObjectTypeRidActionTypesQueryV2 {
+  value: ObjectTypeRid;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Affix {
@@ -265,7 +434,6 @@ export interface AggregateObjectSetRequestV2 {
   groupBy: Array<AggregationGroupByV2>;
   accuracy?: AggregationAccuracyRequest;
   includeComputeUsage?: _Core.IncludeComputeUsage;
-  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -598,6 +766,15 @@ export interface AllTermsQuery {
   field: FieldNameV1;
   value: string;
   fuzzy?: Fuzzy;
+}
+
+/**
+ * Returns action types where every query is satisfied. An empty list matches all action types.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AndActionTypesQueryV2 {
+  value: Array<ActionTypeSearchJsonQueryV2>;
 }
 
 /**
@@ -1929,6 +2106,34 @@ export type FilterValue = LooselyBrandedString<"FilterValue">;
 export type FixedValuesMapKey = number;
 
 /**
+   * Matches strings which contain the given string or parts of the given string. The exact behaviour can vary
+depending on the attribute searched for due to optimized text analysis.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FullTextStringContainsPredicate {
+  value: string;
+}
+
+/**
+ * Matches strings representing the same sequence of characters as the given string.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FullTextStringExactPredicate {
+  value: string;
+}
+
+/**
+ * A predicate for matching strings.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FullTextStringPredicateV2 =
+  | ({ type: "contains" } & FullTextStringContainsPredicate)
+  | ({ type: "exact" } & FullTextStringExactPredicate);
+
+/**
  * Log Safety: UNSAFE
  */
 export interface FunctionLogicRule {
@@ -1954,12 +2159,37 @@ export type FunctionParameterName = LooselyBrandedString<
 export type FunctionRid = LooselyBrandedString<"FunctionRid">;
 
 /**
+ * Returns action types which use the function with the given rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface FunctionRidActionTypesQueryV2 {
+  value: FunctionRid;
+}
+
+/**
    * The version of the given Function, written <major>.<minor>.<patch>-<tag>, where -<tag> is optional.
 Examples: 1.2.3, 1.2.3-rc1.
    *
    * Log Safety: UNSAFE
    */
 export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
+
+/**
+   * Fuzzy search is activated, which can help discover additional results based on small differences in
+spelling, although some additional results may be less relevant.
+   *
+   * Log Safety: SAFE
+   */
+export interface FuzzinessAuto {}
+
+/**
+   * Fuzzy search is turned off. Matches generated by modifying one or more characters of the search query are
+not returned.
+   *
+   * Log Safety: SAFE
+   */
+export interface FuzzinessOff {}
 
 /**
  * Setting fuzzy to true allows approximate matching in search queries that support it.
@@ -2207,6 +2437,33 @@ export interface GtQueryV2 {
 }
 
 /**
+ * Returns action types based on whether they have an action log.
+ *
+ * Log Safety: SAFE
+ */
+export interface HasActionLogActionTypesQueryV2 {
+  value: boolean;
+}
+
+/**
+ * Returns action types based on whether they have a notification.
+ *
+ * Log Safety: SAFE
+ */
+export interface HasNotificationActionTypesQueryV2 {
+  value: boolean;
+}
+
+/**
+ * Returns action types based on whether they reference a webhook.
+ *
+ * Log Safety: SAFE
+ */
+export interface HasWebhookActionTypesQueryV2 {
+  value: boolean;
+}
+
+/**
  * Formats the duration as a human-readable written string.
  *
  * Log Safety: SAFE
@@ -2221,6 +2478,15 @@ export interface HumanReadableFormat {
  * Log Safety: UNSAFE
  */
 export type Icon = { type: "blueprint" } & BlueprintIcon;
+
+/**
+ * Returns action types which reference the object type with the given rid as an input or product.
+ *
+ * Log Safety: SAFE
+ */
+export interface InputObjectTypeRidActionTypesQueryV2 {
+  value: ObjectTypeRid;
+}
 
 /**
    * Returns objects where the specified field equals any of the provided values. Allows you to
@@ -2990,7 +3256,6 @@ export interface LoadObjectSetLinksRequestV2 {
   links: Array<LinkTypeApiName>;
   pageToken?: _Core.PageToken;
   includeComputeUsage?: _Core.IncludeComputeUsage;
-  executeInMemoryOnly?: boolean;
 }
 
 /**
@@ -3018,6 +3283,7 @@ export interface LoadObjectSetRequestV2 {
   loadPropertySecurities?: boolean;
   snapshot?: boolean;
   includeComputeUsage?: _Core.IncludeComputeUsage;
+  referenceSigningOptions?: ReferenceSigningOptions;
 }
 
 /**
@@ -3049,6 +3315,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   loadPropertySecurities?: boolean;
   snapshot?: boolean;
   includeComputeUsage?: _Core.IncludeComputeUsage;
+  referenceSigningOptions?: ReferenceSigningOptions;
 }
 
 /**
@@ -3095,7 +3362,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
   snapshot?: boolean;
-  executeInMemoryOnly?: boolean;
+  referenceSigningOptions?: ReferenceSigningOptions;
 }
 
 /**
@@ -3137,6 +3404,15 @@ export type LogicRule =
   | ({ type: "createObject" } & CreateObjectRule)
   | ({ type: "createLink" } & CreateLinkRule)
   | ({ type: "applyScenario" } & ApplyScenarioRule);
+
+/**
+ * Returns action types which contain a logic rule of the given type.
+ *
+ * Log Safety: SAFE
+ */
+export interface LogicRuleActionTypesQueryV2 {
+  value: ActionTypeLogicRuleTypeFilter;
+}
 
 /**
  * Represents an argument for a logic rule operation. An argument can be passed in via the action parameters, as a static value, or as some other value.
@@ -4421,6 +4697,15 @@ export interface OntologyValueType {
 export type OntologyVersion = string;
 
 /**
+ * Returns action types where at least one query is satisfied. An empty list matches no action types.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OrActionTypesQueryV2 {
+  value: Array<ActionTypeSearchJsonQueryV2>;
+}
+
+/**
    * A command representing the list of properties to order by. Properties should be delimited by commas and
 prefixed by p or properties. The format expected format is
 orderBy=properties.{property}:{sortDirection},properties.{property}:{sortDirection}...
@@ -4531,6 +4816,15 @@ export interface ParameterIdArgument {
 }
 
 /**
+ * Returns action types with a parameter whose name matches the given string predicate.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ParameterNameActionTypesQueryV2 {
+  value: FullTextStringPredicateV2;
+}
+
+/**
  * A possible value for the parameter. This is defined in the Ontology Manager by Actions admins.
  *
  * Log Safety: UNSAFE
@@ -4538,6 +4832,24 @@ export interface ParameterIdArgument {
 export interface ParameterOption {
   displayName?: _Core.DisplayName;
   value?: any;
+}
+
+/**
+ * Returns action types with a parameter matching the given parameter rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface ParameterRidActionTypesQueryV2 {
+  value: ActionParameterRid;
+}
+
+/**
+ * Returns action types with the given permission model.
+ *
+ * Log Safety: SAFE
+ */
+export interface PermissionModelActionTypesQueryV2 {
+  value: ActionTypePermissionModelFilter;
 }
 
 /**
@@ -5248,6 +5560,15 @@ export interface Reason {
 export type ReasonType = "USER_CLOSED" | "CHANNEL_CLOSED";
 
 /**
+ * Options for signing references in the response.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReferenceSigningOptions {
+  signMediaReferences?: boolean;
+}
+
+/**
    * The updated data value associated with an object instance's external reference. The object instance
 is uniquely identified by an object type and a primary key. Note that the value of the property
 field returns a dereferenced value rather than the reference itself.
@@ -5432,6 +5753,15 @@ export interface ResolvedInterfacePropertyType {
 export type ReturnEditsMode = "ALL" | "ALL_V2_WITH_DELETIONS" | "NONE";
 
 /**
+ * Returns action types based on whether they are revertible.
+ *
+ * Log Safety: SAFE
+ */
+export interface RevertActionEnabledActionTypesQueryV2 {
+  value: boolean;
+}
+
+/**
  * The string must be a valid RID (Resource Identifier).
  *
  * Log Safety: SAFE
@@ -5461,6 +5791,37 @@ export type SdkPackageRid = LooselyBrandedString<"SdkPackageRid">;
  * Log Safety: SAFE
  */
 export type SdkVersion = LooselyBrandedString<"SdkVersion">;
+
+/**
+   * Specifies the ordering of action type search results by a field and an ordering direction. If not provided,
+results are ordered by relevance of the match.
+   *
+   * Log Safety: SAFE
+   */
+export interface SearchActionTypesOrderByV2 {
+  field: ActionTypeSortByV2;
+  direction?: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchActionTypesRequestV2 {
+  where?: ActionTypeSearchJsonQueryV2;
+  orderBy?: SearchActionTypesOrderByV2;
+  fuzziness?: ActionTypeFuzziness;
+  pageSize?: _Core.PageSize;
+  pageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchActionTypesResponseV2 {
+  data: Array<ActionTypeV2>;
+  nextPageToken?: _Core.PageToken;
+  totalCount: _Core.TotalCount;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -5562,7 +5923,7 @@ export interface SearchObjectsRequestV2 {
   selectV2: Array<PropertyIdentifier>;
   excludeRid?: boolean;
   snapshot?: boolean;
-  executeInMemoryOnly?: boolean;
+  referenceSigningOptions?: ReferenceSigningOptions;
 }
 
 /**
@@ -5621,6 +5982,15 @@ export interface SearchOrdering {
 export interface SearchOrderingV2 {
   field: PropertyApiName;
   direction?: string;
+}
+
+/**
+ * Returns action types with a section matching the given section rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface SectionRidActionTypesQueryV2 {
+  value: ActionSectionRid;
 }
 
 /**
@@ -5862,6 +6232,15 @@ export interface StartsWithQuery {
  */
 export interface StaticArgument {
   value: DataValue;
+}
+
+/**
+ * Returns action types with the given status.
+ *
+ * Log Safety: SAFE
+ */
+export interface StatusActionTypesQueryV2 {
+  value: ActionTypeStatusFilter;
 }
 
 /**
@@ -6420,6 +6799,27 @@ export interface TypeClass {
 }
 
 /**
+ * Returns action types whose type class satisfies the given type class predicate.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TypeClassesActionTypesQueryV2 {
+  value: TypeClassPredicateV2;
+}
+
+/**
+   * A predicate for matching type classes. Matches a type class when kind, and name if provided, match the
+corresponding attribute of the type class. If name is empty, only kind is required to match. You can
+search for both parameter type classes and action type type classes.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface TypeClassPredicateV2 {
+  kind: string;
+  name?: string;
+}
+
+/**
    * The unique identifier of a type reference. This identifier is used to look up the
 type definition in the typeReferences map of the enclosing Query.
    *
@@ -6656,6 +7056,22 @@ Examples: 'myGroup:myFunction:latest', 'myGroup:myFunction:1.0.0', 'myFunction',
 export type VersionedQueryTypeApiName = LooselyBrandedString<
   "VersionedQueryTypeApiName"
 >;
+
+/**
+ * The unique resource identifier of a webhook, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type WebhookRid = LooselyBrandedString<"WebhookRid">;
+
+/**
+ * Returns action types which reference the webhook with the given rid.
+ *
+ * Log Safety: SAFE
+ */
+export interface WebhookRidActionTypesQueryV2 {
+  value: WebhookRid;
+}
 
 /**
    * Returns objects where the specified field matches the wildcard pattern provided.
