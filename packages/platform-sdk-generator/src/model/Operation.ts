@@ -66,6 +66,9 @@ export class Operation {
       if (responseType.type === "binary") {
         return quoteMimeTypeOrEmpty(responseType.binary.mediaType);
       }
+      if (responseType.type === "sse") {
+        return quoteMimeTypeOrEmpty(responseType.sse.mediaType);
+      }
 
       let { mediaType } = responseType.type === "component"
         ? responseType.component
@@ -83,6 +86,10 @@ export class Operation {
       const { responseType, required } = body.ok;
       if (responseType.type === "binary") {
         return new BinaryResponseType();
+      }
+      if (responseType.type === "sse") {
+        const type = this.model.getType(responseType.sse.eventType.type);
+        return required ? type : new OptionalType(type);
       }
 
       let { type: { type: irType } } = responseType.type === "component"
