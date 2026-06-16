@@ -475,6 +475,21 @@ export interface QueryVersionNotFound {
 }
 
 /**
+ * Could not streamingExecuteEvents the Query.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StreamingExecuteEventsQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "StreamingExecuteEventsQueryPermissionDenied";
+  errorDescription: "Could not streamingExecuteEvents the Query.";
+  errorInstanceId: string;
+  parameters: {
+    queryApiName: unknown;
+  };
+}
+
+/**
  * Could not streamingExecute the Query.
  *
  * Log Safety: UNSAFE
