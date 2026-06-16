@@ -391,7 +391,6 @@ export type HostName = LooselyBrandedString<"HostName">;
  */
 export interface ListAuthenticationProvidersResponse {
   data: Array<AuthenticationProvider>;
-  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -417,11 +416,10 @@ export interface ListDeletedUsersResponse {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ListEnrollmentRoleAssignmentsResponse {
   data: Array<EnrollmentRoleAssignment>;
-  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -489,19 +487,17 @@ export interface ListMarkingsResponse {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ListOrganizationGuestMembersResponse {
   data: Array<OrganizationGuestMember>;
-  nextPageToken?: _Core.PageToken;
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ListOrganizationRoleAssignmentsResponse {
   data: Array<OrganizationRoleAssignment>;
-  nextPageToken?: _Core.PageToken;
 }
 
 /**

@@ -28,7 +28,8 @@ export type LooselyBrandedString<T extends string> = string & {
  */
 export type ActivityCollaborativeUpdate =
   | ({ type: "activityDeleted" } & ActivityDeleted)
-  | ({ type: "activityCreated" } & ActivityCreated);
+  | ({ type: "activityCreated" } & ActivityCreated)
+  | ({ type: "error" } & ErrorMessage);
 
 /**
    * The event that gets published to PACK channels to update a users activity feed as new events
@@ -155,6 +156,7 @@ export interface CustomPresenceEvent {
   clientId: ClientId;
   eventData: any;
   eventType: string;
+  schemaVersion?: SchemaVersion;
   isEphemeral?: boolean;
 }
 
@@ -217,6 +219,7 @@ export interface Document {
   updatedBy: _Core.UpdatedBy;
   updatedTime: _Core.UpdatedTime;
   operations: Array<DocumentOperation>;
+  operationalVersion?: SchemaVersion;
 }
 
 /**
@@ -227,8 +230,7 @@ required on a subscription request to /documents/{documentId}/activity.
    */
 export interface DocumentActivitySubscriptionRequest {
   clientId: ClientId;
-  clientVersion?: SchemaVersion;
-  clientSupportedVersionRange?: ClientSupportedVersionRange;
+  clientSupportedVersionRange: ClientSupportedVersionRange;
 }
 
 /**
@@ -250,6 +252,7 @@ export interface DocumentCustomEventData {
   eventType: string;
   data: any;
   version: number;
+  schemaVersion?: number;
 }
 
 /**
@@ -371,8 +374,7 @@ required on a subscription request to /documents/{documentId}/presence.
    */
 export interface DocumentPresenceSubscriptionRequest {
   clientId: ClientId;
-  clientVersion?: SchemaVersion;
-  clientSupportedVersionRange?: ClientSupportedVersionRange;
+  clientSupportedVersionRange: ClientSupportedVersionRange;
 }
 
 /**
@@ -384,8 +386,7 @@ export interface DocumentPublishMessage {
   yjsUpdate: YjsUpdate;
   editId: EditId;
   clientId: ClientId;
-  clientVersion?: SchemaVersion;
-  clientSupportedVersionRange?: ClientSupportedVersionRange;
+  clientSupportedVersionRange: ClientSupportedVersionRange;
   documentUpdateSchemaVersion?: SchemaVersion;
   description?: DocumentEditDescription;
 }
@@ -466,6 +467,13 @@ export type DocumentSortField =
   | "LAST_VIEW_TIME";
 
 /**
+ * The storage backend for a document type's schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DocumentStorageType = { type: "yjs" } & YjsSchema;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface DocumentType {
@@ -473,6 +481,19 @@ export interface DocumentType {
   name: DocumentTypeName;
   operationalVersion?: SchemaVersion;
   fileSystemType?: FileSystemType;
+}
+
+/**
+   * First-party document type definition loaded from a published asset. Used by products that ship
+document-type schemas as part of their deployment.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface DocumentTypeAsset {
+  documentTypeName: DocumentTypeName;
+  documentStorageType: DocumentStorageType;
+  fileSystemType: FileSystemType;
+  schemaVersion: SchemaVersion;
 }
 
 /**
@@ -508,8 +529,8 @@ export interface DocumentTypeSchema {
 export interface DocumentUpdate {
   update?: YjsUpdate;
   clientId: ClientId;
-  clientVersion?: SchemaVersion;
-  clientSupportedVersionRange?: ClientSupportedVersionRange;
+  clientSupportedVersionRange: ClientSupportedVersionRange;
+  updateSchemaVersion?: SchemaVersion;
   revisionId: RevisionId;
   baseRevisionId: RevisionId;
   editIds: Array<EditId>;
@@ -533,8 +554,7 @@ required on a subscription request to /documents/{documentId}/updates
    */
 export interface DocumentUpdateSubscriptionRequest {
   clientId: ClientId;
-  clientVersion?: SchemaVersion;
-  clientSupportedVersionRange?: ClientSupportedVersionRange;
+  clientSupportedVersionRange: ClientSupportedVersionRange;
   lastRevisionId?: RevisionId;
 }
 
@@ -556,7 +576,8 @@ export type EditId = LooselyBrandedString<"EditId">;
 export type ErrorCode =
   | "INTERNAL_ERROR"
   | "REVISION_TOO_OLD"
-  | "CLIENT_VERSION_TOO_LOW";
+  | "CLIENT_VERSION_TOO_LOW"
+  | "DOCUMENT_TYPE_OPERATIONAL_VERSION_BUMPED";
 
 /**
    * Message sent to clients when an error occurs. The subscription may not remain in a valid state after this
@@ -914,15 +935,16 @@ export type PageToken = LooselyBrandedString<"PageToken">;
  */
 export type PresenceCollaborativeUpdate =
   | ({ type: "presenceChangeEvent" } & DocumentPresenceChangeEvent)
-  | ({ type: "customPresenceEvent" } & CustomPresenceEvent);
+  | ({ type: "customPresenceEvent" } & CustomPresenceEvent)
+  | ({ type: "error" } & ErrorMessage);
 
 /**
  * Log Safety: UNSAFE
  */
 export interface PresencePublishMessage {
+  schemaVersion?: SchemaVersion;
   messageType: PresencePublishMessageType;
-  clientVersion?: SchemaVersion;
-  clientSupportedVersionRange?: ClientSupportedVersionRange;
+  clientSupportedVersionRange: ClientSupportedVersionRange;
 }
 
 /**
@@ -1109,6 +1131,17 @@ export type UserId = string;
  * Log Safety: SAFE
  */
 export type UserPresence = "PRESENT" | "NOT_PRESENT";
+
+/**
+   * Yjs-backed schema storage. If schema is empty, the schema for this document type could not be
+found — this can happen for older document types that never persisted their schema; use the
+updateSchema endpoint to populate it.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface YjsSchema {
+  schema?: DocumentTypeSchema;
+}
 
 /**
  * Log Safety: UNSAFE

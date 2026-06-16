@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -37,6 +38,7 @@ const _getAttachment: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.AttachmentMetadataResponse>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}", 2];
@@ -60,6 +62,7 @@ export function getAttachment(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.AttachmentMetadataResponse> {
@@ -76,6 +79,7 @@ const _getAttachmentByRid: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.AttachmentV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}/{4}", 2];
@@ -100,6 +104,7 @@ export function getAttachmentByRid(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.AttachmentV2> {
@@ -115,6 +120,7 @@ const _readAttachment: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -144,6 +150,7 @@ export function readAttachment(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<Response> {
@@ -160,6 +167,7 @@ const _readAttachmentByRid: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -192,6 +200,7 @@ export function readAttachmentByRid(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<Response> {

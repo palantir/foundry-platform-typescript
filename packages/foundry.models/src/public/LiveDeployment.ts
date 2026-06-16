@@ -39,7 +39,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new live deployment for a model version with the specified runtime configuration. The deployment will begin provisioning compute resources and deploying the target model version.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/liveDeployments
@@ -54,6 +54,35 @@ export function create(
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
+const _list: $FoundryPlatformMethod<
+  ($queryParams: {
+    modelRid: _Models.ModelRid;
+    branch?: _Core.BranchName | undefined;
+    preview?: _Core.PreviewMode | undefined;
+  }) => Promise<_Models.ListLiveDeploymentsResponse>
+> = [0, "/v2/models/liveDeployments", 2];
+
+/**
+ * Lists direct live deployments for the specified Model, optionally filtered by branch. Only direct deployments (those tracking the latest model version on a branch) are returned.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:models-read]
+ * URL: /v2/models/liveDeployments
+ */
+export function list(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $queryParams: {
+      modelRid: _Models.ModelRid;
+      branch?: _Core.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Models.ListLiveDeploymentsResponse> {
+  return $foundryPlatformFetch($ctx, _list, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     liveDeploymentRid: _Models.LiveDeploymentRid,
@@ -64,7 +93,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Retrieves a live deployment by its Resource Identifier (RID), including its deployed model version and runtime configuration.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/liveDeployments/{liveDeploymentRid}
@@ -91,7 +120,7 @@ const _replace: $FoundryPlatformMethod<
 /**
  * Updates the runtime configuration of the live deployment. The deployment will apply the new configuration to the running replicas.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/liveDeployments/{liveDeploymentRid}
@@ -112,8 +141,13 @@ const _transformJson: $FoundryPlatformMethod<
     liveDeploymentRid: _Models.LiveDeploymentRid,
     $body: _Models.TransformJsonLiveDeploymentRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ) => Promise<_Models.TransformLiveDeploymentResponse>
-> = [1, "/v2/models/liveDeployments/{0}/transformJson", 3];
+> = [1, "/v2/models/liveDeployments/{0}/transformJson", 7];
 
 /**
  * Performs inference on the live deployment.
@@ -129,6 +163,11 @@ export function transformJson(
     liveDeploymentRid: _Models.LiveDeploymentRid,
     $body: _Models.TransformJsonLiveDeploymentRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
   ]
 ): Promise<_Models.TransformLiveDeploymentResponse> {
   return $foundryPlatformFetch($ctx, _transformJson, ...args);

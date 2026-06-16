@@ -148,7 +148,7 @@ const _execute: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: [api:functions-read]
+ * Required Scopes: [api:functions-execute]
  * URL: /v2/functions/queries/{queryApiName}/execute
  */
 export function execute(
@@ -221,7 +221,7 @@ const _streamingExecute: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: [api:functions-read]
+ * Required Scopes: [api:functions-execute]
  * URL: /v2/functions/queries/{queryApiName}/streamingExecute
  */
 export function streamingExecute(
