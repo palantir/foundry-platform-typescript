@@ -66,44 +66,6 @@ export function list(
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
-const _search: $FoundryPlatformMethod<
-  (
-    ontology: _Ontologies.OntologyIdentifier,
-    $body: _Ontologies.SearchActionTypesRequestV2,
-    $queryParams?: {
-      branch?: _Core.FoundryBranch | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ) => Promise<_Ontologies.SearchActionTypesResponseV2>
-> = [1, "/v2/ontologies/{0}/actionTypes/search", 3];
-
-/**
- * Search for action types in the given Ontology that match the provided filters. Results are returned by
- * relevance of the match unless an explicit `orderBy` is provided.
- *
- * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
- * results available, at least one result will be present in the response. Search results are eventually
- * consistent with the latest Ontology version and may lag slightly behind the last Ontology modification.
- *
- * @alpha
- *
- * Required Scopes: [api:ontologies-read]
- * URL: /v2/ontologies/{ontology}/actionTypes/search
- */
-export function search(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    ontology: _Ontologies.OntologyIdentifier,
-    $body: _Ontologies.SearchActionTypesRequestV2,
-    $queryParams?: {
-      branch?: _Core.FoundryBranch | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
-): Promise<_Ontologies.SearchActionTypesResponseV2> {
-  return $foundryPlatformFetch($ctx, _search, ...args);
-}
-
 const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,

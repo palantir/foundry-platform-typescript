@@ -1618,24 +1618,6 @@ export interface ObjectChanged {
 }
 
 /**
-   * An add object edit in the transaction did not include the object's primary key property. The primary key
-property must be provided when creating an object.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ObjectEditMissingPrimaryKey {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "ObjectEditMissingPrimaryKey";
-  errorDescription:
-    "An add object edit in the transaction did not include the object's primary key property. The primary key property must be provided when creating an object.";
-  errorInstanceId: string;
-  parameters: {
-    objectType: unknown;
-    primaryKey: unknown;
-  };
-}
-
-/**
  * The requested object is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
