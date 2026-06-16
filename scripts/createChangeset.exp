@@ -1,9 +1,9 @@
 #!/usr/bin/expect -f
 
-set timeout 5
+set timeout 120
 set summary [lindex $argv 0]
 
-spawn pnpm changeset
+spawn pnpm exec changeset
 
 expect "would you like to include"
 send " "
