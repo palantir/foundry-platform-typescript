@@ -169,6 +169,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.streamingExecuteQuery": {
       "variables": {},
     },
+    "v2.streamingExecuteEventsQuery": {
+      "variables": {},
+    },
     "v2.executeAsyncQuery": {
       "variables": {},
     },
@@ -221,6 +224,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.listActionTypesV2": {
+      "variables": {},
+    },
+    "v2.searchActionTypesV2": {
       "variables": {},
     },
     "v2.getActionTypeV2": {
