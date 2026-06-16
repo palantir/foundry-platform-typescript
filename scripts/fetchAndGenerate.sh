@@ -11,4 +11,8 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 pnpm install
 
+if ! command -v expect >/dev/null 2>&1; then
+  apt update && apt install -y expect
+fi
+
 expect "$SCRIPT_DIR/createChangeset.exp" "Regenerate with API version $API_GATEWAY_VERSION"
