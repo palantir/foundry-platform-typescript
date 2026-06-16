@@ -98,24 +98,6 @@ export interface GetStatusSqlQueryPermissionDenied {
 }
 
 /**
-   * The ontology query referenced an object type RID that does not exist or
-is not visible to the requesting user. Verify the RID (e.g. via
-list-object-types or get-object-type-details) and retry.
-   *
-   * Log Safety: SAFE
-   */
-export interface OntologyObjectTypeNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "OntologyObjectTypeNotFound";
-  errorDescription:
-    "The ontology query referenced an object type RID that does not exist or is not visible to the requesting user. Verify the RID (e.g. via list-object-types or get-object-type-details) and retry.";
-  errorInstanceId: string;
-  parameters: {
-    objectTypeRid: unknown;
-  };
-}
-
-/**
  * The Ontology query failed.
  *
  * Log Safety: UNSAFE
@@ -127,63 +109,6 @@ export interface OntologyQueryFailed {
   errorInstanceId: string;
   parameters: {
     errorMessage: unknown;
-  };
-}
-
-/**
-   * The ontology query references object types or link types indexed in Object
-Storage V1, which is incompatible with Ontology SQL. Migrate the entities
-to Object Storage V2 or remove them from the query.
-   *
-   * Log Safety: SAFE
-   */
-export interface OntologyQueryInvalidObjectBackend {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "OntologyQueryInvalidObjectBackend";
-  errorDescription:
-    "The ontology query references object types or link types indexed in Object Storage V1, which is incompatible with Ontology SQL. Migrate the entities to Object Storage V2 or remove them from the query.";
-  errorInstanceId: string;
-  parameters: {
-    objectTypeRids: unknown;
-    linkTypeRids: unknown;
-  };
-}
-
-/**
-   * The query references too many objects across joins, link lookups, or
-sub-queries. Narrow the scope (add filters, reduce joins, restrict
-object types) and retry. The actual and maximum object counts are
-returned as parameters.
-   *
-   * Log Safety: SAFE
-   */
-export interface OntologyQueryNestedObjectSetTooLarge {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "OntologyQueryNestedObjectSetTooLarge";
-  errorDescription:
-    "The query references too many objects across joins, link lookups, or sub-queries. Narrow the scope (add filters, reduce joins, restrict object types) and retry. The actual and maximum object counts are returned as parameters.";
-  errorInstanceId: string;
-  parameters: {
-    nestedObjectSetSize: unknown;
-    maxAllowedNestedObjectSetSize: unknown;
-  };
-}
-
-/**
-   * A string column in the query result contains a value larger than
-the platform's per-cell size limit. Exclude or filter the column,
-or scope the query to skip the oversized rows.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface OntologyQueryStringColumnTooLong {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "OntologyQueryStringColumnTooLong";
-  errorDescription:
-    "A string column in the query result contains a value larger than the platform's per-cell size limit. Exclude or filter the column, or scope the query to skip the oversized rows.";
-  errorInstanceId: string;
-  parameters: {
-    columnName: unknown;
   };
 }
 

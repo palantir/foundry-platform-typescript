@@ -28,8 +28,7 @@ export type LooselyBrandedString<T extends string> = string & {
  */
 export type ActivityCollaborativeUpdate =
   | ({ type: "activityDeleted" } & ActivityDeleted)
-  | ({ type: "activityCreated" } & ActivityCreated)
-  | ({ type: "error" } & ErrorMessage);
+  | ({ type: "activityCreated" } & ActivityCreated);
 
 /**
    * The event that gets published to PACK channels to update a users activity feed as new events
@@ -156,7 +155,6 @@ export interface CustomPresenceEvent {
   clientId: ClientId;
   eventData: any;
   eventType: string;
-  schemaVersion?: SchemaVersion;
   isEphemeral?: boolean;
 }
 
@@ -229,6 +227,7 @@ required on a subscription request to /documents/{documentId}/activity.
    */
 export interface DocumentActivitySubscriptionRequest {
   clientId: ClientId;
+  clientVersion?: SchemaVersion;
   clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
@@ -251,7 +250,6 @@ export interface DocumentCustomEventData {
   eventType: string;
   data: any;
   version: number;
-  schemaVersion?: number;
 }
 
 /**
@@ -373,6 +371,7 @@ required on a subscription request to /documents/{documentId}/presence.
    */
 export interface DocumentPresenceSubscriptionRequest {
   clientId: ClientId;
+  clientVersion?: SchemaVersion;
   clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
@@ -509,8 +508,8 @@ export interface DocumentTypeSchema {
 export interface DocumentUpdate {
   update?: YjsUpdate;
   clientId: ClientId;
+  clientVersion?: SchemaVersion;
   clientSupportedVersionRange?: ClientSupportedVersionRange;
-  updateSchemaVersion?: SchemaVersion;
   revisionId: RevisionId;
   baseRevisionId: RevisionId;
   editIds: Array<EditId>;
@@ -915,14 +914,14 @@ export type PageToken = LooselyBrandedString<"PageToken">;
  */
 export type PresenceCollaborativeUpdate =
   | ({ type: "presenceChangeEvent" } & DocumentPresenceChangeEvent)
-  | ({ type: "customPresenceEvent" } & CustomPresenceEvent)
-  | ({ type: "error" } & ErrorMessage);
+  | ({ type: "customPresenceEvent" } & CustomPresenceEvent);
 
 /**
  * Log Safety: UNSAFE
  */
 export interface PresencePublishMessage {
   messageType: PresencePublishMessageType;
+  clientVersion?: SchemaVersion;
   clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
