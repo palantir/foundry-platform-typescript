@@ -178,7 +178,6 @@ const _search: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
   ) => Promise<_Ontologies.SearchObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/objects/{1}/search", 3];
@@ -223,7 +222,6 @@ export function search(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.SearchObjectsResponseV2> {

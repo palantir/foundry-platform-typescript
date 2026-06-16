@@ -31,24 +31,24 @@ import type * as _Models from "../_components.js";
 
 const _create: $FoundryPlatformMethod<
   (
-    modelRid: _Models.ModelRid,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
     $body: _Models.CreateModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Models.ModelFunction>
-> = [1, "/v2/models/{0}/function", 3];
+> = [1, "/v2/models/liveDeployments/{0}/function", 3];
 
 /**
- * Creates a function for the model.
+ * Creates a function for the live deployment.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-write]
- * URL: /v2/models/{modelRid}/function
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/function
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    modelRid: _Models.ModelRid,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
     $body: _Models.CreateModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -58,23 +58,23 @@ export function create(
 
 const _get: $FoundryPlatformMethod<
   (
-    modelRid: _Models.ModelRid,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Models.ModelFunction>
-> = [0, "/v2/models/{0}/function", 2];
+> = [0, "/v2/models/liveDeployments/{0}/function", 2];
 
 /**
- * Gets the function for the model.
+ * Gets the function for the live deployment.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
- * URL: /v2/models/{modelRid}/function
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/function
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    modelRid: _Models.ModelRid,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -84,24 +84,24 @@ export function get(
 
 const _replace: $FoundryPlatformMethod<
   (
-    modelRid: _Models.ModelRid,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
     $body: _Models.ReplaceModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Models.ModelFunction>
-> = [2, "/v2/models/{0}/function", 3];
+> = [2, "/v2/models/liveDeployments/{0}/function", 3];
 
 /**
- * Replaces the function for the model.
+ * Replaces the function for the live deployment.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-write]
- * URL: /v2/models/{modelRid}/function
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/function
  */
 export function replace(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    modelRid: _Models.ModelRid,
+    liveDeploymentRid: _Models.LiveDeploymentRid,
     $body: _Models.ReplaceModelFunctionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]

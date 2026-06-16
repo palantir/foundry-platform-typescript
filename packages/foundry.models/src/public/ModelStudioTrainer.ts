@@ -38,7 +38,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists all available trainers for Model Studios.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/modelStudioTrainers
@@ -63,7 +63,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Gets details about a specific trainer by its ID and optional version.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/modelStudioTrainers/{modelStudioTrainerTrainerId}

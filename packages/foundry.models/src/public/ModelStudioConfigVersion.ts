@@ -40,7 +40,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new Model Studio configuration version.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/modelStudios/{modelStudioRid}/configVersions
@@ -70,7 +70,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists all configuration versions for a Model Studio.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/modelStudios/{modelStudioRid}/configVersions
@@ -101,7 +101,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Gets a specific Model Studio configuration version.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/modelStudios/{modelStudioRid}/configVersions/{modelStudioConfigVersionVersion}
@@ -128,7 +128,7 @@ const _latest: $FoundryPlatformMethod<
 /**
  * Gets the latest configuration version for a Model Studio.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/modelStudios/{modelStudioRid}/configVersions/latest

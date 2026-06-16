@@ -46,7 +46,7 @@ const _json: $FoundryPlatformMethod<
  * Retrieve raw time-series data for a single series in JSON format.
  * Results are paginated with a default page size of 200 and a maximum of 1000.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/experiments/{experimentRid}/series/{experimentSeriesName}/json
@@ -86,7 +86,7 @@ const _parquet: $FoundryPlatformMethod<
 /**
  * Retrieve raw time-series data for a single series as a streamed binary response in Apache Parquet format.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/experiments/{experimentRid}/series/{experimentSeriesName}/parquet

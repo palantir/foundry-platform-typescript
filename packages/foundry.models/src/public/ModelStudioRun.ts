@@ -44,7 +44,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists all runs for a Model Studio.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/modelStudios/{modelStudioRid}/runs

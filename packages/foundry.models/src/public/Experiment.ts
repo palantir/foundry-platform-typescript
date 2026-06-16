@@ -40,7 +40,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Retrieve a single experiment with all metadata, parameters, series metadata, and summary metrics.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/experiments/{experimentRid}
@@ -70,7 +70,7 @@ const _search: $FoundryPlatformMethod<
  * and summary metrics. Supports AND/OR/NOT combinations and various predicates.
  * Returns a maximum of 100 results per page.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/experiments/search

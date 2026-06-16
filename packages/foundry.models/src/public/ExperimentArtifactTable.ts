@@ -53,7 +53,7 @@ const _json: $FoundryPlatformMethod<
  * The response body is a JSON array of row objects, where each object maps column names to values.
  * Results are paginated by row count with a default page size of 10 and a maximum of 100.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/experiments/{experimentRid}/artifactTables/{experimentArtifactTableName}/json
@@ -93,7 +93,7 @@ const _parquet: $FoundryPlatformMethod<
 /**
  * Read raw table data from experiment artifacts in Parquet format.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/experiments/{experimentRid}/artifactTables/{experimentArtifactTableName}/parquet
