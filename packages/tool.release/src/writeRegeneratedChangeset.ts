@@ -79,7 +79,6 @@ async function getChangedFiles(cwd: string): Promise<string[]> {
 
   return stdout
     .split("\n")
-    .map((line) => line.trim())
     .filter((line) => line.length > 0)
     .map((line) => {
       // Porcelain lines are "XY <path>"; renames are "XY <old> -> <new>".
