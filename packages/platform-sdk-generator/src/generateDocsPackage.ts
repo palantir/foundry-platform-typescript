@@ -66,20 +66,18 @@ export async function generateDocsPackage(
 
   const namespaceEntries = ir.namespaces.map((namespace) => ({
     namespace,
-    varName: `${namespace.name}${
-      namespace.version.charAt(0).toUpperCase() + namespace.version.slice(1)
-    }`.replace(/[^A-Za-z0-9_]/g, "_"),
+    namespaceIdentifier: `${namespace.name}${namespace.version.toUpperCase()}`,
   }));
 
   await Promise.all(
-    namespaceEntries.map(({ namespace, varName }) =>
+    namespaceEntries.map(({ namespace, namespaceIdentifier }) =>
       fs.writeFile(
-        path.join(namespacesDir, `${varName}.ts`),
+        path.join(namespacesDir, `${namespaceIdentifier}.ts`),
         `${copyright}
 import type { Namespace } from "../../ir/Namespace.js";
 
 // dprint-ignore
-export const ${varName}: Namespace = ${JSON.stringify(namespace)};
+export const ${namespaceIdentifier}: Namespace = ${JSON.stringify(namespace)};
 `,
       )
     ),
@@ -91,15 +89,18 @@ export const ${varName}: Namespace = ${JSON.stringify(namespace)};
 import type { ApiSpec } from "../ir/ApiSpec.js";
 ${
       namespaceEntries
-        .map(({ varName }) =>
-          `import { ${varName} } from "./namespaces/${varName}.js";`
+        .map(({ namespaceIdentifier }) =>
+          `import { ${namespaceIdentifier} } from "./namespaces/${namespaceIdentifier}.js";`
         )
         .join("\n")
     }
 
 export const PLATFORM_API_IR: ApiSpec = {
   irVersion: ${JSON.stringify(ir.irVersion)},
-  namespaces: [${namespaceEntries.map(({ varName }) => varName).join(", ")}],
+  namespaces: [${
+      namespaceEntries.map(({ namespaceIdentifier }) => namespaceIdentifier)
+        .join(", ")
+    }],
 };
 `,
   );
