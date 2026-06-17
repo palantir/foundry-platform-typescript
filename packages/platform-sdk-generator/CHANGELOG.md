@@ -1,5 +1,17 @@
 # @osdk/platform-sdk-generator
 
+## 0.63.0
+
+### Minor Changes
+
+- b54947e: Handle SSE response type and ignore generated packages for cspell
+
+### Patch Changes
+
+- Updated dependencies [b54947e]
+- Updated dependencies [70a9bb0]
+  - @osdk/docs-spec-platform@0.50.0
+
 ## 0.62.0
 
 ### Patch Changes

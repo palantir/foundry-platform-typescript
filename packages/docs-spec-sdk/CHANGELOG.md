@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.19.0
+
+### Minor Changes
+
+- b54947e: Handle SSE response type and ignore generated packages for cspell
+
 ## 0.18.0
 
 ### Minor Changes

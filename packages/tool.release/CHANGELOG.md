@@ -1,5 +1,12 @@
 # @osdk/tool.release
 
+## 0.10.0
+
+### Minor Changes
+
+- 77068c0: Automatically write a changeset for regenerated packages during fetch and generate
+- b54947e: Handle SSE response type and ignore generated packages for cspell
+
 ## 0.9.0
 
 ### Minor Changes
