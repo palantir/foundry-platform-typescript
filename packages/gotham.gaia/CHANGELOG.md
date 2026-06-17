@@ -1,5 +1,17 @@
 # @osdk/gotham.gaia
 
+## 0.36.0
+
+### Minor Changes
+
+- 70a9bb0: Regenerate SDKs with API version 1.1656.0
+
+### Patch Changes
+
+- Updated dependencies [70a9bb0]
+  - @osdk/gotham.core@0.36.0
+  - @osdk/gotham.geojson@0.36.0
+
 ## 0.35.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @osdk/docs-spec-platform
 
+## 0.50.0
+
+### Minor Changes
+
+- b54947e: Handle SSE response type and ignore generated packages for cspell
+- 70a9bb0: Regenerate SDKs with API version 1.1656.0
+
 ## 0.49.0
 
 ### Minor Changes
