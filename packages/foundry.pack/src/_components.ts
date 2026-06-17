@@ -229,7 +229,7 @@ required on a subscription request to /documents/{documentId}/activity.
    */
 export interface DocumentActivitySubscriptionRequest {
   clientId: ClientId;
-  clientSupportedVersionRange: ClientSupportedVersionRange;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
 /**
@@ -373,7 +373,7 @@ required on a subscription request to /documents/{documentId}/presence.
    */
 export interface DocumentPresenceSubscriptionRequest {
   clientId: ClientId;
-  clientSupportedVersionRange: ClientSupportedVersionRange;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
 /**
@@ -385,7 +385,8 @@ export interface DocumentPublishMessage {
   yjsUpdate: YjsUpdate;
   editId: EditId;
   clientId: ClientId;
-  clientSupportedVersionRange: ClientSupportedVersionRange;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
   documentUpdateSchemaVersion?: SchemaVersion;
   description?: DocumentEditDescription;
 }
@@ -508,7 +509,7 @@ export interface DocumentTypeSchema {
 export interface DocumentUpdate {
   update?: YjsUpdate;
   clientId: ClientId;
-  clientSupportedVersionRange: ClientSupportedVersionRange;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
   updateSchemaVersion?: SchemaVersion;
   revisionId: RevisionId;
   baseRevisionId: RevisionId;
@@ -533,7 +534,8 @@ required on a subscription request to /documents/{documentId}/updates
    */
 export interface DocumentUpdateSubscriptionRequest {
   clientId: ClientId;
-  clientSupportedVersionRange: ClientSupportedVersionRange;
+  clientVersion?: SchemaVersion;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
   lastRevisionId?: RevisionId;
 }
 
@@ -920,9 +922,8 @@ export type PresenceCollaborativeUpdate =
  * Log Safety: UNSAFE
  */
 export interface PresencePublishMessage {
-  schemaVersion?: SchemaVersion;
   messageType: PresencePublishMessageType;
-  clientSupportedVersionRange: ClientSupportedVersionRange;
+  clientSupportedVersionRange?: ClientSupportedVersionRange;
 }
 
 /**
