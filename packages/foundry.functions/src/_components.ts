@@ -411,6 +411,16 @@ export interface RunningExecution {}
 /**
  * Log Safety: UNSAFE
  */
+export interface StreamingExecuteEventsQueryRequest {
+  ontology?: _Ontologies.OntologyIdentifier;
+  parameters: Record<ParameterId, DataValue | undefined>;
+  version?: FunctionVersion;
+  branch?: _Core.FoundryBranch;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface StreamingExecuteQueryRequest {
   ontology?: _Ontologies.OntologyIdentifier;
   parameters: Record<ParameterId, DataValue | undefined>;
