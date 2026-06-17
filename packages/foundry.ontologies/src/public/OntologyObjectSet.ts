@@ -112,7 +112,6 @@ const _load: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -147,7 +146,6 @@ export function load(
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -169,7 +167,6 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -210,7 +207,6 @@ export function loadMultipleObjectTypes(
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -232,7 +228,6 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -275,7 +270,6 @@ export function loadObjectsOrInterfaces(
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -296,7 +290,6 @@ const _aggregate: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -324,7 +317,6 @@ export function aggregate(
       branch?: _Core.FoundryBranch | undefined;
       transactionId?: _Ontologies.OntologyTransactionId | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -344,7 +336,6 @@ const _loadLinks: $FoundryPlatformMethod<
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;
@@ -385,7 +376,6 @@ export function loadLinks(
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
-      executeInMemoryOnly?: boolean | undefined;
     },
     $headerParams?: {
       traceParent?: _Core.TraceParent | undefined;

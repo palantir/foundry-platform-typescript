@@ -75,7 +75,7 @@ export interface CreateModelFunctionPermissionDenied {
   errorDescription: "Could not create the ModelFunction.";
   errorInstanceId: string;
   parameters: {
-    modelRid: unknown;
+    liveDeploymentRid: unknown;
   };
 }
 
@@ -186,17 +186,17 @@ export interface ExperimentSeriesNotFound {
 }
 
 /**
- * A function already exists for this model.
+ * A function already exists for this live deployment.
  *
  * Log Safety: SAFE
  */
 export interface FunctionAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "FunctionAlreadyExists";
-  errorDescription: "A function already exists for this model.";
+  errorDescription: "A function already exists for this live deployment.";
   errorInstanceId: string;
   parameters: {
-    modelRid: unknown;
+    liveDeploymentRid: unknown;
   };
 }
 
@@ -475,7 +475,7 @@ export interface ModelFunctionNotFound {
   errorDescription: "The given ModelFunction could not be found.";
   errorInstanceId: string;
   parameters: {
-    modelRid: unknown;
+    liveDeploymentRid: unknown;
   };
 }
 
@@ -661,7 +661,7 @@ export interface ReplaceModelFunctionPermissionDenied {
   errorDescription: "Could not replace the ModelFunction.";
   errorInstanceId: string;
   parameters: {
-    modelRid: unknown;
+    liveDeploymentRid: unknown;
   };
 }
 
