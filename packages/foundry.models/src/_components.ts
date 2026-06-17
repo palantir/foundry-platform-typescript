@@ -532,14 +532,6 @@ export interface JsonSchemaValidationError {
 /**
  * Log Safety: UNSAFE
  */
-export interface ListLiveDeploymentsResponse {
-  data: Array<LiveDeployment>;
-  nextPageToken?: _Core.PageToken;
-}
-
-/**
- * Log Safety: UNSAFE
- */
 export interface ListModelStudioConfigVersionsResponse {
   data: Array<ModelStudioConfigVersion>;
   nextPageToken?: _Core.PageToken;
@@ -570,12 +562,11 @@ export interface ListModelVersionsResponse {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface LiveDeployment {
   rid: LiveDeploymentRid;
   modelVersion: LiveDeploymentModelVersion;
-  branch?: _Core.BranchName;
   runtimeConfiguration: LiveDeploymentRuntimeConfiguration;
   status: LiveDeploymentStatus;
 }

@@ -68,7 +68,6 @@ export type {
   InvalidResourceConfigurationError,
   InvalidTabularFormatError,
   JsonSchemaValidationError,
-  ListLiveDeploymentsResponse,
   ListModelStudioConfigVersionsResponse,
   ListModelStudioRunsResponse,
   ListModelStudioTrainersResponse,

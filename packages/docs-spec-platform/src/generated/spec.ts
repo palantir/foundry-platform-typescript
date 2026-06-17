@@ -169,9 +169,6 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.streamingExecuteQuery": {
       "variables": {},
     },
-    "v2.streamingExecuteEventsQuery": {
-      "variables": {},
-    },
     "v2.executeAsyncQuery": {
       "variables": {},
     },
@@ -224,9 +221,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.listActionTypesV2": {
-      "variables": {},
-    },
-    "v2.searchActionTypesV2": {
       "variables": {},
     },
     "v2.getActionTypeV2": {
@@ -374,9 +368,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getQueryTypeV2": {
-      "variables": {},
-    },
-    "v2.getQueryTypeByRidBatch": {
       "variables": {},
     },
     "v2.executeQueryV2": {
@@ -1154,9 +1145,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.createLiveDeployment": {
-      "variables": {},
-    },
-    "v2.listLiveDeployments": {
       "variables": {},
     },
     "v2.getLiveDeployment": {
