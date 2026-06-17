@@ -59,12 +59,50 @@ export async function generateDocsPackage(
 ): Promise<string> {
   const outputDir = path.join(packagesDir, PACKAGE_NAME);
 
-  await fs.writeFile(
-    path.join(outputDir, "src", "generated", "ir.ts"),
-    `${copyright}
-        import type { ApiSpec } from "../ir/ApiSpec.js";
+  const generatedDir = path.join(outputDir, "src", "generated");
+  const namespacesDir = path.join(generatedDir, "namespaces");
+  await fs.rm(namespacesDir, { recursive: true, force: true });
+  await fs.mkdir(namespacesDir, { recursive: true });
 
-        export const PLATFORM_API_IR: ApiSpec = ${JSON.stringify(ir, null, 2)}`,
+  const namespaceEntries = ir.namespaces.map((namespace) => ({
+    namespace,
+    namespaceIdentifier: `${namespace.name}${namespace.version.toUpperCase()}`,
+  }));
+
+  await Promise.all(
+    namespaceEntries.map(({ namespace, namespaceIdentifier }) =>
+      fs.writeFile(
+        path.join(namespacesDir, `${namespaceIdentifier}.ts`),
+        `${copyright}
+import type { Namespace } from "../../ir/Namespace.js";
+
+// dprint-ignore
+export const ${namespaceIdentifier}: Namespace = ${JSON.stringify(namespace)};
+`,
+      )
+    ),
+  );
+
+  await fs.writeFile(
+    path.join(generatedDir, "ir.ts"),
+    `${copyright}
+import type { ApiSpec } from "../ir/ApiSpec.js";
+${
+      namespaceEntries
+        .map(({ namespaceIdentifier }) =>
+          `import { ${namespaceIdentifier} } from "./namespaces/${namespaceIdentifier}.js";`
+        )
+        .join("\n")
+    }
+
+export const PLATFORM_API_IR: ApiSpec = {
+  irVersion: ${JSON.stringify(ir.irVersion)},
+  namespaces: [${
+      namespaceEntries.map(({ namespaceIdentifier }) => namespaceIdentifier)
+        .join(", ")
+    }],
+};
+`,
   );
 
   await fs.writeFile(

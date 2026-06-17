@@ -24,8 +24,10 @@ import * as path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import yargs from "yargs";
 
-const CHANGESET_FILE_NAME = "regenerate-sdk.md";
-const CHANGESET_SUMMARY = "Regenerate SDK's";
+const CHANGESET_FILE_NAME =
+  `regenerate-sdk-${process.env.API_GATEWAY_VERSION}-${Date.now()}.md`;
+const CHANGESET_SUMMARY =
+  `Regenerate SDKs with API version ${process.env.API_GATEWAY_VERSION}`;
 
 /**
  * Writes a single changeset bumping every package that has uncommitted changes
@@ -79,7 +81,6 @@ async function getChangedFiles(cwd: string): Promise<string[]> {
 
   return stdout
     .split("\n")
-    .map((line) => line.trim())
     .filter((line) => line.length > 0)
     .map((line) => {
       // Porcelain lines are "XY <path>"; renames are "XY <old> -> <new>".

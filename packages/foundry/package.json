@@ -21,7 +21,7 @@
   "scripts": {
     "build": "node -e \"if (process.version.startsWith(\\\"v18\\\")) { process.exit(0) } else { process.exit(1) }\" || (rollup -c && api-extractor run)",
     "check-attw": "monorepo.tool.attw esm",
-    "check-spelling": "cspell --quiet .",
+    "check-spelling": "cspell --quiet --no-must-find-files .",
     "clean": "rm -rf lib dist types build tsconfig.tsbuildinfo",
     "fix-lint": "eslint . --fix && dprint fmt --config $(find-up dprint.json)",
     "lint": "eslint . && dprint check  --config $(find-up dprint.json)",

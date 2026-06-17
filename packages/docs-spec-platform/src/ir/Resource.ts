@@ -101,6 +101,14 @@ export interface BinaryResponseType {
   };
 }
 
+export interface SseResponseType {
+  type: "sse";
+  sse: {
+    mediaType: string;
+    eventType: ParameterValue;
+  };
+}
+
 export interface NoContentResponseBody {
   type: "noContent";
   noContent: Record<string, never>;
@@ -114,6 +122,7 @@ export interface ReferenceResponseType {
 export type ResponseType =
   | ComponentResponseType
   | BinaryResponseType
+  | SseResponseType
   | ReferenceResponseType;
 
 export interface OkResponseBody {

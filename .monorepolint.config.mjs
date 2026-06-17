@@ -282,7 +282,7 @@ function standardPackageRules(shared, options, hasDist = false) {
       options: {
         scripts: {
           clean: "rm -rf lib dist types build tsconfig.tsbuildinfo",
-          "check-spelling": "cspell --quiet .",
+          "check-spelling": "cspell --quiet --no-must-find-files .",
           "check-attw": `monorepo.tool.attw esm`,
           lint: "eslint . && dprint check  --config $(find-up dprint.json)",
           "fix-lint":
