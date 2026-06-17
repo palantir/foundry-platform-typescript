@@ -71,10 +71,9 @@ export async function generateDocsPackage(
 
   const namespaceEntries = ir.namespaces.map((namespace) => ({
     namespace,
-    varName: `${namespace.name}_${namespace.version}`.replace(
-      /[^A-Za-z0-9_]/g,
-      "_",
-    ),
+    varName: `${namespace.name}${
+      namespace.version.charAt(0).toUpperCase() + namespace.version.slice(1)
+    }`.replace(/[^A-Za-z0-9_]/g, "_"),
   }));
 
   await Promise.all(

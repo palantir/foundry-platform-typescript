@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Palantir Technologies, Inc. All rights reserved.
+ * Copyright 2026 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,87 +15,87 @@
  */
 
 import type { ApiSpec } from "../ir/ApiSpec.js";
-import { Admin_v2 } from "./namespaces/Admin_v2.js";
-import { AipAgents_v2 } from "./namespaces/AipAgents_v2.js";
-import { Audit_v2 } from "./namespaces/Audit_v2.js";
-import { Checkpoints_v2 } from "./namespaces/Checkpoints_v2.js";
-import { Comments_v2 } from "./namespaces/Comments_v2.js";
-import { Connectivity_v2 } from "./namespaces/Connectivity_v2.js";
-import { Core_v1 } from "./namespaces/Core_v1.js";
-import { Core_v2 } from "./namespaces/Core_v2.js";
-import { DataHealth_v2 } from "./namespaces/DataHealth_v2.js";
-import { Datasets_v1 } from "./namespaces/Datasets_v1.js";
-import { Datasets_v2 } from "./namespaces/Datasets_v2.js";
-import { Filesystem_v2 } from "./namespaces/Filesystem_v2.js";
-import { Functions_v2 } from "./namespaces/Functions_v2.js";
-import { Gaia_v2 } from "./namespaces/Gaia_v2.js";
-import { Geo_v1 } from "./namespaces/Geo_v1.js";
-import { Geo_v2 } from "./namespaces/Geo_v2.js";
-import { Geojson_v2 } from "./namespaces/Geojson_v2.js";
-import { LanguageModels_v2 } from "./namespaces/LanguageModels_v2.js";
-import { Lohi_v2 } from "./namespaces/Lohi_v2.js";
-import { MapRendering_v2 } from "./namespaces/MapRendering_v2.js";
-import { MediaSets_v2 } from "./namespaces/MediaSets_v2.js";
-import { Models_v2 } from "./namespaces/Models_v2.js";
-import { Notepad_v2 } from "./namespaces/Notepad_v2.js";
-import { Observability_v2 } from "./namespaces/Observability_v2.js";
-import { Ontologies_v1 } from "./namespaces/Ontologies_v1.js";
-import { Ontologies_v2 } from "./namespaces/Ontologies_v2.js";
-import { OntologyMcp_v2 } from "./namespaces/OntologyMcp_v2.js";
-import { Operations_v2 } from "./namespaces/Operations_v2.js";
-import { Orchestration_v2 } from "./namespaces/Orchestration_v2.js";
-import { Pack_v2 } from "./namespaces/Pack_v2.js";
-import { PublicApis_v2 } from "./namespaces/PublicApis_v2.js";
-import { ResourceManagement_v2 } from "./namespaces/ResourceManagement_v2.js";
-import { Sds_v2 } from "./namespaces/Sds_v2.js";
-import { SqlQueries_v2 } from "./namespaces/SqlQueries_v2.js";
-import { Streams_v2 } from "./namespaces/Streams_v2.js";
-import { TargetWorkbench_v2 } from "./namespaces/TargetWorkbench_v2.js";
-import { ThirdPartyApplications_v2 } from "./namespaces/ThirdPartyApplications_v2.js";
-import { Widgets_v2 } from "./namespaces/Widgets_v2.js";
-import { Workbench_v2 } from "./namespaces/Workbench_v2.js";
+import { AdminV2 } from "./namespaces/AdminV2.js";
+import { AipAgentsV2 } from "./namespaces/AipAgentsV2.js";
+import { AuditV2 } from "./namespaces/AuditV2.js";
+import { CheckpointsV2 } from "./namespaces/CheckpointsV2.js";
+import { CommentsV2 } from "./namespaces/CommentsV2.js";
+import { ConnectivityV2 } from "./namespaces/ConnectivityV2.js";
+import { CoreV1 } from "./namespaces/CoreV1.js";
+import { CoreV2 } from "./namespaces/CoreV2.js";
+import { DataHealthV2 } from "./namespaces/DataHealthV2.js";
+import { DatasetsV1 } from "./namespaces/DatasetsV1.js";
+import { DatasetsV2 } from "./namespaces/DatasetsV2.js";
+import { FilesystemV2 } from "./namespaces/FilesystemV2.js";
+import { FunctionsV2 } from "./namespaces/FunctionsV2.js";
+import { GaiaV2 } from "./namespaces/GaiaV2.js";
+import { GeojsonV2 } from "./namespaces/GeojsonV2.js";
+import { GeoV1 } from "./namespaces/GeoV1.js";
+import { GeoV2 } from "./namespaces/GeoV2.js";
+import { LanguageModelsV2 } from "./namespaces/LanguageModelsV2.js";
+import { LohiV2 } from "./namespaces/LohiV2.js";
+import { MapRenderingV2 } from "./namespaces/MapRenderingV2.js";
+import { MediaSetsV2 } from "./namespaces/MediaSetsV2.js";
+import { ModelsV2 } from "./namespaces/ModelsV2.js";
+import { NotepadV2 } from "./namespaces/NotepadV2.js";
+import { ObservabilityV2 } from "./namespaces/ObservabilityV2.js";
+import { OntologiesV1 } from "./namespaces/OntologiesV1.js";
+import { OntologiesV2 } from "./namespaces/OntologiesV2.js";
+import { OntologyMcpV2 } from "./namespaces/OntologyMcpV2.js";
+import { OperationsV2 } from "./namespaces/OperationsV2.js";
+import { OrchestrationV2 } from "./namespaces/OrchestrationV2.js";
+import { PackV2 } from "./namespaces/PackV2.js";
+import { PublicApisV2 } from "./namespaces/PublicApisV2.js";
+import { ResourceManagementV2 } from "./namespaces/ResourceManagementV2.js";
+import { SdsV2 } from "./namespaces/SdsV2.js";
+import { SqlQueriesV2 } from "./namespaces/SqlQueriesV2.js";
+import { StreamsV2 } from "./namespaces/StreamsV2.js";
+import { TargetWorkbenchV2 } from "./namespaces/TargetWorkbenchV2.js";
+import { ThirdPartyApplicationsV2 } from "./namespaces/ThirdPartyApplicationsV2.js";
+import { WidgetsV2 } from "./namespaces/WidgetsV2.js";
+import { WorkbenchV2 } from "./namespaces/WorkbenchV2.js";
 
 export const PLATFORM_API_IR: ApiSpec = {
   irVersion: "v2",
   namespaces: [
-    ThirdPartyApplications_v2,
-    PublicApis_v2,
-    TargetWorkbench_v2,
-    MediaSets_v2,
-    Functions_v2,
-    ResourceManagement_v2,
-    Geojson_v2,
-    Core_v1,
-    Core_v2,
-    Lohi_v2,
-    Ontologies_v2,
-    Sds_v2,
-    Widgets_v2,
-    Ontologies_v1,
-    AipAgents_v2,
-    Admin_v2,
-    Datasets_v2,
-    Datasets_v1,
-    OntologyMcp_v2,
-    Filesystem_v2,
-    Connectivity_v2,
-    Orchestration_v2,
-    DataHealth_v2,
-    Observability_v2,
-    MapRendering_v2,
-    Streams_v2,
-    LanguageModels_v2,
-    Models_v2,
-    Geo_v1,
-    Geo_v2,
-    Audit_v2,
-    SqlQueries_v2,
-    Comments_v2,
-    Workbench_v2,
-    Operations_v2,
-    Pack_v2,
-    Checkpoints_v2,
-    Notepad_v2,
-    Gaia_v2,
+    ThirdPartyApplicationsV2,
+    PublicApisV2,
+    TargetWorkbenchV2,
+    MediaSetsV2,
+    FunctionsV2,
+    ResourceManagementV2,
+    GeojsonV2,
+    CoreV1,
+    CoreV2,
+    LohiV2,
+    OntologiesV2,
+    SdsV2,
+    WidgetsV2,
+    OntologiesV1,
+    AipAgentsV2,
+    AdminV2,
+    DatasetsV2,
+    DatasetsV1,
+    OntologyMcpV2,
+    FilesystemV2,
+    ConnectivityV2,
+    OrchestrationV2,
+    DataHealthV2,
+    ObservabilityV2,
+    MapRenderingV2,
+    StreamsV2,
+    LanguageModelsV2,
+    ModelsV2,
+    GeoV1,
+    GeoV2,
+    AuditV2,
+    SqlQueriesV2,
+    CommentsV2,
+    WorkbenchV2,
+    OperationsV2,
+    PackV2,
+    CheckpointsV2,
+    NotepadV2,
+    GaiaV2,
   ],
 };
