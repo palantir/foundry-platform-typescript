@@ -101,3 +101,41 @@ export function get(
 ): Promise<_Ontologies.QueryTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _getByRidBatch: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetQueryTypeByRidBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.GetQueryTypeByRidBatchResponse>
+> = [1, "/v2/ontologies/{0}/queryTypes/getByRidBatch", 3];
+
+/**
+ * Gets a list of query types by RID in bulk.
+ *
+ * Query types are filtered from the response if they don't exist or the requesting token lacks the required
+ * permissions.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/queryTypes/getByRidBatch
+ */
+export function getByRidBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetQueryTypeByRidBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.GetQueryTypeByRidBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getByRidBatch, ...args);
+}
