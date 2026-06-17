@@ -59,12 +59,55 @@ export async function generateDocsPackage(
 ): Promise<string> {
   const outputDir = path.join(packagesDir, PACKAGE_NAME);
 
-  await fs.writeFile(
-    path.join(outputDir, "src", "generated", "ir.ts"),
-    `${copyright}
-        import type { ApiSpec } from "../ir/ApiSpec.js";
+  // The IR is large enough that committing it as a single file produces a blob
+  // too big for GitHub's create-blob API (used when opening excavator PRs), so
+  // it is split into one minified file per namespace that `ir.ts` re-assembles.
+  // Each namespace is emitted with `// dprint-ignore` so `fix-lint` leaves the
+  // single minified line untouched.
+  const generatedDir = path.join(outputDir, "src", "generated");
+  const namespacesDir = path.join(generatedDir, "namespaces");
+  await fs.rm(namespacesDir, { recursive: true, force: true });
+  await fs.mkdir(namespacesDir, { recursive: true });
 
-        export const PLATFORM_API_IR: ApiSpec = ${JSON.stringify(ir, null, 2)}`,
+  const namespaceEntries = ir.namespaces.map((namespace) => ({
+    namespace,
+    varName: `${namespace.name}_${namespace.version}`.replace(
+      /[^A-Za-z0-9_]/g,
+      "_",
+    ),
+  }));
+
+  await Promise.all(
+    namespaceEntries.map(({ namespace, varName }) =>
+      fs.writeFile(
+        path.join(namespacesDir, `${varName}.ts`),
+        `${copyright}
+import type { Namespace } from "../../ir/Namespace.js";
+
+// dprint-ignore
+export const ${varName}: Namespace = ${JSON.stringify(namespace)};
+`,
+      )
+    ),
+  );
+
+  await fs.writeFile(
+    path.join(generatedDir, "ir.ts"),
+    `${copyright}
+import type { ApiSpec } from "../ir/ApiSpec.js";
+${
+      namespaceEntries
+        .map(({ varName }) =>
+          `import { ${varName} } from "./namespaces/${varName}.js";`
+        )
+        .join("\n")
+    }
+
+export const PLATFORM_API_IR: ApiSpec = {
+  irVersion: ${JSON.stringify(ir.irVersion)},
+  namespaces: [${namespaceEntries.map(({ varName }) => varName).join(", ")}],
+};
+`,
   );
 
   await fs.writeFile(
