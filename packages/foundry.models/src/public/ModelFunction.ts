@@ -40,7 +40,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a function for the model.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/{modelRid}/function
@@ -66,7 +66,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Gets the function for the model.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/{modelRid}/function
@@ -93,7 +93,7 @@ const _replace: $FoundryPlatformMethod<
 /**
  * Replaces the function for the model.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/{modelRid}/function

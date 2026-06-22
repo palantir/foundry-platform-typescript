@@ -39,7 +39,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new live deployment for a model version with the specified runtime configuration. The deployment will begin provisioning compute resources and deploying the target model version.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/liveDeployments
@@ -65,7 +65,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists direct live deployments for the specified Model, optionally filtered by branch. Only direct deployments (those tracking the latest model version on a branch) are returned.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/liveDeployments
@@ -93,7 +93,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Retrieves a live deployment by its Resource Identifier (RID), including its deployed model version and runtime configuration.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/liveDeployments/{liveDeploymentRid}
@@ -120,7 +120,7 @@ const _replace: $FoundryPlatformMethod<
 /**
  * Updates the runtime configuration of the live deployment. The deployment will apply the new configuration to the running replicas.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/liveDeployments/{liveDeploymentRid}

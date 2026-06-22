@@ -170,11 +170,18 @@ export interface CreateModelVersionRequest {
  * Log Safety: UNSAFE
  */
 export interface DatasetInput {
-  rid: string;
+  rid: _Core.DatasetRid;
   columnMapping: Record<ColumnTypeSpecId, Array<_Core.ColumnName>>;
   ignoreColumns: Array<_Core.ColumnName>;
   selectColumns: Array<_Core.ColumnName>;
 }
+
+/**
+ * The Resource Identifier (RID) of a Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export type DatasetRid = LooselyBrandedString<"DatasetRid">;
 
 /**
  * A schema could not be found for the specified dataset.
@@ -182,7 +189,7 @@ export interface DatasetInput {
  * Log Safety: SAFE
  */
 export interface DatasetSchemaNotFoundError {
-  datasetRid: string;
+  datasetRid: _Core.DatasetRid;
 }
 
 /**
@@ -288,7 +295,7 @@ export interface Experiment {
   source: ExperimentSource;
   status: ExperimentStatus;
   statusMessage?: string;
-  branch: ExperimentBranch;
+  branch: _Core.BranchName;
   parameters: Array<Parameter>;
   series: Array<SeriesAggregations>;
   summaryMetrics: Array<SummaryMetric>;
@@ -343,11 +350,6 @@ export interface ExperimentArtifactTable {
 export interface ExperimentAuthoringSource {
   stemmaRid: string;
 }
-
-/**
- * Log Safety: UNSAFE
- */
-export type ExperimentBranch = LooselyBrandedString<"ExperimentBranch">;
 
 /**
  * Experiment created from a code workspace.
@@ -410,7 +412,7 @@ export type ExperimentTagText = LooselyBrandedString<"ExperimentTagText">;
  * Log Safety: UNSAFE
  */
 export interface FieldValidationError {
-  datasetRid: string;
+  datasetRid: _Core.DatasetRid;
   fieldName?: string;
   fieldType: string;
 }
@@ -534,7 +536,6 @@ export interface JsonSchemaValidationError {
  */
 export interface ListLiveDeploymentsResponse {
   data: Array<LiveDeployment>;
-  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -558,7 +559,6 @@ export interface ListModelStudioRunsResponse {
  */
 export interface ListModelStudioTrainersResponse {
   data: Array<ModelStudioTrainer>;
-  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -673,7 +673,7 @@ export interface LongType {}
  * Log Safety: UNSAFE
  */
 export interface MissingRequiredDatasetColumnError {
-  datasetRid: string;
+  datasetRid: _Core.DatasetRid;
   columnTypeSpecId: ColumnTypeSpecId;
   columnNames: Array<_Core.ColumnName>;
 }
@@ -684,7 +684,7 @@ export interface MissingRequiredDatasetColumnError {
  * Log Safety: UNSAFE
  */
 export interface MissingWorkerConfigInputDatasetColumnMappingError {
-  datasetRid: string;
+  datasetRid: _Core.DatasetRid;
   columnTypeSpecId: ColumnTypeSpecId;
 }
 
@@ -881,7 +881,7 @@ export type ModelName = LooselyBrandedString<"ModelName">;
  * Log Safety: SAFE
  */
 export interface ModelOutput {
-  modelRid: string;
+  modelRid: ModelRid;
 }
 
 /**
@@ -995,9 +995,9 @@ export type ModelStudioRunJobRid = LooselyBrandedString<"ModelStudioRunJobRid">;
  * Log Safety: SAFE
  */
 export interface ModelStudioRunModelOutput {
-  modelRid: string;
-  modelVersionRid: string;
-  experimentRid?: string;
+  modelRid: ModelRid;
+  modelVersionRid: ModelVersionRid;
+  experimentRid?: ExperimentRid;
 }
 
 /**
@@ -1142,7 +1142,7 @@ export type ModelVersionSource =
  * Log Safety: UNSAFE
  */
 export interface MultipleColumnsNotAllowedForTrainerError {
-  datasetRid: string;
+  datasetRid: _Core.DatasetRid;
   columnTypeSpecId: ColumnTypeSpecId;
 }
 
@@ -1595,7 +1595,7 @@ export interface TimestampType {}
 export type TrainerDescription = LooselyBrandedString<"TrainerDescription">;
 
 /**
- * The identifier for a trainer.
+ * The Resource Identifier (RID) of a trainer.
  *
  * Log Safety: SAFE
  */
@@ -1630,11 +1630,17 @@ export type TrainerOutputsSpecification = any;
 export type TrainerSchemaDefinition = any;
 
 /**
- * The type/category of a trainer.
+ * The category of machine learning task a trainer is designed to solve. This determines the kind of modeling problem the trainer addresses and the shape of the inputs and outputs it expects.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
-export type TrainerType = LooselyBrandedString<"TrainerType">;
+export type TrainerType =
+  | "GENERIC"
+  | "TIME_SERIES"
+  | "TABULAR_REGRESSION"
+  | "TABULAR_CLASSIFICATION"
+  | "LLM_FINETUNING"
+  | "VLM_FINETUNING";
 
 /**
  * A specific version identifier for a trainer.
@@ -1685,7 +1691,7 @@ export interface TypeMismatchError {
  * Log Safety: UNSAFE
  */
 export interface UnknownColumnSpecIdInConfigColumnMappingError {
-  datasetRid: string;
+  datasetRid: _Core.DatasetRid;
   columnTypeSpecId: ColumnTypeSpecId;
 }
 
