@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.20.0
+
+### Minor Changes
+
+- c35b250: Add optional `arrayContains` template variable for array element-subtype filter snippets.
+
 ## 0.19.0
 
 ### Minor Changes
