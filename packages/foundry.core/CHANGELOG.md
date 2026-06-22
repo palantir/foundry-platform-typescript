@@ -1,5 +1,16 @@
 # @osdk/foundry.core
 
+## 2.65.0
+
+### Minor Changes
+
+- aea64a8: Regenerate SDKs with API version 1.1665.0
+
+### Patch Changes
+
+- Updated dependencies [aea64a8]
+  - @osdk/foundry.geo@2.65.0
+
 ## 2.64.0
 
 ### Minor Changes

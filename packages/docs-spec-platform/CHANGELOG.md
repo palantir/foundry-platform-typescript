@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.51.0
+
+### Minor Changes
+
+- aea64a8: Regenerate SDKs with API version 1.1665.0
+
 ## 0.50.0
 
 ### Minor Changes
