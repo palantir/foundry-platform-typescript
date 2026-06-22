@@ -39,7 +39,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new Model Studio.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/modelStudios
@@ -64,7 +64,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Gets details about a Model Studio by its RID.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-read]
  * URL: /v2/models/modelStudios/{modelStudioRid}
@@ -90,7 +90,7 @@ const _launch: $FoundryPlatformMethod<
 /**
  * Launches a new training run for the Model Studio using the latest configuration version.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:models-write]
  * URL: /v2/models/modelStudios/{modelStudioRid}/launch

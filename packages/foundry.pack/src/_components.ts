@@ -219,6 +219,7 @@ export interface Document {
   updatedBy: _Core.UpdatedBy;
   updatedTime: _Core.UpdatedTime;
   operations: Array<DocumentOperation>;
+  operationalVersion?: SchemaVersion;
 }
 
 /**
@@ -466,6 +467,13 @@ export type DocumentSortField =
   | "LAST_VIEW_TIME";
 
 /**
+ * The storage backend for a document type's schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DocumentStorageType = { type: "yjs" } & YjsSchema;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface DocumentType {
@@ -473,6 +481,19 @@ export interface DocumentType {
   name: DocumentTypeName;
   operationalVersion?: SchemaVersion;
   fileSystemType?: FileSystemType;
+}
+
+/**
+   * First-party document type definition loaded from a published asset. Used by products that ship
+document-type schemas as part of their deployment.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface DocumentTypeAsset {
+  documentTypeName: DocumentTypeName;
+  documentStorageType: DocumentStorageType;
+  fileSystemType: FileSystemType;
+  schemaVersion: SchemaVersion;
 }
 
 /**
@@ -555,7 +576,8 @@ export type EditId = LooselyBrandedString<"EditId">;
 export type ErrorCode =
   | "INTERNAL_ERROR"
   | "REVISION_TOO_OLD"
-  | "CLIENT_VERSION_TOO_LOW";
+  | "CLIENT_VERSION_TOO_LOW"
+  | "DOCUMENT_TYPE_OPERATIONAL_VERSION_BUMPED";
 
 /**
    * Message sent to clients when an error occurs. The subscription may not remain in a valid state after this
@@ -1109,6 +1131,17 @@ export type UserId = string;
  * Log Safety: SAFE
  */
 export type UserPresence = "PRESENT" | "NOT_PRESENT";
+
+/**
+   * Yjs-backed schema storage. If schema is empty, the schema for this document type could not be
+found — this can happen for older document types that never persisted their schema; use the
+updateSchema endpoint to populate it.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface YjsSchema {
+  schema?: DocumentTypeSchema;
+}
 
 /**
  * Log Safety: UNSAFE

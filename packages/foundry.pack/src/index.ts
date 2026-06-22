@@ -59,7 +59,9 @@ export type {
   DocumentSecurity,
   DocumentSort,
   DocumentSortField,
+  DocumentStorageType,
   DocumentType,
+  DocumentTypeAsset,
   DocumentTypeName,
   DocumentTypeRid,
   DocumentTypeSchema,
@@ -128,6 +130,7 @@ export type {
   UpdateSchemaSuccess,
   UserId,
   UserPresence,
+  YjsSchema,
   YjsUpdate,
 } from "./_components.js";
 export type {
