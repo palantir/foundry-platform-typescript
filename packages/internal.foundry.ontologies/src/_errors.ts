@@ -1501,6 +1501,43 @@ export interface MarketplaceSdkQueryMappingNotFound {
 }
 
 /**
+   * The media reference property is backed by multiple media set views, and none of them are marked as the upload
+destination for this property. Set an upload destination on exactly one of the backing media set views for
+this property in Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface MediaUploadDestinationNotConfigured {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MediaUploadDestinationNotConfigured";
+  errorDescription:
+    "The media reference property is backed by multiple media set views, and none of them are marked as the upload destination for this property. Set an upload destination on exactly one of the backing media set views for this property in Ontology Manager.";
+  errorInstanceId: string;
+  parameters: {
+    objectType: unknown;
+    property: unknown;
+  };
+}
+
+/**
+   * The property is not backed by any media set view datasource and cannot accept media uploads. Add a media set
+view datasource that includes this property in Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface MediaUploadPropertyNotBackedByMediaSetView {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MediaUploadPropertyNotBackedByMediaSetView";
+  errorDescription:
+    "The property is not backed by any media set view datasource and cannot accept media uploads. Add a media set view datasource that includes this property in Ontology Manager.";
+  errorInstanceId: string;
+  parameters: {
+    objectType: unknown;
+    property: unknown;
+  };
+}
+
+/**
    * Required parameters are missing. Please look at the parameters field to see which required parameters are
 missing from the request.
    *
@@ -1547,6 +1584,25 @@ export interface MultipleGroupByOnFieldNotSupported {
   errorInstanceId: string;
   parameters: {
     duplicateFields: unknown;
+  };
+}
+
+/**
+   * The media reference property has multiple media set views marked as upload destinations. At most one media
+source per property should be configured as the upload destination. This typically indicates an inconsistent
+object type configuration; review the backing media sources for this property in Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface MultipleMediaUploadDestinations {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MultipleMediaUploadDestinations";
+  errorDescription:
+    "The media reference property has multiple media set views marked as upload destinations. At most one media source per property should be configured as the upload destination. This typically indicates an inconsistent object type configuration; review the backing media sources for this property in Ontology Manager.";
+  errorInstanceId: string;
+  parameters: {
+    objectType: unknown;
+    property: unknown;
   };
 }
 

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -34,8 +35,9 @@ const _decrypt: $FoundryPlatformMethod<
     objectType: _Ontologies.ObjectTypeApiName,
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ) => Promise<_Ontologies.DecryptionResult>
-> = [0, "/v2/ontologies/{0}/objects/{1}/{2}/ciphertexts/{3}/decrypt"];
+> = [0, "/v2/ontologies/{0}/objects/{1}/{2}/ciphertexts/{3}/decrypt", 2];
 
 /**
  * Decrypt the value of a ciphertext property.
@@ -52,6 +54,8 @@ export function decrypt(
     objectType: _Ontologies.ObjectTypeApiName,
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
   ]
 ): Promise<_Ontologies.DecryptionResult> {
   return $foundryPlatformFetch($ctx, _decrypt, ...args);
