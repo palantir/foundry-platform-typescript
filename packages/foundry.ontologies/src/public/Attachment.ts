@@ -60,7 +60,6 @@ export function upload(
   const headerParams = {
     ...args[2],
     "Content-Type": args[2]?.["Content-Type"] ?? args[0].type,
-    "Content-Length": args[0].size.toString(),
   };
 
   return $foundryPlatformFetch($ctx, _upload, args[0], args[1], headerParams);
@@ -102,7 +101,6 @@ export function uploadWithRid(
   const headerParams = {
     ...args[3],
     "Content-Type": args[3]?.["Content-Type"] ?? args[1].type,
-    "Content-Length": args[1].size.toString(),
   };
 
   return $foundryPlatformFetch(
