@@ -68,6 +68,8 @@ export interface ExecuteOntologySqlQueryRequest {
   parameters?: Parameters;
   rowLimit?: number;
   dryRun?: boolean;
+  branch?: _Core.FoundryBranch;
+  scenarioRid?: ScenarioRid;
 }
 
 /**
@@ -312,6 +314,13 @@ export type QueryStatus =
 export interface RunningQueryStatus {
   queryId: SqlQueryId;
 }
+
+/**
+ * The rid of a scenario to evaluate the query against.
+ *
+ * Log Safety: SAFE
+ */
+export type ScenarioRid = LooselyBrandedString<"ScenarioRid">;
 
 /**
  * Format for SQL query result serialization.
