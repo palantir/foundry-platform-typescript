@@ -47,6 +47,7 @@ export type {
   ParameterValue,
   QueryStatus,
   RunningQueryStatus,
+  ScenarioRid,
   SerializationFormat,
   SqlQuery,
   SqlQueryId,

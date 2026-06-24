@@ -749,6 +749,7 @@ export type {
   ActionTypeNotFound,
   ActionValidationFailed,
   AggregationAccuracyNotSupported,
+  AggregationDepthExceededLimit,
   AggregationGroupCountExceededLimit,
   AggregationMemoryExceededLimit,
   AggregationMetricNotSupported,

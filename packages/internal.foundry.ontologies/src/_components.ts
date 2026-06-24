@@ -4411,6 +4411,7 @@ export interface ObjectTypeV2 {
   rid: ObjectTypeRid;
   titleProperty: PropertyApiName;
   visibility?: ObjectTypeVisibility;
+  aliases: Array<string>;
 }
 
 /**
