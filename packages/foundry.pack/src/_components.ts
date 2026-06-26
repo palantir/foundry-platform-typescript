@@ -302,7 +302,7 @@ export interface DocumentDiscretionarySecurityUpdateEventData {
  */
 export interface DocumentEditDescription {
   eventData: DocumentCustomEventData;
-  eventType: string;
+  eventType?: string;
 }
 
 /**
@@ -490,6 +490,7 @@ document-type schemas as part of their deployment.
    * Log Safety: UNSAFE
    */
 export interface DocumentTypeAsset {
+  comment?: string;
   documentTypeName: DocumentTypeName;
   documentStorageType: DocumentStorageType;
   fileSystemType: FileSystemType;

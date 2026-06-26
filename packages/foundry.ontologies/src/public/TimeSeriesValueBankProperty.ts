@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -37,6 +38,7 @@ const _getLatestValue: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.TimeseriesEntry | undefined>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/latestValue", 2];
@@ -60,6 +62,7 @@ export function getLatestValue(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<_Ontologies.TimeseriesEntry | undefined> {
@@ -76,6 +79,7 @@ const _streamValues: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -105,6 +109,7 @@ export function streamValues(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
     },
   ]
 ): Promise<Response> {
