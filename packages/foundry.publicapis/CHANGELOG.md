@@ -1,5 +1,18 @@
 # @osdk/foundry.publicapis
 
+## 2.66.0
+
+### Minor Changes
+
+- 0ee40aa: Regenerate SDKs with API version 1.1668.0
+- b53de25: Regenerate SDKs with API version 1.1675.0
+
+### Patch Changes
+
+- Updated dependencies [0ee40aa]
+- Updated dependencies [b53de25]
+  - @osdk/foundry.core@2.66.0
+
 ## 2.65.0
 
 ### Minor Changes
