@@ -3190,6 +3190,16 @@ export interface ListQueryTypesResponseV2 {
 }
 
 /**
+ * The objects that have a conflicting edit within a scenario for a given object type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListScenarioConflictingObjectsResponse {
+  data: Array<ObjectLocator>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
  * The object types and link types that have been modified within a scenario.
  *
  * Log Safety: UNSAFE
@@ -4418,6 +4428,7 @@ export interface ObjectTypeV2 {
   rid: ObjectTypeRid;
   titleProperty: PropertyApiName;
   visibility?: ObjectTypeVisibility;
+  aliases: Array<string>;
 }
 
 /**

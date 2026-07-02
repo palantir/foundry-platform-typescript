@@ -510,8 +510,9 @@ export interface GetFileContentPermissionDenied {
 }
 
 /**
-   * One or more backing datasets do not live in the same project as the view. Either move the input datasets to
-the same project as the view or add them as project references.
+   * One or more backing datasets do not live in the same project as the view. Add the missing datasets as
+project resource references to the view's project using the Filesystem API, or move them into the view's
+project, and then retry.
    *
    * Log Safety: SAFE
    */
@@ -519,9 +520,12 @@ export interface InputBackingDatasetNotInOutputViewProject {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InputBackingDatasetNotInOutputViewProject";
   errorDescription:
-    "One or more backing datasets do not live in the same project as the view. Either move the input datasets to the same project as the view or add them as project references.";
+    "One or more backing datasets do not live in the same project as the view. Add the missing datasets as project resource references to the view's project using the Filesystem API, or move them into the view's project, and then retry.";
   errorInstanceId: string;
-  parameters: {};
+  parameters: {
+    viewProjectRid: unknown;
+    invalidBackingDatasets: unknown;
+  };
 }
 
 /**
