@@ -191,6 +191,24 @@ export interface AggregationAccuracyNotSupported {
 }
 
 /**
+   * The aggregation request contains too many levels of nested groupings. This can be fixed by reducing the
+number of nested groupings in your request.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationDepthExceededLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AggregationDepthExceededLimit";
+  errorDescription:
+    "The aggregation request contains too many levels of nested groupings. This can be fixed by reducing the number of nested groupings in your request.";
+  errorInstanceId: string;
+  parameters: {
+    depth: unknown;
+    depthLimit: unknown;
+  };
+}
+
+/**
    * The number of groups in the aggregations grouping exceeded the allowed limit. This can typically be fixed by
 adjusting your query to reduce the number of groups created by your aggregation. For instance:
 

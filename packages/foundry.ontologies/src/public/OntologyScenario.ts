@@ -237,3 +237,49 @@ export function listScenarioEditedLinks(
 ): Promise<_Ontologies.ListScenarioEditedLinksResponse> {
   return $foundryPlatformFetch($ctx, _listScenarioEditedLinks, ...args);
 }
+
+const _listScenarioConflictingObjects: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    scenarioRid: _Ontologies.OntologyScenarioRid,
+    objectType: _Ontologies.ObjectTypeApiName,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.ListScenarioConflictingObjectsResponse>
+> = [0, "/v2/ontologies/{0}/scenarios/{1}/objects/{2}/conflicting", 2];
+
+/**
+ * Returns the list of objects with edits that conflict with edits to the scenario's base for a specific object
+ * type. A conflict occurs when an object has been edited both within the scenario and on the scenario's base
+ * after the scenario was created. Only objects that the user has permission to view are returned.
+ *
+ * Conflict detection takes into account changes that are not reflected in the user-visible object data.
+ * As a result, this endpoint may report false positives. An object may be returned as conflicting even if
+ * its data has not actually changed on the scenario's base.
+ *
+ * Each page may be smaller than the requested page size.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objects/{objectType}/conflicting
+ */
+export function listScenarioConflictingObjects(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    scenarioRid: _Ontologies.OntologyScenarioRid,
+    objectType: _Ontologies.ObjectTypeApiName,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.ListScenarioConflictingObjectsResponse> {
+  return $foundryPlatformFetch($ctx, _listScenarioConflictingObjects, ...args);
+}

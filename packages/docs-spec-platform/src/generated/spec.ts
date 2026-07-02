@@ -442,6 +442,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.listScenarioEditedLinks": {
       "variables": {},
     },
+    "v2.listScenarioConflictingObjects": {
+      "variables": {},
+    },
     "v2.listScanRecords": {
       "variables": {},
     },

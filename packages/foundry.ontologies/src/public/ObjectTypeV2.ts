@@ -47,6 +47,9 @@ const _list: $FoundryPlatformMethod<
  * more results available, at least one result will be present in the
  * response.
  *
+ * Note: the `aliases` field is not populated on this endpoint and will always be empty. To retrieve object type
+ * aliases, use the get-by-RID read paths (e.g. `getObjectTypeV2`).
+ *
  * @public
  *
  * Required Scopes: [api:ontologies-read]

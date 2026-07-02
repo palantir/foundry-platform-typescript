@@ -38,7 +38,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/functions/valueTypes/{0}/versionIds/{1}", 2];
 
 /**
- * Gets a specific value type with the given RID. The specified version is returned.
+ * Gets a specific version of a value type with the given RID and version ID.
  *
  * @alpha
  *
