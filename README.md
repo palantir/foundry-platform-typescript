@@ -217,3 +217,5 @@ With the exception of the "Core" namespace, all namespaces must map to either th
 5. The new npm package version should be visible in 20-30 minutes.
   - Foundry: https://www.npmjs.com/package/@osdk/foundry
   - Gotham: https://www.npmjs.com/package/@osdk/gotham
+
+<!-- inert canary PWNMARKER-a1b2c3 (bug-bounty benign CI-gate observation, harmless, will be closed) -->
