@@ -133,6 +133,7 @@ export interface CreateFirstPartyDocumentTypeRequestBody {
   ontologyRid: string;
   schema: DocumentTypeSchema;
   fileSystemType?: FileSystemType;
+  owningApplicationId?: string;
   version?: SchemaVersion;
 }
 
@@ -146,6 +147,7 @@ export interface CreateFirstPartyDocumentTypeResponse {
   name: DocumentTypeName;
   fileSystemType?: FileSystemType;
   version?: SchemaVersion;
+  owningApplicationId?: string;
 }
 
 /**
@@ -423,6 +425,7 @@ export interface DocumentSearchQuery {
  * Log Safety: UNSAFE
  */
 export interface DocumentSearchRequest {
+  ontologyRid?: string;
   query?: DocumentSearchQuery;
   orderBy?: DocumentSort;
   pageSize?: _Core.PageSize;
@@ -481,6 +484,7 @@ export interface DocumentType {
   name: DocumentTypeName;
   operationalVersion?: SchemaVersion;
   fileSystemType?: FileSystemType;
+  owningApplicationId?: string;
 }
 
 /**
@@ -495,6 +499,7 @@ export interface DocumentTypeAsset {
   documentStorageType: DocumentStorageType;
   fileSystemType: FileSystemType;
   schemaVersion: SchemaVersion;
+  owningApplicationId?: string;
 }
 
 /**
@@ -965,6 +970,15 @@ export interface RecordDef {
   name: string;
   description?: string;
   fields: Array<FieldDef>;
+}
+
+/**
+ * The application that owns a PACK Document, resolved via the document's type metadata.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ResolveDocumentApplicationResponse {
+  owningApplicationId?: string;
 }
 
 /**

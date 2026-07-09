@@ -116,6 +116,8 @@ const _search: $FoundryPlatformMethod<
 /**
  * Loads all PACK Documents visible to the user of the provided Document Type Name. If a search request
  * is provided, filters and sorts the results based on the user's query, sort, and pagination options.
+ * When an ontology RID is provided on the request, results are scoped to that ontology; otherwise the
+ * document type name is searched across all ontologies.
  *
  * @alpha
  *
@@ -157,4 +159,31 @@ export function update(
   ]
 ): Promise<_Pack.Document> {
   return $foundryPlatformFetch($ctx, _update, ...args);
+}
+
+const _resolveApplication: $FoundryPlatformMethod<
+  (
+    documentId: _Pack.DocumentRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.ResolveDocumentApplicationResponse>
+> = [0, "/v2/pack/documents/{0}/resolveApplication", 2];
+
+/**
+ * Resolves a PACK Document to the application that owns its Document Type. Returns the owning
+ * application id from the document type metadata, or empty if none is configured.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documents/{documentId}/resolveApplication
+ */
+export function resolveApplication(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    documentId: _Pack.DocumentRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.ResolveDocumentApplicationResponse> {
+  return $foundryPlatformFetch($ctx, _resolveApplication, ...args);
 }

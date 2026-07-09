@@ -243,6 +243,21 @@ export interface LoadByNameDocumentTypesPermissionDenied {
 }
 
 /**
+ * Could not resolveApplication the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface ResolveApplicationDocumentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ResolveApplicationDocumentPermissionDenied";
+  errorDescription: "Could not resolveApplication the Document.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
    * The schema update could not be applied because another update was applied concurrently.
 Retry the operation with the latest schema version.
    *
