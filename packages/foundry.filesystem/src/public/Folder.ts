@@ -128,7 +128,7 @@ const _children: $FoundryPlatformMethod<
 > = [0, "/v2/filesystem/folders/{0}/children", 2];
 
 /**
- * List all child Resources of the Folder.
+ * List all child resources of the Folder.
  *
  * This is a paged endpoint. The page size will be limited to 2,000 results per page. If no page size is
  * provided, this page size will also be used as the default.

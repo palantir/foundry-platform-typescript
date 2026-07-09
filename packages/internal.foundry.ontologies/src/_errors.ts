@@ -191,6 +191,24 @@ export interface AggregationAccuracyNotSupported {
 }
 
 /**
+   * The aggregation request contains too many levels of nested groupings. This can be fixed by reducing the
+number of nested groupings in your request.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationDepthExceededLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AggregationDepthExceededLimit";
+  errorDescription:
+    "The aggregation request contains too many levels of nested groupings. This can be fixed by reducing the number of nested groupings in your request.";
+  errorInstanceId: string;
+  parameters: {
+    depth: unknown;
+    depthLimit: unknown;
+  };
+}
+
+/**
    * The number of groups in the aggregations grouping exceeded the allowed limit. This can typically be fixed by
 adjusting your query to reduce the number of groups created by your aggregation. For instance:
 
@@ -363,6 +381,26 @@ export interface CipherChannelNotFound {
   errorInstanceId: string;
   parameters: {
     cipherChannel: unknown;
+  };
+}
+
+/**
+   * A Cipher Channel could not be resolved for encryption under the requested
+cipherChannelStrategy. Depending on the strategy, this means the object has no existing
+encrypted value and/or the property has no default Cipher Channel configured.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface CipherChannelNotResolvable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CipherChannelNotResolvable";
+  errorDescription:
+    "A Cipher Channel could not be resolved for encryption under the requested cipherChannelStrategy. Depending on the strategy, this means the object has no existing encrypted value and/or the property has no default Cipher Channel configured.";
+  errorInstanceId: string;
+  parameters: {
+    objectType: unknown;
+    property: unknown;
+    strategy: unknown;
   };
 }
 

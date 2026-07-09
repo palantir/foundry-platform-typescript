@@ -331,6 +331,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.decrypt": {
       "variables": {},
     },
+    "v2.encryptWithDefaultChannel": {
+      "variables": {},
+    },
+    "v2.encrypt": {
+      "variables": {},
+    },
     "v2.listInterfaceTypes": {
       "variables": {},
     },
@@ -440,6 +446,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.listScenarioEditedLinks": {
+      "variables": {},
+    },
+    "v2.listScenarioConflictingObjects": {
       "variables": {},
     },
     "v2.listScanRecords": {
@@ -863,6 +872,15 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.removeResourceRoles": {
+      "variables": {},
+    },
+    "v2.listResourceTags": {
+      "variables": {},
+    },
+    "v2.addResourceTags": {
+      "variables": {},
+    },
+    "v2.removeResourceTags": {
       "variables": {},
     },
     "v2.createFolder": {

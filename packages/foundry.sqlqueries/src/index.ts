@@ -47,6 +47,7 @@ export type {
   ParameterValue,
   QueryStatus,
   RunningQueryStatus,
+  ScenarioRid,
   SerializationFormat,
   SqlQuery,
   SqlQueryId,
@@ -57,6 +58,7 @@ export type {
   StructFieldKeyValue,
   StructFieldRid,
   SucceededQueryStatus,
+  TableName,
   UnnamedParameterValues,
 } from "./_components.js";
 export type {

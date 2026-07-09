@@ -36,6 +36,7 @@ export type {
   ListAgentVersionsResponse,
   ListSessionsResponse,
   MessageId,
+  ModelPurpose,
   ObjectContext,
   ObjectSetParameter,
   ObjectSetParameterValue,
@@ -76,6 +77,7 @@ export type {
   UserTextInput,
 } from "./_components.js";
 export type {
+  ActionTypeNotFound,
   AgentIterationsExceededLimit,
   AgentNotFound,
   AgentVersionNotFound,
@@ -105,6 +107,7 @@ export type {
   SessionTraceIdAlreadyExists,
   SessionTraceNotFound,
   StreamingContinueSessionPermissionDenied,
+  UnsupportedLanguageModelRid,
   UpdateSessionTitlePermissionDenied,
 } from "./_errors.js";
 export * as Agents from "./public/Agent.js";

@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
+import type * as _Datasets from "@osdk/foundry.datasets";
 import type * as _Geo from "@osdk/foundry.geo";
 
 export type LooselyBrandedString<T extends string> = string & {
@@ -1277,9 +1278,49 @@ export interface CenterPoint {
 export type CenterPointTypes = { type: "Point" } & _Geo.GeoPoint;
 
 /**
+   * Controls which Cipher Channel is used when encrypting a value. If not specified, defaults to PREFER_EXISTING.
+
+PREFER_EXISTING: use the Cipher Channel parsed from the existing ciphertext value; fall back to the default channel configured in ontology metadata.
+PREFER_DEFAULT: use the default channel configured in ontology metadata; fall back to the channel parsed from the existing ciphertext value.
+EXISTING_ONLY: use the channel parsed from the existing ciphertext value only; error if the value is not already encrypted.
+DEFAULT_ONLY: use the default channel configured in ontology metadata only; error if none is configured.
+   *
+   * Log Safety: SAFE
+   */
+export type CipherChannelStrategy =
+  | "PREFER_EXISTING"
+  | "PREFER_DEFAULT"
+  | "EXISTING_ONLY"
+  | "DEFAULT_ONLY";
+
+/**
+   * A value encrypted with Cipher, stored in its envelope form which encodes
+the Cipher Channel used to encrypt it (for example CIPHER::{cipherChannelRid}::<ciphertext>::CIPHER).
+   *
+   * Log Safety: UNSAFE
+   */
+export type CipherText = LooselyBrandedString<"CipherText">;
+
+/**
  * Log Safety: UNSAFE
  */
 export type CipherTextProperty = LooselyBrandedString<"CipherTextProperty">;
+
+/**
+ * The name of a column in a tabular datasource.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ColumnName = LooselyBrandedString<"ColumnName">;
+
+/**
+ * A property bound to a single column in the backing datasource.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ColumnPropertyMapping {
+  column: ColumnName;
+}
 
 /**
    * The conjunctive set of markings required to access the property value.
@@ -1570,6 +1611,20 @@ export interface CurrentUserArgument {}
 export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 
 /**
+ * The id of a datasource branch. Branch ids are user supplied strings, not RIDs.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DatasourceBranchId = LooselyBrandedString<"DatasourceBranchId">;
+
+/**
+ * Randomly generated identifier for an object type's datasource.
+ *
+ * Log Safety: SAFE
+ */
+export type DatasourceRid = LooselyBrandedString<"DatasourceRid">;
+
+/**
    * Represents the value of data in the following format. Note that these values can be nested, for example an array of structs.
 | Type                                | JSON encoding                                         | Example                                                                                                                                                       |
 |-------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1677,7 +1732,7 @@ export interface DateValue {
  * Log Safety: DO_NOT_LOG
  */
 export interface DecryptionResult {
-  plaintext?: Plaintext;
+  plaintext: Plaintext;
 }
 
 /**
@@ -1823,6 +1878,13 @@ export interface DerivedTimeSeriesProperty {
 }
 
 /**
+ * The RID of a direct-write source backing an object type.
+ *
+ * Log Safety: SAFE
+ */
+export type DirectSourceRid = LooselyBrandedString<"DirectSourceRid">;
+
+/**
    * The disjunctive set of markings required to access the property value.
 Disjunctive markings are represented as a conjunctive list of disjunctive sets.
 The top-level set is a conjunction of sets, where each inner set should be
@@ -1928,6 +1990,13 @@ export type EditHistoryEdit =
   | ({ type: "modifyEdit" } & ModifyEdit);
 
 /**
+ * A property on an object type that is permissioned to a tabular datasource, but the contents are only populated through Actions.
+ *
+ * Log Safety: SAFE
+ */
+export interface EditOnlyPropertyMapping {}
+
+/**
  * Log Safety: UNSAFE
  */
 export type EditsHistoryFilter =
@@ -1958,6 +2027,24 @@ export interface EditsHistoryTimestampFilter {
  * Log Safety: SAFE
  */
 export type EditTypeFilter = "create" | "modify" | "delete";
+
+/**
+ * The request to encrypt a plaintext value into a CipherText value.
+ *
+ * Log Safety: DO_NOT_LOG
+ */
+export interface EncryptionRequest {
+  plaintext: Plaintext;
+}
+
+/**
+ * The result of a CipherText encryption. If successful, the encrypted ciphertext value will be returned. Otherwise, an error will be thrown.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface EncryptionResult {
+  ciphertext: CipherText;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -2969,12 +3056,59 @@ export interface LinkSideObject {
 }
 
 /**
+ * Messages sent over the link type subscription WebSocket.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LinksMessage =
+  | ({ type: "subscriptionClosed" } & SubscriptionClosed)
+  | ({ type: "subscribeResponses" } & ObjectSetSubscribeResponses)
+  | ({ type: "refresh" } & RefreshLinks)
+  | ({ type: "updates" } & LinkUpdates);
+
+/**
+   * Represents the state of a link change. ADDED indicates the link was created. REMOVED indicates
+the link was deleted. Updates are represented as a REMOVED followed by an ADDED LinkState in a
+single LinkUpdates message.
+   *
+   * Log Safety: SAFE
+   */
+export type LinkState = "ADDED" | "REMOVED";
+
+/**
+   * Identifies an object by its object type and primary key. Used in link subscription
+requests and responses to identify objects on either side of a link.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface LinkSubscriptionObjectLocator {
+  objectType: ObjectTypeApiName;
+  primaryKey: ObjectPrimaryKey;
+}
+
+/**
+ * A list of object locators to report link changes on.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LinkSubscriptionObjectLocators = Array<
+  LinkSubscriptionObjectLocator
+>;
+
+/**
    * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager
 application.
    *
    * Log Safety: UNSAFE
    */
 export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
+
+/**
+ * A list of directed link type API names.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LinkTypeApiNames = Array<LinkTypeApiName>;
 
 /**
  * The unique ID of a link type. To find the ID for your link type, check the Ontology Manager application.
@@ -3019,6 +3153,50 @@ export interface LinkTypeSideV2 {
   cardinality: LinkTypeSideCardinality;
   foreignKeyPropertyApiName?: PropertyApiName;
   linkTypeRid: LinkTypeRid;
+}
+
+/**
+   * A request to subscribe to link changes from a selected side of a set of objects over a set of link
+types.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface LinkTypeSubscribeRequest {
+  selectedObjects: LinkSubscriptionObjectLocators;
+  linkTypes: LinkTypeApiNames;
+}
+
+/**
+   * The list of link subscriptions that should be established. A client can stop subscribing to links
+by removing the request from subsequent LinkTypeSubscribeRequests.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface LinkTypeSubscribeRequests {
+  id: RequestId;
+  requests: Array<LinkTypeSubscribeRequest>;
+}
+
+/**
+ * Represents a single link change between two objects.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LinkUpdate {
+  selectedSide: LinkSubscriptionObjectLocator;
+  linkType: LinkTypeApiName;
+  linkedSide: LinkSubscriptionObjectLocator;
+  state: LinkState;
+}
+
+/**
+ * A message containing link updates for a subscription.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LinkUpdates {
+  id: SubscriptionId;
+  updates: Array<LinkUpdate>;
 }
 
 /**
@@ -3187,6 +3365,16 @@ export interface ListQueryTypesResponse {
 export interface ListQueryTypesResponseV2 {
   nextPageToken?: _Core.PageToken;
   data: Array<QueryTypeV2>;
+}
+
+/**
+ * The objects that have a conflicting edit within a scenario for a given object type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListScenarioConflictingObjectsResponse {
+  data: Array<ObjectLocator>;
+  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -4314,6 +4502,61 @@ List object types endpoint or check the Ontology Manager.
 export type ObjectTypeApiName = LooselyBrandedString<"ObjectTypeApiName">;
 
 /**
+ * An object type datasource backed by a Foundry dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectTypeDatasetDatasource {
+  datasetRid: _Datasets.DatasetRid;
+  branch?: DatasourceBranchId;
+  propertyMapping: Record<PropertyApiName, PropertyTypeMappingInfo>;
+}
+
+/**
+   * A datasource that supplies property values for an object type. Each object type can have one or more
+datasources; together they back all of the object type's properties. The definition carries the RID of the
+backing Foundry resource (for example, the dataset RID for a dataset-backed object type), enabling callers to
+navigate from an object type to its backing data.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeDatasource {
+  rid: DatasourceRid;
+  definition: ObjectTypeDatasourceDefinition;
+}
+
+/**
+   * The definition of an object type datasource, identifying the kind of Foundry resource that backs the object
+type.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ObjectTypeDatasourceDefinition =
+  | ({ type: "timeSeries" } & ObjectTypeTimeSeriesDatasource)
+  | ({ type: "unsupported" } & ObjectTypeUnsupportedDatasource)
+  | ({ type: "restrictedView" } & ObjectTypeRestrictedViewDatasource)
+  | ({ type: "stream" } & ObjectTypeStreamDatasource)
+  | ({ type: "mediaSetView" } & ObjectTypeMediaSetViewDatasource)
+  | ({ type: "direct" } & ObjectTypeDirectDatasource)
+  | ({ type: "geotimeSeries" } & ObjectTypeGeotimeSeriesDatasource)
+  | ({ type: "editsOnly" } & ObjectTypeEditsOnlyDatasource)
+  | ({ type: "dataset" } & ObjectTypeDatasetDatasource)
+  | ({ type: "table" } & ObjectTypeTableDatasource);
+
+/**
+   * An object type datasource backed by a direct-write source. Property values are written directly to the
+datasource rather than being read from a separate Foundry resource. Unlike an edits-only datasource, a direct
+datasource has a backing source that values are written to by some writer. An edits-only datasource has no
+backing source at all and its properties are populated solely via Actions.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeDirectDatasource {
+  directSourceRid: DirectSourceRid;
+  propertyMapping: Record<PropertyApiName, PropertyTypeMappingInfo>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ObjectTypeEdits {
@@ -4349,6 +4592,17 @@ export interface ObjectTypeEditsHistoryResponse {
 }
 
 /**
+   * An object type datasource that is not backed by any external Foundry resource. All properties on the object type
+can only be populated via Actions. Other datasources have edit only properties, which are permissioned to the
+backing tabular datasource. This datasource has no backing tabular datasource and is a true edit only object
+type. Note that this datasource type is incompatible with any other datasource and all the properties on the
+object type are backed by it.
+   *
+   * Log Safety: SAFE
+   */
+export interface ObjectTypeEditsOnlyDatasource {}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ObjectTypeFullMetadata {
@@ -4360,6 +4614,17 @@ export interface ObjectTypeFullMetadata {
     ObjectTypeInterfaceImplementation
   >;
   sharedPropertyTypeMapping: Record<SharedPropertyTypeApiName, PropertyApiName>;
+}
+
+/**
+   * An object type datasource backed by a Geotime series integration, providing values for Geotime series reference
+properties.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeGeotimeSeriesDatasource {
+  geotimeSeriesIntegrationRid: GeotimeSeriesIntegrationRid;
+  properties: Array<PropertyApiName>;
 }
 
 /**
@@ -4395,11 +4660,77 @@ export interface ObjectTypeLinkTypeApiNameMapping {
 }
 
 /**
+ * An object type datasource backed by a Foundry media set view, providing media for media reference properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectTypeMediaSetViewDatasource {
+  mediaSetViewRid: _Core.MediaSetViewRid;
+  properties: Array<PropertyApiName>;
+}
+
+/**
+ * An object type datasource backed by a Foundry restricted view.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectTypeRestrictedViewDatasource {
+  restrictedViewRid: RestrictedViewRid;
+  propertyMapping: Record<PropertyApiName, PropertyTypeMappingInfo>;
+}
+
+/**
  * The unique resource identifier of an object type, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
  */
 export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
+
+/**
+ * An object type datasource backed by a Foundry stream.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectTypeStreamDatasource {
+  streamRid: StreamRid;
+  branch?: DatasourceBranchId;
+  propertyMapping: Record<PropertyApiName, PropertyTypeMappingInfo>;
+}
+
+/**
+ * An object type datasource backed by a Foundry table.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectTypeTableDatasource {
+  tableRid: TableRid;
+  branch?: DatasourceBranchId;
+  propertyMapping: Record<PropertyApiName, PropertyTypeMappingInfo>;
+}
+
+/**
+ * An object type datasource backed by a time series sync, providing values for time-dependent properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectTypeTimeSeriesDatasource {
+  timeSeriesSyncRid: TimeseriesSyncRid;
+  properties: Array<PropertyApiName>;
+}
+
+/**
+   * A datasource of a kind not yet exposed in the public API. The unsupportedType discriminator supplies the
+underlying OMS variant so callers can recognize known but unmodelled cases (e.g., derived properties). Variants
+the adapter does not recognise at all are returned with an "unknown" discriminator. The properties list
+enumerates the property API names this datasource backs. The properties will be empty for "unknown"
+datasources.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeUnsupportedDatasource {
+  unsupportedType: string;
+  properties: Array<PropertyApiName>;
+}
 
 /**
  * Represents an object type in the Ontology.
@@ -4418,6 +4749,8 @@ export interface ObjectTypeV2 {
   rid: ObjectTypeRid;
   titleProperty: PropertyApiName;
   visibility?: ObjectTypeVisibility;
+  aliases: Array<string>;
+  datasources: Array<ObjectTypeDatasource>;
 }
 
 /**
@@ -5181,6 +5514,18 @@ export interface PropertyTimestampFormattingRule {
 export type PropertyTypeApiName = LooselyBrandedString<"PropertyTypeApiName">;
 
 /**
+   * Describes how a single object type property is bound to its backing tabular datasource. A property may be backed
+by a single column, by a struct (with nested field mappings), or be edit-only (no backing column even though it
+is permissioned to the tabular datasource).
+   *
+   * Log Safety: UNSAFE
+   */
+export type PropertyTypeMappingInfo =
+  | ({ type: "struct" } & StructPropertyMapping)
+  | ({ type: "column" } & ColumnPropertyMapping)
+  | ({ type: "editOnly" } & EditOnlyPropertyMapping);
+
+/**
  * Log Safety: UNSAFE
  */
 export interface PropertyTypeReference {
@@ -5614,6 +5959,16 @@ export type ReferenceValue = {
 } & GeotimeSeriesValue;
 
 /**
+ * Indicates that the link types cannot be incrementally updated and must be refreshed.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RefreshLinks {
+  id: SubscriptionId;
+  linkTypes: LinkTypeApiNames;
+}
+
+/**
  * The list of updated Foundry Objects cannot be provided. The object set must be refreshed using Object Set Service.
  *
  * Log Safety: UNSAFE
@@ -5766,6 +6121,13 @@ export interface ResolvedInterfacePropertyType {
   valueFormatting?: PropertyValueFormattingRule;
   requireImplementation: boolean;
 }
+
+/**
+ * The RID of a Foundry restricted view.
+ *
+ * Log Safety: SAFE
+ */
+export type RestrictedViewRid = LooselyBrandedString<"RestrictedViewRid">;
 
 /**
  * If not specified, defaults to NONE.
@@ -5981,10 +6343,21 @@ export interface SearchOrderBy {
 export type SearchOrderByType = "fields" | "relevance";
 
 /**
- * Specifies the ordering of search results by a field and an ordering direction or by relevance if scores are required in a nearestNeighbors query. By default orderType is set to fields.
- *
- * Log Safety: UNSAFE
- */
+   * Specifies the ordering of search results by a field and an ordering direction, or by relevance.
+If the fields array is provided, orderType is automatically set to fields.
+If this object is omitted entirely, the ordering is unspecified.
+Setting orderType to relevance requests that results are sorted by decreasing relevance score.
+For queries that include text search filters (e.g. containsAllTerms, containsAnyTerm,
+containsAllTermsInOrder, containsAllTermsInOrderPrefixLastTerm) or nearestNeighbors, the
+relevance score reflects how well each object matches the query. For other queries, the ordering
+is unspecified.
+When paging through results ordered by relevance, ordering is not guaranteed to be consistent
+across pages: an object may appear on multiple pages or be skipped entirely. Use a single page
+when result completeness is required.
+Relevance ordering can be expensive and should only be used when required.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface SearchOrderByV2 {
   orderType?: SearchOrderByType;
   fields: Array<SearchOrderingV2>;
@@ -6283,6 +6656,13 @@ export type StreamMessage =
   | ({ type: "subscribeResponses" } & ObjectSetSubscribeResponses);
 
 /**
+ * The RID of a Foundry stream.
+ *
+ * Log Safety: SAFE
+ */
+export type StreamRid = LooselyBrandedString<"StreamRid">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface StreamTimeSeriesPointsRequest {
@@ -6428,6 +6808,15 @@ export interface StructFieldOfPropertyImplementation {
 }
 
 /**
+ * A single struct field's mapping where apiName is the name of a struct field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StructFieldPropertyMapping {
+  apiName: StructFieldApiName;
+}
+
+/**
    * A combination of a property identifier and the load level to apply to the property. You can select a reduced
 value for arrays and the main value for structs. If the provided load level cannot be applied to the property
 type, then it will be ignored. This selector is experimental and may not work in filters or sorts.
@@ -6483,6 +6872,16 @@ export type StructParameterFieldApiName = LooselyBrandedString<
 export interface StructParameterFieldArgument {
   parameterId: ParameterId;
   structParameterFieldApiName: StructParameterFieldApiName;
+}
+
+/**
+ * A mapping from the backing column struct field names to a struct property's fields.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StructPropertyMapping {
+  column: ColumnName;
+  fields: Record<_Core.StructFieldName, StructFieldPropertyMapping>;
 }
 
 /**
@@ -6601,6 +7000,13 @@ export interface SyncApplyActionResponseV2 {
 export interface SynchronousWebhookOutputArgument {
   webhookOutputParamName: string;
 }
+
+/**
+ * The RID of a Foundry table.
+ *
+ * Log Safety: SAFE
+ */
+export type TableRid = LooselyBrandedString<"TableRid">;
 
 /**
  * Log Safety: UNSAFE

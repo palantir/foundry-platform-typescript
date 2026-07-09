@@ -36,6 +36,7 @@ const _list: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      includeDatasources?: boolean | undefined;
     },
   ) => Promise<_Ontologies.ListObjectTypesV2Response>
 > = [0, "/v2/ontologies/{0}/objectTypes", 2];
@@ -46,6 +47,9 @@ const _list: $FoundryPlatformMethod<
  * Each page may be smaller or larger than the requested page size. However, it is guaranteed that if there are
  * more results available, at least one result will be present in the
  * response.
+ *
+ * Note: the `aliases` field is not populated on this endpoint and will always be empty. To retrieve object type
+ * aliases, use the get-by-RID read paths (e.g. `getObjectTypeV2`).
  *
  * @public
  *
@@ -61,6 +65,7 @@ export function list(
       branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      includeDatasources?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.ListObjectTypesV2Response> {
@@ -71,7 +76,10 @@ const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      includeDatasources?: boolean | undefined;
+    },
   ) => Promise<_Ontologies.ObjectTypeV2>
 > = [0, "/v2/ontologies/{0}/objectTypes/{1}", 2];
 
@@ -89,7 +97,10 @@ export function get(
     ontology: _Ontologies.OntologyIdentifier,
     objectType: _Ontologies.ObjectTypeApiName,
 
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      includeDatasources?: boolean | undefined;
+    },
   ]
 ): Promise<_Ontologies.ObjectTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -142,6 +153,7 @@ const _getFullMetadata: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      includeDatasources?: boolean | undefined;
     },
   ) => Promise<_Ontologies.ObjectTypeFullMetadata>
 > = [0, "/v2/ontologies/{0}/objectTypes/{1}/fullMetadata", 2];
@@ -165,6 +177,7 @@ export function getFullMetadata(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      includeDatasources?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.ObjectTypeFullMetadata> {

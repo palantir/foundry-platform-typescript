@@ -429,7 +429,7 @@ export interface StreamingExecuteQueryRequest {
 }
 
 /**
- * A single line in the NDJSON response stream from streamingExecute. Each line contains either a data batch or an error.
+ * A single message in a streaming Query execution response. Each message contains either a data batch or an error.
  *
  * Log Safety: UNSAFE
  */
