@@ -1,5 +1,18 @@
 # @osdk/foundry.ontologies
 
+## 2.67.0
+
+### Minor Changes
+
+- 241d1bb: Regenerate SDKs with API version 1.1695.0
+
+### Patch Changes
+
+- Updated dependencies [241d1bb]
+  - @osdk/foundry.core@2.67.0
+  - @osdk/foundry.datasets@2.67.0
+  - @osdk/foundry.geo@2.67.0
+
 ## 2.66.0
 
 ### Minor Changes
