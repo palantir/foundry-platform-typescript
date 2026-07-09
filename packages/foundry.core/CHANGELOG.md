@@ -1,5 +1,16 @@
 # @osdk/foundry.core
 
+## 2.68.0
+
+### Minor Changes
+
+- 7357b5f: Regenerate SDKs with API version 1.1695.1
+
+### Patch Changes
+
+- Updated dependencies [7357b5f]
+  - @osdk/foundry.geo@2.68.0
+
 ## 2.67.0
 
 ### Minor Changes
