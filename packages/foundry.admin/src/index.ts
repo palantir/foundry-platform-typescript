@@ -180,6 +180,7 @@ export type {
   ListAvailableRolesOrganizationPermissionDenied,
   ListCurrentGroupsPermissionDenied,
   ListEnrollmentRoleAssignmentsPermissionDenied,
+  ListGroupMembersPermissionDenied,
   ListHostsPermissionDenied,
   ListMarkingMembersPermissionDenied,
   ListMarkingRoleAssignmentsPermissionDenied,

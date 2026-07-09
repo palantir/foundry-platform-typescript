@@ -65,6 +65,7 @@ export type {
   AnthropicUrlDocumentSource,
   JsonSchema,
   LanguageModelApiName,
+  LanguageModelRid,
   OpenAiEmbeddingInput,
   OpenAiEmbeddingsRequest,
   OpenAiEmbeddingsResponse,

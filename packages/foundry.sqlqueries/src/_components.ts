@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
+import type * as _Ontologies from "@osdk/foundry.ontologies";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -68,6 +69,10 @@ export interface ExecuteOntologySqlQueryRequest {
   parameters?: Parameters;
   rowLimit?: number;
   dryRun?: boolean;
+  branch?: _Core.FoundryBranch;
+  scenarioRid?: ScenarioRid;
+  ontologyIdentifier?: _Ontologies.OntologyIdentifier;
+  tableProviders?: Record<TableName, _Ontologies.ObjectSet>;
 }
 
 /**
@@ -314,6 +319,13 @@ export interface RunningQueryStatus {
 }
 
 /**
+ * The rid of a scenario to evaluate the query against.
+ *
+ * Log Safety: SAFE
+ */
+export type ScenarioRid = LooselyBrandedString<"ScenarioRid">;
+
+/**
  * Format for SQL query result serialization.
  *
  * Log Safety: SAFE
@@ -392,6 +404,13 @@ export interface StructFieldRid {
 export interface SucceededQueryStatus {
   queryId: SqlQueryId;
 }
+
+/**
+ * The name of a SQL query table.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TableName = LooselyBrandedString<"TableName">;
 
 /**
  * An ordered list of unnamed positional parameter values.

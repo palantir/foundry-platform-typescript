@@ -207,6 +207,13 @@ This can be used by clients to cancel a streamed exchange.
 export type MessageId = string;
 
 /**
+ * The purpose for which a language model is configured on an Agent.
+ *
+ * Log Safety: SAFE
+ */
+export type ModelPurpose = "PRIMARY_AGENT" | "QUESTION_SUGGESTER";
+
+/**
  * Details of relevant retrieved object instances for a user's message to include as additional context in the prompt to the Agent.
  *
  * Log Safety: SAFE

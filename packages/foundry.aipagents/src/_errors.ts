@@ -19,6 +19,26 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * An action tool configured on the Agent references an action type that could not be found.
+This can surface at runtime if the action type was deleted or is not accessible to the calling token.
+Verify the action type exists and is accessible, then review the Agent's tools in AIP Chatbot Studio.
+   *
+   * Log Safety: SAFE
+   */
+export interface ActionTypeNotFound {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ActionTypeNotFound";
+  errorDescription:
+    "An action tool configured on the Agent references an action type that could not be found. This can surface at runtime if the action type was deleted or is not accessible to the calling token. Verify the action type exists and is accessible, then review the Agent's tools in AIP Chatbot Studio.";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    actionRid: unknown;
+  };
+}
+
+/**
    * The Agent was unable to produce an answer in the set number of maximum iterations.
 This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex.
 Try a different query or review the Agent configuration in AIP Chatbot Studio.
@@ -531,6 +551,27 @@ export interface StreamingContinueSessionPermissionDenied {
   parameters: {
     agentRid: unknown;
     sessionRid: unknown;
+  };
+}
+
+/**
+   * The Agent is configured with a language model that is not supported or could not be resolved.
+This can surface at runtime if the model was deprecated or is not accessible to the calling token.
+Update the Agent's language model in AIP Chatbot Studio.
+   *
+   * Log Safety: SAFE
+   */
+export interface UnsupportedLanguageModelRid {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedLanguageModelRid";
+  errorDescription:
+    "The Agent is configured with a language model that is not supported or could not be resolved. This can surface at runtime if the model was deprecated or is not accessible to the calling token. Update the Agent's language model in AIP Chatbot Studio.";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    languageModelRid: unknown;
+    modelPurpose: unknown;
   };
 }
 

@@ -251,7 +251,7 @@ export interface DocumentCreateEventData {
 export interface DocumentCustomEventData {
   eventType: string;
   data: any;
-  version: number;
+  version?: number;
   schemaVersion?: number;
 }
 

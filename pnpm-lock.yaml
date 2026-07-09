@@ -673,6 +673,9 @@ importers:
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
+      '@osdk/foundry.datasets':
+        specifier: workspace:*
+        version: link:../foundry.datasets
       '@osdk/foundry.geo':
         specifier: workspace:*
         version: link:../foundry.geo
@@ -801,6 +804,9 @@ importers:
       '@osdk/foundry.datasets':
         specifier: workspace:*
         version: link:../foundry.datasets
+      '@osdk/foundry.ontologies':
+        specifier: workspace:*
+        version: link:../foundry.ontologies
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -1161,6 +1167,9 @@ importers:
       '@osdk/internal.foundry.core':
         specifier: workspace:*
         version: link:../internal.foundry.core
+      '@osdk/internal.foundry.datasets':
+        specifier: workspace:*
+        version: link:../internal.foundry.datasets
       '@osdk/internal.foundry.geo':
         specifier: workspace:*
         version: link:../internal.foundry.geo

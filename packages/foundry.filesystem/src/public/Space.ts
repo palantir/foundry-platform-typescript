@@ -62,7 +62,7 @@ const _deleteSpace: $FoundryPlatformMethod<
 > = [3, "/v2/filesystem/spaces/{0}", 2];
 
 /**
- * Delete the space. This will only work if the Space is empty, meaning any Projects or Resources have been deleted first.
+ * Delete the space. This will only work if the Space is empty, meaning any Projects or resources have been deleted first.
  *
  * @alpha
  *

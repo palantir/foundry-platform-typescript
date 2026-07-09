@@ -23,6 +23,7 @@ export type {
   AddProjectResourceReferencesRequest,
   AddResourceReferenceRequest,
   AddResourceRolesRequest,
+  AddResourceTagsRequest,
   CreateFolderRequest,
   CreateProjectFromTemplateRequest,
   CreateProjectRequest,
@@ -44,6 +45,7 @@ export type {
   ListOrganizationsOfProjectResponse,
   ListProjectResourceReferencesResponse,
   ListResourceRolesResponse,
+  ListResourceTagsResponse,
   ListSpacesResponse,
   Marking,
   Organization,
@@ -64,6 +66,7 @@ export type {
   RemoveOrganizationsRequest,
   RemoveProjectResourceReferencesRequest,
   RemoveResourceRolesRequest,
+  RemoveResourceTagsRequest,
   ReplaceFolderRequest,
   ReplaceProjectRequest,
   ReplaceSpaceRequest,
@@ -75,10 +78,13 @@ export type {
   ResourceRoleIdentifier,
   ResourceRolePrincipal,
   ResourceRolePrincipalIdentifier,
+  ResourceTag,
+  ResourceTagDisplayName,
   ResourceType,
   Space,
   SpaceMavenIdentifier,
   SpaceRid,
+  TagRid,
   TrashStatus,
   UsageAccountRid,
 } from "./_components.js";
@@ -88,6 +94,7 @@ export type {
   AddOrganizationsPermissionDenied,
   AddProjectResourceReferencesPermissionDenied,
   AddResourceRolesPermissionDenied,
+  AddResourceTagsPermissionDenied,
   CircularDependency,
   CreateFolderOutsideProjectNotSupported,
   CreateFolderPermissionDenied,
@@ -139,6 +146,7 @@ export type {
   RemoveOrganizationsPermissionDenied,
   RemoveProjectResourceReferencesPermissionDenied,
   RemoveResourceRolesPermissionDenied,
+  RemoveResourceTagsPermissionDenied,
   ReplaceFolderPermissionDenied,
   ReplaceProjectPermissionDenied,
   ReplaceSpacePermissionDenied,
@@ -154,6 +162,7 @@ export type {
   SpaceNameInvalid,
   SpaceNotEmpty,
   SpaceNotFound,
+  TagNotFound,
   TemplateGroupNameConflict,
   TemplateMarkingNameConflict,
   TrashingAutosavedResourcesNotSupported,
@@ -166,4 +175,5 @@ export * as Projects from "./public/Project.js";
 export * as ProjectResourceReferences from "./public/ProjectResourceReference.js";
 export * as Resources from "./public/Resource.js";
 export * as ResourceRoles from "./public/ResourceRole.js";
+export * as ResourceTags from "./public/ResourceTag.js";
 export * as Spaces from "./public/Space.js";

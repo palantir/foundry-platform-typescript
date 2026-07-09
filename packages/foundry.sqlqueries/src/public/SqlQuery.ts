@@ -124,7 +124,7 @@ const _executeOntology: $FoundryPlatformMethod<
  * Executes a SQL query against the Ontology. Results are returned synchronously in
  * [Apache Arrow](https://arrow.apache.org/) format.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:sql-queries-execute, api:ontologies-read]
  * URL: /v2/sqlQueries/executeOntology

@@ -417,6 +417,13 @@ export type JsonSchema = Record<string, any>;
 export type LanguageModelApiName = LooselyBrandedString<"LanguageModelApiName">;
 
 /**
+ * The unique Resource Identifier (RID) of a language model.
+ *
+ * Log Safety: SAFE
+ */
+export type LanguageModelRid = LooselyBrandedString<"LanguageModelRid">;
+
+/**
  * Log Safety: UNSAFE
  */
 export type OpenAiEmbeddingInput = Array<string>;

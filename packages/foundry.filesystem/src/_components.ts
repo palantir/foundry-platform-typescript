@@ -88,6 +88,13 @@ export interface AddResourceRolesRequest {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AddResourceTagsRequest {
+  tagRids: Array<TagRid>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface CreateFolderRequest {
@@ -274,6 +281,13 @@ export interface ListProjectResourceReferencesResponse {
 export interface ListResourceRolesResponse {
   data: Array<ResourceRole>;
   nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListResourceTagsResponse {
+  data: Array<ResourceTag>;
 }
 
 /**
@@ -467,6 +481,13 @@ export interface RemoveResourceRolesRequest {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface RemoveResourceTagsRequest {
+  tagRids: Array<TagRid>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ReplaceFolderRequest {
@@ -513,7 +534,7 @@ export interface Resource {
 }
 
 /**
- * The display name of the Resource
+ * The display name of the resource
  *
  * Log Safety: UNSAFE
  */
@@ -527,7 +548,7 @@ export type ResourceDisplayName = LooselyBrandedString<"ResourceDisplayName">;
 export type ResourcePath = LooselyBrandedString<"ResourcePath">;
 
 /**
- * The unique resource identifier (RID) of a Resource.
+ * The unique resource identifier (RID) of a resource.
  *
  * Log Safety: UNSAFE
  */
@@ -568,7 +589,24 @@ export type ResourceRolePrincipalIdentifier =
   | ({ type: "everyone" } & Everyone);
 
 /**
- * The type of the Resource derived from the Resource Identifier (RID).
+ * Log Safety: UNSAFE
+ */
+export interface ResourceTag {
+  tagRid: TagRid;
+  displayName: ResourceTagDisplayName;
+}
+
+/**
+ * The display name of the tag, qualified by its category as {category}:{tag}.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ResourceTagDisplayName = LooselyBrandedString<
+  "ResourceTagDisplayName"
+>;
+
+/**
+ * The type of the resource derived from the Resource Identifier (RID).
  *
  * Log Safety: SAFE
  */
@@ -688,6 +726,13 @@ export type SpaceMavenIdentifier = LooselyBrandedString<"SpaceMavenIdentifier">;
  * Log Safety: SAFE
  */
 export type SpaceRid = LooselyBrandedString<"SpaceRid">;
+
+/**
+ * The unique resource identifier (RID) of a Tag.
+ *
+ * Log Safety: SAFE
+ */
+export type TagRid = LooselyBrandedString<"TagRid">;
 
 /**
    * Values:

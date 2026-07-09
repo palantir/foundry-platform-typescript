@@ -697,6 +697,22 @@ export interface ListEnrollmentRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * The provided token does not have permission to view the members of the given group.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListGroupMembersPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListGroupMembersPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to view the members of the given group.";
+  errorInstanceId: string;
+  parameters: {
+    groupId: unknown;
+  };
+}
+
+/**
  * You do not have permission to list hosts for this enrollment
  *
  * Log Safety: SAFE

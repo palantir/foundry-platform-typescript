@@ -100,7 +100,7 @@ const _getByPath: $FoundryPlatformMethod<
 > = [0, "/v2/filesystem/resources/getByPath", 2];
 
 /**
- * Get a Resource by its absolute path.
+ * Get a resource by its absolute path.
  *
  * @public
  *
@@ -121,7 +121,7 @@ const _getByPathBatch: $FoundryPlatformMethod<
 > = [1, "/v2/filesystem/resources/getByPathBatch", 1];
 
 /**
- * Gets multiple Resources by their absolute paths.
+ * Gets multiple resources by their absolute paths.
  * Returns a list of resources. If a path does not exist, is inaccessible, or refers to
  * a root folder or space, it will not be included in the response.
  * At most 1,000 paths should be requested at once.
@@ -165,7 +165,7 @@ const _permanentlyDelete: $FoundryPlatformMethod<
 > = [1, "/v2/filesystem/resources/{0}/permanentlyDelete"];
 
 /**
- * Permanently delete the given resource from the trash. If the Resource is not directly trashed, a
+ * Permanently delete the given resource from the trash. If the resource is not directly trashed, a
  * `ResourceNotTrashed` error will be thrown.
  *
  * @public

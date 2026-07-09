@@ -278,6 +278,67 @@ export interface TemporaryMediaUploadUnknownFailure {
 }
 
 /**
+ * The image or document page dimensions exceeded the maximum supported by the OCR model.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationImageTooLargeForOcr {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationImageTooLargeForOcr";
+  errorDescription:
+    "The image or document page dimensions exceeded the maximum supported by the OCR model.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The transformation input exceeded the model's maximum context window.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationModelContextWindowExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationModelContextWindowExceeded";
+  errorDescription:
+    "The transformation input exceeded the model's maximum context window.";
+  errorInstanceId: string;
+  parameters: {
+    inputTokenCount: unknown;
+    maxTokens: unknown;
+  };
+}
+
+/**
+ * The requested model is not available or the caller does not have permission to use it.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationModelNotAvailable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationModelNotAvailable";
+  errorDescription:
+    "The requested model is not available or the caller does not have permission to use it.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The requested model is not supported for this transformation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TransformationModelNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationModelNotSupported";
+  errorDescription:
+    "The requested model is not supported for this transformation.";
+  errorInstanceId: string;
+  parameters: {
+    modelId: unknown;
+  };
+}
+
+/**
  * The requested transformation could not be found.
  *
  * Log Safety: SAFE
