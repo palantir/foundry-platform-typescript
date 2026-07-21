@@ -551,7 +551,7 @@ export interface FunctionExecutionFailed {
  * Log Safety: UNSAFE
  */
 export interface FunctionExecutionTimedOut {
-  errorCode: "TIMEOUT";
+  errorCode: "INVALID_ARGUMENT";
   errorName: "FunctionExecutionTimedOut";
   errorDescription: "";
   errorInstanceId: string;
@@ -1796,6 +1796,25 @@ export interface ObjectsModifiedConcurrently {
 }
 
 /**
+   * The request uses an object type derived property in a way that is not supported. This occurs when results
+are sorted by the derived property, when the object set is filtered on the derived property, or when the
+derived property is returned only because the request asked for all properties of the object type (rather
+than naming it explicitly). To resolve this, remove the derived property from the sort ordering and from any
+filters, and select only the specific properties you need - you may select the derived property itself by
+name.
+   *
+   * Log Safety: SAFE
+   */
+export interface ObjectTypeDerivedPropertyNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ObjectTypeDerivedPropertyNotSupported";
+  errorDescription:
+    "The request uses an object type derived property in a way that is not supported. This occurs when results are sorted by the derived property, when the object set is filtered on the derived property, or when the derived property is returned only because the request asked for all properties of the object type (rather than naming it explicitly). To resolve this, remove the derived property from the sort ordering and from any filters, and select only the specific properties you need - you may select the derived property itself by name.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested object type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -2363,7 +2382,7 @@ export interface QueryRuntimeError {
  * Log Safety: UNSAFE
  */
 export interface QueryTimeExceededLimit {
-  errorCode: "TIMEOUT";
+  errorCode: "INVALID_ARGUMENT";
   errorName: "QueryTimeExceededLimit";
   errorDescription: "Time limits were exceeded for the Query execution.";
   errorInstanceId: string;

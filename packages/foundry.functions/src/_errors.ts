@@ -135,7 +135,7 @@ export interface AsyncQueryRuntimeError {
  * Log Safety: UNSAFE
  */
 export interface AsyncQueryTimeExceededLimit {
-  errorCode: "TIMEOUT";
+  errorCode: "INVALID_ARGUMENT";
   errorName: "AsyncQueryTimeExceededLimit";
   errorDescription: "Time limits were exceeded during async Query execution.";
   errorInstanceId: string;
@@ -448,7 +448,7 @@ export interface QueryRuntimeError {
  * Log Safety: UNSAFE
  */
 export interface QueryTimeExceededLimit {
-  errorCode: "TIMEOUT";
+  errorCode: "INVALID_ARGUMENT";
   errorName: "QueryTimeExceededLimit";
   errorDescription: "Time limits were exceeded for the Query execution.";
   errorInstanceId: string;

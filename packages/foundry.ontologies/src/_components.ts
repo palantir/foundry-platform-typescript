@@ -3487,6 +3487,7 @@ export interface LoadObjectSetRequestV2 {
   orderBy?: SearchOrderByV2;
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
+  defaultLoadLevel?: PropertyLoadLevel;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3519,6 +3520,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   orderBy?: SearchOrderByV2;
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
+  defaultLoadLevel?: PropertyLoadLevel;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3568,6 +3570,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   orderBy?: SearchOrderByV2;
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
+  defaultLoadLevel?: PropertyLoadLevel;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3900,6 +3903,15 @@ export interface NestedQueryAggregation {
   key: any;
   groups: Array<QueryAggregation>;
 }
+
+/**
+   * Returns the property as-is, without applying reducers or extracting a struct main value. Useful as an
+explicit per-property load level (via PropertyWithLoadLevelSelector) to opt a property out of a
+defaultLoadLevel.
+   *
+   * Log Safety: SAFE
+   */
+export interface NoLoadLevel {}
 
 /**
  * Returns objects where the query is not satisfied.
@@ -5151,6 +5163,7 @@ export interface ParameterEvaluationResult {
   result: ValidationResult;
   evaluatedConstraints: Array<ParameterEvaluatedConstraint>;
   required: boolean;
+  defaultValue?: DataValue;
 }
 
 /**
@@ -5429,6 +5442,7 @@ export interface PropertyKnownTypeFormattingRule {
 APPLY_REDUCERS: Returns a single value of an array as configured in the ontology.
 EXTRACT_MAIN_VALUE: Returns the main value of a struct as configured in the ontology.
 APPLY_REDUCERS_AND_EXTRACT_MAIN_VALUE: Performs both to return the reduced main value.
+NO_LOAD_LEVEL: Returns the property as-is, without applying reducers or extracting a struct main value.
    *
    * Log Safety: UNSAFE
    */
@@ -5437,7 +5451,8 @@ export type PropertyLoadLevel =
     type: "applyReducersAndExtractMainValue";
   } & ApplyReducersAndExtractMainValueLoadLevel)
   | ({ type: "applyReducers" } & ApplyReducersLoadLevel)
-  | ({ type: "extractMainValue" } & ExtractMainValueLoadLevel);
+  | ({ type: "extractMainValue" } & ExtractMainValueLoadLevel)
+  | ({ type: "noLoadLevel" } & NoLoadLevel);
 
 /**
  * All marking requirements applicable to a property value.
@@ -6305,6 +6320,7 @@ export interface SearchObjectsRequestV2 {
   pageToken?: _Core.PageToken;
   select: Array<PropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
+  defaultLoadLevel?: PropertyLoadLevel;
   excludeRid?: boolean;
   snapshot?: boolean;
   referenceSigningOptions?: ReferenceSigningOptions;

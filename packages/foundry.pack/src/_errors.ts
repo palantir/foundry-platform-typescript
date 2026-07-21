@@ -49,6 +49,19 @@ export interface CannotDeleteHiddenDocument {
 }
 
 /**
+ * Could not createChild the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateDocumentAsChildPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateDocumentAsChildPermissionDenied";
+  errorDescription: "Could not createChild the Document.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The user does not have permission to create documents of the given type in
 the given ontology, or the Document Type does not exist in the ontology.
    *
@@ -88,6 +101,19 @@ export interface CreateDocumentTypePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateDocumentTypePermissionDenied";
   errorDescription: "Could not create the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not createMatchingSecurity the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateDocumentWithMatchingSecurityPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateDocumentWithMatchingSecurityPermissionDenied";
+  errorDescription: "Could not createMatchingSecurity the Document.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -168,6 +194,23 @@ export interface DocumentTypeNameNotFound {
 }
 
 /**
+   * Creating a hidden child document or a document matching another document's security is only supported
+for Compass-backed Document Types.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface DocumentTypeNotCompassBacked {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DocumentTypeNotCompassBacked";
+  errorDescription:
+    "Creating a hidden child document or a document matching another document's security is only supported for Compass-backed Document Types.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+  };
+}
+
+/**
  * The given DocumentType could not be found.
  *
  * Log Safety: SAFE
@@ -193,6 +236,22 @@ export interface GetOperationalVersionDocumentTypePermissionDenied {
   errorDescription: "Could not getOperationalVersion the DocumentType.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * A child document's parent must be a folder or another document.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidChildDocumentParent {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidChildDocumentParent";
+  errorDescription:
+    "A child document's parent must be a folder or another document.";
+  errorInstanceId: string;
+  parameters: {
+    parentResourceRid: unknown;
+  };
 }
 
 /**

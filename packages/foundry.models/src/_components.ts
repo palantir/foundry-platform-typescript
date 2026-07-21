@@ -80,6 +80,7 @@ export type CreateConfigValidationFailureReason =
     type: "multiplePropertiesNotAllowedForTrainer";
   } & MultiplePropertiesNotAllowedForTrainerError)
   | ({ type: "fieldValidationFailure" } & FieldValidationError)
+  | ({ type: "unsupportedDatasetFieldType" } & UnsupportedDatasetFieldTypeError)
   | ({ type: "changelogTooLong" } & ChangelogTooLongError)
   | ({
     type: "unknownColumnSpecIdInConfigColumnMapping";
@@ -91,6 +92,9 @@ export type CreateConfigValidationFailureReason =
     type: "missingWorkerConfigInputDatasetColumnMapping";
   } & MissingWorkerConfigInputDatasetColumnMappingError)
   | ({ type: "datasetSchemaNotFound" } & DatasetSchemaNotFoundError)
+  | ({
+    type: "invalidWorkerConfigInputType";
+  } & InvalidWorkerConfigInputTypeError)
   | ({ type: "missingWorkerConfigInput" } & MissingWorkerConfigInputError)
   | ({
     type: "missingWorkerConfigInputObjectSetPropertyMapping";
@@ -519,6 +523,17 @@ export interface InvalidResourceConfigurationError {
  */
 export interface InvalidTabularFormatError {
   inputFieldName: string;
+}
+
+/**
+ * A worker config input was provided with a type that does not match the expected type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidWorkerConfigInputTypeError {
+  inputAlias: InputAlias;
+  expectedType: string;
+  actualType: string;
 }
 
 /**
@@ -1702,6 +1717,17 @@ export interface UnknownColumnSpecIdInConfigColumnMappingError {
  */
 export interface UnknownInputNameError {
   inputName: string;
+}
+
+/**
+ * A dataset field has a type that is not supported by the trainer.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnsupportedDatasetFieldTypeError {
+  datasetRid: _Core.DatasetRid;
+  fieldName?: string;
+  fieldType: string;
 }
 
 /**

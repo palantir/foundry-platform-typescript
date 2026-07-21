@@ -1303,6 +1303,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.resolveApplicationDocument": {
       "variables": {},
     },
+    "v2.createDocumentAsChild": {
+      "variables": {},
+    },
+    "v2.createDocumentWithMatchingSecurity": {
+      "variables": {},
+    },
     "v2.getRecord": {
       "variables": {},
     },

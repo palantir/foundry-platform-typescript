@@ -211,6 +211,22 @@ export interface DeleteSchedulePermissionDenied {
 }
 
 /**
+ * The build request contains duplicate branches. The branch and any fallback branches must all be distinct.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DuplicateBuildBranches {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DuplicateBuildBranches";
+  errorDescription:
+    "The build request contains duplicate branches. The branch and any fallback branches must all be distinct.";
+  errorInstanceId: string;
+  parameters: {
+    duplicateBranchNames: unknown;
+  };
+}
+
+/**
  * Could not getAffectedResources the Schedule.
  *
  * Log Safety: SAFE
