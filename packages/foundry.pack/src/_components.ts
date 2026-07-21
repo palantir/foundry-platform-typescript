@@ -95,6 +95,40 @@ export interface ClientSupportedVersionRange {
 }
 
 /**
+   * Request to create a Document as a hidden child of a hidden child of a folder or document. The Document inherits its
+security from the parent resource and stays in sync as the parent's security changes.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface CreateChildDocumentRequestBody {
+  name: string;
+  description?: string;
+  parentResourceRid: _Filesystem.ResourceRid;
+  documentTypeName: DocumentTypeName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateDocumentAsChildRequest {
+  requestBody: CreateChildDocumentRequestBody;
+}
+
+/**
+   * Request to create a Document whose security is a one-time copy of a source Document's directly-applied
+markings. The new Document's security is independent of the source's afterward.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface CreateDocumentMatchingSecurityRequestBody {
+  name: string;
+  description?: string;
+  sourceDocumentRid: DocumentRid;
+  documentTypeName: DocumentTypeName;
+  destinationFolderRid?: _Filesystem.FolderRid;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface CreateDocumentRequest {
@@ -114,6 +148,13 @@ export interface CreateDocumentTypeRequest {
   schema: DocumentTypeSchema;
   name: DocumentTypeName;
   fileSystemType?: FileSystemType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateDocumentWithMatchingSecurityRequest {
+  requestBody: CreateDocumentMatchingSecurityRequestBody;
 }
 
 /**

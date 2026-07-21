@@ -187,3 +187,55 @@ export function resolveApplication(
 ): Promise<_Pack.ResolveDocumentApplicationResponse> {
   return $foundryPlatformFetch($ctx, _resolveApplication, ...args);
 }
+
+const _createChild: $FoundryPlatformMethod<
+  (
+    $body: _Pack.CreateDocumentAsChildRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.Document>
+> = [1, "/v2/pack/documents/createChild", 3];
+
+/**
+ * Creates a PACK Document as a hidden child of the given folder or document, inheriting its security and staying
+ * in sync as the parent's security changes.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-write]
+ * URL: /v2/pack/documents/createChild
+ */
+export function createChild(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.CreateDocumentAsChildRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.Document> {
+  return $foundryPlatformFetch($ctx, _createChild, ...args);
+}
+
+const _createMatchingSecurity: $FoundryPlatformMethod<
+  (
+    $body: _Pack.CreateDocumentWithMatchingSecurityRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.Document>
+> = [1, "/v2/pack/documents/createMatchingSecurity", 3];
+
+/**
+ * Creates a PACK Document that copies the directly-applied security markings of a source Document. The
+ * new Document's security is independent of the source's afterward.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-write]
+ * URL: /v2/pack/documents/createMatchingSecurity
+ */
+export function createMatchingSecurity(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.CreateDocumentWithMatchingSecurityRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.Document> {
+  return $foundryPlatformFetch($ctx, _createMatchingSecurity, ...args);
+}

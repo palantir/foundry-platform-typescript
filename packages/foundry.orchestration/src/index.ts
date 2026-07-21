@@ -143,6 +143,7 @@ export type {
   CreateBuildPermissionDenied,
   CreateSchedulePermissionDenied,
   DeleteSchedulePermissionDenied,
+  DuplicateBuildBranches,
   GetAffectedResourcesSchedulePermissionDenied,
   InvalidAndTrigger,
   InvalidMediaSetTrigger,
