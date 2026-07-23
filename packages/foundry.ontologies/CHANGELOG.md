@@ -1,5 +1,18 @@
 # @osdk/foundry.ontologies
 
+## 2.69.0
+
+### Minor Changes
+
+- bbdf2b4: Regenerate SDKs with API version 1.1709.0
+
+### Patch Changes
+
+- Updated dependencies [bbdf2b4]
+  - @osdk/foundry.core@2.69.0
+  - @osdk/foundry.datasets@2.69.0
+  - @osdk/foundry.geo@2.69.0
+
 ## 2.68.0
 
 ### Minor Changes
