@@ -358,6 +358,19 @@ export interface GetByPathPermissionDenied {
 }
 
 /**
+ * Could not getRecentlyViewed the Resource.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetRecentlyViewedPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetRecentlyViewedPermissionDenied";
+  errorDescription: "Could not getRecentlyViewed the Resource.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Getting the root folder as a resource is not supported.
  *
  * Log Safety: SAFE
@@ -825,6 +838,22 @@ export interface ProjectTemplateNotFound {
   errorInstanceId: string;
   parameters: {
     projectTemplateRid: unknown;
+  };
+}
+
+/**
+ * RecentlyViewedLimit must be greater than or equal to 1
+ *
+ * Log Safety: SAFE
+ */
+export interface RecentlyViewedLimitBelowMinimum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "RecentlyViewedLimitBelowMinimum";
+  errorDescription: "RecentlyViewedLimit must be greater than or equal to 1";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    minInclusive: unknown;
   };
 }
 

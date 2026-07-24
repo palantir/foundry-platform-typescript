@@ -140,6 +140,34 @@ export function getByPathBatch(
   return $foundryPlatformFetch($ctx, _getByPathBatch, ...args);
 }
 
+const _getRecentlyViewed: $FoundryPlatformMethod<
+  ($queryParams?: {
+    limit?: _Filesystem.RecentlyViewedLimit | undefined;
+    preview?: _Core.PreviewMode | undefined;
+  }) => Promise<_Filesystem.GetRecentlyViewedResponse>
+> = [0, "/v2/filesystem/resources/getRecentlyViewed", 2];
+
+/**
+ * Get the resources most recently viewed by the calling user. If a resource is now inaccessible or has
+ * been trashed, it will not be included in the response.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/resources/getRecentlyViewed
+ */
+export function getRecentlyViewed(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $queryParams?: {
+      limit?: _Filesystem.RecentlyViewedLimit | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Filesystem.GetRecentlyViewedResponse> {
+  return $foundryPlatformFetch($ctx, _getRecentlyViewed, ...args);
+}
+
 const _restore: $FoundryPlatformMethod<
   (resourceRid: _Filesystem.ResourceRid) => Promise<void>
 > = [1, "/v2/filesystem/resources/{0}/restore"];

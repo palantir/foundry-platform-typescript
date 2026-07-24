@@ -131,6 +131,26 @@ export interface ActionParameterV2 {
   dataType: ActionParameterType;
   required: boolean;
   typeClasses: Array<TypeClass>;
+  validation?: ActionParameterValidation;
+}
+
+/**
+ * Validation metadata surfaced for a parameter.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionParameterValidation {
+  defaultValidation: ActionParameterValidationBlock;
+}
+
+/**
+ * Validation constraints for a parameter.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionParameterValidationBlock {
+  allowedValues?: ParameterAllowedValues;
+  arraySize?: ParameterArraySize;
 }
 
 /**
@@ -1074,6 +1094,15 @@ export interface Attachment {
 }
 
 /**
+ * The parameter value (an attachment rid) must reference an attachment within the configured size limit.
+ *
+ * Log Safety: SAFE
+ */
+export interface AttachmentAllowedValues {
+  maxSizeBytes?: _Core.SizeBytes;
+}
+
+/**
  * The attachment metadata response
  *
  * Log Safety: UNSAFE
@@ -1660,6 +1689,18 @@ export type DatasourceRid = LooselyBrandedString<"DatasourceRid">;
 export type DataValue = any;
 
 /**
+ * The parameter value must fall within the specified date or timestamp range.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DatetimeAllowedValues {
+  gt?: ParameterDatetimeValue;
+  gte?: ParameterDatetimeValue;
+  lt?: ParameterDatetimeValue;
+  lte?: ParameterDatetimeValue;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type DatetimeFormat =
@@ -2184,6 +2225,15 @@ properties.{propertyApiName}.isNull=false.
    * Log Safety: UNSAFE
    */
 export type FilterValue = LooselyBrandedString<"FilterValue">;
+
+/**
+ * An absolute datetime bound (ISO 8601 timestamp or date string).
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FixedDatetimeValue {
+  value: ParameterConstraintValue;
+}
 
 /**
  * Integer key for fixed value mapping.
@@ -3696,6 +3746,16 @@ export interface LtQueryV2 {
 }
 
 /**
+ * The parameter value (a markdown-formatted string) must satisfy the configured length bounds.
+ *
+ * Log Safety: SAFE
+ */
+export interface MarkdownAllowedValues {
+  gte?: number;
+  lte?: number;
+}
+
+/**
  * The id of a classification or mandatory marking.
  *
  * Log Safety: UNSAFE
@@ -3854,6 +3914,13 @@ export interface MultiplyPropertyExpression {
 }
 
 /**
+ * The parameter must be omitted or empty.
+ *
+ * Log Safety: SAFE
+ */
+export interface MustBeEmptyAllowedValues {}
+
+/**
    * Queries support either a vector matching the embedding model defined on the property, or text that is
 automatically embedded.
    *
@@ -3930,6 +3997,13 @@ export interface NotQuery {
 export interface NotQueryV2 {
   value: SearchJsonQueryV2;
 }
+
+/**
+ * The current evaluation time itself. Carries no fields.
+ *
+ * Log Safety: SAFE
+ */
+export interface NowDatetimeValue {}
 
 /**
    * Attach arbitrary text before and/or after the formatted number.
@@ -4781,6 +4855,16 @@ export interface ObjectUpdate {
 }
 
 /**
+ * The parameter value must be one of a fixed set of labelled options.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OneOfAllowedValues {
+  options: Array<ParameterAllowedValueOption>;
+  otherValuesAllowed: boolean;
+}
+
+/**
  * The parameter has a manually predefined set of options.
  *
  * Log Safety: UNSAFE
@@ -5120,6 +5204,60 @@ export interface Parameter {
   dataType?: OntologyDataType;
   required: boolean;
 }
+
+/**
+ * A possible value for the parameter.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ParameterAllowedValueOption {
+  displayName: _Core.DisplayName;
+  value: DataValue;
+}
+
+/**
+ * The allowed-values constraint configured on an action parameter.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ParameterAllowedValues =
+  | ({ type: "oneOf" } & OneOfAllowedValues)
+  | ({ type: "datetime" } & DatetimeAllowedValues)
+  | ({ type: "attachment" } & AttachmentAllowedValues)
+  | ({ type: "valueType" } & ValueTypeAllowedValues)
+  | ({ type: "markdown" } & MarkdownAllowedValues)
+  | ({ type: "range" } & RangeAllowedValues)
+  | ({ type: "mustBeEmpty" } & MustBeEmptyAllowedValues)
+  | ({ type: "text" } & TextAllowedValues);
+
+/**
+ * Bounds on the size of an array-typed parameter.
+ *
+ * Log Safety: SAFE
+ */
+export interface ParameterArraySize {
+  gte?: number;
+  lte?: number;
+}
+
+/**
+ * The source of a constraint bound value.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ParameterConstraintValue = {
+  type: "static";
+} & StaticConstraintValue;
+
+/**
+ * A datetime bound value.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ParameterDatetimeValue =
+  | ({ type: "now" } & NowDatetimeValue)
+  | ({ type: "fixed" } & FixedDatetimeValue)
+  | ({ type: "relative" } & RelativeDatetimeValue);
 
 /**
    * A constraint that an action parameter value must satisfy in order to be considered valid.
@@ -5908,6 +6046,18 @@ export interface QueryUnionType {
 }
 
 /**
+ * The parameter value must fall within the specified numeric range.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RangeAllowedValues {
+  gt?: ParameterConstraintValue;
+  gte?: ParameterConstraintValue;
+  lt?: ParameterConstraintValue;
+  lte?: ParameterConstraintValue;
+}
+
+/**
  * The parameter value must be within the defined range.
  *
  * Log Safety: UNSAFE
@@ -6055,6 +6205,43 @@ export interface RelativeDateRangeQuery {
   relativeStartTime?: RelativeDateRangeBound;
   relativeEndTime?: RelativeDateRangeBound;
   timeZoneId: string;
+}
+
+/**
+ * The magnitude of a relative datetime offset.
+ *
+ * Log Safety: SAFE
+ */
+export type RelativeDatetimeDuration = string;
+
+/**
+ * Direction of a relative datetime offset.
+ *
+ * Log Safety: SAFE
+ */
+export type RelativeDatetimeTense = "FUTURE" | "PAST";
+
+/**
+ * Time unit for relative datetime offsets.
+ *
+ * Log Safety: SAFE
+ */
+export type RelativeDatetimeUnit =
+  | "SECOND"
+  | "MINUTE"
+  | "HOUR"
+  | "DAY"
+  | "WEEK";
+
+/**
+ * A datetime expressed as an offset from the current time.
+ *
+ * Log Safety: SAFE
+ */
+export interface RelativeDatetimeValue {
+  duration: RelativeDatetimeDuration;
+  unit: RelativeDatetimeUnit;
+  tense: RelativeDatetimeTense;
 }
 
 /**
@@ -6646,6 +6833,15 @@ export interface StaticArgument {
 }
 
 /**
+ * A literal constraint value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StaticConstraintValue {
+  value: DataValue;
+}
+
+/**
  * Returns action types with the given status.
  *
  * Log Safety: SAFE
@@ -7025,6 +7221,19 @@ export interface SynchronousWebhookOutputArgument {
 export type TableRid = LooselyBrandedString<"TableRid">;
 
 /**
+   * The parameter value (a string) must satisfy the configured length bounds and/or regex
+pattern.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface TextAllowedValues {
+  gte?: number;
+  lte?: number;
+  regex?: string;
+  configuredFailureMessage?: string;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ThreeDimensionalAggregation {
@@ -7380,6 +7589,17 @@ structs.
 export type ValueType = LooselyBrandedString<"ValueType">;
 
 /**
+ * The parameter value must conform to the referenced value type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeAllowedValues {
+  apiName: ValueTypeApiName;
+  rid: ValueTypeRid;
+  versionId: ValueTypeVersionId;
+}
+
+/**
  * The name of the value type in the API in camelCase format.
  *
  * Log Safety: UNSAFE
@@ -7486,6 +7706,11 @@ export interface ValueTypeStructType {
 export interface ValueTypeUnionType {
   memberTypes: Array<ValueTypeFieldType>;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export type ValueTypeVersionId = string;
 
 /**
    * The name of the Query in the API and an optional version identifier separated by a colon.

@@ -34,13 +34,17 @@ const _get: $FoundryPlatformMethod<
     queryApiName: _Functions.QueryApiName,
     $queryParams?: {
       version?: _Functions.FunctionVersion | undefined;
+      latestVersionResolution?: _Functions.LatestVersionResolution | undefined;
+      includePrerelease?: _Functions.IncludePrerelease | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Functions.Query>
 > = [0, "/v2/functions/queries/{0}", 2];
 
 /**
- * Gets a specific query type with the given API name. By default, this gets the latest version of the query.
+ * Gets a specific query type with the given API name. By default, this returns the highest semantic
+ * version of the query, excluding pre-release versions. To resolve the most recently published version
+ * instead, including pre-release versions, set `latestVersionResolution` to `PUBLISH_TIME`.
  *
  * @beta
  *
@@ -54,6 +58,8 @@ export function get(
 
     $queryParams?: {
       version?: _Functions.FunctionVersion | undefined;
+      latestVersionResolution?: _Functions.LatestVersionResolution | undefined;
+      includePrerelease?: _Functions.IncludePrerelease | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -140,8 +146,9 @@ const _execute: $FoundryPlatformMethod<
 
 /**
  * Executes a Query and returns the result as a single JSON object. By default, this executes
- * the latest version of the query. The latest version is the one that was most recently
- * published, which may be a pre-release version.
+ * the highest semantic version of the query, excluding pre-release versions. To resolve the
+ * most recently published version instead, including pre-release versions, set
+ * `latestVersionResolution` to `PUBLISH_TIME`.
  *
  * This endpoint executes global (non-ontology-scoped) query functions. For ontology-scoped
  * functions, use the equivalent endpoint under
