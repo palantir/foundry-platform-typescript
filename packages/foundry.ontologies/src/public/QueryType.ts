@@ -43,6 +43,9 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists the query types for the given Ontology.
  *
+ * Each query type is returned at its latest version. The latest version is the one that was most recently
+ * published, which may be a pre-release version.
+ *
  * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
  * results available, at least one result will be present in the response.
  *

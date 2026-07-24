@@ -81,6 +81,8 @@ export interface ExecuteAsyncQueryRequest {
   parameters: Record<ParameterId, DataValue | undefined>;
   version?: FunctionVersion;
   branch?: _Core.FoundryBranch;
+  latestVersionResolution?: LatestVersionResolution;
+  includePrerelease?: IncludePrerelease;
 }
 
 /**
@@ -99,6 +101,8 @@ export interface ExecuteQueryRequest {
   parameters: Record<ParameterId, DataValue | undefined>;
   version?: FunctionVersion;
   branch?: _Core.FoundryBranch;
+  latestVersionResolution?: LatestVersionResolution;
+  includePrerelease?: IncludePrerelease;
 }
 
 /**
@@ -187,6 +191,21 @@ export type GetExecutionResultResponse =
 export interface GetResultExecutionRequest {
   timeout?: number;
 }
+
+/**
+   * When resolving the latest version, whether prerelease versions are considered. Defaults to false,
+except when latestVersionResolution is PUBLISH_TIME. Not supported together with version.
+   *
+   * Log Safety: SAFE
+   */
+export type IncludePrerelease = boolean;
+
+/**
+ * Controls how latest version is resolved when version is omitted. Defaults to SEMANTIC_VERSION.
+ *
+ * Log Safety: SAFE
+ */
+export type LatestVersionResolution = "PUBLISH_TIME" | "SEMANTIC_VERSION";
 
 /**
  * Log Safety: SAFE
@@ -416,6 +435,8 @@ export interface StreamingExecuteEventsQueryRequest {
   parameters: Record<ParameterId, DataValue | undefined>;
   version?: FunctionVersion;
   branch?: _Core.FoundryBranch;
+  latestVersionResolution?: LatestVersionResolution;
+  includePrerelease?: IncludePrerelease;
 }
 
 /**
@@ -426,6 +447,8 @@ export interface StreamingExecuteQueryRequest {
   parameters: Record<ParameterId, DataValue | undefined>;
   version?: FunctionVersion;
   branch?: _Core.FoundryBranch;
+  latestVersionResolution?: LatestVersionResolution;
+  includePrerelease?: IncludePrerelease;
 }
 
 /**

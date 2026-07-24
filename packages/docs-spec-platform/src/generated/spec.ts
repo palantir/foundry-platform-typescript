@@ -847,6 +847,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getByPathResourcesBatch": {
       "variables": {},
     },
+    "v2.getRecentlyViewed": {
+      "variables": {},
+    },
     "v2.restoreResource": {
       "variables": {},
     },
