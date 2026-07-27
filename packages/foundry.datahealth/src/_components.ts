@@ -109,7 +109,9 @@ export type CheckConfig =
   | ({ type: "columnType" } & ColumnTypeCheckConfig)
   | ({ type: "allowedColumnValues" } & AllowedColumnValuesCheckConfig)
   | ({ type: "timeSinceLastUpdated" } & TimeSinceLastUpdatedCheckConfig)
+  | ({ type: "scheduleStatus" } & ScheduleStatusCheckConfig)
   | ({ type: "nullPercentage" } & NullPercentageCheckConfig)
+  | ({ type: "scheduleDuration" } & ScheduleDurationCheckConfig)
   | ({ type: "totalColumnCount" } & TotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & NumericColumnMedianCheckConfig)
   | ({ type: "buildDuration" } & BuildDurationCheckConfig)
@@ -564,7 +566,9 @@ export type ReplaceCheckConfig =
   | ({ type: "columnType" } & ReplaceColumnTypeCheckConfig)
   | ({ type: "allowedColumnValues" } & ReplaceAllowedColumnValuesCheckConfig)
   | ({ type: "timeSinceLastUpdated" } & ReplaceTimeSinceLastUpdatedCheckConfig)
+  | ({ type: "scheduleStatus" } & ReplaceScheduleStatusCheckConfig)
   | ({ type: "nullPercentage" } & ReplaceNullPercentageCheckConfig)
+  | ({ type: "scheduleDuration" } & ReplaceScheduleDurationCheckConfig)
   | ({ type: "totalColumnCount" } & ReplaceTotalColumnCountCheckConfig)
   | ({ type: "numericColumnMedian" } & ReplaceNumericColumnMedianCheckConfig)
   | ({ type: "buildDuration" } & ReplaceBuildDurationCheckConfig)
@@ -674,6 +678,20 @@ export interface ReplacePrimaryKeyConfig {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ReplaceScheduleDurationCheckConfig {
+  timeCheckConfig: TimeCheckConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceScheduleStatusCheckConfig {
+  statusCheckConfig: StatusCheckConfig;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ReplaceSchemaComparisonCheckConfig {
@@ -692,6 +710,33 @@ export interface ReplaceTimeSinceLastUpdatedCheckConfig {
  */
 export interface ReplaceTotalColumnCountCheckConfig {
   columnCountConfig: ColumnCountConfig;
+}
+
+/**
+ * Checks the total time a schedule takes to complete.
+ *
+ * Log Safety: SAFE
+ */
+export interface ScheduleDurationCheckConfig {
+  subject: ScheduleSubject;
+  timeCheckConfig: TimeCheckConfig;
+}
+
+/**
+ * The RID of a Schedule.
+ *
+ * Log Safety: SAFE
+ */
+export type ScheduleRid = LooselyBrandedString<"ScheduleRid">;
+
+/**
+ * Checks the status of the most recent schedule run.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ScheduleStatusCheckConfig {
+  subject: ScheduleSubject;
+  statusCheckConfig: StatusCheckConfig;
 }
 
 /**
