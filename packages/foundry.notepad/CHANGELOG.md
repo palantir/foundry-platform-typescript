@@ -1,5 +1,18 @@
 # @osdk/foundry.notepad
 
+## 2.70.0
+
+### Minor Changes
+
+- be7f6cd: Regenerate SDKs with API version 1.1716.0
+
+### Patch Changes
+
+- Updated dependencies [be7f6cd]
+  - @osdk/foundry.core@2.70.0
+  - @osdk/foundry.filesystem@2.70.0
+  - @osdk/foundry.ontologies@2.70.0
+
 ## 2.69.0
 
 ### Minor Changes

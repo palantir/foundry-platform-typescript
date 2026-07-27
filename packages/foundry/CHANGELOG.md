@@ -1,5 +1,40 @@
 # @osdk/foundry
 
+## 2.70.0
+
+### Minor Changes
+
+- be7f6cd: Regenerate SDKs with API version 1.1716.0
+
+### Patch Changes
+
+- Updated dependencies [be7f6cd]
+  - @osdk/foundry.admin@2.70.0
+  - @osdk/foundry.aipagents@2.70.0
+  - @osdk/foundry.audit@2.70.0
+  - @osdk/foundry.checkpoints@2.70.0
+  - @osdk/foundry.connectivity@2.70.0
+  - @osdk/foundry.core@2.70.0
+  - @osdk/foundry.datahealth@2.70.0
+  - @osdk/foundry.datasets@2.70.0
+  - @osdk/foundry.filesystem@2.70.0
+  - @osdk/foundry.functions@2.70.0
+  - @osdk/foundry.geo@2.70.0
+  - @osdk/foundry.languagemodels@2.70.0
+  - @osdk/foundry.mediasets@2.70.0
+  - @osdk/foundry.models@2.70.0
+  - @osdk/foundry.notepad@2.70.0
+  - @osdk/foundry.ontologies@2.70.0
+  - @osdk/foundry.operations@2.70.0
+  - @osdk/foundry.orchestration@2.70.0
+  - @osdk/foundry.pack@2.70.0
+  - @osdk/foundry.publicapis@2.70.0
+  - @osdk/foundry.sqlqueries@2.70.0
+  - @osdk/foundry.streams@2.70.0
+  - @osdk/foundry.thirdpartyapplications@2.70.0
+  - @osdk/foundry.widgets@2.70.0
+  - @osdk/foundry.geojson@2.70.0
+
 ## 2.69.0
 
 ### Minor Changes
