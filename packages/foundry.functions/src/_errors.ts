@@ -356,6 +356,23 @@ export interface InvalidQueryParameterValue {
 }
 
 /**
+   * The combination of version, latestVersionResolution, and includePrerelease provided is not
+supported.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidVersionResolutionParameters {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidVersionResolutionParameters";
+  errorDescription:
+    "The combination of version, latestVersionResolution, and includePrerelease provided is not supported.";
+  errorInstanceId: string;
+  parameters: {
+    message: unknown;
+  };
+}
+
+/**
    * Required parameters are missing. Please look at the parameters field to see which required parameters are
 missing from the request.
    *
