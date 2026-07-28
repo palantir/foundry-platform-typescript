@@ -278,6 +278,20 @@ export interface TemporaryMediaUploadUnknownFailure {
 }
 
 /**
+ * Document extraction failed. This covers any failure during extraction, from a malformed document to a server-side error.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationDocumentExtractError {
+  errorCode: "INTERNAL";
+  errorName: "TransformationDocumentExtractError";
+  errorDescription:
+    "Document extraction failed. This covers any failure during extraction, from a malformed document to a server-side error.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The image or document page dimensions exceeded the maximum supported by the OCR model.
  *
  * Log Safety: SAFE
@@ -289,6 +303,54 @@ export interface TransformationImageTooLargeForOcr {
     "The image or document page dimensions exceeded the maximum supported by the OCR model.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The transformation input is too large for the underlying model.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationInputTooLarge {
+  errorCode: "REQUEST_ENTITY_TOO_LARGE";
+  errorName: "TransformationInputTooLarge";
+  errorDescription:
+    "The transformation input is too large for the underlying model.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The supplied page range is invalid.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationInvalidPageRange {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationInvalidPageRange";
+  errorDescription: "The supplied page range is invalid.";
+  errorInstanceId: string;
+  parameters: {
+    startPageInclusive: unknown;
+    endPageExclusive: unknown;
+    documentLength: unknown;
+  };
+}
+
+/**
+ * The media item exceeds the maximum size supported by the transformation.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationMediaSizeExceeded {
+  errorCode: "REQUEST_ENTITY_TOO_LARGE";
+  errorName: "TransformationMediaSizeExceeded";
+  errorDescription:
+    "The media item exceeds the maximum size supported by the transformation.";
+  errorInstanceId: string;
+  parameters: {
+    sizeInBytes: unknown;
+    maxSizeInBytes: unknown;
+  };
 }
 
 /**
@@ -352,6 +414,23 @@ export interface TransformationNotFound {
 }
 
 /**
+ * The caller does not have permission to run this media transformation.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "TransformationPermissionDenied";
+  errorDescription:
+    "The caller does not have permission to run this media transformation.";
+  errorInstanceId: string;
+  parameters: {
+    underlyingErrorType: unknown;
+    code: unknown;
+  };
+}
+
+/**
  * The requested transformation is not currently available.
  *
  * Log Safety: SAFE
@@ -360,6 +439,82 @@ export interface TransformationUnavailable {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TransformationUnavailable";
   errorDescription: "The requested transformation is not currently available.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * A language model call failed during a media transformation.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationVlmError {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationVlmError";
+  errorDescription:
+    "A language model call failed during a media transformation.";
+  errorInstanceId: string;
+  parameters: {
+    underlyingErrorType: unknown;
+    code: unknown;
+  };
+}
+
+/**
+ * The layout or OCR model used as preprocessing for document extraction failed.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationVlmLayoutModelFailure {
+  errorCode: "INTERNAL";
+  errorName: "TransformationVlmLayoutModelFailure";
+  errorDescription:
+    "The layout or OCR model used as preprocessing for document extraction failed.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Document extraction only supports a single page per request.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationVlmMultiPageRequestUnsupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationVlmMultiPageRequestUnsupported";
+  errorDescription:
+    "Document extraction only supports a single page per request.";
+  errorInstanceId: string;
+  parameters: {
+    requestedPages: unknown;
+    maxValidPageCount: unknown;
+  };
+}
+
+/**
+ * Document extraction requires an explicit page range with both startPageInclusive and endPageExclusive set.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationVlmPageRangeRequired {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationVlmPageRangeRequired";
+  errorDescription:
+    "Document extraction requires an explicit page range with both startPageInclusive and endPageExclusive set.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The model response could not be parsed during document extraction.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationVlmResponseParseError {
+  errorCode: "INTERNAL";
+  errorName: "TransformationVlmResponseParseError";
+  errorDescription:
+    "The model response could not be parsed during document extraction.";
   errorInstanceId: string;
   parameters: {};
 }

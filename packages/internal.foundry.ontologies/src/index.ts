@@ -300,6 +300,7 @@ export type {
   InputObjectTypeRidActionTypesQueryV2,
   InQuery,
   IntegerValue,
+  InterfaceActionTypeConstraintApiName,
   InterfaceDefinedPropertyType,
   InterfaceLinkType,
   InterfaceLinkTypeApiName,
