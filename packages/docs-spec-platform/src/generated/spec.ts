@@ -208,6 +208,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getState": {
       "variables": {},
     },
+    "v2.getProgress": {
+      "variables": {},
+    },
     "v2.getActions": {
       "variables": {},
     },

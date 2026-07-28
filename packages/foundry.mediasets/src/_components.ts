@@ -257,6 +257,33 @@ export type BranchName = LooselyBrandedString<"BranchName">;
 export type BranchRid = LooselyBrandedString<"BranchRid">;
 
 /**
+ * The format of a CAD media item.
+ *
+ * Log Safety: SAFE
+ */
+export type CadDecodeFormat = "STEP";
+
+/**
+ * Metadata for CAD media items.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CadMediaItemMetadata {
+  format: CadDecodeFormat;
+  sizeBytes: number;
+  units?: CadUnits;
+}
+
+/**
+ * Units declared in a CAD file.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CadUnits {
+  lengthUnit?: string;
+}
+
+/**
  * Standard chat-based LLM specification with system and user prompts.
  *
  * Log Safety: UNSAFE
@@ -896,7 +923,7 @@ export interface ExtractVlmTextOperation {
   llmSpec: LlmSpec;
   preprocessingConfiguration?: VlmPreprocessingConfig;
   imageSpec?: ImageSpec;
-  outputFormat: TextOutputFormat;
+  outputFormat: VlmOutputFormat;
   pageRange?: PageRange;
 }
 
@@ -1357,6 +1384,7 @@ duration for audio/video, page count for documents, etc.
    * Log Safety: UNSAFE
    */
 export type MediaItemMetadata =
+  | ({ type: "cad" } & CadMediaItemMetadata)
   | ({ type: "document" } & DocumentMediaItemMetadata)
   | ({ type: "imagery" } & ImageryMediaItemMetadata)
   | ({ type: "spreadsheet" } & SpreadsheetMediaItemMetadata)
@@ -1381,6 +1409,7 @@ export type MediaItemXmlFormat = "DOCX" | "XLSX" | "PPTX";
  */
 export type MediaSchema =
   | "AUDIO"
+  | "CAD"
   | "DICOM"
   | "DOCUMENT"
   | "IMAGERY"
@@ -2501,7 +2530,7 @@ export interface VideoChunkOperation {
  *
  * Log Safety: SAFE
  */
-export type VideoDecodeFormat = "MP4" | "MKV" | "MOV" | "TS";
+export type VideoDecodeFormat = "MP4" | "MKV" | "MOV" | "TS" | "WEBM";
 
 /**
  * The output format for encoding video.
@@ -2630,6 +2659,13 @@ export interface VideoTransformation {
   encoding: VideoEncodeFormat;
   operation: VideoOperation;
 }
+
+/**
+ * Format in which to return text extracted by vision language models.
+ *
+ * Log Safety: SAFE
+ */
+export type VlmOutputFormat = "MARKDOWN";
 
 /**
  * Preprocessing configuration for VLM extraction.

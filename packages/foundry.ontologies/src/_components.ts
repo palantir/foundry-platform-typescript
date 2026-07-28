@@ -2669,6 +2669,16 @@ export interface IntegerValue {
 }
 
 /**
+   * The name in the API of an action defined on an interface that implementing object types provide a concrete
+action type for.
+   *
+   * Log Safety: UNSAFE
+   */
+export type InterfaceActionTypeConstraintApiName = LooselyBrandedString<
+  "InterfaceActionTypeConstraintApiName"
+>;
+
+/**
    * An interface property type with an additional field to indicate constraints that need to be satisfied by
 implementing object property types.
    *
@@ -4732,6 +4742,7 @@ export interface ObjectTypeInterfaceImplementation {
     InterfacePropertyTypeImplementation
   >;
   links: Record<InterfaceLinkTypeApiName, Array<LinkTypeApiName>>;
+  actionTypes: Record<InterfaceActionTypeConstraintApiName, ActionTypeApiName>;
 }
 
 /**
