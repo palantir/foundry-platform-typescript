@@ -1,5 +1,18 @@
 # @osdk/foundry.aipagents
 
+## 2.71.0
+
+### Minor Changes
+
+- e0a20ae: Regenerate SDKs with API version 1.1721.0
+
+### Patch Changes
+
+- Updated dependencies [e0a20ae]
+  - @osdk/foundry.core@2.71.0
+  - @osdk/foundry.functions@2.71.0
+  - @osdk/foundry.ontologies@2.71.0
+
 ## 2.70.0
 
 ### Minor Changes
