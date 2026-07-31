@@ -16,6 +16,7 @@
 
 type BooleanValueType = { type: "boolean"; value: boolean };
 type StringType = { type: "string"; value: string };
+type ScenarioReferenceType = { type: "scenarioReference"; rid: string };
 type DateType = { type: "date"; daysOffset: number };
 type TimestampType = { type: "timestamp"; daysOffset: number };
 type IntegerValueType = { type: "integer"; value: number };
@@ -58,6 +59,7 @@ export type ActionParameterSampleValueTypeIR =
   | DateType
   | TimestampType
   | StringType
+  | ScenarioReferenceType
   | ObjectType
   | ObjectSetType
   | AttachmentType
