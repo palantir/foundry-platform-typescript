@@ -19,6 +19,23 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Artifact-backed documents require a namespace upon creation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ArtifactDocumentCreationMissingNamespace {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ArtifactDocumentCreationMissingNamespace";
+  errorDescription:
+    "Artifact-backed documents require a namespace upon creation.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+    providedParent: unknown;
+  };
+}
+
+/**
  * Autosaved documents cannot be deleted.
  *
  * Log Safety: SAFE
@@ -49,6 +66,40 @@ export interface CannotDeleteHiddenDocument {
 }
 
 /**
+ * Compass-backed documents require a parent folder upon creation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CompassDocumentCreationMissingParentFolder {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CompassDocumentCreationMissingParentFolder";
+  errorDescription:
+    "Compass-backed documents require a parent folder upon creation.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+    providedParent: unknown;
+  };
+}
+
+/**
+   * Compass backed documents do not support discretionary security on creation. The creating user will be an
+owner of the document by default.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface CompassDocumentCreationWithDiscretionarySecurityNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CompassDocumentCreationWithDiscretionarySecurityNotSupported";
+  errorDescription:
+    "Compass backed documents do not support discretionary security on creation. The creating user will be an owner of the document by default.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+  };
+}
+
+/**
  * Could not createChild the Document.
  *
  * Log Safety: SAFE
@@ -62,19 +113,17 @@ export interface CreateDocumentAsChildPermissionDenied {
 }
 
 /**
-   * The user does not have permission to create documents of the given type in
-the given ontology, or the Document Type does not exist in the ontology.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface CreateDocumentNotSupported {
+ * The user does not have permission to create documents of this Document Type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateDocumentOfTypePermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "CreateDocumentNotSupported";
+  errorName: "CreateDocumentOfTypePermissionDenied";
   errorDescription:
-    "The user does not have permission to create documents of the given type in the given ontology, or the Document Type does not exist in the ontology.";
+    "The user does not have permission to create documents of this Document Type.";
   errorInstanceId: string;
   parameters: {
-    ontologyRid: unknown;
     documentTypeName: unknown;
   };
 }
@@ -101,6 +150,19 @@ export interface CreateDocumentTypePermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "CreateDocumentTypePermissionDenied";
   errorDescription: "Could not create the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not createV2 the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateDocumentV2PermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateDocumentV2PermissionDenied";
+  errorDescription: "Could not createV2 the Document.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -183,7 +245,7 @@ export interface DocumentTypeAlreadyExists {
  * Log Safety: UNSAFE
  */
 export interface DocumentTypeNameNotFound {
-  errorCode: "PERMISSION_DENIED";
+  errorCode: "NOT_FOUND";
   errorName: "DocumentTypeNameNotFound";
   errorDescription:
     "The Document Type Name does not exist, or the user does not have permission to view the Document Type.";

@@ -625,7 +625,7 @@ export type LiveDeploymentRid = LooselyBrandedString<"LiveDeploymentRid">;
 /**
  * The compute resource configuration for a live deployment, controlling replica scaling, CPU, memory, and GPU resources.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface LiveDeploymentRuntimeConfiguration {
   minReplicas: number;
@@ -635,6 +635,7 @@ export interface LiveDeploymentRuntimeConfiguration {
   gpu?: LiveDeploymentGpu;
   threadCount?: number;
   scalingConfiguration?: LiveDeploymentScalingConfiguration;
+  environmentVariables: Record<string, string>;
 }
 
 /**
@@ -1252,7 +1253,7 @@ export interface PromoteVersionModelRequest {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ReplaceLiveDeploymentRequest {
   runtimeConfiguration: LiveDeploymentRuntimeConfiguration;

@@ -54,3 +54,35 @@ export function get(
 ): Promise<_PublicApis.OpenApiDefinition> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _yaml: $FoundryPlatformMethod<
+  (
+    openApiDefinitionApiVersion: _PublicApis.ApiVersion,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<Response>
+> = [
+  0,
+  "/v2/publicApis/openApiDefinitions/{0}/yaml",
+  2,
+  ,
+  "application/octet-stream",
+];
+
+/**
+ * Gets the public OpenAPI specification for this API as a YAML document.
+ *
+ * @alpha
+ *
+ * Required Scopes: [public-api:view]
+ * URL: /v2/publicApis/openApiDefinitions/{openApiDefinitionApiVersion}/yaml
+ */
+export function yaml(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    openApiDefinitionApiVersion: _PublicApis.ApiVersion,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _yaml, ...args);
+}

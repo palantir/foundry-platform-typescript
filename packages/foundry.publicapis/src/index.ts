@@ -27,6 +27,7 @@ export type {
 } from "./_components.js";
 export type {
   ApiDefinitionNotFound,
+  GetOpenApiDefinitionAsYamlPermissionDenied,
   OpenApiDefinitionNotFound,
 } from "./_errors.js";
 export * as ApiDefinitions from "./public/ApiDefinition.js";

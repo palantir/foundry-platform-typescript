@@ -192,7 +192,6 @@ const _getEditsHistory: $FoundryPlatformMethod<
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ObjectTypeEditsHistoryResponse>
 > = [1, "/v2/ontologies/{0}/objectTypes/{1}/editsHistory", 3];
@@ -206,7 +205,7 @@ const _getEditsHistory: $FoundryPlatformMethod<
  *
  * Note that filters are ignored for OSv1 object types.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/editsHistory
@@ -220,7 +219,6 @@ export function getEditsHistory(
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ObjectTypeEditsHistoryResponse> {
