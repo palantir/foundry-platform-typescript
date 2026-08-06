@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.44.0
+
+### Minor Changes
+
+- 0dc6240: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [0dc6240]
+  - @osdk/gotham.targetworkbench@0.44.0
+  - @osdk/gotham.maprendering@0.44.0
+  - @osdk/gotham.geojson@0.44.0
+  - @osdk/gotham.core@0.44.0
+  - @osdk/gotham.gaia@0.44.0
+
 ## 0.43.0
 
 ### Minor Changes

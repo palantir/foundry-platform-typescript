@@ -1,5 +1,16 @@
 # @osdk/foundry.audit
 
+## 2.72.0
+
+### Minor Changes
+
+- 0dc6240: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [0dc6240]
+  - @osdk/foundry.core@2.72.0
+
 ## 2.71.0
 
 ### Minor Changes

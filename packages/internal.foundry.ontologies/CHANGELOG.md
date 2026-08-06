@@ -1,5 +1,18 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.72.0
+
+### Minor Changes
+
+- 0dc6240: regenerate platform sdk
+
+### Patch Changes
+
+- Updated dependencies [0dc6240]
+  - @osdk/internal.foundry.datasets@2.72.0
+  - @osdk/internal.foundry.core@2.72.0
+  - @osdk/internal.foundry.geo@2.72.0
+
 ## 2.71.0
 
 ### Minor Changes
