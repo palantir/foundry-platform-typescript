@@ -132,6 +132,7 @@ const ActionTemplateStrings = {
   actionEditAddedLinksCount: "required",
   actionEditDeletedLinksCount: "required",
   hasEditObjectTypes: "required",
+  hasScenarioRule: "required",
   hasParameters: "required",
   rawActionTypeParameterValues: "required",
   hasAttachmentProperty: "required",
