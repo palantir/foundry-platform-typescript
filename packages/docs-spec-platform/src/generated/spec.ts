@@ -52,6 +52,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getOpenApiDefinition": {
       "variables": {},
     },
+    "v2.getOpenApiDefinitionAsYaml": {
+      "variables": {},
+    },
     "v2.createTargetBoard": {
       "variables": {},
     },
@@ -1313,6 +1316,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.createDocumentWithMatchingSecurity": {
+      "variables": {},
+    },
+    "v2.createDocumentV2": {
       "variables": {},
     },
     "v2.getRecord": {

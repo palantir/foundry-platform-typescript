@@ -198,15 +198,14 @@ const _info: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ) => Promise<_MediaSets.GetMediaItemInfoResponse>
-> = [0, "/v2/mediasets/{0}/items/{1}", 6];
+> = [0, "/v2/mediasets/{0}/items/{1}", 4];
 
 /**
  * Gets information about the media item.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:mediasets-read]
  * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}
@@ -217,7 +216,6 @@ export function info(
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
 ): Promise<_MediaSets.GetMediaItemInfoResponse> {
@@ -228,16 +226,15 @@ const _metadata: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ) => Promise<_MediaSets.MediaItemMetadata>
-> = [0, "/v2/mediasets/{0}/items/{1}/metadata", 6];
+> = [0, "/v2/mediasets/{0}/items/{1}/metadata", 4];
 
 /**
  * Gets detailed metadata about the media item, including type-specific information
  * such as dimensions for images, duration for audio/video, page count for documents, etc.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:mediasets-read]
  * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/metadata
@@ -248,7 +245,6 @@ export function metadata(
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
 ): Promise<_MediaSets.MediaItemMetadata> {
@@ -469,15 +465,14 @@ const _read: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ) => Promise<Response>
-> = [0, "/v2/mediasets/{0}/items/{1}/content", 6, , "*/*"];
+> = [0, "/v2/mediasets/{0}/items/{1}/content", 4, , "*/*"];
 
 /**
  * Gets the content of a media item.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:mediasets-read]
  * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/content
@@ -488,7 +483,6 @@ export function read(
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
 ): Promise<Response> {
@@ -499,15 +493,14 @@ const _readOriginal: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ) => Promise<Response>
-> = [0, "/v2/mediasets/{0}/items/{1}/original", 6, , "*/*"];
+> = [0, "/v2/mediasets/{0}/items/{1}/original", 4, , "*/*"];
 
 /**
  * Gets the content of an original file uploaded to the media item, even if it was transformed on upload due to being an additional input format.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:mediasets-read]
  * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/original
@@ -518,7 +511,6 @@ export function readOriginal(
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
     $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
 ): Promise<Response> {
@@ -649,7 +641,6 @@ const _uploadMedia: $FoundryPlatformMethod<
     $queryParams: {
       filename: _Core.MediaItemPath;
       mediaItemRid?: _Core.MediaItemRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: { attribution?: _Core.Attribution | undefined },
   ) => Promise<_Core.MediaReference>
@@ -663,7 +654,7 @@ const _uploadMedia: $FoundryPlatformMethod<
  * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
  * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:ontologies-write`.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
  * URL: /v2/mediasets/media/upload
@@ -675,7 +666,6 @@ export function uploadMedia(
     $queryParams: {
       filename: _Core.MediaItemPath;
       mediaItemRid?: _Core.MediaItemRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: { attribution?: _Core.Attribution | undefined },
   ]

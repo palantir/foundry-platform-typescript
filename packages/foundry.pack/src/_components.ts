@@ -153,6 +153,26 @@ export interface CreateDocumentTypeRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateDocumentV2Request {
+  requestBody: CreateDocumentV2RequestBody;
+}
+
+/**
+ * Request to create a PACK Document.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateDocumentV2RequestBody {
+  name: string;
+  description?: string;
+  documentTypeName: DocumentTypeName;
+  security: DocumentSecurity;
+  parent: DocumentParent;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateDocumentWithMatchingSecurityRequest {
   requestBody: CreateDocumentMatchingSecurityRequestBody;
 }
@@ -398,6 +418,35 @@ document's security settings and the user's principals.
 export type DocumentOperation = "VIEW" | "EDIT" | "OWN" | "DELETE";
 
 /**
+   * The Gatekeeper parent the new Document is created under, also used with the documentTypeName to locate the
+associated Document Type instance. The populated variant must match the file system required by that Document
+Type: parentFolder for Compass-backed types, namespace for Artifact-backed types.
+   *
+   * Log Safety: SAFE
+   */
+export type DocumentParent =
+  | ({ type: "parentFolder" } & DocumentParentFolder)
+  | ({ type: "namespace" } & DocumentParentNamespace);
+
+/**
+ * A Compass folder parent for the new Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface DocumentParentFolder {
+  folderRid: _Filesystem.FolderRid;
+}
+
+/**
+ * An Artifact's parent namespace for the new Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface DocumentParentNamespace {
+  namespaceRid: NamespaceRid;
+}
+
+/**
    * Sent when a user's presence changes on a document. That is, sent when a user opens or closes the document.
 Note that just because a user is not present on a particular document does not mean that they are overall
 "offline" -- they may have other documents or non-document applications open in the platform.
@@ -541,6 +590,7 @@ export interface DocumentTypeAsset {
   fileSystemType: FileSystemType;
   schemaVersion: SchemaVersion;
   owningApplicationId?: string;
+  forceOverwrite?: boolean;
 }
 
 /**
@@ -958,6 +1008,13 @@ export type ModelDef =
  * Log Safety: UNSAFE
  */
 export type ModelTypeKey = LooselyBrandedString<"ModelTypeKey">;
+
+/**
+ * Identifier for a namespace.
+ *
+ * Log Safety: SAFE
+ */
+export type NamespaceRid = LooselyBrandedString<"NamespaceRid">;
 
 /**
  * Identifier for an ontology object type.

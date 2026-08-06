@@ -3548,6 +3548,7 @@ export interface LoadObjectSetRequestV2 {
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
   defaultLoadLevel?: PropertyLoadLevel;
+  loadOntologyDefinedDerivedProperties?: boolean;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3581,6 +3582,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
   defaultLoadLevel?: PropertyLoadLevel;
+  loadOntologyDefinedDerivedProperties?: boolean;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3631,6 +3633,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
   defaultLoadLevel?: PropertyLoadLevel;
+  loadOntologyDefinedDerivedProperties?: boolean;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -4484,10 +4487,15 @@ export interface ObjectSetStaticType {
 }
 
 /**
- * Log Safety: UNSAFE
- */
+   * branch identifies the Foundry branch. scenarioRid identifies the Ontology Scenario.
+If a scenario is based on a non-default branch, branch must identify that non-default base branch.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface ObjectSetStreamSubscribeRequest {
   objectSet: ObjectSet;
+  branch?: _Core.FoundryBranch;
+  scenarioRid?: OntologyScenarioRid;
   propertySet: Array<SelectedPropertyApiName>;
   referenceSet: Array<SelectedPropertyApiName>;
   objectLoadingResponseOptions?: ObjectLoadingResponseOptions;

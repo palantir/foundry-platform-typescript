@@ -37,7 +37,8 @@ const _create: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documents", 3];
 
 /**
- * Creates a new Document.
+ * Deprecated: use `createV2` instead, which takes the document parent (namespace or folder)
+ * directly on the request.
  *
  * @alpha
  *
@@ -238,4 +239,29 @@ export function createMatchingSecurity(
   ]
 ): Promise<_Pack.Document> {
   return $foundryPlatformFetch($ctx, _createMatchingSecurity, ...args);
+}
+
+const _createV2: $FoundryPlatformMethod<
+  (
+    $body: _Pack.CreateDocumentV2Request,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.Document>
+> = [1, "/v2/pack/documents/createV2", 3];
+
+/**
+ * Creates a PACK Document and returns it.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-write]
+ * URL: /v2/pack/documents/createV2
+ */
+export function createV2(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.CreateDocumentV2Request,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.Document> {
+  return $foundryPlatformFetch($ctx, _createV2, ...args);
 }

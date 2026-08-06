@@ -34,6 +34,21 @@ export interface ApiDefinitionNotFound {
 }
 
 /**
+ * Could not yaml the OpenApiDefinition.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetOpenApiDefinitionAsYamlPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetOpenApiDefinitionAsYamlPermissionDenied";
+  errorDescription: "Could not yaml the OpenApiDefinition.";
+  errorInstanceId: string;
+  parameters: {
+    openApiDefinitionApiVersion: unknown;
+  };
+}
+
+/**
  * The given OpenApiDefinition could not be found.
  *
  * Log Safety: SAFE
