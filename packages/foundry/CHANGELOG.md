@@ -1,5 +1,42 @@
 # @osdk/foundry
 
+## 2.72.0
+
+### Minor Changes
+
+- 0dc6240: regenerate platform sdk
+- 934f9e1: Regenerate SDKs with API version 1.1734.0
+
+### Patch Changes
+
+- Updated dependencies [0dc6240]
+- Updated dependencies [934f9e1]
+  - @osdk/foundry.thirdpartyapplications@2.72.0
+  - @osdk/foundry.languagemodels@2.72.0
+  - @osdk/foundry.orchestration@2.72.0
+  - @osdk/foundry.connectivity@2.72.0
+  - @osdk/foundry.checkpoints@2.72.0
+  - @osdk/foundry.datahealth@2.72.0
+  - @osdk/foundry.filesystem@2.72.0
+  - @osdk/foundry.ontologies@2.72.0
+  - @osdk/foundry.operations@2.72.0
+  - @osdk/foundry.publicapis@2.72.0
+  - @osdk/foundry.sqlqueries@2.72.0
+  - @osdk/foundry.aipagents@2.72.0
+  - @osdk/foundry.functions@2.72.0
+  - @osdk/foundry.mediasets@2.72.0
+  - @osdk/foundry.datasets@2.72.0
+  - @osdk/foundry.notepad@2.72.0
+  - @osdk/foundry.streams@2.72.0
+  - @osdk/foundry.widgets@2.72.0
+  - @osdk/foundry.models@2.72.0
+  - @osdk/foundry.admin@2.72.0
+  - @osdk/foundry.audit@2.72.0
+  - @osdk/foundry.core@2.72.0
+  - @osdk/foundry.pack@2.72.0
+  - @osdk/foundry.geo@2.72.0
+  - @osdk/foundry.geojson@2.72.0
+
 ## 2.71.0
 
 ### Minor Changes
