@@ -177,11 +177,7 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
 
 ### Updating Platform SDKs
 
-1. Follow the dev workflow above
-2. Run `scripts/getOpenApiIr.sh`
-3. Run `scripts/generatePlatformSdk.sh`
-4. Remember to add a changeset (following the instructions above)
-5. Commit and open a PR
+PRs to bump the generated SDK are automatically created with the title `Excavator: Upgrade API Version`. Platform SDKs should not be manually regenerated.
 
 ### Updating OSDK docs specification
 
