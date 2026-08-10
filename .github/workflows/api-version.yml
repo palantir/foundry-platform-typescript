@@ -10,8 +10,8 @@ on:
     types: [opened, synchronize, reopened, labeled, unlabeled]
 
 jobs:
-  api-gateway-version:
-    name: Check api-gateway version
+  api-version:
+    name: Check api version
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
