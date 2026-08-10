@@ -177,7 +177,7 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
 
 ### Updating Platform SDKs
 
-PR's to bump the generated SDK are automatically created with the title `Excavator: Upgrade API Version`. Platform SDKs should not be manually regenerated.
+PRs to bump the generated SDK are automatically created with the title `Excavator: Upgrade API Version`. Platform SDKs should not be manually regenerated.
 
 ### Updating OSDK docs specification
 
