@@ -210,10 +210,4 @@ With the exception of the "Core" namespace, all namespaces must map to either th
 
 ### Publishing a release
 
-1. Create a new branch on this repo, not your forked repo.
-2. Follow the dev workflow above
-3. Run `scripts/createReleasePr.sh`
-4. Merge the PR (Github Actions will publish it)
-5. The new npm package version should be visible in 20-30 minutes.
-  - Foundry: https://www.npmjs.com/package/@osdk/foundry
-  - Gotham: https://www.npmjs.com/package/@osdk/gotham
+PR's to bump the generated SDK are automatically created with the title `Excavator: Upgrade API Version`. Platform SDKs should not be manually regenerated.
