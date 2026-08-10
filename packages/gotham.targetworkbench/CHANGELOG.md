@@ -1,5 +1,18 @@
 # @osdk/gotham.targetworkbench
 
+## 0.44.0
+
+### Minor Changes
+
+- 0dc6240: regenerate platform sdk
+- 934f9e1: Regenerate SDKs with API version 1.1734.0
+
+### Patch Changes
+
+- Updated dependencies [0dc6240]
+- Updated dependencies [934f9e1]
+  - @osdk/gotham.core@0.44.0
+
 ## 0.43.0
 
 ### Minor Changes
