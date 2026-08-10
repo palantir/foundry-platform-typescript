@@ -56,6 +56,17 @@ function git(args: readonly string[]): string {
   });
 }
 
+function assertRefExists(ref: string): void {
+  try {
+    git(["rev-parse", "--verify", "--quiet", `${ref}^{commit}`]);
+  } catch {
+    throw new Error(
+      `Not a git ref that resolves here: ${ref}\n`
+        + `In CI this usually means the base branch was not fetched.`,
+    );
+  }
+}
+
 /** Top level package.json files under packages/ at the given ref. */
 function listPackageJsonPaths(ref: string): string[] {
   return git(["ls-tree", "-r", "--name-only", ref, "--", "packages/"])
@@ -74,6 +85,8 @@ function assertValid(version: string, source: string): string {
 
 /** Map of package.json path to its pinned api-gateway version at `ref`. */
 export function readMinVersions(ref: string): Map<string, string> {
+  assertRefExists(ref);
+
   const found = new Map<string, string>();
   for (const path of listPackageJsonPaths(ref)) {
     let packageJson: any;

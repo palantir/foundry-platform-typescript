@@ -15,13 +15,7 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
-    # Regeneration by the excavator check is expected to move the version, and a
-    # maintainer can opt a PR out explicitly. Both conditions are required for
-    # the excavator case because head_ref alone is forgeable from a fork.
-    #
-    # Evaluated once here so the install, build and check skip together, and so
-    # the job still reports success rather than being skipped outright --
-    # a skipped job is awkward to require in branch protection.
+  
     env:
       SKIP: >-
         ${{ contains(github.event.pull_request.labels.*.name, 'allow-manual-regen')

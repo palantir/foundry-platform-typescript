@@ -16,38 +16,5 @@
  * limitations under the License.
  */
 
-// Usage: check-api-gateway-version.mjs [--base <ref>] [--head <ref>]
-//
-// Fails if any generated package raises its pinned api-gateway version relative
-// to the base ref. See src/checkApiGatewayVersion.ts for why.
-
-import { checkApiGatewayVersion } from "../build/esm/checkApiGatewayVersion.js";
-
-function parseArgs(argv) {
-  const args = { base: "origin/main", head: "HEAD" };
-  for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === "--base" || argv[i] === "--head") {
-      const value = argv[i + 1];
-      if (value == null) {
-        throw new Error(`${argv[i]} requires a value`);
-      }
-      args[argv[i].slice(2)] = value;
-      i++;
-    } else {
-      throw new Error(`Unknown option: ${argv[i]}`);
-    }
-  }
-  return args;
-}
-
-const { base, head } = parseArgs(process.argv.slice(2));
-const { ok, message } = checkApiGatewayVersion(base, head);
-
-if (ok) {
-  // eslint-disable-next-line no-console
-  console.log(message);
-} else {
-  // eslint-disable-next-line no-console
-  console.error(message);
-  process.exit(1);
-}
+import { checkApiGatewayVersionCli } from "../build/esm/checkApiGatewayVersionCli.js";
+await checkApiGatewayVersionCli();
