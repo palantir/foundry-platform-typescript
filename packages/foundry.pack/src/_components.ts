@@ -590,7 +590,6 @@ export interface DocumentTypeAsset {
   fileSystemType: FileSystemType;
   schemaVersion: SchemaVersion;
   owningApplicationId?: string;
-  forceOverwrite?: boolean;
 }
 
 /**
