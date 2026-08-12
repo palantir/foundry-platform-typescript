@@ -22,6 +22,7 @@ import { symbolClientContext as oldSymbolClientContext } from "@osdk/shared.clie
 import type { SharedClient, SharedClientContext } from "@osdk/shared.client2";
 import { symbolClientContext } from "@osdk/shared.client2";
 import { PalantirApiError, UnknownError } from "@osdk/shared.net.errors";
+import { sseStream } from "./sse.js";
 
 export type FoundryPlatformMethod<F extends (...args: any[]) => any> = [
   method: number,
@@ -170,6 +171,10 @@ async function apiFetch(
   // Do not return anything if its a 204. Do not parse either!
   if (response.status === 204) {
     return;
+  }
+
+  if (responseMediaType === "text/event-stream") {
+    return sseStream(response);
   }
 
   if (responseMediaType == null || responseMediaType === "application/json") {
