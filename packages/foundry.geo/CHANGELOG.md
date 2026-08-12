@@ -1,5 +1,12 @@
 # @osdk/foundry.geo
 
+## 2.72.0
+
+### Minor Changes
+
+- 0dc6240: regenerate platform sdk
+- 934f9e1: Regenerate SDKs with API version 1.1734.0
+
 ## 2.71.0
 
 ### Minor Changes
