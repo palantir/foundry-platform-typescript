@@ -113,6 +113,22 @@ export interface CreateDocumentAsChildPermissionDenied {
 }
 
 /**
+ * The user does not have permission to create documents of this Document Type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateDocumentOfTypePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateDocumentOfTypePermissionDenied";
+  errorDescription:
+    "The user does not have permission to create documents of this Document Type.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+  };
+}
+
+/**
  * Could not create the Document.
  *
  * Log Safety: SAFE

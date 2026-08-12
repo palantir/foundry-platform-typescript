@@ -3548,6 +3548,7 @@ export interface LoadObjectSetRequestV2 {
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
   defaultLoadLevel?: PropertyLoadLevel;
+  loadOntologyDefinedDerivedProperties?: boolean;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3581,6 +3582,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
   defaultLoadLevel?: PropertyLoadLevel;
+  loadOntologyDefinedDerivedProperties?: boolean;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
@@ -3631,6 +3633,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   select: Array<SelectedPropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
   defaultLoadLevel?: PropertyLoadLevel;
+  loadOntologyDefinedDerivedProperties?: boolean;
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
