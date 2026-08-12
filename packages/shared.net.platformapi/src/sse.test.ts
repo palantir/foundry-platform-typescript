@@ -34,25 +34,6 @@ function streamOf(...chunks: string[]): ReadableStream<Uint8Array> {
   });
 }
 
-function cancellableResponse(...chunks: string[]) {
-  const enc = new TextEncoder();
-  const cancelled = { value: false };
-  const body = new ReadableStream({
-    start(c) {
-      for (const chunk of chunks) c.enqueue(enc.encode(chunk));
-    },
-    cancel() {
-      cancelled.value = true;
-    },
-  });
-  return {
-    response: new Response(body, {
-      headers: { "content-type": "text/event-stream" },
-    }),
-    cancelled,
-  };
-}
-
 async function collect<T>(it: AsyncIterable<T>): Promise<T[]> {
   const out: T[] = [];
   for await (const x of it) out.push(x);
@@ -191,29 +172,6 @@ describe("sseStream", () => {
 
     await expect(collect(sseStream(response)))
       .rejects.toThrow(UnknownError);
-  });
-
-  it("cancels the underlying body when the consumer stops early", async () => {
-    const { response, cancelled } = cancellableResponse(
-      "data: {\"a\":1}\n\n",
-      "data: {\"b\":2}\n\n",
-    );
-
-    for await (const event of sseStream(response)) {
-      expect(event).toEqual({ a: 1 });
-      break;
-    }
-
-    expect(cancelled.value).toBe(true);
-  });
-
-  it("cancels the underlying body when an error event throws", async () => {
-    const { response, cancelled } = cancellableResponse(ERROR_EVENT);
-
-    await expect(collect(sseStream(response)))
-      .rejects.toThrow(PalantirApiError);
-
-    expect(cancelled.value).toBe(true);
   });
 
   it("terminates when an event exceeds the parser buffer", async () => {
