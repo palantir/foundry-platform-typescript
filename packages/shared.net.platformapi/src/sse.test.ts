@@ -95,8 +95,6 @@ describe("sseStream", () => {
   it("throws PalantirApiError on an in band error event", async () => {
     const response = sseResponse(ERROR_EVENT);
 
-    // Asserted field by field: the constructor is positional, so a
-    // reordered argument list is invisible to the type checker.
     const error = await collect(sseStream(response)).catch(e => e);
 
     expect(error).toBeInstanceOf(PalantirApiError);
@@ -107,7 +105,6 @@ describe("sseStream", () => {
     expect(error.errorInstanceId)
       .toBe("3f8a9c7b-2e4d-4a1f-9b8c-7d6e5f4a3b2c");
     expect(error.parameters).toEqual({});
-    // The status line was sent long before the error event.
     expect(error.statusCode).toBe(200);
   });
 
