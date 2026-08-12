@@ -1,5 +1,17 @@
 # @osdk/foundry.pack
 
+## 2.73.0
+
+### Minor Changes
+
+- 0e60c3e: Regenerate SDKs with API version 1.1740.1
+
+### Patch Changes
+
+- Updated dependencies [0e60c3e]
+  - @osdk/foundry.core@2.73.0
+  - @osdk/foundry.filesystem@2.73.0
+
 ## 2.72.0
 
 ### Minor Changes
