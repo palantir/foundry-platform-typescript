@@ -151,6 +151,7 @@ export type {
   CompassDocumentCreationMissingParentFolder,
   CompassDocumentCreationWithDiscretionarySecurityNotSupported,
   CreateDocumentAsChildPermissionDenied,
+  CreateDocumentOfTypePermissionDenied,
   CreateDocumentPermissionDenied,
   CreateDocumentTypePermissionDenied,
   CreateDocumentV2PermissionDenied,

@@ -2272,7 +2272,7 @@ export type TranscriptionLanguage =
   | "NE"
   | "NL"
   | "NN"
-  | "false"
+  | "NO"
   | "OC"
   | "PA"
   | "PL"
