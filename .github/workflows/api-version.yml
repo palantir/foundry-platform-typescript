@@ -1,0 +1,56 @@
+name: API Gateway Version
+
+env:
+  DO_NOT_TRACK: 1
+
+# Kept separate from ci.yml so that adding or removing the override label
+# re-runs this check without re-running the full build matrix.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+jobs:
+  api-version:
+    name: Check api version
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+  
+    env:
+      SKIP: >-
+        ${{ contains(github.event.pull_request.labels.*.name, 'allow-manual-regen')
+        || (github.event.pull_request.user.login == 'svc-excavator-bot'
+        && github.head_ref == 'excavator/foundry-platform-typescript-sdk-upgrade') }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 1
+
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.3.0
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: .node-version
+          cache: "pnpm"
+
+      - name: Install dependencies
+        if: env.SKIP != 'true'
+        run: pnpm install
+
+      - name: Build the generator
+        if: env.SKIP != 'true'
+        run: >-
+          pnpm exec turbo transpile
+          --filter ./packages/platform-sdk-generator
+          --output-logs=errors-only
+
+      - name: Check api-gateway minVersion did not increase
+        if: env.SKIP != 'true'
+        run: |
+          git fetch --no-tags --depth=1 origin \
+            "+refs/heads/${GITHUB_BASE_REF}:refs/remotes/origin/${GITHUB_BASE_REF}"
+          node packages/platform-sdk-generator/bin/check-api-gateway-version.mjs \
+            --base "refs/remotes/origin/${GITHUB_BASE_REF}"

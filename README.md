@@ -172,12 +172,14 @@ Note: some of these workflows are internal to Palantir. It is not expected that 
    5. Select which packages need major/minor/patch bumps. Typically you should not select anything here and always use patch bumps. We will then bump the major and minor version separately as needed.
    6. Enter a change (or press enter on empty to open your editor.)
    7. Make sure you include a changeset for each changed package.
-8. If you're curious what the final build output might look like you can run `pnpm build` from root. 
+8. If you're curious what the final build output might look like you can run `pnpm build` from root.
 9. Run all lint rules and tests with `pnpm check` from root.
 
 ### Updating Platform SDKs
 
 PRs to bump the generated SDK are automatically created with the title `Excavator: Upgrade API Version`. Platform SDKs should not be manually regenerated.
+
+CI therefore fails any PR that increases the pinned `com.palantir.foundry.api:api-gateway` `minVersion` in a generated package's `sls` block. Changes to the generator that do not move the pinned version are unaffected. If a bump is genuinely intentional, a maintainer can add the `allow-manual-regen` label to skip the check.
 
 ### Updating OSDK docs specification
 
@@ -187,7 +189,9 @@ PRs to bump the generated SDK are automatically created with the title `Excavato
 4. Commit and open a PR
 
 ### Adding a new namespace
+
 If you are generating a new SDK for the first time, you must add it to the namespace mapping in `getNamespacePlatform.ts`:
+
 ```js
 export function getNamespacePlatform(ns?: string): string {
   const namespaceMapping: { [key: string]: string } = {
@@ -201,6 +205,7 @@ export function getNamespacePlatform(ns?: string): string {
   return ns ? (namespaceMapping[ns] ?? "foundry") : "foundry";
 }
 ```
+
 For your namespace to be generated in the correct platform (Gotham or Foundry), it must exist in the mapping. Unknown namespaces will throw an error until you provide a correct mapping.
 With the exception of the "Core" namespace, all namespaces must map to either the "gotham" or "foundry" platform.
 
@@ -211,5 +216,6 @@ With the exception of the "Core" namespace, all namespaces must map to either th
 3. Run `scripts/createReleasePr.sh`
 4. Merge the PR (Github Actions will publish it)
 5. The new npm package version should be visible in 20-30 minutes.
-  - Foundry: https://www.npmjs.com/package/@osdk/foundry
-  - Gotham: https://www.npmjs.com/package/@osdk/gotham
+
+- Foundry: https://www.npmjs.com/package/@osdk/foundry
+- Gotham: https://www.npmjs.com/package/@osdk/gotham

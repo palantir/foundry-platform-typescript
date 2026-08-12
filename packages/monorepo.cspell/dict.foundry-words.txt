@@ -10,3 +10,5 @@ ontologiesv
 gids
 VLMs
 Lohi
+regen
+Autorelease

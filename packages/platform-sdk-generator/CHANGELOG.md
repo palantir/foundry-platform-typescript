@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.72.0
+
+### Minor Changes
+
+- 83f24f9: Add check for bumping api gateway version without using our automatic generation flow.
+
+### Patch Changes
+
+- Updated dependencies [0e60c3e]
+  - @osdk/docs-spec-platform@0.59.0
+
 ## 0.71.0
 
 ### Patch Changes
