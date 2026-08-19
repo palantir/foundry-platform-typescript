@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.74.0
+
+### Minor Changes
+
+- 3f31e9f: Regenerate SDKs with API version 1.1751.1
+
 ## 2.73.0
 
 ### Minor Changes
