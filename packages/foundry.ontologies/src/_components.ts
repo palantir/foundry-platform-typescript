@@ -2460,6 +2460,27 @@ export interface GetActionTypeByRidBatchResponse {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface GetActionTypeFullMetadataBatchRequest {
+  requests: Array<GetActionTypeFullMetadataBatchRequestElement>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetActionTypeFullMetadataBatchRequestElement {
+  actionType: ActionTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetActionTypeFullMetadataBatchResponse {
+  data: Array<ActionTypeFullMetadata>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface GetObjectTypeByRidBatchRequest {
@@ -2478,6 +2499,28 @@ export interface GetObjectTypeByRidBatchRequestElement {
  */
 export interface GetObjectTypeByRidBatchResponse {
   data: Array<ObjectTypeV2>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetObjectTypeFullMetadataBatchRequest {
+  requests: Array<GetObjectTypeFullMetadataBatchRequestElement>;
+  includeLinkTypes?: boolean;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetObjectTypeFullMetadataBatchRequestElement {
+  objectType: ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetObjectTypeFullMetadataBatchResponse {
+  data: Array<ObjectTypeFullMetadata>;
 }
 
 /**
@@ -4770,6 +4813,7 @@ export interface ObjectTypeLinkTypeApiNameMapping {
  * Log Safety: UNSAFE
  */
 export interface ObjectTypeMediaSetViewDatasource {
+  mediaSetRid: _Core.MediaSetRid;
   mediaSetViewRid: _Core.MediaSetViewRid;
   properties: Array<PropertyApiName>;
 }
