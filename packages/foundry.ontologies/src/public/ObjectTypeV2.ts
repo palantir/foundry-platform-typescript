@@ -184,6 +184,47 @@ export function getFullMetadata(
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);
 }
 
+const _getFullMetadataBatch: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetObjectTypeFullMetadataBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.GetObjectTypeFullMetadataBatchResponse>
+> = [1, "/v2/ontologies/{0}/objectTypes/getFullMetadataBatch", 3];
+
+/**
+ * Gets the full metadata for a batch of object types, identified by their API names.
+ *
+ * Set `includeLinkTypes` to return every outgoing link type for each object type alongside its metadata,
+ * without needing to know the link type API names. Link types are ordered by their API name.
+ *
+ * Object types are returned in the order they were requested. Any that don't exist or that the requesting
+ * token lacks permissions for are silently omitted.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objectTypes/getFullMetadataBatch
+ */
+export function getFullMetadataBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetObjectTypeFullMetadataBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.GetObjectTypeFullMetadataBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getFullMetadataBatch, ...args);
+}
+
 const _getEditsHistory: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,

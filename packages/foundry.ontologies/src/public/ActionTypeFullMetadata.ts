@@ -103,3 +103,43 @@ export function get(
 ): Promise<_Ontologies.ActionTypeFullMetadata> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _getFullMetadataBatch: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetActionTypeFullMetadataBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.GetActionTypeFullMetadataBatchResponse>
+> = [1, "/v2/ontologies/{0}/actionTypes/getFullMetadataBatch", 3];
+
+/**
+ * Gets a list of action types with full metadata (parameters and logic rules) by their API names in
+ * bulk.
+ *
+ * Action types are filtered from the response if they don't exist, the requesting token lacks the
+ * required permissions, or any of their logic rules are not supported by this API, so the response may
+ * contain fewer entries than requested.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes/getFullMetadataBatch
+ */
+export function getFullMetadataBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetActionTypeFullMetadataBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.GetActionTypeFullMetadataBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getFullMetadataBatch, ...args);
+}
