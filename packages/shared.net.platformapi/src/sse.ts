@@ -43,7 +43,7 @@ export async function* sseStream<T>(
   for await (const value of stream) {
     if (value.data === "") continue;
 
-    let data: T;
+    let data: any;
     try {
       data = JSON.parse(value.data);
     } catch (e) {
