@@ -1,5 +1,16 @@
 # @osdk/platform-sdk-generator
 
+## 0.74.0
+
+### Minor Changes
+
+- 36f7fa2: add sse support
+
+### Patch Changes
+
+- Updated dependencies [36f7fa2]
+  - @osdk/docs-spec-platform@0.61.0
+
 ## 0.73.0
 
 ### Patch Changes

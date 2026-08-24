@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.22.0
+
+### Minor Changes
+
+- 36f7fa2: add sse support
+
 ## 0.21.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.8.0
+
+### Minor Changes
+
+- 36f7fa2: add sse support
+
 ## 1.7.0
 
 ### Minor Changes
