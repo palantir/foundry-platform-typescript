@@ -1,5 +1,18 @@
 # @osdk/gotham.maprendering
 
+## 0.47.0
+
+### Minor Changes
+
+- 36f7fa2: add sse support
+
+### Patch Changes
+
+- Updated dependencies [36f7fa2]
+  - @osdk/shared.net.platformapi@1.8.0
+  - @osdk/gotham.geojson@0.47.0
+  - @osdk/gotham.core@0.47.0
+
 ## 0.46.0
 
 ### Minor Changes

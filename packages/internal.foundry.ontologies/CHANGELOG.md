@@ -1,5 +1,19 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.75.0
+
+### Minor Changes
+
+- 36f7fa2: add sse support
+
+### Patch Changes
+
+- Updated dependencies [36f7fa2]
+  - @osdk/internal.foundry.datasets@2.75.0
+  - @osdk/shared.net.platformapi@1.8.0
+  - @osdk/internal.foundry.core@2.75.0
+  - @osdk/internal.foundry.geo@2.75.0
+
 ## 2.74.0
 
 ### Minor Changes
