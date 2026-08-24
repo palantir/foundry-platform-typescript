@@ -173,11 +173,4 @@ describe("sseStream", () => {
     await expect(collect(sseStream(response)))
       .rejects.toThrow(UnknownError);
   });
-
-  it("terminates when an event exceeds the parser buffer", async () => {
-    const response = sseResponse(`data: ${"x".repeat(1024 * 1024 + 1)}`);
-
-    await expect(collect(sseStream(response)))
-      .rejects.toThrow(/exceeded max buffer size/);
-  });
 });

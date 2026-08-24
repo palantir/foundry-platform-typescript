@@ -17,8 +17,6 @@
 import { PalantirApiError, UnknownError } from "@osdk/shared.net.errors";
 import { EventSourceParserStream } from "eventsource-parser/stream";
 
-const MAX_BUFFER_SIZE = 1024 * 1024;
-
 export async function* sseStream<T>(
   response: Response,
 ): AsyncGenerator<T, void, void> {
@@ -35,27 +33,26 @@ export async function* sseStream<T>(
     .pipeThrough(new TextDecoderStream())
     .pipeThrough(
       new EventSourceParserStream({
-        maxBufferSize: MAX_BUFFER_SIZE,
         onError: "terminate",
       }),
     );
 
-  for await (const value of stream) {
-    if (value.data === "") continue;
+  for await (const event of stream) {
+    if (event.data === "") continue;
 
-    let data: any;
+    let data: T;
     try {
-      data = JSON.parse(value.data);
+      data = JSON.parse(event.data);
     } catch (e) {
       throw new UnknownError(
-        `Unable to parse event data as JSON: ${truncate(value.data)}`,
+        `Unable to parse event data as JSON: ${truncate(event.data)}`,
         "UNKNOWN",
         e instanceof Error ? e : undefined,
         response.status,
       );
     }
 
-    if (data?.type === "error") {
+    if (isSseErrorEvent(data)) {
       throw new PalantirApiError(
         data.errorDescription ?? data.errorName
           ?? "Streaming request failed",
@@ -70,6 +67,20 @@ export async function* sseStream<T>(
 
     yield data;
   }
+}
+
+interface SseErrorEvent {
+  type: "error";
+  errorName?: string;
+  errorCode?: string;
+  errorDescription?: string;
+  errorInstanceId?: string;
+  parameters?: any;
+}
+
+function isSseErrorEvent(data: unknown): data is SseErrorEvent {
+  return typeof data === "object" && data != null
+    && (data as { type?: unknown }).type === "error";
 }
 
 function truncate(data: string): string {
