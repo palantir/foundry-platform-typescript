@@ -302,7 +302,7 @@ export class Model {
  * `component`. Returns `undefined` for supported operations.
  *
  * The IR types in `@osdk/docs-spec-platform` are static and don't know about
- * variants added in newer IR releases (eg `sse`), so this guard reads the
+ * variants added in newer IR releases, so this guard reads the
  * discriminator through a runtime cast.
  */
 export function unsupportedResponseTypeVariant(
@@ -311,5 +311,7 @@ export function unsupportedResponseTypeVariant(
   const { body } = so.http.response;
   if (body.type !== "ok") return undefined;
   const variant = (body.ok.responseType as { type: string }).type;
-  return variant === "binary" || variant === "component" ? undefined : variant;
+  return variant === "binary" || variant === "component" || variant === "sse"
+    ? undefined
+    : variant;
 }

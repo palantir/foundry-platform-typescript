@@ -48,17 +48,6 @@ describe(unsupportedResponseTypeVariant, () => {
     expect(unsupportedResponseTypeVariant(so)).toBeUndefined();
   });
 
-  it("returns the variant name for an unknown ok response type", () => {
-    const so = operationWithResponseBody({
-      type: "ok",
-      ok: {
-        responseType: { type: "sse", sse: {} },
-        required: true,
-      },
-    });
-    expect(unsupportedResponseTypeVariant(so)).toBe("sse");
-  });
-
   it("returns the variant name for any future unknown variant", () => {
     const so = operationWithResponseBody({
       type: "ok",

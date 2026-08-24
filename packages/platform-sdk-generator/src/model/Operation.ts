@@ -23,6 +23,7 @@ import { BinaryResponseType } from "./BinaryResponseType.js";
 import type { Component } from "./Component.js";
 import type { Model } from "./Model.js";
 import { OptionalType } from "./OptionalType.js";
+import { SseResponseType } from "./SseResponseType.js";
 import type { Type } from "./Type.js";
 
 export class Operation {
@@ -89,7 +90,7 @@ export class Operation {
       }
       if (responseType.type === "sse") {
         const type = this.model.getType(responseType.sse.eventType.type);
-        return required ? type : new OptionalType(type);
+        return new SseResponseType(type);
       }
 
       let { type: { type: irType } } = responseType.type === "component"
