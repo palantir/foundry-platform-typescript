@@ -131,6 +131,11 @@ const _load: $FoundryPlatformMethod<
  *
  * Vector properties will not be returned unless included in the `select` parameter.
  *
+ * The `pageSize` parameter is a maximum. A page may contain fewer objects than requested if the
+ * objects in the page are large enough to reach an internal memory limit; this does not indicate
+ * that there are no more results. As long as the response contains a `nextPageToken`, the remaining
+ * objects can be retrieved by requesting subsequent pages.
+ *
  * @public
  *
  * Required Scopes: [api:ontologies-read]
@@ -192,6 +197,11 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
  * will be prefixed with '$' instead of '\_\_' as is the case in `loadObjects`.
  *
  * Vector properties will not be returned unless included in the `select` parameter.
+ *
+ * The `pageSize` parameter is a maximum. A page may contain fewer objects than requested if the
+ * objects in the page are large enough to reach an internal memory limit; this does not indicate
+ * that there are no more results. As long as the response contains a `nextPageToken`, the remaining
+ * objects can be retrieved by requesting subsequent pages.
  *
  * @beta
  *
@@ -257,6 +267,11 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
  * will be prefixed with '$' instead of '\_\_' as is the case in `/loadObjects`.
  *
  * Vector properties will not be returned unless included in the `select` parameter.
+ *
+ * The `pageSize` parameter is a maximum. A page may contain fewer objects than requested if the
+ * objects in the page are large enough to reach an internal memory limit; this does not indicate
+ * that there are no more results. As long as the response contains a `nextPageToken`, the remaining
+ * objects can be retrieved by requesting subsequent pages.
  *
  * @beta
  *

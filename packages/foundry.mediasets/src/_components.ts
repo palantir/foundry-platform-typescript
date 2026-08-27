@@ -1417,6 +1417,7 @@ export type MediaSchema =
   | "MULTIMODAL"
   | "SPREADSHEET"
   | "STREAMING_VIDEO"
+  | "TILED_RASTER"
   | "VIDEO"
   | "EMAIL";
 
@@ -2060,7 +2061,7 @@ export interface SlicePdfRangeOperation {
  *
  * Log Safety: SAFE
  */
-export type SpreadsheetDecodeFormat = "XLSX";
+export type SpreadsheetDecodeFormat = "CSV" | "XLSX";
 
 /**
  * Metadata for spreadsheet media items.
