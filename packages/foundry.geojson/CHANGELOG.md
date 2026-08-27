@@ -1,5 +1,7 @@
 # @osdk/foundry.geojson
 
+## 2.76.0
+
 ## 2.75.0
 
 ### Minor Changes
