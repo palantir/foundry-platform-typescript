@@ -1,5 +1,11 @@
 # @osdk/gotham.geojson
 
+## 0.48.0
+
+### Minor Changes
+
+- 57ef640: Regenerate SDKs with API version 1.1763.1
+
 ## 0.47.0
 
 ### Minor Changes

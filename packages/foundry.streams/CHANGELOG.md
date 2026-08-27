@@ -1,5 +1,18 @@
 # @osdk/foundry.streams
 
+## 2.76.0
+
+### Minor Changes
+
+- 57ef640: Regenerate SDKs with API version 1.1763.1
+
+### Patch Changes
+
+- Updated dependencies [57ef640]
+  - @osdk/foundry.core@2.76.0
+  - @osdk/foundry.datasets@2.76.0
+  - @osdk/foundry.filesystem@2.76.0
+
 ## 2.75.0
 
 ### Minor Changes
