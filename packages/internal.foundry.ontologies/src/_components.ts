@@ -117,6 +117,7 @@ export type ActionParameterType =
   | ({ type: "objectSet" } & OntologyObjectSetType)
   | ({ type: "geohash" } & _Core.GeohashType)
   | ({ type: "vector" } & _Core.VectorType)
+  | ({ type: "decimal" } & _Core.DecimalType)
   | ({ type: "object" } & OntologyObjectType)
   | ({ type: "timestamp" } & _Core.TimestampType);
 

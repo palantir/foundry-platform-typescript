@@ -317,6 +317,20 @@ export interface InvalidChildDocumentParent {
 }
 
 /**
+ * The provided document name must not be empty or consist only of whitespace.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidDocumentName {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDocumentName";
+  errorDescription:
+    "The provided document name must not be empty or consist only of whitespace.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The provided Document Type Name is invalid. First-party document type names must follow the format
 com.palantir.pack.<assetName>.<documentTypeName>.
    *
@@ -361,6 +375,44 @@ export interface LoadByNameDocumentTypesPermissionDenied {
   errorDescription: "Could not loadByName the DocumentType.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+   * The provided document could not be resolved to a namespace or ontology. When namespaceRid is absent,
+the document could not be resolved to a namespace; when namespaceRid is present, that namespace could not
+be resolved to an ontology.
+   *
+   * Log Safety: SAFE
+   */
+export interface NamespaceOrOntologyForDocumentNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "NamespaceOrOntologyForDocumentNotFound";
+  errorDescription:
+    "The provided document could not be resolved to a namespace or ontology. When namespaceRid is absent, the document could not be resolved to a namespace; when namespaceRid is present, that namespace could not be resolved to an ontology.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+    namespaceRid: unknown;
+  };
+}
+
+/**
+   * The provided parent folder could not be resolved to a namespace or ontology. When namespaceRid is absent,
+the folder could not be resolved to a namespace; when namespaceRid is present, that namespace could not be
+resolved to an ontology.
+   *
+   * Log Safety: SAFE
+   */
+export interface NamespaceOrOntologyForFolderNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "NamespaceOrOntologyForFolderNotFound";
+  errorDescription:
+    "The provided parent folder could not be resolved to a namespace or ontology. When namespaceRid is absent, the folder could not be resolved to a namespace; when namespaceRid is present, that namespace could not be resolved to an ontology.";
+  errorInstanceId: string;
+  parameters: {
+    folderRid: unknown;
+    namespaceRid: unknown;
+  };
 }
 
 /**

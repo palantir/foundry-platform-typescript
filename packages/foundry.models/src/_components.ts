@@ -435,6 +435,7 @@ export type GpuType =
   | "A100"
   | "A10G"
   | "A16"
+  | "B200"
   | "H100"
   | "H200"
   | "L4"
