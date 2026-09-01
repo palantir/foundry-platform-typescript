@@ -23,6 +23,7 @@ export interface Resource {
   operations: Operation[];
   pluralName: string;
   documentation: Documentation;
+  plane?: "PLATFORM";
   singleton?: boolean;
   pathSegment?: string;
   idPropertyName?: string;
@@ -69,7 +70,7 @@ export type InputType =
 
 export interface Parameter {
   name: string;
-  documentation: Documentation;
+  documentation?: Documentation;
   inputType: InputType;
   type: ParameterValue;
 }

@@ -16,7 +16,7 @@
 
 import type * as ir from "@osdk/docs-spec-platform";
 import * as path from "node:path";
-import { ensurePackageSetup } from "../generatePlatformSdkv2.js";
+import { ensurePackageSetup } from "../generatePlatformSdks.js";
 import { getNamespacePlatform } from "../getNamespacePlatform.js";
 import {
   isPrefixCorrectForComponent,
@@ -42,7 +42,12 @@ export class Model {
   #typeCache = new Map<string, Type>();
   #components = new Map<string, Component>();
   #errors = new Map<string, ErrorType>();
-  #opts: { outputDir: string; packagePrefix: string; npmOrg: string };
+  #opts: {
+    outputDir: string;
+    packagePrefix: string;
+    npmOrg: string;
+    packageSubpath?: string;
+  };
 
   getType(dt: ir.DataType): Type {
     const jsonString = JSON.stringify(dt);
@@ -125,6 +130,7 @@ export class Model {
     npmOrg: string;
     endpointVersion: string;
     deprecatedIr?: ir.ApiSpec;
+    packageSubpath?: string;
   }): Promise<Model> {
     const model = new Model(opts);
 
@@ -189,6 +195,7 @@ export class Model {
       outputDir: string;
       packagePrefix: string;
       npmOrg: string;
+      packageSubpath?: string;
     },
   ) {
     this.#opts = opts;
@@ -201,13 +208,22 @@ export class Model {
   async #addNamespace(nsName: string, body: ir.Namespace) {
     const dir = `${this.#opts.packagePrefix}${`.${nsName.toLowerCase()}`}`;
     const packagePath = path.join(this.#opts.outputDir, dir);
-    const packageName = `${this.#opts.npmOrg}/${dir}`;
+    const dependencyImportPath = `${this.#opts.npmOrg}/${dir}`;
+    const packageName = this.#opts.packageSubpath == null
+      ? dependencyImportPath
+      : `${dependencyImportPath}/${this.#opts.packageSubpath}`;
     this.#namespaces.set(nsName, {
       components: [],
       errors: [],
       resources: [],
       packageName,
-      paths: await ensurePackageSetup(packagePath, packageName, []),
+      dependencyImportPath,
+      paths: await ensurePackageSetup(
+        packagePath,
+        dependencyImportPath,
+        [],
+        this.#opts.packageSubpath,
+      ),
       name: nsName,
       version: body.version,
     });
