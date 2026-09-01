@@ -46,7 +46,7 @@ export class Model {
     outputDir: string;
     packagePrefix: string;
     npmOrg: string;
-    packageSubpath?: string;
+    packageSubpath: string;
   };
 
   getType(dt: ir.DataType): Type {
@@ -130,7 +130,7 @@ export class Model {
     npmOrg: string;
     endpointVersion: string;
     deprecatedIr?: ir.ApiSpec;
-    packageSubpath?: string;
+    packageSubpath: string;
   }): Promise<Model> {
     const model = new Model(opts);
 
@@ -195,7 +195,7 @@ export class Model {
       outputDir: string;
       packagePrefix: string;
       npmOrg: string;
-      packageSubpath?: string;
+      packageSubpath: string;
     },
   ) {
     this.#opts = opts;
@@ -209,9 +209,7 @@ export class Model {
     const dir = `${this.#opts.packagePrefix}${`.${nsName.toLowerCase()}`}`;
     const packagePath = path.join(this.#opts.outputDir, dir);
     const dependencyImportPath = `${this.#opts.npmOrg}/${dir}`;
-    const packageName = this.#opts.packageSubpath == null
-      ? dependencyImportPath
-      : `${dependencyImportPath}/${this.#opts.packageSubpath}`;
+    const packageName = `${dependencyImportPath}/${this.#opts.packageSubpath}`;
     this.#namespaces.set(nsName, {
       components: [],
       errors: [],

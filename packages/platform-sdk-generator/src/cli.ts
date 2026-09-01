@@ -66,6 +66,7 @@ export class GenerateCommand implements CommandModule<{}, Options> {
         type: "string",
         demandOption: true,
       })
+      // TODO: When we major version our packages, remove this flag and stop generating these
       .option("deprecatedFile", {
         describe:
           "The location of the API IR that contains deprecated or legacy components no longer in the original IR",
