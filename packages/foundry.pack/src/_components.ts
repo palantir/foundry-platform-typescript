@@ -856,6 +856,19 @@ export interface FieldValueObjectRef {
 }
 
 /**
+   * A reference to an arbitrary platform resource, held as a RID. Unlike docRef (which references another PACK
+document) or object (which references an ontology object), the reference is not restricted to a single type
+of resource, so the value is only constrained to being a RID.
+Optionally constrained to a list of specific resource RIDs; an empty list permits any resource. Note that
+this enumerates individual resources, whereas docRef and object constrain by type.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FieldValueResourceRef {
+  resourceRids: Array<_Filesystem.ResourceRid>;
+}
+
+/**
  * A string field value with optional constraints and default.
  *
  * Log Safety: UNSAFE
@@ -894,15 +907,16 @@ export interface FieldValueType {
  */
 export type FieldValueUnion =
   | ({ type: "mediaRef" } & FieldValueMediaRef)
-  | ({ type: "modelRef" } & FieldValueModelRef)
-  | ({ type: "datetime" } & FieldValueDatetime)
-  | ({ type: "userRef" } & FieldValueUserRef)
-  | ({ type: "boolean" } & FieldValueBoolean)
-  | ({ type: "docRef" } & FieldValueDocumentRef)
   | ({ type: "string" } & FieldValueString)
   | ({ type: "double" } & FieldValueDouble)
   | ({ type: "unmanagedJson" } & FieldValueUnmanagedJson)
   | ({ type: "integer" } & FieldValueInteger)
+  | ({ type: "modelRef" } & FieldValueModelRef)
+  | ({ type: "resourceRef" } & FieldValueResourceRef)
+  | ({ type: "datetime" } & FieldValueDatetime)
+  | ({ type: "userRef" } & FieldValueUserRef)
+  | ({ type: "boolean" } & FieldValueBoolean)
+  | ({ type: "docRef" } & FieldValueDocumentRef)
   | ({ type: "text" } & FieldValueText)
   | ({ type: "object" } & FieldValueObjectRef);
 

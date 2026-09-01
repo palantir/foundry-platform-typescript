@@ -6443,6 +6443,26 @@ export type SdkPackageRid = LooselyBrandedString<"SdkPackageRid">;
 export type SdkVersion = LooselyBrandedString<"SdkVersion">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface SearchActionTypesFullMetadataRequest {
+  where?: ActionTypeSearchJsonQueryV2;
+  orderBy?: SearchActionTypesOrderByV2;
+  fuzziness?: ActionTypeFuzziness;
+  pageSize?: _Core.PageSize;
+  pageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchActionTypesFullMetadataResponse {
+  data: Array<ActionTypeFullMetadata>;
+  nextPageToken?: _Core.PageToken;
+  totalCount: _Core.TotalCount;
+}
+
+/**
    * Specifies the ordering of action type search results by a field and an ordering direction. If not provided,
 results are ordered by relevance of the match.
    *

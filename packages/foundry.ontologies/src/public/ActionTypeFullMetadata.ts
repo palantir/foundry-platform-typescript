@@ -70,6 +70,44 @@ export function list(
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
+const _search: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.SearchActionTypesFullMetadataRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.SearchActionTypesFullMetadataResponse>
+> = [1, "/v2/ontologies/{0}/actionTypes/searchFullMetadata", 3];
+
+/**
+ * Search for action types in the given Ontology that match the provided filters. Full action type metadata
+ * results are returned by relevance of the match unless an explicit `orderBy` is provided.
+ *
+ * Action types with logic rules that cannot be represented in the API are omitted from the results.
+ * As a consequence, totalCount counts all matching action types in the Ontology and may exceed the number
+ * of results returned across all pages, and an individual page may be empty even when nextPageToken is present.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes/searchFullMetadata
+ */
+export function search(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.SearchActionTypesFullMetadataRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.SearchActionTypesFullMetadataResponse> {
+  return $foundryPlatformFetch($ctx, _search, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
