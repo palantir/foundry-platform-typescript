@@ -35,6 +35,7 @@ interface PlatformSdkGeneration {
   endpointVersion: string;
   deprecatedIr?: ApiSpec;
   packageSubpath?: string;
+  promoted: boolean;
 }
 
 export async function generatePlatformSdks(
@@ -62,7 +63,6 @@ export async function generatePlatformSdks(
   }
   return [...packageDirectories];
 }
-
 export async function generatePlatformSdkVersions(
   ir: ApiSpec,
   outputDir: string,
@@ -87,14 +87,19 @@ export async function generatePlatformSdkVersions(
             )
           )
           : undefined,
+        promoted: config.promoted === true || config.packageSubpath == null,
       }),
     );
   const defaultExports = generations.filter(generation =>
-    generation.packageSubpath == null
+    generation.promoted
   );
-  if (defaultExports.length > 1) {
-    throw new Error("Only one generation can target the package root.");
+  if (defaultExports.length !== 1) {
+    throw new Error("Exactly one generation must be promoted.");
   }
+
+  const packageSubpaths = generations.flatMap(generation =>
+    generation.packageSubpath == null ? [] : [generation.packageSubpath]
+  );
 
   const packageDirectories: string[] = [];
   for (const generation of generations) {
@@ -106,6 +111,8 @@ export async function generatePlatformSdkVersions(
         generation.endpointVersion,
         generation.deprecatedIr,
         generation.packageSubpath,
+        generation.promoted,
+        packageSubpaths,
       )
     ) {
       packageDirectories.push(packageDirectory);
@@ -121,6 +128,8 @@ export async function generatePlatformSdk(
   endpointVersion: string,
   deprecatedIr?: ApiSpec,
   packageSubpath?: string,
+  promoted = packageSubpath == null,
+  packageSubpaths: string[] = packageSubpath == null ? [] : [packageSubpath],
 ): Promise<string[]> {
   const npmOrg = "@osdk";
   const model = await Model.create(ir, {
@@ -225,20 +234,40 @@ export async function generatePlatformSdk(
 
   if (packageSubpath != null) {
     for (const ns of model.namespaces) {
-      await fs.mkdir(path.join(ns.paths.packagePath, "src", "public"), {
+      const packageSrcDir = path.join(ns.paths.packagePath, "src");
+      const publicDir = path.join(packageSrcDir, "public");
+      await fs.mkdir(publicDir, {
         recursive: true,
       });
-      const rootIndexPath = path.join(ns.paths.packagePath, "src", "index.ts");
-      if (!await fileExists(rootIndexPath)) {
+      const rootIndexPath = path.join(packageSrcDir, "index.ts");
+      if (promoted) {
+        await Promise.all([
+          fs.rm(path.join(packageSrcDir, "_components.ts"), { force: true }),
+          fs.rm(path.join(packageSrcDir, "_errors.ts"), { force: true }),
+        ]);
+        for (const entry of await fs.readdir(publicDir)) {
+          if (
+            entry.endsWith(".ts")
+            && !packageSubpaths.includes(path.basename(entry, ".ts"))
+          ) {
+            await fs.rm(path.join(publicDir, entry));
+          }
+        }
+        await writeCode(
+          rootIndexPath,
+          `${copyright}\n\nexport * from "./${packageSubpath}/index.js";\n`,
+        );
+        for (const resource of ns.resources) {
+          await writeCode(
+            path.join(publicDir, `${resource.component}.ts`),
+            `${copyright}\n\nexport * from "../${packageSubpath}/public/${resource.component}.js";\n`,
+          );
+        }
+      } else if (!await fileExists(rootIndexPath)) {
         await writeCode(rootIndexPath, `${copyright}\n\nexport {};\n`);
       }
       await writeCode(
-        path.join(
-          ns.paths.packagePath,
-          "src",
-          "public",
-          `${packageSubpath}.ts`,
-        ),
+        path.join(publicDir, `${packageSubpath}.ts`),
         `${copyright}\n\nexport * from "../${packageSubpath}/index.js";\n`,
       );
       await writeCode(
@@ -251,17 +280,19 @@ export async function generatePlatformSdk(
       );
     }
 
-    return [...model.namespaces].map(ns => ns.paths.packagePath);
+    if (!promoted) {
+      return [...model.namespaces].map(ns => ns.paths.packagePath);
+    }
   }
 
   // finally create the re-export package
   let rootIndexTsContents = `${copyright}\n\n`;
   for (const ns of model.namespaces) {
     if (ns.name === "") {
-      rootIndexTsContents += `export * from "${ns.packageName}";\n`;
+      rootIndexTsContents += `export * from "${ns.dependencyImportPath}";\n`;
     } else {
       rootIndexTsContents +=
-        `export * as ${ns.name} from "${ns.packageName}";\n`;
+        `export * as ${ns.name} from "${ns.dependencyImportPath}";\n`;
     }
   }
 
@@ -270,7 +301,7 @@ export async function generatePlatformSdk(
   const megaInfo = await ensurePackageSetup(
     primaryPackagePath,
     primaryPackageName,
-    [...model.namespaces].map(n => n.packageName),
+    [...model.namespaces].map(n => n.dependencyImportPath),
   );
 
   await writeCode(
