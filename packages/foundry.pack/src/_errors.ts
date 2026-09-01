@@ -181,19 +181,6 @@ export interface CreateDocumentWithMatchingSecurityPermissionDenied {
 }
 
 /**
- * Could not createFirstParty the DocumentType.
- *
- * Log Safety: SAFE
- */
-export interface CreateFirstPartyDocumentTypePermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "CreateFirstPartyDocumentTypePermissionDenied";
-  errorDescription: "Could not createFirstParty the DocumentType.";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
  * Could not delete the Document.
  *
  * Log Safety: SAFE
@@ -328,23 +315,6 @@ export interface InvalidDocumentName {
     "The provided document name must not be empty or consist only of whitespace.";
   errorInstanceId: string;
   parameters: {};
-}
-
-/**
-   * The provided Document Type Name is invalid. First-party document type names must follow the format
-com.palantir.pack.<assetName>.<documentTypeName>.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface InvalidDocumentTypeName {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidDocumentTypeName";
-  errorDescription:
-    "The provided Document Type Name is invalid. First-party document type names must follow the format com.palantir.pack.<assetName>.<documentTypeName>.";
-  errorInstanceId: string;
-  parameters: {
-    documentTypeName: unknown;
-  };
 }
 
 /**

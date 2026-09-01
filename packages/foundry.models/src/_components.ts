@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Connectivity from "@osdk/foundry.connectivity";
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Filesystem from "@osdk/foundry.filesystem";
 import type * as _Ontologies from "@osdk/foundry.ontologies";
@@ -60,6 +61,13 @@ export type ColumnName = LooselyBrandedString<"ColumnName">;
  * Log Safety: UNSAFE
  */
 export type ColumnTypeSpecId = LooselyBrandedString<"ColumnTypeSpecId">;
+
+/**
+ * The Resource Identifier (RID) of a Connection (also known as a source).
+ *
+ * Log Safety: SAFE
+ */
+export type ConnectionRid = LooselyBrandedString<"ConnectionRid">;
 
 /**
  * A specific reason why configuration validation failed.
@@ -435,6 +443,7 @@ export type GpuType =
   | "A100"
   | "A10G"
   | "A16"
+  | "B200"
   | "H100"
   | "H200"
   | "L4"
@@ -635,6 +644,7 @@ export interface LiveDeploymentRuntimeConfiguration {
   gpu?: LiveDeploymentGpu;
   threadCount?: number;
   scalingConfiguration?: LiveDeploymentScalingConfiguration;
+  sources: Array<_Connectivity.ConnectionRid>;
   environmentVariables: Record<string, string>;
 }
 
