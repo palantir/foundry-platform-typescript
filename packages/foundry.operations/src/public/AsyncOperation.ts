@@ -14,43 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Operations from "../_components.js";
-
-//
-
-const _get: $FoundryPlatformMethod<
-  (
-    operationId: string,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Operations.AsyncOperation>
-> = [0, "/v2/operations/{0}", 2];
-
-/**
- * Get an asynchronous operation by its ID.
- *
- * @alpha
- *
- * Required Scopes: [api:ontologies-read]
- * URL: /v2/operations/{operationId}
- */
-export function get(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    operationId: string,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_Operations.AsyncOperation> {
-  return $foundryPlatformFetch($ctx, _get, ...args);
-}
+export * from "../v2/public/AsyncOperation.js";

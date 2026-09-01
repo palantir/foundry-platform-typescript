@@ -14,44 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _LanguageModels from "../_components.js";
-
-//
-
-const _embeddings: $FoundryPlatformMethod<
-  (
-    openAiModelModelId: _LanguageModels.LanguageModelApiName,
-    $body: _LanguageModels.OpenAiEmbeddingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-    $headerParams?: { attribution?: _Core.Attribution | undefined },
-  ) => Promise<_LanguageModels.OpenAiEmbeddingsResponse>
-> = [1, "/v2/languageModels/openAi/{0}/embeddings", 7];
-
-/**
- * @alpha
- *
- * Required Scopes: [api:language-models-execute]
- * URL: /v2/languageModels/openAi/{openAiModelModelId}/embeddings
- */
-export function embeddings(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    openAiModelModelId: _LanguageModels.LanguageModelApiName,
-    $body: _LanguageModels.OpenAiEmbeddingsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-    $headerParams?: { attribution?: _Core.Attribution | undefined },
-  ]
-): Promise<_LanguageModels.OpenAiEmbeddingsResponse> {
-  return $foundryPlatformFetch($ctx, _embeddings, ...args);
-}
+export * from "../v2/public/OpenAiModel.js";
