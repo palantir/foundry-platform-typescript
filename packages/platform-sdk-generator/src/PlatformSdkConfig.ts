@@ -14,21 +14,32 @@
  * limitations under the License.
  */
 
-import type { Component } from "./Component.js";
-import type { ErrorType } from "./ErrorType.js";
-import type { Resource } from "./Resource.js";
-
-export interface Namespace {
-  name: string;
-  version: string;
-  components: Component[];
-  errors: ErrorType[];
-  resources: Resource[];
-  packageName: string;
-  dependencyImportPath: string;
-  paths: {
-    packagePath: string;
-    srcDir: string;
-    resourcesDir: string;
-  };
+interface ApiVersionConfig {
+  packageSubpath?: string;
+  includeDeprecatedIr?: boolean;
 }
+
+type PlatformSdkConfig = {
+  docs: boolean;
+  versions: { [version: string]: ApiVersionConfig };
+};
+
+export type PackagePrefix = string;
+
+export const PLATFORM_SDK_CONFIG: Record<PackagePrefix, PlatformSdkConfig> = {
+  "internal.foundry": {
+    docs: false,
+    versions: { v1: { includeDeprecatedIr: true } },
+  },
+  foundry: {
+    docs: true,
+    versions: {
+      v2: { includeDeprecatedIr: true },
+      v3: { packageSubpath: "unstable_do_not_use_v3" },
+    },
+  },
+  gotham: {
+    docs: false,
+    versions: { v2: {} },
+  },
+};
