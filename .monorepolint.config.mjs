@@ -37,26 +37,35 @@ const LATEST_TYPESCRIPT_DEP = "^5.5.4";
 const DELETE_SCRIPT_ENTRY = { options: [undefined], fixValue: undefined };
 
 const DEFAULT_STANDARD_PACKAGE_OPTIONS = { tsVersion: LATEST_TYPESCRIPT_DEP };
-const V3_SUBPATH = "unstable_do_not_use_v3";
+const VERSION_SUBPATHS = ["v2", "unstable_do_not_use_v3"];
 const packagesDirectory = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
   "packages",
 );
-const v3Packages = fs.readdirSync(packagesDirectory, { withFileTypes: true })
+const versionedPackages = fs.readdirSync(packagesDirectory, {
+  withFileTypes: true,
+})
   .filter(entry =>
     entry.isDirectory()
-    && fs.existsSync(
-      path.join(packagesDirectory, entry.name, `${V3_SUBPATH}.d.ts`),
+    && VERSION_SUBPATHS.some(subpath =>
+      fs.existsSync(
+        path.join(packagesDirectory, entry.name, `${subpath}.d.ts`),
+      )
     )
   )
-  .map(entry =>
-    JSON.parse(
+  .map(entry => ({
+    name: JSON.parse(
       fs.readFileSync(
         path.join(packagesDirectory, entry.name, "package.json"),
         "utf8",
       ),
-    ).name
-  );
+    ).name,
+    packageSubpaths: VERSION_SUBPATHS.filter(subpath =>
+      fs.existsSync(
+        path.join(packagesDirectory, entry.name, `${subpath}.d.ts`),
+      )
+    ),
+  }));
 
 const nonStandardPackages = [
   "@osdk/monorepo.*", // internal monorepo packages
@@ -423,7 +432,7 @@ export default {
     ...standardPackageRules({
       excludePackages: [
         ...nonStandardPackages,
-        ...v3Packages,
+        ...versionedPackages.map(({ name }) => name),
       ],
     }, DEFAULT_STANDARD_PACKAGE_OPTIONS),
 
@@ -434,12 +443,14 @@ export default {
       vitest: true,
     }),
 
-    ...standardPackageRules({
-      includePackages: v3Packages,
-    }, {
-      ...DEFAULT_STANDARD_PACKAGE_OPTIONS,
-      packageSubpaths: [V3_SUBPATH],
-    }),
+    ...versionedPackages.flatMap(({ name, packageSubpaths }) =>
+      standardPackageRules({
+        includePackages: [name],
+      }, {
+        ...DEFAULT_STANDARD_PACKAGE_OPTIONS,
+        packageSubpaths,
+      })
+    ),
 
     ...standardPackageRules(
       {
