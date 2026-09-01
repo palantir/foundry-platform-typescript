@@ -34,8 +34,8 @@ interface PlatformSdkGeneration {
   ir: ApiSpec;
   endpointVersion: string;
   deprecatedIr?: ApiSpec;
-  packageSubpath?: string;
-  promoted: boolean;
+  packageSubpath: string;
+  isPromoted: boolean;
 }
 
 export async function generatePlatformSdks(
@@ -87,19 +87,15 @@ export async function generatePlatformSdkVersions(
             )
           )
           : undefined,
-        promoted: config.promoted === true || config.packageSubpath == null,
+        isPromoted: config.isPromoted,
       }),
     );
   const defaultExports = generations.filter(generation =>
-    generation.promoted
+    generation.isPromoted
   );
   if (defaultExports.length !== 1) {
     throw new Error("Exactly one generation must be promoted.");
   }
-
-  const packageSubpaths = generations.flatMap(generation =>
-    generation.packageSubpath == null ? [] : [generation.packageSubpath]
-  );
 
   const packageDirectories: string[] = [];
   for (const generation of generations) {
@@ -111,8 +107,7 @@ export async function generatePlatformSdkVersions(
         generation.endpointVersion,
         generation.deprecatedIr,
         generation.packageSubpath,
-        generation.promoted,
-        packageSubpaths,
+        generation.isPromoted,
       )
     ) {
       packageDirectories.push(packageDirectory);
@@ -126,10 +121,9 @@ export async function generatePlatformSdk(
   outputDir: string,
   packagePrefix: string,
   endpointVersion: string,
-  deprecatedIr?: ApiSpec,
-  packageSubpath?: string,
-  promoted = packageSubpath == null,
-  packageSubpaths: string[] = packageSubpath == null ? [] : [packageSubpath],
+  deprecatedIr: ApiSpec | undefined,
+  packageSubpath: string,
+  isPromoted: boolean,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
   const model = await Model.create(ir, {
@@ -232,60 +226,45 @@ export async function generatePlatformSdk(
     );
   }
 
-  if (packageSubpath != null) {
-    for (const ns of model.namespaces) {
-      const packageSrcDir = path.join(ns.paths.packagePath, "src");
-      const publicDir = path.join(packageSrcDir, "public");
-      await fs.mkdir(publicDir, {
-        recursive: true,
-      });
-      const rootIndexPath = path.join(packageSrcDir, "index.ts");
-      if (promoted) {
-        await Promise.all([
-          fs.rm(path.join(packageSrcDir, "_components.ts"), { force: true }),
-          fs.rm(path.join(packageSrcDir, "_errors.ts"), { force: true }),
-        ]);
-        for (const entry of await fs.readdir(publicDir)) {
-          if (
-            entry.endsWith(".ts")
-            && !packageSubpaths.includes(path.basename(entry, ".ts"))
-          ) {
-            await fs.rm(path.join(publicDir, entry));
-          }
-        }
+  for (const ns of model.namespaces) {
+    const packageSrcDir = path.join(ns.paths.packagePath, "src");
+    const publicDir = path.join(packageSrcDir, "public");
+    await fs.mkdir(publicDir, {
+      recursive: true,
+    });
+    const rootIndexPath = path.join(packageSrcDir, "index.ts");
+    if (isPromoted) {
+      await writeCode(
+        rootIndexPath,
+        `${copyright}\n\nexport * from "./${packageSubpath}/index.js";\n`,
+      );
+      for (const resource of ns.resources) {
         await writeCode(
-          rootIndexPath,
-          `${copyright}\n\nexport * from "./${packageSubpath}/index.js";\n`,
+          path.join(publicDir, `${resource.component}.ts`),
+          `${copyright}\n\nexport * from "../${packageSubpath}/public/${resource.component}.js";\n`,
         );
-        for (const resource of ns.resources) {
-          await writeCode(
-            path.join(publicDir, `${resource.component}.ts`),
-            `${copyright}\n\nexport * from "../${packageSubpath}/public/${resource.component}.js";\n`,
-          );
-        }
-      } else if (!await fileExists(rootIndexPath)) {
-        await writeCode(rootIndexPath, `${copyright}\n\nexport {};\n`);
       }
-      await writeCode(
-        path.join(publicDir, `${packageSubpath}.ts`),
-        `${copyright}\n\nexport * from "../${packageSubpath}/index.js";\n`,
-      );
-      await writeCode(
-        path.join(ns.paths.packagePath, `${packageSubpath}.d.ts`),
-        `${copyright}\n\nexport * from "./build/esm/public/${packageSubpath}.js";\n`,
-      );
-      await addPackageSubpathExport(
-        path.join(ns.paths.packagePath, "package.json"),
-        packageSubpath,
-      );
+    } else if (!await fileExists(rootIndexPath)) {
+      await writeCode(rootIndexPath, `${copyright}\n\nexport {};\n`);
     }
-
-    if (!promoted) {
-      return [...model.namespaces].map(ns => ns.paths.packagePath);
-    }
+    await writeCode(
+      path.join(publicDir, `${packageSubpath}.ts`),
+      `${copyright}\n\nexport * from "../${packageSubpath}/index.js";\n`,
+    );
+    await writeCode(
+      path.join(ns.paths.packagePath, `${packageSubpath}.d.ts`),
+      `${copyright}\n\nexport * from "./build/esm/public/${packageSubpath}.js";\n`,
+    );
+    await addPackageSubpathExport(
+      path.join(ns.paths.packagePath, "package.json"),
+      packageSubpath,
+    );
   }
 
-  // finally create the re-export package
+  if (!isPromoted) {
+    return [...model.namespaces].map(ns => ns.paths.packagePath);
+  }
+
   let rootIndexTsContents = `${copyright}\n\n`;
   for (const ns of model.namespaces) {
     if (ns.name === "") {

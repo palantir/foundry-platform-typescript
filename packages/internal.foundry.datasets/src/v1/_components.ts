@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/internal.foundry.core";
+import type * as _Core from "@osdk/internal.foundry.core/v1";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;

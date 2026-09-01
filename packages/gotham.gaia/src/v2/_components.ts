@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/gotham.core";
-import type * as _Geojson from "@osdk/gotham.geojson";
+import type * as _Core from "@osdk/gotham.core/v2";
+import type * as _Geojson from "@osdk/gotham.geojson/v2";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Geo from "@osdk/internal.foundry.geo";
+import type * as _Geo from "@osdk/internal.foundry.geo/v1";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;

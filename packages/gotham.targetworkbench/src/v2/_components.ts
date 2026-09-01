@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/gotham.core";
+import type * as _Core from "@osdk/gotham.core/v2";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
