@@ -12,6 +12,11 @@
       "import": "./build/esm/index.js",
       "default": "./build/esm/index.js"
     },
+    "./v2": {
+      "browser": "./build/browser/public/v2.js",
+      "import": "./build/esm/public/v2.js",
+      "default": "./build/esm/public/v2.js"
+    },
     "./*": {
       "browser": "./build/browser/public/*.js",
       "import": "./build/esm/public/*.js",
@@ -53,7 +58,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1769.0",
+        "minVersion": "1.1786.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

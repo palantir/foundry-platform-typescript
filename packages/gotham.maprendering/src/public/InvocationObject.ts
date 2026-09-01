@@ -14,40 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/gotham.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $PlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $platformFetch } from "@osdk/shared.net.platformapi";
-import type * as _MapRendering from "../_components.js";
-
-//
-
-const _render: $PlatformMethod<
-  (
-    $body: _MapRendering.RenderInvocationObjectRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_MapRendering.RenderObjectsResponse>
-> = [2, "/v2/mapRendering/invocationObject/render", 3];
-
-/**
- * @beta
- *
- * Required Scopes: [api:map-read]
- * URL: /v2/mapRendering/invocationObject/render
- */
-export function render(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _MapRendering.RenderInvocationObjectRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_MapRendering.RenderObjectsResponse> {
-  return $platformFetch($ctx, _render, ...args);
-}
+export * from "../v2/public/InvocationObject.js";

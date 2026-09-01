@@ -28,12 +28,44 @@ import {
   standardTsconfig,
 } from "@monorepolint/rules";
 import * as child_process from "node:child_process";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const LATEST_TYPESCRIPT_DEP = "^5.5.4";
 
 const DELETE_SCRIPT_ENTRY = { options: [undefined], fixValue: undefined };
 
 const DEFAULT_STANDARD_PACKAGE_OPTIONS = { tsVersion: LATEST_TYPESCRIPT_DEP };
+const VERSION_SUBPATHS = ["v2", "unstable_do_not_use_v3"];
+const packagesDirectory = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "packages",
+);
+const versionedPackages = fs.readdirSync(packagesDirectory, {
+  withFileTypes: true,
+})
+  .filter(entry =>
+    entry.isDirectory()
+    && VERSION_SUBPATHS.some(subpath =>
+      fs.existsSync(
+        path.join(packagesDirectory, entry.name, `${subpath}.d.ts`),
+      )
+    )
+  )
+  .map(entry => ({
+    name: JSON.parse(
+      fs.readFileSync(
+        path.join(packagesDirectory, entry.name, "package.json"),
+        "utf8",
+      ),
+    ).name,
+    packageSubpaths: VERSION_SUBPATHS.filter(subpath =>
+      fs.existsSync(
+        path.join(packagesDirectory, entry.name, `${subpath}.d.ts`),
+      )
+    ),
+  }));
 
 const nonStandardPackages = [
   "@osdk/monorepo.*", // internal monorepo packages
@@ -240,7 +272,8 @@ function getTsconfigOptions(baseTsconfigPath, opts) {
  * @param {{
  *  customTsconfigExcludes?: string[],
  *  tsVersion?: typeof LATEST_TYPESCRIPT_DEP,
- *  vitest?: boolean
+ *  vitest?: boolean,
+ *  packageSubpaths?: string[]
  * }} options
  * @returns {import("@monorepolint/config").RuleModule[]}
  */
@@ -308,6 +341,17 @@ function standardPackageRules(shared, options, hasDist = false) {
               import: "./build/esm/index.js",
               default: "./build/esm/index.js",
             },
+
+            ...Object.fromEntries(
+              (options.packageSubpaths ?? []).map((subpath) => [
+                `./${subpath}`,
+                {
+                  browser: `./build/browser/public/${subpath}.js`,
+                  import: `./build/esm/public/${subpath}.js`,
+                  default: `./build/esm/public/${subpath}.js`,
+                },
+              ]),
+            ),
 
             "./*": {
               browser: "./build/browser/public/*.js",
@@ -388,6 +432,7 @@ export default {
     ...standardPackageRules({
       excludePackages: [
         ...nonStandardPackages,
+        ...versionedPackages.map(({ name }) => name),
       ],
     }, DEFAULT_STANDARD_PACKAGE_OPTIONS),
 
@@ -397,6 +442,15 @@ export default {
       ...DEFAULT_STANDARD_PACKAGE_OPTIONS,
       vitest: true,
     }),
+
+    ...versionedPackages.flatMap(({ name, packageSubpaths }) =>
+      standardPackageRules({
+        includePackages: [name],
+      }, {
+        ...DEFAULT_STANDARD_PACKAGE_OPTIONS,
+        packageSubpaths,
+      })
+    ),
 
     ...standardPackageRules(
       {
