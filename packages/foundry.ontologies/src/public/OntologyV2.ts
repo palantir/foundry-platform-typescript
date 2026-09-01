@@ -72,6 +72,7 @@ const _getFullMetadata: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
+      includeActionTypeFullMetadata?: boolean | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.OntologyFullMetadata>
@@ -94,6 +95,7 @@ export function getFullMetadata(
 
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
+      includeActionTypeFullMetadata?: boolean | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]

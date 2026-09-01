@@ -24,16 +24,104 @@ import { writeResource2 } from "./generateResource2.js";
 import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
+import { PLATFORM_SDK_CONFIG } from "./PlatformSdkConfig.js";
 import { addAll } from "./util/addAll.js";
 import { fileExists } from "./util/fileExists.js";
 import { writeCode } from "./writeCode.js";
 
-export async function generatePlatformSdkV2(
+interface PlatformSdkGeneration {
+  ir: ApiSpec;
+  endpointVersion: string;
+  deprecatedIr?: ApiSpec;
+  packageSubpath?: string;
+}
+
+export async function generatePlatformSdks(
+  ir: ApiSpec,
+  outputDir: string,
+  deprecatedIrs: readonly ApiSpec[],
+): Promise<string[]> {
+  const packageDirectories = new Set<string>();
+  for (const packagePrefix of Object.keys(PLATFORM_SDK_CONFIG)) {
+    for (
+      const packageDirectory of await generatePlatformSdkVersions(
+        ir,
+        outputDir,
+        packagePrefix,
+        deprecatedIrs,
+      )
+    ) {
+      packageDirectories.add(packageDirectory);
+    }
+  }
+  return [...packageDirectories];
+}
+
+export async function generatePlatformSdkVersions(
+  ir: ApiSpec,
+  outputDir: string,
+  packagePrefix: string,
+  deprecatedIrs: readonly ApiSpec[] = [],
+): Promise<string[]> {
+  const versionConfig = PLATFORM_SDK_CONFIG[packagePrefix]?.versions;
+  if (versionConfig == null) {
+    throw new Error(`No version configuration found for ${packagePrefix}.`);
+  }
+  const generations: PlatformSdkGeneration[] = Object.entries(versionConfig)
+    .map(
+      ([endpointVersion, config]) => ({
+        ir,
+        endpointVersion,
+        packageSubpath: config.packageSubpath,
+        deprecatedIr: config.includeDeprecatedIr
+          ? deprecatedIrs.find(deprecatedIr =>
+            deprecatedIr.namespaces.some(namespace =>
+              namespace.name === "Core"
+              && namespace.version === endpointVersion
+            )
+          )
+          : undefined,
+      }),
+    );
+  const rootGenerations = generations.filter(generation =>
+    generation.packageSubpath == null
+  );
+  if (rootGenerations.length > 1) {
+    throw new Error("Only one generation can target the package root.");
+  }
+
+  const packageSubpaths = generations.flatMap(generation =>
+    generation.packageSubpath == null ? [] : [generation.packageSubpath]
+  );
+  if (new Set(packageSubpaths).size !== packageSubpaths.length) {
+    throw new Error("Package subpaths must be unique.");
+  }
+
+  const packageDirectories = new Set<string>();
+  for (const generation of generations) {
+    for (
+      const packageDirectory of await generatePlatformSdk(
+        generation.ir,
+        outputDir,
+        packagePrefix,
+        generation.endpointVersion,
+        generation.deprecatedIr,
+        generation.packageSubpath,
+      )
+    ) {
+      packageDirectories.add(packageDirectory);
+    }
+  }
+  return [...packageDirectories];
+}
+
+export async function generatePlatformSdk(
   ir: ApiSpec,
   outputDir: string,
   packagePrefix: string,
   endpointVersion: string,
   deprecatedIr?: ApiSpec,
+  packageSubpath?: string,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
   const model = await Model.create(ir, {
@@ -42,6 +130,7 @@ export async function generatePlatformSdkV2(
     packagePrefix,
     deprecatedIr,
     endpointVersion,
+    packageSubpath,
   });
 
   const componentsGenerated = new Map<Namespace, string[]>();
@@ -118,7 +207,9 @@ export async function generatePlatformSdkV2(
 
     await addPackagesToPackageJson(
       path.join(ns.paths.packagePath, "package.json"),
-      [...deps].map(n => n.packageName).filter(p => p !== ns.packageName),
+      [...deps].map(n => n.dependencyPackageName).filter(p =>
+        p !== ns.dependencyPackageName
+      ),
     );
 
     nsIndexTsContents += `export type {${
@@ -131,6 +222,37 @@ export async function generatePlatformSdkV2(
       path.join(ns.paths.srcDir, "index.ts"),
       nsIndexTsContents,
     );
+  }
+
+  if (packageSubpath != null) {
+    for (const ns of model.namespaces) {
+      await fs.mkdir(path.join(ns.paths.packagePath, "src", "public"), {
+        recursive: true,
+      });
+      const rootIndexPath = path.join(ns.paths.packagePath, "src", "index.ts");
+      if (!await fileExists(rootIndexPath)) {
+        await writeCode(rootIndexPath, `${copyright}\n\nexport {};\n`);
+      }
+      await writeCode(
+        path.join(
+          ns.paths.packagePath,
+          "src",
+          "public",
+          `${packageSubpath}.ts`,
+        ),
+        `${copyright}\n\nexport * from "../${packageSubpath}/index.js";\n`,
+      );
+      await writeCode(
+        path.join(ns.paths.packagePath, `${packageSubpath}.d.ts`),
+        `${copyright}\n\nexport * from "./build/esm/public/${packageSubpath}.js";\n`,
+      );
+      await addPackageSubpathExport(
+        path.join(ns.paths.packagePath, "package.json"),
+        packageSubpath,
+      );
+    }
+
+    return [...model.namespaces].map(ns => ns.paths.packagePath);
   }
 
   // finally create the re-export package
@@ -231,9 +353,12 @@ export async function ensurePackageSetup(
   packagePath: string,
   packageName: string,
   packagesToAdd: string[],
+  sourceSubdir?: string,
 ): Promise<{ srcDir: string; resourcesDir: string; packagePath: string }> {
-  const srcDir = path.join(packagePath, "src");
-  const resourcesDir = path.join(packagePath, "src", "public");
+  const srcDir = sourceSubdir == null
+    ? path.join(packagePath, "src")
+    : path.join(packagePath, "src", sourceSubdir);
+  const resourcesDir = path.join(srcDir, "public");
   const packageJsonPath = path.join(packagePath, "package.json");
 
   await fs.mkdir(srcDir, { recursive: true });
@@ -253,6 +378,22 @@ export async function ensurePackageSetup(
     resourcesDir,
     packagePath,
   };
+}
+
+async function addPackageSubpathExport(
+  packageJsonPath: string,
+  packageSubpath: string,
+): Promise<void> {
+  const packageJson = JSON.parse(await fs.readFile(packageJsonPath, "utf-8"));
+  packageJson.exports[`./${packageSubpath}`] = {
+    browser: `./build/browser/public/${packageSubpath}.js`,
+    import: `./build/esm/public/${packageSubpath}.js`,
+    default: `./build/esm/public/${packageSubpath}.js`,
+  };
+  await fs.writeFile(
+    packageJsonPath,
+    JSON.stringify(packageJson, undefined, 2),
+  );
 }
 
 const BASE_PACKAGE_JSON = {
