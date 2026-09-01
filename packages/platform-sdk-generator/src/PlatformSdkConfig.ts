@@ -17,6 +17,7 @@
 interface ApiVersionConfig {
   packageSubpath?: string;
   includeDeprecatedIr?: boolean;
+  promoted?: boolean;
 }
 
 type PlatformSdkConfig = {
@@ -34,7 +35,11 @@ export const PLATFORM_SDK_CONFIG: Record<PackagePrefix, PlatformSdkConfig> = {
   foundry: {
     docs: true,
     versions: {
-      v2: { includeDeprecatedIr: true },
+      v2: {
+        includeDeprecatedIr: true,
+        packageSubpath: "v2",
+        promoted: true,
+      },
       v3: { packageSubpath: "unstable_do_not_use_v3" },
     },
   },

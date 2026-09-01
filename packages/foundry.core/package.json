@@ -12,6 +12,11 @@
       "import": "./build/esm/index.js",
       "default": "./build/esm/index.js"
     },
+    "./v2": {
+      "browser": "./build/browser/public/v2.js",
+      "import": "./build/esm/public/v2.js",
+      "default": "./build/esm/public/v2.js"
+    },
     "./unstable_do_not_use_v3": {
       "browser": "./build/browser/public/unstable_do_not_use_v3.js",
       "import": "./build/esm/public/unstable_do_not_use_v3.js",
