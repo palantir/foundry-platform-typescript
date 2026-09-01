@@ -666,6 +666,8 @@ export type {
   SdkPackageName,
   SdkPackageRid,
   SdkVersion,
+  SearchActionTypesFullMetadataRequest,
+  SearchActionTypesFullMetadataResponse,
   SearchActionTypesOrderByV2,
   SearchActionTypesRequestV2,
   SearchActionTypesResponseV2,

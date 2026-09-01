@@ -97,6 +97,7 @@ export type {
   FieldValueMediaRef,
   FieldValueModelRef,
   FieldValueObjectRef,
+  FieldValueResourceRef,
   FieldValueString,
   FieldValueText,
   FieldValueType,

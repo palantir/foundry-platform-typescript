@@ -217,6 +217,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getActions": {
       "variables": {},
     },
+    "v2.loadDiagnosticsCapture": {
+      "variables": {},
+    },
     "v2.listOntologiesV2": {
       "variables": {},
     },
@@ -245,6 +248,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.listActionTypesFullMetadata": {
+      "variables": {},
+    },
+    "v2.searchActionTypesFullMetadata": {
       "variables": {},
     },
     "v2.getActionTypeFullMetadata": {
