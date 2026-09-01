@@ -21,8 +21,7 @@ import { parse as parseYaml } from "yaml";
 import type { Arguments, Argv, CommandModule } from "yargs";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { generateDocsPackage } from "./generateDocsPackage.js";
-import { generatePlatformSdkV2 } from "./generatePlatformSdkv2.js";
+import { generatePlatformSdks } from "./generatePlatformSdks.js";
 import { updateSls } from "./updateSls.js";
 
 export async function cli(
@@ -37,14 +36,10 @@ export async function cli(
 }
 
 export interface Options {
-  v2: boolean;
   inputFile: string;
   manifestFile: string;
   outputDir: string;
-  prefix: string;
-  deprecatedFile?: string;
-  endpointVersion: string;
-  mode: "docs" | "docs-and-sdks" | "sdks";
+  deprecatedFile: string[];
 }
 
 export class GenerateCommand implements CommandModule<{}, Options> {
@@ -56,11 +51,6 @@ export class GenerateCommand implements CommandModule<{}, Options> {
 
   public builder(args: Argv): Argv<Options> {
     return args
-      .option("v2", { type: "boolean", default: false })
-      .option("prefix", {
-        type: "string",
-        demandOption: true,
-      })
       .option("inputFile", {
         describe: "The location of the API IR",
         type: "string",
@@ -80,18 +70,7 @@ export class GenerateCommand implements CommandModule<{}, Options> {
         describe:
           "The location of the API IR that contains deprecated or legacy components no longer in the original IR",
         type: "string",
-      })
-      .option("endpointVersion", {
-        describe:
-          "The endpoint versions to generate with. Matches this version to the version listed for the namespace in the IR.",
-        type: "string",
-        demandOption: true,
-      })
-      .option("mode", {
-        describe:
-          "Whether to generate Platform SDKs, Platform SDK documentation specification, or both.",
-        type: "string",
-        choices: ["docs", "docs-and-sdks", "sdks"] as const,
+        array: true,
         demandOption: true,
       });
   }
@@ -115,36 +94,18 @@ export class GenerateCommand implements CommandModule<{}, Options> {
       }),
     );
 
-    if (args.v2) {
-      const deprecatedIr = args.deprecatedFile
-        ? await fs.readFile(`${args.deprecatedFile}`, {
-          encoding: "utf8",
-        })
-        : undefined;
-      const deprecatedIrSpec: ApiSpec | undefined = deprecatedIr
-        ? JSON.parse(deprecatedIr)
-        : undefined;
-      const pkgDirs = [
-        ...(args.mode === "docs-and-sdks"
-            || args.mode === "sdks"
-          ? await generatePlatformSdkV2(
-            irSpec,
-            output,
-            args.prefix,
-            args.endpointVersion,
-            deprecatedIrSpec,
-          )
-          : []),
-        ...(args.mode === "docs-and-sdks"
-            || args.mode === "docs"
-          ? [await generateDocsPackage(irSpec, output)]
-          : []),
-      ];
-      for (const pkgDir of pkgDirs) {
-        await updateSls(manifest, pkgDir);
-      }
-    } else {
-      throw new Error("No longer supported");
+    const deprecatedIrSpecs: ApiSpec[] = await Promise.all(
+      args.deprecatedFile.map(async deprecatedFile =>
+        JSON.parse(await fs.readFile(deprecatedFile, { encoding: "utf8" }))
+      ),
+    );
+    const pkgDirs = await generatePlatformSdks(
+      irSpec,
+      output,
+      deprecatedIrSpecs,
+    );
+    for (const pkgDir of pkgDirs) {
+      await updateSls(manifest, pkgDir);
     }
   };
 }

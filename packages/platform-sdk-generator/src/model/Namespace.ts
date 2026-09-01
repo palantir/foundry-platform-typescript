@@ -25,6 +25,7 @@ export interface Namespace {
   errors: ErrorType[];
   resources: Resource[];
   packageName: string;
+  dependencyImportPath: string;
   paths: {
     packagePath: string;
     srcDir: string;

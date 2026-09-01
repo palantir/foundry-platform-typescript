@@ -180,40 +180,6 @@ export interface CreateDocumentWithMatchingSecurityRequest {
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateFirstPartyDocumentTypeRequest {
-  requestBody: CreateFirstPartyDocumentTypeRequestBody;
-}
-
-/**
- * Request to create a first-party document type.
- *
- * Log Safety: UNSAFE
- */
-export interface CreateFirstPartyDocumentTypeRequestBody {
-  name: DocumentTypeName;
-  ontologyRid: string;
-  schema: DocumentTypeSchema;
-  fileSystemType?: FileSystemType;
-  owningApplicationId?: string;
-  version?: SchemaVersion;
-}
-
-/**
- * Response for creating a first-party document type.
- *
- * Log Safety: UNSAFE
- */
-export interface CreateFirstPartyDocumentTypeResponse {
-  rid: DocumentTypeRid;
-  name: DocumentTypeName;
-  fileSystemType?: FileSystemType;
-  version?: SchemaVersion;
-  owningApplicationId?: string;
-}
-
-/**
- * Log Safety: UNSAFE
- */
 export interface CustomPresenceEvent {
   userId: _Core.UserId;
   clientId: ClientId;
