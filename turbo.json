@@ -181,6 +181,7 @@
         "package.json",
         ".monorepolint.config.mjs",
         "packages/*/package.json",
+        "tests/*/package.json",
         "packages/*/tsconfig.json",
         "examples/*/*/package.json",
         "examples/*/*/tsconfig.json",

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "test": {
+      // The tests bundle built workspace packages, so transpile their dependencies first.
+      "dependsOn": ["typecheck", "^transpile"]
+    }
+  }
+}
