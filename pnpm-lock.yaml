@@ -1468,6 +1468,34 @@ importers:
         specifier: ^4.0.5
         version: 4.0.5(@types/debug@4.1.12)(@types/node@20.16.11)(jiti@1.21.6)(terser@5.46.1)(yaml@2.5.1)
 
+  tests/platform-sdk-tree-shaking:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../../packages/foundry.core
+      '@osdk/foundry.endpoints':
+        specifier: workspace:*
+        version: link:../../packages/foundry.endpoints
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../../packages/monorepo.tsconfig
+      '@rollup/plugin-node-resolve':
+        specifier: ^16.0.3
+        version: 16.0.3(rollup@4.60.1)
+      '@types/node':
+        specifier: ^20.16.11
+        version: 20.16.11
+      rollup:
+        specifier: ^4.60.0
+        version: 4.60.1
+      typescript:
+        specifier: ^5.5.4
+        version: 5.9.3
+      vitest:
+        specifier: ^4.0.5
+        version: 4.0.5(@types/debug@4.1.12)(@types/node@20.16.11)(jiti@1.21.6)(terser@5.46.1)(yaml@2.5.1)
+
 packages:
 
   '@actions/exec@1.1.1':

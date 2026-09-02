@@ -1,0 +1,26 @@
+{
+  "name": "@osdk/monorepo.test.platform-sdk-tree-shaking",
+  "private": true,
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palantir/foundry-platform-typescript.git"
+  },
+  "scripts": {
+    "test": "vitest run --pool=forks",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@osdk/foundry.core": "workspace:*",
+    "@osdk/foundry.endpoints": "workspace:*"
+  },
+  "devDependencies": {
+    "@osdk/monorepo.tsconfig": "workspace:~",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@types/node": "^20.16.11",
+    "rollup": "^4.60.0",
+    "typescript": "^5.5.4",
+    "vitest": "^4.0.5"
+  }
+}
