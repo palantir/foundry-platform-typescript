@@ -136,6 +136,70 @@ export interface CreateModelVersionPermissionDenied {
 }
 
 /**
+ * The source does not have exports enabled for all effective markings on the deployed resource.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeploymentSourceCannotExportResourceMarkings {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DeploymentSourceCannotExportResourceMarkings";
+  errorDescription:
+    "The source does not have exports enabled for all effective markings on the deployed resource.";
+  errorInstanceId: string;
+  parameters: {
+    sourceRid: unknown;
+    resourceRid: unknown;
+  };
+}
+
+/**
+ * The source is not enabled for use by Compute Modules.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeploymentSourceNotEnabledForComputeModules {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DeploymentSourceNotEnabledForComputeModules";
+  errorDescription: "The source is not enabled for use by Compute Modules.";
+  errorInstanceId: string;
+  parameters: {
+    sourceRid: unknown;
+  };
+}
+
+/**
+ * The source must be in, or imported into, the live deployment's project.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeploymentSourceNotImportedIntoProject {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DeploymentSourceNotImportedIntoProject";
+  errorDescription:
+    "The source must be in, or imported into, the live deployment's project.";
+  errorInstanceId: string;
+  parameters: {
+    sourceRid: unknown;
+    projectRid: unknown;
+  };
+}
+
+/**
+ * Could not disable the LiveDeployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface DisableLiveDeploymentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DisableLiveDeploymentPermissionDenied";
+  errorDescription: "Could not disable the LiveDeployment.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
  * The requested artifact was not found in the experiment.
  *
  * Log Safety: UNSAFE
@@ -182,21 +246,6 @@ export interface ExperimentSeriesNotFound {
     modelRid: unknown;
     experimentRid: unknown;
     seriesName: unknown;
-  };
-}
-
-/**
- * A function already exists for this model.
- *
- * Log Safety: SAFE
- */
-export interface FunctionAlreadyExists {
-  errorCode: "CONFLICT";
-  errorName: "FunctionAlreadyExists";
-  errorDescription: "A function already exists for this model.";
-  errorInstanceId: string;
-  parameters: {
-    modelRid: unknown;
   };
 }
 
@@ -424,6 +473,22 @@ export interface LiveDeploymentNotFound {
   errorCode: "NOT_FOUND";
   errorName: "LiveDeploymentNotFound";
   errorDescription: "The specified live deployment was not found.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
+ * Sources can only be updated when the live deployment is disabled.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentSourcesCannotBeUpdatedWhileRunning {
+  errorCode: "CONFLICT";
+  errorName: "LiveDeploymentSourcesCannotBeUpdatedWhileRunning";
+  errorDescription:
+    "Sources can only be updated when the live deployment is disabled.";
   errorInstanceId: string;
   parameters: {
     liveDeploymentRid: unknown;
@@ -666,6 +731,22 @@ export interface ReplaceModelFunctionPermissionDenied {
 }
 
 /**
+ * The provided environment variable name is reserved for use by the deployment runtime.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ReservedEnvironmentVariable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ReservedEnvironmentVariable";
+  errorDescription:
+    "The provided environment variable name is reserved for use by the deployment runtime.";
+  errorInstanceId: string;
+  parameters: {
+    name: unknown;
+  };
+}
+
+/**
  * Could not search the Experiment.
  *
  * Log Safety: SAFE
@@ -677,6 +758,21 @@ export interface SearchExperimentsPermissionDenied {
   errorInstanceId: string;
   parameters: {
     modelRid: unknown;
+  };
+}
+
+/**
+ * Could not start the LiveDeployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface StartLiveDeploymentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "StartLiveDeploymentPermissionDenied";
+  errorDescription: "Could not start the LiveDeployment.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
   };
 }
 

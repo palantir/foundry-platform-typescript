@@ -148,6 +148,7 @@ const _applyBatch: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ) => Promise<_Ontologies.BatchApplyActionResponseV2>
@@ -178,6 +179,7 @@ export function applyBatch(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
     },
   ]
@@ -237,6 +239,7 @@ const _applyBatchWithOverrides: $FoundryPlatformMethod<
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
@@ -269,6 +272,7 @@ export function applyBatchWithOverrides(
     $queryParams?: {
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },

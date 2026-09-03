@@ -45,6 +45,7 @@ const _listLinkedObjects: $FoundryPlatformMethod<
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ) => Promise<_Ontologies.ListLinkedObjectsResponseV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/links/{3}", 2];
@@ -87,6 +88,7 @@ export function listLinkedObjects(
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.ListLinkedObjectsResponseV2> {
@@ -106,6 +108,7 @@ const _getLinkedObject: $FoundryPlatformMethod<
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ) => Promise<_Ontologies.OntologyObjectV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/links/{3}/{4}", 2];
@@ -135,6 +138,7 @@ export function getLinkedObject(
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.OntologyObjectV2> {
