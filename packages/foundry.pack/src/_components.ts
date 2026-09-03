@@ -180,40 +180,6 @@ export interface CreateDocumentWithMatchingSecurityRequest {
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateFirstPartyDocumentTypeRequest {
-  requestBody: CreateFirstPartyDocumentTypeRequestBody;
-}
-
-/**
- * Request to create a first-party document type.
- *
- * Log Safety: UNSAFE
- */
-export interface CreateFirstPartyDocumentTypeRequestBody {
-  name: DocumentTypeName;
-  ontologyRid: string;
-  schema: DocumentTypeSchema;
-  fileSystemType?: FileSystemType;
-  owningApplicationId?: string;
-  version?: SchemaVersion;
-}
-
-/**
- * Response for creating a first-party document type.
- *
- * Log Safety: UNSAFE
- */
-export interface CreateFirstPartyDocumentTypeResponse {
-  rid: DocumentTypeRid;
-  name: DocumentTypeName;
-  fileSystemType?: FileSystemType;
-  version?: SchemaVersion;
-  owningApplicationId?: string;
-}
-
-/**
- * Log Safety: UNSAFE
- */
 export interface CustomPresenceEvent {
   userId: _Core.UserId;
   clientId: ClientId;
@@ -295,6 +261,186 @@ export interface DocumentActivitySubscriptionRequest {
   clientId: ClientId;
   clientSupportedVersionRange: ClientSupportedVersionRange;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DocumentContentAttribution {
+  userId: _Core.UserId;
+  timestamp: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DocumentContentBoolean {
+  value: boolean;
+}
+
+/**
+ * A container mirroring the document's structure.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentContainer {
+  path: string;
+  kind: DocumentContentContainerKind;
+  children: Array<DocumentContentNode>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type DocumentContentContainerKind =
+  | "DOCUMENT"
+  | "COLLECTION"
+  | "RECORD"
+  | "ARRAY";
+
+/**
+ * A datetime value as its raw content string; not parsed or validated.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentDatetime {
+  value: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DocumentContentDouble {
+  value: number;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DocumentContentInteger {
+  value: string;
+}
+
+/**
+ * Arbitrary unmanaged JSON passed through verbatim.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentJson {
+  value: any;
+}
+
+/**
+ * A typed scalar, reference, text, or unmanaged JSON leaf value.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DocumentContentLeaf =
+  | ({ type: "reference" } & DocumentContentReference)
+  | ({ type: "datetime" } & DocumentContentDatetime)
+  | ({ type: "boolean" } & DocumentContentBoolean)
+  | ({ type: "string" } & DocumentContentString)
+  | ({ type: "double" } & DocumentContentDouble)
+  | ({ type: "unmanagedJson" } & DocumentContentJson)
+  | ({ type: "integer" } & DocumentContentInteger)
+  | ({ type: "text" } & DocumentContentText);
+
+/**
+ * A node in the schema-decorated view of a document's content.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DocumentContentNode =
+  | ({ type: "container" } & DocumentContentContainer)
+  | ({ type: "value" } & DocumentContentValue);
+
+/**
+ * An external reference and its raw identifier.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentReference {
+  kind: DocumentContentReferenceKind;
+  referenceId: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type DocumentContentReferenceKind =
+  | "DOCUMENT"
+  | "OBJECT"
+  | "USER"
+  | "MEDIA"
+  | "RESOURCE";
+
+/**
+ * A page of a PACK Document's edit history, ordered most recent to oldest.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentsPage {
+  states: Array<DocumentContentState>;
+  nextRevisionId?: RevisionId;
+}
+
+/**
+ * A single history event containing the schema-decorated top-level records changed by one operation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentState {
+  revisionId: RevisionId;
+  attribution: DocumentContentAttribution;
+  records: Array<DocumentContentNode>;
+  violations: Array<DocumentContentViolation>;
+  schemaVersion: SchemaVersion;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentString {
+  value: string;
+}
+
+/**
+ * Rich text content flattened to plain text; formatting is dropped.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentText {
+  plainText: string;
+}
+
+/**
+ * A typed leaf node.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentValue {
+  path: string;
+  value: DocumentContentLeaf;
+}
+
+/**
+ * A structural schema violation in a document's content.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContentViolation {
+  kind: DocumentContentViolationKind;
+  path: string;
+  message: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type DocumentContentViolationKind =
+  | "MISSING_REQUIRED_FIELD"
+  | "UNKNOWN_FIELD"
+  | "TYPE_MISMATCH"
+  | "UNSUPPORTED";
 
 /**
  * Activity event data emitted when a document is created.
@@ -948,6 +1094,25 @@ export type FileSystemType = "ARTIFACTS" | "COMPASS";
  * Log Safety: SAFE
  */
 export type FolderRid = LooselyBrandedString<"FolderRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetDocumentContentsRequest {
+  requestBody: GetDocumentContentsRequestBody;
+}
+
+/**
+ * Request body for a debug endpoint used to verify that backend-persisted contents match the expected frontend state.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetDocumentContentsRequestBody {
+  revisionId?: RevisionId;
+  revisionRange?: number;
+  schemaVersion?: SchemaVersion;
+  modelKey?: ModelTypeKey;
+}
 
 /**
  * Log Safety: UNSAFE

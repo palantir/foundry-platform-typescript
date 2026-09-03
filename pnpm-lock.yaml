@@ -611,6 +611,9 @@ importers:
 
   packages/foundry.models:
     dependencies:
+      '@osdk/foundry.connectivity':
+        specifier: workspace:*
+        version: link:../foundry.connectivity
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
@@ -3717,6 +3720,7 @@ packages:
   eslint@9.24.0:
     resolution: {integrity: sha512-eh/jxIEJyZrvbWRe4XuVclLPDYSYYYgLy5zXGGxD6j8zjSAxFEzI2fL/8xNq6O2yKqVt+eF2YhV+hxjV6UKXwQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'

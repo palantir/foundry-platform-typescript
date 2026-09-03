@@ -189,6 +189,33 @@ export function resolveApplication(
   return $foundryPlatformFetch($ctx, _resolveApplication, ...args);
 }
 
+const _contents: $FoundryPlatformMethod<
+  (
+    documentId: _Pack.DocumentRid,
+    $body: _Pack.GetDocumentContentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.DocumentContentsPage>
+> = [1, "/v2/pack/documents/{0}/contents", 3];
+
+/**
+ * Returns a page of a PACK Document's edit history, newest event first, paging backwards by revision.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documents/{documentId}/contents
+ */
+export function contents(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    documentId: _Pack.DocumentRid,
+    $body: _Pack.GetDocumentContentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.DocumentContentsPage> {
+  return $foundryPlatformFetch($ctx, _contents, ...args);
+}
+
 const _createChild: $FoundryPlatformMethod<
   (
     $body: _Pack.CreateDocumentAsChildRequest,
