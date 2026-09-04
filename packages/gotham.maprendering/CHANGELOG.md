@@ -1,5 +1,19 @@
 # @osdk/gotham.maprendering
 
+## 0.49.0
+
+### Minor Changes
+
+- a049305: Regenerate SDKs with API version 1.1769.0
+- 0630756: Regenerate SDKs with API version 1.1781.0
+
+### Patch Changes
+
+- Updated dependencies [a049305]
+- Updated dependencies [0630756]
+  - @osdk/gotham.core@0.49.0
+  - @osdk/gotham.geojson@0.49.0
+
 ## 0.48.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @osdk/internal.foundry.core
 
+## 2.77.0
+
+### Minor Changes
+
+- a049305: Regenerate SDKs with API version 1.1769.0
+- 0630756: Regenerate SDKs with API version 1.1781.0
+
+### Patch Changes
+
+- Updated dependencies [a049305]
+- Updated dependencies [0630756]
+  - @osdk/internal.foundry.geo@2.77.0
+
 ## 2.76.0
 
 ### Minor Changes
