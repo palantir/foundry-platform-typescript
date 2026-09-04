@@ -611,6 +611,9 @@ importers:
 
   packages/foundry.models:
     dependencies:
+      '@osdk/foundry.connectivity':
+        specifier: workspace:*
+        version: link:../foundry.connectivity
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core

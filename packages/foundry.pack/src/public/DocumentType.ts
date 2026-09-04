@@ -105,33 +105,6 @@ export function loadByName(
   return $foundryPlatformFetch($ctx, _loadByName, ...args);
 }
 
-const _createFirstParty: $FoundryPlatformMethod<
-  (
-    $body: _Pack.CreateFirstPartyDocumentTypeRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Pack.CreateFirstPartyDocumentTypeResponse>
-> = [1, "/v2/pack/documentTypes/createFirstParty", 3];
-
-/**
- * Creates a first-party Document Type with the given schema in the specified ontology.
- * This is intended for use by internal Palantir workflows. For external application developers,
- * document types should be created through the Create Document Type operation.
- *
- * @alpha
- *
- * Required Scopes: [api:pack-write]
- * URL: /v2/pack/documentTypes/createFirstParty
- */
-export function createFirstParty(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Pack.CreateFirstPartyDocumentTypeRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_Pack.CreateFirstPartyDocumentTypeResponse> {
-  return $foundryPlatformFetch($ctx, _createFirstParty, ...args);
-}
-
 const _updateSchema: $FoundryPlatformMethod<
   (
     $body: _Pack.UpdateSchemaDocumentTypeRequest,
@@ -143,6 +116,10 @@ const _updateSchema: $FoundryPlatformMethod<
  * Updates the schema of a PACK Document Type. The new schema version must be strictly
  * greater than the current version. Schema validation is performed to ensure backwards
  * compatibility unless forceOverwrite is set to true.
+ *
+ * This endpoint is intended for document types created by third-party developers via the
+ * Create Document Type endpoint. First-party document types are managed by Palantir, and
+ * their schemas cannot be updated using this endpoint.
  *
  * @alpha
  *

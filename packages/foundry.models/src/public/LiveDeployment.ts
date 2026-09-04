@@ -136,6 +136,58 @@ export function replace(
   return $foundryPlatformFetch($ctx, _replace, ...args);
 }
 
+const _disable: $FoundryPlatformMethod<
+  (
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/models/liveDeployments/{0}/disable", 2];
+
+/**
+ * Disables the live deployment and removes its running replicas while retaining its model and runtime configuration.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:models-write]
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/disable
+ */
+export function disable(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _disable, ...args);
+}
+
+const _start: $FoundryPlatformMethod<
+  (
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/models/liveDeployments/{0}/start", 2];
+
+/**
+ * Starts the live deployment. If the deployment is already starting or running, this operation has no effect.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:models-write]
+ * URL: /v2/models/liveDeployments/{liveDeploymentRid}/start
+ */
+export function start(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    liveDeploymentRid: _Models.LiveDeploymentRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _start, ...args);
+}
+
 const _transformJson: $FoundryPlatformMethod<
   (
     liveDeploymentRid: _Models.LiveDeploymentRid,

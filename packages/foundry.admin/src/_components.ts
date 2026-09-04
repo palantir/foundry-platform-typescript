@@ -130,6 +130,8 @@ export interface CbacBanner {
 }
 
 /**
+ * The formatted classification string for the requested markings and display type.
+ *
  * Log Safety: UNSAFE
  */
 export type CbacBannerClassificationString = LooselyBrandedString<

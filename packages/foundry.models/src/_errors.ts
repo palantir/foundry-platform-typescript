@@ -136,6 +136,21 @@ export interface CreateModelVersionPermissionDenied {
 }
 
 /**
+ * Could not disable the LiveDeployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface DisableLiveDeploymentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DisableLiveDeploymentPermissionDenied";
+  errorDescription: "Could not disable the LiveDeployment.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
  * The requested artifact was not found in the experiment.
  *
  * Log Safety: UNSAFE
@@ -431,6 +446,22 @@ export interface LiveDeploymentNotFound {
 }
 
 /**
+ * Sources can only be updated when the live deployment is disabled.
+ *
+ * Log Safety: SAFE
+ */
+export interface LiveDeploymentSourcesCannotBeUpdatedWhileRunning {
+  errorCode: "CONFLICT";
+  errorName: "LiveDeploymentSourcesCannotBeUpdatedWhileRunning";
+  errorDescription:
+    "Sources can only be updated when the live deployment is disabled.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
+  };
+}
+
+/**
  * The model API contains a data type that is not supported for Ontology function creation.
  *
  * Log Safety: UNSAFE
@@ -677,6 +708,21 @@ export interface SearchExperimentsPermissionDenied {
   errorInstanceId: string;
   parameters: {
     modelRid: unknown;
+  };
+}
+
+/**
+ * Could not start the LiveDeployment.
+ *
+ * Log Safety: SAFE
+ */
+export interface StartLiveDeploymentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "StartLiveDeploymentPermissionDenied";
+  errorDescription: "Could not start the LiveDeployment.";
+  errorInstanceId: string;
+  parameters: {
+    liveDeploymentRid: unknown;
   };
 }
 
