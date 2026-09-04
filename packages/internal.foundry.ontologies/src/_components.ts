@@ -1570,6 +1570,7 @@ export interface CreateObjectRule {
  */
 export interface CreateOntologyScenarioRequest {
   base?: OntologyBase;
+  expireAfter?: string;
 }
 
 /**
@@ -3709,6 +3710,7 @@ export interface LoadOntologyMetadataRequest {
   actionTypes: Array<ActionTypeApiName>;
   queryTypes: Array<VersionedQueryTypeApiName>;
   interfaceTypes: Array<InterfaceTypeApiName>;
+  includeActionTypeFullMetadata?: boolean;
 }
 
 /**
@@ -5008,6 +5010,7 @@ export interface OntologyFullMetadata {
   ontology: OntologyV2;
   objectTypes: Record<ObjectTypeApiName, ObjectTypeFullMetadata>;
   actionTypes: Record<ActionTypeApiName, ActionTypeV2>;
+  actionTypesFullMetadata: Record<ActionTypeApiName, ActionTypeFullMetadata>;
   queryTypes: Record<VersionedQueryTypeApiName, QueryTypeV2>;
   interfaceTypes: Record<InterfaceTypeApiName, InterfaceType>;
   sharedPropertyTypes: Record<SharedPropertyTypeApiName, SharedPropertyType>;
@@ -5298,13 +5301,15 @@ export interface ParameterArraySize {
 }
 
 /**
- * The source of a constraint bound value.
- *
- * Log Safety: UNSAFE
- */
-export type ParameterConstraintValue = {
-  type: "static";
-} & StaticConstraintValue;
+   * The source of a constraint bound value: either a literal or a reference to another parameter that is
+resolved when the action is validated or applied.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ParameterConstraintValue =
+  | ({ type: "static" } & StaticConstraintValue)
+  | ({ type: "parameterLength" } & ParameterLengthConstraintValue)
+  | ({ type: "parameterValue" } & ParameterValueConstraintValue);
 
 /**
  * A datetime bound value.
@@ -5379,6 +5384,17 @@ export interface ParameterIdArgument {
 }
 
 /**
+   * The bound is the number of elements in another list parameter's value on the same action type. Clients
+should tolerate a reference that cannot be resolved, as the referenced parameter is not itself guaranteed
+to be surfaced.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ParameterLengthConstraintValue {
+  parameterId: ParameterId;
+}
+
+/**
  * Returns action types with a parameter whose name matches the given string predicate.
  *
  * Log Safety: UNSAFE
@@ -5404,6 +5420,16 @@ export interface ParameterOption {
  */
 export interface ParameterRidActionTypesQueryV2 {
   value: ActionParameterRid;
+}
+
+/**
+   * The bound is the value of another parameter on the same action type. Clients should tolerate a reference
+that cannot be resolved, as the referenced parameter is not itself guaranteed to be surfaced.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ParameterValueConstraintValue {
+  parameterId: ParameterId;
 }
 
 /**

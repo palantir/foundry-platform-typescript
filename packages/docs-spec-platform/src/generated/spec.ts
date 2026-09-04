@@ -1204,6 +1204,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.replaceLiveDeployment": {
       "variables": {},
     },
+    "v2.disableLiveDeployment": {
+      "variables": {},
+    },
+    "v2.startLiveDeployment": {
+      "variables": {},
+    },
     "v2.transformJsonLiveDeployment": {
       "variables": {},
     },
@@ -1295,9 +1301,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.loadByNameDocumentTypes": {
-      "variables": {},
-    },
-    "v2.createFirstPartyDocumentType": {
       "variables": {},
     },
     "v2.updateSchemaDocumentType": {
