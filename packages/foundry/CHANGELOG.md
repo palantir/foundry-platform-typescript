@@ -1,5 +1,40 @@
 # @osdk/foundry
 
+## 2.78.0
+
+### Minor Changes
+
+- d1fbe48: Regenerate SDKs with API version 1.1795.1
+
+### Patch Changes
+
+- Updated dependencies [d1fbe48]
+  - @osdk/foundry.admin@2.78.0
+  - @osdk/foundry.aipagents@2.78.0
+  - @osdk/foundry.audit@2.78.0
+  - @osdk/foundry.checkpoints@2.78.0
+  - @osdk/foundry.connectivity@2.78.0
+  - @osdk/foundry.core@2.78.0
+  - @osdk/foundry.datahealth@2.78.0
+  - @osdk/foundry.datasets@2.78.0
+  - @osdk/foundry.filesystem@2.78.0
+  - @osdk/foundry.functions@2.78.0
+  - @osdk/foundry.geo@2.78.0
+  - @osdk/foundry.languagemodels@2.78.0
+  - @osdk/foundry.mediasets@2.78.0
+  - @osdk/foundry.models@2.78.0
+  - @osdk/foundry.notepad@2.78.0
+  - @osdk/foundry.ontologies@2.78.0
+  - @osdk/foundry.operations@2.78.0
+  - @osdk/foundry.orchestration@2.78.0
+  - @osdk/foundry.pack@2.78.0
+  - @osdk/foundry.publicapis@2.78.0
+  - @osdk/foundry.sqlqueries@2.78.0
+  - @osdk/foundry.streams@2.78.0
+  - @osdk/foundry.thirdpartyapplications@2.78.0
+  - @osdk/foundry.widgets@2.78.0
+  - @osdk/foundry.geojson@2.78.0
+
 ## 2.77.0
 
 ### Minor Changes

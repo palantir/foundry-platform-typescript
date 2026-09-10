@@ -1,5 +1,20 @@
 # @osdk/gotham
 
+## 0.50.0
+
+### Minor Changes
+
+- d1fbe48: Regenerate SDKs with API version 1.1795.1
+
+### Patch Changes
+
+- Updated dependencies [d1fbe48]
+  - @osdk/gotham.core@0.50.0
+  - @osdk/gotham.gaia@0.50.0
+  - @osdk/gotham.geojson@0.50.0
+  - @osdk/gotham.maprendering@0.50.0
+  - @osdk/gotham.targetworkbench@0.50.0
+
 ## 0.49.0
 
 ### Minor Changes
