@@ -43,6 +43,7 @@ const _list: $FoundryPlatformMethod<
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ) => Promise<_Ontologies.ListObjectsResponseV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}", 2];
@@ -83,6 +84,7 @@ export function list(
       excludeRid?: boolean | undefined;
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.ListObjectsResponseV2> {
@@ -100,6 +102,7 @@ const _get: $FoundryPlatformMethod<
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ) => Promise<_Ontologies.OntologyObjectV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}", 2];
@@ -125,6 +128,7 @@ export function get(
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.OntologyObjectV2> {

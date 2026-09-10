@@ -75,6 +75,7 @@ const _get: $FoundryPlatformMethod<
     queryApiName: _Ontologies.QueryApiName,
     $queryParams?: {
       version?: _Ontologies.FunctionVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
@@ -97,6 +98,7 @@ export function get(
 
     $queryParams?: {
       version?: _Ontologies.FunctionVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
     },

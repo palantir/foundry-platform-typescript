@@ -360,6 +360,7 @@ const _listInterfaceLinkedObjects: $FoundryPlatformMethod<
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ) => Promise<_Ontologies.ListInterfaceLinkedObjectsResponse>
 > = [0, "/v2/ontologies/{0}/interfaces/{1}/{2}/{3}/links/{4}", 2];
@@ -402,6 +403,7 @@ export function listInterfaceLinkedObjects(
       snapshot?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
+      loadOntologyDefinedDerivedProperties?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.ListInterfaceLinkedObjectsResponse> {

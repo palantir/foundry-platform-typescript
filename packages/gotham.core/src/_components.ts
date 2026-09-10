@@ -69,7 +69,7 @@ export interface BooleanType {}
 /**
  * Metadata about a Foundry branch.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface BranchMetadata {
   rid: FoundryBranch;
@@ -447,9 +447,9 @@ export interface FloatType {}
 export type FolderRid = LooselyBrandedString<"FolderRid">;
 
 /**
- * The Foundry branch identifier, specifically its rid. Different identifier types may be used in the future as values.
+ * The global Foundry branch, specified as either its rid or its dataset branch identifier.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type FoundryBranch = LooselyBrandedString<"FoundryBranch">;
 
