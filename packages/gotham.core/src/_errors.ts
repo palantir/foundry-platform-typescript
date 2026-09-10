@@ -83,7 +83,7 @@ export interface FolderNotFound {
 /**
  * The requested foundry branch could not be found, or the client token does not have access to it.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface FoundryBranchNotFound {
   errorCode: "NOT_FOUND";

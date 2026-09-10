@@ -196,6 +196,21 @@ export interface DeleteDocumentPermissionDenied {
 }
 
 /**
+ * The requested document history is no longer retained.
+ *
+ * Log Safety: SAFE
+ */
+export interface DocumentHistoryUnavailable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DocumentHistoryUnavailable";
+  errorDescription: "The requested document history is no longer retained.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
  * The given Document could not be found.
  *
  * Log Safety: SAFE
@@ -204,6 +219,22 @@ export interface DocumentNotFound {
   errorCode: "NOT_FOUND";
   errorName: "DocumentNotFound";
   errorDescription: "The given Document could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+ * The document's type has no persisted schema, so its contents cannot be schema-decorated.
+ *
+ * Log Safety: SAFE
+ */
+export interface DocumentSchemaNotAvailable {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DocumentSchemaNotAvailable";
+  errorDescription:
+    "The document's type has no persisted schema, so its contents cannot be schema-decorated.";
   errorInstanceId: string;
   parameters: {
     documentId: unknown;
@@ -275,6 +306,21 @@ export interface DocumentTypeNotFound {
 }
 
 /**
+ * Could not contents the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetDocumentContentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetDocumentContentsPermissionDenied";
+  errorDescription: "Could not contents the Document.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
  * Could not getOperationalVersion the DocumentType.
  *
  * Log Safety: SAFE
@@ -331,6 +377,40 @@ export interface InvalidDocumentTypeVersion {
   parameters: {
     documentTypeName: unknown;
     version: unknown;
+  };
+}
+
+/**
+ * The requested document history revision range must be greater than zero.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidRevisionRange {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidRevisionRange";
+  errorDescription:
+    "The requested document history revision range must be greater than zero.";
+  errorInstanceId: string;
+  parameters: {
+    revisionRange: unknown;
+  };
+}
+
+/**
+ * The requested schema version is not valid for this document type.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidSchemaVersion {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidSchemaVersion";
+  errorDescription:
+    "The requested schema version is not valid for this document type.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+    requestedVersion: unknown;
+    currentVersion: unknown;
   };
 }
 

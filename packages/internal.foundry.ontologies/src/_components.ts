@@ -4065,6 +4065,14 @@ export interface NotQueryV2 {
 export interface NowDatetimeValue {}
 
 /**
+   * Indicates whether values in mapped datasources and values created through actions may be null. Null values may
+still be observed for objects that are not present in the datasource mapping.
+   *
+   * Log Safety: SAFE
+   */
+export type NullabilityPropertyTypeDataConstraint = "NULLABLE" | "NOT_NULLABLE";
+
+/**
    * Attach arbitrary text before and/or after the formatted number.
 Example: prefix "USD " and postfix " total" displays as "USD 1,234.56 total"
    *
@@ -4967,7 +4975,7 @@ export type OntologyBase = { type: "branch" } & OntologyBaseBranch;
 /**
  * A branch reference used to initialize a scenario.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface OntologyBaseBranch {
   branch: _Core.FoundryBranch;
@@ -5750,6 +5758,15 @@ export interface PropertyTimestampFormattingRule {
 export type PropertyTypeApiName = LooselyBrandedString<"PropertyTypeApiName">;
 
 /**
+ * Data constraints for a property type, including nullability information.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyTypeDataConstraints {
+  nullability?: NullabilityPropertyTypeDataConstraint;
+}
+
+/**
    * Describes how a single object type property is bound to its backing tabular datasource. A property may be backed
 by a single column, by a struct (with nested field mappings), or be edit-only (no backing column even though it
 is permissioned to the tabular datasource).
@@ -5813,6 +5830,7 @@ export interface PropertyV2 {
   valueTypeApiName?: ValueTypeApiName;
   valueFormatting?: PropertyValueFormattingRule;
   typeClasses: Array<TypeClass>;
+  dataConstraints?: PropertyTypeDataConstraints;
 }
 
 /**
@@ -6615,6 +6633,7 @@ export interface SearchObjectsRequestV2 {
   select: Array<PropertyApiName>;
   selectV2: Array<PropertyIdentifier>;
   defaultLoadLevel?: PropertyLoadLevel;
+  loadOntologyDefinedDerivedProperties?: boolean;
   excludeRid?: boolean;
   snapshot?: boolean;
   referenceSigningOptions?: ReferenceSigningOptions;

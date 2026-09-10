@@ -38,7 +38,7 @@ const _create: $FoundryPlatformMethod<
 > = [1, "/v2/models/{0}/function", 3];
 
 /**
- * Creates a function for the model.
+ * Creates a function for the model. If a function already exists for the model, the existing function is updated.
  *
  * @beta
  *
