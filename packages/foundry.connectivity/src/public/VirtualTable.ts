@@ -14,42 +14,4 @@
  * limitations under the License.
  */
 
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Connectivity from "../_components.js";
-
-//
-
-const _create: $FoundryPlatformMethod<
-  (
-    connectionRid: _Connectivity.ConnectionRid,
-    $body: _Connectivity.CreateVirtualTableRequest,
-  ) => Promise<_Connectivity.VirtualTable>
-> = [1, "/v2/connectivity/connections/{0}/virtualTables", 1];
-
-/**
- * Creates a new [Virtual Table](https://www.palantir.com/docs/foundry/data-integration/virtual-tables/) from an upstream table. The VirtualTable will be created
- * in the specified parent folder and can be queried through Foundry's data access APIs.
- *
- * @public
- *
- * Required Scopes: [api:connectivity-virtual-table-write]
- * URL: /v2/connectivity/connections/{connectionRid}/virtualTables
- */
-export function create(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    connectionRid: _Connectivity.ConnectionRid,
-    $body: _Connectivity.CreateVirtualTableRequest,
-  ]
-): Promise<_Connectivity.VirtualTable> {
-  return $foundryPlatformFetch($ctx, _create, ...args);
-}
+export * from "../v2/public/VirtualTable.js";

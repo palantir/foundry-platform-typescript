@@ -14,43 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Widgets from "../_components.js";
-
-//
-
-const _get: $FoundryPlatformMethod<
-  (
-    widgetSetRid: _Widgets.WidgetSetRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Widgets.WidgetSet>
-> = [0, "/v2/widgets/widgetSets/{0}", 2];
-
-/**
- * Get the WidgetSet with the specified rid.
- *
- * @alpha
- *
- * Required Scopes: [api:widgets-read]
- * URL: /v2/widgets/widgetSets/{widgetSetRid}
- */
-export function get(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    widgetSetRid: _Widgets.WidgetSetRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_Widgets.WidgetSet> {
-  return $foundryPlatformFetch($ctx, _get, ...args);
-}
+export * from "../v2/public/WidgetSet.js";

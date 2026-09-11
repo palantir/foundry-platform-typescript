@@ -1,0 +1,207 @@
+/*
+ * Copyright 2024 Palantir Technologies, Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import type * as _Core from "@osdk/foundry.core/v2";
+import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
+  SharedClient as $Client,
+  SharedClientContext as $ClientContext,
+} from "@osdk/shared.client2";
+import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
+import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
+import type * as _Ontologies from "../_components.js";
+
+//
+
+const _list: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+    },
+  ) => Promise<_Ontologies.ListActionTypesResponseV2>
+> = [0, "/v2/ontologies/{0}/actionTypes", 2];
+
+/**
+ * Lists the action types for the given Ontology.
+ *
+ * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
+ * results available, at least one result will be present in the response.
+ *
+ * @public
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes
+ */
+export function list(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+    },
+  ]
+): Promise<_Ontologies.ListActionTypesResponseV2> {
+  return $foundryPlatformFetch($ctx, _list, ...args);
+}
+
+const _search: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.SearchActionTypesRequestV2,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.SearchActionTypesResponseV2>
+> = [1, "/v2/ontologies/{0}/actionTypes/search", 3];
+
+/**
+ * Search for action types in the given Ontology that match the provided filters. Results are returned by
+ * relevance of the match unless an explicit `orderBy` is provided.
+ *
+ * Each page may be smaller than the requested page size. However, it is guaranteed that if there are more
+ * results available, at least one result will be present in the response. Search results are eventually
+ * consistent with the latest Ontology version and may lag slightly behind the last Ontology modification.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes/search
+ */
+export function search(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.SearchActionTypesRequestV2,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.SearchActionTypesResponseV2> {
+  return $foundryPlatformFetch($ctx, _search, ...args);
+}
+
+const _get: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    actionType: _Ontologies.ActionTypeApiName,
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ) => Promise<_Ontologies.ActionTypeV2>
+> = [0, "/v2/ontologies/{0}/actionTypes/{1}", 2];
+
+/**
+ * Gets a specific action type with the given API name.
+ *
+ * @public
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes/{actionType}
+ */
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    actionType: _Ontologies.ActionTypeApiName,
+
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
+  ]
+): Promise<_Ontologies.ActionTypeV2> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _getByRid: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    actionTypeRid: _Ontologies.ActionTypeRid,
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ) => Promise<_Ontologies.ActionTypeV2>
+> = [0, "/v2/ontologies/{0}/actionTypes/byRid/{1}", 2];
+
+/**
+ * Gets a specific action type with the given RID.
+ *
+ * @public
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes/byRid/{actionTypeRid}
+ */
+export function getByRid(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    actionTypeRid: _Ontologies.ActionTypeRid,
+
+    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+  ]
+): Promise<_Ontologies.ActionTypeV2> {
+  return $foundryPlatformFetch($ctx, _getByRid, ...args);
+}
+
+const _getByRidBatch: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetActionTypeByRidBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Ontologies.GetActionTypeByRidBatchResponse>
+> = [1, "/v2/ontologies/{0}/actionTypes/getByRidBatch", 3];
+
+/**
+ * Gets a list of action types by RID in bulk.
+ *
+ * Action types are filtered from the response if they don't exist or the requesting token lacks the required
+ * permissions.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes/getByRidBatch
+ */
+export function getByRidBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.GetActionTypeByRidBatchRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Ontologies.GetActionTypeByRidBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getByRidBatch, ...args);
+}

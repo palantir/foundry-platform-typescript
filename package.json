@@ -17,7 +17,7 @@
     "typecheckAll": "tsc --build packages/* examples-extra/basic/*"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.15.3",
+    "@arethetypeswrong/cli": "^0.17.4",
     "@babel/cli": "^7.27.2",
     "@babel/core": "^7.24.9",
     "@babel/preset-typescript": "^7.24.7",

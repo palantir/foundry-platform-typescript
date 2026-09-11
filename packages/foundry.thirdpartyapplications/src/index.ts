@@ -14,35 +14,4 @@
  * limitations under the License.
  */
 
-export type {
-  DeployWebsiteRequest,
-  ListVersionsResponse,
-  Subdomain,
-  ThirdPartyApplication,
-  ThirdPartyApplicationRid,
-  Version,
-  VersionVersion,
-  Website,
-} from "./_components.js";
-export type {
-  CannotDeleteDeployedVersion,
-  DeleteVersionPermissionDenied,
-  DeployWebsitePermissionDenied,
-  FileCountLimitExceeded,
-  FileSizeLimitExceeded,
-  InvalidVersion,
-  ScanningErrored,
-  ScanningInProgress,
-  SiteAssetHasVulnerabilities,
-  ThirdPartyApplicationNotFound,
-  UndeployWebsitePermissionDenied,
-  UploadSnapshotVersionPermissionDenied,
-  UploadVersionPermissionDenied,
-  VersionAlreadyExists,
-  VersionLimitExceeded,
-  VersionNotFound,
-  WebsiteNotFound,
-} from "./_errors.js";
-export * as ThirdPartyApplications from "./public/ThirdPartyApplication.js";
-export * as Versions from "./public/Version.js";
-export * as Websites from "./public/Website.js";
+export * from "./v2/index.js";

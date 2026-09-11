@@ -14,43 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _ThirdPartyApplications from "../_components.js";
-
-//
-
-const _get: $FoundryPlatformMethod<
-  (
-    thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_ThirdPartyApplications.ThirdPartyApplication>
-> = [0, "/v2/thirdPartyApplications/{0}", 2];
-
-/**
- * Get the ThirdPartyApplication with the specified rid.
- *
- * @alpha
- *
- * Required Scopes: [third-party-application:deploy-application-website]
- * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}
- */
-export function get(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_ThirdPartyApplications.ThirdPartyApplication> {
-  return $foundryPlatformFetch($ctx, _get, ...args);
-}
+export * from "../v2/public/ThirdPartyApplication.js";

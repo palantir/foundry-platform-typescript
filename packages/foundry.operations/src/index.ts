@@ -14,6 +14,4 @@
  * limitations under the License.
  */
 
-export type { AsyncOperation } from "./_components.js";
-export type { OperationNotFound } from "./_errors.js";
-export * as AsyncOperations from "./public/AsyncOperation.js";
+export * from "./v2/index.js";
