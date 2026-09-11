@@ -14,44 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Streams from "../_components.js";
-
-//
-
-const _create: $FoundryPlatformMethod<
-  (
-    $body: _Streams.CreateStreamingDatasetRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Streams.Dataset>
-> = [1, "/v2/streams/datasets/create", 3];
-
-/**
- * Creates a streaming dataset with a stream on the specified branch, or if no branch is specified, on the
- * default branch ('master' for most enrollments). For more information on streaming datasets, refer to the
- * [streams](https://www.palantir.com/docs/foundry/data-integration/streams/) user documentation.
- *
- * @beta
- *
- * Required Scopes: [api:streams-write]
- * URL: /v2/streams/datasets/create
- */
-export function create(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Streams.CreateStreamingDatasetRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_Streams.Dataset> {
-  return $foundryPlatformFetch($ctx, _create, ...args);
-}
+export * from "../v2/public/Dataset.js";

@@ -1,0 +1,274 @@
+/*
+ * Copyright 2024 Palantir Technologies, Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+export type LooselyBrandedString<T extends string> = string & {
+  __LOOSE_BRAND?: T;
+};
+
+/**
+ * Could not cancel the SqlQuery.
+ *
+ * Log Safety: SAFE
+ */
+export interface CancelSqlQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CancelSqlQueryPermissionDenied";
+  errorDescription: "Could not cancel the SqlQuery.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The query result contains column types that are not supported by the requested serialization format.
+ *
+ * Log Safety: SAFE
+ */
+export interface ColumnTypesNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ColumnTypesNotSupported";
+  errorDescription:
+    "The query result contains column types that are not supported by the requested serialization format.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not executeOntology the SqlQuery.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExecuteOntologySqlQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ExecuteOntologySqlQueryPermissionDenied";
+  errorDescription: "Could not executeOntology the SqlQuery.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not execute the SqlQuery.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExecuteSqlQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ExecuteSqlQueryPermissionDenied";
+  errorDescription: "Could not execute the SqlQuery.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not getResults the SqlQuery.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetResultsSqlQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetResultsSqlQueryPermissionDenied";
+  errorDescription: "Could not getResults the SqlQuery.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not getStatus the SqlQuery.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetStatusSqlQueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetStatusSqlQueryPermissionDenied";
+  errorDescription: "Could not getStatus the SqlQuery.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+   * The ontology query referenced an object type RID that does not exist or
+is not visible to the requesting user. Verify the RID (e.g. via
+list-object-types or get-object-type-details) and retry.
+   *
+   * Log Safety: SAFE
+   */
+export interface OntologyObjectTypeNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "OntologyObjectTypeNotFound";
+  errorDescription:
+    "The ontology query referenced an object type RID that does not exist or is not visible to the requesting user. Verify the RID (e.g. via list-object-types or get-object-type-details) and retry.";
+  errorInstanceId: string;
+  parameters: {
+    objectTypeRid: unknown;
+  };
+}
+
+/**
+ * The Ontology query failed.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OntologyQueryFailed {
+  errorCode: "INTERNAL";
+  errorName: "OntologyQueryFailed";
+  errorDescription: "The Ontology query failed.";
+  errorInstanceId: string;
+  parameters: {
+    errorMessage: unknown;
+  };
+}
+
+/**
+   * The ontology query references object types or link types indexed in Object
+Storage V1, which is incompatible with Ontology SQL. Migrate the entities
+to Object Storage V2 or remove them from the query.
+   *
+   * Log Safety: SAFE
+   */
+export interface OntologyQueryInvalidObjectBackend {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OntologyQueryInvalidObjectBackend";
+  errorDescription:
+    "The ontology query references object types or link types indexed in Object Storage V1, which is incompatible with Ontology SQL. Migrate the entities to Object Storage V2 or remove them from the query.";
+  errorInstanceId: string;
+  parameters: {
+    objectTypeRids: unknown;
+    linkTypeRids: unknown;
+  };
+}
+
+/**
+   * The query references too many objects across joins, link lookups, or
+sub-queries. Narrow the scope (add filters, reduce joins, restrict
+object types) and retry. The actual and maximum object counts are
+returned as parameters.
+   *
+   * Log Safety: SAFE
+   */
+export interface OntologyQueryNestedObjectSetTooLarge {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OntologyQueryNestedObjectSetTooLarge";
+  errorDescription:
+    "The query references too many objects across joins, link lookups, or sub-queries. Narrow the scope (add filters, reduce joins, restrict object types) and retry. The actual and maximum object counts are returned as parameters.";
+  errorInstanceId: string;
+  parameters: {
+    nestedObjectSetSize: unknown;
+    maxAllowedNestedObjectSetSize: unknown;
+  };
+}
+
+/**
+   * A string column in the query result contains a value larger than
+the platform's per-cell size limit. Exclude or filter the column,
+or scope the query to skip the oversized rows.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface OntologyQueryStringColumnTooLong {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OntologyQueryStringColumnTooLong";
+  errorDescription:
+    "A string column in the query result contains a value larger than the platform's per-cell size limit. Exclude or filter the column, or scope the query to skip the oversized rows.";
+  errorInstanceId: string;
+  parameters: {
+    columnName: unknown;
+  };
+}
+
+/**
+ * The query was canceled.
+ *
+ * Log Safety: SAFE
+ */
+export interface QueryCanceled {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "QueryCanceled";
+  errorDescription: "The query was canceled.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The query failed.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryFailed {
+  errorCode: "INTERNAL";
+  errorName: "QueryFailed";
+  errorDescription: "The query failed.";
+  errorInstanceId: string;
+  parameters: {
+    errorMessage: unknown;
+  };
+}
+
+/**
+ * The query cannot be parsed.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryParseError {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "QueryParseError";
+  errorDescription: "The query cannot be parsed.";
+  errorInstanceId: string;
+  parameters: {
+    errorMessage: unknown;
+  };
+}
+
+/**
+ * The provided token does not have permission to access the given query.
+ *
+ * Log Safety: SAFE
+ */
+export interface QueryPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "QueryPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to access the given query.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The query is running.
+ *
+ * Log Safety: SAFE
+ */
+export interface QueryRunning {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "QueryRunning";
+  errorDescription: "The query is running.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The provided token does not have permission to access the inputs to the query.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReadQueryInputsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReadQueryInputsPermissionDenied";
+  errorDescription:
+    "The provided token does not have permission to access the inputs to the query.";
+  errorInstanceId: string;
+  parameters: {
+    rids: unknown;
+  };
+}
