@@ -344,11 +344,11 @@ function standardPackageRules(shared, options, hasDist = false) {
 
             ...Object.fromEntries(
               (options.packageSubpaths ?? []).map((subpath) => [
-                `./${subpath}`,
+                `./${subpath}/*`,
                 {
-                  browser: `./build/browser/public/${subpath}.js`,
-                  import: `./build/esm/public/${subpath}.js`,
-                  default: `./build/esm/public/${subpath}.js`,
+                  browser: `./build/browser/${subpath}/public/*.js`,
+                  import: `./build/esm/${subpath}/public/*.js`,
+                  default: `./build/esm/${subpath}/public/*.js`,
                 },
               ]),
             ),

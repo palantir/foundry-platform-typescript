@@ -394,10 +394,10 @@ async function addPackageSubpathExport(
   packageSubpath: string,
 ): Promise<void> {
   const packageJson = JSON.parse(await fs.readFile(packageJsonPath, "utf-8"));
-  packageJson.exports[`./${packageSubpath}`] = {
-    browser: `./build/browser/public/${packageSubpath}.js`,
-    import: `./build/esm/public/${packageSubpath}.js`,
-    default: `./build/esm/public/${packageSubpath}.js`,
+  packageJson.exports[`./${packageSubpath}/*`] = {
+    browser: `./build/browser/${packageSubpath}/public/*.js`,
+    import: `./build/esm/${packageSubpath}/public/*.js`,
+    default: `./build/esm/${packageSubpath}/public/*.js`,
   };
   await fs.writeFile(
     packageJsonPath,

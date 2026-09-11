@@ -32,6 +32,85 @@ afterEach(async () => {
 });
 
 describe(generatePlatformSdkVersions, () => {
+  it.each([
+    ["foundry", "v2", "v2"],
+    ["foundry", "v3", "unstable_do_not_use_v3"],
+  ])("generates %s %s resource imports and arguments in URL order", async (
+    packagePrefix,
+    version,
+    subpath,
+  ) => {
+    const outputDirectory = await fs.mkdtemp(
+      path.join(os.tmpdir(), "platform-sdk-generator-"),
+    );
+    temporaryDirectories.push(outputDirectory);
+    const ir: ApiSpec = {
+      irVersion: "v2.1",
+      namespaces: [{
+        name: "Endpoints",
+        version,
+        components: [],
+        errors: [],
+        resources: [{
+          component: { namespaceName: "Endpoints", localName: "Endpoint" },
+          pluralName: "Endpoints",
+          documentation: {},
+          operations: [{
+            name: "getEndpoint",
+            verb: "get",
+            auth: { includeAuthHeader: true, scopes: [], expandedScopes: [] },
+            auditCategories: [],
+            releaseStage: "STABLE",
+            throwableErrors: [],
+            http: {
+              httpMethod: "GET",
+              path: `/${version}/parents/{parentId}/children/{childId}`,
+              parameters: ["childId", "parentId"].map(name => ({
+                name,
+                inputType: "PATH",
+                type: {
+                  type: {
+                    type: "builtin",
+                    builtin: { type: "string", string: {} },
+                  },
+                  safety: "SAFE",
+                },
+              })),
+              response: {
+                code: "204",
+                body: { type: "noContent", noContent: {} },
+              },
+            },
+          }],
+        }],
+      }],
+    };
+
+    await generatePlatformSdkVersions(ir, outputDirectory, packagePrefix);
+
+    const packageDirectory = path.join(
+      outputDirectory,
+      `${packagePrefix}.endpoints`,
+    );
+    const resource = await fs.readFile(
+      path.join(packageDirectory, "src", subpath, "public", "Endpoint.ts"),
+      "utf8",
+    );
+    expect(resource).toMatch(/parentId: string,\s*childId: string/);
+    const packageJson = JSON.parse(
+      await fs.readFile(
+        path.join(packageDirectory, "package.json"),
+        "utf8",
+      ),
+    );
+    expect(packageJson.exports[`./${subpath}`]).toBeUndefined();
+    expect(packageJson.exports[`./${subpath}/*`]).toEqual({
+      browser: `./build/browser/${subpath}/public/*.js`,
+      import: `./build/esm/${subpath}/public/*.js`,
+      default: `./build/esm/${subpath}/public/*.js`,
+    });
+  });
+
   it("rejects v3 references to v2-only components", async () => {
     const outputDirectory = await fs.mkdtemp(
       path.join(os.tmpdir(), "platform-sdk-generator-"),

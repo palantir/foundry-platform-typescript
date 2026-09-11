@@ -1,0 +1,29 @@
+{
+  "name": "@osdk/monorepo.test.platform-sdk",
+  "private": true,
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palantir/foundry-platform-typescript.git"
+  },
+  "scripts": {
+    "lint": "dprint check --config ../../dprint.json",
+    "test": "vitest run --pool=forks",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@osdk/foundry.endpoints": "workspace:*",
+    "@osdk/foundry.ontologies": "workspace:*",
+    "@osdk/gotham.gaia": "workspace:*"
+  },
+  "devDependencies": {
+    "@osdk/monorepo.tsconfig": "workspace:~",
+    "@osdk/shared.client2": "^1.0.0",
+    "@types/node": "^20.16.11",
+    "msw": "^2.15.0",
+    "typescript": "^5.5.4",
+    "vitest": "^4.0.5"
+  },
+  "type": "module"
+}
