@@ -37,7 +37,7 @@ const LATEST_TYPESCRIPT_DEP = "^5.5.4";
 const DELETE_SCRIPT_ENTRY = { options: [undefined], fixValue: undefined };
 
 const DEFAULT_STANDARD_PACKAGE_OPTIONS = { tsVersion: LATEST_TYPESCRIPT_DEP };
-const VERSION_SUBPATHS = ["v2", "unstable_do_not_use_v3"];
+const VERSION_SUBPATHS = ["v1", "v2", "unstable_do_not_use_v3"];
 const packagesDirectory = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
   "packages",
