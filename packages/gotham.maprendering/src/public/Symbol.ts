@@ -14,47 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/gotham.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $PlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $platformFetch } from "@osdk/shared.net.platformapi";
-import type * as _MapRendering from "../_components.js";
-
-//
-
-const _generic: $PlatformMethod<
-  (
-    symbolId: _MapRendering.MrsGenericSymbolId,
-    $queryParams: { size: number; preview?: _Core.PreviewMode | undefined },
-  ) => Promise<Response>
-> = [
-  0,
-  "/v2/mapRendering/symbols/{0}/generic",
-  2,
-  ,
-  "application/octet-stream",
-];
-
-/**
- * @beta
- *
- * Required Scopes: [api:map-read]
- * URL: /v2/mapRendering/symbols/{symbolId}/generic
- */
-export function generic(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    symbolId: _MapRendering.MrsGenericSymbolId,
-
-    $queryParams: { size: number; preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<Response> {
-  return $platformFetch($ctx, _generic, ...args);
-}
+export * from "../v2/public/Symbol.js";

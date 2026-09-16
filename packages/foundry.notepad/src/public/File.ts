@@ -14,43 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Notepad from "../_components.js";
-
-//
-
-const _content: $FoundryPlatformMethod<
-  (
-    fileRid: _Notepad.FileRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<Response>
-> = [0, "/v2/notepad/files/{0}/content", 2, , "application/octet-stream"];
-
-/**
- * Download file content.
- *
- * @beta
- *
- * Required Scopes: [api:notepad-export]
- * URL: /v2/notepad/files/{fileRid}/content
- */
-export function content(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    fileRid: _Notepad.FileRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<Response> {
-  return $foundryPlatformFetch($ctx, _content, ...args);
-}
+export * from "../v2/public/File.js";

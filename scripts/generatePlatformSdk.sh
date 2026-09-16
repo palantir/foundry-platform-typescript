@@ -18,41 +18,14 @@ CODE_GENERATOR="$SCRIPT_DIR/../packages/platform-sdk-generator/bin/platform-sdk-
 IR_JSON="${SCRIPT_DIR}/../tmp/api-gateway-ir/combined-ir.json"
 OPENAPI_MANIFEST_YML="${SCRIPT_DIR}/../tmp/api-gateway-ir/manifest.yml"
 
-PACKAGE_PATH="${SCRIPT_DIR}/../packages/internal.foundry"
 OUT_PATH="${SCRIPT_DIR}/../packages/"
 
-# Whether to generate docs, sdks, or both
-# One of: docs, sdks, docs-and-sdks
-GENERATION_MODE="docs-and-sdks"
-
 $CODE_GENERATOR generate \
-    --v2 \
-    --prefix "internal.foundry" \
     --inputFile "${IR_JSON}" \
     --manifestFile "${OPENAPI_MANIFEST_YML}" \
     --outputDir "${OUT_PATH}" \
     --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/internal.foundry.core/core.json" \
-    --endpointVersion "v1" \
-    --mode "sdks" 
-
-$CODE_GENERATOR generate \
-    --v2 \
-    --prefix "foundry" \
-    --inputFile "${IR_JSON}" \
-    --manifestFile "${OPENAPI_MANIFEST_YML}" \
-    --outputDir "${OUT_PATH}" \
-    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json" \
-    --endpointVersion "v2" \
-    --mode "${GENERATION_MODE}"
-
-$CODE_GENERATOR generate \
-    --v2 \
-    --prefix "gotham" \
-    --inputFile "${IR_JSON}" \
-    --manifestFile "${OPENAPI_MANIFEST_YML}" \
-    --outputDir "${OUT_PATH}" \
-    --endpointVersion "v2" \
-    --mode "${GENERATION_MODE}"
+    --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
 
 echo
 echo pnpm install to make align deps

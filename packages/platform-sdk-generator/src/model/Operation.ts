@@ -147,7 +147,11 @@ export class Operation {
     | { name: string; type: Type; kind: "PATH" | "QUERY" | "HEADER" }[]
     | undefined
   > {
-    return groupByAsObject(this.parameters, "kind");
+    const parameters = groupByAsObject(this.parameters, "kind");
+    parameters.PATH?.sort((a, b) =>
+      this.path.indexOf(`{${a.name}}`) - this.path.indexOf(`{${b.name}}`)
+    );
+    return parameters;
   }
 
   get parameters(): Array<

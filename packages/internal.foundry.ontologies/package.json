@@ -12,6 +12,11 @@
       "import": "./build/esm/index.js",
       "default": "./build/esm/index.js"
     },
+    "./v1/*": {
+      "browser": "./build/browser/v1/public/*.js",
+      "import": "./build/esm/v1/public/*.js",
+      "default": "./build/esm/v1/public/*.js"
+    },
     "./*": {
       "browser": "./build/browser/public/*.js",
       "import": "./build/esm/public/*.js",

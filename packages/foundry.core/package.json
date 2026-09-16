@@ -12,6 +12,16 @@
       "import": "./build/esm/index.js",
       "default": "./build/esm/index.js"
     },
+    "./v2/*": {
+      "browser": "./build/browser/v2/public/*.js",
+      "import": "./build/esm/v2/public/*.js",
+      "default": "./build/esm/v2/public/*.js"
+    },
+    "./unstable_do_not_use_v3/*": {
+      "browser": "./build/browser/unstable_do_not_use_v3/public/*.js",
+      "import": "./build/esm/unstable_do_not_use_v3/public/*.js",
+      "default": "./build/esm/unstable_do_not_use_v3/public/*.js"
+    },
     "./*": {
       "browser": "./build/browser/public/*.js",
       "import": "./build/esm/public/*.js",

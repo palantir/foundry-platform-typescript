@@ -14,24 +14,4 @@
  * limitations under the License.
  */
 
-export type {
-  BBox,
-  Coordinate,
-  Feature,
-  FeatureCollection,
-  FeatureCollectionTypes,
-  FeaturePropertyKey,
-  GeoJsonObject,
-  Geometry,
-  GeometryCollection,
-  LinearRing,
-  LineString,
-  LineStringCoordinates,
-  MultiLineString,
-  MultiPoint,
-  MultiPolygon,
-  Point,
-  Polygon,
-  Position,
-} from "./_components.js";
-export type {} from "./_errors.js";
+export * from "./v2/index.js";

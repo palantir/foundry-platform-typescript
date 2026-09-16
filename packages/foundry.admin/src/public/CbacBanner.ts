@@ -14,46 +14,4 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
-import type {
-  SharedClient as $OldClient,
-  SharedClientContext as $OldClientContext,
-} from "@osdk/shared.client";
-import type {
-  SharedClient as $Client,
-  SharedClientContext as $ClientContext,
-} from "@osdk/shared.client2";
-import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
-import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Admin from "../_components.js";
-
-//
-
-const _get: $FoundryPlatformMethod<
-  ($queryParams: {
-    displayType?: _Admin.ClassificationBannerDisplayType | undefined;
-    markingIds: Array<_Core.MarkingId>;
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Admin.CbacBanner>
-> = [0, "/v2/admin/cbacBanner", 2];
-
-/**
- * Returns a classification banner string and colors for the given set of marking IDs.
- *
- * @beta
- *
- * Required Scopes: [api:admin-read]
- * URL: /v2/admin/cbacBanner
- */
-export function get(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $queryParams: {
-      displayType?: _Admin.ClassificationBannerDisplayType | undefined;
-      markingIds: Array<_Core.MarkingId>;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
-): Promise<_Admin.CbacBanner> {
-  return $foundryPlatformFetch($ctx, _get, ...args);
-}
+export * from "../v2/public/CbacBanner.js";

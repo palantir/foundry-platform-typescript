@@ -1390,5 +1390,23 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.addObjectsToMap": {
       "variables": {},
     },
+    "v3.getEndpointSet": {
+      "variables": {},
+    },
+    "v3.getEndpointSetEndpoint": {
+      "variables": {},
+    },
+    "v3.listEndpointSetEndpoints": {
+      "variables": {},
+    },
+    "v3.getEndpointSetVersion": {
+      "variables": {},
+    },
+    "v3.listEndpointSetVersions": {
+      "variables": {},
+    },
+    "v3.completeProcessExecutionSignal": {
+      "variables": {},
+    },
   },
 } as const satisfies DocsSnippetsSpec;

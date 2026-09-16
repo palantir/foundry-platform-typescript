@@ -23,9 +23,11 @@ import { CommentsV2 } from "./namespaces/CommentsV2.js";
 import { ConnectivityV2 } from "./namespaces/ConnectivityV2.js";
 import { CoreV1 } from "./namespaces/CoreV1.js";
 import { CoreV2 } from "./namespaces/CoreV2.js";
+import { CoreV3 } from "./namespaces/CoreV3.js";
 import { DataHealthV2 } from "./namespaces/DataHealthV2.js";
 import { DatasetsV1 } from "./namespaces/DatasetsV1.js";
 import { DatasetsV2 } from "./namespaces/DatasetsV2.js";
+import { EndpointsV3 } from "./namespaces/EndpointsV3.js";
 import { FilesystemV2 } from "./namespaces/FilesystemV2.js";
 import { FunctionsV2 } from "./namespaces/FunctionsV2.js";
 import { GaiaV2 } from "./namespaces/GaiaV2.js";
@@ -44,6 +46,7 @@ import { OntologiesV2 } from "./namespaces/OntologiesV2.js";
 import { OntologyMcpV2 } from "./namespaces/OntologyMcpV2.js";
 import { OperationsV2 } from "./namespaces/OperationsV2.js";
 import { OrchestrationV2 } from "./namespaces/OrchestrationV2.js";
+import { OrchestratorV3 } from "./namespaces/OrchestratorV3.js";
 import { PackV2 } from "./namespaces/PackV2.js";
 import { PublicApisV2 } from "./namespaces/PublicApisV2.js";
 import { ResourceManagementV2 } from "./namespaces/ResourceManagementV2.js";
@@ -56,7 +59,7 @@ import { WidgetsV2 } from "./namespaces/WidgetsV2.js";
 import { WorkbenchV2 } from "./namespaces/WorkbenchV2.js";
 
 export const PLATFORM_API_IR: ApiSpec = {
-  irVersion: "v2",
+  irVersion: "v2.1",
   namespaces: [
     ThirdPartyApplicationsV2,
     PublicApisV2,
@@ -97,5 +100,8 @@ export const PLATFORM_API_IR: ApiSpec = {
     CheckpointsV2,
     NotepadV2,
     GaiaV2,
+    EndpointsV3,
+    OrchestratorV3,
+    CoreV3,
   ],
 };

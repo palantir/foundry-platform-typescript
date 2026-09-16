@@ -186,6 +186,8 @@
         "examples/*/*/tsconfig.json",
         "examples-extra/*/*/package.json",
         "examples-extra/*/*/tsconfig.json",
+        "tests/*/package.json",
+        "tests/*/tsconfig.json",
         "templates/*"
       ]
     },

@@ -14,15 +14,4 @@
  * limitations under the License.
  */
 
-export type {
-  FileId,
-  ListLogFilesResponse,
-  LogFile,
-  Organization,
-} from "./_components.js";
-export type {
-  GetLogFileContentPermissionDenied,
-  ListLogFilesPermissionDenied,
-  MissingStartDate,
-} from "./_errors.js";
-export * as LogFiles from "./public/LogFile.js";
+export * from "./v2/index.js";
