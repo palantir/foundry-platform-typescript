@@ -14,6 +14,7 @@ repo-type:
       - packages/foundry.core
       - packages/foundry.datahealth
       - packages/foundry.datasets
+      - packages/foundry.endpoints
       - packages/foundry.filesystem
       - packages/foundry.functions
       - packages/foundry.geo
@@ -25,6 +26,7 @@ repo-type:
       - packages/foundry.ontologies
       - packages/foundry.operations
       - packages/foundry.orchestration
+      - packages/foundry.orchestrator
       - packages/foundry.pack
       - packages/foundry.publicapis
       - packages/foundry.sqlqueries
