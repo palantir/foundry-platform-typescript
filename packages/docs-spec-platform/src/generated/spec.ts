@@ -745,6 +745,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getCbacBanner": {
       "variables": {},
     },
+    "v2.getForResources": {
+      "variables": {},
+    },
     "v2.getCbacMarkingRestrictions": {
       "variables": {},
     },
@@ -1300,7 +1303,13 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getDocumentType": {
       "variables": {},
     },
+    "v2.loadV2DocumentTypes": {
+      "variables": {},
+    },
     "v2.loadByNameDocumentTypes": {
+      "variables": {},
+    },
+    "v2.loadByNameV2DocumentTypes": {
       "variables": {},
     },
     "v2.updateSchemaDocumentType": {
