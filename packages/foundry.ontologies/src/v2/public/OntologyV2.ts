@@ -83,7 +83,7 @@ const _getFullMetadata: $FoundryPlatformMethod<
  * This endpoint is designed to return as much metadata as possible in a single request to support OSDK workflows.
  * It may omit certain entities rather than fail the request.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/fullMetadata

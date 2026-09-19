@@ -80,6 +80,31 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _loadV2: $FoundryPlatformMethod<
+  (
+    $body: _Pack.LoadV2DocumentTypesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.DocumentTypeV2>
+> = [1, "/v2/pack/documentTypes/loadV2", 3];
+
+/**
+ * Loads the PACK Document Type's metadata by the provided Document Type Reference.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documentTypes/loadV2
+ */
+export function loadV2(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.LoadV2DocumentTypesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.DocumentTypeV2> {
+  return $foundryPlatformFetch($ctx, _loadV2, ...args);
+}
+
 const _loadByName: $FoundryPlatformMethod<
   (
     $body: _Pack.LoadByNameDocumentTypesRequest,
@@ -103,6 +128,31 @@ export function loadByName(
   ]
 ): Promise<_Pack.DocumentType> {
   return $foundryPlatformFetch($ctx, _loadByName, ...args);
+}
+
+const _loadByNameV2: $FoundryPlatformMethod<
+  (
+    $body: _Pack.LoadByNameV2DocumentTypesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Pack.DocumentTypeV2>
+> = [1, "/v2/pack/documentTypes/loadByNameV2", 3];
+
+/**
+ * Loads a third-party PACK Document Type's metadata by its name and ontology.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:pack-read]
+ * URL: /v2/pack/documentTypes/loadByNameV2
+ */
+export function loadByNameV2(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Pack.LoadByNameV2DocumentTypesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Pack.DocumentTypeV2> {
+  return $foundryPlatformFetch($ctx, _loadByNameV2, ...args);
 }
 
 const _updateSchema: $FoundryPlatformMethod<
