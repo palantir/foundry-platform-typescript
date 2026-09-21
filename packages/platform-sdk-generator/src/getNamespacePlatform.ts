@@ -29,6 +29,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Geojson": "gotham",
     "Admin": "foundry",
     "AipAgents": "foundry",
+    "Agents": "foundry",
     "Appkit": "skipped",
     "Audit": "foundry",
     "Comments": "skipped",
