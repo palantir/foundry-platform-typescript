@@ -3436,7 +3436,6 @@ export interface ListOntologyValueTypesResponse {
  * Log Safety: UNSAFE
  */
 export interface ListOutgoingInterfaceLinkTypesResponse {
-  nextPageToken?: _Core.PageToken;
   data: Array<InterfaceLinkType>;
 }
 

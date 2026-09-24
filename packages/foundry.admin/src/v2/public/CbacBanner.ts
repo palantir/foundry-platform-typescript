@@ -57,3 +57,28 @@ export function get(
 ): Promise<_Admin.CbacBanner> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _getForResources: $FoundryPlatformMethod<
+  (
+    $body: _Admin.GetForResourcesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.CbacBanner>
+> = [1, "/v2/admin/cbacBanner/getForResources", 3];
+
+/**
+ * Returns a combined CBAC banner for the requested resources.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-read]
+ * URL: /v2/admin/cbacBanner/getForResources
+ */
+export function getForResources(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Admin.GetForResourcesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.CbacBanner> {
+  return $foundryPlatformFetch($ctx, _getForResources, ...args);
+}

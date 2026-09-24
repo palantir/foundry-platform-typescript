@@ -250,6 +250,14 @@ export interface EnrollmentRoleAssignment {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface GetForResourcesRequest {
+  resourceRids: Array<string>;
+  displayType?: ClassificationBannerDisplayType;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface GetGroupsBatchRequestElement {
