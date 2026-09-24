@@ -1,5 +1,17 @@
 # @osdk/platform-sdk-generator
 
+## 0.78.0
+
+### Minor Changes
+
+- ebad925: Generate versioned Platform SDK subpaths, including Foundry v3 APIs, using API Gateway 1.1795.1. Fix direct resource exports and preserve URL placeholder order in generated method parameters.
+
+### Patch Changes
+
+- Updated dependencies [51b4a34]
+- Updated dependencies [ebad925]
+  - @osdk/docs-spec-platform@0.65.0
+
 ## 0.77.0
 
 ### Patch Changes
