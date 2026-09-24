@@ -132,9 +132,9 @@ export interface CreateDocumentMatchingSecurityRequestBody {
  * Log Safety: UNSAFE
  */
 export interface CreateDocumentRequest {
+  ontologyRid: string;
   parentFolderRid?: _Filesystem.FolderRid;
   security: DocumentSecurity;
-  ontologyRid: DocumentOntologyRid;
   name: DocumentName;
   description?: string;
   documentTypeName: DocumentTypeName;
@@ -238,7 +238,8 @@ export type DiscretionarySecurityPrincipalType = "ALL_PRINCIPAL" | "USER";
 export interface Document {
   id: DocumentRid;
   documentTypeName: DocumentTypeName;
-  ontologyRid: DocumentOntologyRid;
+  ontologyRid?: string;
+  presenceSupported?: boolean;
   name: DocumentName;
   description?: string;
   parentFolderRid?: _Filesystem.FolderRid;
@@ -551,11 +552,6 @@ export interface DocumentMetadataUpdate {
 export type DocumentName = LooselyBrandedString<"DocumentName">;
 
 /**
- * Log Safety: SAFE
- */
-export type DocumentOntologyRid = LooselyBrandedString<"DocumentOntologyRid">;
-
-/**
    * An operation that the requesting user is permitted to perform on a document, based on the
 document's security settings and the user's principals.
    *
@@ -748,6 +744,29 @@ globally unique.
 export type DocumentTypeName = LooselyBrandedString<"DocumentTypeName">;
 
 /**
+ * Identifies a document type: DocumentTypeRid for third-party or a DocumentTypeName for first-party.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DocumentTypeReference =
+  | ({ type: "name" } & DocumentTypeReferenceName)
+  | ({ type: "rid" } & DocumentTypeReferenceRid);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DocumentTypeReferenceName {
+  name: DocumentTypeName;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DocumentTypeReferenceRid {
+  rid: DocumentTypeRid;
+}
+
+/**
  * Identifier for an PACK Document Type.
  *
  * Log Safety: SAFE
@@ -762,6 +781,17 @@ export type DocumentTypeRid = LooselyBrandedString<"DocumentTypeRid">;
 export interface DocumentTypeSchema {
   primaryModelKeys: Array<ModelTypeKey>;
   models: Record<ModelTypeKey, ModelDef>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DocumentTypeV2 {
+  reference: DocumentTypeReference;
+  name: DocumentTypeName;
+  operationalVersion?: SchemaVersion;
+  fileSystemType: FileSystemType;
+  owningApplicationId?: string;
 }
 
 /**
@@ -1156,6 +1186,21 @@ export type InterfaceTypeRid = LooselyBrandedString<"InterfaceTypeRid">;
 export interface LoadByNameDocumentTypesRequest {
   documentTypeName: DocumentTypeName;
   ontologyRid: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadByNameV2DocumentTypesRequest {
+  documentTypeName: DocumentTypeName;
+  ontologyRid: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadV2DocumentTypesRequest {
+  documentTypeReference: DocumentTypeReference;
 }
 
 /**

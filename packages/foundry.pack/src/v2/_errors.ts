@@ -306,6 +306,23 @@ export interface DocumentTypeNotFound {
 }
 
 /**
+   * First-party Document Types cannot be loaded using loadByNameV2. Use loadV2 with a name Document Type
+Reference instead.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FirstPartyDocumentTypeLoadByNameNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FirstPartyDocumentTypeLoadByNameNotSupported";
+  errorDescription:
+    "First-party Document Types cannot be loaded using loadByNameV2. Use loadV2 with a name Document Type Reference instead.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+  };
+}
+
+/**
  * Could not contents the Document.
  *
  * Log Safety: SAFE
@@ -423,6 +440,32 @@ export interface LoadByNameDocumentTypesPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "LoadByNameDocumentTypesPermissionDenied";
   errorDescription: "Could not loadByName the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not loadByNameV2 the DocumentType.
+ *
+ * Log Safety: SAFE
+ */
+export interface LoadByNameV2DocumentTypesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "LoadByNameV2DocumentTypesPermissionDenied";
+  errorDescription: "Could not loadByNameV2 the DocumentType.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not loadV2 the DocumentType.
+ *
+ * Log Safety: SAFE
+ */
+export interface LoadV2DocumentTypesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "LoadV2DocumentTypesPermissionDenied";
+  errorDescription: "Could not loadV2 the DocumentType.";
   errorInstanceId: string;
   parameters: {};
 }

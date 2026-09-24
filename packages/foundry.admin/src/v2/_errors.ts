@@ -434,6 +434,19 @@ export interface GetCurrentUserPermissionDenied {
 }
 
 /**
+ * Could not getForResources the CbacBanner.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetForResourcesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetForResourcesPermissionDenied";
+  errorDescription: "Could not getForResources the CbacBanner.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The provided token does not have permission to view the provider information for the given group.
  *
  * Log Safety: SAFE
