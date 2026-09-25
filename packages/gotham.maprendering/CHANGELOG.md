@@ -1,5 +1,19 @@
 # @osdk/gotham.maprendering
 
+## 0.51.0
+
+### Minor Changes
+
+- 51b4a34: Regenerate SDKs with API version 1.1803.2
+- ebad925: Generate versioned Platform SDK subpaths, including Foundry v3 APIs, using API Gateway 1.1795.1. Fix direct resource exports and preserve URL placeholder order in generated method parameters.
+
+### Patch Changes
+
+- Updated dependencies [51b4a34]
+- Updated dependencies [ebad925]
+  - @osdk/gotham.core@0.51.0
+  - @osdk/gotham.geojson@0.51.0
+
 ## 0.50.0
 
 ### Minor Changes
