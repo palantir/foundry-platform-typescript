@@ -16,6 +16,7 @@
 
 import type { ApiSpec } from "../ir/ApiSpec.js";
 import { AdminV2 } from "./namespaces/AdminV2.js";
+import { AgentsV2 } from "./namespaces/AgentsV2.js";
 import { AipAgentsV2 } from "./namespaces/AipAgentsV2.js";
 import { AuditV2 } from "./namespaces/AuditV2.js";
 import { CheckpointsV2 } from "./namespaces/CheckpointsV2.js";
@@ -62,6 +63,7 @@ export const PLATFORM_API_IR: ApiSpec = {
   irVersion: "v2.1",
   namespaces: [
     ThirdPartyApplicationsV2,
+    AgentsV2,
     PublicApisV2,
     TargetWorkbenchV2,
     MediaSetsV2,
