@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@osdk/foundry.admin": "workspace:*",
+    "@osdk/foundry.agents": "workspace:*",
     "@osdk/foundry.aipagents": "workspace:*",
     "@osdk/foundry.audit": "workspace:*",
     "@osdk/foundry.checkpoints": "workspace:*",
@@ -84,7 +85,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1803.2",
+        "minVersion": "1.1809.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

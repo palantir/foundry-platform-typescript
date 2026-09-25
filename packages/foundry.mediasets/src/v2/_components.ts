@@ -1294,7 +1294,9 @@ export interface JpgFormat {}
  *
  * Log Safety: UNSAFE
  */
-export type LanguageModelLocator = { type: "apiName" } & ApiNameLocatorWrapper;
+export type LanguageModelLocator =
+  | ({ type: "apiName" } & ApiNameLocatorWrapper)
+  | ({ type: "registeredModelRid" } & RegisteredModelRidLocatorWrapper);
 
 /**
  * Parameters for layout-aware content extraction.
@@ -1932,6 +1934,15 @@ export interface Pttml {}
 export interface PutMediaItemResponse {
   mediaItemRid: _Core.MediaItemRid;
   mediaSetViewRid: _Core.MediaSetViewRid;
+}
+
+/**
+ * Locator that identifies an LMS registered model by its resource identifier.
+ *
+ * Log Safety: SAFE
+ */
+export interface RegisteredModelRidLocatorWrapper {
+  registeredModelRid: string;
 }
 
 /**
