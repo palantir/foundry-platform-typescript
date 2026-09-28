@@ -7,6 +7,7 @@ repo-type:
       - packages/docs-spec-sdk
       - packages/foundry
       - packages/foundry.admin
+      - packages/foundry.agents
       - packages/foundry.aipagents
       - packages/foundry.audit
       - packages/foundry.checkpoints
