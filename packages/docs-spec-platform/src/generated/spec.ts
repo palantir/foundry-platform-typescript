@@ -46,6 +46,15 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.uploadSnapshotVersion": {
       "variables": {},
     },
+    "v2.createAgentSession": {
+      "variables": {},
+    },
+    "v2.sendEvent": {
+      "variables": {},
+    },
+    "v2.getSessionState": {
+      "variables": {},
+    },
     "v2.getApiDefinition": {
       "variables": {},
     },
@@ -125,6 +134,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getMediaItemRidByPath": {
+      "variables": {},
+    },
+    "v2.getMediaItemTile": {
       "variables": {},
     },
     "v2.getMediaSet": {

@@ -1,6 +1,6 @@
 {
-  "name": "@osdk/gotham",
-  "version": "0.51.0",
+  "name": "@osdk/foundry.agents",
+  "version": "0.0.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -11,6 +11,11 @@
       "browser": "./build/browser/index.js",
       "import": "./build/esm/index.js",
       "default": "./build/esm/index.js"
+    },
+    "./v2/*": {
+      "browser": "./build/browser/v2/public/*.js",
+      "import": "./build/esm/v2/public/*.js",
+      "default": "./build/esm/v2/public/*.js"
     },
     "./*": {
       "browser": "./build/browser/public/*.js",
@@ -27,12 +32,9 @@
     "transpile": "monorepo.tool.transpile"
   },
   "dependencies": {
-    "@osdk/gotham.core": "workspace:*",
-    "@osdk/gotham.gaia": "workspace:*",
-    "@osdk/gotham.geojson": "workspace:*",
-    "@osdk/gotham.maprendering": "workspace:*",
-    "@osdk/gotham.targetworkbench": "workspace:*",
-    "@osdk/shared.client": "1.0.1",
+    "@osdk/foundry.core": "workspace:*",
+    "@osdk/foundry.ontologies": "workspace:*",
+    "@osdk/shared.client": "^1.0.1",
     "@osdk/shared.client2": "^1.0.0",
     "@osdk/shared.net.platformapi": "workspace:~"
   },

@@ -179,6 +179,9 @@ importers:
       '@osdk/foundry.admin':
         specifier: workspace:*
         version: link:../foundry.admin
+      '@osdk/foundry.agents':
+        specifier: workspace:*
+        version: link:../foundry.agents
       '@osdk/foundry.aipagents':
         specifier: workspace:*
         version: link:../foundry.aipagents
@@ -304,6 +307,31 @@ importers:
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
+
+  packages/foundry.agents:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
+      '@osdk/foundry.ontologies':
+        specifier: workspace:*
+        version: link:../foundry.ontologies
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.9.3
 
   packages/foundry.aipagents:
     dependencies:

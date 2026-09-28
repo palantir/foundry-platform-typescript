@@ -15,6 +15,7 @@
  */
 
 export * as Admin from "@osdk/foundry.admin";
+export * as Agents from "@osdk/foundry.agents";
 export * as AipAgents from "@osdk/foundry.aipagents";
 export * as Audit from "@osdk/foundry.audit";
 export * as Checkpoints from "@osdk/foundry.checkpoints";

@@ -5,6 +5,7 @@
   // A missing package here will cause a build failure.
   "bundledPackages": [
     "@osdk/foundry.admin",
+    "@osdk/foundry.agents",
     "@osdk/foundry.aipagents",
     "@osdk/foundry.audit",
     "@osdk/foundry.checkpoints",

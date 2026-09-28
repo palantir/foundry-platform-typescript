@@ -85,6 +85,24 @@ export interface InvalidMediaItemSchema {
 }
 
 /**
+ * The tile path is invalid. The zoom level, column, and row must be valid tile coordinates.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidTilePath {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidTilePath";
+  errorDescription:
+    "The tile path is invalid. The zoom level, column, and row must be valid tile coordinates.";
+  errorInstanceId: string;
+  parameters: {
+    zoom: unknown;
+    xCoordinate: unknown;
+    yCoordinate: unknown;
+  };
+}
+
+/**
  * The file cannot be read because it contains unsupported security settings (for example, public-key security handlers in a PDF).
  *
  * Log Safety: UNSAFE

@@ -319,6 +319,45 @@ export function getRidByPath(
   return $foundryPlatformFetch($ctx, _getRidByPath, ...args);
 }
 
+const _tile: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    z: number,
+    x: number,
+    y: number,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<Response>
+> = [0, "/v2/mediasets/{0}/items/{1}/tiles/{2}/{3}/{4}", 6, , "*/*"];
+
+/**
+ * Gets a PNG map tile for a media item. Only PNG tiles are currently supported.
+ * Returns `204 No Content` for a blank tile.
+ * Returns `400 Bad Request` when the tile path or coordinates are invalid or the tile transformation is unavailable.
+ * Returns `404 Not Found` when the requested media set or media item does not exist.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/tiles/{z}/{x}/{y}
+ */
+export function tile(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    z: number,
+    x: number,
+    y: number,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _tile, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,

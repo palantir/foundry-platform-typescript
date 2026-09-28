@@ -116,6 +116,7 @@ const _loadMetadata: $FoundryPlatformMethod<
 
 /**
  * Load Ontology metadata for the requested object, link, action, query, and interface types.
+ * Requested object types include the backing datasources that the user has access to see.
  *
  * @alpha
  *
