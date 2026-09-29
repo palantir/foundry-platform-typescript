@@ -46,6 +46,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.uploadSnapshotVersion": {
       "variables": {},
     },
+    "v2.getAgentDefinitionVersion": {
+      "variables": {},
+    },
     "v2.createAgentSession": {
       "variables": {},
     },
