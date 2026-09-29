@@ -1,5 +1,18 @@
 # @osdk/foundry.streams
 
+## 2.81.0
+
+### Minor Changes
+
+- 550de86: Regenerate SDKs with API version 1.1809.4
+
+### Patch Changes
+
+- Updated dependencies [550de86]
+  - @osdk/foundry.core@2.81.0
+  - @osdk/foundry.datasets@2.81.0
+  - @osdk/foundry.filesystem@2.81.0
+
 ## 2.80.0
 
 ### Minor Changes
