@@ -64,8 +64,8 @@ const _sendEvent: $FoundryPlatformMethod<
 > = [1, "/v2/agents/agentSessions/{0}/sendEvent", 3];
 
 /**
- * Send an event to the specified Agent session. Handling an event runs Agent logic and may modify platform data. An `ACCEPTED`
- * status confirms that the event was accepted for handling. Retry a `SESSION_NOT_READY` status after a short delay.
+ * Send an event to the specified Agent session. Handling an event runs Agent logic and may modify platform data. An
+ * `accepted` result confirms that the event was accepted for handling. Retry a `sessionNotReady` result after a short delay.
  *
  * @alpha
  *

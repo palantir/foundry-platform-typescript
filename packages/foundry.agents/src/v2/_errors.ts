@@ -19,18 +19,33 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * The requested Agent was not found.
+ * The given Agent could not be found.
  *
  * Log Safety: UNSAFE
  */
-export interface AgentNotFound {
+export interface AgentDefinitionNotFound {
   errorCode: "NOT_FOUND";
-  errorName: "AgentNotFound";
-  errorDescription: "The requested Agent was not found.";
+  errorName: "AgentDefinitionNotFound";
+  errorDescription: "The given Agent could not be found.";
   errorInstanceId: string;
   parameters: {
-    ontology: unknown;
-    agentApiName: unknown;
+    agentDefinitionApiName: unknown;
+  };
+}
+
+/**
+ * The given AgentDefinitionVersion could not be found.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AgentDefinitionVersionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "AgentDefinitionVersionNotFound";
+  errorDescription: "The given AgentDefinitionVersion could not be found.";
+  errorInstanceId: string;
+  parameters: {
+    agentDefinitionVersionVersion: unknown;
+    agentDefinitionApiName: unknown;
   };
 }
 
@@ -45,24 +60,7 @@ export interface AgentSessionNotFound {
   errorDescription: "The requested Agent session was not found.";
   errorInstanceId: string;
   parameters: {
-    sessionId: unknown;
-  };
-}
-
-/**
- * The requested version does not exist for the Agent.
- *
- * Log Safety: UNSAFE
- */
-export interface AgentVersionNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "AgentVersionNotFound";
-  errorDescription: "The requested version does not exist for the Agent.";
-  errorInstanceId: string;
-  parameters: {
-    ontology: unknown;
-    agentApiName: unknown;
-    agentVersion: unknown;
+    agentSessionId: unknown;
   };
 }
 
@@ -139,5 +137,21 @@ export interface SendEventPermissionDenied {
   errorInstanceId: string;
   parameters: {
     agentSessionId: unknown;
+  };
+}
+
+/**
+ * The Agent definition version contains a data type that is not supported by this API.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedDataType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedDataType";
+  errorDescription:
+    "The Agent definition version contains a data type that is not supported by this API.";
+  errorInstanceId: string;
+  parameters: {
+    dataType: unknown;
   };
 }
