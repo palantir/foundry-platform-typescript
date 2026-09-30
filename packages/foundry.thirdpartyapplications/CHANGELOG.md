@@ -1,5 +1,16 @@
 # @osdk/foundry.thirdpartyapplications
 
+## 2.82.0
+
+### Minor Changes
+
+- a9fcae6: Regenerate SDKs with API version 1.1815.4
+
+### Patch Changes
+
+- Updated dependencies [a9fcae6]
+  - @osdk/foundry.core@2.82.0
+
 ## 2.81.0
 
 ### Minor Changes
