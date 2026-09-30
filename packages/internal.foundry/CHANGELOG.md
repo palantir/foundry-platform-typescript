@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.82.0
+
+### Minor Changes
+
+- a9fcae6: Regenerate SDKs with API version 1.1815.4
+
+### Patch Changes
+
+- Updated dependencies [a9fcae6]
+  - @osdk/internal.foundry.core@2.82.0
+  - @osdk/internal.foundry.datasets@2.82.0
+  - @osdk/internal.foundry.geo@2.82.0
+  - @osdk/internal.foundry.ontologies@2.82.0
+  - @osdk/internal.foundry.mediasets@2.82.0
+  - @osdk/internal.foundry.ontologiesv2@2.82.0
+
 ## 2.81.0
 
 ### Minor Changes
