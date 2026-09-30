@@ -39,6 +39,8 @@ const _getMediaContent: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<Response>
@@ -64,6 +66,8 @@ export function getMediaContent(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -81,6 +85,8 @@ const _getMediaMetadata: $FoundryPlatformMethod<
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.MediaMetadata>
@@ -106,6 +112,8 @@ export function getMediaMetadata(
       sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
       sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]

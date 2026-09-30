@@ -103,6 +103,8 @@ const _get: $FoundryPlatformMethod<
       excludeRid?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
       loadOntologyDefinedDerivedProperties?: boolean | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
     },
   ) => Promise<_Ontologies.OntologyObjectV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}", 2];
@@ -129,6 +131,8 @@ export function get(
       excludeRid?: boolean | undefined;
       branch?: _Core.FoundryBranch | undefined;
       loadOntologyDefinedDerivedProperties?: boolean | undefined;
+      transactionId?: _Ontologies.OntologyTransactionId | undefined;
+      scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
     },
   ]
 ): Promise<_Ontologies.OntologyObjectV2> {
