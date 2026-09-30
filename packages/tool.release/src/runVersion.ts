@@ -45,19 +45,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-import { exec } from "@actions/exec";
-import applyReleasePlan from "@changesets/apply-release-plan";
-import assembleReleasePlan from "@changesets/assemble-release-plan";
-import { read as readChangesetConfig } from "@changesets/config";
-import { getCurrentCommitId } from "@changesets/git";
-import { readPreState } from "@changesets/pre";
-import readChangesets from "@changesets/read";
 import {
   getChangelogEntry,
   sortChangelogEntries,
 } from "@changesets/release-utils";
-import type { Config } from "@changesets/types";
-import { getPackages } from "@manypkg/get-packages";
 import { consola } from "consola";
 import * as fs from "node:fs";
 import path from "node:path";
@@ -65,10 +56,10 @@ import type { Octokit } from "octokit";
 import { createOrUpdatePr } from "./createOrUpdatePr.js";
 import { FailedWithUserMessage } from "./FailedWithUserMessage.js";
 import * as gitUtils from "./gitUtils.js";
-import { mutateReleasePlan } from "./mutateReleasePlan.js";
 import { getChangedPackages } from "./util/getChangedPackages.js";
 import { getVersionPrBody } from "./util/getVersionPrBody.js";
 import { getVersionsByDirectory } from "./util/getVersionsByDirectory.js";
+import { versionPackages } from "./versionPackages.js";
 
 export interface GithubContext {
   repo: { owner: string; repo: string };
@@ -135,52 +126,18 @@ export async function runVersion({
 
   const originalVersionsByDirectory = await getVersionsByDirectory(cwd);
 
-  const packages = await getPackages(cwd);
-  const config = await readChangesetConfig(cwd, packages);
-
-  const [changesets, preState] = await Promise.all([
-    readChangesets(cwd),
-    readPreState(cwd),
-  ]);
-
-  const releaseConfig: Config = {
-    ...config,
-    // Disable committing when in snapshot mode
-    commit: snapshot || !runGitCommands ? false : config.commit,
-    changelog: ["@changesets/changelog-git", null],
-  };
-
-  const releasePlan = assembleReleasePlan(
-    changesets,
-    packages,
-    releaseConfig,
-    preState,
-    snapshot
-      ? {
-        tag: snapshot === true ? undefined : snapshot,
-        commit: config.snapshot.prereleaseTemplate?.includes("{commit}")
-          ? await getCurrentCommitId({ cwd })
-          : undefined,
-      }
-      : undefined,
-  );
-
-  mutateReleasePlan(releasePlan, isMainBranch ? "main" : "patch");
-
-  const touchedFiles = await applyReleasePlan(
-    releasePlan,
-    packages,
-    releaseConfig,
+  const { touchedFiles, preState } = await versionPackages({
+    cwd,
+    releaseType: isMainBranch ? "main" : "patch",
+    commit: runGitCommands,
     snapshot,
-  );
+  });
 
   if (touchedFiles.length === 0) {
     throw new FailedWithUserMessage(
       "No changesets to apply, aborting",
     );
   }
-
-  await exec("pnpm", ["run", "postVersionCmd"], { cwd });
 
   const changedPackagesInfo = await getSortedChangedPackagesInfo(
     cwd,
