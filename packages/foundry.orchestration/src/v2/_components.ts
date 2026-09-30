@@ -249,6 +249,13 @@ export interface CreateScheduleRequestProjectScope {
 /**
  * Log Safety: SAFE
  */
+export interface CreateScheduleRequestScheduleFailedTrigger {
+  scheduleRid: _Core.ScheduleRid;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface CreateScheduleRequestScheduleSucceededTrigger {
   scheduleRid: _Core.ScheduleRid;
 }
@@ -293,7 +300,8 @@ export type CreateScheduleRequestTrigger =
   } & CreateScheduleRequestScheduleSucceededTrigger)
   | ({ type: "mediaSetUpdated" } & CreateScheduleRequestMediaSetUpdatedTrigger)
   | ({ type: "time" } & CreateScheduleRequestTimeTrigger)
-  | ({ type: "manual" } & CreateScheduleRequestManualTrigger);
+  | ({ type: "manual" } & CreateScheduleRequestManualTrigger)
+  | ({ type: "scheduleFailed" } & CreateScheduleRequestScheduleFailedTrigger);
 
 /**
  * Log Safety: SAFE
@@ -650,6 +658,13 @@ export interface ReplaceScheduleRequestProjectScope {
 /**
  * Log Safety: SAFE
  */
+export interface ReplaceScheduleRequestScheduleFailedTrigger {
+  scheduleRid: _Core.ScheduleRid;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface ReplaceScheduleRequestScheduleSucceededTrigger {
   scheduleRid: _Core.ScheduleRid;
 }
@@ -694,7 +709,8 @@ export type ReplaceScheduleRequestTrigger =
   } & ReplaceScheduleRequestScheduleSucceededTrigger)
   | ({ type: "mediaSetUpdated" } & ReplaceScheduleRequestMediaSetUpdatedTrigger)
   | ({ type: "time" } & ReplaceScheduleRequestTimeTrigger)
-  | ({ type: "manual" } & ReplaceScheduleRequestManualTrigger);
+  | ({ type: "manual" } & ReplaceScheduleRequestManualTrigger)
+  | ({ type: "scheduleFailed" } & ReplaceScheduleRequestScheduleFailedTrigger);
 
 /**
  * Log Safety: SAFE
@@ -741,6 +757,16 @@ export interface Schedule {
   trigger?: Trigger;
   action: Action;
   scopeMode: ScopeMode;
+}
+
+/**
+   * Trigger whenever the specified schedule fails to complete its
+action.
+   *
+   * Log Safety: SAFE
+   */
+export interface ScheduleFailedTrigger {
+  scheduleRid: _Core.ScheduleRid;
 }
 
 /**
@@ -1016,7 +1042,8 @@ export type Trigger =
   | ({ type: "scheduleSucceeded" } & ScheduleSucceededTrigger)
   | ({ type: "mediaSetUpdated" } & MediaSetUpdatedTrigger)
   | ({ type: "time" } & TimeTrigger)
-  | ({ type: "manual" } & ManualTrigger);
+  | ({ type: "manual" } & ManualTrigger)
+  | ({ type: "scheduleFailed" } & ScheduleFailedTrigger);
 
 /**
  * Target the specified datasets along with all upstream datasets except the ignored datasets.
