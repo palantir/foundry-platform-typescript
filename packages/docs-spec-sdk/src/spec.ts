@@ -40,6 +40,13 @@ const ObjectTypeTemplateStrings = {
   structSubPropertyApiName: "optional",
 } as const satisfies SnippetVariables;
 
+const PropertyModifierTemplateStrings = {
+  ...ObjectTypeTemplateStrings,
+  objectTypeSnakeCase: "required",
+  arrayProperty: "required",
+  arrayPropertySnakeCase: "required",
+} as const satisfies SnippetVariables;
+
 const ObjectTypeWithLinkTemplateStrings = {
   sourceObjectType: "required",
   linkedObjectType: "required",
@@ -187,6 +194,20 @@ export const OSDK_SNIPPETS_SPEC = {
     loadObjectPageGuide: {
       variables: {
         ...ObjectTypeTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
+    selectPropertiesGuide: {
+      variables: {
+        ...ObjectTypeTemplateStrings,
+        rawOntologyApiName: "required",
+        packageName: "required",
+      },
+    },
+    applyPropertyModifiersGuide: {
+      variables: {
+        ...PropertyModifierTemplateStrings,
         rawOntologyApiName: "required",
         packageName: "required",
       },
