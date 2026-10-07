@@ -1,5 +1,17 @@
 # @osdk/foundry.pack
 
+## 2.83.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version 1.1815.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @osdk/foundry.core@2.83.0
+  - @osdk/foundry.filesystem@2.83.0
+
 ## 2.82.0
 
 ### Minor Changes
