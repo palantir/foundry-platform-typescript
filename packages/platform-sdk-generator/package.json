@@ -1,6 +1,5 @@
 {
   "name": "@osdk/platform-sdk-generator",
-  "private": true,
   "version": "0.81.0",
   "license": "Apache-2.0",
   "repository": {
@@ -50,6 +49,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "bin": {
+    "platform-sdk-generator": "bin/platform-sdk-generator.mjs"
   },
   "files": [
     "build/cjs",

@@ -21,6 +21,7 @@ import { parse as parseYaml } from "yaml";
 import type { Arguments, Argv, CommandModule } from "yargs";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import { fetchIr } from "./fetchIr.js";
 import { generatePlatformSdks } from "./generatePlatformSdks.js";
 import { updateSls } from "./updateSls.js";
 
@@ -30,6 +31,7 @@ export async function cli(
   const base = yargs(hideBin(args))
     .version(false)
     .command(new GenerateCommand())
+    .command(new FetchIrCommand())
     .demandCommand();
 
   return base.parseAsync();
@@ -108,5 +110,65 @@ export class GenerateCommand implements CommandModule<{}, Options> {
     for (const pkgDir of pkgDirs) {
       await updateSls(manifest, pkgDir);
     }
+  };
+}
+
+export interface FetchIrCommandOptions {
+  artifactoryUrl?: string;
+  apiGatewayVersion?: string;
+  outputDir: string;
+  groupId?: string;
+}
+
+export class FetchIrCommand
+  implements CommandModule<{}, FetchIrCommandOptions>
+{
+  public aliases = [] as const;
+
+  public command = "fetch-ir";
+
+  public describe =
+    "Fetch and merge the api-gateway IR from a Maven repository";
+
+  public builder(args: Argv): Argv<FetchIrCommandOptions> {
+    return args
+      .option("artifactoryUrl", {
+        describe:
+          "Base Maven repository url; defaults to the MAVEN_DIST_RELEASE env var",
+        type: "string",
+      })
+      .option("apiGatewayVersion", {
+        describe:
+          "Pinned api-gateway version; when omitted the latest release is resolved",
+        type: "string",
+      })
+      .option("outputDir", {
+        describe: "Directory to write combined-ir.json and manifest.yml into",
+        type: "string",
+        demandOption: true,
+      })
+      .option("groupId", {
+        describe: "Maven group id",
+        type: "string",
+        default: "com.palantir.foundry.api",
+      });
+  }
+
+  public handler = async (
+    args: Arguments<FetchIrCommandOptions>,
+  ): Promise<void> => {
+    const artifactoryUrl = args.artifactoryUrl
+      ?? process.env.MAVEN_DIST_RELEASE;
+    if (!artifactoryUrl) {
+      throw new Error(
+        "Provide --artifactoryUrl or set the MAVEN_DIST_RELEASE environment variable",
+      );
+    }
+    await fetchIr({
+      artifactoryUrl,
+      apiGatewayVersion: args.apiGatewayVersion,
+      outDir: args.outputDir,
+      groupId: args.groupId,
+    });
   };
 }
