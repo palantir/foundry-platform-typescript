@@ -279,11 +279,11 @@ export type GaiaMapRid = LooselyBrandedString<"GaiaMapRid">;
 /**
  * References to objects that are external to Gaia.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export type GaiaObjectReference = {
-  type: "FoundryObjectByRid";
-} & GaiaFoundryObjectByRid;
+export type GaiaObjectReference =
+  | ({ type: "GeotimeTrackByGid" } & GeotimeTrackByGid)
+  | ({ type: "FoundryObjectByRid" } & GaiaFoundryObjectByRid);
 
 /**
    * Strongly-typed properties associated with a Gaia element. We provide API guarantees over fields in this class;
@@ -312,6 +312,22 @@ export interface GaiaStyle {
 export type GaiaSymbol =
   | ({ type: "MilsymSymbol" } & MilsymSymbol)
   | ({ type: "IconSymbol" } & IconSymbol);
+
+/**
+ * Reference to a Geotime Track.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeotimeTrackByGid {
+  trackGid: GeotimeTrackGid;
+}
+
+/**
+ * The GID of a Geotime Track.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GeotimeTrackGid = LooselyBrandedString<"GeotimeTrackGid">;
 
 /**
  * Log Safety: UNSAFE

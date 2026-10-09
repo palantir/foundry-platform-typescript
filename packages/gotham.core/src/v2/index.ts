@@ -141,6 +141,7 @@ export type {
   StructFieldType,
   TableRid,
   TimeSeriesItemType,
+  TimeSeriesReferenceType,
   TimeseriesType,
   TimestampType,
   TimeUnit,

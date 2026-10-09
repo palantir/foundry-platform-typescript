@@ -1,5 +1,17 @@
 # @osdk/platform-sdk-generator
 
+## 0.82.0
+
+### Minor Changes
+
+- 9932017: Handle comment terminators in generated documentation.
+
+### Patch Changes
+
+- Updated dependencies [daffbde]
+- Updated dependencies
+  - @osdk/docs-spec-platform@0.69.0
+
 ## 0.81.0
 
 ### Patch Changes

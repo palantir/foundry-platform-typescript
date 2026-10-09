@@ -55,6 +55,32 @@ export function create(
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
+const _get: $FoundryPlatformMethod<
+  (
+    agentSessionId: _Agents.SessionId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Agents.AgentSession>
+> = [0, "/v2/agents/agentSessions/{0}", 2];
+
+/**
+ * Get the metadata of an Agent session.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:agents-read]
+ * URL: /v2/agents/agentSessions/{agentSessionId}
+ */
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    agentSessionId: _Agents.SessionId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Agents.AgentSession> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
 const _sendEvent: $FoundryPlatformMethod<
   (
     agentSessionId: _Agents.SessionId,

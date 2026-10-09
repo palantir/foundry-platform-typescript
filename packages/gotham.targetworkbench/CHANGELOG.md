@@ -1,5 +1,16 @@
 # @osdk/gotham.targetworkbench
 
+## 0.55.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version 1.1849.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @osdk/gotham.core@0.55.0
+
 ## 0.54.0
 
 ### Minor Changes

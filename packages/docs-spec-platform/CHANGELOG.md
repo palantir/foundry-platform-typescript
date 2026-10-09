@@ -1,5 +1,12 @@
 # @osdk/docs-spec-platform
 
+## 0.69.0
+
+### Minor Changes
+
+- daffbde: Add support for idPropertyNames in Resource definition (without consuming it)
+- Regenerate SDKs with API version 1.1849.0
+
 ## 0.68.0
 
 ### Minor Changes

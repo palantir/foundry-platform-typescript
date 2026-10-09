@@ -14,8 +14,25 @@
  * limitations under the License.
  */
 
-export type { PageSize, PageToken } from "./_components.js";
+export type {
+  BBox,
+  Coordinate,
+  CreatedTime,
+  DeletedTime,
+  FolderRid,
+  PageSize,
+  PageToken,
+  Position,
+  PreviewMode,
+  PrincipalId,
+  PrincipalType,
+  RoleAssignee,
+  RoleAssigneeDefault,
+  RoleAssigneePrincipal,
+  UpdatedTime,
+} from "./_components.js";
 export type {
   BatchRequestSizeExceededLimit,
+  InvalidPageSize,
   MissingBatchRequest,
 } from "./_errors.js";

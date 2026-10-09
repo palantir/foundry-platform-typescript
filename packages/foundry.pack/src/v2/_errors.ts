@@ -181,6 +181,21 @@ export interface CreateDocumentWithMatchingSecurityPermissionDenied {
 }
 
 /**
+ * Could not create the PublishedVersion.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreatePublishedVersionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreatePublishedVersionPermissionDenied";
+  errorDescription: "Could not create the PublishedVersion.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
  * Could not delete the Document.
  *
  * Log Safety: SAFE
@@ -191,6 +206,22 @@ export interface DeleteDocumentPermissionDenied {
   errorDescription: "Could not delete the Document.";
   errorInstanceId: string;
   parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+ * Could not delete the PublishedVersion.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeletePublishedVersionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DeletePublishedVersionPermissionDenied";
+  errorDescription: "Could not delete the PublishedVersion.";
+  errorInstanceId: string;
+  parameters: {
+    publishedVersionRef: unknown;
     documentId: unknown;
   };
 }
@@ -338,6 +369,36 @@ export interface GetDocumentContentsPermissionDenied {
 }
 
 /**
+ * Could not getLatestContents the PublishedVersion.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetLatestPublishedVersionContentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetLatestPublishedVersionContentsPermissionDenied";
+  errorDescription: "Could not getLatestContents the PublishedVersion.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+ * Could not getLatest the PublishedVersion.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetLatestPublishedVersionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetLatestPublishedVersionPermissionDenied";
+  errorDescription: "Could not getLatest the PublishedVersion.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
  * Could not getOperationalVersion the DocumentType.
  *
  * Log Safety: SAFE
@@ -348,6 +409,22 @@ export interface GetOperationalVersionDocumentTypePermissionDenied {
   errorDescription: "Could not getOperationalVersion the DocumentType.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * Could not getContents the PublishedVersion.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetPublishedVersionContentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetPublishedVersionContentsPermissionDenied";
+  errorDescription: "Could not getContents the PublishedVersion.";
+  errorInstanceId: string;
+  parameters: {
+    publishedVersionRef: unknown;
+    documentId: unknown;
+  };
 }
 
 /**
@@ -395,6 +472,20 @@ export interface InvalidDocumentTypeVersion {
     documentTypeName: unknown;
     version: unknown;
   };
+}
+
+/**
+ * The published version ref is malformed or uses an unsupported format.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidPublishedVersionRef {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPublishedVersionRef";
+  errorDescription:
+    "The published version ref is malformed or uses an unsupported format.";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -505,6 +596,53 @@ export interface NamespaceOrOntologyForFolderNotFound {
   parameters: {
     folderRid: unknown;
     namespaceRid: unknown;
+  };
+}
+
+/**
+ * The document has no active published version.
+ *
+ * Log Safety: SAFE
+ */
+export interface NoActivePublishedVersion {
+  errorCode: "NOT_FOUND";
+  errorName: "NoActivePublishedVersion";
+  errorDescription: "The document has no active published version.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+ * The user does not have permission to publish or delete published versions for the given document.
+ *
+ * Log Safety: SAFE
+ */
+export interface PublishedVersionEditPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "PublishedVersionEditPermissionDenied";
+  errorDescription:
+    "The user does not have permission to publish or delete published versions for the given document.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+ * The referenced published version does not exist or has been deleted.
+ *
+ * Log Safety: SAFE
+ */
+export interface PublishedVersionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "PublishedVersionNotFound";
+  errorDescription:
+    "The referenced published version does not exist or has been deleted.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
   };
 }
 

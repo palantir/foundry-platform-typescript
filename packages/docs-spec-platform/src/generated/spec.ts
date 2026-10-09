@@ -52,6 +52,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.createAgentSession": {
       "variables": {},
     },
+    "v2.getAgentSession": {
+      "variables": {},
+    },
     "v2.sendEvent": {
       "variables": {},
     },
@@ -221,6 +224,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.replaceSync": {
+      "variables": {},
+    },
+    "v2.installSync": {
       "variables": {},
     },
     "v2.getState": {
@@ -668,6 +674,12 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.replaceMarking": {
+      "variables": {},
+    },
+    "v2.canonicalizeMarkings": {
+      "variables": {},
+    },
+    "v2.flattenMarkingExpressions": {
       "variables": {},
     },
     "v2.parseClassifications": {
@@ -1363,6 +1375,27 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.createDocumentV2": {
       "variables": {},
     },
+    "v2.deletePublishedVersion": {
+      "variables": {},
+    },
+    "v2.listPublishedVersions": {
+      "variables": {},
+    },
+    "v2.getPublishedVersion": {
+      "variables": {},
+    },
+    "v2.createPublishedVersion": {
+      "variables": {},
+    },
+    "v2.getLatestPublishedVersion": {
+      "variables": {},
+    },
+    "v2.getLatestPublishedVersionContents": {
+      "variables": {},
+    },
+    "v2.getPublishedVersionContents": {
+      "variables": {},
+    },
     "v2.getRecord": {
       "variables": {},
     },
@@ -1414,6 +1447,78 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.addObjectsToMap": {
       "variables": {},
     },
+    "v3.restoreFolder": {
+      "variables": {},
+    },
+    "v3.createFolder": {
+      "variables": {},
+    },
+    "v3.deleteFolder": {
+      "variables": {},
+    },
+    "v3.deleteFoldersBatch": {
+      "variables": {},
+    },
+    "v3.getFolder": {
+      "variables": {},
+    },
+    "v3.getFoldersBatch": {
+      "variables": {},
+    },
+    "v3.restoreProject": {
+      "variables": {},
+    },
+    "v3.deleteProject": {
+      "variables": {},
+    },
+    "v3.deleteProjectsBatch": {
+      "variables": {},
+    },
+    "v3.getProject": {
+      "variables": {},
+    },
+    "v3.getProjectsBatch": {
+      "variables": {},
+    },
+    "v3.getByPathResources": {
+      "variables": {},
+    },
+    "v3.restoreResource": {
+      "variables": {},
+    },
+    "v3.deleteResource": {
+      "variables": {},
+    },
+    "v3.deleteResourcesBatch": {
+      "variables": {},
+    },
+    "v3.getResource": {
+      "variables": {},
+    },
+    "v3.getResourcesBatch": {
+      "variables": {},
+    },
+    "v3.restoreSpace": {
+      "variables": {},
+    },
+    "v3.deleteSpace": {
+      "variables": {},
+    },
+    "v3.deleteSpacesBatch": {
+      "variables": {},
+    },
+    "v3.getSpace": {
+      "variables": {},
+    },
+    "v3.getSpacesBatch": {
+      "variables": {},
+    },
+    "v3.listSpaces": {
+      "variables": {},
+    },
+    "v3.completeProcessExecutionSignal": {
+      "variables": {},
+    },
     "v3.getEndpointSet": {
       "variables": {},
     },
@@ -1427,9 +1532,6 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v3.listEndpointSetVersions": {
-      "variables": {},
-    },
-    "v3.completeProcessExecutionSignal": {
       "variables": {},
     },
   },

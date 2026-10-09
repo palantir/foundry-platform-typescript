@@ -30,6 +30,7 @@ import { DatasetsV1 } from "./namespaces/DatasetsV1.js";
 import { DatasetsV2 } from "./namespaces/DatasetsV2.js";
 import { EndpointsV3 } from "./namespaces/EndpointsV3.js";
 import { FilesystemV2 } from "./namespaces/FilesystemV2.js";
+import { FilesystemV3 } from "./namespaces/FilesystemV3.js";
 import { FunctionsV2 } from "./namespaces/FunctionsV2.js";
 import { GaiaV2 } from "./namespaces/GaiaV2.js";
 import { GeojsonV2 } from "./namespaces/GeojsonV2.js";
@@ -102,8 +103,9 @@ export const PLATFORM_API_IR: ApiSpec = {
     CheckpointsV2,
     NotepadV2,
     GaiaV2,
-    EndpointsV3,
-    OrchestratorV3,
+    FilesystemV3,
     CoreV3,
+    OrchestratorV3,
+    EndpointsV3,
   ],
 };

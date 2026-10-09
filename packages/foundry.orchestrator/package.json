@@ -1,6 +1,6 @@
 {
   "name": "@osdk/foundry.orchestrator",
-  "version": "2.82.0",
+  "version": "2.83.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "transpile": "monorepo.tool.transpile"
   },
   "dependencies": {
+    "@osdk/foundry.core": "workspace:*",
     "@osdk/shared.client": "^1.0.1",
     "@osdk/shared.client2": "^1.0.0",
     "@osdk/shared.net.platformapi": "workspace:~"
@@ -57,7 +58,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1815.4",
+        "minVersion": "1.1849.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

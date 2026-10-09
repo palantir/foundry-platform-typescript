@@ -50,14 +50,14 @@ export interface AgentDefinitionVersionNotFound {
 }
 
 /**
- * The requested Agent session was not found.
+ * The given AgentSession could not be found.
  *
  * Log Safety: SAFE
  */
 export interface AgentSessionNotFound {
   errorCode: "NOT_FOUND";
   errorName: "AgentSessionNotFound";
-  errorDescription: "The requested Agent session was not found.";
+  errorDescription: "The given AgentSession could not be found.";
   errorInstanceId: string;
   parameters: {
     agentSessionId: unknown;
@@ -138,6 +138,19 @@ export interface SendEventPermissionDenied {
   parameters: {
     agentSessionId: unknown;
   };
+}
+
+/**
+ * The Agent is not supported by this API.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedAgent {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedAgent";
+  errorDescription: "The Agent is not supported by this API.";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**

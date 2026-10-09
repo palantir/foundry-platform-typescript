@@ -965,6 +965,11 @@ export type TimeSeriesItemType =
   | ({ type: "numericOrNonNumeric" } & NumericOrNonNumericType);
 
 /**
+ * Log Safety: SAFE
+ */
+export interface TimeSeriesReferenceType {}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface TimeseriesType {

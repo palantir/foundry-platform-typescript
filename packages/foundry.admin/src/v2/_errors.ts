@@ -158,6 +158,20 @@ export interface CannotReplaceProviderInfoForPrincipalInProtectedRealm {
 }
 
 /**
+ * You do not have permission to view classification markings.
+ *
+ * Log Safety: SAFE
+ */
+export interface CanonicalizeMarkingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CanonicalizeMarkingsPermissionDenied";
+  errorDescription:
+    "You do not have permission to view classification markings.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The given CbacBanner could not be found.
  *
  * Log Safety: SAFE
@@ -373,6 +387,39 @@ export interface ExpirationForTransitiveGroupMembersNotSupported {
   errorDescription: "You cannot pass includeExpirations if transitive is true.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * Cannot flatten more than 1,000 marking expressions in one request.
+ *
+ * Log Safety: SAFE
+ */
+export interface FlattenMarkingExpressionsBatchLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FlattenMarkingExpressionsBatchLimitExceeded";
+  errorDescription:
+    "Cannot flatten more than 1,000 marking expressions in one request.";
+  errorInstanceId: string;
+  parameters: {
+    maximumMarkingExpressionCount: unknown;
+    providedMarkingExpressionCount: unknown;
+  };
+}
+
+/**
+ * You do not have permission to view one or more of the supplied markings.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FlattenMarkingExpressionsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "FlattenMarkingExpressionsPermissionDenied";
+  errorDescription:
+    "You do not have permission to view one or more of the supplied markings.";
+  errorInstanceId: string;
+  parameters: {
+    markingIds: unknown;
+  };
 }
 
 /**

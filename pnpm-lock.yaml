@@ -810,6 +810,9 @@ importers:
 
   packages/foundry.orchestrator:
     dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

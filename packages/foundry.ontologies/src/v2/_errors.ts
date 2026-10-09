@@ -1211,6 +1211,26 @@ export interface InvalidSortType {
 }
 
 /**
+   * A time series reference edited by the Action failed validation. The reason indicates the specific
+failure: ACCESS_DENIED when the caller cannot access the referenced series or derived series
+template, DATASOURCE_MISMATCH when the reference does not belong to a time series sync backing the
+edited property, INVALID_SERIES_ID_FORMAT when a raw series ID is provided for a property that is
+not backed by exactly one time series sync, and UNKNOWN when the reason could not be determined.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidTimeSeriesReference {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidTimeSeriesReference";
+  errorDescription:
+    "A time series reference edited by the Action failed validation. The reason indicates the specific failure: ACCESS_DENIED when the caller cannot access the referenced series or derived series template, DATASOURCE_MISMATCH when the reference does not belong to a time series sync backing the edited property, INVALID_SERIES_ID_FORMAT when a raw series ID is provided for a property that is not backed by exactly one time series sync, and UNKNOWN when the reason could not be determined.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+  };
+}
+
+/**
    * The value of the given property is invalid. See the documentation of DataValue for details on
 how properties are represented for transaction edits.
    *

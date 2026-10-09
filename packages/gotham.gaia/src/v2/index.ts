@@ -47,6 +47,8 @@ export type {
   GaiaProperties,
   GaiaStyle,
   GaiaSymbol,
+  GeotimeTrackByGid,
+  GeotimeTrackGid,
   IconFillStyle,
   IconStrokeStyle,
   IconSymbol,
