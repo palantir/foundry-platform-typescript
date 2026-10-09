@@ -27,6 +27,7 @@ export interface Resource {
   singleton?: boolean;
   pathSegment?: string;
   idPropertyName?: string;
+  idPropertyNames?: string[];
   parentResource?: Locator;
   relativeName?: string;
   pluralRelativeName?: string;
