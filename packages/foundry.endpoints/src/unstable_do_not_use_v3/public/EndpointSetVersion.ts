@@ -33,8 +33,9 @@ const _get: $FoundryPlatformMethod<
   (
     endpointSetRid: _Endpoints.EndpointSetRid,
     versionId: _Endpoints.EndpointSetVersionId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Endpoints.EndpointSetVersion>
-> = [0, "/v3/platform/endpointSets/{0}/versions/{1}"];
+> = [0, "/v3/platform/endpointSets/{0}/versions/{1}", 2];
 
 /**
  * @alpha
@@ -47,6 +48,8 @@ export function get(
   ...args: [
     endpointSetRid: _Endpoints.EndpointSetRid,
     versionId: _Endpoints.EndpointSetVersionId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Endpoints.EndpointSetVersion> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -58,6 +61,7 @@ const _list: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Endpoints.ListEndpointSetVersionsResponse>
 > = [0, "/v3/platform/endpointSets/{0}/versions", 2];
@@ -76,6 +80,7 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Endpoints.ListEndpointSetVersionsResponse> {

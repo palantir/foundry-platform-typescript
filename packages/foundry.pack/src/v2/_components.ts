@@ -180,6 +180,33 @@ export interface CreateDocumentWithMatchingSecurityRequest {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreatePublishedVersionRequest {
+  requestBody: CreatePublishedVersionRequestBody;
+}
+
+/**
+ * An optional name and description to attach to the new published version.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreatePublishedVersionRequestBody {
+  name?: string;
+  description?: string;
+}
+
+/**
+ * The newly published version, plus any versions auto-evicted to make room for it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreatePublishedVersionResponse {
+  publishedVersion: PublishedVersion;
+  autoEvictedPublishedVersions: Array<PublishedVersion>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CustomPresenceEvent {
   userId: _Core.UserId;
   clientId: ClientId;
@@ -1183,6 +1210,13 @@ export type InterfaceTypeRid = LooselyBrandedString<"InterfaceTypeRid">;
 /**
  * Log Safety: UNSAFE
  */
+export interface ListPublishedVersionsResponse {
+  data: Array<PublishedVersion>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface LoadByNameDocumentTypesRequest {
   documentTypeName: DocumentTypeName;
   ontologyRid: string;
@@ -1281,6 +1315,29 @@ export interface PresencePublishMessage {
 export type PresencePublishMessageType = {
   type: "custom";
 } & CustomPresenceEvent;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface PublishedVersion {
+  ref: PublishedVersionRef;
+  name?: string;
+  description?: string;
+  createdAt: PublishedVersionCreatedAt;
+  createdBy?: _Core.UserId;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type PublishedVersionCreatedAt = string;
+
+/**
+ * Server-generated identifier for a published Document version. Treat it as opaque and return it unchanged.
+ *
+ * Log Safety: SAFE
+ */
+export type PublishedVersionRef = LooselyBrandedString<"PublishedVersionRef">;
 
 /**
  * A record model definition with named fields.

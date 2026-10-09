@@ -71,6 +71,7 @@ export type {
   GetSessionStatePermissionDenied,
   InvalidConsistencyKey,
   SendEventPermissionDenied,
+  UnsupportedAgent,
   UnsupportedDataType,
 } from "./_errors.js";
 export * as AgentDefinitionVersions from "./public/AgentDefinitionVersion.js";

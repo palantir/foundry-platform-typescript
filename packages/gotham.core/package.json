@@ -1,6 +1,6 @@
 {
   "name": "@osdk/gotham.core",
-  "version": "0.54.0",
+  "version": "0.55.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -57,7 +57,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1815.4",
+        "minVersion": "1.1849.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

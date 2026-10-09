@@ -107,6 +107,7 @@ export type ActionParameterType =
   | ({ type: "integer" } & _Core.IntegerType)
   | ({ type: "geoshape" } & _Core.GeoShapeType)
   | ({ type: "long" } & _Core.LongType)
+  | ({ type: "timeSeriesReference" } & _Core.TimeSeriesReferenceType)
   | ({ type: "objectType" } & OntologyObjectTypeReferenceType)
   | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "marking" } & _Core.MarkingType)
@@ -1685,6 +1686,7 @@ export type DatasourceRid = LooselyBrandedString<"DatasourceRid">;
 | TwoDimensionalAggregation           | JSON object                                           | {"groups": [{"key": "alpha", "value": 100}, {"key": "beta", "value": 101}]}                                                                                 |
 | ThreeDimensionalAggregation         | JSON object                                           | {"groups": [{"key": "NYC", "groups": [{"key": "Engineer", "value" : 100}]}]}                                                                                |
 | Timestamp                           | ISO 8601 extended offset date-time string in UTC zone | "2021-01-04T05:00:00Z"                                                                                                                                      |
+| Time Series Reference               | JSON object with a type discriminator                 | {"type":"seriesId","seriesId":"sensor-123"}, {"type":"templateRid","templateRid":{"templateRid":"ri.time-series-catalog.main.template.2f944bae-5851-4204-8615-920c969a9f2e","templateVersion":"1"}}, or {"type":"qualifiedSeriesId","qualifiedSeriesId":{"seriesId":"sensor-123","syncRid":"ri.time-series-catalog.main.sync.2f944bae-5851-4204-8615-920c969a9f2e"}} |
    *
    * Log Safety: UNSAFE
    */
@@ -3041,6 +3043,17 @@ export type IntervalQueryRule =
   | ({ type: "fuzzy" } & FuzzyRule);
 
 /**
+ * The specific reason a time series reference edited by an Action failed validation.
+ *
+ * Log Safety: SAFE
+ */
+export type InvalidTimeSeriesReferenceReason =
+  | "ACCESS_DENIED"
+  | "DATASOURCE_MISMATCH"
+  | "INVALID_SERIES_ID_FORMAT"
+  | "UNKNOWN";
+
+/**
  * Returns objects based on the existence of the specified field.
  *
  * Log Safety: UNSAFE
@@ -3613,6 +3626,7 @@ export interface LoadObjectSetResponseV2 {
   totalCount: _Core.TotalCount;
   computeUsage?: _Core.ComputeSeconds;
   propertySecurities: Array<PropertySecurities>;
+  objectSetEntities?: ObjectSetEntities;
 }
 
 /**
@@ -3664,6 +3678,7 @@ export interface LoadObjectSetV2MultipleObjectTypesResponse {
   >;
   computeUsage?: _Core.ComputeSeconds;
   propertySecurities: Array<PropertySecurities>;
+  objectSetEntities?: ObjectSetEntities;
 }
 
 /**
@@ -4450,6 +4465,20 @@ export interface ObjectSetAsTypeType {
  */
 export interface ObjectSetBaseType {
   objectType: string;
+}
+
+/**
+   * The concrete object types referenced while evaluating the complete object set, including object types
+implementing referenced interfaces and types used by link traversals or derived properties.
+These types are identified by API name and may not have objects in the returned page.
+Entity information can change and should be refreshed when reloading the set.
+This field is only returned on the first page when entity information is available.
+An omitted field indicates unavailable dependency information.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectSetEntities {
+  objectTypeApiNames: Array<ObjectTypeApiName>;
 }
 
 /**
@@ -7462,6 +7491,14 @@ export interface TimeSeriesPoint {
  * Log Safety: UNSAFE
  */
 export type TimeSeriesPropertyV2 = LooselyBrandedString<"TimeSeriesPropertyV2">;
+
+/**
+   * A reference to a time series used as an Action parameter. This changes the series referenced by a
+time series property; it does not edit the series' data points.
+   *
+   * Log Safety: UNSAFE
+   */
+export type TimeSeriesReference = any;
 
 /**
  * Log Safety: UNSAFE

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core/unstable_do_not_use_v3";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -29,8 +30,11 @@ import type * as _Endpoints from "../_components.js";
 //
 
 const _get: $FoundryPlatformMethod<
-  (endpointSetRid: _Endpoints.EndpointSetRid) => Promise<_Endpoints.EndpointSet>
-> = [0, "/v3/platform/endpointSets/{0}"];
+  (
+    endpointSetRid: _Endpoints.EndpointSetRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Endpoints.EndpointSet>
+> = [0, "/v3/platform/endpointSets/{0}", 2];
 
 /**
  * @alpha
@@ -40,7 +44,11 @@ const _get: $FoundryPlatformMethod<
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [endpointSetRid: _Endpoints.EndpointSetRid]
+  ...args: [
+    endpointSetRid: _Endpoints.EndpointSetRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<_Endpoints.EndpointSet> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
