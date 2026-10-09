@@ -38,12 +38,49 @@ interface PlatformSdkGeneration {
   isPromoted: boolean;
 }
 
+/**
+ * Options for "external" generation: emit a single namespace (and its
+ * transitive dependency closure) as self-contained, inline-compilable source
+ * for consumption outside this monorepo. When omitted, generation runs in the
+ * normal "internal" mode that produces this repo's full package set.
+ */
+export interface ExternalGenerateOptions {
+  /** npm org/scope for the generated packages, e.g. "@osdk". */
+  npmOrg: string;
+  /** Namespace(s) to emit; their dependency closure is pulled in automatically. */
+  seedNamespaces: string[];
+  /** Real version specifiers for the runtime deps the generated code imports. */
+  sharedDependencies: Record<string, string>;
+}
+
+// Everything in a Pack-style closure lives under the "foundry" prefix.
+const EXTERNAL_PACKAGE_PREFIX = "foundry";
+
 export async function generatePlatformSdks(
   ir: ApiSpec,
   outputDir: string,
   deprecatedIrs: readonly ApiSpec[],
+  external?: ExternalGenerateOptions,
 ): Promise<string[]> {
   const packageDirectories = new Set<string>();
+
+  if (external) {
+    // External mode only needs the foundry platform and its promoted version;
+    // no docs package, no mega aggregator.
+    for (
+      const packageDirectory of await generatePlatformSdkVersions(
+        ir,
+        outputDir,
+        EXTERNAL_PACKAGE_PREFIX,
+        deprecatedIrs,
+        external,
+      )
+    ) {
+      packageDirectories.add(packageDirectory);
+    }
+    return [...packageDirectories];
+  }
+
   for (
     const [packagePrefix, config] of Object.entries(PLATFORM_SDK_CONFIG)
   ) {
@@ -68,6 +105,7 @@ export async function generatePlatformSdkVersions(
   outputDir: string,
   packagePrefix: string,
   deprecatedIrs: readonly ApiSpec[] = [],
+  external?: ExternalGenerateOptions,
 ): Promise<string[]> {
   const versionConfig = PLATFORM_SDK_CONFIG[packagePrefix]?.versions;
   if (versionConfig == null) {
@@ -97,8 +135,12 @@ export async function generatePlatformSdkVersions(
     throw new Error("Exactly one generation must be promoted.");
   }
 
+  // External mode emits only the promoted (default) version; the unstable
+  // subpaths aren't useful to downstream consumers.
+  const toGenerate = external ? defaultExports : generations;
+
   const packageDirectories: string[] = [];
-  for (const generation of generations) {
+  for (const generation of toGenerate) {
     for (
       const packageDirectory of await generatePlatformSdk(
         generation.ir,
@@ -108,6 +150,7 @@ export async function generatePlatformSdkVersions(
         generation.deprecatedIr,
         generation.packageSubpath,
         generation.isPromoted,
+        external,
       )
     ) {
       packageDirectories.push(packageDirectory);
@@ -124,8 +167,9 @@ export async function generatePlatformSdk(
   deprecatedIr: ApiSpec | undefined,
   packageSubpath: string,
   isPromoted: boolean,
+  external?: ExternalGenerateOptions,
 ): Promise<string[]> {
-  const npmOrg = "@osdk";
+  const npmOrg = external?.npmOrg ?? "@osdk";
   const model = await Model.create(ir, {
     npmOrg,
     outputDir,
@@ -135,11 +179,19 @@ export async function generatePlatformSdk(
     packageSubpath,
   });
 
+  // The full model is always built so cross-namespace references resolve. In
+  // external mode we only *emit* the requested namespaces plus their transitive
+  // dependency closure; in internal mode we emit everything.
+  const allNamespaces = [...model.namespaces];
+  const emitNamespaces = external
+    ? [...computeNamespaceClosure(allNamespaces, external.seedNamespaces)]
+    : allNamespaces;
+
   const componentsGenerated = new Map<Namespace, string[]>();
   const errorsGenerated = new Map<Namespace, string[]>();
 
   // We need to make sure the components are all populated before we generate the resources
-  for (const ns of model.namespaces) {
+  for (const ns of emitNamespaces) {
     ns.components.sort((a, b) =>
       a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
     );
@@ -157,7 +209,7 @@ export async function generatePlatformSdk(
   }
 
   // Now we can generate the resources
-  for (const ns of model.namespaces) {
+  for (const ns of emitNamespaces) {
     for (const r of ns.resources) {
       const sourceFilePath = path.join(
         ns.paths.resourcesDir,
@@ -168,7 +220,7 @@ export async function generatePlatformSdk(
   }
 
   // create the package root file
-  for (const ns of model.namespaces) {
+  for (const ns of emitNamespaces) {
     let nsIndexTsContents = `${copyright}\n`;
 
     for (const r of ns.resources) {
@@ -226,7 +278,7 @@ export async function generatePlatformSdk(
     );
   }
 
-  for (const ns of model.namespaces) {
+  for (const ns of emitNamespaces) {
     const packageSrcDir = path.join(ns.paths.packagePath, "src");
     const publicDir = path.join(packageSrcDir, "public");
     await fs.mkdir(publicDir, {
@@ -261,6 +313,16 @@ export async function generatePlatformSdk(
     );
   }
 
+  if (external) {
+    await finalizeExternalPackages(
+      emitNamespaces,
+      allNamespaces,
+      packageSubpath,
+      external,
+    );
+    return emitNamespaces.map(ns => ns.paths.packagePath);
+  }
+
   if (!isPromoted) {
     return [...model.namespaces].map(ns => ns.paths.packagePath);
   }
@@ -292,6 +354,111 @@ export async function generatePlatformSdk(
     primaryPackagePath,
     ...[...model.namespaces].map(ns => ns.paths.packagePath),
   ];
+}
+
+/** All other namespaces whose components this namespace references. */
+function referencedNamespaces(ns: Namespace): Set<Namespace> {
+  const deps = new Set<Namespace>();
+  for (const r of ns.resources) {
+    for (const op of r.operations) {
+      for (const rc of op.referencedComponents) deps.add(rc.namespace);
+    }
+  }
+  for (const comp of ns.components) {
+    for (const rc of comp.referencedComponents) deps.add(rc.namespace);
+  }
+  for (const err of ns.errors) {
+    for (const rc of err.referencedComponents) deps.add(rc.namespace);
+  }
+  deps.delete(ns);
+  return deps;
+}
+
+/**
+ * Transitive dependency closure of the seed namespaces: the seeds plus every
+ * namespace reachable by following cross-namespace component references. This
+ * is what makes external output self-contained (e.g. Pack -> Core, Geo,
+ * Filesystem).
+ */
+function computeNamespaceClosure(
+  all: Namespace[],
+  seedNames: string[],
+): Set<Namespace> {
+  const byName = new Map(all.map(ns => [ns.name, ns]));
+  const closure = new Set<Namespace>();
+  const queue: Namespace[] = [];
+
+  for (const name of seedNames) {
+    const ns = byName.get(name);
+    if (ns == null) {
+      throw new Error(
+        `Namespace "${name}" not found in the IR. Available: ${
+          all.map(n => n.name).filter(n => n.length > 0).sort().join(", ")
+        }`,
+      );
+    }
+    if (!closure.has(ns)) {
+      closure.add(ns);
+      queue.push(ns);
+    }
+  }
+
+  while (queue.length > 0) {
+    const ns = queue.shift()!;
+    for (const dep of referencedNamespaces(ns)) {
+      if (!closure.has(dep)) {
+        closure.add(dep);
+        queue.push(dep);
+      }
+    }
+  }
+
+  return closure;
+}
+
+/**
+ * Post-processing for external mode. Rewrites each emitted package.json to a
+ * minimal, inline-compilable shape (no workspace: protocols, no sls/build
+ * scaffolding, just the real runtime deps) and removes the namespace packages
+ * the model scaffolded but that fall outside the closure. Cross-namespace
+ * `@osdk/<prefix>.*` imports resolve via the consumer's tsconfig `paths` to the
+ * co-generated local sources.
+ */
+async function finalizeExternalPackages(
+  emit: Namespace[],
+  all: Namespace[],
+  packageSubpath: string,
+  external: ExternalGenerateOptions,
+): Promise<void> {
+  const emitSet = new Set(emit);
+
+  for (const ns of emit) {
+    const packageJsonPath = path.join(ns.paths.packagePath, "package.json");
+    const existing = JSON.parse(await fs.readFile(packageJsonPath, "utf-8"));
+    const minimal = {
+      name: existing.name,
+      version: existing.version ?? "0.0.0",
+      type: "module",
+      dependencies: { ...external.sharedDependencies },
+    };
+    await fs.writeFile(
+      packageJsonPath,
+      JSON.stringify(minimal, undefined, 2) + "\n",
+    );
+    // Drop the published-package type shim that points at build/esm.
+    await fs.rm(
+      path.join(ns.paths.packagePath, `${packageSubpath}.d.ts`),
+      { force: true },
+    );
+  }
+
+  // The model scaffolds a package dir for every namespace under the prefix;
+  // remove the ones outside the closure so only the closure ships.
+  for (const ns of all) {
+    if (!emitSet.has(ns)) {
+      await fs.rm(ns.paths.packagePath, { recursive: true, force: true });
+    }
+  }
 }
 
 export async function generateComponents(
