@@ -53,7 +53,7 @@ export interface ExternalGenerateOptions {
   sharedDependencies: Record<string, string>;
 }
 
-// Everything in a Pack-style closure lives under the "foundry" prefix.
+// External closures currently target the "foundry" platform prefix.
 const EXTERNAL_PACKAGE_PREFIX = "foundry";
 
 export async function generatePlatformSdks(
@@ -377,8 +377,8 @@ function referencedNamespaces(ns: Namespace): Set<Namespace> {
 /**
  * Transitive dependency closure of the seed namespaces: the seeds plus every
  * namespace reachable by following cross-namespace component references. This
- * is what makes external output self-contained (e.g. Pack -> Core, Geo,
- * Filesystem).
+ * is what makes external output self-contained (a namespace plus every
+ * namespace its components transitively reference).
  */
 function computeNamespaceClosure(
   all: Namespace[],

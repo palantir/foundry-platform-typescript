@@ -81,7 +81,7 @@ export class GenerateCommand implements CommandModule<{}, Options> {
       })
       .option("namespace", {
         describe:
-          "External mode: namespace(s) to emit; their dependency closure is pulled in automatically (e.g. --namespace Pack)",
+          "External mode: namespace(s) to emit; their dependency closure is pulled in automatically (e.g. --namespace <namespace>)",
         type: "string",
         array: true,
       })
@@ -120,7 +120,7 @@ export class GenerateCommand implements CommandModule<{}, Options> {
     if (args.mode === "external") {
       if (args.namespace == null || args.namespace.length === 0) {
         throw new Error(
-          "--namespace is required in external mode (e.g. --namespace Pack)",
+          "--namespace is required in external mode (e.g. --namespace <namespace>)",
         );
       }
       const external: ExternalGenerateOptions = {
