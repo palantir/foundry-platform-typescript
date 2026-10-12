@@ -33,6 +33,7 @@ export async function cli(
   const base = yargs(hideBin(args))
     .version(false)
     .command(new GenerateCommand())
+    .command(new GenerateExternalCommand())
     .command(new FetchIrCommand())
     .demandCommand();
 
@@ -41,12 +42,9 @@ export async function cli(
 
 export interface Options {
   inputFile: string;
-  manifestFile?: string;
+  manifestFile: string;
   outputDir: string;
-  deprecatedFile?: string[];
-  mode: "internal" | "external";
-  namespace?: string[];
-  npmOrg: string;
+  deprecatedFile: string[];
 }
 
 export class GenerateCommand implements CommandModule<{}, Options> {
@@ -63,39 +61,23 @@ export class GenerateCommand implements CommandModule<{}, Options> {
         type: "string",
         demandOption: true,
       })
+      .option("manifestFile", {
+        describe: "The location of the API manifest.yml",
+        type: "string",
+        demandOption: true,
+      })
       .option("outputDir", {
         describe: "The output directory for the generated code",
         type: "string",
         demandOption: true,
       })
-      .option("mode", {
-        describe:
-          "\"internal\" generates this repo's full package set; \"external\" emits the requested namespace(s) plus their dependency closure as self-contained source",
-        choices: ["internal", "external"] as const,
-        default: "internal" as const,
-      })
-      .option("namespace", {
-        describe:
-          "External mode: namespace(s) to emit; their dependency closure is pulled in automatically (e.g. --namespace <namespace>)",
-        type: "string",
-        array: true,
-      })
-      .option("npmOrg", {
-        describe: "External mode: npm org/scope for the generated packages",
-        type: "string",
-        default: "@osdk",
-      })
-      .option("manifestFile", {
-        describe:
-          "The location of the API manifest.yml (required in internal mode)",
-        type: "string",
-      })
       // TODO: When we major version our packages, remove this flag and stop generating these
       .option("deprecatedFile", {
         describe:
-          "The location of the API IR that contains deprecated or legacy components no longer in the original IR (internal mode)",
+          "The location of the API IR that contains deprecated or legacy components no longer in the original IR",
         type: "string",
         array: true,
+        demandOption: true,
       });
   }
 
@@ -111,26 +93,6 @@ export class GenerateCommand implements CommandModule<{}, Options> {
 
     const irSpecRead = await fs.readFile(`${input}`, { encoding: "utf8" });
     const irSpec: ApiSpec = JSON.parse(irSpecRead);
-
-    if (args.mode === "external") {
-      if (args.namespace == null || args.namespace.length === 0) {
-        throw new Error(
-          "--namespace is required in external mode (e.g. --namespace <namespace>)",
-        );
-      }
-      await generateExternalSdk(irSpec, output, {
-        npmOrg: args.npmOrg,
-        seedNamespaces: args.namespace,
-      });
-      return;
-    }
-
-    if (!args.manifestFile) {
-      throw new Error("--manifestFile is required in internal mode");
-    }
-    if (args.deprecatedFile == null || args.deprecatedFile.length === 0) {
-      throw new Error("--deprecatedFile is required in internal mode");
-    }
 
     const manifest = parseYaml(
       await fs.readFile(`${args.manifestFile}`, {
@@ -151,6 +113,80 @@ export class GenerateCommand implements CommandModule<{}, Options> {
     for (const pkgDir of pkgDirs) {
       await updateSls(manifest, pkgDir);
     }
+  };
+}
+
+export interface GenerateExternalOptions {
+  inputFile: string;
+  outputDir: string;
+  namespace: string[];
+  npmOrg: string;
+}
+
+/**
+ * Emits the requested namespace(s) plus their transitive dependency closure as
+ * self-contained, inline-compilable source — with real `@osdk/shared.*` npm
+ * versions and no workspace protocols, sls, or build scaffolding — for
+ * consumption outside this monorepo. Deliberately separate from `generate` so
+ * the internal full-repo path stays untouched.
+ */
+export class GenerateExternalCommand
+  implements CommandModule<{}, GenerateExternalOptions>
+{
+  public aliases = [] as const;
+
+  public command = "generate-external";
+
+  public describe =
+    "Generate self-contained TypeScript source for the given namespace(s) plus their dependency closure";
+
+  public builder(args: Argv): Argv<GenerateExternalOptions> {
+    return args
+      .option("inputFile", {
+        describe: "The location of the API IR",
+        type: "string",
+        demandOption: true,
+      })
+      .option("outputDir", {
+        describe: "The output directory for the generated code",
+        type: "string",
+        demandOption: true,
+      })
+      .option("namespace", {
+        describe:
+          "Namespace(s) to emit; their dependency closure is pulled in automatically (e.g. --namespace <namespace>)",
+        type: "string",
+        array: true,
+        demandOption: true,
+      })
+      .option("npmOrg", {
+        describe: "npm org/scope for the generated packages",
+        type: "string",
+        default: "@osdk",
+      });
+  }
+
+  public handler = async (
+    args: Arguments<GenerateExternalOptions>,
+  ): Promise<void> => {
+    if (!args.inputFile) {
+      throw new Error("Must provide an input file");
+    } else if (!args.outputDir) {
+      throw new Error("Must provide an output directory");
+    }
+    if (args.namespace == null || args.namespace.length === 0) {
+      throw new Error("--namespace is required (e.g. --namespace <namespace>)");
+    }
+
+    const irSpecRead = await fs.readFile(`${args.inputFile}`, {
+      encoding: "utf8",
+    });
+    const irSpec: ApiSpec = JSON.parse(irSpecRead);
+
+    await generateExternalSdk(irSpec, args.outputDir, {
+      npmOrg: args.npmOrg,
+      seedNamespaces: args.namespace,
+    });
   };
 }
 
