@@ -189,4 +189,63 @@ describe("external dependency-closure generation", () => {
       ),
     ).rejects.toThrow(/NotARealNamespace/);
   });
+
+  it("does not delete pre-existing packages when re-run with a different seed", async () => {
+    const out = await makeOutputDir();
+    await generateExternalSdk(
+      IR,
+      out,
+      externalOptions({
+        seedNamespaces: ["Pack"],
+      }),
+    );
+    const packComponents = path.join(
+      out,
+      "foundry.pack",
+      "src",
+      "v2",
+      "_components.ts",
+    );
+    expect(await pathExists(packComponents)).toBe(true);
+
+    // A second run for an unrelated namespace must not clobber the first run's
+    // packages — only scaffolding this run created may be pruned.
+    await generateExternalSdk(
+      IR,
+      out,
+      externalOptions({
+        seedNamespaces: ["Datasets"],
+      }),
+    );
+    expect(await pathExists(path.join(out, "foundry.datasets"))).toBe(true);
+    expect(await pathExists(path.join(out, "foundry.pack"))).toBe(true);
+    expect(await pathExists(path.join(out, "foundry.core"))).toBe(true);
+    // ...and the first run's generated source is still intact.
+    expect(await pathExists(packComponents)).toBe(true);
+  });
+
+  it("writes a tsconfig.paths.json mapping the closure to local sources", async () => {
+    const out = await makeOutputDir();
+    await generateExternalSdk(IR, out, externalOptions());
+
+    const tsconfig = JSON.parse(
+      await fs.readFile(path.join(out, "tsconfig.paths.json"), "utf8"),
+    );
+    expect(tsconfig.compilerOptions.baseUrl).toBe(".");
+    const paths = tsconfig.compilerOptions.paths;
+    expect(paths["@osdk/foundry.pack"]).toEqual([
+      "./foundry.pack/src/index.ts",
+    ]);
+    expect(paths["@osdk/foundry.pack/*"]).toEqual([
+      "./foundry.pack/src/public/*.ts",
+    ]);
+    expect(paths["@osdk/foundry.core"]).toEqual([
+      "./foundry.core/src/index.ts",
+    ]);
+    expect(paths["@osdk/foundry.core/*"]).toEqual([
+      "./foundry.core/src/public/*.ts",
+    ]);
+    // The pruned namespace must not appear in the mapping.
+    expect(paths["@osdk/foundry.datasets"]).toBeUndefined();
+  });
 });

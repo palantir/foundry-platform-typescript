@@ -53,11 +53,17 @@ const PACKAGE_SUBPATH = "v2";
 /**
  * Generate a single namespace (and its transitive dependency closure) as
  * self-contained source. The full model is built so cross-namespace references
- * resolve, but only the closure is emitted; every other scaffolded package is
- * pruned. Each emitted package gets a minimal `package.json` — real
- * `@osdk/shared.*` versions, no `workspace:` protocols, sls, or build
- * scaffolding — and cross-namespace `@osdk/<prefix>.*` imports resolve via the
- * consumer's tsconfig `paths` to the co-generated local sources.
+ * resolve, but only the closure is emitted; the empty packages the model
+ * scaffolds for every other namespace are pruned. Each emitted package gets a
+ * minimal `package.json` — real `@osdk/shared.*` versions, no `workspace:`
+ * protocols, sls, or build scaffolding.
+ *
+ * Cross-namespace `@osdk/<prefix>.*` imports are resolved against the
+ * co-generated local sources via the `tsconfig.paths.json` written to the
+ * output root (the consumer `extends` it) — not via npm, so those deps are
+ * intentionally absent from the manifests. Pruning only removes directories
+ * this invocation created, so pointing `--outputDir` at an existing tree (or
+ * re-running with a different `--namespace`) never deletes unrelated packages.
  */
 export async function generateExternalSdk(
   ir: ApiSpec,
@@ -66,6 +72,10 @@ export async function generateExternalSdk(
 ): Promise<string[]> {
   const sharedDependencies = options.sharedDependencies
     ?? DEFAULT_SHARED_DEPENDENCIES;
+
+  // Snapshot what already lives in the destination so pruning below can tell
+  // "empty scaffold this run created" from "a package that was already here".
+  const preExisting = await readdirSafe(outputDir);
 
   const model = await Model.create(ir, {
     npmOrg: options.npmOrg,
@@ -90,15 +100,56 @@ export async function generateExternalSdk(
     await writeMinimalPackageJson(ns, sharedDependencies);
   }
 
-  // The model scaffolds a package dir for every namespace under the prefix;
-  // remove the ones outside the closure so only the closure ships.
+  // Model.create scaffolds an (otherwise empty) package dir for every namespace
+  // under the prefix. Remove the out-of-closure ones — but only those this run
+  // created; anything that pre-existed (a prior run's packages, a hand-authored
+  // tree) is left untouched.
   for (const ns of allNamespaces) {
-    if (!closure.has(ns)) {
-      await fs.rm(ns.paths.packagePath, { recursive: true, force: true });
-    }
+    if (closure.has(ns)) continue;
+    if (preExisting.has(path.basename(ns.paths.packagePath))) continue;
+    await fs.rm(ns.paths.packagePath, { recursive: true, force: true });
   }
 
+  await writeTsconfigPaths(outputDir, [...closure]);
+
   return [...closure].map(ns => ns.paths.packagePath);
+}
+
+/** Top-level entry names in `dir`, or an empty set if `dir` does not exist. */
+async function readdirSafe(dir: string): Promise<Set<string>> {
+  try {
+    return new Set(await fs.readdir(dir));
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code === "ENOENT") return new Set();
+    throw e;
+  }
+}
+
+/**
+ * Emit a `tsconfig.paths.json` at the output root that the consumer `extends`
+ * to resolve each co-generated `@osdk/<prefix>.*` import (and its subpaths) to
+ * the local source. `baseUrl` is the output root, so the mappings resolve
+ * relative to this file wherever the consumer's own tsconfig lives.
+ */
+async function writeTsconfigPaths(
+  outputDir: string,
+  closure: Namespace[],
+): Promise<void> {
+  const paths: Record<string, string[]> = {};
+  const sorted = [...closure].sort((a, b) =>
+    a.dependencyImportPath.localeCompare(b.dependencyImportPath)
+  );
+  for (const ns of sorted) {
+    const dirName = path.basename(ns.paths.packagePath); // e.g. foundry.pack
+    const importPath = ns.dependencyImportPath; // e.g. @osdk/foundry.pack
+    paths[importPath] = [`./${dirName}/src/index.ts`];
+    paths[`${importPath}/*`] = [`./${dirName}/src/public/*.ts`];
+  }
+  const tsconfig = { compilerOptions: { baseUrl: ".", paths } };
+  await fs.writeFile(
+    path.join(outputDir, "tsconfig.paths.json"),
+    JSON.stringify(tsconfig, undefined, 2) + "\n",
+  );
 }
 
 async function writeMinimalPackageJson(
