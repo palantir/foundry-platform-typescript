@@ -8,16 +8,23 @@ Usage: $(basename "$0") [OPTIONS]
 
 Options:
   --api-gateway-version VERSION  Use the specified API Gateway version instead of resolving from Maven.
+  --outDir DIR                   Directory to write combined-ir.json and manifest.yml into
+                                 (defaults to <script>/../tmp/api-gateway-ir).
   --help                        Show this help message and exit.
 EOF
 }
 
 parse_args() {
     API_GATEWAY_VERSION=""
+    OUT_DIR=""
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --api-gateway-version)
                 API_GATEWAY_VERSION="$2"
+                shift 2
+                ;;
+            --outDir)
+                OUT_DIR="$2"
                 shift 2
                 ;;
             --help)
@@ -70,11 +77,13 @@ merge_irs() {
 main() {
     # Define the necessary directories and files
     SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-    mkdir -p "${SCRIPT_DIR}/../tmp"
+
+    parse_args "$@"
 
     BUILD_DIR="${SCRIPT_DIR}/../tmp"
-    DOWNLOAD_DIR="${BUILD_DIR}/api-gateway-bundle"
-    EXTRACT_DIR="${BUILD_DIR}/api-gateway-ir"
+    EXTRACT_DIR="${OUT_DIR:-${BUILD_DIR}/api-gateway-ir}"
+    DOWNLOAD_DIR="${EXTRACT_DIR}/.bundle"
+    mkdir -p "${DOWNLOAD_DIR}" "${EXTRACT_DIR}"
 
     MAVEN_CONJURE_GROUP_ID="com.palantir.foundry.api"
     MAVEN_CONJURE_ARTIFACT_ID="api-gateway-rosetta-bundle"
@@ -82,7 +91,6 @@ main() {
     FEDERATED_IR_ARTIFACT_ID="api-gateway-federated-ir"
     FEDERATED_IR_REPO_PATH="${MAVEN_DIST_RELEASE}/$(echo "$MAVEN_CONJURE_GROUP_ID" | sed 's/\./\//g')/${FEDERATED_IR_ARTIFACT_ID}"
 
-    parse_args "$@"
     resolve_api_gateway_version
     download_bundle
     extract_bundle

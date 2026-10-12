@@ -19,14 +19,11 @@ import fs from "node:fs/promises";
 import * as path from "node:path";
 import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
+import { emitNamespacePackage } from "./emitNamespacePackage.js";
 import { generateDocsPackage } from "./generateDocsPackage.js";
-import { generateImports, SKIP } from "./generateImports.js";
-import { writeResource2 } from "./generateResource2.js";
-import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
 import { PLATFORM_SDK_CONFIG } from "./PlatformSdkConfig.js";
-import { addAll } from "./util/addAll.js";
 import { fileExists } from "./util/fileExists.js";
 import { writeCode } from "./writeCode.js";
 
@@ -38,49 +35,12 @@ interface PlatformSdkGeneration {
   isPromoted: boolean;
 }
 
-/**
- * Options for "external" generation: emit a single namespace (and its
- * transitive dependency closure) as self-contained, inline-compilable source
- * for consumption outside this monorepo. When omitted, generation runs in the
- * normal "internal" mode that produces this repo's full package set.
- */
-export interface ExternalGenerateOptions {
-  /** npm org/scope for the generated packages, e.g. "@osdk". */
-  npmOrg: string;
-  /** Namespace(s) to emit; their dependency closure is pulled in automatically. */
-  seedNamespaces: string[];
-  /** Real version specifiers for the runtime deps the generated code imports. */
-  sharedDependencies: Record<string, string>;
-}
-
-// External closures currently target the "foundry" platform prefix.
-const EXTERNAL_PACKAGE_PREFIX = "foundry";
-
 export async function generatePlatformSdks(
   ir: ApiSpec,
   outputDir: string,
   deprecatedIrs: readonly ApiSpec[],
-  external?: ExternalGenerateOptions,
 ): Promise<string[]> {
   const packageDirectories = new Set<string>();
-
-  if (external) {
-    // External mode only needs the foundry platform and its promoted version;
-    // no docs package, no mega aggregator.
-    for (
-      const packageDirectory of await generatePlatformSdkVersions(
-        ir,
-        outputDir,
-        EXTERNAL_PACKAGE_PREFIX,
-        deprecatedIrs,
-        external,
-      )
-    ) {
-      packageDirectories.add(packageDirectory);
-    }
-    return [...packageDirectories];
-  }
-
   for (
     const [packagePrefix, config] of Object.entries(PLATFORM_SDK_CONFIG)
   ) {
@@ -100,12 +60,12 @@ export async function generatePlatformSdks(
   }
   return [...packageDirectories];
 }
+
 export async function generatePlatformSdkVersions(
   ir: ApiSpec,
   outputDir: string,
   packagePrefix: string,
   deprecatedIrs: readonly ApiSpec[] = [],
-  external?: ExternalGenerateOptions,
 ): Promise<string[]> {
   const versionConfig = PLATFORM_SDK_CONFIG[packagePrefix]?.versions;
   if (versionConfig == null) {
@@ -135,12 +95,8 @@ export async function generatePlatformSdkVersions(
     throw new Error("Exactly one generation must be promoted.");
   }
 
-  // External mode emits only the promoted (default) version; the unstable
-  // subpaths aren't useful to downstream consumers.
-  const toGenerate = external ? defaultExports : generations;
-
   const packageDirectories: string[] = [];
-  for (const generation of toGenerate) {
+  for (const generation of generations) {
     for (
       const packageDirectory of await generatePlatformSdk(
         generation.ir,
@@ -150,7 +106,6 @@ export async function generatePlatformSdkVersions(
         generation.deprecatedIr,
         generation.packageSubpath,
         generation.isPromoted,
-        external,
       )
     ) {
       packageDirectories.push(packageDirectory);
@@ -167,9 +122,8 @@ export async function generatePlatformSdk(
   deprecatedIr: ApiSpec | undefined,
   packageSubpath: string,
   isPromoted: boolean,
-  external?: ExternalGenerateOptions,
 ): Promise<string[]> {
-  const npmOrg = external?.npmOrg ?? "@osdk";
+  const npmOrg = "@osdk";
   const model = await Model.create(ir, {
     npmOrg,
     outputDir,
@@ -179,69 +133,12 @@ export async function generatePlatformSdk(
     packageSubpath,
   });
 
-  // The full model is always built so cross-namespace references resolve. In
-  // external mode we only *emit* the requested namespaces plus their transitive
-  // dependency closure; in internal mode we emit everything.
-  const allNamespaces = [...model.namespaces];
-  const emitNamespaces = external
-    ? [...computeNamespaceClosure(allNamespaces, external.seedNamespaces)]
-    : allNamespaces;
+  for (const ns of model.namespaces) {
+    // Emit the package source (shared with external generation).
+    await emitNamespacePackage(ns, model, packageSubpath, isPromoted);
 
-  const componentsGenerated = new Map<Namespace, string[]>();
-  const errorsGenerated = new Map<Namespace, string[]>();
-
-  // We need to make sure the components are all populated before we generate the resources
-  for (const ns of emitNamespaces) {
-    ns.components.sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
-    );
-    ns.errors.sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
-    );
-    componentsGenerated.set(
-      ns,
-      await generateComponents(ns, ns.paths.srcDir),
-    );
-    errorsGenerated.set(
-      ns,
-      await generateErrors(ns, ns.paths.srcDir),
-    );
-  }
-
-  // Now we can generate the resources
-  for (const ns of emitNamespaces) {
-    for (const r of ns.resources) {
-      const sourceFilePath = path.join(
-        ns.paths.resourcesDir,
-        `${r.component}.ts`,
-      );
-      await writeResource2(ns, r, sourceFilePath, model);
-    }
-  }
-
-  // create the package root file
-  for (const ns of emitNamespaces) {
-    let nsIndexTsContents = `${copyright}\n`;
-
-    for (const r of ns.resources) {
-      const resourceDirRelToSrc = "./" // path.join() will strip a single period w do it by hand
-        + path.relative(
-          ns.paths.srcDir,
-          ns.paths.resourcesDir,
-        ).split(path.sep).join("/");
-
-      const resourceName = r.pluralName;
-      if (componentsGenerated.get(ns)!.some(c => c === resourceName)) {
-        throw new Error(
-          `Even the duplicated components aren't unique: ${resourceName}`,
-        );
-      }
-
-      // path utilities are bad for urls like things because they strip the leading period
-      nsIndexTsContents +=
-        `export * as ${resourceName} from "${resourceDirRelToSrc}/${r.component}.js";\n`;
-    }
-
+    // Internal packaging: declare the cross-namespace deps as workspace
+    // protocols so they resolve within this monorepo.
     const deps = new Set<Namespace>();
     for (const r of ns.resources) {
       for (const method of r.operations) {
@@ -250,15 +147,12 @@ export async function generatePlatformSdk(
         }
       }
     }
-
     for (const comp of ns.components) {
       for (const rc of comp.referencedComponents) {
         if (!comp.isDeprecated) deps.add(rc.namespace);
       }
     }
-
     deps.delete(ns);
-
     await addPackagesToPackageJson(
       path.join(ns.paths.packagePath, "package.json"),
       [...deps].map(n => n.dependencyImportPath).filter(p =>
@@ -266,43 +160,6 @@ export async function generatePlatformSdk(
       ),
     );
 
-    nsIndexTsContents += `export type {${
-      componentsGenerated.get(ns)?.sort().join(",\n")
-    }} from "./_components.js";\n`;
-    nsIndexTsContents += `export type {${
-      errorsGenerated.get(ns)?.sort().join(",\n")
-    }} from "./_errors.js";\n`;
-    await writeCode(
-      path.join(ns.paths.srcDir, "index.ts"),
-      nsIndexTsContents,
-    );
-  }
-
-  for (const ns of emitNamespaces) {
-    const packageSrcDir = path.join(ns.paths.packagePath, "src");
-    const publicDir = path.join(packageSrcDir, "public");
-    await fs.mkdir(publicDir, {
-      recursive: true,
-    });
-    const rootIndexPath = path.join(packageSrcDir, "index.ts");
-    if (isPromoted) {
-      await writeCode(
-        rootIndexPath,
-        `${copyright}\n\nexport * from "./${packageSubpath}/index.js";\n`,
-      );
-      for (const resource of ns.resources) {
-        await writeCode(
-          path.join(publicDir, `${resource.component}.ts`),
-          `${copyright}\n\nexport * from "../${packageSubpath}/public/${resource.component}.js";\n`,
-        );
-      }
-    } else if (!await fileExists(rootIndexPath)) {
-      await writeCode(rootIndexPath, `${copyright}\n\nexport {};\n`);
-    }
-    await writeCode(
-      path.join(publicDir, `${packageSubpath}.ts`),
-      `${copyright}\n\nexport * from "../${packageSubpath}/index.js";\n`,
-    );
     await writeCode(
       path.join(ns.paths.packagePath, `${packageSubpath}.d.ts`),
       `${copyright}\n\nexport * from "./build/esm/public/${packageSubpath}.js";\n`,
@@ -311,16 +168,6 @@ export async function generatePlatformSdk(
       path.join(ns.paths.packagePath, "package.json"),
       packageSubpath,
     );
-  }
-
-  if (external) {
-    await finalizeExternalPackages(
-      emitNamespaces,
-      allNamespaces,
-      packageSubpath,
-      external,
-    );
-    return emitNamespaces.map(ns => ns.paths.packagePath);
   }
 
   if (!isPromoted) {
@@ -354,175 +201,6 @@ export async function generatePlatformSdk(
     primaryPackagePath,
     ...[...model.namespaces].map(ns => ns.paths.packagePath),
   ];
-}
-
-/** All other namespaces whose components this namespace references. */
-function referencedNamespaces(ns: Namespace): Set<Namespace> {
-  const deps = new Set<Namespace>();
-  for (const r of ns.resources) {
-    for (const op of r.operations) {
-      for (const rc of op.referencedComponents) deps.add(rc.namespace);
-    }
-  }
-  for (const comp of ns.components) {
-    for (const rc of comp.referencedComponents) deps.add(rc.namespace);
-  }
-  for (const err of ns.errors) {
-    for (const rc of err.referencedComponents) deps.add(rc.namespace);
-  }
-  deps.delete(ns);
-  return deps;
-}
-
-/**
- * Transitive dependency closure of the seed namespaces: the seeds plus every
- * namespace reachable by following cross-namespace component references. This
- * is what makes external output self-contained (a namespace plus every
- * namespace its components transitively reference).
- */
-function computeNamespaceClosure(
-  all: Namespace[],
-  seedNames: string[],
-): Set<Namespace> {
-  const byName = new Map(all.map(ns => [ns.name, ns]));
-  const closure = new Set<Namespace>();
-  const queue: Namespace[] = [];
-
-  for (const name of seedNames) {
-    const ns = byName.get(name);
-    if (ns == null) {
-      throw new Error(
-        `Namespace "${name}" not found in the IR. Available: ${
-          all.map(n => n.name).filter(n => n.length > 0).sort().join(", ")
-        }`,
-      );
-    }
-    if (!closure.has(ns)) {
-      closure.add(ns);
-      queue.push(ns);
-    }
-  }
-
-  while (queue.length > 0) {
-    const ns = queue.shift()!;
-    for (const dep of referencedNamespaces(ns)) {
-      if (!closure.has(dep)) {
-        closure.add(dep);
-        queue.push(dep);
-      }
-    }
-  }
-
-  return closure;
-}
-
-/**
- * Post-processing for external mode. Rewrites each emitted package.json to a
- * minimal, inline-compilable shape (no workspace: protocols, no sls/build
- * scaffolding, just the real runtime deps) and removes the namespace packages
- * the model scaffolded but that fall outside the closure. Cross-namespace
- * `@osdk/<prefix>.*` imports resolve via the consumer's tsconfig `paths` to the
- * co-generated local sources.
- */
-async function finalizeExternalPackages(
-  emit: Namespace[],
-  all: Namespace[],
-  packageSubpath: string,
-  external: ExternalGenerateOptions,
-): Promise<void> {
-  const emitSet = new Set(emit);
-
-  for (const ns of emit) {
-    const packageJsonPath = path.join(ns.paths.packagePath, "package.json");
-    const existing = JSON.parse(await fs.readFile(packageJsonPath, "utf-8"));
-    const minimal = {
-      name: existing.name,
-      version: existing.version ?? "0.0.0",
-      type: "module",
-      dependencies: { ...external.sharedDependencies },
-    };
-    await fs.writeFile(
-      packageJsonPath,
-      JSON.stringify(minimal, undefined, 2) + "\n",
-    );
-    // Drop the published-package type shim that points at build/esm.
-    await fs.rm(
-      path.join(ns.paths.packagePath, `${packageSubpath}.d.ts`),
-      { force: true },
-    );
-  }
-
-  // The model scaffolds a package dir for every namespace under the prefix;
-  // remove the ones outside the closure so only the closure ships.
-  for (const ns of all) {
-    if (!emitSet.has(ns)) {
-      await fs.rm(ns.paths.packagePath, { recursive: true, force: true });
-    }
-  }
-}
-
-export async function generateComponents(
-  ns: Namespace,
-  outputDir: string,
-): Promise<string[]> {
-  const referencedComponents = new Set<Component>();
-  const ret = [];
-
-  let out =
-    `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
-      `;
-
-  for (const component of ns.components) {
-    out += component.getDeclaration(ns.name);
-    ret.push(component.name === "Record" ? "_Record" : component.name);
-
-    addAll(referencedComponents, component.referencedComponents);
-  }
-
-  const imports = generateImports(referencedComponents, new Map([[ns, SKIP]]));
-
-  await writeCode(
-    path.join(outputDir, "_components.ts"),
-    `${copyright}
-    
-    ${imports}
-
-  ${out}`,
-  );
-
-  return ret;
-}
-
-export async function generateErrors(
-  ns: Namespace,
-  outputDir: string,
-): Promise<string[]> {
-  const referencedComponents = new Set<Component>();
-  const ret = [];
-
-  let out =
-    `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
-      `;
-
-  for (const error of ns.errors) {
-    out += error.getDeclaration(ns.name);
-    ret.push(error.name);
-
-    addAll(referencedComponents, error.referencedComponents);
-  }
-
-  const imports = generateImports(referencedComponents, new Map([[ns, SKIP]]));
-
-  await writeCode(
-    path.join(outputDir, "_errors.ts"),
-    `${copyright}
-    
-    ${imports}
-
-  ${out}`,
-  );
-
-  return ret;
 }
 
 export async function ensurePackageSetup(

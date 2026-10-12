@@ -19,8 +19,8 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import type { ExternalGenerateOptions } from "./generatePlatformSdks.js";
-import { generatePlatformSdks } from "./generatePlatformSdks.js";
+import type { ExternalGenerateOptions } from "./external/generateExternalSdk.js";
+import { generateExternalSdk } from "./external/generateExternalSdk.js";
 
 const temporaryDirectories: string[] = [];
 
@@ -120,7 +120,7 @@ function externalOptions(
 describe("external dependency-closure generation", () => {
   it("emits only the seed plus its closure, prunes the rest, no mega-package", async () => {
     const out = await makeOutputDir();
-    await generatePlatformSdks(IR, out, [], externalOptions());
+    await generateExternalSdk(IR, out, externalOptions());
 
     expect(await pathExists(path.join(out, "foundry.pack"))).toBe(true);
     expect(await pathExists(path.join(out, "foundry.core"))).toBe(true);
@@ -132,7 +132,7 @@ describe("external dependency-closure generation", () => {
 
   it("writes a minimal package.json with real runtime deps and no workspace: protocols", async () => {
     const out = await makeOutputDir();
-    await generatePlatformSdks(IR, out, [], externalOptions());
+    await generateExternalSdk(IR, out, externalOptions());
 
     const raw = await fs.readFile(
       path.join(out, "foundry.pack", "package.json"),
@@ -152,7 +152,7 @@ describe("external dependency-closure generation", () => {
 
   it("generated code references only namespaces inside the closure", async () => {
     const out = await makeOutputDir();
-    await generatePlatformSdks(IR, out, [], externalOptions());
+    await generateExternalSdk(IR, out, externalOptions());
 
     const components = await fs.readFile(
       path.join(out, "foundry.pack", "src", "v2", "_components.ts"),
@@ -166,12 +166,7 @@ describe("external dependency-closure generation", () => {
 
   it("honors a custom npm org in the generated package name", async () => {
     const out = await makeOutputDir();
-    await generatePlatformSdks(
-      IR,
-      out,
-      [],
-      externalOptions({ npmOrg: "@acme" }),
-    );
+    await generateExternalSdk(IR, out, externalOptions({ npmOrg: "@acme" }));
 
     const pkg = JSON.parse(
       await fs.readFile(
@@ -185,10 +180,9 @@ describe("external dependency-closure generation", () => {
   it("throws a clear error for an unknown seed namespace", async () => {
     const out = await makeOutputDir();
     await expect(
-      generatePlatformSdks(
+      generateExternalSdk(
         IR,
         out,
-        [],
         externalOptions({
           seedNamespaces: ["NotARealNamespace"],
         }),

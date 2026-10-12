@@ -15,22 +15,17 @@
  */
 
 import type { ApiSpec } from "@osdk/docs-spec-platform";
+import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 import * as process from "node:process";
+import { fileURLToPath } from "node:url";
 import { parse as parseYaml } from "yaml";
 import type { Arguments, Argv, CommandModule } from "yargs";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { fetchIr } from "./fetchIr.js";
-import type { ExternalGenerateOptions } from "./generatePlatformSdks.js";
+import { generateExternalSdk } from "./external/generateExternalSdk.js";
 import { generatePlatformSdks } from "./generatePlatformSdks.js";
 import { updateSls } from "./updateSls.js";
-
-const EXTERNAL_SHARED_DEPENDENCIES: Record<string, string> = {
-  "@osdk/shared.client": "^1.0.1",
-  "@osdk/shared.client2": "^1.0.0",
-  "@osdk/shared.net.platformapi": "^1.8.0",
-};
 
 export async function cli(
   args: string[] = process.argv,
@@ -123,12 +118,10 @@ export class GenerateCommand implements CommandModule<{}, Options> {
           "--namespace is required in external mode (e.g. --namespace <namespace>)",
         );
       }
-      const external: ExternalGenerateOptions = {
+      await generateExternalSdk(irSpec, output, {
         npmOrg: args.npmOrg,
         seedNamespaces: args.namespace,
-        sharedDependencies: EXTERNAL_SHARED_DEPENDENCIES,
-      };
-      await generatePlatformSdks(irSpec, output, [], external);
+      });
       return;
     }
 
@@ -165,7 +158,6 @@ export interface FetchIrCommandOptions {
   artifactoryUrl?: string;
   apiGatewayVersion?: string;
   outputDir: string;
-  groupId?: string;
 }
 
 export class FetchIrCommand
@@ -194,11 +186,6 @@ export class FetchIrCommand
         describe: "Directory to write combined-ir.json and manifest.yml into",
         type: "string",
         demandOption: true,
-      })
-      .option("groupId", {
-        describe: "Maven group id",
-        type: "string",
-        default: "com.palantir.foundry.api",
       });
   }
 
@@ -212,11 +199,32 @@ export class FetchIrCommand
         "Provide --artifactoryUrl or set the MAVEN_DIST_RELEASE environment variable",
       );
     }
-    await fetchIr({
-      artifactoryUrl,
-      apiGatewayVersion: args.apiGatewayVersion,
-      outDir: args.outputDir,
-      groupId: args.groupId,
+
+    // The bash fetch script ships in the package at ../scripts relative to the
+    // built module (build/esm/cli.js -> <pkg>/scripts/getOpenApiIr.sh).
+    const scriptPath = fileURLToPath(
+      new URL("../../scripts/getOpenApiIr.sh", import.meta.url),
+    );
+    const scriptArgs = ["--outDir", args.outputDir];
+    if (args.apiGatewayVersion) {
+      scriptArgs.push("--api-gateway-version", args.apiGatewayVersion);
+    }
+
+    await new Promise<void>((resolve, reject) => {
+      const child = spawn("bash", [scriptPath, ...scriptArgs], {
+        stdio: "inherit",
+        env: { ...process.env, MAVEN_DIST_RELEASE: artifactoryUrl },
+      });
+      child.on("error", reject);
+      child.on("exit", code => {
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(
+            new Error(`getOpenApiIr.sh exited with code ${code ?? "null"}`),
+          );
+        }
+      });
     });
   };
 }
