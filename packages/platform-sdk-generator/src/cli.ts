@@ -17,6 +17,7 @@
 import type { ApiSpec } from "@osdk/docs-spec-platform";
 import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
+import * as path from "node:path";
 import * as process from "node:process";
 import { fileURLToPath } from "node:url";
 import { parse as parseYaml } from "yaml";
@@ -121,6 +122,8 @@ export interface GenerateExternalOptions {
   outputDir: string;
   namespace: string[];
   npmOrg: string;
+  manifestFile?: string;
+  slsPackageJson?: string;
 }
 
 /**
@@ -163,6 +166,16 @@ export class GenerateExternalCommand
         describe: "npm org/scope for the generated packages",
         type: "string",
         default: "@osdk",
+      })
+      .option("manifestFile", {
+        describe:
+          "The api-gateway manifest.yml (from fetch-ir). Used with --slsPackageJson to record the api-gateway minimum version",
+        type: "string",
+      })
+      .option("slsPackageJson", {
+        describe:
+          "The package.json to write the api-gateway product dependency into (its sls.dependencies block). Requires --manifestFile",
+        type: "string",
       });
   }
 
@@ -177,6 +190,11 @@ export class GenerateExternalCommand
     if (args.namespace == null || args.namespace.length === 0) {
       throw new Error("--namespace is required (e.g. --namespace <namespace>)");
     }
+    if ((args.manifestFile == null) !== (args.slsPackageJson == null)) {
+      throw new Error(
+        "--manifestFile and --slsPackageJson must be passed together",
+      );
+    }
 
     const irSpecRead = await fs.readFile(`${args.inputFile}`, {
       encoding: "utf8",
@@ -187,6 +205,15 @@ export class GenerateExternalCommand
       npmOrg: args.npmOrg,
       seedNamespaces: args.namespace,
     });
+
+    // Lets consumers (e.g. via Wizard's product-dependencies.lock) require the
+    // api-gateway version this code was generated from.
+    if (args.manifestFile != null && args.slsPackageJson != null) {
+      const manifest = parseYaml(
+        await fs.readFile(args.manifestFile, { encoding: "utf8" }),
+      );
+      await updateSls(manifest, path.dirname(args.slsPackageJson));
+    }
   };
 }
 
