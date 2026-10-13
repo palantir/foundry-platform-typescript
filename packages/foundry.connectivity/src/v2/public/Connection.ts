@@ -192,11 +192,12 @@ const _uploadCustomJdbcDrivers: $FoundryPlatformMethod<
     connectionRid: _Connectivity.ConnectionRid,
     $body: Blob,
     $queryParams: { fileName: string },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<_Connectivity.Connection>
 > = [
   1,
   "/v2/connectivity/connections/{0}/uploadCustomJdbcDrivers",
-  3,
+  7,
   "application/octet-stream",
 ];
 
@@ -215,7 +216,21 @@ export function uploadCustomJdbcDrivers(
     connectionRid: _Connectivity.ConnectionRid,
     $body: Blob,
     $queryParams: { fileName: string },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<_Connectivity.Connection> {
-  return $foundryPlatformFetch($ctx, _uploadCustomJdbcDrivers, ...args);
+  const headerParams = {
+    ...args[3],
+    "Content-Type": args[3]?.["Content-Type"] ?? "application/octet-stream",
+    "Content-Length": args[1].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _uploadCustomJdbcDrivers,
+    args[0],
+    args[1],
+    args[2],
+    headerParams,
+  );
 }
