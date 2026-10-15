@@ -1,5 +1,12 @@
 # @osdk/gotham.core
 
+## 0.57.0
+
+### Patch Changes
+
+- Updated dependencies [8e41ef2]
+  - @osdk/shared.net.platformapi@1.9.0
+
 ## 0.56.0
 
 ### Minor Changes
