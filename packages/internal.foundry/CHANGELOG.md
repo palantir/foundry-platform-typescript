@@ -1,5 +1,18 @@
 # @osdk/foundry
 
+## 2.85.0
+
+### Patch Changes
+
+- Updated dependencies [8e41ef2]
+  - @osdk/shared.net.platformapi@1.9.0
+  - @osdk/internal.foundry.core@2.85.0
+  - @osdk/internal.foundry.datasets@2.85.0
+  - @osdk/internal.foundry.geo@2.85.0
+  - @osdk/internal.foundry.mediasets@2.85.0
+  - @osdk/internal.foundry.ontologies@2.85.0
+  - @osdk/internal.foundry.ontologiesv2@2.85.0
+
 ## 2.84.0
 
 ### Minor Changes

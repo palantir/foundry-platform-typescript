@@ -1,5 +1,13 @@
 # @osdk/foundry.widgets
 
+## 2.85.0
+
+### Patch Changes
+
+- Updated dependencies [8e41ef2]
+  - @osdk/shared.net.platformapi@1.9.0
+  - @osdk/foundry.core@2.85.0
+
 ## 2.84.0
 
 ### Minor Changes

@@ -1,5 +1,17 @@
 # @osdk/gotham
 
+## 0.57.0
+
+### Patch Changes
+
+- Updated dependencies [8e41ef2]
+  - @osdk/shared.net.platformapi@1.9.0
+  - @osdk/gotham.core@0.57.0
+  - @osdk/gotham.gaia@0.57.0
+  - @osdk/gotham.geojson@0.57.0
+  - @osdk/gotham.maprendering@0.57.0
+  - @osdk/gotham.targetworkbench@0.57.0
+
 ## 0.56.0
 
 ### Minor Changes
