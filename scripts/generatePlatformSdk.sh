@@ -12,7 +12,7 @@ WGET=$(checkCommand "wget" "wget" "Try 'brew install wget'")
 echo "Making sure the tool is built"
 pnpm exec turbo run transpile typecheck --filter ./packages/platform-sdk-generator --output-logs=errors-only
 
-# IR is fetched via packages/platform-sdk-generator/scripts/getOpenApiIr.sh (see fetchAndGenerate.sh)
+# "$SCRIPT_DIR/getOpenApiIr.sh"
 
 CODE_GENERATOR="$SCRIPT_DIR/../packages/platform-sdk-generator/bin/platform-sdk-generator.mjs"
 IR_JSON="${SCRIPT_DIR}/../tmp/api-gateway-ir/combined-ir.json"

@@ -15,11 +15,9 @@
  */
 
 import type { ApiSpec } from "@osdk/docs-spec-platform";
-import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 import * as path from "node:path";
 import * as process from "node:process";
-import { fileURLToPath } from "node:url";
 import { parse as parseYaml } from "yaml";
 import type { Arguments, Argv, CommandModule } from "yargs";
 import yargs from "yargs";
@@ -35,7 +33,6 @@ export async function cli(
     .version(false)
     .command(new GenerateCommand())
     .command(new GenerateExternalCommand())
-    .command(new FetchIrCommand())
     .demandCommand();
 
   return base.parseAsync();
@@ -117,8 +114,13 @@ export class GenerateCommand implements CommandModule<{}, Options> {
   };
 }
 
+/** Fixed filenames the IR fetch script writes into its output directory. */
+const IR_FILENAME = "combined-ir.json";
+const MANIFEST_FILENAME = "manifest.yml";
+
 export interface GenerateExternalOptions {
-  inputFile: string;
+  inputFile?: string;
+  irDir?: string;
   outputDir: string;
   namespace: string[];
   npmOrg: string;
@@ -145,10 +147,15 @@ export class GenerateExternalCommand
 
   public builder(args: Argv): Argv<GenerateExternalOptions> {
     return args
-      .option("inputFile", {
-        describe: "The location of the API IR",
+      .option("irDir", {
+        describe:
+          "Directory containing the fetched IR; reads combined-ir.json (and manifest.yml) from it. Alternative to --inputFile/--manifestFile",
         type: "string",
-        demandOption: true,
+      })
+      .option("inputFile", {
+        describe:
+          "The location of the API IR (defaults to <irDir>/combined-ir.json)",
+        type: "string",
       })
       .option("outputDir", {
         describe: "The output directory for the generated code",
@@ -169,12 +176,12 @@ export class GenerateExternalCommand
       })
       .option("manifestFile", {
         describe:
-          "The api-gateway manifest.yml (from fetch-ir). Used with --slsPackageJson to record the api-gateway minimum version",
+          "The api-gateway manifest.yml (defaults to <irDir>/manifest.yml). Used with --slsPackageJson to record the api-gateway minimum version",
         type: "string",
       })
       .option("slsPackageJson", {
         describe:
-          "The package.json to write the api-gateway product dependency into (its sls.dependencies block). Requires --manifestFile",
+          "The package.json to write the api-gateway product dependency into (its sls.dependencies block). Reads the version from --manifestFile or <irDir>/manifest.yml",
         type: "string",
       });
   }
@@ -182,23 +189,31 @@ export class GenerateExternalCommand
   public handler = async (
     args: Arguments<GenerateExternalOptions>,
   ): Promise<void> => {
-    if (!args.inputFile) {
-      throw new Error("Must provide an input file");
-    } else if (!args.outputDir) {
+    if (!args.outputDir) {
       throw new Error("Must provide an output directory");
     }
     if (args.namespace == null || args.namespace.length === 0) {
       throw new Error("--namespace is required (e.g. --namespace <namespace>)");
     }
-    if ((args.manifestFile == null) !== (args.slsPackageJson == null)) {
+
+    // Accept either explicit files or an --irDir containing the fetched IR,
+    // which lets callers pass just the folder and have the filenames resolved.
+    const inputFile = args.inputFile
+      ?? (args.irDir != null ? path.join(args.irDir, IR_FILENAME) : undefined);
+    if (!inputFile) {
+      throw new Error("Provide --inputFile or --irDir");
+    }
+    const manifestFile = args.manifestFile
+      ?? (args.irDir != null
+        ? path.join(args.irDir, MANIFEST_FILENAME)
+        : undefined);
+    if (args.slsPackageJson != null && manifestFile == null) {
       throw new Error(
-        "--manifestFile and --slsPackageJson must be passed together",
+        "--slsPackageJson needs the manifest: pass --manifestFile or --irDir",
       );
     }
 
-    const irSpecRead = await fs.readFile(`${args.inputFile}`, {
-      encoding: "utf8",
-    });
+    const irSpecRead = await fs.readFile(inputFile, { encoding: "utf8" });
     const irSpec: ApiSpec = JSON.parse(irSpecRead);
 
     await generateExternalSdk(irSpec, args.outputDir, {
@@ -208,86 +223,11 @@ export class GenerateExternalCommand
 
     // Lets consumers (e.g. via Wizard's product-dependencies.lock) require the
     // api-gateway version this code was generated from.
-    if (args.manifestFile != null && args.slsPackageJson != null) {
+    if (args.slsPackageJson != null && manifestFile != null) {
       const manifest = parseYaml(
-        await fs.readFile(args.manifestFile, { encoding: "utf8" }),
+        await fs.readFile(manifestFile, { encoding: "utf8" }),
       );
       await updateSls(manifest, path.dirname(args.slsPackageJson));
     }
-  };
-}
-
-export interface FetchIrCommandOptions {
-  artifactoryUrl?: string;
-  apiGatewayVersion?: string;
-  outputDir: string;
-}
-
-export class FetchIrCommand
-  implements CommandModule<{}, FetchIrCommandOptions>
-{
-  public aliases = [] as const;
-
-  public command = "fetch-ir";
-
-  public describe =
-    "Fetch and merge the api-gateway IR from a Maven repository";
-
-  public builder(args: Argv): Argv<FetchIrCommandOptions> {
-    return args
-      .option("artifactoryUrl", {
-        describe:
-          "Base Maven repository url; defaults to the MAVEN_DIST_RELEASE env var",
-        type: "string",
-      })
-      .option("apiGatewayVersion", {
-        describe:
-          "Pinned api-gateway version; when omitted the latest release is resolved",
-        type: "string",
-      })
-      .option("outputDir", {
-        describe: "Directory to write combined-ir.json and manifest.yml into",
-        type: "string",
-        demandOption: true,
-      });
-  }
-
-  public handler = async (
-    args: Arguments<FetchIrCommandOptions>,
-  ): Promise<void> => {
-    const artifactoryUrl = args.artifactoryUrl
-      ?? process.env.MAVEN_DIST_RELEASE;
-    if (!artifactoryUrl) {
-      throw new Error(
-        "Provide --artifactoryUrl or set the MAVEN_DIST_RELEASE environment variable",
-      );
-    }
-
-    // The bash fetch script ships in the package at ../scripts relative to the
-    // built module (build/esm/cli.js -> <pkg>/scripts/getOpenApiIr.sh).
-    const scriptPath = fileURLToPath(
-      new URL("../../scripts/getOpenApiIr.sh", import.meta.url),
-    );
-    const scriptArgs = ["--outDir", args.outputDir];
-    if (args.apiGatewayVersion) {
-      scriptArgs.push("--api-gateway-version", args.apiGatewayVersion);
-    }
-
-    await new Promise<void>((resolve, reject) => {
-      const child = spawn("bash", [scriptPath, ...scriptArgs], {
-        stdio: "inherit",
-        env: { ...process.env, MAVEN_DIST_RELEASE: artifactoryUrl },
-      });
-      child.on("error", reject);
-      child.on("exit", code => {
-        if (code === 0) {
-          resolve();
-        } else {
-          reject(
-            new Error(`getOpenApiIr.sh exited with code ${code ?? "null"}`),
-          );
-        }
-      });
-    });
   };
 }

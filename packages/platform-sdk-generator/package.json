@@ -59,7 +59,6 @@
     "build/browser",
     "CHANGELOG.md",
     "package.json",
-    "scripts",
     "templates",
     "*.d.ts"
   ],
