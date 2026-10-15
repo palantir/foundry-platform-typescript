@@ -236,11 +236,19 @@ describe("external dependency-closure generation", () => {
     expect(paths["@osdk/foundry.pack"]).toEqual([
       "./foundry.pack/src/index.ts",
     ]);
+    // Versioned subpath must resolve into src/v2/public (mirrors the "./v2/*"
+    // package.json export), and win over the promoted "/*" pattern.
+    expect(paths["@osdk/foundry.pack/v2/*"]).toEqual([
+      "./foundry.pack/src/v2/public/*.ts",
+    ]);
     expect(paths["@osdk/foundry.pack/*"]).toEqual([
       "./foundry.pack/src/public/*.ts",
     ]);
     expect(paths["@osdk/foundry.core"]).toEqual([
       "./foundry.core/src/index.ts",
+    ]);
+    expect(paths["@osdk/foundry.core/v2/*"]).toEqual([
+      "./foundry.core/src/v2/public/*.ts",
     ]);
     expect(paths["@osdk/foundry.core/*"]).toEqual([
       "./foundry.core/src/public/*.ts",

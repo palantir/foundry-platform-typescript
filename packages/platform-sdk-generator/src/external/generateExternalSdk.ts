@@ -110,7 +110,7 @@ export async function generateExternalSdk(
     await fs.rm(ns.paths.packagePath, { recursive: true, force: true });
   }
 
-  await writeTsconfigPaths(outputDir, [...closure]);
+  await writeTsconfigPaths(outputDir, [...closure], PACKAGE_SUBPATH);
 
   return [...closure].map(ns => ns.paths.packagePath);
 }
@@ -134,6 +134,7 @@ async function readdirSafe(dir: string): Promise<Set<string>> {
 async function writeTsconfigPaths(
   outputDir: string,
   closure: Namespace[],
+  packageSubpath: string,
 ): Promise<void> {
   const paths: Record<string, string[]> = {};
   const sorted = [...closure].sort((a, b) =>
@@ -142,7 +143,17 @@ async function writeTsconfigPaths(
   for (const ns of sorted) {
     const dirName = path.basename(ns.paths.packagePath); // e.g. foundry.pack
     const importPath = ns.dependencyImportPath; // e.g. @osdk/foundry.pack
+    // Root export, and the promoted/unversioned surface: bare subpaths like
+    // `@osdk/foundry.pack/Document` and `@osdk/foundry.pack/v2` resolve into
+    // src/public (the latter to src/public/v2.ts).
     paths[importPath] = [`./${dirName}/src/index.ts`];
+    // Versioned subpaths like `@osdk/foundry.pack/v2/Document` must resolve into
+    // src/<subpath>/public, not src/public — mirror the package.json
+    // `./<subpath>/*` export. This more specific pattern (longer literal prefix)
+    // wins over the `/*` pattern below in tsc path resolution.
+    paths[`${importPath}/${packageSubpath}/*`] = [
+      `./${dirName}/src/${packageSubpath}/public/*.ts`,
+    ];
     paths[`${importPath}/*`] = [`./${dirName}/src/public/*.ts`];
   }
   const tsconfig = { compilerOptions: { baseUrl: ".", paths } };
