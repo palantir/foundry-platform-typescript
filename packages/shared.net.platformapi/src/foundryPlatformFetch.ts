@@ -116,7 +116,11 @@ async function apiFetch(
   }
 
   const headersInit: HeadersInit = new Headers();
-  headersInit.set("Content-Type", requestMediaType ?? "application/json");
+  const resolvedRequestMediaType = requestMediaType === "*/*"
+      && data instanceof globalThis.Blob
+    ? data.type || "application/octet-stream"
+    : requestMediaType ?? "application/json";
+  headersInit.set("Content-Type", resolvedRequestMediaType);
   headersInit.set("Accept", responseMediaType ?? "application/json");
 
   Object.entries(headers || {}).forEach(([key, value]) => {
