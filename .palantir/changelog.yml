@@ -33,6 +33,7 @@ repo-type:
       - packages/foundry.sqlqueries
       - packages/foundry.streams
       - packages/foundry.thirdpartyapplications
+      - packages/foundry.tiles
       - packages/foundry.widgets
       - packages/gotham
       - packages/gotham.core
