@@ -1,5 +1,17 @@
 # @osdk/platform-sdk-generator
 
+## 0.83.0
+
+### Minor Changes
+
+- d6111b8: Add Marketplace and Tiles namespaces
+
+### Patch Changes
+
+- Updated dependencies [d6111b8]
+- Updated dependencies
+  - @osdk/docs-spec-platform@0.2.0
+
 ## 0.82.0
 
 ### Minor Changes

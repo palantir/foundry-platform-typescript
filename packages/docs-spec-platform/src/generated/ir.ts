@@ -57,6 +57,8 @@ import { SqlQueriesV2 } from "./namespaces/SqlQueriesV2.js";
 import { StreamsV2 } from "./namespaces/StreamsV2.js";
 import { TargetWorkbenchV2 } from "./namespaces/TargetWorkbenchV2.js";
 import { ThirdPartyApplicationsV2 } from "./namespaces/ThirdPartyApplicationsV2.js";
+import { TilesMediaV3 } from "./namespaces/TilesMediaV3.js";
+import { TilesV3 } from "./namespaces/TilesV3.js";
 import { WidgetsV2 } from "./namespaces/WidgetsV2.js";
 import { WorkbenchV2 } from "./namespaces/WorkbenchV2.js";
 
@@ -107,5 +109,7 @@ export const PLATFORM_API_IR: ApiSpec = {
     CoreV3,
     OrchestratorV3,
     EndpointsV3,
+    TilesV3,
+    TilesMediaV3,
   ],
 };

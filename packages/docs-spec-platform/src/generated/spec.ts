@@ -1534,5 +1534,17 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v3.listEndpointSetVersions": {
       "variables": {},
     },
+    "v3.computeElevationTileSource": {
+      "variables": {},
+    },
+    "v3.getTileSource": {
+      "variables": {},
+    },
+    "v3.listTileSources": {
+      "variables": {},
+    },
+    "v3.getTileSourceTile": {
+      "variables": {},
+    },
   },
 } as const satisfies DocsSnippetsSpec;

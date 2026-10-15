@@ -1,5 +1,20 @@
 # @osdk/foundry.models
 
+## 2.84.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version 1.1852.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @osdk/foundry.connectivity@2.84.0
+  - @osdk/foundry.core@2.84.0
+  - @osdk/foundry.filesystem@2.84.0
+  - @osdk/foundry.ontologies@2.84.0
+  - @osdk/foundry.orchestration@2.84.0
+
 ## 2.83.0
 
 ### Minor Changes
