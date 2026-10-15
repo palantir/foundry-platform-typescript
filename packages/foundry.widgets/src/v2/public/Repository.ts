@@ -61,6 +61,7 @@ const _publish: $FoundryPlatformMethod<
     $body: Blob,
     $queryParams: {
       repositoryVersion: _Widgets.RepositoryVersion;
+      branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Widgets.Release>
@@ -81,6 +82,7 @@ export function publish(
     $body: Blob,
     $queryParams: {
       repositoryVersion: _Widgets.RepositoryVersion;
+      branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]

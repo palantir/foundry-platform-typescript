@@ -61,6 +61,7 @@ const _list: $FoundryPlatformMethod<
   (
     widgetSetRid: _Widgets.WidgetSetRid,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -84,6 +85,7 @@ export function list(
     widgetSetRid: _Widgets.WidgetSetRid,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
