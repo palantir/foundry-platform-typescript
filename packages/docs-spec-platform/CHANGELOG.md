@@ -1,5 +1,19 @@
 # @osdk/docs-spec-platform
 
+## 0.2.0
+
+### Minor Changes
+
+- d6111b8: Add Marketplace and Tiles namespaces
+- Regenerate SDKs with API version 1.1852.0
+
+## 0.69.0
+
+### Minor Changes
+
+- daffbde: Add support for idPropertyNames in Resource definition (without consuming it)
+- Regenerate SDKs with API version 1.1849.0
+
 ## 0.68.0
 
 ### Minor Changes

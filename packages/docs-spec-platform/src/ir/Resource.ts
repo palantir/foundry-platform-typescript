@@ -23,10 +23,11 @@ export interface Resource {
   operations: Operation[];
   pluralName: string;
   documentation: Documentation;
-  plane?: "PLATFORM";
+  plane?: "MEDIA" | "ONTOLOGY" | "PLATFORM";
   singleton?: boolean;
   pathSegment?: string;
   idPropertyName?: string;
+  idPropertyNames?: string[];
   parentResource?: Locator;
   relativeName?: string;
   pluralRelativeName?: string;

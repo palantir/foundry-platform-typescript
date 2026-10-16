@@ -1,5 +1,35 @@
 # @osdk/foundry.admin
 
+## 2.85.0
+
+### Patch Changes
+
+- Updated dependencies [8e41ef2]
+  - @osdk/shared.net.platformapi@1.9.0
+  - @osdk/foundry.core@2.85.0
+
+## 2.84.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version 1.1852.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @osdk/foundry.core@2.84.0
+
+## 2.83.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version 1.1849.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @osdk/foundry.core@2.83.0
+
 ## 2.82.0
 
 ### Minor Changes

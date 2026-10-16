@@ -33,6 +33,22 @@ export interface BatchRequestSizeExceededLimit {
 }
 
 /**
+ * The provided page size was negative. Page sizes must be greater than or equal to zero.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidPageSize {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPageSize";
+  errorDescription:
+    "The provided page size was negative. Page sizes must be greater than or equal to zero.";
+  errorInstanceId: string;
+  parameters: {
+    pageSize: unknown;
+  };
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface MissingBatchRequest {

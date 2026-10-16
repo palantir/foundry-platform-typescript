@@ -122,6 +122,20 @@ export type AuthenticationProviderRid = LooselyBrandedString<
 /**
  * Log Safety: UNSAFE
  */
+export interface CanonicalizeMarkingsRequest {
+  markingIds: Array<_Core.MarkingId>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CanonicalizeMarkingsResponse {
+  markingIds: Array<_Core.MarkingId>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CbacBanner {
   classificationString: CbacBannerClassificationString;
   markings: Array<_Core.MarkingId>;
@@ -247,6 +261,34 @@ export interface EnrollmentRoleAssignment {
   principalType: _Core.PrincipalType;
   principalId: _Core.PrincipalId;
   roleId: _Core.RoleId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface FlattenedMarkingExpression {
+  markingIds: Array<_Core.MarkingId>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FlattenMarkingExpressionResult =
+  | ({ type: "flattened" } & FlattenedMarkingExpression)
+  | ({ type: "unflattenable" } & UnflattenableMarkingExpression);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface FlattenMarkingExpressionsRequest {
+  markingExpressions: Array<MarkingExpression>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface FlattenMarkingExpressionsResponse {
+  results: Array<FlattenMarkingExpressionResult>;
 }
 
 /**
@@ -527,6 +569,7 @@ export interface Marking {
   name: MarkingName;
   description?: string;
   organization?: _Core.OrganizationRid;
+  deleted: MarkingDeleted;
   createdTime: _Core.CreatedTime;
   createdBy?: _Core.CreatedBy;
 }
@@ -541,9 +584,17 @@ export interface MarkingCategory {
   categoryType: MarkingCategoryType;
   markingType: MarkingType;
   markings: Array<_Core.MarkingId>;
+  deleted: MarkingCategoryDeleted;
   createdTime: _Core.CreatedTime;
   createdBy?: _Core.CreatedBy;
 }
+
+/**
+ * Whether the Marking Category has been deleted.
+ *
+ * Log Safety: SAFE
+ */
+export type MarkingCategoryDeleted = boolean;
 
 /**
  * Log Safety: UNSAFE
@@ -605,6 +656,32 @@ export interface MarkingCategoryRoleAssignment {
  * Log Safety: SAFE
  */
 export type MarkingCategoryType = "CONJUNCTIVE" | "DISJUNCTIVE";
+
+/**
+   * All markings in a clause must belong to the same category. A clause in a conjunctive category must contain
+exactly one marking.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface MarkingClause {
+  or: Array<_Core.MarkingId>;
+}
+
+/**
+ * Whether the Marking has been deleted.
+ *
+ * Log Safety: SAFE
+ */
+export type MarkingDeleted = boolean;
+
+/**
+ * A marking expression in conjunctive normal form.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarkingExpression {
+  and: Array<MarkingClause>;
+}
 
 /**
  * Log Safety: SAFE
@@ -910,6 +987,13 @@ export interface SearchUsersResponse {
   data: Array<User>;
   nextPageToken?: _Core.PageToken;
 }
+
+/**
+ * No flat set of markings could be produced for the expression.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnflattenableMarkingExpression {}
 
 /**
  * Log Safety: UNSAFE

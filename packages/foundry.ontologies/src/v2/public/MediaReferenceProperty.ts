@@ -43,11 +43,18 @@ const _getMediaContent: $FoundryPlatformMethod<
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { Range?: string | undefined },
   ) => Promise<Response>
-> = [0, "/v2/ontologies/{0}/objects/{1}/{2}/media/{3}/content", 2, , "*/*"];
+> = [0, "/v2/ontologies/{0}/objects/{1}/{2}/media/{3}/content", 6, , "*/*"];
 
 /**
  * Gets the content of a media item referenced by this property.
+ *
+ * Supports a single byte range specified by the `Range` header as `bytes=start-end` or `bytes=start-`.
+ * A satisfiable range returns `206 Partial Content` with `Content-Range`, `Accept-Ranges`, and the
+ * content length of the returned range. An unsatisfiable range returns `416 Range Not Satisfiable`
+ * with `Content-Range: bytes *&#47;<total length>` and an empty body. Unsupported or malformed ranges
+ * are ignored, returning the full content with `200 OK`.
  *
  * @beta
  *
@@ -70,6 +77,7 @@ export function getMediaContent(
       scenarioRid?: _Ontologies.OntologyScenarioRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { Range?: string | undefined },
   ]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _getMediaContent, ...args);

@@ -30,6 +30,7 @@ import { DatasetsV1 } from "./namespaces/DatasetsV1.js";
 import { DatasetsV2 } from "./namespaces/DatasetsV2.js";
 import { EndpointsV3 } from "./namespaces/EndpointsV3.js";
 import { FilesystemV2 } from "./namespaces/FilesystemV2.js";
+import { FilesystemV3 } from "./namespaces/FilesystemV3.js";
 import { FunctionsV2 } from "./namespaces/FunctionsV2.js";
 import { GaiaV2 } from "./namespaces/GaiaV2.js";
 import { GeojsonV2 } from "./namespaces/GeojsonV2.js";
@@ -56,6 +57,8 @@ import { SqlQueriesV2 } from "./namespaces/SqlQueriesV2.js";
 import { StreamsV2 } from "./namespaces/StreamsV2.js";
 import { TargetWorkbenchV2 } from "./namespaces/TargetWorkbenchV2.js";
 import { ThirdPartyApplicationsV2 } from "./namespaces/ThirdPartyApplicationsV2.js";
+import { TilesMediaV3 } from "./namespaces/TilesMediaV3.js";
+import { TilesV3 } from "./namespaces/TilesV3.js";
 import { WidgetsV2 } from "./namespaces/WidgetsV2.js";
 import { WorkbenchV2 } from "./namespaces/WorkbenchV2.js";
 
@@ -102,8 +105,11 @@ export const PLATFORM_API_IR: ApiSpec = {
     CheckpointsV2,
     NotepadV2,
     GaiaV2,
-    EndpointsV3,
-    OrchestratorV3,
+    FilesystemV3,
     CoreV3,
+    OrchestratorV3,
+    EndpointsV3,
+    TilesV3,
+    TilesMediaV3,
   ],
 };

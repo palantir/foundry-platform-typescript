@@ -74,10 +74,13 @@ export type AgentIdentifier = { type: "agentApiName" } & AgentApiNameIdentifier;
 export type AgentRid = LooselyBrandedString<"AgentRid">;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface AgentSession {
   id: SessionId;
+  agentRid: AgentRid;
+  agentApiNameIdentifier?: AgentApiNameIdentifier;
+  agentVersion: AgentVersion;
 }
 
 /**
@@ -162,8 +165,8 @@ export type ContextItemType = LooselyBrandedString<"ContextItemType">;
  */
 export interface CreateAgentSessionRequest {
   agent: AgentIdentifier;
-  agentVersion: AgentVersion;
   arguments: Record<ArgumentName, JsonValue>;
+  agentVersion: AgentVersion;
 }
 
 /**
@@ -293,20 +296,22 @@ JSON object of the format {"ontologyRid": "ri.ontology.main.ontology.def0ca71-ba
 where primaryKey is an object where the keys are propertyApiName and the values are values of the given
 property type.
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface ObjectReferenceType {
-  objectTypeRid: _Ontologies.ObjectTypeRid;
+  ontologyApiName: _Ontologies.OntologyApiName;
+  objectTypeApiName: _Ontologies.ObjectTypeApiName;
 }
 
 /**
    * A reference to an object set containing objects of a specific object type. A value of this type is represented
 by a JSON string containing an object set RID, for example "ri.object-set.main.object-set.082ecf59-4302-4a75-9283-810166df1900".
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface ObjectSetType {
-  objectTypeRid: _Ontologies.ObjectTypeRid;
+  ontologyApiName: _Ontologies.OntologyApiName;
+  objectTypeApiName: _Ontologies.ObjectTypeApiName;
 }
 
 /**

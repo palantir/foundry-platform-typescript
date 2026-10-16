@@ -50,6 +50,7 @@ export function create(
 
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
+    includeDeleted?: boolean | undefined;
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
   }) => Promise<_Admin.ListMarkingsResponse>
@@ -67,6 +68,7 @@ export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $queryParams?: {
+      includeDeleted?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -137,6 +139,60 @@ export function replace(
   ...args: [markingId: _Core.MarkingId, $body: _Admin.ReplaceMarkingRequest]
 ): Promise<_Admin.Marking> {
   return $foundryPlatformFetch($ctx, _replace, ...args);
+}
+
+const _canonicalize: $FoundryPlatformMethod<
+  (
+    $body: _Admin.CanonicalizeMarkingsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.CanonicalizeMarkingsResponse>
+> = [1, "/v2/admin/markings/canonicalize", 3];
+
+/**
+ * Returns a canonical set of CBAC marking IDs for the supplied markings. Requires permission to view
+ * classification markings.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-read]
+ * URL: /v2/admin/markings/canonicalize
+ */
+export function canonicalize(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Admin.CanonicalizeMarkingsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.CanonicalizeMarkingsResponse> {
+  return $foundryPlatformFetch($ctx, _canonicalize, ...args);
+}
+
+const _flatten: $FoundryPlatformMethod<
+  (
+    $body: _Admin.FlattenMarkingExpressionsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.FlattenMarkingExpressionsResponse>
+> = [1, "/v2/admin/markings/flatten", 3];
+
+/**
+ * Flattens up to 1,000 marking expressions. For each expression, returns a set of markings with the same
+ * access requirement, or a stricter one if an exact flat representation is unavailable. You must have
+ * permission to view every input marking. Each clause must contain markings from one category; a clause
+ * in a conjunctive category must contain exactly one marking.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:admin-read]
+ * URL: /v2/admin/markings/flatten
+ */
+export function flatten(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Admin.FlattenMarkingExpressionsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Admin.FlattenMarkingExpressionsResponse> {
+  return $foundryPlatformFetch($ctx, _flatten, ...args);
 }
 
 const _parseClassifications: $FoundryPlatformMethod<

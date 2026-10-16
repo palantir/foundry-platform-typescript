@@ -35,7 +35,11 @@ const _decrypt: $FoundryPlatformMethod<
     objectType: _Ontologies.ObjectTypeApiName,
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ) => Promise<_Ontologies.DecryptionResult>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/ciphertexts/{3}/decrypt", 2];
 
@@ -55,7 +59,11 @@ export function decrypt(
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
 
-    $queryParams?: { branch?: _Core.FoundryBranch | undefined },
+    $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
+      branch?: _Core.FoundryBranch | undefined;
+    },
   ]
 ): Promise<_Ontologies.DecryptionResult> {
   return $foundryPlatformFetch($ctx, _decrypt, ...args);
@@ -68,6 +76,8 @@ const _encryptWithDefaultChannel: $FoundryPlatformMethod<
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.EncryptionRequest,
     $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
@@ -95,6 +105,8 @@ export function encryptWithDefaultChannel(
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.EncryptionRequest,
     $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
@@ -111,6 +123,8 @@ const _encrypt: $FoundryPlatformMethod<
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.EncryptionRequest,
     $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       cipherChannelStrategy?: _Ontologies.CipherChannelStrategy | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -138,6 +152,8 @@ export function encrypt(
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.EncryptionRequest,
     $queryParams?: {
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       cipherChannelStrategy?: _Ontologies.CipherChannelStrategy | undefined;
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;

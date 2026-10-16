@@ -43,6 +43,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Geo": "foundry",
     "LanguageModels": "foundry",
     "Lohi": "skipped",
+    "Marketplace": "foundry",
     "MediaSets": "foundry",
     "Models": "foundry",
     "Notepad": "foundry",
@@ -59,6 +60,7 @@ export function getNamespacePlatform(ns?: string): string {
     "SqlQueries": "foundry",
     "Streams": "foundry",
     "ThirdPartyApplications": "foundry",
+    "Tiles": "foundry",
     "Widgets": "foundry",
     "Workbench": "skipped",
   };

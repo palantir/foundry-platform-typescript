@@ -463,6 +463,7 @@ export type {
   TimeSeriesItemType,
   TimeSeriesPoint,
   TimeSeriesPropertyV2,
+  TimeSeriesReferenceType,
   TimeseriesSyncRid,
   TimeseriesTemplateRid,
   TimeseriesTemplateVersion,

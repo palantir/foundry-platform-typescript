@@ -4936,6 +4936,11 @@ export interface TimeSeriesPoint {
 export type TimeSeriesPropertyV2 = LooselyBrandedString<"TimeSeriesPropertyV2">;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface TimeSeriesReferenceType {}
+
+/**
  * @deprecated Use `TimeseriesSyncRid` in the `internal.foundry.ontologies` package
  *
  * The RID identifying a time series sync.

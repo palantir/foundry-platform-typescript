@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core/unstable_do_not_use_v3";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -33,8 +34,9 @@ const _complete: $FoundryPlatformMethod<
     processExecutionId: _Orchestrator.ProcessExecutionId,
     signalId: _Orchestrator.SignalId,
     $body: _Orchestrator.CompleteProcessExecutionSignalRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v3/platform/processExecutions/{0}/signals/{1}/complete", 1];
+> = [1, "/v3/platform/processExecutions/{0}/signals/{1}/complete", 3];
 
 /**
  * Complete a signal on a process execution.
@@ -55,6 +57,7 @@ export function complete(
     processExecutionId: _Orchestrator.ProcessExecutionId,
     signalId: _Orchestrator.SignalId,
     $body: _Orchestrator.CompleteProcessExecutionSignalRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _complete, ...args);

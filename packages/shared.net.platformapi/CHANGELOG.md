@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.9.0
+
+### Minor Changes
+
+- 8e41ef2: Preserve Blob and File MIME types for wildcard upload endpoints, falling back to application/octet-stream for untyped binary uploads.
+
 ## 1.8.0
 
 ### Minor Changes

@@ -143,6 +143,7 @@ export interface AudioMediaItemMetadata {
   format: AudioDecodeFormat;
   specification: AudioSpecification;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
 }
 
 /**
@@ -271,6 +272,7 @@ export type CadDecodeFormat = "STEP";
 export interface CadMediaItemMetadata {
   format: CadDecodeFormat;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
   units?: CadUnits;
 }
 
@@ -512,6 +514,7 @@ export interface DicomMediaItemMetadata {
   commonDataElements: CommonDicomDataElements;
   otherDataElements: Record<DicomDataElementKey, any>;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
 }
 
 /**
@@ -593,10 +596,12 @@ export type DocumentDecodeFormat =
 export type DocumentEncodeFormat = { type: "pdf" } & PdfFormat;
 
 /**
- * Extracts content from a document with layout information preserved.
- *
- * Log Safety: SAFE
- */
+   * Deprecated. Use documentToText.extractLayoutAwareTextV2
+(ExtractDocumentLayoutAwareTextV2Operation) instead.
+The replacement uses a different response schema; update result parsing when migrating.
+   *
+   * Log Safety: SAFE
+   */
 export interface DocumentExtractLayoutAwareContentOperation {
   parameters: LayoutAwareExtractionParameters;
 }
@@ -610,6 +615,7 @@ export interface DocumentMediaItemMetadata {
   format: DocumentDecodeFormat;
   pages?: number;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
   title?: string;
   author?: string;
 }
@@ -716,6 +722,7 @@ export type EmailDecodeFormat = "EML";
 export interface EmailMediaItemMetadata {
   format: EmailDecodeFormat;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
   sender: Array<Mailbox>;
   date: string;
   attachmentCount: number;
@@ -805,8 +812,12 @@ export interface ExtractDocumentLayoutAwareTextV2Config {
 }
 
 /**
-   * Extract layout aware text with bounding boxes across all pages using the v2 text extraction endpoint.
-This only supports PDFs.
+   * Extracts text blocks and bounding boxes from a PDF as structured JSON grouped by page.
+Replaces the deprecated documentToText.extractLayoutAwareContent operation
+(DocumentExtractLayoutAwareContentOperation). The response schema differs from the legacy
+result, so consumers must update their result parsing when migrating.
+The config.format option selects plain text, Markdown, or HTML for each block's content;
+the result remains structured JSON. This operation only supports PDFs.
    *
    * Log Safety: UNSAFE
    */
@@ -866,6 +877,34 @@ export interface ExtractFramesAtTimestampsOperation {
   height?: number;
   width?: number;
   timestamp: number;
+}
+
+/**
+   * Extracts text blocks and bounding boxes from an image as structured JSON.
+Replaces the deprecated imageToText.extractLayoutAwareContent operation
+(ImageExtractLayoutAwareContentOperation). The block schema differs from the legacy
+result, so consumers must update their result parsing when migrating.
+The format option selects plain text, Markdown, or HTML for each block's content;
+the result remains structured JSON.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ExtractImageLayoutAwareTextV2Operation {
+  format?: TextOutputFormat;
+  languages: Array<OcrLanguageOrScript>;
+}
+
+/**
+   * Extracts text from an image and returns JSON containing combined text and per-page text.
+The format option selects plain text, Markdown, or HTML.
+To include text blocks and bounding boxes, use imageToText.extractLayoutAwareTextV2
+(ExtractImageLayoutAwareTextV2Operation) instead.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ExtractImageTextV2Operation {
+  format?: TextOutputFormat;
+  languages: Array<OcrLanguageOrScript>;
 }
 
 /**
@@ -994,6 +1033,7 @@ export interface GetMediaItemInfoResponse {
   originallyUploadedFileMimeType?: _Core.MediaType;
   mimeType?: _Core.MediaType;
   sizeBytes?: number;
+  sizeBytesLong: MediaItemSizeBytes;
 }
 
 /**
@@ -1107,10 +1147,12 @@ export type ImageAttributeDomain = LooselyBrandedString<"ImageAttributeDomain">;
 export type ImageAttributeKey = LooselyBrandedString<"ImageAttributeKey">;
 
 /**
- * Extracts text from an image with layout information preserved.
- *
- * Log Safety: SAFE
- */
+   * Deprecated. Use imageToText.extractLayoutAwareTextV2
+(ExtractImageLayoutAwareTextV2Operation) instead.
+The replacement uses a different block schema; update result parsing when migrating.
+   *
+   * Log Safety: SAFE
+   */
 export interface ImageExtractLayoutAwareContentOperation {
   parameters: LayoutAwareExtractionParameters;
 }
@@ -1200,6 +1242,7 @@ export interface ImageryMediaItemMetadata {
   pages?: number;
   orientation?: Orientation;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
 }
 
 /**
@@ -1257,6 +1300,10 @@ export interface ImageToEmbeddingTransformation {
  * Log Safety: UNSAFE
  */
 export type ImageToTextOperation =
+  | ({
+    type: "extractLayoutAwareTextV2";
+  } & ExtractImageLayoutAwareTextV2Operation)
+  | ({ type: "extractTextV2" } & ExtractImageTextV2Operation)
   | ({
     type: "extractLayoutAwareContent";
   } & ImageExtractLayoutAwareContentOperation)
@@ -1396,6 +1443,13 @@ export type MediaItemMetadata =
   | ({ type: "video" } & VideoMediaItemMetadata)
   | ({ type: "dicom" } & DicomMediaItemMetadata)
   | ({ type: "email" } & EmailMediaItemMetadata);
+
+/**
+ * The size of the media item in bytes.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaItemSizeBytes = string;
 
 /**
  * Format of the media item attempted to be decoded based on the XML structure.
@@ -1556,6 +1610,7 @@ export interface Model3dMediaItemMetadata {
   format: Model3dDecodeFormat;
   modelType: Model3dType;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
 }
 
 /**
@@ -2083,6 +2138,7 @@ export interface SpreadsheetMediaItemMetadata {
   format: SpreadsheetDecodeFormat;
   sheetNames: Array<string>;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
   title?: string;
   author?: string;
 }
@@ -2524,6 +2580,7 @@ export interface UnitInterpretation {
  */
 export interface UntypedMediaItemMetadata {
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
 }
 
 /**
@@ -2564,6 +2621,7 @@ export interface VideoMediaItemMetadata {
   format: VideoDecodeFormat;
   specification: VideoSpecification;
   sizeBytes: number;
+  sizeBytesLong: MediaItemSizeBytes;
 }
 
 /**

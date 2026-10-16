@@ -20,10 +20,6 @@ import { remark } from "remark";
 import { visit } from "unist-util-visit";
 
 export async function getCleanedUpJsdoc(doc?: Documentation): Promise<string> {
-  if (doc?.description?.includes("*/")) {
-    throw "unsupported description";
-  }
-
   if (!doc?.description) return "";
 
   const docs = doc.description
@@ -38,5 +34,5 @@ export async function getCleanedUpJsdoc(doc?: Documentation): Promise<string> {
       .process(doc.description)
     : undefined;
 
-  return String(docs).replace(/\n/g, "\n * ") ?? "";
+  return String(docs).replace(/\*\//g, "*&#47;").replace(/\n/g, "\n * ");
 }

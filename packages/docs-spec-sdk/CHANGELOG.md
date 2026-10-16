@@ -1,5 +1,11 @@
 # @osdk/docs-spec-sdk
 
+## 0.23.0
+
+### Minor Changes
+
+- 2bc8d83: Adding reducer + select docs
+
 ## 0.22.0
 
 ### Minor Changes
