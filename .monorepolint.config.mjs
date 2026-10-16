@@ -76,7 +76,6 @@ const nonStandardPackages = [
 // Packages that should be private
 const privatePackages = [
   "@osdk/monorepo.*",
-  "@osdk/platform-sdk-generator",
   "@osdk/tool.*",
 ];
 

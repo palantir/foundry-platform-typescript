@@ -19,14 +19,11 @@ import fs from "node:fs/promises";
 import * as path from "node:path";
 import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
+import { emitNamespacePackage } from "./emitNamespacePackage.js";
 import { generateDocsPackage } from "./generateDocsPackage.js";
-import { generateImports, SKIP } from "./generateImports.js";
-import { writeResource2 } from "./generateResource2.js";
-import type { Component } from "./model/Component.js";
 import { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
 import { PLATFORM_SDK_CONFIG } from "./PlatformSdkConfig.js";
-import { addAll } from "./util/addAll.js";
 import { fileExists } from "./util/fileExists.js";
 import { writeCode } from "./writeCode.js";
 
@@ -63,6 +60,7 @@ export async function generatePlatformSdks(
   }
   return [...packageDirectories];
 }
+
 export async function generatePlatformSdkVersions(
   ir: ApiSpec,
   outputDir: string,
@@ -135,61 +133,12 @@ export async function generatePlatformSdk(
     packageSubpath,
   });
 
-  const componentsGenerated = new Map<Namespace, string[]>();
-  const errorsGenerated = new Map<Namespace, string[]>();
-
-  // We need to make sure the components are all populated before we generate the resources
   for (const ns of model.namespaces) {
-    ns.components.sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
-    );
-    ns.errors.sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
-    );
-    componentsGenerated.set(
-      ns,
-      await generateComponents(ns, ns.paths.srcDir),
-    );
-    errorsGenerated.set(
-      ns,
-      await generateErrors(ns, ns.paths.srcDir),
-    );
-  }
+    // Emit the package source (shared with external generation).
+    await emitNamespacePackage(ns, model, packageSubpath, isPromoted);
 
-  // Now we can generate the resources
-  for (const ns of model.namespaces) {
-    for (const r of ns.resources) {
-      const sourceFilePath = path.join(
-        ns.paths.resourcesDir,
-        `${r.component}.ts`,
-      );
-      await writeResource2(ns, r, sourceFilePath, model);
-    }
-  }
-
-  // create the package root file
-  for (const ns of model.namespaces) {
-    let nsIndexTsContents = `${copyright}\n`;
-
-    for (const r of ns.resources) {
-      const resourceDirRelToSrc = "./" // path.join() will strip a single period w do it by hand
-        + path.relative(
-          ns.paths.srcDir,
-          ns.paths.resourcesDir,
-        ).split(path.sep).join("/");
-
-      const resourceName = r.pluralName;
-      if (componentsGenerated.get(ns)!.some(c => c === resourceName)) {
-        throw new Error(
-          `Even the duplicated components aren't unique: ${resourceName}`,
-        );
-      }
-
-      // path utilities are bad for urls like things because they strip the leading period
-      nsIndexTsContents +=
-        `export * as ${resourceName} from "${resourceDirRelToSrc}/${r.component}.js";\n`;
-    }
-
+    // Internal packaging: declare the cross-namespace deps as workspace
+    // protocols so they resolve within this monorepo.
     const deps = new Set<Namespace>();
     for (const r of ns.resources) {
       for (const method of r.operations) {
@@ -198,15 +147,12 @@ export async function generatePlatformSdk(
         }
       }
     }
-
     for (const comp of ns.components) {
       for (const rc of comp.referencedComponents) {
         if (!comp.isDeprecated) deps.add(rc.namespace);
       }
     }
-
     deps.delete(ns);
-
     await addPackagesToPackageJson(
       path.join(ns.paths.packagePath, "package.json"),
       [...deps].map(n => n.dependencyImportPath).filter(p =>
@@ -214,43 +160,6 @@ export async function generatePlatformSdk(
       ),
     );
 
-    nsIndexTsContents += `export type {${
-      componentsGenerated.get(ns)?.sort().join(",\n")
-    }} from "./_components.js";\n`;
-    nsIndexTsContents += `export type {${
-      errorsGenerated.get(ns)?.sort().join(",\n")
-    }} from "./_errors.js";\n`;
-    await writeCode(
-      path.join(ns.paths.srcDir, "index.ts"),
-      nsIndexTsContents,
-    );
-  }
-
-  for (const ns of model.namespaces) {
-    const packageSrcDir = path.join(ns.paths.packagePath, "src");
-    const publicDir = path.join(packageSrcDir, "public");
-    await fs.mkdir(publicDir, {
-      recursive: true,
-    });
-    const rootIndexPath = path.join(packageSrcDir, "index.ts");
-    if (isPromoted) {
-      await writeCode(
-        rootIndexPath,
-        `${copyright}\n\nexport * from "./${packageSubpath}/index.js";\n`,
-      );
-      for (const resource of ns.resources) {
-        await writeCode(
-          path.join(publicDir, `${resource.component}.ts`),
-          `${copyright}\n\nexport * from "../${packageSubpath}/public/${resource.component}.js";\n`,
-        );
-      }
-    } else if (!await fileExists(rootIndexPath)) {
-      await writeCode(rootIndexPath, `${copyright}\n\nexport {};\n`);
-    }
-    await writeCode(
-      path.join(publicDir, `${packageSubpath}.ts`),
-      `${copyright}\n\nexport * from "../${packageSubpath}/index.js";\n`,
-    );
     await writeCode(
       path.join(ns.paths.packagePath, `${packageSubpath}.d.ts`),
       `${copyright}\n\nexport * from "./build/esm/public/${packageSubpath}.js";\n`,
@@ -292,70 +201,6 @@ export async function generatePlatformSdk(
     primaryPackagePath,
     ...[...model.namespaces].map(ns => ns.paths.packagePath),
   ];
-}
-
-export async function generateComponents(
-  ns: Namespace,
-  outputDir: string,
-): Promise<string[]> {
-  const referencedComponents = new Set<Component>();
-  const ret = [];
-
-  let out =
-    `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
-      `;
-
-  for (const component of ns.components) {
-    out += component.getDeclaration(ns.name);
-    ret.push(component.name === "Record" ? "_Record" : component.name);
-
-    addAll(referencedComponents, component.referencedComponents);
-  }
-
-  const imports = generateImports(referencedComponents, new Map([[ns, SKIP]]));
-
-  await writeCode(
-    path.join(outputDir, "_components.ts"),
-    `${copyright}
-    
-    ${imports}
-
-  ${out}`,
-  );
-
-  return ret;
-}
-
-export async function generateErrors(
-  ns: Namespace,
-  outputDir: string,
-): Promise<string[]> {
-  const referencedComponents = new Set<Component>();
-  const ret = [];
-
-  let out =
-    `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
-      `;
-
-  for (const error of ns.errors) {
-    out += error.getDeclaration(ns.name);
-    ret.push(error.name);
-
-    addAll(referencedComponents, error.referencedComponents);
-  }
-
-  const imports = generateImports(referencedComponents, new Map([[ns, SKIP]]));
-
-  await writeCode(
-    path.join(outputDir, "_errors.ts"),
-    `${copyright}
-    
-    ${imports}
-
-  ${out}`,
-  );
-
-  return ret;
 }
 
 export async function ensurePackageSetup(

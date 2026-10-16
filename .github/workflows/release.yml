@@ -13,6 +13,7 @@ on:
       - "@osdk/foundry@*"
       - "@osdk/gotham@*"
       - "@osdk/shared.net.platformapi@*"
+      - "@osdk/platform-sdk-generator@*"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
