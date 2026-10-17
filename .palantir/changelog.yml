@@ -48,4 +48,5 @@ repo-type:
       - packages/internal.foundry.mediasets
       - packages/internal.foundry.ontologies
       - packages/internal.foundry.ontologiesv2
+      - packages/platform-sdk-generator
       - packages/shared.net.platformapi
