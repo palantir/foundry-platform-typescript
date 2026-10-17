@@ -468,8 +468,9 @@ const _upload: $FoundryPlatformMethod<
       mediaItemRid?: _Core.MediaItemRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<_MediaSets.PutMediaItemResponse>
-> = [1, "/v2/mediasets/{0}/items", 3, "*/*"];
+> = [1, "/v2/mediasets/{0}/items", 7, "*/*"];
 
 /**
  * Uploads a media item to an existing media set.
@@ -495,9 +496,24 @@ export function upload(
       mediaItemRid?: _Core.MediaItemRid | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<_MediaSets.PutMediaItemResponse> {
-  return $foundryPlatformFetch($ctx, _upload, ...args);
+  const headerParams = {
+    ...args[3],
+    "Content-Type": args[3]?.["Content-Type"]
+      ?? (args[1].type || "application/octet-stream"),
+    "Content-Length": args[1].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _upload,
+    args[0],
+    args[1],
+    args[2],
+    headerParams,
+  );
 }
 
 const _read: $FoundryPlatformMethod<
@@ -681,7 +697,10 @@ const _uploadMedia: $FoundryPlatformMethod<
       filename: _Core.MediaItemPath;
       mediaItemRid?: _Core.MediaItemRid | undefined;
     },
-    $headerParams?: { attribution?: _Core.Attribution | undefined },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      "Content-Type"?: string | undefined;
+    },
   ) => Promise<_Core.MediaReference>
 > = [2, "/v2/mediasets/media/upload", 7, "*/*"];
 
@@ -706,8 +725,24 @@ export function uploadMedia(
       filename: _Core.MediaItemPath;
       mediaItemRid?: _Core.MediaItemRid | undefined;
     },
-    $headerParams?: { attribution?: _Core.Attribution | undefined },
+    $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
+      "Content-Type"?: string | undefined;
+    },
   ]
 ): Promise<_Core.MediaReference> {
-  return $foundryPlatformFetch($ctx, _uploadMedia, ...args);
+  const headerParams = {
+    ...args[2],
+    "Content-Type": args[2]?.["Content-Type"]
+      ?? (args[0].type || "application/octet-stream"),
+    "Content-Length": args[0].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _uploadMedia,
+    args[0],
+    args[1],
+    headerParams,
+  );
 }
