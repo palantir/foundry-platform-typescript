@@ -21,6 +21,7 @@ repo-type:
       - packages/foundry.geo
       - packages/foundry.geojson
       - packages/foundry.languagemodels
+      - packages/foundry.marketplace
       - packages/foundry.mediasets
       - packages/foundry.models
       - packages/foundry.notepad
