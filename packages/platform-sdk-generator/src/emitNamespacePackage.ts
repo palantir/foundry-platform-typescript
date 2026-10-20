@@ -74,7 +74,7 @@ export async function emitNamespacePackage(
         ns.paths.resourcesDir,
       ).split(path.sep).join("/");
 
-    const resourceName = r.pluralName;
+    const resourceName = r.pluralName ?? `${r.component}Resource`;
     if (componentNames.some(c => c === resourceName)) {
       throw new Error(
         `Even the duplicated components aren't unique: ${resourceName}`,
