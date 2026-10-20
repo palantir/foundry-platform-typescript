@@ -25,9 +25,36 @@ export type LooselyBrandedString<T extends string> = string & {
 /**
  * Log Safety: SAFE
  */
+export type Alignment = "LEFT" | "CENTER" | "RIGHT";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type Block = { type: "text" } & TextBlock;
+
+/**
+   * A color value, such as a hexadecimal color ("#RRGGBB"), an RGB color ("rgb(255,0,0)"), or a named color
+("red").
+   *
+   * Log Safety: UNSAFE
+   */
+export type Color = LooselyBrandedString<"Color">;
+
+/**
+ * Log Safety: SAFE
+ */
 export interface CreateExportJobRequest {
   exportJobSource: ExportJobSource;
   exportJobTarget: ExportJobTarget;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateNotepadDocumentRequest {
+  documentName?: string;
+  parentFolderRid: _Filesystem.FolderRid;
+  content?: DocumentContent;
 }
 
 /**
@@ -35,6 +62,15 @@ export interface CreateExportJobRequest {
  */
 export interface Document {
   rid: DocumentRid;
+}
+
+/**
+ * The main body content of a Document.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DocumentContent {
+  children: Array<Block>;
 }
 
 /**
@@ -150,6 +186,17 @@ export interface File {
 export type FileRid = LooselyBrandedString<"FileRid">;
 
 /**
+   * The font size in pixels, which must be greater than 5 and less than or equal to 204.
+Validation rules:
+
+must be greater than 5.0
+must be less than or equal to 204.0
+   *
+   * Log Safety: UNSAFE
+   */
+export type FontSize = number;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface GenerateTemplateRequest {
@@ -204,6 +251,23 @@ export type GenerationJobStatus =
  * Log Safety: SAFE
  */
 export interface GenerationJobSucceeded {}
+
+/**
+ * A link to a URL, displayed as one or more runs of formatted text.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Hyperlink {
+  text: Array<TextInline>;
+  url: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type Inline =
+  | ({ type: "hyperlink" } & Hyperlink)
+  | ({ type: "text" } & TextInline);
 
 /**
  * Log Safety: UNSAFE
@@ -319,3 +383,54 @@ export type TemplateRid = LooselyBrandedString<"TemplateRid">;
  * Log Safety: SAFE
  */
 export type TemplateVersion = string;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TextBlock {
+  textBlockType: TextBlockType;
+  alignment?: Alignment;
+  inlines: Array<Inline>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type TextBlockType =
+  | "PARAGRAPH"
+  | "HEADING_ONE"
+  | "HEADING_TWO"
+  | "HEADING_THREE"
+  | "BLOCKQUOTE"
+  | "CODE_BLOCK"
+  | "MUTED_TEXT";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TextFormatting {
+  bold?: boolean;
+  code?: boolean;
+  fontSize?: FontSize;
+  highlightColor?: Color;
+  italic?: boolean;
+  strikethrough?: boolean;
+  textColor?: Color;
+  underline?: boolean;
+  verticalPositioning?: VerticalPositioning;
+}
+
+/**
+ * A run of text with optional formatting applied to the entire run.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface TextInline {
+  formatting?: TextFormatting;
+  text: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type VerticalPositioning = "SUPERSCRIPT" | "SUBSCRIPT";

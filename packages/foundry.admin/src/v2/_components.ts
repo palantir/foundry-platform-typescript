@@ -569,6 +569,8 @@ export interface Marking {
   name: MarkingName;
   description?: string;
   organization?: _Core.OrganizationRid;
+  priority?: string;
+  prominence?: MarkingProminence;
   deleted: MarkingDeleted;
   createdTime: _Core.CreatedTime;
   createdBy?: _Core.CreatedBy;
@@ -583,6 +585,7 @@ export interface MarkingCategory {
   description: MarkingCategoryDescription;
   categoryType: MarkingCategoryType;
   markingType: MarkingType;
+  priority?: string;
   markings: Array<_Core.MarkingId>;
   deleted: MarkingCategoryDeleted;
   createdTime: _Core.CreatedTime;
@@ -695,6 +698,14 @@ export interface MarkingMember {
  * Log Safety: UNSAFE
  */
 export type MarkingName = LooselyBrandedString<"MarkingName">;
+
+/**
+   * How commonly a CBAC marking is used. COMMON markings are frequently applied; UNCOMMON
+markings are rarely needed, so marking pickers may show them in a secondary list.
+   *
+   * Log Safety: SAFE
+   */
+export type MarkingProminence = "COMMON" | "UNCOMMON";
 
 /**
    * Represents the operations that a user can perform with regards to a Marking.

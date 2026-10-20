@@ -15,8 +15,13 @@
  */
 
 export type {
+  Alignment,
+  Block,
+  Color,
   CreateExportJobRequest,
+  CreateNotepadDocumentRequest,
   Document,
+  DocumentContent,
   DocumentRid,
   ExportJob,
   ExportJobDocumentSource,
@@ -31,6 +36,7 @@ export type {
   ExportJobTarget,
   File,
   FileRid,
+  FontSize,
   GenerateTemplateRequest,
   GenerationJob,
   GenerationJobFailed,
@@ -38,6 +44,8 @@ export type {
   GenerationJobRunning,
   GenerationJobStatus,
   GenerationJobSucceeded,
+  Hyperlink,
+  Inline,
   SaveDocumentGenerationJobRequest,
   SaveDocumentResponse,
   Template,
@@ -51,28 +59,40 @@ export type {
   TemplateParameterValue,
   TemplateRid,
   TemplateVersion,
+  TextBlock,
+  TextBlockType,
+  TextFormatting,
+  TextInline,
+  VerticalPositioning,
 } from "./_components.js";
 export type {
   ContentFilePermissionDenied,
   CreateDocumentPermissionDenied,
   CreateExportJobPermissionDenied,
+  CreateNotepadDocumentPermissionDenied,
   DocumentNotFound,
   ExportDocumentPermissionDenied,
   ExportGenerationJobPermissionDenied,
   ExportJobNotFound,
   FileNotFound,
+  FontSizeAboveMaximum,
+  FontSizeBelowMinimum,
   GenerateTemplatePermissionDenied,
   GenerationJobNotFound,
   GenerationJobStatusFailed,
   GenerationJobStatusRunning,
+  InvalidColor,
   InvalidExportJobUserLocale,
   InvalidGenerationJobTemplateParameter,
   InvalidGenerationJobTemplateVersion,
   InvalidTimezone,
+  InvalidUrl,
   MissingGenerationJobTemplateParameters,
+  MissingHyperlinkText,
   SaveDocumentGenerationJobPermissionDenied,
   TemplateNotFound,
 } from "./_errors.js";
+export * as Documents from "./public/Document.js";
 export * as ExportJobs from "./public/ExportJob.js";
 export * as Files from "./public/File.js";
 export * as GenerationJobs from "./public/GenerationJob.js";

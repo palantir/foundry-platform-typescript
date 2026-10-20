@@ -1956,6 +1956,23 @@ export interface OntologyNotFound {
 }
 
 /**
+   * The requested scenario could not be found. It may not exist, may have expired, or the caller may not have
+permission to access it.
+   *
+   * Log Safety: SAFE
+   */
+export interface OntologyScenarioNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "OntologyScenarioNotFound";
+  errorDescription:
+    "The requested scenario could not be found. It may not exist, may have expired, or the caller may not have permission to access it.";
+  errorInstanceId: string;
+  parameters: {
+    scenarioRid: unknown;
+  };
+}
+
+/**
    * The requested object type has been changed in the Ontology Manager and changes are currently being applied. Wait a
 few seconds and try again.
    *
@@ -2322,6 +2339,25 @@ export interface PropertyTypesSearchNotSupported {
   errorInstanceId: string;
   parameters: {
     parameters: unknown;
+  };
+}
+
+/**
+   * The query could not be executed because the deployment backing the function is not available. The function
+may have no deployment configured, the requested version may not be deployed, or the deployment may not be
+running. The owner of the function must deploy or start it before the query can be executed.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface QueryDeploymentNotAvailable {
+  errorCode: "FAILED_PRECONDITION";
+  errorName: "QueryDeploymentNotAvailable";
+  errorDescription:
+    "The query could not be executed because the deployment backing the function is not available. The function may have no deployment configured, the requested version may not be deployed, or the deployment may not be running. The owner of the function must deploy or start it before the query can be executed.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
   };
 }
 

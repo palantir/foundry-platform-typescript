@@ -51,13 +51,33 @@ export type DeletedTime = string;
 export type FolderRid = LooselyBrandedString<"FolderRid">;
 
 /**
+ * The unique resource identifier (RID) of a namespace.
+ *
+ * Log Safety: SAFE
+ */
+export type NamespaceRid = LooselyBrandedString<"NamespaceRid">;
+
+/**
+ * The unique resource identifier (RID) of an ontology.
+ *
+ * Log Safety: SAFE
+ */
+export type OntologyRid = LooselyBrandedString<"OntologyRid">;
+
+/**
+ * The page size to use for the endpoint.
+ *
  * Log Safety: SAFE
  */
 export type PageSize = number;
 
 /**
- * Log Safety: UNSAFE
- */
+   * The page token indicates where to start paging. This should be omitted from the first page's request.
+To fetch the next page, clients should take the value from the nextPageToken field of the previous response
+and use it to populate the pageToken field of the next request.
+   *
+   * Log Safety: UNSAFE
+   */
 export type PageToken = LooselyBrandedString<"PageToken">;
 
 /**

@@ -63,6 +63,19 @@ export interface CreateExportJobPermissionDenied {
 }
 
 /**
+ * Could not create the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateNotepadDocumentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateNotepadDocumentPermissionDenied";
+  errorDescription: "Could not create the Document.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested document was not found.
  *
  * Log Safety: SAFE
@@ -140,6 +153,38 @@ export interface FileNotFound {
 }
 
 /**
+ * FontSize must be less than or equal to 204.0
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FontSizeAboveMaximum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FontSizeAboveMaximum";
+  errorDescription: "FontSize must be less than or equal to 204.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    maxInclusive: unknown;
+  };
+}
+
+/**
+ * FontSize must be greater than 5.0
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FontSizeBelowMinimum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FontSizeBelowMinimum";
+  errorDescription: "FontSize must be greater than 5.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    minExclusive: unknown;
+  };
+}
+
+/**
  * Could not generate the Template.
  *
  * Log Safety: SAFE
@@ -199,6 +244,22 @@ export interface GenerationJobStatusRunning {
   errorInstanceId: string;
   parameters: {
     generationJobRid: unknown;
+  };
+}
+
+/**
+ * The provided color is not valid. Only CSS colors are supported (e.g. "#RRGGBB", "rgb(255,0,0)", "red").
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidColor {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidColor";
+  errorDescription:
+    "The provided color is not valid. Only CSS colors are supported (e.g. \"#RRGGBB\", \"rgb(255,0,0)\", \"red\").";
+  errorInstanceId: string;
+  parameters: {
+    color: unknown;
   };
 }
 
@@ -266,6 +327,21 @@ export interface InvalidTimezone {
 }
 
 /**
+ * The provided URL is not valid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidUrl {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidUrl";
+  errorDescription: "The provided URL is not valid.";
+  errorInstanceId: string;
+  parameters: {
+    url: unknown;
+  };
+}
+
+/**
  * One or more template parameters are missing.
  *
  * Log Safety: UNSAFE
@@ -278,6 +354,19 @@ export interface MissingGenerationJobTemplateParameters {
   parameters: {
     templateParameterNames: unknown;
   };
+}
+
+/**
+ * Hyperlinks require at least one character of text.
+ *
+ * Log Safety: SAFE
+ */
+export interface MissingHyperlinkText {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingHyperlinkText";
+  errorDescription: "Hyperlinks require at least one character of text.";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**

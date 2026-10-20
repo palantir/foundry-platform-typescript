@@ -40,7 +40,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}", 2];
 
 /**
- * Get details for an Agent.
+ * Get details for a Chatbot Studio Agent.
  *
  * @beta
  *
@@ -70,7 +70,7 @@ const _allSessions: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/allSessions", 2];
 
 /**
- * List all conversation sessions between the calling user and all accessible Agents that were created by this client.
+ * List all conversation sessions between the calling user and all accessible Chatbot Studio Agents that were created by this client.
  * Sessions are returned in order of most recently updated first.
  *
  * @beta

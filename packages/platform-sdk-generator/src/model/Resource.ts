@@ -18,7 +18,7 @@ import type { Operation } from "./Operation.js";
 
 export interface Resource {
   component: string;
-  pluralName: string;
+  pluralName?: string;
   namespace: string;
   operations: Operation[];
 }

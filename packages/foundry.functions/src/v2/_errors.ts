@@ -75,6 +75,41 @@ export interface AsyncInvalidQueryOutputValue {
 }
 
 /**
+ * The async query execution was canceled.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AsyncQueryCanceled {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AsyncQueryCanceled";
+  errorDescription: "The async query execution was canceled.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+   * The async query could not be executed because the deployment backing the function is not available. The
+function may have no deployment configured, the requested version may not be deployed, or the deployment may
+not be running. The owner of the function must deploy or start it before the query can be executed.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AsyncQueryDeploymentNotAvailable {
+  errorCode: "FAILED_PRECONDITION";
+  errorName: "AsyncQueryDeploymentNotAvailable";
+  errorDescription:
+    "The async query could not be executed because the deployment backing the function is not available. The function may have no deployment configured, the requested version may not be deployed, or the deployment may not be running. The owner of the function must deploy or start it before the query can be executed.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
    * The authored Query failed during async execution because of a user induced error. The message argument
 is meant to be displayed to the user.
    *
@@ -165,7 +200,7 @@ export interface CancelExecutionNotSupported {
 /**
  * Could not cancel the Execution.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface CancelExecutionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -228,7 +263,7 @@ export interface ExecuteQueryPermissionDenied {
 /**
  * No async query execution found with the given ID.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ExecutionNotFound {
   errorCode: "NOT_FOUND";
@@ -304,7 +339,7 @@ export interface GetByRidPermissionDenied {
 /**
  * Could not getResult the Execution.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GetResultExecutionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
@@ -386,6 +421,41 @@ export interface MissingParameter {
   errorInstanceId: string;
   parameters: {
     parameters: unknown;
+  };
+}
+
+/**
+ * The query execution was canceled.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryCanceled {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "QueryCanceled";
+  errorDescription: "The query execution was canceled.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+   * The query could not be executed because the deployment backing the function is not available. The function
+may have no deployment configured, the requested version may not be deployed, or the deployment may not be
+running. The owner of the function must deploy or start it before the query can be executed.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface QueryDeploymentNotAvailable {
+  errorCode: "FAILED_PRECONDITION";
+  errorName: "QueryDeploymentNotAvailable";
+  errorDescription:
+    "The query could not be executed because the deployment backing the function is not available. The function may have no deployment configured, the requested version may not be deployed, or the deployment may not be running. The owner of the function must deploy or start it before the query can be executed.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
   };
 }
 

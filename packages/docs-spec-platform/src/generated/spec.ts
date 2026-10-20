@@ -472,6 +472,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.createOntologyScenario": {
       "variables": {},
     },
+    "v2.rebaseOntologyScenario": {
+      "variables": {},
+    },
     "v2.listScenarioEditedObjectTypes": {
       "variables": {},
     },
@@ -1405,6 +1408,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.searchRecords": {
       "variables": {},
     },
+    "v2.createNotepadDocument": {
+      "variables": {},
+    },
     "v2.generateTemplate": {
       "variables": {},
     },
@@ -1514,6 +1520,30 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v3.listSpaces": {
+      "variables": {},
+    },
+    "v3.createMarketplaceInstallation": {
+      "variables": {},
+    },
+    "v3.getMarketplaceInstallation": {
+      "variables": {},
+    },
+    "v3.getMarketplaceInstallationInputs": {
+      "variables": {},
+    },
+    "v3.abortMarketplaceInstallationJob": {
+      "variables": {},
+    },
+    "v3.discoverInputsMarketplaceInstallationJobs": {
+      "variables": {},
+    },
+    "v3.createMarketplaceInstallationJob": {
+      "variables": {},
+    },
+    "v3.getMarketplaceInstallationJob": {
+      "variables": {},
+    },
+    "v3.getMarketplaceInstallationJobDetails": {
       "variables": {},
     },
     "v3.completeProcessExecutionSignal": {
