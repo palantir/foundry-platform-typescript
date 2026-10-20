@@ -38,7 +38,7 @@ const _create: $FoundryPlatformMethod<
 > = [1, "/v2/aipAgents/agents/{0}/sessions", 3];
 
 /**
- * Create a new conversation session between the calling user and an Agent.
+ * Create a new conversation session between the calling user and a Chatbot Studio Agent.
  * Use `blockingContinue` or `streamingContinue` to start adding exchanges to the session.
  *
  * @beta
@@ -66,7 +66,7 @@ const _deleteSession: $FoundryPlatformMethod<
 > = [3, "/v2/aipAgents/agents/{0}/sessions/{1}", 2];
 
 /**
- * Delete a conversation session between the calling user and an Agent.
+ * Delete a conversation session between the calling user and a Chatbot Studio Agent.
  * Once deleted, the session can no longer be accessed and will not appear in session lists.
  *
  * @beta
@@ -98,7 +98,7 @@ const _list: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/sessions", 2];
 
 /**
- * List all conversation sessions between the calling user and an Agent that was created by this client.
+ * List all conversation sessions between the calling user and a Chatbot Studio Agent that was created by this client.
  * This does not list sessions for the user created by other clients.
  * For example, any sessions created by the user in AIP Chatbot Studio will not be listed here.
  * Sessions are returned in order of most recently updated first.
@@ -132,7 +132,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/sessions/{1}", 2];
 
 /**
- * Get the details of a conversation session between the calling user and an Agent.
+ * Get the details of a conversation session between the calling user and a Chatbot Studio Agent.
  *
  * @beta
  *
@@ -161,8 +161,8 @@ const _blockingContinue: $FoundryPlatformMethod<
 > = [1, "/v2/aipAgents/agents/{0}/sessions/{1}/blockingContinue", 3];
 
 /**
- * Continue a conversation session with an Agent, or add the first exchange to a session after creation.
- * Adds a new exchange to the session with the provided inputs, and generates a response from the Agent.
+ * Continue a conversation session with a Chatbot Studio Agent, or add the first exchange to a session after creation.
+ * Adds a new exchange to the session with the provided inputs, and generates a response from the Chatbot Studio Agent.
  * Blocks on returning the result of the added exchange until the response is fully generated.
  * Streamed responses are also supported; see `streamingContinue` for details.
  * Concurrent requests to continue the same session are not supported.
@@ -201,9 +201,9 @@ const _streamingContinue: $FoundryPlatformMethod<
 ];
 
 /**
- * Continue a conversation session with an Agent, or add the first exchange to a session after creation.
- * Adds a new exchange to the session with the provided inputs, and generates a response from the Agent.
- * Returns a stream of the Agent response text (formatted using markdown) for clients to consume as the response is generated.
+ * Continue a conversation session with a Chatbot Studio Agent, or add the first exchange to a session after creation.
+ * Adds a new exchange to the session with the provided inputs, and generates a response from the Chatbot Studio Agent.
+ * Returns a stream of the Chatbot Studio Agent response text (formatted using markdown) for clients to consume as the response is generated.
  * On completion of the streamed response, clients can load the full details of the exchange that was added to the session by reloading the session content.
  * Streamed exchanges also support cancellation; see `cancel` for details.
  * Concurrent requests to continue the same session are not supported.
@@ -236,8 +236,8 @@ const _cancel: $FoundryPlatformMethod<
 > = [1, "/v2/aipAgents/agents/{0}/sessions/{1}/cancel", 3];
 
 /**
- * Cancel an in-progress streamed exchange with an Agent which was initiated with `streamingContinue`.
- * Canceling an exchange allows clients to prevent the exchange from being added to the session, or to provide a response to replace the Agent-generated response.
+ * Cancel an in-progress streamed exchange with a Chatbot Studio Agent which was initiated with `streamingContinue`.
+ * Canceling an exchange allows clients to prevent the exchange from being added to the session, or to provide a response to replace the Chatbot Studio Agent-generated response.
  * Note that canceling an exchange does not terminate the stream returned by `streamingContinue`; clients should close the stream on triggering the cancellation request to stop reading from the stream.
  *
  * @beta
@@ -268,7 +268,7 @@ const _ragContext: $FoundryPlatformMethod<
 
 /**
  * Retrieve relevant [context](https://www.palantir.com/docs/foundry/chatbot-studio/core-concepts/#retrieval-context) for a user message from the data sources configured for the session.
- * This allows clients to pre-retrieve context for a user message before sending it to the Agent with the `contextsOverride` option when continuing a session, to allow any pre-processing of the context before sending it to the Agent.
+ * This allows clients to pre-retrieve context for a user message before sending it to the Chatbot Studio Agent with the `contextsOverride` option when continuing a session, to allow any pre-processing of the context before sending it to the Chatbot Studio Agent.
  *
  * @beta
  *
@@ -298,7 +298,7 @@ const _updateTitle: $FoundryPlatformMethod<
 
 /**
  * Update the title for a session.
- * Use this to set a custom title for a session to help identify it in the list of sessions with an Agent.
+ * Use this to set a custom title for a session to help identify it in the list of sessions with a Chatbot Studio Agent.
  *
  * @beta
  *

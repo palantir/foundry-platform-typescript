@@ -56,6 +56,36 @@ export function createScenario(
   return $foundryPlatformFetch($ctx, _createScenario, ...args);
 }
 
+const _rebaseScenario: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    scenarioRid: _Ontologies.OntologyScenarioRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/ontologies/{0}/scenarios/{1}/rebase", 2];
+
+/**
+ * Rebases all object types edited within the scenario onto the latest data from the scenario's base.
+ * Rebasing may also cause other scenarios with edits to the same object types on the same base to observe
+ * the updated base data. The caller must have permission to edit the scenario.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read, api:ontologies-write]
+ * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/rebase
+ */
+export function rebaseScenario(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    scenarioRid: _Ontologies.OntologyScenarioRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _rebaseScenario, ...args);
+}
+
 const _listScenarioEditedObjectTypes: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,

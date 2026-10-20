@@ -41,7 +41,7 @@ const _list: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/agentVersions", 2];
 
 /**
- * List all versions for an Agent.
+ * List all versions for a Chatbot Studio Agent.
  * Versions are returned in descending order, by most recent versions first.
  *
  * @beta
@@ -73,7 +73,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/agentVersions/{1}", 2];
 
 /**
- * Get version details for an Agent.
+ * Get version details for a Chatbot Studio Agent.
  *
  * @beta
  *

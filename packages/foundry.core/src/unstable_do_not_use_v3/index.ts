@@ -20,6 +20,8 @@ export type {
   CreatedTime,
   DeletedTime,
   FolderRid,
+  NamespaceRid,
+  OntologyRid,
   PageSize,
   PageToken,
   Position,

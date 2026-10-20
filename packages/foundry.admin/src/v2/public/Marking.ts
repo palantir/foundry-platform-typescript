@@ -51,6 +51,7 @@ export function create(
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     includeDeleted?: boolean | undefined;
+    markingType?: _Admin.MarkingType | undefined;
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
   }) => Promise<_Admin.ListMarkingsResponse>
@@ -69,6 +70,7 @@ export function list(
   ...args: [
     $queryParams?: {
       includeDeleted?: boolean | undefined;
+      markingType?: _Admin.MarkingType | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },
@@ -198,24 +200,21 @@ export function flatten(
 const _parseClassifications: $FoundryPlatformMethod<
   (
     $body: _Admin.ParseClassificationsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.ParseClassificationsResponse>
-> = [1, "/v2/admin/markings/parseClassifications", 3];
+> = [1, "/v2/admin/markings/parseClassifications", 1];
 
 /**
- * Parses classification marking strings (e.g. 'S//NF') into their component marking IDs. Strings that cannot be parsed are returned in 'errors' with a human-readable message.
+ * Parses classification marking strings (e.g. `MTS//MNF`) into their component marking IDs.
+ * Strings that cannot be parsed are returned in `errors` with a human-readable message.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/parseClassifications
  */
 export function parseClassifications(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Admin.ParseClassificationsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Admin.ParseClassificationsRequest]
 ): Promise<_Admin.ParseClassificationsResponse> {
   return $foundryPlatformFetch($ctx, _parseClassifications, ...args);
 }

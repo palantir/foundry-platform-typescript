@@ -57,6 +57,7 @@ export function create(
 const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     includeDeleted?: boolean | undefined;
+    markingType?: _Admin.MarkingType | undefined;
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
   }) => Promise<_Admin.ListMarkingCategoriesResponse>
@@ -75,6 +76,7 @@ export function list(
   ...args: [
     $queryParams?: {
       includeDeleted?: boolean | undefined;
+      markingType?: _Admin.MarkingType | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
     },

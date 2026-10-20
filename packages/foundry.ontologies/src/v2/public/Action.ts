@@ -42,6 +42,7 @@ const _apply: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
     },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },
@@ -79,6 +80,7 @@ export function apply(
       branch?: _Core.FoundryBranch | undefined;
     },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },
@@ -99,6 +101,7 @@ const _applyAsync: $FoundryPlatformMethod<
       preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },
@@ -132,6 +135,7 @@ export function applyAsync(
       preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {
+      attribution?: _Core.Attribution | undefined;
       traceParent?: _Core.TraceParent | undefined;
       traceState?: _Core.TraceState | undefined;
     },

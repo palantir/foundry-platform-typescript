@@ -32,7 +32,7 @@ export interface ArrayConstraint {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface CancelExecutionResponse {
   id: ExecutionId;
@@ -50,6 +50,7 @@ export interface CancelExecutionResponse {
 | Decimal                     | string                                                | "2.718281828"                                                               |
 | Float                       | number                                                | 3.14159265                                                                  |
 | Double                      | number                                                | 3.14159265                                                                  |
+| Geoshape                    | GeoJSON geometry, as an object or string              | {"type": "Point", "coordinates": [102.0, 0.5]}                              |
 | Integer                     | number                                                | 238940                                                                      |
 | Long                        | string                                                | "58319870951433"                                                            |
 | Marking                     | string                                                | "MU"                                                                        |
@@ -113,7 +114,7 @@ export interface ExecuteQueryResponse {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface Execution {
   id: ExecutionId;
@@ -129,9 +130,9 @@ export interface ExecutionCompleted {
 }
 
 /**
- * Unique identifier for an async query execution.
+ * An opaque identifier for an async query execution. Retain this value unchanged for polling and cancellation.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export type ExecutionId = LooselyBrandedString<"ExecutionId">;
 
@@ -139,7 +140,7 @@ export type ExecutionId = LooselyBrandedString<"ExecutionId">;
    * The query was submitted for async processing.
 Use the executionId to poll for results via getResult or to cancel via cancel.
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface ExecutionSubmitted {
   executionId: ExecutionId;
@@ -341,6 +342,7 @@ export type QueryDataType =
   | ({ type: "threeDimensionalAggregation" } & ThreeDimensionalAggregation)
   | ({ type: "union" } & QueryUnionType)
   | ({ type: "float" } & _Core.FloatType)
+  | ({ type: "geoshape" } & _Core.GeoShapeType)
   | ({ type: "long" } & _Core.LongType)
   | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "unsupported" } & _Core.UnsupportedType)

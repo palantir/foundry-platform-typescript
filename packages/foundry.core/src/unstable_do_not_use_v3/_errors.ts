@@ -19,12 +19,15 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Thrown when a batch request exceeds the endpoint's maximum batch size.
+ *
  * Log Safety: SAFE
  */
 export interface BatchRequestSizeExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "BatchRequestSizeExceededLimit";
-  errorDescription: "";
+  errorDescription:
+    "Thrown when a batch request exceeds the endpoint's maximum batch size.";
   errorInstanceId: string;
   parameters: {
     maximumBatchSize: unknown;
@@ -49,12 +52,14 @@ export interface InvalidPageSize {
 }
 
 /**
+ * Thrown when a batch request contains no elements.
+ *
  * Log Safety: SAFE
  */
 export interface MissingBatchRequest {
   errorCode: "INVALID_ARGUMENT";
   errorName: "MissingBatchRequest";
-  errorDescription: "";
+  errorDescription: "Thrown when a batch request contains no elements.";
   errorInstanceId: string;
   parameters: {};
 }

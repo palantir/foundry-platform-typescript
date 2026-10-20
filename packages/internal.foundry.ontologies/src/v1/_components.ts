@@ -1670,6 +1670,7 @@ export type DatasourceRid = LooselyBrandedString<"DatasourceRid">;
 | Double                              | number                                                | 3.14159265                                                                                                                                                  |
 | EntrySet                            | array of JSON objects                                 | [{"key": "EMP1234", "value": "true"}, {"key": "EMP4444", "value": "false"}]                                                                                 |
 | Float                               | number                                                | 3.14159265                                                                                                                                                  |
+| Geoshape                            | GeoJSON geometry, as an object or string              | {"type": "Point", "coordinates": [102.0, 0.5]}                                                                                                              |
 | Integer                             | number                                                | 238940                                                                                                                                                      |
 | Long                                | string                                                | "58319870951433"                                                                                                                                            |
 | Marking                             | string                                                | "MU"                                                                                                                                                        |
@@ -6056,6 +6057,7 @@ export type QueryDataType =
   | ({ type: "entrySet" } & EntrySetType)
   | ({ type: "double" } & _Core.DoubleType)
   | ({ type: "union" } & QueryUnionType)
+  | ({ type: "geoshape" } & _Core.GeoShapeType)
   | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "mediaReference" } & _Core.MediaReferenceType)
   | ({ type: "null" } & _Core.NullType)

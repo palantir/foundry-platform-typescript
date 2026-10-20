@@ -21,22 +21,30 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * Log Safety: UNSAFE
- */
+   * A Compass resource that groups related custom endpoint definitions and manages permissions for viewing,
+editing, publishing, and deploying them. Publishing creates a snapshot of the set's current endpoint definitions.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface EndpointSet {
   name: string;
   rid: EndpointSetRid;
 }
 
 /**
- * Log Safety: UNSAFE
- */
+   * A custom API endpoint in an endpoint set's current editable configuration. Its definition maps an HTTP method,
+URL path, and request parameters to a function or action in the Ontology.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface EndpointSetEndpoint {
   name: string;
   rid: EndpointSetEndpointRid;
 }
 
 /**
+ * A rid for an endpoint definition within an endpoint set.
+ *
  * Log Safety: SAFE
  */
 export type EndpointSetEndpointRid = LooselyBrandedString<
@@ -44,18 +52,26 @@ export type EndpointSetEndpointRid = LooselyBrandedString<
 >;
 
 /**
+ * A rid for an endpoint set.
+ *
  * Log Safety: SAFE
  */
 export type EndpointSetRid = LooselyBrandedString<"EndpointSetRid">;
 
 /**
- * Log Safety: UNSAFE
- */
+   * A published snapshot of an endpoint set's definitions, identified by a semantic version. Published versions can
+be retrieved and listed whether or not they are deployed. Deploying a version makes its endpoints available
+on the endpoint set's subdomain.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface EndpointSetVersion {
   id: EndpointSetVersionId;
 }
 
 /**
+ * The semantic version identifying a published snapshot of an endpoint set, for example 1.2.3.
+ *
  * Log Safety: UNSAFE
  */
 export type EndpointSetVersionId = LooselyBrandedString<"EndpointSetVersionId">;

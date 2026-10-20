@@ -33,14 +33,13 @@ const _get: $FoundryPlatformMethod<
   ($queryParams: {
     displayType?: _Admin.ClassificationBannerDisplayType | undefined;
     markingIds: Array<_Core.MarkingId>;
-    preview?: _Core.PreviewMode | undefined;
   }) => Promise<_Admin.CbacBanner>
 > = [0, "/v2/admin/cbacBanner", 2];
 
 /**
  * Returns a classification banner string and colors for the given set of marking IDs.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/cbacBanner
@@ -51,7 +50,6 @@ export function get(
     $queryParams: {
       displayType?: _Admin.ClassificationBannerDisplayType | undefined;
       markingIds: Array<_Core.MarkingId>;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.CbacBanner> {

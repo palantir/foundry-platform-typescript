@@ -1,5 +1,12 @@
 # @osdk/docs-spec-platform
 
+## 0.3.0
+
+### Minor Changes
+
+- 5d8a307: Align `pluralName` optionality with the IR
+- Regenerate SDKs with API version 1.1871.1
+
 ## 0.2.0
 
 ### Minor Changes

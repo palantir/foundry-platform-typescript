@@ -19,9 +19,9 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
-   * An action tool configured on the Agent references an action type that could not be found.
+   * An action tool configured on the Chatbot Studio Agent references an action type that could not be found.
 This can surface at runtime if the action type was deleted or is not accessible to the calling token.
-Verify the action type exists and is accessible, then review the Agent's tools in AIP Chatbot Studio.
+Verify the action type exists and is accessible, then review the Chatbot Studio Agent's tools in AIP Chatbot Studio.
    *
    * Log Safety: SAFE
    */
@@ -29,7 +29,7 @@ export interface ActionTypeNotFound {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ActionTypeNotFound";
   errorDescription:
-    "An action tool configured on the Agent references an action type that could not be found. This can surface at runtime if the action type was deleted or is not accessible to the calling token. Verify the action type exists and is accessible, then review the Agent's tools in AIP Chatbot Studio.";
+    "An action tool configured on the Chatbot Studio Agent references an action type that could not be found. This can surface at runtime if the action type was deleted or is not accessible to the calling token. Verify the action type exists and is accessible, then review the Chatbot Studio Agent's tools in AIP Chatbot Studio.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -39,9 +39,9 @@ export interface ActionTypeNotFound {
 }
 
 /**
-   * The Agent was unable to produce an answer in the set number of maximum iterations.
-This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex.
-Try a different query or review the Agent configuration in AIP Chatbot Studio.
+   * The Chatbot Studio Agent was unable to produce an answer in the set number of maximum iterations.
+This can happen if the Chatbot Studio Agent gets confused or stuck in a loop, or if the query is too complex.
+Try a different query or review the Chatbot Studio Agent configuration in AIP Chatbot Studio.
    *
    * Log Safety: UNSAFE
    */
@@ -49,7 +49,7 @@ export interface AgentIterationsExceededLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "AgentIterationsExceededLimit";
   errorDescription:
-    "The Agent was unable to produce an answer in the set number of maximum iterations. This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex. Try a different query or review the Agent configuration in AIP Chatbot Studio.";
+    "The Chatbot Studio Agent was unable to produce an answer in the set number of maximum iterations. This can happen if the Chatbot Studio Agent gets confused or stuck in a loop, or if the query is too complex. Try a different query or review the Chatbot Studio Agent configuration in AIP Chatbot Studio.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -214,7 +214,7 @@ export interface DeleteSessionPermissionDenied {
 }
 
 /**
-   * The specified function locator is configured for use by the Agent but could not be found.
+   * The specified function locator is configured for use by the Chatbot Studio Agent but could not be found.
 The function type or version may not exist or the client token does not have access.
    *
    * Log Safety: UNSAFE
@@ -223,7 +223,7 @@ export interface FunctionLocatorNotFound {
   errorCode: "NOT_FOUND";
   errorName: "FunctionLocatorNotFound";
   errorDescription:
-    "The specified function locator is configured for use by the Agent but could not be found. The function type or version may not exist or the client token does not have access.";
+    "The specified function locator is configured for use by the Chatbot Studio Agent but could not be found. The function type or version may not exist or the client token does not have access.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -234,8 +234,8 @@ export interface FunctionLocatorNotFound {
 }
 
 /**
-   * The calling user does not have permission to list all sessions across all Agents.
-Listing all sessions across all agents requires the api:aip-agents-write scope.
+   * The calling user does not have permission to list all sessions across all Chatbot Studio Agents.
+Listing all sessions across all Chatbot Studio Agents requires the api:aip-agents-write scope.
    *
    * Log Safety: SAFE
    */
@@ -243,7 +243,7 @@ export interface GetAllSessionsAgentsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "GetAllSessionsAgentsPermissionDenied";
   errorDescription:
-    "The calling user does not have permission to list all sessions across all Agents. Listing all sessions across all agents requires the api:aip-agents-write scope.";
+    "The calling user does not have permission to list all sessions across all Chatbot Studio Agents. Listing all sessions across all Chatbot Studio Agents requires the api:aip-agents-write scope.";
   errorInstanceId: string;
   parameters: {};
 }
@@ -265,7 +265,7 @@ export interface GetRagContextForSessionPermissionDenied {
 }
 
 /**
- * The provided version string is not a valid format for an Agent version.
+ * The provided version string is not a valid format for a Chatbot Studio Agent version.
  *
  * Log Safety: SAFE
  */
@@ -273,7 +273,7 @@ export interface InvalidAgentVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAgentVersion";
   errorDescription:
-    "The provided version string is not a valid format for an Agent version.";
+    "The provided version string is not a valid format for a Chatbot Studio Agent version.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -282,9 +282,9 @@ export interface InvalidAgentVersion {
 }
 
 /**
-   * The provided application variable is not valid for the Agent for this session.
-Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio.
-The Agent version used for the session can be checked through the API with getSession.
+   * The provided application variable is not valid for the Chatbot Studio Agent for this session.
+Check the available application variables for the Chatbot Studio Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio.
+The Chatbot Studio Agent version used for the session can be checked through the API with getSession.
    *
    * Log Safety: UNSAFE
    */
@@ -292,7 +292,7 @@ export interface InvalidParameter {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameter";
   errorDescription:
-    "The provided application variable is not valid for the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio. The Agent version used for the session can be checked through the API with getSession.";
+    "The provided application variable is not valid for the Chatbot Studio Agent for this session. Check the available application variables for the Chatbot Studio Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio. The Chatbot Studio Agent version used for the session can be checked through the API with getSession.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -302,9 +302,9 @@ export interface InvalidParameter {
 }
 
 /**
-   * The provided value does not match the expected type for the application variable configured on the Agent for this session.
-Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio.
-The Agent version used for the session can be checked through the API with getSession.
+   * The provided value does not match the expected type for the application variable configured on the Chatbot Studio Agent for this session.
+Check the available application variables for the Chatbot Studio Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio.
+The Chatbot Studio Agent version used for the session can be checked through the API with getSession.
    *
    * Log Safety: UNSAFE
    */
@@ -312,7 +312,7 @@ export interface InvalidParameterType {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameterType";
   errorDescription:
-    "The provided value does not match the expected type for the application variable configured on the Agent for this session. Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio. The Agent version used for the session can be checked through the API with getSession.";
+    "The provided value does not match the expected type for the application variable configured on the Chatbot Studio Agent for this session. Check the available application variables for the Chatbot Studio Agent under the parameters property, and version through the API with getAgent, or in AIP Chatbot Studio. The Chatbot Studio Agent version used for the session can be checked through the API with getSession.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -337,8 +337,8 @@ export interface ListSessionsForAgentsPermissionDenied {
 }
 
 /**
-   * Failed to retrieve the latest published version of the Agent because the Agent has no published versions.
-Try publishing the Agent in AIP Chatbot Studio to use the latest published version, or specify the version of the Agent to use.
+   * Failed to retrieve the latest published version of the Chatbot Studio Agent because the Chatbot Studio Agent has no published versions.
+Try publishing the Chatbot Studio Agent in AIP Chatbot Studio to use the latest published version, or specify the version of the Chatbot Studio Agent to use.
    *
    * Log Safety: SAFE
    */
@@ -346,7 +346,7 @@ export interface NoPublishedAgentVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "NoPublishedAgentVersion";
   errorDescription:
-    "Failed to retrieve the latest published version of the Agent because the Agent has no published versions. Try publishing the Agent in AIP Chatbot Studio to use the latest published version, or specify the version of the Agent to use.";
+    "Failed to retrieve the latest published version of the Chatbot Studio Agent because the Chatbot Studio Agent has no published versions. Try publishing the Chatbot Studio Agent in AIP Chatbot Studio to use the latest published version, or specify the version of the Chatbot Studio Agent to use.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -354,7 +354,7 @@ export interface NoPublishedAgentVersion {
 }
 
 /**
-   * Some object types are configured for use by the Agent but could not be found.
+   * Some object types are configured for use by the Chatbot Studio Agent but could not be found.
 The object types either do not exist or the client token does not have access.
 Object types can be checked by listing available object types through the API, or searching in Ontology Manager.
    *
@@ -364,7 +364,7 @@ export interface ObjectTypeIdsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ObjectTypeIdsNotFound";
   errorDescription:
-    "Some object types are configured for use by the Agent but could not be found. The object types either do not exist or the client token does not have access. Object types can be checked by listing available object types through the API, or searching in Ontology Manager.";
+    "Some object types are configured for use by the Chatbot Studio Agent but could not be found. The object types either do not exist or the client token does not have access. Object types can be checked by listing available object types through the API, or searching in Ontology Manager.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -374,7 +374,7 @@ export interface ObjectTypeIdsNotFound {
 }
 
 /**
-   * Some object types are configured for use by the Agent but could not be found.
+   * Some object types are configured for use by the Chatbot Studio Agent but could not be found.
 The object types either do not exist or the client token does not have access.
 Object types can be checked by listing available object types through the API, or searching in Ontology Manager.
    *
@@ -384,7 +384,7 @@ export interface ObjectTypeRidsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "ObjectTypeRidsNotFound";
   errorDescription:
-    "Some object types are configured for use by the Agent but could not be found. The object types either do not exist or the client token does not have access. Object types can be checked by listing available object types through the API, or searching in Ontology Manager.";
+    "Some object types are configured for use by the Chatbot Studio Agent but could not be found. The object types either do not exist or the client token does not have access. Object types can be checked by listing available object types through the API, or searching in Ontology Manager.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -394,7 +394,7 @@ export interface ObjectTypeRidsNotFound {
 }
 
 /**
-   * Some ontology types are configured for use by the Agent but could not be found.
+   * Some ontology types are configured for use by the Chatbot Studio Agent but could not be found.
 The types either do not exist or the client token does not have access.
 Object types and their link types can be checked by listing available object/link types through the API, or searching in Ontology Manager.
    *
@@ -404,7 +404,7 @@ export interface OntologyEntitiesNotFound {
   errorCode: "NOT_FOUND";
   errorName: "OntologyEntitiesNotFound";
   errorDescription:
-    "Some ontology types are configured for use by the Agent but could not be found. The types either do not exist or the client token does not have access. Object types and their link types can be checked by listing available object/link types through the API, or searching in Ontology Manager.";
+    "Some ontology types are configured for use by the Chatbot Studio Agent but could not be found. The types either do not exist or the client token does not have access. Object types and their link types can be checked by listing available object/link types through the API, or searching in Ontology Manager.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
@@ -555,9 +555,9 @@ export interface StreamingContinueSessionPermissionDenied {
 }
 
 /**
-   * The Agent is configured with a language model that is not supported or could not be resolved.
+   * The Chatbot Studio Agent is configured with a language model that is not supported or could not be resolved.
 This can surface at runtime if the model was deprecated or is not accessible to the calling token.
-Update the Agent's language model in AIP Chatbot Studio.
+Update the Chatbot Studio Agent's language model in AIP Chatbot Studio.
    *
    * Log Safety: SAFE
    */
@@ -565,7 +565,7 @@ export interface UnsupportedLanguageModelRid {
   errorCode: "INVALID_ARGUMENT";
   errorName: "UnsupportedLanguageModelRid";
   errorDescription:
-    "The Agent is configured with a language model that is not supported or could not be resolved. This can surface at runtime if the model was deprecated or is not accessible to the calling token. Update the Agent's language model in AIP Chatbot Studio.";
+    "The Chatbot Studio Agent is configured with a language model that is not supported or could not be resolved. This can surface at runtime if the model was deprecated or is not accessible to the calling token. Update the Chatbot Studio Agent's language model in AIP Chatbot Studio.";
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
