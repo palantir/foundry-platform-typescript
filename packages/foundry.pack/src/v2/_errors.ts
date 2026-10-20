@@ -19,6 +19,24 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * Artifact-backed documents cannot be created in the Users namespace, which contains home folders. Choose a
+different namespace when creating the document.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ArtifactDocumentCreationInUsersNamespaceNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ArtifactDocumentCreationInUsersNamespaceNotSupported";
+  errorDescription:
+    "Artifact-backed documents cannot be created in the Users namespace, which contains home folders. Choose a different namespace when creating the document.";
+  errorInstanceId: string;
+  parameters: {
+    documentTypeName: unknown;
+    providedParent: unknown;
+  };
+}
+
+/**
  * Artifact-backed documents require a namespace upon creation.
  *
  * Log Safety: UNSAFE
@@ -658,6 +676,24 @@ export interface ResolveApplicationDocumentPermissionDenied {
   errorInstanceId: string;
   parameters: {
     documentId: unknown;
+  };
+}
+
+/**
+   * The server has not completed the migration required to store minor schema versions. Until it does, omitting
+schemaMinorVersion is equivalent to 0: document types can be created, and schemas can only be updated with a
+major version bump. Retry minor version updates after the migration completes.
+   *
+   * Log Safety: SAFE
+   */
+export interface SchemaMinorVersionNotSupported {
+  errorCode: "FAILED_PRECONDITION";
+  errorName: "SchemaMinorVersionNotSupported";
+  errorDescription:
+    "The server has not completed the migration required to store minor schema versions. Until it does, omitting schemaMinorVersion is equivalent to 0: document types can be created, and schemas can only be updated with a major version bump. Retry minor version updates after the migration completes.";
+  errorInstanceId: string;
+  parameters: {
+    schemaMinorVersion: unknown;
   };
 }
 

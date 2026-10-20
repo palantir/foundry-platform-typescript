@@ -163,9 +163,9 @@ const _updateSchema: $FoundryPlatformMethod<
 > = [1, "/v2/pack/documentTypes/updateSchema", 3];
 
 /**
- * Updates the schema of a PACK Document Type. The new schema version must be strictly
- * greater than the current version. Schema validation is performed to ensure backwards
- * compatibility unless forceOverwrite is set to true.
+ * Updates the schema of a PACK Document Type. Increment the major version by one and reset the minor
+ * version to 0, or keep the major version unchanged and increment the minor version by one. Schema
+ * validation is performed unless forceOverwrite is true; forced updates must still advance the version.
  *
  * This endpoint is intended for document types created by third-party developers via the
  * Create Document Type endpoint. First-party document types are managed by Palantir, and

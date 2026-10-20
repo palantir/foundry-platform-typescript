@@ -39,7 +39,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/sessions/{1}/sessionTraces/{2}", 2];
 
 /**
- * Get the trace of an Agent response. The trace lists the sequence of steps that an Agent took to arrive at
+ * Get the trace of a Chatbot Studio Agent response. The trace lists the sequence of steps that a Chatbot Studio Agent took to arrive at
  * an answer. For example, a trace may include steps such as context retrieval and tool calls. Clients should
  * poll this endpoint to check the realtime progress of a response until the trace is completed.
  *

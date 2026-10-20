@@ -38,7 +38,7 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/sessions/{1}/content", 2];
 
 /**
- * Get the conversation content for a session between the calling user and an Agent.
+ * Get the conversation content for a session between the calling user and a Chatbot Studio Agent.
  *
  * @beta
  *

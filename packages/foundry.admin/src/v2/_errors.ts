@@ -1337,6 +1337,21 @@ export interface UnknownClassificationBannerDisplayType {
 }
 
 /**
+ * The provided marking type is not recognized.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnknownMarkingType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnknownMarkingType";
+  errorDescription: "The provided marking type is not recognized.";
+  errorInstanceId: string;
+  parameters: {
+    markingType: unknown;
+  };
+}
+
+/**
  * The user is deleted.
  *
  * Log Safety: SAFE

@@ -39,6 +39,7 @@ import { GeoV2 } from "./namespaces/GeoV2.js";
 import { LanguageModelsV2 } from "./namespaces/LanguageModelsV2.js";
 import { LohiV2 } from "./namespaces/LohiV2.js";
 import { MapRenderingV2 } from "./namespaces/MapRenderingV2.js";
+import { MarketplaceV3 } from "./namespaces/MarketplaceV3.js";
 import { MediaSetsV2 } from "./namespaces/MediaSetsV2.js";
 import { ModelsV2 } from "./namespaces/ModelsV2.js";
 import { NotepadV2 } from "./namespaces/NotepadV2.js";
@@ -107,6 +108,7 @@ export const PLATFORM_API_IR: ApiSpec = {
     GaiaV2,
     FilesystemV3,
     CoreV3,
+    MarketplaceV3,
     OrchestratorV3,
     EndpointsV3,
     TilesV3,
