@@ -21,7 +21,7 @@ import type { ParameterValue } from "./ParameterValue.js";
 export interface Resource {
   component: Locator;
   operations: Operation[];
-  pluralName: string;
+  pluralName?: string;
   documentation: Documentation;
   plane?: "MEDIA" | "ONTOLOGY" | "PLATFORM";
   singleton?: boolean;
