@@ -48,7 +48,7 @@ export function getNamespacePlatform(ns?: string): string {
     "Models": "foundry",
     "Notepad": "foundry",
     "Sds": "skipped",
-    "Observability": "skipped",
+    "Observability": "foundry",
     "Ontologies": "foundry",
     "OntologyMcp": "skipped",
     "Operations": "foundry",
