@@ -54,6 +54,7 @@ export interface CancelExecutionResponse {
 | Integer                     | number                                                | 238940                                                                      |
 | Long                        | string                                                | "58319870951433"                                                            |
 | Marking                     | string                                                | "MU"                                                                        |
+| Entry set                   | array of key/value entries                            | [{"key": "alpha", "value": 1}]                                             |
 | Null                        | null                                                  | null                                                                        |
 | Set                         | array                                                 | ["alpha", "bravo", "charlie"]                                               |
 | Short                       | number                                                | 8739                                                                        |
@@ -66,6 +67,14 @@ export interface CancelExecutionResponse {
    * Log Safety: UNSAFE
    */
 export type DataValue = any;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface EntrySetType {
+  keyType: QueryDataType;
+  valueType: QueryDataType;
+}
 
 /**
  * Log Safety: SAFE
@@ -327,16 +336,18 @@ export interface QueryArrayType {
 }
 
 /**
- * A union of all the types supported by Query parameters or outputs.
- *
- * Log Safety: UNSAFE
- */
+   * Query parameter and output types.
+Entry-set values require asynchronous execution.
+   *
+   * Log Safety: UNSAFE
+   */
 export type QueryDataType =
   | ({ type: "date" } & _Core.DateType)
   | ({ type: "struct" } & QueryStructType)
   | ({ type: "set" } & QuerySetType)
   | ({ type: "void" } & _Core.VoidType)
   | ({ type: "string" } & _Core.StringType)
+  | ({ type: "entrySet" } & EntrySetType)
   | ({ type: "double" } & _Core.DoubleType)
   | ({ type: "integer" } & _Core.IntegerType)
   | ({ type: "threeDimensionalAggregation" } & ThreeDimensionalAggregation)

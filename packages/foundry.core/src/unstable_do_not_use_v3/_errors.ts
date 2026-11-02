@@ -52,6 +52,22 @@ export interface InvalidPageSize {
 }
 
 /**
+ * The page token is invalid. Use the nextPageToken value returned by the previous response.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidPageToken {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPageToken";
+  errorDescription:
+    "The page token is invalid. Use the nextPageToken value returned by the previous response.";
+  errorInstanceId: string;
+  parameters: {
+    pageToken: unknown;
+  };
+}
+
+/**
  * Thrown when a batch request contains no elements.
  *
  * Log Safety: SAFE

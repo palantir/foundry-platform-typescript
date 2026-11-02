@@ -33,6 +33,23 @@ export interface ActionContainsDuplicateEdits {
 }
 
 /**
+ * The action declares a required return value, but the function backing it did not return one. No edits were applied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionDidNotReturnValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ActionDidNotReturnValue";
+  errorDescription:
+    "The action declares a required return value, but the function backing it did not return one. No edits were applied.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
    * Actions attempted to edit properties that could not be found on the object type.
 Please contact the Ontology administrator to resolve this issue.
    *
@@ -897,6 +914,25 @@ export interface InvalidContentType {
 }
 
 /**
+   * The limit requested for a collectList or collectSet derived property is outside the supported range.
+Set limit to at least minLimit and no greater than maxLimit when maxLimit is provided.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidDerivedPropertyCollectionLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDerivedPropertyCollectionLimit";
+  errorDescription:
+    "The limit requested for a collectList or collectSet derived property is outside the supported range. Set limit to at least minLimit and no greater than maxLimit when maxLimit is provided.";
+  errorInstanceId: string;
+  parameters: {
+    limit: unknown;
+    maxLimit: unknown;
+    minLimit: unknown;
+  };
+}
+
+/**
  * Derived property definition was invalid due to shape of query or type checking.
  *
  * Log Safety: UNSAFE
@@ -1559,6 +1595,22 @@ export interface MarketplaceSdkQueryMappingNotFound {
 }
 
 /**
+   * A media item with the same identifier already exists in the destination media set, but read access was denied
+when the action tried to reuse it. This error does not confirm that a previous action succeeded.
+If a retry is needed, contact the Ontology administrator to resolve the conflict.
+   *
+   * Log Safety: SAFE
+   */
+export interface MediaItemAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "MediaItemAlreadyExists";
+  errorDescription:
+    "A media item with the same identifier already exists in the destination media set, but read access was denied when the action tried to reuse it. This error does not confirm that a previous action succeeded. If a retry is needed, contact the Ontology administrator to resolve the conflict.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The media reference property is backed by multiple media set views, and none of them are marked as the upload
 destination for this property. Set an upload destination on exactly one of the backing media set views for
 this property in Ontology Manager.
@@ -2090,6 +2142,19 @@ export interface ParentAttachmentPermissionDenied {
 }
 
 /**
+ * The phonetic query is not supported.
+ *
+ * Log Safety: SAFE
+ */
+export interface PhoneticQueryNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PhoneticQueryNotSupported";
+  errorDescription: "The phonetic query is not supported.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Properties used in ordering must have the same ids.
  *
  * Log Safety: UNSAFE
@@ -2481,6 +2546,27 @@ export interface RateLimitReached {
 }
 
 /**
+   * The value returned by the function backing the action does not match the action's declared return type. This
+can happen when the function is republished with a different output type. No edits were applied.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ReturnValueTypeMismatch {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ReturnValueTypeMismatch";
+  errorDescription:
+    "The value returned by the function backing the action does not match the action's declared return type. This can happen when the function is republished with a different output type. No edits were applied.";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    expectedType: unknown;
+    actualType: unknown;
+    fieldName: unknown;
+  };
+}
+
+/**
  * The requested shared property types are not present on every object type.
  *
  * Log Safety: UNSAFE
@@ -2612,6 +2698,37 @@ export interface UnknownParameter {
   parameters: {
     unknownParameters: unknown;
     expectedParameters: unknown;
+  };
+}
+
+/**
+ * The queried properties do not support the selected analyzer.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedAnalyzerSelection {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedAnalyzerSelection";
+  errorDescription:
+    "The queried properties do not support the selected analyzer.";
+  errorInstanceId: string;
+  parameters: {
+    analyzerSelection: unknown;
+  };
+}
+
+/**
+ * The query contains an unsupported filter.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnsupportedFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnsupportedFilter";
+  errorDescription: "The query contains an unsupported filter.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
   };
 }
 

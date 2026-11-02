@@ -38,7 +38,7 @@ const _create: $FoundryPlatformMethod<
 
 /**
  * Register a product installation in the given project or folder without running an installation job or
- * installing product resources. Returns the created installation with its current Compass metadata and
+ * installing product resources. Returns the created installation with its current filesystem metadata and
  * no latest target version. A subsequent installation job selects the version to install.
  *
  * This operation is not idempotent. Repeated requests create separate installations unless the selected

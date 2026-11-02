@@ -1385,6 +1385,16 @@ export interface RecordDef {
 }
 
 /**
+ * Response for recording a document view.
+ *
+ * Log Safety: SAFE
+ */
+export interface RecordDocumentViewResponse {
+  lastViewed: string;
+  previousLastViewed?: string;
+}
+
+/**
  * The application that owns a PACK Document, resolved via the document's type metadata.
  *
  * Log Safety: UNSAFE
@@ -1491,6 +1501,7 @@ export interface UnionDef {
   description?: string;
   variants: Record<UnionVariantKey, ModelTypeKey>;
   metadata: SchemaMetadata;
+  variantMetadata?: Record<UnionVariantKey, SchemaMetadata>;
 }
 
 /**

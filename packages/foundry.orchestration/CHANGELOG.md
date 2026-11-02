@@ -1,5 +1,18 @@
 # @osdk/foundry.orchestration
 
+## 2.87.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version undefined
+
+### Patch Changes
+
+- Updated dependencies
+  - @osdk/foundry.core@2.87.0
+  - @osdk/foundry.datasets@2.87.0
+  - @osdk/foundry.filesystem@2.87.0
+
 ## 2.86.0
 
 ### Minor Changes

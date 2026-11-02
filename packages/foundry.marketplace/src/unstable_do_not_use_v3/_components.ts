@@ -756,7 +756,7 @@ export interface LocalGeotimeDestination {
 }
 
 /**
- * A registered product installation and Compass resource. Its latest target version is absent until an installation job runs.
+ * A registered product installation and filesystem resource. Its latest target version is absent until an installation job runs.
  *
  * Log Safety: UNSAFE
  */

@@ -253,6 +253,7 @@ export type {
 export type {
   ConflictingMediaSetIdentifiers,
   GetMediaItemRidByPathPermissionDenied,
+  InvalidHostHeader,
   InvalidMediaItemRid,
   InvalidMediaItemSchema,
   InvalidTilePath,
@@ -268,6 +269,7 @@ export type {
   MissingMediaItemPath,
   TemporaryMediaUploadInsufficientPermissions,
   TemporaryMediaUploadUnknownFailure,
+  TileJsonUnavailable,
   TransformationDocumentExtractError,
   TransformationImageTooLargeForOcr,
   TransformationInputTooLarge,
@@ -279,6 +281,7 @@ export type {
   TransformationNotFound,
   TransformationPermissionDenied,
   TransformationUnavailable,
+  TransformationUnsupported,
   TransformationVlmError,
   TransformationVlmLayoutModelFailure,
   TransformationVlmMultiPageRequestUnsupported,
@@ -286,6 +289,7 @@ export type {
   TransformationVlmResponseParseError,
   TransformedMediaItemNotFound,
   UnexpectedMetadataType,
+  UnexpectedTileJsonResponse,
   UnsupportedMetadata,
 } from "./_errors.js";
 export * as MediaSets from "./public/MediaSet.js";

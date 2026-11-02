@@ -36,5 +36,6 @@ export type {
 export type {
   BatchRequestSizeExceededLimit,
   InvalidPageSize,
+  InvalidPageToken,
   MissingBatchRequest,
 } from "./_errors.js";

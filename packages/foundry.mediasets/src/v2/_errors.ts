@@ -49,6 +49,22 @@ export interface GetMediaItemRidByPathPermissionDenied {
 }
 
 /**
+   * The Host header of the request is missing or is not a valid host and optional port. The tile URLs in the
+TileJSON document use this host. Make sure that the request includes a valid Host header, such as
+example.palantirfoundry.com.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidHostHeader {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidHostHeader";
+  errorDescription:
+    "The Host header of the request is missing or is not a valid host and optional port. The tile URLs in the TileJSON document use this host. Make sure that the request includes a valid Host header, such as example.palantirfoundry.com.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The provided media item RID is invalid.
  *
  * Log Safety: UNSAFE
@@ -296,6 +312,22 @@ export interface TemporaryMediaUploadUnknownFailure {
 }
 
 /**
+ * TileJSON is unavailable for the requested media item.
+ *
+ * Log Safety: SAFE
+ */
+export interface TileJsonUnavailable {
+  errorCode: "NOT_FOUND";
+  errorName: "TileJsonUnavailable";
+  errorDescription: "TileJSON is unavailable for the requested media item.";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+    mediaItemRid: unknown;
+  };
+}
+
+/**
  * Document extraction failed. This covers any failure during extraction, from a malformed document to a server-side error.
  *
  * Log Safety: SAFE
@@ -462,6 +494,20 @@ export interface TransformationUnavailable {
 }
 
 /**
+ * The requested transformation does not support the specified input and output formats.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationUnsupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationUnsupported";
+  errorDescription:
+    "The requested transformation does not support the specified input and output formats.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * A language model call failed during a media transformation.
  *
  * Log Safety: SAFE
@@ -566,6 +612,22 @@ export interface UnexpectedMetadataType {
     "Received an unexpected metadata type, this particular media item may use features that are not yet fully supported in the public API.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The service returned an unexpected response while retrieving the media item's TileJSON.
+ *
+ * Log Safety: SAFE
+ */
+export interface UnexpectedTileJsonResponse {
+  errorCode: "INTERNAL";
+  errorName: "UnexpectedTileJsonResponse";
+  errorDescription:
+    "The service returned an unexpected response while retrieving the media item's TileJSON.";
+  errorInstanceId: string;
+  parameters: {
+    statusCode: unknown;
+  };
 }
 
 /**
