@@ -191,6 +191,7 @@ const _getFullMetadataBatch: $FoundryPlatformMethod<
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
+      includeDatasources?: boolean | undefined;
     },
   ) => Promise<_Ontologies.GetObjectTypeFullMetadataBatchResponse>
 > = [1, "/v2/ontologies/{0}/objectTypes/getFullMetadataBatch", 3];
@@ -219,6 +220,7 @@ export function getFullMetadataBatch(
     $queryParams?: {
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
+      includeDatasources?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.GetObjectTypeFullMetadataBatchResponse> {

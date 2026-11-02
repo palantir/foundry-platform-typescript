@@ -792,6 +792,16 @@ export interface AllTermsQuery {
 }
 
 /**
+   * Selects the analyzed field variant used for full-text and phrase queries.
+The base analyzer searches the field using the analyzer it was indexed with. The base analyzer is used when the
+optional analyzerSelection is omitted.
+The phonetic analyzer searches the field's phonetic indexing to match similar-sounding terms.
+   *
+   * Log Safety: SAFE
+   */
+export type AnalyzerSelection = "BASE_ANALYZER" | "PHONETIC_ANALYZER";
+
+/**
  * Returns action types where every query is satisfied. An empty list matches all action types.
  *
  * Log Safety: UNSAFE
@@ -1397,6 +1407,7 @@ by a variety of means. Either field or propertyIdentifier can be supplied, but n
 export interface ContainsAllTermsInOrderPrefixLastTerm {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
+  analyzerSelection?: AnalyzerSelection;
   value: string;
 }
 
@@ -1410,6 +1421,7 @@ by a variety of means. Either field or propertyIdentifier must be supplied, but 
 export interface ContainsAllTermsInOrderQuery {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
+  analyzerSelection?: AnalyzerSelection;
   value: string;
 }
 
@@ -1417,12 +1429,14 @@ export interface ContainsAllTermsInOrderQuery {
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
+When analyzerSelection selects the phonetic analyzer, fuzzy must be omitted or set to false.
    *
    * Log Safety: UNSAFE
    */
 export interface ContainsAllTermsQuery {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
+  analyzerSelection?: AnalyzerSelection;
   value: string;
   fuzzy?: FuzzyV2;
 }
@@ -1431,12 +1445,14 @@ export interface ContainsAllTermsQuery {
    * Returns objects where the specified field contains any of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching. Allows you to specify a property to query on
 by a variety of means. Either field or propertyIdentifier must be supplied, but not both.
+When analyzerSelection selects the phonetic analyzer, fuzzy must be omitted or set to false.
    *
    * Log Safety: UNSAFE
    */
 export interface ContainsAnyTermQuery {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
+  analyzerSelection?: AnalyzerSelection;
   value: string;
   fuzzy?: FuzzyV2;
 }
@@ -1687,7 +1703,7 @@ export type DatasourceRid = LooselyBrandedString<"DatasourceRid">;
 | TwoDimensionalAggregation           | JSON object                                           | {"groups": [{"key": "alpha", "value": 100}, {"key": "beta", "value": 101}]}                                                                                 |
 | ThreeDimensionalAggregation         | JSON object                                           | {"groups": [{"key": "NYC", "groups": [{"key": "Engineer", "value" : 100}]}]}                                                                                |
 | Timestamp                           | ISO 8601 extended offset date-time string in UTC zone | "2021-01-04T05:00:00Z"                                                                                                                                      |
-| Time Series Reference               | JSON object with a type discriminator                 | {"type":"seriesId","seriesId":"sensor-123"}, {"type":"templateRid","templateRid":{"templateRid":"ri.time-series-catalog.main.template.2f944bae-5851-4204-8615-920c969a9f2e","templateVersion":"1"}}, or {"type":"qualifiedSeriesId","qualifiedSeriesId":{"seriesId":"sensor-123","syncRid":"ri.time-series-catalog.main.sync.2f944bae-5851-4204-8615-920c969a9f2e"}} |
+| Time Series Reference               | seriesId string or JSON object                        | "sensor-123", {"seriesId": "sensor-123", "syncRid": "ri.time-series-catalog.main.sync.2f944bae-5851-4204-8615-920c969a9f2e"}, or {"templateRid": "ri.time-series-catalog.main.template.2f944bae-5851-4204-8615-920c969a9f2e", "templateVersion": "1"} |
    *
    * Log Safety: UNSAFE
    */
@@ -6979,6 +6995,7 @@ query on by a variety of means. Either field or propertyIdentifier must be suppl
 export interface StartsWithQuery {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
+  analyzerSelection?: AnalyzerSelection;
   value: string;
 }
 

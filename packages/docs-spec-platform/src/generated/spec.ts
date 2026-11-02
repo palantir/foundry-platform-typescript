@@ -145,6 +145,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getMediaItemTile": {
       "variables": {},
     },
+    "v2.getMediaItemTileJson": {
+      "variables": {},
+    },
     "v2.getMediaSet": {
       "variables": {},
     },
@@ -1364,6 +1367,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.resolveApplicationDocument": {
+      "variables": {},
+    },
+    "v2.recordDocumentView": {
       "variables": {},
     },
     "v2.getDocumentContents": {

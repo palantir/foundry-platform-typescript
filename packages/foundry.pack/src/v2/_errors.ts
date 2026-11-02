@@ -665,6 +665,39 @@ export interface PublishedVersionNotFound {
 }
 
 /**
+ * Could not recordView the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface RecordDocumentViewPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RecordDocumentViewPermissionDenied";
+  errorDescription: "Could not recordView the Document.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+  };
+}
+
+/**
+   * Recording a document view is not supported by the document's backing file system. Only artifact-backed
+documents track per-user view times; Compass-backed documents do not.
+   *
+   * Log Safety: SAFE
+   */
+export interface RecordViewNotSupportedForFileSystem {
+  errorCode: "FAILED_PRECONDITION";
+  errorName: "RecordViewNotSupportedForFileSystem";
+  errorDescription:
+    "Recording a document view is not supported by the document's backing file system. Only artifact-backed documents track per-user view times; Compass-backed documents do not.";
+  errorInstanceId: string;
+  parameters: {
+    documentId: unknown;
+    fileSystemType: unknown;
+  };
+}
+
+/**
  * Could not resolveApplication the Document.
  *
  * Log Safety: SAFE

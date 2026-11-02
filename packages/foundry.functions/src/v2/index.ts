@@ -18,6 +18,7 @@ export type {
   ArrayConstraint,
   CancelExecutionResponse,
   DataValue,
+  EntrySetType,
   EnumConstraint,
   ExecuteAsyncQueryRequest,
   ExecuteQueryAsyncResponse,

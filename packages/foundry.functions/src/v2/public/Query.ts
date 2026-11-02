@@ -338,6 +338,8 @@ const _executeAsync: $FoundryPlatformMethod<
  * Use the Execution resource's getResult endpoint to poll for the
  * result of a submitted execution.
  *
+ * Supports maps represented as arrays of key/value entries, including nested maps.
+ *
  * @alpha
  *
  * Required Scopes: [api:functions-execute]

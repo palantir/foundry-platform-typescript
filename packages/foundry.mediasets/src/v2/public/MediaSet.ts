@@ -358,6 +358,36 @@ export function tile(
   return $foundryPlatformFetch($ctx, _tile, ...args);
 }
 
+const _tileJson: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<Response>
+> = [0, "/v2/mediasets/{0}/items/{1}/tiles.json", 6, , "*/*"];
+
+/**
+ * Gets a TileJSON 3.0.0 document describing the media item's tiles.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/tiles.json
+ */
+export function tileJson(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _tileJson, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
