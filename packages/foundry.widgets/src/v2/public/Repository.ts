@@ -64,8 +64,9 @@ const _publish: $FoundryPlatformMethod<
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<_Widgets.Release>
-> = [1, "/v2/widgets/repositories/{0}/publish", 3, "application/octet-stream"];
+> = [1, "/v2/widgets/repositories/{0}/publish", 7, "application/octet-stream"];
 
 /**
  * Publish a new release of a widget set.
@@ -85,7 +86,21 @@ export function publish(
       branch?: _Core.FoundryBranch | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<_Widgets.Release> {
-  return $foundryPlatformFetch($ctx, _publish, ...args);
+  const headerParams = {
+    ...args[3],
+    "Content-Type": args[3]?.["Content-Type"] ?? "application/octet-stream",
+    "Content-Length": args[1].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _publish,
+    args[0],
+    args[1],
+    args[2],
+    headerParams,
+  );
 }

@@ -139,8 +139,9 @@ const _upload: $FoundryPlatformMethod<
       mediaItemPath?: _Core.MediaItemPath | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<_Core.MediaReference>
-> = [1, "/v2/ontologies/{0}/objectTypes/{1}/media/{2}/upload", 3, "*/*"];
+> = [1, "/v2/ontologies/{0}/objectTypes/{1}/media/{2}/upload", 7, "*/*"];
 
 /**
  * :::callout{theme=warning title=Warning}
@@ -166,7 +167,24 @@ export function upload(
       mediaItemPath?: _Core.MediaItemPath | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<_Core.MediaReference> {
-  return $foundryPlatformFetch($ctx, _upload, ...args);
+  const headerParams = {
+    ...args[5],
+    "Content-Type": args[5]?.["Content-Type"]
+      ?? (args[3].type || "application/octet-stream"),
+    "Content-Length": args[3].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _upload,
+    args[0],
+    args[1],
+    args[2],
+    args[3],
+    args[4],
+    headerParams,
+  );
 }
