@@ -189,35 +189,6 @@ export function resolveApplication(
   return $foundryPlatformFetch($ctx, _resolveApplication, ...args);
 }
 
-const _recordView: $FoundryPlatformMethod<
-  (
-    documentId: _Pack.DocumentRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Pack.RecordDocumentViewResponse>
-> = [1, "/v2/pack/documents/{0}/recordView", 2];
-
-/**
- * Records that the requesting user has just viewed the document, updating their per-user last-view time, and
- * returns the newly recorded time and the user's previous last-view time. Requires view permissions on the document.
- * Only artifact-backed documents track per-user views; recording a view on a Compass-backed document throws
- * RecordViewNotSupportedForFileSystem.
- *
- * @alpha
- *
- * Required Scopes: [api:pack-read]
- * URL: /v2/pack/documents/{documentId}/recordView
- */
-export function recordView(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    documentId: _Pack.DocumentRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
-): Promise<_Pack.RecordDocumentViewResponse> {
-  return $foundryPlatformFetch($ctx, _recordView, ...args);
-}
-
 const _contents: $FoundryPlatformMethod<
   (
     documentId: _Pack.DocumentRid,

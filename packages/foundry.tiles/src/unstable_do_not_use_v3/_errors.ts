@@ -65,38 +65,3 @@ export interface TileSourceNotFound {
     tileSourceId: unknown;
   };
 }
-
-/**
- * Log Safety: UNSAFE
- */
-export interface TileSourceTileNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "TileSourceTileNotFound";
-  errorDescription: "";
-  errorInstanceId: string;
-  parameters: {
-    z: unknown;
-    x: unknown;
-    y: unknown;
-    tileSourceId: unknown;
-  };
-}
-
-/**
-   * The tile source does not provide a tile set matching the requested format and tiling scheme. Use the tile
-source's tileSets metadata to select a supported combination.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface TileSourceTileSetNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "TileSourceTileSetNotSupported";
-  errorDescription:
-    "The tile source does not provide a tile set matching the requested format and tiling scheme. Use the tile source's tileSets metadata to select a supported combination.";
-  errorInstanceId: string;
-  parameters: {
-    tileSourceId: unknown;
-    format: unknown;
-    tilingScheme: unknown;
-  };
-}

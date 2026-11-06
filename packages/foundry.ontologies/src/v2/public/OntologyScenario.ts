@@ -40,7 +40,7 @@ const _createScenario: $FoundryPlatformMethod<
 /**
  * Creates an ontology scenario.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
  * URL: /v2/ontologies/{ontology}/scenarios/create
@@ -69,7 +69,7 @@ const _rebaseScenario: $FoundryPlatformMethod<
  * Rebasing may also cause other scenarios with edits to the same object types on the same base to observe
  * the updated base data. The caller must have permission to edit the scenario.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/rebase
@@ -97,7 +97,7 @@ const _listScenarioEditedObjectTypes: $FoundryPlatformMethod<
 /**
  * Returns the list of object type API names that have been modified within a given scenario.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objectTypes/edited
@@ -133,7 +133,7 @@ const _listScenarioEditedLinkTypes: $FoundryPlatformMethod<
  * Note that only many-to-many link type are returned by this endpoint. One-to-many link type edits are
  * surfaced as object edits on the object type that owns the foreign key property.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objectTypes/{objectType}/outgoingLinkTypes/edited
@@ -166,7 +166,7 @@ const _listScenarioEditedEntityTypes: $FoundryPlatformMethod<
  * many-to-many link types that have been modified, grouped by their source object type. One-to-many
  * link type edits are surfaced as object edits on the object type that owns the foreign key property.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/editedEntityTypes
@@ -202,7 +202,7 @@ const _listScenarioEditedObjects: $FoundryPlatformMethod<
  *
  * Each page may be smaller than the requested page size.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objects/{objectType}/edited
@@ -245,7 +245,7 @@ const _listScenarioEditedLinks: $FoundryPlatformMethod<
  *
  * Each page may be smaller than the requested page size.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objects/{objectType}/links/{linkType}/edited
@@ -292,7 +292,7 @@ const _listScenarioConflictingObjects: $FoundryPlatformMethod<
  *
  * Each page may be smaller than the requested page size.
  *
- * @beta
+ * @alpha
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objects/{objectType}/conflicting
