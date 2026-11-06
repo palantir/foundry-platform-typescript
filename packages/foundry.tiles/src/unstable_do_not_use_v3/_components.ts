@@ -129,17 +129,6 @@ export interface TileSource {
 export type TileSourceId = LooselyBrandedString<"TileSourceId">;
 
 /**
- * A tile identified by zoom, horizontal coordinate, and vertical coordinate within a tile source.
- *
- * Log Safety: UNSAFE
- */
-export interface TileSourceTile {
-  x: number;
-  y: number;
-  z: number;
-}
-
-/**
    * The layout used to arrange and address the tiles in a tile set.
 Values:
 

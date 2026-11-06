@@ -24,7 +24,6 @@ export type {
   TileSet,
   TileSource,
   TileSourceId,
-  TileSourceTile,
   TilingScheme,
   VerticalReference,
 } from "./_components.js";
@@ -32,8 +31,5 @@ export type {
   MaxElevationPointCountExceeded,
   TileSourceCapabilityNotSupported,
   TileSourceNotFound,
-  TileSourceTileNotFound,
-  TileSourceTileSetNotSupported,
 } from "./_errors.js";
 export * as TileSources from "./public/TileSource.js";
-export * as TileSourceTiles from "./public/TileSourceTile.js";
