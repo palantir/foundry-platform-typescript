@@ -30,7 +30,43 @@ export type Alignment = "LEFT" | "CENTER" | "RIGHT";
 /**
  * Log Safety: UNSAFE
  */
-export type Block = { type: "text" } & TextBlock;
+export type Block =
+  | ({ type: "objectCard" } & ObjectCard)
+  | ({ type: "objectPropertyMarkdown" } & ObjectPropertyMarkdown)
+  | ({ type: "text" } & TextBlock)
+  | ({ type: "objectPropertyMedia" } & ObjectPropertyMedia);
+
+/**
+   * The height of a resizable block in pixels. Must be greater than 10 and at most 10,000.
+Validation rules:
+
+must be greater than 10.0
+must be less than or equal to 10000.0
+   *
+   * Log Safety: SAFE
+   */
+export type BlockHeight = number;
+
+/**
+ * The size of a resizable block.
+ *
+ * Log Safety: SAFE
+ */
+export interface BlockSize {
+  height: BlockHeight;
+  width: BlockWidth;
+}
+
+/**
+   * The width of a resizable block in pixels. Must be greater than 10 and at most 2,000.
+Validation rules:
+
+must be greater than 10.0
+must be less than or equal to 2000.0
+   *
+   * Log Safety: SAFE
+   */
+export type BlockWidth = number;
 
 /**
    * A color value, such as a hexadecimal color ("#RRGGBB"), an RGB color ("rgb(255,0,0)"), or a named color
@@ -192,7 +228,7 @@ Validation rules:
 must be greater than 5.0
 must be less than or equal to 204.0
    *
-   * Log Safety: UNSAFE
+   * Log Safety: SAFE
    */
 export type FontSize = number;
 
@@ -267,7 +303,110 @@ export interface Hyperlink {
  */
 export type Inline =
   | ({ type: "hyperlink" } & Hyperlink)
+  | ({ type: "objectPropertyMention" } & ObjectPropertyMention)
   | ({ type: "text" } & TextInline);
+
+/**
+ * A block displaying an Ontology object and its properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectCard {
+  object: ObjectReference;
+  properties: Array<PropertyReference>;
+}
+
+/**
+ * A block displaying an Ontology object's property as Markdown.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectPropertyMarkdown {
+  allowEditing?: boolean;
+  object: ObjectReference;
+  property: PropertyReference;
+}
+
+/**
+ * A block displaying media from an Ontology object's property.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectPropertyMedia {
+  exportConfig?: ObjectPropertyMediaExportConfig;
+  object: ObjectReference;
+  property: PropertyReference;
+  size?: BlockSize;
+}
+
+/**
+ * Configuration for how an object property media block is rendered when the document is exported.
+ *
+ * Log Safety: SAFE
+ */
+export interface ObjectPropertyMediaExportConfig {
+  autoExpandWidgetHeight?: boolean;
+  avoidPageBreakInWidget?: boolean;
+}
+
+/**
+ * An inline mention displaying an Ontology object's property.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectPropertyMention {
+  customValueForEmptyProperty?: string;
+  disableLink?: boolean;
+  formatting?: TextFormatting;
+  hideIcon?: boolean;
+  hidePopover?: boolean;
+  object: ObjectReference;
+  ontologyFormatting?: ObjectPropertyMentionOntologyFormatting;
+  property: PropertyReference;
+  showPropertyName?: boolean;
+}
+
+/**
+   * DEFAULT: Use default property value rendering.
+ONTOLOGY_FORMATTING: Applies conditional formatting as defined in the Ontology Manager.
+   *
+   * Log Safety: SAFE
+   */
+export type ObjectPropertyMentionOntologyFormatting =
+  | "DEFAULT"
+  | "ONTOLOGY_FORMATTING";
+
+/**
+ * A reference to an Ontology object.
+ *
+ * Log Safety: SAFE
+ */
+export type ObjectReference = { type: "objectRid" } & ObjectRidSelector;
+
+/**
+ * Identifies an Ontology object by its object RID.
+ *
+ * Log Safety: SAFE
+ */
+export interface ObjectRidSelector {
+  objectRid: _Ontologies.ObjectRid;
+}
+
+/**
+ * Identifies an Ontology property by its property API name.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyApiNameSelector {
+  apiName: _Ontologies.PropertyApiName;
+}
+
+/**
+ * A reference to an Ontology property.
+ *
+ * Log Safety: UNSAFE
+ */
+export type PropertyReference = { type: "apiName" } & PropertyApiNameSelector;
 
 /**
  * Log Safety: UNSAFE

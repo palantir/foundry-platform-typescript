@@ -108,6 +108,7 @@ export type AgentVersion = LooselyBrandedString<"AgentVersion">;
 export interface ArgumentDefinition {
   name: ArgumentName;
   dataType: DataType;
+  isOptional?: boolean;
 }
 
 /**
@@ -165,7 +166,7 @@ export type ContextItemType = LooselyBrandedString<"ContextItemType">;
  */
 export interface CreateAgentSessionRequest {
   agent: AgentIdentifier;
-  arguments: Record<ArgumentName, JsonValue>;
+  arguments: Record<ArgumentName, JsonValue | undefined>;
   agentVersion: AgentVersion;
 }
 
@@ -224,7 +225,7 @@ export interface DiscriminatedUnionType {
 export interface Event {
   id: EventId;
   eventType: EventType;
-  payload: JsonValue;
+  payload?: JsonValue;
 }
 
 /**
@@ -282,7 +283,7 @@ export interface ListType {
 }
 
 /**
- * An optional value. If specified, the value needs to be of the given type.
+ * A value of this type is either JSON null or a value represented according to wrappedType.
  *
  * Log Safety: UNSAFE
  */
@@ -380,7 +381,7 @@ export interface SessionNotReady {}
  * Log Safety: UNSAFE
  */
 export interface SessionStateAvailable {
-  arguments: Record<ArgumentName, JsonValue>;
+  arguments: Record<ArgumentName, JsonValue | undefined>;
   consistencyKey: ConsistencyKey;
   agentState: AgentState;
   contextItems: Record<ContextItemId, ContextItem>;
@@ -444,6 +445,7 @@ export interface SessionStatusLive {}
 export interface StructField {
   name: string;
   dataType: DataType;
+  isOptional?: boolean;
 }
 
 /**

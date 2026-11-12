@@ -33,6 +33,7 @@ const _list: $FoundryPlatformMethod<
   (
     modelStudioRid: _Models.ModelStudioRid,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       configVersion?: _Models.ModelStudioConfigVersionNumber | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
@@ -55,6 +56,7 @@ export function list(
     modelStudioRid: _Models.ModelStudioRid,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       configVersion?: _Models.ModelStudioConfigVersionNumber | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;

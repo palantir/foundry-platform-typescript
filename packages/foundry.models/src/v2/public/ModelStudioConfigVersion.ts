@@ -33,7 +33,10 @@ const _create: $FoundryPlatformMethod<
   (
     modelStudioRid: _Models.ModelStudioRid,
     $body: _Models.CreateModelStudioConfigVersionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Models.ModelStudioConfigVersion>
 > = [1, "/v2/models/modelStudios/{0}/configVersions", 3];
 
@@ -50,7 +53,10 @@ export function create(
   ...args: [
     modelStudioRid: _Models.ModelStudioRid,
     $body: _Models.CreateModelStudioConfigVersionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Models.ModelStudioConfigVersion> {
   return $foundryPlatformFetch($ctx, _create, ...args);
@@ -60,6 +66,7 @@ const _list: $FoundryPlatformMethod<
   (
     modelStudioRid: _Models.ModelStudioRid,
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -81,6 +88,7 @@ export function list(
     modelStudioRid: _Models.ModelStudioRid,
 
     $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
@@ -94,7 +102,10 @@ const _get: $FoundryPlatformMethod<
   (
     modelStudioRid: _Models.ModelStudioRid,
     modelStudioConfigVersionVersion: _Models.ModelStudioConfigVersionNumber,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Models.ModelStudioConfigVersion>
 > = [0, "/v2/models/modelStudios/{0}/configVersions/{1}", 2];
 
@@ -112,7 +123,10 @@ export function get(
     modelStudioRid: _Models.ModelStudioRid,
     modelStudioConfigVersionVersion: _Models.ModelStudioConfigVersionNumber,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Models.ModelStudioConfigVersion> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -121,7 +135,10 @@ export function get(
 const _latest: $FoundryPlatformMethod<
   (
     modelStudioRid: _Models.ModelStudioRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Models.ModelStudioConfigVersion | undefined>
 > = [0, "/v2/models/modelStudios/{0}/configVersions/latest", 2];
 
@@ -138,7 +155,10 @@ export function latest(
   ...args: [
     modelStudioRid: _Models.ModelStudioRid,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Models.ModelStudioConfigVersion | undefined> {
   return $foundryPlatformFetch($ctx, _latest, ...args);

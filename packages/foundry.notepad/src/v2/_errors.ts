@@ -19,6 +19,70 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * BlockHeight must be less than or equal to 10000.0
+ *
+ * Log Safety: SAFE
+ */
+export interface BlockHeightAboveMaximum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BlockHeightAboveMaximum";
+  errorDescription: "BlockHeight must be less than or equal to 10000.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    maxInclusive: unknown;
+  };
+}
+
+/**
+ * BlockHeight must be greater than 10.0
+ *
+ * Log Safety: SAFE
+ */
+export interface BlockHeightBelowMinimum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BlockHeightBelowMinimum";
+  errorDescription: "BlockHeight must be greater than 10.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    minExclusive: unknown;
+  };
+}
+
+/**
+ * BlockWidth must be less than or equal to 2000.0
+ *
+ * Log Safety: SAFE
+ */
+export interface BlockWidthAboveMaximum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BlockWidthAboveMaximum";
+  errorDescription: "BlockWidth must be less than or equal to 2000.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    maxInclusive: unknown;
+  };
+}
+
+/**
+ * BlockWidth must be greater than 10.0
+ *
+ * Log Safety: SAFE
+ */
+export interface BlockWidthBelowMinimum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BlockWidthBelowMinimum";
+  errorDescription: "BlockWidth must be greater than 10.0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    minExclusive: unknown;
+  };
+}
+
+/**
  * Could not content the File.
  *
  * Log Safety: SAFE
@@ -155,7 +219,7 @@ export interface FileNotFound {
 /**
  * FontSize must be less than or equal to 204.0
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface FontSizeAboveMaximum {
   errorCode: "INVALID_ARGUMENT";
@@ -171,7 +235,7 @@ export interface FontSizeAboveMaximum {
 /**
  * FontSize must be greater than 5.0
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface FontSizeBelowMinimum {
   errorCode: "INVALID_ARGUMENT";
@@ -367,6 +431,40 @@ export interface MissingHyperlinkText {
   errorDescription: "Hyperlinks require at least one character of text.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * An object referenced in the document content could not be found, or the user does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface ObjectNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ObjectNotFound";
+  errorDescription:
+    "An object referenced in the document content could not be found, or the user does not have access to it.";
+  errorInstanceId: string;
+  parameters: {
+    object: unknown;
+  };
+}
+
+/**
+   * A property referenced in the document content could not be found on the referenced object, or the user does
+not have access to it.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface PropertyNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "PropertyNotFound";
+  errorDescription:
+    "A property referenced in the document content could not be found on the referenced object, or the user does not have access to it.";
+  errorInstanceId: string;
+  parameters: {
+    object: unknown;
+    property: unknown;
+  };
 }
 
 /**

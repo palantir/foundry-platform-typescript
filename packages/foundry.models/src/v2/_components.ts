@@ -777,6 +777,7 @@ export interface ModelApiArrayType {
  */
 export interface ModelApiColumn {
   name: string;
+  description?: string;
   required?: boolean;
   dataType: ModelApiDataType;
 }
@@ -827,6 +828,7 @@ export type ModelApiOutput =
  */
 export interface ModelApiParameterType {
   name: string;
+  description?: string;
   required?: boolean;
   dataType: ModelApiDataType;
 }
@@ -841,6 +843,7 @@ export type ModelApiTabularFormat = "PANDAS" | "SPARK";
  */
 export interface ModelApiTabularType {
   name: string;
+  description?: string;
   required?: boolean;
   columns: Array<ModelApiColumn>;
   format?: ModelApiTabularFormat;

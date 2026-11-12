@@ -1,5 +1,11 @@
 # @osdk/gotham.core
 
+## 0.60.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version 1.1906.0
+
 ## 0.59.0
 
 ### Minor Changes
