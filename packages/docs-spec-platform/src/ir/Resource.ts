@@ -40,7 +40,12 @@ export interface Operation {
   http: Http;
   auth: Auth;
   auditCategories: string[];
-  releaseStage: undefined | "PUBLIC_BETA" | "PRIVATE_BETA" | "STABLE";
+  releaseStage:
+    | undefined
+    | "PUBLIC_BETA"
+    | "PRIVATE_BETA"
+    | "STABLE"
+    | "DEPRECATED";
   throwableErrors: ApiError[];
 }
 

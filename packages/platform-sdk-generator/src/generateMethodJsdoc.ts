@@ -21,13 +21,19 @@ import type { Operation } from "./model/Operation.js";
 export async function generateMethodJsdoc(
   method: Operation,
 ) {
+  const documentation = await getCleanedUpJsdoc(method.documentation);
+  const isDeprecated = method.spec.releaseStage === "DEPRECATED";
   return `/**
-  * ${await getCleanedUpJsdoc(method.documentation)}
-  * 
-  * ${jsdocTagForReleaseStage(method.spec.releaseStage)}
+  * ${isDeprecated ? "" : `${documentation}\n  * \n  * `}${
+    jsdocTagForReleaseStage(method.spec.releaseStage)
+  }
   * 
   * Required Scopes: [${method.auth.scopes.join(", ")}]
-  * ${true ? `URL: ${method.path}` : ``}
+  * ${true ? `URL: ${method.path}` : ``}${
+    isDeprecated
+      ? `\n  * @deprecated ${documentation || "This endpoint is deprecated."}`
+      : ""
+  }
   */`;
 }
 
@@ -40,6 +46,7 @@ function jsdocTagForReleaseStage(
     case "PUBLIC_BETA":
       return "@beta";
     case "STABLE":
+    case "DEPRECATED":
     case undefined:
       return "@public";
     default:

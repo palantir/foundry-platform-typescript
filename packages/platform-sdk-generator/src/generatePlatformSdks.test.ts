@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-import type { ApiSpec } from "@osdk/docs-spec-platform";
+import type {
+  ApiSpec,
+  Documentation,
+  Operation,
+} from "@osdk/docs-spec-platform";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import invariant from "tiny-invariant";
+import ts from "typescript";
 import { afterEach, describe, expect, it } from "vitest";
 import { generatePlatformSdkVersions } from "./generatePlatformSdks.js";
 
@@ -109,6 +115,92 @@ describe(generatePlatformSdkVersions, () => {
       import: `./build/esm/${subpath}/public/*.js`,
       default: `./build/esm/${subpath}/public/*.js`,
     });
+  });
+
+  it.each<
+    [string, Operation["releaseStage"], Documentation, string | undefined]
+  >([
+    ["deprecated", "DEPRECATED", {
+      description: "Gets an endpoint.\n\nUse `getEndpointV2` instead.",
+    }, "Gets an endpoint.\n\nUse `getEndpointV2` instead."],
+    [
+      "undocumented deprecated",
+      "DEPRECATED",
+      {},
+      "This endpoint is deprecated.",
+    ],
+    ["stable", "STABLE", { description: "Gets an endpoint." }, undefined],
+  ])("generates %s operation release tags", async (
+    _,
+    releaseStage,
+    documentation,
+    deprecationMessage,
+  ) => {
+    const outputDirectory = await fs.mkdtemp(
+      path.join(os.tmpdir(), "platform-sdk-generator-"),
+    );
+    temporaryDirectories.push(outputDirectory);
+    const ir: ApiSpec = {
+      irVersion: "v2.1",
+      namespaces: [{
+        name: "Endpoints",
+        version: "v2",
+        components: [],
+        errors: [],
+        resources: [{
+          component: { namespaceName: "Endpoints", localName: "Endpoint" },
+          documentation: {},
+          operations: [{
+            name: "getEndpoint",
+            verb: "get",
+            documentation,
+            auth: { includeAuthHeader: true, scopes: [], expandedScopes: [] },
+            auditCategories: [],
+            releaseStage,
+            throwableErrors: [],
+            http: {
+              httpMethod: "GET",
+              path: "/v2/endpoints",
+              parameters: [],
+              response: {
+                code: "204",
+                body: { type: "noContent", noContent: {} },
+              },
+            },
+          }],
+        }],
+      }],
+    };
+
+    await generatePlatformSdkVersions(ir, outputDirectory, "foundry");
+
+    const resource = await fs.readFile(
+      path.join(
+        outputDirectory,
+        "foundry.endpoints",
+        "src",
+        "v2",
+        "public",
+        "Endpoint.ts",
+      ),
+      "utf8",
+    );
+    const sourceFile = ts.createSourceFile(
+      "Endpoint.ts",
+      resource,
+      ts.ScriptTarget.Latest,
+      true,
+    );
+    const get = sourceFile.statements.find(
+      (statement): statement is ts.FunctionDeclaration =>
+        ts.isFunctionDeclaration(statement)
+        && statement.name?.text === "get",
+    );
+    invariant(get != null);
+    expect(ts.getJSDocPublicTag(get)).toBeDefined();
+    expect(
+      ts.getTextOfJSDocComment(ts.getJSDocDeprecatedTag(get)?.comment),
+    ).toBe(deprecationMessage);
   });
 
   it("rejects v3 references to v2-only components", async () => {
