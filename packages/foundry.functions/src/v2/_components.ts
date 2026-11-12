@@ -55,6 +55,8 @@ export interface CancelExecutionResponse {
 | Long                        | string                                                | "58319870951433"                                                            |
 | Marking                     | string                                                | "MU"                                                                        |
 | Entry set                   | array of key/value entries                            | [{"key": "alpha", "value": 1}]                                             |
+| Object                      | primary key                                           | 123                                                                         |
+| Interface object            | object type API name and primary key                  | {"objectTypeApiName": "Aircraft", "primaryKeyValue": 123}                   |
 | Null                        | null                                                  | null                                                                        |
 | Set                         | array                                                 | ["alpha", "bravo", "charlie"]                                               |
 | Short                       | number                                                | 8739                                                                        |
@@ -69,6 +71,8 @@ export interface CancelExecutionResponse {
 export type DataValue = any;
 
 /**
+ * A map represented as an array of key/value entries.
+ *
  * Log Safety: UNSAFE
  */
 export interface EntrySetType {
@@ -196,9 +200,10 @@ export type GetExecutionResultResponse =
   | ({ type: "succeeded" } & SucceededExecution);
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GetResultExecutionRequest {
+  branch?: _Core.FoundryBranch;
   timeout?: number;
 }
 
@@ -245,6 +250,34 @@ export interface NullableConstraint {
  * Log Safety: SAFE
  */
 export type NullableConstraintValue = "NULLABLE" | "NOT_NULLABLE";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OntologyInterfaceObjectSetType {
+  interfaceTypeApiName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OntologyInterfaceObjectType {
+  interfaceTypeApiName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OntologyObjectSetType {
+  objectTypeApiName: _Ontologies.ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface OntologyObjectType {
+  objectTypeApiName: _Ontologies.ObjectTypeApiName;
+}
 
 /**
  * Details about a parameter of a query.
@@ -336,35 +369,38 @@ export interface QueryArrayType {
 }
 
 /**
-   * Query parameter and output types.
-Entry-set values require asynchronous execution.
-   *
-   * Log Safety: UNSAFE
-   */
+ * Query parameter and output types.
+ *
+ * Log Safety: UNSAFE
+ */
 export type QueryDataType =
   | ({ type: "date" } & _Core.DateType)
+  | ({ type: "interfaceObject" } & OntologyInterfaceObjectType)
   | ({ type: "struct" } & QueryStructType)
-  | ({ type: "set" } & QuerySetType)
-  | ({ type: "void" } & _Core.VoidType)
   | ({ type: "string" } & _Core.StringType)
-  | ({ type: "entrySet" } & EntrySetType)
-  | ({ type: "double" } & _Core.DoubleType)
   | ({ type: "integer" } & _Core.IntegerType)
   | ({ type: "threeDimensionalAggregation" } & ThreeDimensionalAggregation)
-  | ({ type: "union" } & QueryUnionType)
   | ({ type: "float" } & _Core.FloatType)
-  | ({ type: "geoshape" } & _Core.GeoShapeType)
   | ({ type: "long" } & _Core.LongType)
-  | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "unsupported" } & _Core.UnsupportedType)
   | ({ type: "attachment" } & _Core.AttachmentType)
+  | ({ type: "array" } & QueryArrayType)
+  | ({ type: "objectSet" } & OntologyObjectSetType)
+  | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
+  | ({ type: "typeReference" } & QueryTypeReferenceType)
+  | ({ type: "timestamp" } & _Core.TimestampType)
+  | ({ type: "set" } & QuerySetType)
+  | ({ type: "void" } & _Core.VoidType)
+  | ({ type: "entrySet" } & EntrySetType)
+  | ({ type: "double" } & _Core.DoubleType)
+  | ({ type: "union" } & QueryUnionType)
+  | ({ type: "geoshape" } & _Core.GeoShapeType)
+  | ({ type: "boolean" } & _Core.BooleanType)
   | ({ type: "mediaReference" } & _Core.MediaReferenceType)
   | ({ type: "null" } & _Core.NullType)
-  | ({ type: "array" } & QueryArrayType)
-  | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
   | ({ type: "valueTypeReference" } & ValueTypeReference)
-  | ({ type: "typeReference" } & QueryTypeReferenceType)
-  | ({ type: "timestamp" } & _Core.TimestampType);
+  | ({ type: "interfaceObjectSet" } & OntologyInterfaceObjectSetType)
+  | ({ type: "object" } & OntologyObjectType);
 
 /**
  * Log Safety: UNSAFE

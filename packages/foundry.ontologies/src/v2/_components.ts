@@ -358,6 +358,7 @@ export interface ActionTypeV2 {
   rid: ActionTypeRid;
   operations: Array<LogicRule>;
   toolDescription?: string;
+  returnType?: QueryDataType;
 }
 
 /**
@@ -4349,6 +4350,7 @@ export interface ObjectEdits {
  */
 export interface ObjectLoadingResponseOptions {
   shouldLoadObjectRids?: boolean;
+  includePropertySecurities?: boolean;
 }
 
 /**
@@ -7378,6 +7380,7 @@ export interface SyncApplyActionResponseV2 {
   operationId?: string;
   validation?: ValidateActionResponseV2;
   edits?: ActionResults;
+  returnValue?: DataValue;
 }
 
 /**

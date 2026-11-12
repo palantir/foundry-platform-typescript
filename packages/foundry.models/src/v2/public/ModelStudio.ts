@@ -83,7 +83,10 @@ export function get(
 const _launch: $FoundryPlatformMethod<
   (
     modelStudioRid: _Models.ModelStudioRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Models.ModelStudioRun>
 > = [1, "/v2/models/modelStudios/{0}/launch", 2];
 
@@ -100,7 +103,10 @@ export function launch(
   ...args: [
     modelStudioRid: _Models.ModelStudioRid,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Models.ModelStudioRun> {
   return $foundryPlatformFetch($ctx, _launch, ...args);
