@@ -155,6 +155,8 @@ const _execute: $FoundryPlatformMethod<
  * `/v2/ontologies/{ontology}/queries/{queryApiName}/execute`. For streaming or incremental
  * result delivery, use `streamingExecute`.
  *
+ * Entry-set, object, and interface-object values and object-set inputs are not supported; use `executeAsync`.
+ *
  * @beta
  *
  * Required Scopes: [api:functions-execute]
@@ -337,8 +339,6 @@ const _executeAsync: $FoundryPlatformMethod<
  *
  * Use the Execution resource's getResult endpoint to poll for the
  * result of a submitted execution.
- *
- * Supports maps represented as arrays of key/value entries, including nested maps.
  *
  * @alpha
  *

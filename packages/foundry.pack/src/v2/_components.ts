@@ -1071,6 +1071,20 @@ this enumerates individual resources, whereas docRef and object constrain by typ
    *
    * Log Safety: UNSAFE
    */
+export interface FieldValueResourceIdentifierRef {
+  resourceRids: Array<_Filesystem.ResourceRid>;
+}
+
+/**
+   * Deprecated: use the resourceIdentifierRef variant instead.
+A reference to an arbitrary platform resource, held as a RID. Unlike docRef (which references another PACK
+document) or object (which references an ontology object), the reference is not restricted to a single type
+of resource, so the value is only constrained to being a RID.
+Optionally constrained to a list of specific resource RIDs; an empty list permits any resource. Note that
+this enumerates individual resources, whereas docRef and object constrain by type.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface FieldValueResourceRef {
   resourceRids: Array<_Filesystem.ResourceRid>;
 }
@@ -1124,6 +1138,7 @@ export type FieldValueUnion =
   | ({ type: "userRef" } & FieldValueUserRef)
   | ({ type: "boolean" } & FieldValueBoolean)
   | ({ type: "docRef" } & FieldValueDocumentRef)
+  | ({ type: "resourceIdentifierRef" } & FieldValueResourceIdentifierRef)
   | ({ type: "text" } & FieldValueText)
   | ({ type: "object" } & FieldValueObjectRef);
 

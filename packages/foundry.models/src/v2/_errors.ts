@@ -200,6 +200,34 @@ export interface DisableLiveDeploymentPermissionDenied {
 }
 
 /**
+ * A Dill Model Version must provide at least one repository in backingRepositories.
+ *
+ * Log Safety: SAFE
+ */
+export interface EmptyModelVersionBackingRepositories {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "EmptyModelVersionBackingRepositories";
+  errorDescription:
+    "A Dill Model Version must provide at least one repository in backingRepositories.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * A Dill Model Version must provide at least one package specification in condaRequirements.
+ *
+ * Log Safety: SAFE
+ */
+export interface EmptyModelVersionCondaRequirements {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "EmptyModelVersionCondaRequirements";
+  errorDescription:
+    "A Dill Model Version must provide at least one package specification in condaRequirements.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested artifact was not found in the experiment.
  *
  * Log Safety: UNSAFE

@@ -28,12 +28,12 @@ $CODE_GENERATOR generate \
     --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
 
 echo
-echo pnpm install to make align deps
-pnpm install --reporter=silent
-
-echo
 echo "Running mrl"
 pnpm exec mrl check --fix --quiet
+
+echo
+echo "Installing dependencies after mrl normalizes package manifests"
+pnpm install --reporter=silent
 
 echo
 echo "Fixing lint and formatting lines"

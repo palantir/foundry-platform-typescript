@@ -215,6 +215,8 @@ export type {
   DeploymentSourceNotEnabledForComputeModules,
   DeploymentSourceNotImportedIntoProject,
   DisableLiveDeploymentPermissionDenied,
+  EmptyModelVersionBackingRepositories,
+  EmptyModelVersionCondaRequirements,
   ExperimentArtifactNotFound,
   ExperimentNotFound,
   ExperimentSeriesNotFound,
