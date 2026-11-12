@@ -26,7 +26,6 @@ export interface Resource {
   plane?: "MEDIA" | "ONTOLOGY" | "PLATFORM";
   singleton?: boolean;
   pathSegment?: string;
-  idPropertyName?: string;
   idPropertyNames?: string[];
   parentResource?: Locator;
   relativeName?: string;
