@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.6.0
+
+### Minor Changes
+
+- 75fe1c0: remove idPropertyName from IR mapping
+
 ## 0.5.0
 
 ### Minor Changes
