@@ -394,6 +394,8 @@ export type {
   ListScenarioEditedObjectTypesResponse,
   LoadGeotemporalSeriesRequest,
   LoadGeotemporalSeriesResponse,
+  LoadObjectLinksRequest,
+  LoadObjectLinksResponse,
   LoadObjectSetLinksRequestV2,
   LoadObjectSetLinksResponseV2,
   LoadObjectSetRequestV2,

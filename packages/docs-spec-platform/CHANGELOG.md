@@ -1,5 +1,13 @@
 # @osdk/docs-spec-platform
 
+## 0.6.0
+
+### Minor Changes
+
+- bdcc4e4: Generate `@deprecated` tags for operations with a `DEPRECATED` release stage
+- Regenerate SDKs with API version 1.1913.3
+- 75fe1c0: remove idPropertyName from IR mapping
+
 ## 0.5.0
 
 ### Minor Changes

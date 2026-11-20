@@ -33,6 +33,7 @@ export type Alignment = "LEFT" | "CENTER" | "RIGHT";
 export type Block =
   | ({ type: "objectCard" } & ObjectCard)
   | ({ type: "objectPropertyMarkdown" } & ObjectPropertyMarkdown)
+  | ({ type: "placeholder" } & Placeholder)
   | ({ type: "text" } & TextBlock)
   | ({ type: "objectPropertyMedia" } & ObjectPropertyMedia);
 
@@ -289,6 +290,14 @@ export type GenerationJobStatus =
 export interface GenerationJobSucceeded {}
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface GetDocumentResponse {
+  documentRid: DocumentRid;
+  content: DocumentContent;
+}
+
+/**
  * A link to a URL, displayed as one or more runs of formatted text.
  *
  * Log Safety: UNSAFE
@@ -304,6 +313,7 @@ export interface Hyperlink {
 export type Inline =
   | ({ type: "hyperlink" } & Hyperlink)
   | ({ type: "objectPropertyMention" } & ObjectPropertyMention)
+  | ({ type: "placeholder" } & Placeholder)
   | ({ type: "text" } & TextInline);
 
 /**
@@ -390,6 +400,16 @@ export type ObjectReference = { type: "objectRid" } & ObjectRidSelector;
  */
 export interface ObjectRidSelector {
   objectRid: _Ontologies.ObjectRid;
+}
+
+/**
+ * A stand-in for an element that this API cannot represent or that could not be loaded.
+ *
+ * Log Safety: SAFE
+ */
+export interface Placeholder {
+  elementType: string;
+  reason: string;
 }
 
 /**
