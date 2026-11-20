@@ -140,6 +140,20 @@ export interface CreateNotepadDocumentPermissionDenied {
 }
 
 /**
+ * Placeholder elements cannot be included in DocumentContent when creating a Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreatePlaceholderNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreatePlaceholderNotSupported";
+  errorDescription:
+    "Placeholder elements cannot be included in DocumentContent when creating a Document.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested document was not found.
  *
  * Log Safety: SAFE
@@ -308,6 +322,21 @@ export interface GenerationJobStatusRunning {
   errorInstanceId: string;
   parameters: {
     generationJobRid: unknown;
+  };
+}
+
+/**
+ * Could not get the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetNotepadDocumentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetNotepadDocumentPermissionDenied";
+  errorDescription: "Could not get the Document.";
+  errorInstanceId: string;
+  parameters: {
+    documentRid: unknown;
   };
 }
 

@@ -1,5 +1,18 @@
 # @osdk/platform-sdk-generator
 
+## 0.87.0
+
+### Minor Changes
+
+- bdcc4e4: Generate `@deprecated` tags for operations with a `DEPRECATED` release stage
+
+### Patch Changes
+
+- Updated dependencies [bdcc4e4]
+- Updated dependencies
+- Updated dependencies [75fe1c0]
+  - @osdk/docs-spec-platform@0.6.0
+
 ## 0.86.0
 
 ### Patch Changes

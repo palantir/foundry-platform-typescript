@@ -255,6 +255,36 @@ export interface InvalidAndTrigger {
 }
 
 /**
+ * The given RID is not a valid Build RID.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidBuildRid {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidBuildRid";
+  errorDescription: "The given RID is not a valid Build RID.";
+  errorInstanceId: string;
+  parameters: {
+    buildRid: unknown;
+  };
+}
+
+/**
+ * The given RID is not a valid Job RID.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidJobRid {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidJobRid";
+  errorDescription: "The given RID is not a valid Job RID.";
+  errorInstanceId: string;
+  parameters: {
+    jobRid: unknown;
+  };
+}
+
+/**
  * The given MediaSet rid is invalid.
  *
  * Log Safety: SAFE

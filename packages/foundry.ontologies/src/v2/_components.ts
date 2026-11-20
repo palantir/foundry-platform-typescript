@@ -3596,6 +3596,26 @@ export interface LoadGeotemporalSeriesResponse {
 /**
  * Log Safety: UNSAFE
  */
+export interface LoadObjectLinksRequest {
+  primaryKeys: Array<PrimaryKeyValue>;
+  links: Array<LinkTypeApiName>;
+  pageSize?: _Core.PageSize;
+  pageToken?: _Core.PageToken;
+  includeComputeUsage?: _Core.IncludeComputeUsage;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadObjectLinksResponse {
+  data: Array<LinksFromObject>;
+  nextPageToken?: _Core.PageToken;
+  computeUsage?: _Core.ComputeSeconds;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface LoadObjectSetLinksRequestV2 {
   objectSet: ObjectSet;
   links: Array<LinkTypeApiName>;
