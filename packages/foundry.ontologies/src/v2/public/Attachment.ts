@@ -59,7 +59,8 @@ export function upload(
 ): Promise<_Ontologies.AttachmentV2> {
   const headerParams = {
     ...args[2],
-    "Content-Type": args[2]?.["Content-Type"] ?? args[0].type,
+    "Content-Type": args[2]?.["Content-Type"]
+      ?? (args[0].type || "application/octet-stream"),
     "Content-Length": args[0].size.toString(),
   };
 
@@ -101,7 +102,8 @@ export function uploadWithRid(
 ): Promise<_Ontologies.AttachmentV2> {
   const headerParams = {
     ...args[3],
-    "Content-Type": args[3]?.["Content-Type"] ?? args[1].type,
+    "Content-Type": args[3]?.["Content-Type"]
+      ?? (args[1].type || "application/octet-stream"),
     "Content-Length": args[1].size.toString(),
   };
 

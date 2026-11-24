@@ -1405,6 +1405,9 @@ importers:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4

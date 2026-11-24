@@ -118,11 +118,12 @@ const _upload: $FoundryPlatformMethod<
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     $body: Blob,
     $queryParams: { version: _ThirdPartyApplications.VersionVersion },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<_ThirdPartyApplications.Version>
 > = [
   1,
   "/v2/thirdPartyApplications/{0}/website/versions/upload",
-  3,
+  7,
   "application/octet-stream",
 ];
 
@@ -140,9 +141,23 @@ export function upload(
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     $body: Blob,
     $queryParams: { version: _ThirdPartyApplications.VersionVersion },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<_ThirdPartyApplications.Version> {
-  return $foundryPlatformFetch($ctx, _upload, ...args);
+  const headerParams = {
+    ...args[3],
+    "Content-Type": args[3]?.["Content-Type"] ?? "application/octet-stream",
+    "Content-Length": args[1].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _upload,
+    args[0],
+    args[1],
+    args[2],
+    headerParams,
+  );
 }
 
 const _uploadSnapshot: $FoundryPlatformMethod<
@@ -154,11 +169,12 @@ const _uploadSnapshot: $FoundryPlatformMethod<
       snapshotIdentifier?: string | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<_ThirdPartyApplications.Version>
 > = [
   1,
   "/v2/thirdPartyApplications/{0}/website/versions/uploadSnapshot",
-  3,
+  7,
   "application/octet-stream",
 ];
 
@@ -180,7 +196,21 @@ export function uploadSnapshot(
       snapshotIdentifier?: string | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<_ThirdPartyApplications.Version> {
-  return $foundryPlatformFetch($ctx, _uploadSnapshot, ...args);
+  const headerParams = {
+    ...args[3],
+    "Content-Type": args[3]?.["Content-Type"] ?? "application/octet-stream",
+    "Content-Length": args[1].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _uploadSnapshot,
+    args[0],
+    args[1],
+    args[2],
+    headerParams,
+  );
 }

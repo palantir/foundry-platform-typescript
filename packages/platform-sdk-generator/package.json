@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@osdk/monorepo.tsconfig": "workspace:~",
+    "@osdk/shared.net.platformapi": "workspace:~",
     "@types/mdast": "^4.0.4",
     "@types/node": "^20.16.11",
     "@types/semver": "^7.5.8",

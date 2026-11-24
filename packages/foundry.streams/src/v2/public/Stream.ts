@@ -141,11 +141,12 @@ const _publishBinaryRecord: $FoundryPlatformMethod<
     streamBranchName: _Core.BranchName,
     $body: Blob,
     $queryParams?: { viewRid?: _Streams.ViewRid | undefined },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<void>
 > = [
   1,
   "/v2/highScale/streams/datasets/{0}/streams/{1}/publishBinaryRecord",
-  3,
+  7,
   "application/octet-stream",
 ];
 
@@ -164,9 +165,24 @@ export function publishBinaryRecord(
     streamBranchName: _Core.BranchName,
     $body: Blob,
     $queryParams?: { viewRid?: _Streams.ViewRid | undefined },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<void> {
-  return $foundryPlatformFetch($ctx, _publishBinaryRecord, ...args);
+  const headerParams = {
+    ...args[4],
+    "Content-Type": args[4]?.["Content-Type"] ?? "application/octet-stream",
+    "Content-Length": args[2].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _publishBinaryRecord,
+    args[0],
+    args[1],
+    args[2],
+    args[3],
+    headerParams,
+  );
 }
 
 const _reset: $FoundryPlatformMethod<

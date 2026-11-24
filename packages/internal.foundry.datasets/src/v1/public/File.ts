@@ -102,8 +102,9 @@ const _upload: $FoundryPlatformMethod<
       transactionType?: _Datasets.TransactionType | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ) => Promise<_Datasets.File>
-> = [1, "/v1/datasets/{0}/files:upload", 3, "*/*"];
+> = [1, "/v1/datasets/{0}/files:upload", 7, "*/*"];
 
 /**
  * Uploads a File to an existing Dataset.
@@ -141,9 +142,24 @@ export function upload(
       transactionType?: _Datasets.TransactionType | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
     },
+    $headerParams?: { "Content-Type"?: string | undefined },
   ]
 ): Promise<_Datasets.File> {
-  return $foundryPlatformFetch($ctx, _upload, ...args);
+  const headerParams = {
+    ...args[3],
+    "Content-Type": args[3]?.["Content-Type"]
+      ?? (args[1].type || "application/octet-stream"),
+    "Content-Length": args[1].size.toString(),
+  };
+
+  return $foundryPlatformFetch(
+    $ctx,
+    _upload,
+    args[0],
+    args[1],
+    args[2],
+    headerParams,
+  );
 }
 
 const _get: $FoundryPlatformMethod<

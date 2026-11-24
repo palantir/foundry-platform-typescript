@@ -20,6 +20,7 @@ import { generateMethodJsdoc } from "./generateMethodJsdoc.js";
 import { getNamespacePlatform } from "./getNamespacePlatform.js";
 import { HTTP_VERB_MAP } from "./HTTP_VERB_MAP.js";
 import { BinaryType } from "./model/BinaryType.js";
+import { BuiltinType } from "./model/BuiltinType.js";
 import type { Component } from "./model/Component.js";
 import type { Model } from "./model/Model.js";
 import type { Namespace } from "./model/Namespace.js";
@@ -89,22 +90,19 @@ async function generateMethods(
 
     const returnType = `Promise<${innerReturnType}>`;
 
-    const parameters = generateMethodParameters(method);
+    const byType = getParametersByType(method);
+    const parameters = generateMethodParameters(method, byType);
     const requestType = method.requestType;
 
-    const shouldFillBlobHeaders = requestType !== "unknown"
-      && requestType instanceof BinaryType
-      && method.parametersByType.HEADER != null
-      && method.parametersByType.HEADER.find((p) => p.name === "Content-Type")
-        != null;
+    const shouldFillBlobHeaders = requestType instanceof BinaryType;
     const blobHeaders = fillBlobHeaders(
-      method.parametersByType.QUERY != null
-        && method.parametersByType.QUERY.length > 0,
-      method.parametersByType.PATH != null,
+      (byType.QUERY?.length ?? 0) > 0,
+      byType.PATH?.length ?? 0,
+      method.requestMimeType,
     );
     out += `
      const _${methodName}: $${platformMethod}<(${parameters}) => ${returnType}> = ${
-      generateOperationArray(method, model)
+      generateOperationArray(method, byType)
     };
 
     ${await generateMethodJsdoc(method)}
@@ -124,9 +122,29 @@ async function generateMethods(
   return { out, referencedTypes };
 }
 
-function generateMethodParameters(method: Operation) {
-  const requestType = method.requestType;
+function getParametersByType(method: Operation): Operation["parametersByType"] {
   const byType = method.parametersByType;
+  if (
+    method.requestType instanceof BinaryType
+    && !byType.HEADER?.some(p => p.name === "Content-Type")
+  ) {
+    byType.HEADER = [
+      ...byType.HEADER ?? [],
+      {
+        name: "Content-Type",
+        kind: "HEADER",
+        type: new OptionalType(new BuiltinType({ type: "string", string: {} })),
+      },
+    ];
+  }
+  return byType;
+}
+
+function generateMethodParameters(
+  method: Operation,
+  byType: Operation["parametersByType"],
+) {
+  const requestType = method.requestType;
 
   const bodyArg = requestType === "unknown"
     ? ""
@@ -138,10 +156,6 @@ function generateMethodParameters(method: Operation) {
     "$headerParams",
     byType.HEADER,
     requestType === "unknown" ? undefined : requestType,
-    method.parametersByType.HEADER != null
-      && method.parametersByType.HEADER.every((p) =>
-        p.name === "Content-Type" || p.name === "Content-Length"
-      ),
   );
 
   return `
@@ -151,8 +165,10 @@ function generateMethodParameters(method: Operation) {
     ${headerParams}`;
 }
 
-function generateOperationArray(op: Operation, model: Model) {
-  const byType = op.parametersByType;
+function generateOperationArray(
+  op: Operation,
+  byType: Operation["parametersByType"],
+) {
   // bit wise math
   const flag = (op.requestType !== "unknown" ? 1 : 0)
     + (byType.QUERY && byType.QUERY.length > 0 ? 2 : 0)
@@ -202,11 +218,12 @@ function getParamsAsObject(
   prefix: "$queryParams" | "$headerParams",
   params: Operation["parameters"] | undefined,
   requestType?: Type,
-  shouldMakeHeadersOptional?: boolean,
 ) {
   if (!params || params.length === 0) return "";
-  const opt = params.every(p => p.type instanceof OptionalType)
-    || (requestType instanceof BinaryType && shouldMakeHeadersOptional);
+  const opt = params.every(p =>
+    p.type instanceof OptionalType || (requestType instanceof BinaryType
+      && (p.name === "Content-Type" || p.name === "Content-Length"))
+  );
   const parameterString = getParamsAsSyntaxListString(params, `"`, requestType);
   return parameterString === ""
     ? ""
@@ -215,21 +232,22 @@ function getParamsAsObject(
 
 function fillBlobHeaders(
   queryParamsPresent: boolean,
-  pathParamsPresent: boolean,
+  pathParamCount: number,
+  requestMediaType: string,
 ) {
-  let index = 0;
-  const bodyArgIndex = pathParamsPresent ? ++index : index;
-  index++;
-  const queryArgIndex = index;
-  const headerArgIndex = queryParamsPresent
-    ? ++index
-    : index;
+  const bodyArgIndex = pathParamCount;
+  const queryArgIndex = bodyArgIndex + 1;
+  const headerArgIndex = queryArgIndex + (queryParamsPresent ? 1 : 0);
+  const defaultContentType = requestMediaType === "\"*/*\""
+    ? `(args[${bodyArgIndex}].type || "application/octet-stream")`
+    : requestMediaType || "\"application/json\"";
   return {
     autofill: `
-    const headerParams =  {...args[${headerArgIndex}], "Content-Type": args[${headerArgIndex}]?.["Content-Type"] ?? args[${bodyArgIndex}].type, "Content-Length": args[${bodyArgIndex}].size.toString()};\n
+    const headerParams =  {...args[${headerArgIndex}], "Content-Type": args[${headerArgIndex}]?.["Content-Type"] ?? ${defaultContentType}, "Content-Length": args[${bodyArgIndex}].size.toString()};\n
     `,
     returnArgs: `${
-      pathParamsPresent ? "args[0], " : ""
+      Array.from({ length: pathParamCount }, (_, index) => `args[${index}], `)
+        .join("")
     }args[${bodyArgIndex}], ${
       queryParamsPresent ? `args[${queryArgIndex}], ` : ""
     }headerParams`,
