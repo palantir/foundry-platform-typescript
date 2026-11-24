@@ -55,6 +55,7 @@ const IR: ApiSpec = {
         type: { type: "builtin", builtin: { type: "string", string: {} } },
         safety: "SAFE",
         documentation: {},
+        identifiesResourceTypes: [],
       }],
     },
     {
@@ -72,6 +73,7 @@ const IR: ApiSpec = {
         },
         safety: "SAFE",
         documentation: {},
+        identifiesResourceTypes: [],
       }],
     },
     {
@@ -84,6 +86,7 @@ const IR: ApiSpec = {
         type: { type: "builtin", builtin: { type: "string", string: {} } },
         safety: "SAFE",
         documentation: {},
+        identifiesResourceTypes: [],
       }],
     },
   ],

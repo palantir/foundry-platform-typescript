@@ -27,6 +27,8 @@ export interface PropertySpec {
   type: DataType;
   safety: Safety;
   documentation: Documentation;
+  doNotUseExperimentalSourceProperty?: string;
+  doNotUseExperimentalSourceType?: DataType;
 }
 
 export interface ObjectType {

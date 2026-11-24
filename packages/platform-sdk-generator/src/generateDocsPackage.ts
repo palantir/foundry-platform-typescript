@@ -65,7 +65,13 @@ export async function generateDocsPackage(
   await fs.mkdir(namespacesDir, { recursive: true });
 
   const namespaceEntries = ir.namespaces.map((namespace) => ({
-    namespace,
+    namespace: {
+      ...namespace,
+      components: namespace.components.map(component => ({
+        ...component,
+        identifiesResourceTypes: component.identifiesResourceTypes ?? [],
+      })),
+    },
     namespaceIdentifier: `${namespace.name}${namespace.version.toUpperCase()}`,
   }));
 

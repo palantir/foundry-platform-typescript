@@ -221,6 +221,7 @@ describe(generatePlatformSdkVersions, () => {
             type: { type: "builtin", builtin: { type: "string", string: {} } },
             safety: "SAFE",
             documentation: {},
+            identifiesResourceTypes: [],
           }],
         },
         {
@@ -238,6 +239,7 @@ describe(generatePlatformSdkVersions, () => {
             },
             safety: "SAFE",
             documentation: {},
+            identifiesResourceTypes: [],
           }],
         },
       ],
