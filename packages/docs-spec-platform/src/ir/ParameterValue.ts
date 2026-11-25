@@ -21,4 +21,6 @@ export interface ParameterValue {
   type: DataType;
   safety: Safety;
   documentation?: Documentation;
+  doNotUseExperimentalSourceProperty?: string;
+  doNotUseExperimentalSourceType?: DataType;
 }

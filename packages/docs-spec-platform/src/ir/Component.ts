@@ -23,6 +23,8 @@ export interface Component {
   safety: Safety;
   documentation: Documentation;
   nullable?: boolean;
+  identifiesResourceTypes: Locator[];
+  doNotUseExperimentalSourceComponent?: Locator;
   // TODO (#183): Populate component JSDoc with IR validation fields
   // @ts-ignore
   validation?: any;
