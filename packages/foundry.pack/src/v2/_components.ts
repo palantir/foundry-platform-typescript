@@ -277,6 +277,7 @@ export interface Document {
   updatedTime: _Core.UpdatedTime;
   operations: Array<DocumentOperation>;
   operationalVersion?: SchemaVersion;
+  lastViewed?: string;
 }
 
 /**

@@ -279,3 +279,69 @@ export function aggregate(
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {
   return $foundryPlatformFetch($ctx, _aggregate, ...args);
 }
+
+const _loadLinks: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    $body: _Ontologies.LoadObjectLinksRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+      executeInMemoryOnly?: boolean | undefined;
+    },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
+  ) => Promise<_Ontologies.LoadObjectLinksResponse>
+> = [1, "/v2/ontologies/{0}/objects/{1}/loadLinks", 7];
+
+/**
+ * Loads the specified links from the provided source objects of the given object type.
+ *
+ * Links are defined as a link type API name and object locators for the source and target objects
+ * where only the `__primaryKey` and `__apiName` properties are loaded.
+ *
+ * Links are grouped by source object locator; however, the links for a given source object may be
+ * split over multiple entries and pages with the same source object locator.
+ *
+ * To retrieve all links, request subsequent pages until `nextPageToken` is absent. Use the same
+ * object type, primary keys, link types, and branch with each request. An empty page does not indicate completion.
+ *
+ * Please keep these limitations in mind:
+ *
+ * * Requests must include at least one source primary key and between 1 and 50 link type API names.
+ *   Duplicate primary keys are ignored. A request can include up to 5,000 distinct source objects.
+ * * Each link type API name must be valid for the source object type.
+ * * Links returned may be stale. For example, primary keys returned by this endpoint may not exist anymore.
+ * * Source objects with no links may be omitted. Read all pages before treating a source object's links as complete.
+ * * Page tokens can expire after a few minutes or when the underlying index changes.
+ * * This endpoint does not support Object Storage V1 (OSv1) links or interface links.
+ * * Requests fail if a requested object type or link type is unavailable or the request token does not
+ *   have permission to read it.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objects/{objectType}/loadLinks
+ */
+export function loadLinks(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    objectType: _Ontologies.ObjectTypeApiName,
+    $body: _Ontologies.LoadObjectLinksRequest,
+    $queryParams?: {
+      branch?: _Core.FoundryBranch | undefined;
+      preview?: _Core.PreviewMode | undefined;
+      executeInMemoryOnly?: boolean | undefined;
+    },
+    $headerParams?: {
+      traceParent?: _Core.TraceParent | undefined;
+      traceState?: _Core.TraceState | undefined;
+    },
+  ]
+): Promise<_Ontologies.LoadObjectLinksResponse> {
+  return $foundryPlatformFetch($ctx, _loadLinks, ...args);
+}

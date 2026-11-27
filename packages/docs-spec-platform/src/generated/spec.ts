@@ -325,6 +325,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.aggregateObjectsV2": {
       "variables": {},
     },
+    "v2.loadObjectLinks": {
+      "variables": {},
+    },
     "v2.listLinkedObjectsV2": {
       "variables": {},
     },
@@ -1414,6 +1417,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.searchRecords": {
       "variables": {},
     },
+    "v2.getNotepadDocument": {
+      "variables": {},
+    },
     "v2.createNotepadDocument": {
       "variables": {},
     },
@@ -1528,6 +1534,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v3.listSpaces": {
       "variables": {},
     },
+    "v3.getMarketplace": {
+      "variables": {},
+    },
     "v3.createMarketplaceInstallation": {
       "variables": {},
     },
@@ -1550,6 +1559,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v3.getMarketplaceInstallationJobDetails": {
+      "variables": {},
+    },
+    "v3.listMarketplaceProducts": {
       "variables": {},
     },
     "v3.completeProcessExecutionSignal": {

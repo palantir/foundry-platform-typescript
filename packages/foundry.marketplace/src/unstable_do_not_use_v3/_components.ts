@@ -313,6 +313,7 @@ export type InputType =
   | "AGENT_BUILDER_AGENT"
   | "AGENT_DEFINITION"
   | "ONTOLOGY_SCHEMA_MIGRATION_POLICY"
+  | "ONTOLOGY_PROJECTS_MIGRATION_POLICY"
   | "AIP_AGENT"
   | "ARTIFACTS_REPOSITORY"
   | "LIBRARY"
@@ -346,6 +347,7 @@ export type InputType =
   | "FUNCTION_API_STABILITY"
   | "FUSION_DOCUMENT"
   | "GEOTIME_SERIES_INTEGRATION"
+  | "GOTHAM_ARTIFACT"
   | "INTERFACE_TYPE"
   | "INTERFACE_LINK_TYPE"
   | "INTERFACE_PROPERTY_TYPE"
@@ -510,7 +512,7 @@ export interface InputValueStrings {
 }
 
 /**
- * A resolution or validation error. Resource references are included only when visible to the request token.
+ * A preparation, resolution, or validation error. Resource references are included only when visible to the request token.
  *
  * Log Safety: UNSAFE
  */
@@ -539,15 +541,6 @@ export type InstallationInputSelection = "MANUAL_ONLY" | "ALL";
 export interface InstallationJobDraftMode {}
 
 /**
- * An error prevented draft preparation from reaching a consistent state.
- *
- * Log Safety: UNSAFE
- */
-export interface InstallationJobDraftPreparationFailure {
-  error: ErrorValue;
-}
-
-/**
    * What to do with a draft if preparation fails or submission is prevented.
 Values:
 
@@ -559,6 +552,15 @@ IDLE: Retain the draft for inspection or continuation in Marketplace.
 export type InstallationJobErrorHandling = "IDLE" | "ABORT";
 
 /**
+ * Available error results for a job being prepared or a submitted installation job.
+ *
+ * Log Safety: UNSAFE
+ */
+export type InstallationJobErrors =
+  | ({ type: "execution" } & InstallationJobExecutionFailure)
+  | ({ type: "preparation" } & InstallationJobPreparationErrors);
+
+/**
  * Errors from a submitted installation job.
  *
  * Log Safety: UNSAFE
@@ -567,15 +569,6 @@ export interface InstallationJobExecutionFailure {
   errors: Array<ErrorValue>;
   stage: InstallationJobFailureStage;
 }
-
-/**
- * Failure diagnostics grouped by the phase in which the failure occurred.
- *
- * Log Safety: UNSAFE
- */
-export type InstallationJobFailure =
-  | ({ type: "draftPreparation" } & InstallationJobDraftPreparationFailure)
-  | ({ type: "execution" } & InstallationJobExecutionFailure);
 
 /**
  * The stage and cause of a submitted installation job's failure.
@@ -595,6 +588,44 @@ export type InstallationJobFailureStage =
 export interface InstallationJobInputs {
   explicitlyUnset: Array<InputApiName>;
   values: Record<InputApiName, InputValue>;
+}
+
+/**
+ * Draft preparation and validation errors visible to the draft owner.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InstallationJobPreparationErrorList {
+  errors: Array<InstallationError>;
+}
+
+/**
+ * Full draft preparation and validation errors for the owner, or a blocking error summary for other viewers.
+ *
+ * Log Safety: UNSAFE
+ */
+export type InstallationJobPreparationErrorResult =
+  | ({ type: "errors" } & InstallationJobPreparationErrorList)
+  | ({ type: "summary" } & InstallationJobPreparationErrorSummary);
+
+/**
+   * Draft preparation and validation results available to the viewer. An error that prevents preparation from reaching
+a consistent state is included as a blocking error with a job-level target, alongside any existing validation
+errors.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InstallationJobPreparationErrors {
+  result: InstallationJobPreparationErrorResult;
+}
+
+/**
+ * A blocking preparation error count visible to authorized viewers other than the job owner.
+ *
+ * Log Safety: SAFE
+ */
+export interface InstallationJobPreparationErrorSummary {
+  totalBlockingErrors: number;
 }
 
 /**
@@ -629,24 +660,6 @@ export interface InstallationJobTarget {
 }
 
 /**
- * Validation results available to the viewer.
- *
- * Log Safety: UNSAFE
- */
-export type InstallationJobValidation =
-  | ({ type: "errors" } & InstallationJobValidationErrors)
-  | ({ type: "summary" } & InstallationJobValidationSummary);
-
-/**
- * Validation errors visible to the job owner.
- *
- * Log Safety: UNSAFE
- */
-export interface InstallationJobValidationErrors {
-  errors: Array<InstallationError>;
-}
-
-/**
    * Which validation errors may be tolerated when deciding whether to submit the job.
 Values:
 
@@ -658,15 +671,6 @@ NON_BLOCKING_ERRORS: Only blocking validation errors prevent submission.
 export type InstallationJobValidationErrorTolerance =
   | "NONE"
   | "NON_BLOCKING_ERRORS";
-
-/**
- * A validation error count visible to authorized viewers other than the job owner.
- *
- * Log Safety: SAFE
- */
-export interface InstallationJobValidationSummary {
-  totalBlockingErrors: number;
-}
 
 /**
  * Changes to the installation's location for the proposed job. The destination folder is unchanged.
@@ -747,12 +751,41 @@ export interface LibraryLocatorPath {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface ListMarketplaceProductsResponse {
+  data: Array<MarketplaceProduct>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
  * Write to the local Geotime. Omit namespaceRid to use the default local destination.
  *
  * Log Safety: SAFE
  */
 export interface LocalGeotimeDestination {
   namespaceRid?: _Core.NamespaceRid;
+}
+
+/**
+ * A local Marketplace store and its filesystem location.
+ *
+ * Log Safety: SAFE
+ */
+export interface LocalMarketplaceStore {
+  parentFolderRid: _Core.FolderRid;
+}
+
+/**
+ * A Marketplace store containing published products available for installation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Marketplace {
+  description?: string;
+  displayName: string;
+  rid: MarketplaceRid;
+  storeType: MarketplaceStoreType;
 }
 
 /**
@@ -793,13 +826,12 @@ export interface MarketplaceInstallationJob {
 }
 
 /**
- * Available validation and failure diagnostics for an installation job or draft.
+ * Available preparation results and execution failure diagnostics for an installation job or draft.
  *
  * Log Safety: UNSAFE
  */
 export interface MarketplaceInstallationJobDetails {
-  failure?: InstallationJobFailure;
-  validation?: InstallationJobValidation;
+  errors?: InstallationJobErrors;
 }
 
 /**
@@ -843,9 +875,30 @@ export type MarketplaceInstallationRid = LooselyBrandedString<
 >;
 
 /**
+ * A product with a published version available for installation from a Marketplace.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceProduct {
+  description?: string;
+  id: ProductId;
+  latestPublishedVersion: ProductVersionSummary;
+  title: string;
+}
+
+/**
  * Log Safety: SAFE
  */
 export type MarketplaceRid = LooselyBrandedString<"MarketplaceRid">;
+
+/**
+ * Whether the store is local or managed remotely, with metadata specific to that kind of store.
+ *
+ * Log Safety: SAFE
+ */
+export type MarketplaceStoreType =
+  | ({ type: "local" } & LocalMarketplaceStore)
+  | ({ type: "remote" } & RemoteMarketplaceStore);
 
 /**
  * A stable identifier for a potential Ontology schema migration in the product definition.
@@ -878,7 +931,7 @@ export type OntologyLiteral =
  * Log Safety: UNSAFE
  */
 export interface OntologyLiteralArray {
-  values: Array<OntologyLiteralJson>;
+  values: Array<OntologyLiteral>;
 }
 
 /**
@@ -936,17 +989,6 @@ export interface OntologyLiteralGeohash {
 export interface OntologyLiteralInteger {
   value: number;
 }
-
-/**
-   * A tagged JSON object with the same structure and constraints as OntologyLiteral, used for an array element.
-Scalar variants contain type and value; the array variant contains values with further tagged literals.
-For example, {"type":"array","values":[{"type":"long","value":"1234"}]}.
-Every nested literal must use a supported tag and its corresponding value format. Untagged objects, JSON null,
-unknown tags, and values outside the selected type's range are invalid.
-   *
-   * Log Safety: UNSAFE
-   */
-export type OntologyLiteralJson = any;
 
 /**
  * Log Safety: UNSAFE
@@ -1099,7 +1141,7 @@ export interface PeerRemoteStrategySpecificRemote {
 }
 
 /**
- * A typed pipeline parameter literal. Arrays and maps contain tagged literal JSON with the same variants and value formats, recursively. A null literal uses the empty variant rather than a JSON null value.
+ * A typed pipeline parameter literal. Array elements and map keys and values are themselves literals, so they can nest arbitrarily. A null literal uses the empty variant rather than a JSON null value.
  *
  * Log Safety: UNSAFE
  */
@@ -1121,7 +1163,7 @@ export type PipelineBuilderLiteral =
  * Log Safety: UNSAFE
  */
 export interface PipelineBuilderLiteralArray {
-  values: Array<PipelineBuilderLiteralJson>;
+  values: Array<PipelineBuilderLiteral>;
 }
 
 /**
@@ -1181,18 +1223,6 @@ export interface PipelineBuilderLiteralInteger {
 }
 
 /**
-   * A tagged JSON object with the same structure and constraints as PipelineBuilderLiteral, used for nested literals.
-Scalar variants contain type and value; array contains values; map contains entries with key and value
-literals; empty contains only type. Arrays and maps can contain further literals recursively. For example,
-{"type":"array","values":[{"type":"long","value":"42"},{"type":"empty"}]}.
-Every nested literal must use a supported tag and its corresponding value format. Untagged objects, JSON null,
-unknown tags, and values outside the selected type's range are invalid.
-   *
-   * Log Safety: UNSAFE
-   */
-export type PipelineBuilderLiteralJson = any;
-
-/**
  * Log Safety: UNSAFE
  */
 export interface PipelineBuilderLiteralLong {
@@ -1210,8 +1240,8 @@ export interface PipelineBuilderLiteralMap {
  * Log Safety: UNSAFE
  */
 export interface PipelineBuilderLiteralMapEntry {
-  key: PipelineBuilderLiteralJson;
-  value: PipelineBuilderLiteralJson;
+  key: PipelineBuilderLiteral;
+  value: PipelineBuilderLiteral;
 }
 
 /**
@@ -1352,6 +1382,18 @@ export type ProductVersionSelector =
   | ({ type: "versionId" } & ProductVersionById);
 
 /**
+ * The latest published version of a product available in a particular Marketplace.
+ *
+ * Log Safety: SAFE
+ */
+export interface ProductVersionSummary {
+  deprecated: boolean;
+  semanticVersion: ProductSemanticVersion;
+  supportsInputApiNames: boolean;
+  versionId: ProductVersionId;
+}
+
+/**
  * Select other installations whose outputs may fulfill the target inputs. Recommendations are automatically applied when preparing an installation job.
  *
  * Log Safety: UNSAFE
@@ -1386,6 +1428,13 @@ export interface RecommendationStrategySameNamespace {
 export interface RedactedCredentialSecrets {
   secretNames: Array<SecretName>;
 }
+
+/**
+ * A remotely managed Marketplace store without a filesystem parent.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoteMarketplaceStore {}
 
 /**
  * Log Safety: SAFE

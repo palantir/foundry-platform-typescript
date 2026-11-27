@@ -29,6 +29,40 @@ import type * as _Notepad from "../_components.js";
 
 //
 
+const _get: $FoundryPlatformMethod<
+  (
+    documentRid: _Notepad.DocumentRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Notepad.GetDocumentResponse>
+> = [0, "/v2/notepad/documents/{0}/get", 2];
+
+/**
+ * Loads the contents of a Document.
+ *
+ * Elements that this API cannot represent, that cannot be loaded, or that the caller does not have access
+ * to are returned as "placeholder" elements. Requests made with scoped tokens may return additional
+ * placeholders.
+ *
+ * Clients should be aware that new Block or Inline subtypes may be added to this endpoint in the future,
+ * and some elements that are currently returned as placeholders will instead be returned as those new
+ * subtypes.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:notepad-read]
+ * URL: /v2/notepad/documents/{documentRid}/get
+ */
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    documentRid: _Notepad.DocumentRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Notepad.GetDocumentResponse> {
+  return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
 const _create: $FoundryPlatformMethod<
   (
     $body: _Notepad.CreateNotepadDocumentRequest,

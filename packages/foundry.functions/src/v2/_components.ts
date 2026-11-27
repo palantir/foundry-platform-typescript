@@ -477,6 +477,13 @@ export interface RidConstraint {}
 export interface RunningExecution {}
 
 /**
+ * The unique resource identifier of an ontology scenario.
+ *
+ * Log Safety: SAFE
+ */
+export type ScenarioRid = LooselyBrandedString<"ScenarioRid">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface StreamingExecuteEventsQueryRequest {

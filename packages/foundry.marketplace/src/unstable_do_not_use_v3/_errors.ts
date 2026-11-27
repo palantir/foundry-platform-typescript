@@ -431,19 +431,46 @@ export interface MarketplaceInstallationNotFound {
 }
 
 /**
- * The product could not be found in the specified marketplace or has no released version available for registration.
+ * Log Safety: SAFE
+ */
+export interface MarketplaceNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceNotFound";
+  errorDescription: "";
+  errorInstanceId: string;
+  parameters: {
+    marketplaceRid: unknown;
+  };
+}
+
+/**
+ * Marketplace could not complete the operation. The underlying error name and code are provided for diagnosis; its message and parameters are omitted.
  *
+ * Log Safety: SAFE
+ */
+export interface MarketplaceOperationFailed {
+  errorCode: "INTERNAL";
+  errorName: "MarketplaceOperationFailed";
+  errorDescription:
+    "Marketplace could not complete the operation. The underlying error name and code are provided for diagnosis; its message and parameters are omitted.";
+  errorInstanceId: string;
+  parameters: {
+    errorName: unknown;
+    errorCode: unknown;
+  };
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface MarketplaceProductNotFound {
   errorCode: "NOT_FOUND";
   errorName: "MarketplaceProductNotFound";
-  errorDescription:
-    "The product could not be found in the specified marketplace or has no released version available for registration.";
+  errorDescription: "";
   errorInstanceId: string;
   parameters: {
-    marketplaceRid: unknown;
     productId: unknown;
+    marketplaceRid: unknown;
   };
 }
 

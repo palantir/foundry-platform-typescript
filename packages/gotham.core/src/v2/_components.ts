@@ -57,6 +57,8 @@ export interface AttachmentType {}
 export type Attribution = LooselyBrandedString<"Attribution">;
 
 /**
+ * Binary data represented as a base64-encoded string.
+ *
  * Log Safety: SAFE
  */
 export interface BinaryType {}
@@ -543,6 +545,13 @@ export type GroupName = LooselyBrandedString<"GroupName">;
 export type GroupRid = LooselyBrandedString<"GroupRid">;
 
 /**
+ * A group identifier represented as a string.
+ *
+ * Log Safety: SAFE
+ */
+export interface GroupType {}
+
+/**
    * Indicates whether the response should include compute usage details for the request. This feature is currently
 only available for OSDK applications.
 Note: Enabling this flag may slow down query performance and is not recommended for use in production.
@@ -783,6 +792,15 @@ export type PageToken = LooselyBrandedString<"PageToken">;
  * Log Safety: SAFE
  */
 export type PreviewMode = boolean;
+
+/**
+   * A user or group represented as an object with type and id fields.
+The type is user or group, and id is the corresponding identifier string.
+For example, {"type": "user", "id": "00000000-0000-0000-0000-000000000001"}.
+   *
+   * Log Safety: SAFE
+   */
+export interface PrincipalDataType {}
 
 /**
  * The ID of a Foundry Group or User.
@@ -1064,6 +1082,13 @@ export type UserId = string;
  * Log Safety: SAFE
  */
 export type UserStatus = "ACTIVE" | "DELETED";
+
+/**
+ * A user identifier represented as a string.
+ *
+ * Log Safety: SAFE
+ */
+export interface UserType {}
 
 /**
    * The vector similarity function to support approximate nearest neighbors search. Will result in an index

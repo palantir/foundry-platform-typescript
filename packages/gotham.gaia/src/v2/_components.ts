@@ -102,12 +102,30 @@ export type AnnotationType =
   | ({ type: "point" } & PointAnnotation);
 
 /**
+ * Which ends of a path should be rendered with an arrow head.
+ *
+ * Log Safety: SAFE
+ */
+export type ArrowHeadVisibility = "NONE" | "HEAD" | "TAIL" | "BOTH";
+
+/**
  * Security settings for map content
  *
  * Log Safety: SAFE
  */
 export interface ArtifactSecurity {
   spaceRid?: SpaceRid;
+}
+
+/**
+   * The exact source circle. This may differ from the feature's geometry, which may include holes, range-fan
+clipping, and similar modifications; use the feature's geometry for its footprint.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface CircleRenderingProperties {
+  center: GaiaCoordinateWithAltitude;
+  radiusMeters: number;
 }
 
 /**
@@ -165,6 +183,18 @@ export interface GaiaCoordinate {
 }
 
 /**
+   * A coordinate with an optional altitude. Like GaiaCoordinate, this is NOT geojson and has an actual structure
+instead of a [lon, lat, alt] array.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface GaiaCoordinateWithAltitude {
+  lon: number;
+  lat: number;
+  altitudeMeters?: number;
+}
+
+/**
    * A representation of an element in a Gaia map. An element can be thought as a leaf node in the structure of a
 map. It contains information such as the geometry of a feature. An element has one or more features.
 Each element has an ID unique within the context of its parent layer; the ID is not guaranteed to be unique
@@ -196,6 +226,7 @@ export type GaiaElementId = LooselyBrandedString<"GaiaElementId">;
 export interface GaiaFeature {
   geometry: _Geojson.GeoJsonObject;
   style?: GaiaStyle;
+  renderingProperties?: SpecializedRenderingProperties;
 }
 
 /**
@@ -233,6 +264,8 @@ export interface GaiaLayerMetadata {
   subLayerIds: Array<GaiaLayerId>;
   label: string;
   temporaryObjectSet?: TemporaryObjectSet;
+  visibility?: boolean;
+  context?: LayerMetadataContext;
 }
 
 /**
@@ -314,12 +347,60 @@ export type GaiaSymbol =
   | ({ type: "IconSymbol" } & IconSymbol);
 
 /**
+ * The ID of a Geotime feed.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GeotimeFeedId = LooselyBrandedString<"GeotimeFeedId">;
+
+/**
+ * The layer renders observations from the feed aggregated into bins.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeotimeHistogramContext {
+  precision: number;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GeotimeLayerContext {
+  feedId: GeotimeFeedId;
+  kind: GeotimeLayerKind;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type GeotimeLayerKind =
+  | ({ type: "histogram" } & GeotimeHistogramContext)
+  | ({ type: "track" } & GeotimeTrackContext)
+  | ({ type: "live" } & GeotimeLiveContext);
+
+/**
+ * The layer renders live tracks.
+ *
+ * Log Safety: SAFE
+ */
+export interface GeotimeLiveContext {}
+
+/**
  * Reference to a Geotime Track.
  *
  * Log Safety: UNSAFE
  */
 export interface GeotimeTrackByGid {
   trackGid: GeotimeTrackGid;
+}
+
+/**
+ * The layer may render track history.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GeotimeTrackContext {
+  showFullTrackElements: Array<GaiaElementId>;
 }
 
 /**
@@ -374,6 +455,20 @@ export interface LabelStyle {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface LayerLoadExtensions {
+  includeRenderingProperties?: boolean;
+}
+
+/**
+ * Metadata specific to the kind of layer.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LayerMetadataContext = { type: "geotime" } & GeotimeLayerContext;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface LineAnnotation {
@@ -385,6 +480,7 @@ export interface LineAnnotation {
  */
 export interface LoadLayersMapRequest {
   layerIds: Array<GaiaLayerId>;
+  extensions?: LayerLoadExtensions;
 }
 
 /**
@@ -510,6 +606,17 @@ export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 export type PageToken = LooselyBrandedString<"PageToken">;
 
 /**
+ * Additional properties that may assist in rendering path geometries.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PathRenderingProperties {
+  arrowHeadVisibility: ArrowHeadVisibility;
+  routePoints?: RoutePoints;
+  volume?: VolumeRenderingProperties;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface PointAnnotation {
@@ -540,6 +647,16 @@ export interface RenderSymbolMapRequest {
 }
 
 /**
+ * Properties allowing a path to be rendered as a route.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RoutePoints {
+  origin: GaiaCoordinate;
+  destination: GaiaCoordinate;
+}
+
+/**
  * The response body containing the queried Gaia maps
  *
  * Log Safety: UNSAFE
@@ -555,6 +672,17 @@ export interface SearchMapsResponse {
  * Log Safety: SAFE
  */
 export type SpaceRid = LooselyBrandedString<"SpaceRid">;
+
+/**
+   * Strongly-typed properties associated with a Gaia feature that provide an alternative way to render the
+feature. This includes non-vector information that is not contained in the feature's geometry and style.
+   *
+   * Log Safety: UNSAFE
+   */
+export type SpecializedRenderingProperties =
+  | ({ type: "volume" } & VolumeRenderingProperties)
+  | ({ type: "path" } & PathRenderingProperties)
+  | ({ type: "circle" } & CircleRenderingProperties);
 
 /**
  * Log Safety: UNSAFE
@@ -595,3 +723,23 @@ export interface TemporaryObjectSet {
  * Log Safety: SAFE
  */
 export type TextAlignment = "CENTER" | "RIGHT" | "LEFT";
+
+/**
+ * The shape of an extruded volume.
+ *
+ * Log Safety: SAFE
+ */
+export type VolumeKind = "PRISM" | "CYLINDER" | "SPHERE";
+
+/**
+   * Properties for rendering the feature's geometry as a volume. Provided only when extrusion is enabled for the
+feature.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface VolumeRenderingProperties {
+  kind: VolumeKind;
+  baseElevationMeters?: number;
+  ceilingElevationMeters?: number;
+  circle?: CircleRenderingProperties;
+}

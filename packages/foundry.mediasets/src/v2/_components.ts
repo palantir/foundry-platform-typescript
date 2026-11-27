@@ -1473,7 +1473,7 @@ export type MediaSchema =
   | "MULTIMODAL"
   | "SPREADSHEET"
   | "STREAMING_VIDEO"
-  | "TILED_RASTER"
+  | "TILED_FORMAT"
   | "VIDEO"
   | "EMAIL";
 

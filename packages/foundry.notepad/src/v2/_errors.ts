@@ -140,6 +140,20 @@ export interface CreateNotepadDocumentPermissionDenied {
 }
 
 /**
+ * Placeholder elements cannot be included in DocumentContent when creating a Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreatePlaceholderNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CreatePlaceholderNotSupported";
+  errorDescription:
+    "Placeholder elements cannot be included in DocumentContent when creating a Document.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested document was not found.
  *
  * Log Safety: SAFE
@@ -312,6 +326,21 @@ export interface GenerationJobStatusRunning {
 }
 
 /**
+ * Could not get the Document.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetNotepadDocumentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetNotepadDocumentPermissionDenied";
+  errorDescription: "Could not get the Document.";
+  errorInstanceId: string;
+  parameters: {
+    documentRid: unknown;
+  };
+}
+
+/**
  * The provided color is not valid. Only CSS colors are supported (e.g. "#RRGGBB", "rgb(255,0,0)", "red").
  *
  * Log Safety: UNSAFE
@@ -376,6 +405,59 @@ export interface InvalidGenerationJobTemplateVersion {
 }
 
 /**
+   * The list item's checked property is invalid. It must be present for items in a CHECKED list and absent for
+items in other lists. See reason for details.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidListItemChecked {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidListItemChecked";
+  errorDescription:
+    "The list item's checked property is invalid. It must be present for items in a CHECKED list and absent for items in other lists. See reason for details.";
+  errorInstanceId: string;
+  parameters: {
+    checked: unknown;
+    reason: unknown;
+  };
+}
+
+/**
+   * The list item's nestLevel is invalid. The first item must have nest level 0, and later items must be at most
+one level deeper than the previous item. See reason for details.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidListItemNestLevel {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidListItemNestLevel";
+  errorDescription:
+    "The list item's nestLevel is invalid. The first item must have nest level 0, and later items must be at most one level deeper than the previous item. See reason for details.";
+  errorInstanceId: string;
+  parameters: {
+    nestLevel: unknown;
+    reason: unknown;
+  };
+}
+
+/**
+   * The list's items field is invalid. For example, a list must contain at least one list item. See reason for
+details.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidListItems {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidListItems";
+  errorDescription:
+    "The list's items field is invalid. For example, a list must contain at least one list item. See reason for details.";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+  };
+}
+
+/**
  * The provided timezone is not valid.
  *
  * Log Safety: SAFE
@@ -431,6 +513,38 @@ export interface MissingHyperlinkText {
   errorDescription: "Hyperlinks require at least one character of text.";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * NestLevel must be less than or equal to 16
+ *
+ * Log Safety: SAFE
+ */
+export interface NestLevelAboveMaximum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "NestLevelAboveMaximum";
+  errorDescription: "NestLevel must be less than or equal to 16";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    maxInclusive: unknown;
+  };
+}
+
+/**
+ * NestLevel must be greater than or equal to 0
+ *
+ * Log Safety: SAFE
+ */
+export interface NestLevelBelowMinimum {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "NestLevelBelowMinimum";
+  errorDescription: "NestLevel must be greater than or equal to 0";
+  errorInstanceId: string;
+  parameters: {
+    value: unknown;
+    minInclusive: unknown;
+  };
 }
 
 /**

@@ -40,7 +40,7 @@ const _create: $FoundryPlatformMethod<
  * Create a session for the specified Agent version. Creating a session runs Agent logic and may modify
  * platform data.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:agents-write]
  * URL: /v2/agents/agentSessions
@@ -65,7 +65,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the metadata of an Agent session.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:agents-read]
  * URL: /v2/agents/agentSessions/{agentSessionId}
@@ -93,7 +93,7 @@ const _sendEvent: $FoundryPlatformMethod<
  * Send an event to the specified Agent session. Handling an event runs Agent logic and may modify platform data. An
  * `accepted` result confirms that the event was accepted for handling. Retry a `sessionNotReady` result after a short delay.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:agents-write]
  * URL: /v2/agents/agentSessions/{agentSessionId}/sendEvent
@@ -122,7 +122,7 @@ const _getSessionState: $FoundryPlatformMethod<
 /**
  * Get the state of an Agent session.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:agents-read]
  * URL: /v2/agents/agentSessions/{agentSessionId}/getSessionState
