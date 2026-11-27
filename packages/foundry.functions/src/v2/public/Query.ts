@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core/v2";
+import type * as _Ontologies from "@osdk/foundry.ontologies/v2";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -323,6 +324,9 @@ const _executeAsync: $FoundryPlatformMethod<
     $body: _Functions.ExecuteAsyncQueryRequest,
     $queryParams?: {
       transactionId?: _Functions.TransactionId | undefined;
+      scenarioRid?: _Functions.ScenarioRid | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {
@@ -352,6 +356,9 @@ export function executeAsync(
     $body: _Functions.ExecuteAsyncQueryRequest,
     $queryParams?: {
       transactionId?: _Functions.TransactionId | undefined;
+      scenarioRid?: _Functions.ScenarioRid | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
     $headerParams?: {

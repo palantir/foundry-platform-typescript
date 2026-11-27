@@ -33,14 +33,13 @@ const _createScenario: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateOntologyScenarioRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.CreateOntologyScenarioResponse>
-> = [1, "/v2/ontologies/{0}/scenarios/create", 3];
+> = [1, "/v2/ontologies/{0}/scenarios/create", 1];
 
 /**
  * Creates an ontology scenario.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read, api:ontologies-write]
  * URL: /v2/ontologies/{ontology}/scenarios/create
@@ -50,7 +49,6 @@ export function createScenario(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.CreateOntologyScenarioRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.CreateOntologyScenarioResponse> {
   return $foundryPlatformFetch($ctx, _createScenario, ...args);
@@ -155,9 +153,8 @@ const _listScenarioEditedEntityTypes: $FoundryPlatformMethod<
   (
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Ontologies.ListScenarioEditedEntityTypesResponse>
-> = [0, "/v2/ontologies/{0}/scenarios/{1}/editedEntityTypes", 2];
+> = [0, "/v2/ontologies/{0}/scenarios/{1}/editedEntityTypes"];
 
 /**
  * Returns the object types and link types that have been modified within a given scenario.
@@ -166,7 +163,7 @@ const _listScenarioEditedEntityTypes: $FoundryPlatformMethod<
  * many-to-many link types that have been modified, grouped by their source object type. One-to-many
  * link type edits are surfaced as object edits on the object type that owns the foreign key property.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/editedEntityTypes
@@ -176,8 +173,6 @@ export function listScenarioEditedEntityTypes(
   ...args: [
     ontology: _Ontologies.OntologyIdentifier,
     scenarioRid: _Ontologies.OntologyScenarioRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Ontologies.ListScenarioEditedEntityTypesResponse> {
   return $foundryPlatformFetch($ctx, _listScenarioEditedEntityTypes, ...args);
@@ -191,7 +186,6 @@ const _listScenarioEditedObjects: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ListScenarioEditedObjectsResponse>
 > = [0, "/v2/ontologies/{0}/scenarios/{1}/objects/{2}/edited", 2];
@@ -202,7 +196,7 @@ const _listScenarioEditedObjects: $FoundryPlatformMethod<
  *
  * Each page may be smaller than the requested page size.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objects/{objectType}/edited
@@ -217,7 +211,6 @@ export function listScenarioEditedObjects(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ListScenarioEditedObjectsResponse> {
@@ -233,7 +226,6 @@ const _listScenarioEditedLinks: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.ListScenarioEditedLinksResponse>
 > = [0, "/v2/ontologies/{0}/scenarios/{1}/objects/{2}/links/{3}/edited", 2];
@@ -245,7 +237,7 @@ const _listScenarioEditedLinks: $FoundryPlatformMethod<
  *
  * Each page may be smaller than the requested page size.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:ontologies-read]
  * URL: /v2/ontologies/{ontology}/scenarios/{scenarioRid}/objects/{objectType}/links/{linkType}/edited
@@ -261,7 +253,6 @@ export function listScenarioEditedLinks(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Ontologies.ListScenarioEditedLinksResponse> {

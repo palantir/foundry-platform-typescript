@@ -44,7 +44,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the AgentDefinitionVersion with the specified version.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:agents-read]
  * URL: /v2/agents/agentDefinitions/{agentDefinitionApiName}/versions/{agentDefinitionVersionVersion}

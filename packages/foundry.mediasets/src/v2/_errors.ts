@@ -570,6 +570,20 @@ export interface TransformationVlmPageRangeRequired {
 }
 
 /**
+ * Document extraction failed during the text extraction that runs before the language model call, because of the request or the media item. The language model was not called.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransformationVlmPreprocessingRejected {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransformationVlmPreprocessingRejected";
+  errorDescription:
+    "Document extraction failed during the text extraction that runs before the language model call, because of the request or the media item. The language model was not called.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The model response could not be parsed during document extraction.
  *
  * Log Safety: SAFE

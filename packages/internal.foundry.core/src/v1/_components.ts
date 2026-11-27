@@ -956,6 +956,8 @@ export interface BatchApplyActionResponseV2 {
 }
 
 /**
+ * Binary data represented as a base64-encoded string.
+ *
  * Log Safety: SAFE
  */
 export interface BinaryType {}
@@ -1729,6 +1731,13 @@ export interface GetSelectedPropertyOperation {
  * Log Safety: SAFE
  */
 export interface GroupMemberConstraint {}
+
+/**
+ * A group identifier represented as a string.
+ *
+ * Log Safety: SAFE
+ */
+export interface GroupType {}
 
 /**
  * @deprecated Use `GteQuery` in the `internal.foundry.ontologies` package
@@ -3613,6 +3622,15 @@ export type PreviewMode = boolean;
 export type PrimaryKeyValue = any;
 
 /**
+   * A user or group represented as an object with type and id fields.
+The type is user or group, and id is the corresponding identifier string.
+For example, {"type": "user", "id": "00000000-0000-0000-0000-000000000001"}.
+   *
+   * Log Safety: SAFE
+   */
+export interface PrincipalDataType {}
+
+/**
  * @deprecated Use `Property` in the `internal.foundry.ontologies` package
  *
  * Details about some property of an object.
@@ -5084,6 +5102,13 @@ export type UpdatedTime = LooselyBrandedString<"UpdatedTime">;
  * Log Safety: SAFE
  */
 export type UserId = string;
+
+/**
+ * A user identifier represented as a string.
+ *
+ * Log Safety: SAFE
+ */
+export interface UserType {}
 
 /**
  * @deprecated Use `ValidateActionRequest` in the `internal.foundry.ontologies` package

@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core/v2";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -33,14 +32,13 @@ const _get: $FoundryPlatformMethod<
   (
     templateRid: _Notepad.TemplateRid,
     generationJobRid: _Notepad.GenerationJobRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Notepad.GenerationJob>
-> = [0, "/v2/notepad/templates/{0}/generationJobs/{1}", 2];
+> = [0, "/v2/notepad/templates/{0}/generationJobs/{1}"];
 
 /**
  * Load an existing GenerationJob. This is used to monitor job progress.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:notepad-write]
  * URL: /v2/notepad/templates/{templateRid}/generationJobs/{generationJobRid}
@@ -50,8 +48,6 @@ export function get(
   ...args: [
     templateRid: _Notepad.TemplateRid,
     generationJobRid: _Notepad.GenerationJobRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Notepad.GenerationJob> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -62,14 +58,13 @@ const _saveDocument: $FoundryPlatformMethod<
     templateRid: _Notepad.TemplateRid,
     generationJobRid: _Notepad.GenerationJobRid,
     $body: _Notepad.SaveDocumentGenerationJobRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Notepad.SaveDocumentResponse>
-> = [1, "/v2/notepad/templates/{0}/generationJobs/{1}/saveDocument", 3];
+> = [1, "/v2/notepad/templates/{0}/generationJobs/{1}/saveDocument", 1];
 
 /**
  * Save generated content as a new notepad document. This is only possible if the GenerationJob succeeded.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:notepad-write]
  * URL: /v2/notepad/templates/{templateRid}/generationJobs/{generationJobRid}/saveDocument
@@ -80,7 +75,6 @@ export function saveDocument(
     templateRid: _Notepad.TemplateRid,
     generationJobRid: _Notepad.GenerationJobRid,
     $body: _Notepad.SaveDocumentGenerationJobRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Notepad.SaveDocumentResponse> {
   return $foundryPlatformFetch($ctx, _saveDocument, ...args);

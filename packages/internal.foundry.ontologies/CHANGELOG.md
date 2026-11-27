@@ -1,5 +1,18 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.89.0
+
+### Minor Changes
+
+- Regenerate SDKs with API version 1.1939.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @osdk/internal.foundry.core@2.89.0
+  - @osdk/internal.foundry.datasets@2.89.0
+  - @osdk/internal.foundry.geo@2.89.0
+
 ## 2.88.0
 
 ### Minor Changes

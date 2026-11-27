@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core/v2";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -33,9 +32,8 @@ const _generate: $FoundryPlatformMethod<
   (
     templateRid: _Notepad.TemplateRid,
     $body: _Notepad.GenerateTemplateRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Notepad.GenerationJobRid>
-> = [1, "/v2/notepad/templates/{0}/generate", 3];
+> = [1, "/v2/notepad/templates/{0}/generate", 1];
 
 /**
  * Creates a new GenerationJob. The template generation job will produce new document content by applying
@@ -45,7 +43,7 @@ const _generate: $FoundryPlatformMethod<
  * The user must have the api:notepad-write scope to create GenerationJobs. Once created a GenerationJob
  * is only accessible to the user that created it.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:notepad-write]
  * URL: /v2/notepad/templates/{templateRid}/generate
@@ -55,7 +53,6 @@ export function generate(
   ...args: [
     templateRid: _Notepad.TemplateRid,
     $body: _Notepad.GenerateTemplateRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Notepad.GenerationJobRid> {
   return $foundryPlatformFetch($ctx, _generate, ...args);

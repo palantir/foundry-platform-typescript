@@ -104,6 +104,7 @@ export type ActionParameterType =
   | ({ type: "struct" } & OntologyStructType)
   | ({ type: "string" } & _Core.StringType)
   | ({ type: "double" } & _Core.DoubleType)
+  | ({ type: "geotimeSeriesReference" } & _Core.GeotimeSeriesReferenceType)
   | ({ type: "integer" } & _Core.IntegerType)
   | ({ type: "geoshape" } & _Core.GeoShapeType)
   | ({ type: "long" } & _Core.LongType)
@@ -119,6 +120,7 @@ export type ActionParameterType =
   | ({ type: "geohash" } & _Core.GeohashType)
   | ({ type: "vector" } & _Core.VectorType)
   | ({ type: "decimal" } & _Core.DecimalType)
+  | ({ type: "interfaceObjectSet" } & OntologyInterfaceObjectSetType)
   | ({ type: "object" } & OntologyObjectType)
   | ({ type: "timestamp" } & _Core.TimestampType);
 
@@ -2296,6 +2298,7 @@ export type FullTextStringPredicateV2 =
  * Log Safety: UNSAFE
  */
 export interface FunctionLogicRule {
+  functionApiName?: QueryApiName;
   functionRid: FunctionRid;
   functionVersion: FunctionVersion;
   functionInputValues: Record<FunctionParameterName, LogicRuleArgument>;
@@ -3591,6 +3594,26 @@ additional entries are available and can be retrieved by passing the token in a 
 export interface LoadGeotemporalSeriesResponse {
   data: Array<GeotemporalSeriesEntry>;
   nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadObjectLinksRequest {
+  primaryKeys: Array<PrimaryKeyValue>;
+  links: Array<LinkTypeApiName>;
+  pageSize?: _Core.PageSize;
+  pageToken?: _Core.PageToken;
+  includeComputeUsage?: _Core.IncludeComputeUsage;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LoadObjectLinksResponse {
+  data: Array<LinksFromObject>;
+  nextPageToken?: _Core.PageToken;
+  computeUsage?: _Core.ComputeSeconds;
 }
 
 /**
@@ -5059,6 +5082,7 @@ export type OntologyDataType =
   | ({ type: "array" } & OntologyArrayType)
   | ({ type: "objectSet" } & OntologyObjectSetType)
   | ({ type: "binary" } & _Core.BinaryType)
+  | ({ type: "geohash" } & _Core.GeohashType)
   | ({ type: "short" } & _Core.ShortType)
   | ({ type: "decimal" } & _Core.DecimalType)
   | ({ type: "map" } & OntologyMapType)
@@ -5239,15 +5263,17 @@ export type OntologyTransactionId = LooselyBrandedString<
 >;
 
 /**
- * Metadata about an Ontology.
- *
- * Log Safety: UNSAFE
- */
+   * Metadata about an Ontology. defaultBranchOntologyVersion is the latest version of the Ontology on its
+default branch, even when the request targets a different branch.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface OntologyV2 {
   apiName: OntologyApiName;
   displayName: _Core.DisplayName;
   description: string;
   rid: OntologyRid;
+  defaultBranchOntologyVersion: OntologyVersion;
 }
 
 /**
@@ -6026,8 +6052,11 @@ export type QueryAggregationRangeSubType =
   | ({ type: "timestamp" } & _Core.TimestampType);
 
 /**
- * Log Safety: UNSAFE
- */
+   * A range represented as an object with optional startValue (inclusive) and endValue (exclusive)
+fields. Each bound has the type specified by subType. An absent bound is unbounded.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface QueryAggregationRangeType {
   subType: QueryAggregationRangeSubType;
 }
@@ -6066,16 +6095,20 @@ export type QueryDataType =
   | ({ type: "interfaceObject" } & OntologyInterfaceObjectType)
   | ({ type: "struct" } & QueryStructType)
   | ({ type: "string" } & _Core.StringType)
+  | ({ type: "range" } & QueryAggregationRangeType)
   | ({ type: "integer" } & _Core.IntegerType)
   | ({ type: "threeDimensionalAggregation" } & ThreeDimensionalAggregation)
   | ({ type: "float" } & _Core.FloatType)
   | ({ type: "long" } & _Core.LongType)
+  | ({ type: "principal" } & _Core.PrincipalDataType)
   | ({ type: "unsupported" } & _Core.UnsupportedType)
   | ({ type: "attachment" } & _Core.AttachmentType)
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "objectSet" } & OntologyObjectSetType)
   | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
   | ({ type: "typeReference" } & QueryTypeReferenceType)
+  | ({ type: "vector" } & QueryVectorType)
+  | ({ type: "group" } & _Core.GroupType)
   | ({ type: "timestamp" } & _Core.TimestampType)
   | ({ type: "set" } & QuerySetType)
   | ({ type: "void" } & _Core.VoidType)
@@ -6084,9 +6117,12 @@ export type QueryDataType =
   | ({ type: "union" } & QueryUnionType)
   | ({ type: "geoshape" } & _Core.GeoShapeType)
   | ({ type: "boolean" } & _Core.BooleanType)
+  | ({ type: "marking" } & _Core.MarkingType)
   | ({ type: "mediaReference" } & _Core.MediaReferenceType)
   | ({ type: "null" } & _Core.NullType)
+  | ({ type: "binary" } & _Core.BinaryType)
   | ({ type: "interfaceObjectSet" } & OntologyInterfaceObjectSetType)
+  | ({ type: "user" } & _Core.UserType)
   | ({ type: "object" } & OntologyObjectType);
 
 /**
@@ -6199,6 +6235,23 @@ export interface QueryTypeV2 {
  */
 export interface QueryUnionType {
   unionTypes: Array<QueryDataType>;
+}
+
+/**
+ * The type of each element of a query vector.
+ *
+ * Log Safety: UNSAFE
+ */
+export type QueryVectorSubType = { type: "double" } & _Core.DoubleType;
+
+/**
+ * A fixed-size vector represented as a JSON array of numbers in query inputs and outputs.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryVectorType {
+  dimension: number;
+  elementType: QueryVectorSubType;
 }
 
 /**

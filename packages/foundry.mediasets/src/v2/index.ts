@@ -286,6 +286,7 @@ export type {
   TransformationVlmLayoutModelFailure,
   TransformationVlmMultiPageRequestUnsupported,
   TransformationVlmPageRangeRequired,
+  TransformationVlmPreprocessingRejected,
   TransformationVlmResponseParseError,
   TransformedMediaItemNotFound,
   UnexpectedMetadataType,

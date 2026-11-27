@@ -109,6 +109,7 @@ export interface ArgumentDefinition {
   name: ArgumentName;
   dataType: DataType;
   isOptional?: boolean;
+  requirement: ArgumentRequirement;
 }
 
 /**
@@ -117,6 +118,13 @@ export interface ArgumentDefinition {
  * Log Safety: UNSAFE
  */
 export type ArgumentName = LooselyBrandedString<"ArgumentName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ArgumentRequirement =
+  | ({ type: "optional" } & OptionalArgument)
+  | ({ type: "required" } & RequiredArgument);
 
 /**
    * An opaque value identifying observed Agent session state. Pass a key returned for a session to a later state
@@ -316,6 +324,15 @@ export interface ObjectSetType {
 }
 
 /**
+ * The argument can be omitted when starting an agent session.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface OptionalArgument {
+  defaultValue?: JsonValue;
+}
+
+/**
    * An object that supports arbitrary string keys. The values all need to have the same type. A value of this type
 is represented by a JSON object, for example {"first": 1, "second": 2}.
    *
@@ -324,6 +341,13 @@ is represented by a JSON object, for example {"first": 1, "second": 2}.
 export interface RecordType {
   valueType: DataType;
 }
+
+/**
+ * The caller must provide this argument when starting an agent session.
+ *
+ * Log Safety: SAFE
+ */
+export interface RequiredArgument {}
 
 /**
  * The event was accepted for asynchronous handling.

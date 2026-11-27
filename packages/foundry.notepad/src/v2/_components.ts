@@ -33,7 +33,9 @@ export type Alignment = "LEFT" | "CENTER" | "RIGHT";
 export type Block =
   | ({ type: "objectCard" } & ObjectCard)
   | ({ type: "objectPropertyMarkdown" } & ObjectPropertyMarkdown)
+  | ({ type: "placeholder" } & Placeholder)
   | ({ type: "text" } & TextBlock)
+  | ({ type: "list" } & List)
   | ({ type: "objectPropertyMedia" } & ObjectPropertyMedia);
 
 /**
@@ -289,6 +291,14 @@ export type GenerationJobStatus =
 export interface GenerationJobSucceeded {}
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface GetDocumentResponse {
+  documentRid: DocumentRid;
+  content: DocumentContent;
+}
+
+/**
  * A link to a URL, displayed as one or more runs of formatted text.
  *
  * Log Safety: UNSAFE
@@ -303,8 +313,64 @@ export interface Hyperlink {
  */
 export type Inline =
   | ({ type: "hyperlink" } & Hyperlink)
+  | ({ type: "resourceMention" } & ResourceMention)
   | ({ type: "objectPropertyMention" } & ObjectPropertyMention)
+  | ({ type: "placeholder" } & Placeholder)
   | ({ type: "text" } & TextInline);
+
+/**
+ * A bulleted, numbered, or checked list.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface List {
+  listType: ListType;
+  items: Array<ListItem>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListItem {
+  nestLevel: NestLevel;
+  checked?: boolean;
+  content: ListItemContent;
+}
+
+/**
+   * The contents of a list item, either a run of inline elements, a single object card, or a single object
+property media.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ListItemContent =
+  | ({ type: "objectCard" } & ObjectCard)
+  | ({ type: "placeholder" } & Placeholder)
+  | ({ type: "inlines" } & ListItemInlines)
+  | ({ type: "objectPropertyMedia" } & ObjectPropertyMedia);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListItemInlines {
+  inlines: Array<Inline>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type ListType = "BULLETED" | "NUMBERED" | "CHECKED";
+
+/**
+   * The indentation level of a list item, from 0 to 16 inclusive.
+Validation rules:
+
+must be greater than or equal to 0
+must be less than or equal to 16
+   *
+   * Log Safety: SAFE
+   */
+export type NestLevel = number;
 
 /**
  * A block displaying an Ontology object and its properties.
@@ -393,6 +459,16 @@ export interface ObjectRidSelector {
 }
 
 /**
+ * A stand-in for an element that this API cannot represent or that could not be loaded.
+ *
+ * Log Safety: SAFE
+ */
+export interface Placeholder {
+  elementType: string;
+  reason: string;
+}
+
+/**
  * Identifies an Ontology property by its property API name.
  *
  * Log Safety: UNSAFE
@@ -407,6 +483,16 @@ export interface PropertyApiNameSelector {
  * Log Safety: UNSAFE
  */
 export type PropertyReference = { type: "apiName" } & PropertyApiNameSelector;
+
+/**
+ * An inline mention of a Foundry resource.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ResourceMention {
+  resourceRid: _Filesystem.ResourceRid;
+  formatting?: TextFormatting;
+}
 
 /**
  * Log Safety: UNSAFE

@@ -1300,6 +1300,7 @@ export interface ResourceConfiguration {
   memory: string;
   cpu: string;
   gpu?: GpuType;
+  gpuCount?: number;
 }
 
 /**

@@ -181,6 +181,20 @@ export interface AsyncQueryTimeExceededLimit {
 }
 
 /**
+ * The branch parameter is not supported when executing an entity-remapped Marketplace query.
+ *
+ * Log Safety: SAFE
+ */
+export interface BranchNotSupportedWithMarketplaceQuery {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BranchNotSupportedWithMarketplaceQuery";
+  errorDescription:
+    "The branch parameter is not supported when executing an entity-remapped Marketplace query.";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The function runtime does not support cancelling executions.
  *
  * Log Safety: UNSAFE
@@ -404,6 +418,41 @@ export interface InvalidVersionResolutionParameters {
   errorInstanceId: string;
   parameters: {
     message: unknown;
+  };
+}
+
+/**
+ * The Marketplace SDK installation could not be found or the caller does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface MarketplaceSdkInstallationNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkInstallationNotFound";
+  errorDescription:
+    "The Marketplace SDK installation could not be found or the caller does not have access to it.";
+  errorInstanceId: string;
+  parameters: {
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
+  };
+}
+
+/**
+ * The query could not be mapped to the Marketplace SDK installation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceSdkQueryMappingNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceSdkQueryMappingNotFound";
+  errorDescription:
+    "The query could not be mapped to the Marketplace SDK installation.";
+  errorInstanceId: string;
+  parameters: {
+    queryApiName: unknown;
+    sdkPackageRid: unknown;
+    sdkVersion: unknown;
   };
 }
 

@@ -149,6 +149,8 @@ export type {
   DuplicateBuildBranches,
   GetAffectedResourcesSchedulePermissionDenied,
   InvalidAndTrigger,
+  InvalidBuildRid,
+  InvalidJobRid,
   InvalidMediaSetTrigger,
   InvalidOrTrigger,
   InvalidScheduleDescription,
